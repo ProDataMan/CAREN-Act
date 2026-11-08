@@ -6,39 +6,61 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; }
-    #map { height: 70vh; }
-    .controls { padding: 10px; background: #f5f5f5; }
-    .layer-toggle { margin: 5px; display: block; }
-    .info { padding: 10px; max-width: 900px; }
+    #map { height: 65vh; }
+    .controls { padding: 10px; background: #f5f5f5; display: flex; flex-wrap: wrap; gap: 10px; }
+    .layer-toggle { margin: 5px; }
+    .info { padding: 10px; max-width: 1000px; }
     h1 { margin: 10px; }
-    .priority { background: #fff3cd; padding: 8px; border-left: 4px solid #ffc107; }
+    .priority { background: #fff3cd; padding: 8px; border-left: 4px solid #ffc107; margin: 10px 0; }
+    .form-section { background: #e9ecef; padding: 15px; margin: 15px 0; border-radius: 5px; }
+    input, textarea, select { width: 100%; max-width: 500px; padding: 8px; margin: 5px 0; }
+    button { padding: 8px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
   <h1>Support the Federal CAREN Act</h1>
-  <p>Making discriminatory 911 calls illegal nationwide. Based on San Francisco's CAREN Act (Police Code §637).</p>
+  <p>Making discriminatory 911 calls illegal nationwide. Based on San Francisco's CAREN Act (Police Code §637). <a href="bill.html">View & comment on the draft federal bill</a></p>
   <div class="controls">
-    <label class="layer-toggle"><input type="checkbox" id="hateCrimes" checked> Hate Crimes (FBI UCR patterns)</label>
-    <label class="layer-toggle"><input type="checkbox" id="lynchings"> Historical Lynchings (EJI, 1877–1950)</label>
+    <label class="layer-toggle"><input type="checkbox" id="hateCrimes" checked> Hate Crimes (FBI UCR)</label>
+    <label class="layer-toggle"><input type="checkbox" id="lynchings" checked> Historical Lynchings (EJI)</label>
+    <label class="layer-toggle"><input type="checkbox" id="policeViolence" checked> Police Killings / Disproportionate Contact (Mapping Police Violence)</label>
+    <label class="layer-toggle"><input type="checkbox" id="minorityPop"> Larger Minority Populations (Census patterns)</label>
     <label class="layer-toggle"><input type="checkbox" id="southernHistory"> Southern States (Slavery / Jim Crow history)</label>
-    <label class="layer-toggle"><input type="checkbox" id="sundownRedlining"> Sundown Histories / Obsolete Ordinances / Redlining</label>
-    <label class="layer-toggle"><input type="checkbox" id="allies"> Potential Allies / Members of Color (sample)</label>
+    <label class="layer-toggle"><input type="checkbox" id="sundownRedlining" checked> Sundown / Redlining Histories (historical color) vs Residual Ordinances (highlight color)</label>
+    <label class="layer-toggle"><input type="checkbox" id="allies"> Potential Allies (color by power/position)</label>
   </div>
   <div id="map"></div>
   <div class="info">
     <h2>About the Map & Data Layers</h2>
-    <p>Layers are illustrative or linked to public sources. They help identify areas for prioritization where multiple factors (historical violence, residual discriminatory language, reported hate incidents) overlap. Full datasets are large; this prototype links to authoritative sources and uses sample markers. Expand with GeoJSON for production.</p>
-    <div class="priority"><strong>Prioritization note:</strong> Locations with high historical lynching counts + residual “zombie” discriminatory ordinances + documented race-motivated 911 patterns or elevated hate crime reporting merit focused advocacy attention. Overlaps do not prove current illegal enforcement but highlight places where residual effects and risk of biased emergency reporting may be higher.</div>
+    <p>All layers remain available and toggleable. High-priority locations (overlaps of high lynching counts, residual discriminatory language, elevated police violence or disproportionate minority contact, and larger minority populations) are highlighted with larger or bolder markers, but no data is filtered out. Sample markers are illustrative and linked to real public sources. Full national datasets are large; production versions can load GeoJSON.</p>
+    <div class="priority"><strong>Prioritization (without filtering):</strong> Areas with multiple overlapping factors (high historical lynchings + residual ordinances + higher rates of police killings or disproportionate arrests/contacts with minorities + larger minority populations) are emphasized for advocacy focus. This does not remove or hide other locations.</div>
     <ul>
-      <li><strong>Hate Crimes:</strong> FBI UCR data (race/ethnicity bias is the largest category). Explore full agency/state data: <a href="https://cde.ucr.cjis.gov/" target="_blank">FBI Crime Data Explorer</a>.</li>
-      <li><strong>Lynchings:</strong> Equal Justice Initiative documented >4,000 racial terror lynchings (1877–1950), concentrated in the South. Interactive map: <a href="https://lynchinginamerica.eji.org/" target="_blank">EJI Lynching in America</a>.</li>
-      <li><strong>Historical southern context:</strong> Documented slavery and Jim Crow systems. Most formal statutes repealed or struck down.</li>
-      <li><strong>Sundown histories & residual ordinances:</strong> James Loewen’s Historical Database of Sundown Towns (thousands of places that were deliberately exclusionary for decades). See <a href="https://justice.tougaloo.edu/sundown-towns/" target="_blank">sundown.tougaloo.edu / justice.tougaloo.edu</a>. Some municipalities still have obsolete (“zombie”) segregation-era or sundown-related language in codes until actively repealed (examples include Boynton Beach, FL, which repealed three in 2024). These are unenforceable under the Equal Protection Clause, Civil Rights Act, and Fair Housing Act; enforcement would be illegal. Redlining: <a href="https://dsl.richmond.edu/panorama/redlining/" target="_blank">Mapping Inequality (HOLC maps)</a>.</li>
-      <li><strong>911 race-motivated calls:</strong> No comprehensive national geocoded public dataset. Track via news compilations, local FOIA, or incident reports. The proposed federal law would create a clearer civil remedy.</li>
-      <li><strong>Allies:</strong> Research House/Senate Judiciary members and others with civil rights sponsorship records. Use congress.gov and voting scorecards.</li>
+      <li><strong>Hate Crimes:</strong> FBI UCR. <a href="https://cde.ucr.cjis.gov/" target="_blank">Crime Data Explorer</a>.</li>
+      <li><strong>Lynchings:</strong> EJI >4,000 racial terror lynchings (1877–1950). <a href="https://lynchinginamerica.eji.org/" target="_blank">EJI map</a>.</li>
+      <li><strong>Police Killings & Disproportionate Contact:</strong> Mapping Police Violence tracks fatal police encounters. Black Americans are disproportionately represented relative to population. <a href="https://mappingpoliceviolence.org/" target="_blank">mappingpoliceviolence.org</a>. Disproportionate arrests/contacts drawn from public analyses and BJS patterns.</li>
+      <li><strong>Minority Populations:</strong> Census-based patterns of higher Black, Latino, Native, and other minority shares (illustrative urban and southern examples).</li>
+      <li><strong>Sundown / Redlining:</strong> Historical (Loewen database, HOLC maps via <a href="https://dsl.richmond.edu/panorama/redlining/" target="_blank">Mapping Inequality</a>) shown in one color. Residual/zombie ordinances (obsolete text still in some codes until repealed; unenforceable) shown in a different highlight color. Example residual case cleaned up: Boynton Beach, FL (2024).</li>
+      <li><strong>Allies:</strong> Color-coded by position and potential influence (e.g., Judiciary chairs/ranking members darker, other members lighter, local officials different hue). Sample only; expand with public records.</li>
     </ul>
     <h2>Take Action</h2>
-    <p>Contact members of the House and Senate Judiciary Committees (and other interested members) to request sponsorship of a federal CAREN Act bill. Upload the original SF ordinance PDF to the docs/ folder of this repo. Enable GitHub Pages (repo Settings → Pages → Source: main / root or /website) to host this site live.</p>
+    <div class="form-section">
+      <h3>Contact Your Representative / Forward This Bill</h3>
+      <p>Enter your details to generate a pre-filled message. (In production this can integrate with congress.gov lookup or email APIs. For now, it prepares text you can copy or opens a mailto.)</p>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your name" required><br>
+        <input type="email" id="email" placeholder="Your email" required><br>
+        <input type="text" id="zip" placeholder="Your ZIP code (for district lookup)"><br>
+        <select id="recipient">
+          <option value="judiciary">House/Senate Judiciary Committee members</option>
+          <option value="myrep">My representative (use ZIP)</option>
+          <option value="other">Other</option>
+        </select><br>
+        <textarea id="message" rows="6" placeholder="Message (pre-filled with bill summary)">I support a federal version of the San Francisco CAREN Act that makes discriminatory emergency calls illegal nationwide, with a minimum $1,000 in statutory damages ($500 from the individual caller and $500 from the responding police department) plus fees. Please sponsor or co-sponsor this legislation to protect communities from race-motivated harassment via 911.</textarea><br>
+        <button type="button" onclick="prepareContact()">Prepare Message / Open Email</button>
+      </form>
+      <p id="contactResult"></p>
+    </div>
+    <p><a href="bill.html">View the full draft federal bill and click any paragraph to suggest changes</a> | Original SF ordinance notes in repo docs/</p>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
@@ -47,30 +69,66 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    // Layers
     const southernStates = L.layerGroup();
-    L.circle([32.5, -86.5], {radius: 400000, color: 'brown', fillOpacity: 0.2}).addTo(southernStates).bindPopup('Southern states: History of slavery and Jim Crow (historical; most formal laws repealed/struck down)');
-    L.circle([33, -90], {radius: 300000, color: 'brown', fillOpacity: 0.2}).addTo(southernStates).bindPopup('Mississippi: High historical lynching concentration (see EJI map)');
+    L.circle([32.5, -86.5], {radius: 400000, color: 'brown', fillOpacity: 0.15}).addTo(southernStates).bindPopup('Southern states: History of slavery and Jim Crow (historical; most formal laws repealed/struck down)');
 
     const lynchingsLayer = L.layerGroup();
-    L.circle([32.7, -89.7], {radius: 200000, color: 'red', fillOpacity: 0.3}).addTo(lynchingsLayer).bindPopup('Example high-density lynching region (MS/AL/GA). Full data: lynchinginamerica.eji.org');
+    L.circle([32.7, -89.7], {radius: 180000, color: 'darkred', fillOpacity: 0.35, weight: 3}).addTo(lynchingsLayer).bindPopup('<b>High-priority example:</b> Mississippi region with very high EJI lynching counts. See full EJI map.');
+    L.circle([33.5, -86.8], {radius: 120000, color: 'red', fillOpacity: 0.25}).addTo(lynchingsLayer).bindPopup('Alabama: High historical lynching concentration (EJI).');
+
+    const policeLayer = L.layerGroup();
+    L.circle([41.8, -87.6], {radius: 80000, color: 'crimson', fillOpacity: 0.4, weight: 4}).addTo(policeLayer).bindPopup('<b>High-priority:</b> Chicago area — elevated police killings and disproportionate impact on Black residents (Mapping Police Violence).');
+    L.circle([38.6, -90.2], {radius: 70000, color: 'crimson', fillOpacity: 0.4, weight: 4}).addTo(policeLayer).bindPopup('<b>High-priority:</b> St. Louis area — high rates of police killings relative to population, disproportionate minority impact.');
+    L.marker([33.4, -112.0]).addTo(policeLayer).bindPopup('Phoenix: Among higher per-capita police killing rates in major cities (Mapping Police Violence).');
+
+    const minorityLayer = L.layerGroup();
+    L.circle([33.7, -84.4], {radius: 100000, color: 'blue', fillOpacity: 0.2}).addTo(minorityLayer).bindPopup('Atlanta metro: Larger Black population share (Census patterns).');
+    L.circle([29.7, -95.4], {radius: 120000, color: 'blue', fillOpacity: 0.2}).addTo(minorityLayer).bindPopup('Houston: Large and diverse minority populations.');
 
     const hateLayer = L.layerGroup();
-    L.circle([40.7, -74], {radius: 150000, color: 'orange', fillOpacity: 0.2}).addTo(hateLayer).bindPopup('Sample: Urban areas often show higher reported hate crime volumes (FBI UCR). Explore cde.ucr.cjis.gov');
+    L.circle([40.7, -74], {radius: 100000, color: 'orange', fillOpacity: 0.2}).addTo(hateLayer).bindPopup('NYC area: Higher volume of reported hate crime incidents (FBI UCR).');
 
-    const sundownLayer = L.layerGroup();
-    L.circle([41.8, -87.6], {radius: 100000, color: 'purple', fillOpacity: 0.2}).addTo(sundownLayer).bindPopup('Example historical sundown research area. Database: justice.tougaloo.edu. Some places retain obsolete ordinance language (zombie ordinances) until repealed.');
-    L.marker([26.53, -80.09]).addTo(sundownLayer).bindPopup('Boynton Beach, FL: Repealed three segregation/sundown-era ordinances in 2024 (example of residual language cleaned up).');
+    const sundownHistorical = L.layerGroup();
+    L.circle([41.5, -88.1], {radius: 60000, color: 'purple', fillOpacity: 0.2}).addTo(sundownHistorical).bindPopup('Historical sundown town research area (Loewen database). Formal ordinances unenforceable.');
+    L.circle([42.3, -83.0], {radius: 50000, color: 'purple', fillOpacity: 0.2}).addTo(sundownHistorical).bindPopup('Example historical exclusionary practices / redlining vicinity.');
+
+    const residualOrdinances = L.layerGroup();
+    L.marker([26.53, -80.09], {icon: L.divIcon({className: 'residual-marker', html: '<div style="background:gold;width:12px;height:12px;border-radius:50%;border:2px solid black;"></div>'})}).addTo(residualOrdinances).bindPopup('<b>Residual/zombie example (cleaned):</b> Boynton Beach, FL repealed three segregation/sundown-era ordinances in 2024. These were unenforceable but remained on the books until actively removed. Highlight color indicates residual language priority.');
 
     const alliesLayer = L.layerGroup();
-    L.marker([38.9, -77.0]).addTo(alliesLayer).bindPopup('Washington DC: Many members of Congress. Research civil rights records on congress.gov and scorecards.');
+    // Color by power: darker = higher influence sample
+    L.marker([38.9, -77.0], {icon: L.divIcon({html: '<div style="background:#1a1a1a;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">High</div>'})}).addTo(alliesLayer).bindPopup('DC: High-power allies — Judiciary chairs/ranking members or senior members with strong civil rights records (sample).');
+    L.marker([38.9, -77.03], {icon: L.divIcon({html: '<div style="background:#555;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">Med</div>'})}).addTo(alliesLayer).bindPopup('Medium-influence members or those with relevant sponsorship history.');
+    L.marker([37.77, -122.42], {icon: L.divIcon({html: '<div style="background:#888;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">Local</div>'})}).addTo(alliesLayer).bindPopup('Local/state officials or advocates (e.g., SF Supervisor Walton who introduced the original CAREN Act).');
 
+    // Toggles
     document.getElementById('hateCrimes').addEventListener('change', e => e.target.checked ? hateLayer.addTo(map) : map.removeLayer(hateLayer));
     document.getElementById('lynchings').addEventListener('change', e => e.target.checked ? lynchingsLayer.addTo(map) : map.removeLayer(lynchingsLayer));
+    document.getElementById('policeViolence').addEventListener('change', e => e.target.checked ? policeLayer.addTo(map) : map.removeLayer(policeLayer));
+    document.getElementById('minorityPop').addEventListener('change', e => e.target.checked ? minorityLayer.addTo(map) : map.removeLayer(minorityLayer));
     document.getElementById('southernHistory').addEventListener('change', e => e.target.checked ? southernStates.addTo(map) : map.removeLayer(southernStates));
-    document.getElementById('sundownRedlining').addEventListener('change', e => e.target.checked ? sundownLayer.addTo(map) : map.removeLayer(sundownLayer));
+    document.getElementById('sundownRedlining').addEventListener('change', e => {
+      if (e.target.checked) { sundownHistorical.addTo(map); residualOrdinances.addTo(map); }
+      else { map.removeLayer(sundownHistorical); map.removeLayer(residualOrdinances); }
+    });
     document.getElementById('allies').addEventListener('change', e => e.target.checked ? alliesLayer.addTo(map) : map.removeLayer(alliesLayer));
 
+    // Initial visible (no filtering of data; user can toggle all)
+    lynchingsLayer.addTo(map);
+    policeLayer.addTo(map);
+    sundownHistorical.addTo(map);
+    residualOrdinances.addTo(map);
     hateLayer.addTo(map);
+
+    function prepareContact() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('message').value;
+      const result = document.getElementById('contactResult');
+      const full = `From: ${name} <${email}>\n\n${msg}\n\n---\nDraft federal CAREN Act proposal available at the advocacy site.`;
+      result.innerHTML = `<strong>Prepared message:</strong><br><pre>${full}</pre><br><a href="mailto:?subject=Support for Federal CAREN Act&body=${encodeURIComponent(full)}">Open in email client</a> or copy the text above.`;
+    }
   </script>
 </body>
 </html>
