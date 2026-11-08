@@ -1,0 +1,33 @@
+name: Report a contested death
+description: A hanging or other death of a person of color where the official finding (suicide, accident, undetermined) is publicly disputed.
+title: "[Contested death] <name> — <city>, <state> — <date>"
+labels: ["contested-death", "needs-verification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cases are listed because the official finding is **publicly disputed**, not because a crime is proven. Please include **reputable sources**: news reporting, court filings or official records.
+        Please don't post private information such as addresses or phone numbers of family members.
+  - type: input
+    id: name
+    attributes: { label: Name of the person who died (as publicly reported) }
+    validations: { required: true }
+  - type: input
+    id: date
+    attributes: { label: Date found, placeholder: "2026-06-21" }
+    validations: { required: true }
+  - type: input
+    id: place
+    attributes: { label: City/town, county and state }
+    validations: { required: true }
+  - type: input
+    id: ruling
+    attributes: { label: Official ruling and who made it, placeholder: "Suicide — county coroner" }
+  - type: textarea
+    id: dispute
+    attributes: { label: What is disputed, and by whom? }
+    validations: { required: true }
+  - type: textarea
+    id: sources
+    attributes: { label: Sources (one link per line) }
+    validations: { required: true }

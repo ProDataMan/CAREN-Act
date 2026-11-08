@@ -50,6 +50,25 @@ Create a public GitHub repository and advocacy website to support making the San
    - Bill comments are public via GitHub Issues (label bill-comment). The bill text lives in website/bill.json. Adding the `accepted` label triggers the workflow that merges the edit, records history, and gives the commenter a gold star; `hidden` hides spam.
    - The 120th Congress starts 2027-01-03, and several states redrew districts. The ZIP file and geocoder vintage need updating to CD120 then; congress-legislators updates members automatically.
 
+11. **2026-11-08 (third update):**
+   - New page website/deaths.html:
+     - 5 verified disputed hanging deaths (Trey Reed, Tory Medley, Tasia Fortune, Justice Kai James, To'Nea Miller) in data/contested_deaths.json. Sources: Capital B News (Sept 24, 2026), Mississippi Today, Mississippi Free Press. Map layer "Contested hanging deaths".
+     - CDC charts (data.cdc.gov nt65-c7a7 injury deaths by race and intent 1999–2016; w26f-tf3h suicide rates by race to 2024), built by build_data.py (`python3 scripts/build_data.py cdc` runs only this step).
+     - Finding: Black Americans have the highest rate of hanging/suffocation deaths ruled homicide in every year 1999–2016, and a lower hanging-suicide rate than White Americans.
+   - CDC WONDER API returns an Akamai 403 for automated requests, and CDC policy limits its API to national data anyway. State and county numbers by race need manual exports.
+   - Individual case data for "all hangings in 50 years" does not exist publicly. The plan is a crowdsourced, verified case registry (issue form contested-death.yml) plus partners: JULIAN (70 cases 2000–2025), NAACP LDF (asked Congress for a commission), Capital B, The Marshall Project.
+   - New page website/laws.html, the old laws tracker:
+     - Issue form residual-law.yml.
+     - Status labels: needs-verification → verified → repeal-requested → repeal-introduced → repealed (also not-residual).
+     - Generates a cover letter plus a model repeal ordinance or state bill.
+     - laws-followup.yml sends daily 30-day reminders to the adopter.
+     - DECIDED: no automated legal motions, class actions, or messages sent on allies' behalf. Repeal is legislative, unenforced laws give no standing, and auto-sending or impersonation would be spam or fraud. Real people deliver each request.
+   - Design: shared header and mobile hamburger menu (assets/site.css, assets/site.js) on all pages.
+     - Map page: hero with calls to action; layer panel as a card over the map on desktop, collapsible on mobile; collapsible legend; `?layers=deaths` URL parameter.
+     - Bill panel sits below the sticky header and is full-width on phones.
+   - Labels created: residual-law, needs-verification, verified, repeal-requested, repeal-introduced, repealed, not-residual, contested-death.
+   - BLOCKER: the gh token lacks the `workflow` scope. The workflow files (bill-comments, refresh-data, laws-followup) are committed locally but NOT pushed. The user must run `gh auth refresh -s workflow && git push`.
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.
@@ -64,6 +83,9 @@ Create a public GitHub repository and advocacy website to support making the San
 2. ~~Upload the SF CAREN Act PDF~~ Done.
 2a. ~~Shared comment backend~~ Done (GitHub Issues). Optional later: allow comments without a GitHub account (would need a hosted backend plus moderation).
 2b. Jan 2027: switch the ZIP→district file to CD120 and the geocoder layer to 120th districts.
+2d. Push workflow files after `gh auth refresh -s workflow`.
+2e. Seed the old laws tracker: check UNC "On the Books" (NC) and the South Carolina project results against the current codes; recruit verifiers per state.
+2f. Contact JULIAN and the NAACP LDF about sharing their contested-death case lists.
 2c. Add recommended data sources (LegiScan, Congress.gov, Stanford Open Policing, city 911 data). See website/data.html.
 3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).
 4. Identify and list specific potential congressional sponsors/champions (especially Judiciary members or newly elected with civil rights records).
@@ -82,7 +104,7 @@ Create a public GitHub repository and advocacy website to support making the San
 ## How to Continue on Another Machine/Account
 - Clone or browse https://github.com/ProDataMan/CAREN-Act
 - Read this context.md first for full status.
-- Website: website/index.html (map + heat map + contact), website/bill.html (draft + comments), website/history.html (origins).
+- Website: index.html (map + contact Congress), bill.html (draft + public comments), deaths.html (contested deaths + CDC data), laws.html (old laws tracker), history.html, data.html. Shared nav: assets/site.js + site.css.
 - To update files: use GitHub web editor, git, or API tools as available.
 - After any successful change, update this context.md with new progress and revised next steps.
 

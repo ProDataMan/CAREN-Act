@@ -21,6 +21,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.parse
 import urllib.request
 import zipfile
 from collections import Counter, defaultdict
@@ -39,6 +40,8 @@ SOURCES = {
     "fbi_agencies": "https://cde.ucr.cjis.gov/LATEST/agency/byStateAbbr/{st}",
     "holc": "https://dsl.richmond.edu/panorama/redlining/static/mappinginequality.json",
     "zcta_cd": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/cd-sld/tab20_cd11920_zcta520_natl.txt",
+    "cdc_injury": "https://data.cdc.gov/resource/nt65-c7a7.json",
+    "cdc_suicide": "https://data.cdc.gov/resource/w26f-tf3h.json",
 }
 
 STATES = {
@@ -442,6 +445,54 @@ def build_zip_districts():
                                              "description": "2020 ZCTA to 119th Congress district relationship", "zips": len(out)}
 
 
+# ---------------------------------------------------------------- CDC national injury deaths by race
+def socrata(url, where, select=None, limit=50000):
+    q = {"$where": where, "$limit": str(limit)}
+    if select:
+        q["$select"] = select
+    return json.loads(fetch(url + "?" + urllib.parse.urlencode(q), binary=False, timeout=180))
+
+
+def build_cdc_deaths():
+    log("CDC injury deaths by race")
+    races = {"Non-Hispanic black": "Black", "Non-Hispanic white": "White", "Hispanic": "Hispanic", "All races": "All"}
+    rows = socrata(SOURCES["cdc_injury"],
+                   "sex='Both sexes' AND age_years='All Ages' AND injury_mechanism in('Suffocation','All Mechanisms')")
+    injury = defaultdict(lambda: defaultdict(dict))  # mechanism -> intent -> race -> {year: [deaths, rate]}
+    years = set()
+    for r in rows:
+        race = races.get(r["race"])
+        if not race:
+            continue
+        y = int(r["year"])
+        years.add(y)
+        mech = "suffocation" if r["injury_mechanism"] == "Suffocation" else "all"
+        injury[mech][r["injury_intent"]].setdefault(race, {})[y] = [int(float(r["deaths"])), round(float(r["age_specific_rate"]), 2)]
+    sui = socrata(SOURCES["cdc_suicide"],
+                  "classification='Demographic Characteristic' AND `group`='Race and Hispanic origin' AND estimate_type like '%age adjusted%'")
+    suicide = defaultdict(dict)
+    for r in sui:
+        if not r.get("estimate"):
+            continue
+        suicide[r["subgroup"]][r["time_period"]] = float(r["estimate"])
+    write_json("cdc_deaths.json", {
+        "injury_years": [min(years), max(years)] if years else None,
+        "injury": injury,
+        "suicide_age_adjusted": suicide,
+        "notes": {
+            "suffocation": "CDC 'suffocation' mechanism = hanging, strangulation and suffocation (ICD-10 X70, X91, Y20, W75-W84 and related). Most suffocation suicides are hangings.",
+            "rates": "Injury rates are crude deaths per 100,000. Suicide rates are age-adjusted per 100,000.",
+        },
+    })
+    manifest["datasets"]["cdc_deaths"] = {
+        "source": "https://data.cdc.gov/", "publisher": "CDC National Center for Health Statistics",
+        "injury": f"{SOURCES['cdc_injury']} ({min(years)}-{max(years)})" if years else SOURCES["cdc_injury"],
+        "suicide": SOURCES["cdc_suicide"],
+        "latest_suicide_year": max((max(v) for v in suicide.values() if v), default=None),
+        "caveat": "National totals only: CDC does not allow state/county breakdowns by race through automated access.",
+    }
+
+
 # ---------------------------------------------------------------- County priority index
 def pctl(values, q):
     v = sorted(values)
@@ -494,6 +545,12 @@ def build_priority(counties, acs, lynch, police, police_black, hate):
 def main():
     os.makedirs(OUT, exist_ok=True)
     only = set(sys.argv[1:])
+    if only == {"cdc"}:
+        global manifest
+        manifest = json.load(open(os.path.join(OUT, "manifest.json")))
+        build_cdc_deaths()
+        json.dump(manifest, open(os.path.join(OUT, "manifest.json"), "w"), indent=2)
+        return
     counties, by_name = build_gazetteer()
     acs, _ = build_acs()
     lynch = build_lynchings(by_name, counties)
@@ -504,6 +561,7 @@ def main():
         build_redlining()
     if not only or "zip" in only:
         build_zip_districts()
+    build_cdc_deaths()
     manifest_path = os.path.join(OUT, "manifest.json")
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)

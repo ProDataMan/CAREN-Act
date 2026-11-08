@@ -74,6 +74,14 @@
       "publisher": "U.S. Census Bureau",
       "description": "2020 ZCTA to 119th Congress district relationship",
       "zips": 33791
+    },
+    "cdc_deaths": {
+      "source": "https://data.cdc.gov/",
+      "publisher": "CDC National Center for Health Statistics",
+      "injury": "https://data.cdc.gov/resource/nt65-c7a7.json (1999-2016)",
+      "suicide": "https://data.cdc.gov/resource/w26f-tf3h.json",
+      "latest_suicide_year": "2024",
+      "caveat": "National totals only: CDC does not allow state/county breakdowns by race through automated access."
     }
   }
 }

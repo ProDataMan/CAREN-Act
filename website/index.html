@@ -5,23 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Support the Federal CAREN Act</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/site.css">
   <style>
-    :root { --accent: #0b5cad; --muted: #666; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, sans-serif; color: #222; background: #fff; line-height: 1.5; }
-    header.top { padding: 10px 16px 4px; }
-    header.top h1 { margin: 0 0 4px; font-size: 1.6rem; }
-    header.top nav a { margin-right: 14px; }
-    .controls { padding: 8px 16px; background: #f5f5f5; display: flex; flex-wrap: wrap; gap: 4px 16px; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
-    .controls label { display: inline-flex; align-items: center; gap: 6px; font-size: .92rem; cursor: pointer; }
-    .controls .sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; border: 1px solid rgba(0,0,0,.3); }
-    .controls .status { font-size: .75rem; color: var(--muted); }
-    #map { height: 68vh; min-height: 420px; }
+    .hero { background: linear-gradient(180deg, #0e2a47 0%, #173e66 100%); color: #fff; }
+    .hero .in { max-width: 1200px; margin: 0 auto; padding: 18px 16px 20px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 24px; }
+    .hero h1 { margin: 0; font-size: clamp(1.35rem, 4.2vw, 2rem); line-height: 1.2; }
+    .hero p { margin: 6px 0 0; color: #d6e2ef; max-width: 640px; }
+    .hero .ctas { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+    .hero .ctas a { padding: 10px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .92rem; background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+    .hero .ctas a.primary { background: #f2c14e; color: #0e2a47; border-color: #f2c14e; }
+    .map-wrap { position: relative; }
+    #map { height: calc(100vh - var(--header-h) - 120px); min-height: 460px; max-height: 820px; }
+    .layers { position: absolute; z-index: 800; top: 12px; left: 56px; width: 300px; max-height: calc(100% - 24px); overflow-y: auto; background: rgba(255,255,255,.97); border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.2); font-size: .9rem; }
+    .layers summary { list-style: none; cursor: pointer; padding: 10px 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 8px; position: sticky; top: 0; background: inherit; border-radius: 10px; }
+    .layers summary::-webkit-details-marker { display: none; }
+    .layers summary .count { font-weight: 500; font-size: .8rem; color: var(--muted); }
+    .layers summary::after { content: "▾"; color: var(--muted); }
+    .layers[open] summary::after { content: "▴"; }
+    .layers .group { padding: 2px 14px 10px; }
+    .layers .group h4 { margin: 8px 0 4px; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .controls label { display: flex; align-items: center; gap: 8px; padding: 5px 0; cursor: pointer; line-height: 1.3; }
+    .controls input { width: 18px; height: 18px; flex: none; accent-color: #0b5cad; }
+    .controls .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; border: 1px solid rgba(0,0,0,.3); flex: none; }
+    .controls .status { font-size: .75rem; color: var(--muted); display: block; padding: 0 14px 10px; }
+    .legend-toggle { display: none; }
+    @media (max-width: 700px) {
+      .hero .in { padding: 12px 16px 14px; }
+      .hero p { font-size: .9rem; margin-top: 4px; }
+      .hero .ctas { margin-left: 0; width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+      .hero .ctas a { text-align: center; padding: 9px 4px; font-size: .78rem; line-height: 1.2; display: flex; align-items: center; justify-content: center; }
+      .layers { position: static; width: auto; max-height: none; border-radius: 0; box-shadow: none; border-bottom: 1px solid var(--line); }
+      #map { height: 62vh; min-height: 360px; }
+      .legend .body { display: none; }
+      .legend.open .body { display: block; }
+      .legend-toggle { display: block; background: none; border: 0; font: inherit; font-weight: 700; font-size: 12px; padding: 0; cursor: pointer; color: #222; }
+    }
     .legend { background: rgba(255,255,255,.95); padding: 8px 10px; border-radius: 6px; font-size: 12px; line-height: 1.5; box-shadow: 0 1px 4px rgba(0,0,0,.25); max-width: 230px; }
     .legend b { display: block; margin-top: 4px; }
     .legend i { display: inline-block; width: 12px; height: 12px; margin-right: 5px; vertical-align: -1px; border-radius: 2px; }
     .grad { height: 10px; border-radius: 2px; background: linear-gradient(to right, #2c7bb6, #abd9e9, #ffffbf, #fdae61, #d7191c); }
-    .info { padding: 10px 16px; max-width: 1100px; }
+    .info { padding: 10px 16px; max-width: 1200px; margin: 0 auto; }
     .priority { background: #fff3cd; padding: 8px 12px; border-left: 4px solid #ffc107; margin: 10px 0; }
     table.sources { border-collapse: collapse; width: 100%; font-size: .88rem; }
     table.sources th, table.sources td { border: 1px solid #ddd; padding: 5px 8px; text-align: left; vertical-align: top; }
@@ -52,26 +75,39 @@
   </style>
 </head>
 <body>
-  <header class="top">
-    <h1>Support the Federal CAREN Act</h1>
-    <div>Making discriminatory 911 calls illegal nationwide, modeled on San Francisco's CAREN Act (Police Code §637).</div>
-    <nav><a href="bill.html">Draft federal bill &amp; comments</a><a href="history.html">How the SF CAREN Act came about</a><a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a><a href="data.html">Data &amp; methodology</a><a href="#contact">Contact your representatives</a></nav>
-  </header>
+  <header id="siteHeader"></header>
+  <section class="hero"><div class="in">
+    <div>
+      <h1>Make discriminatory 911 calls illegal nationwide</h1>
+      <p>A federal version of San Francisco's CAREN Act (Police Code §637). The map shows where the harm of racially motivated police calls lands hardest, built from live public data.</p>
+    </div>
+    <div class="ctas"><a class="primary" href="#contact">Contact Congress</a><a href="bill.html">Comment on the bill</a><a href="laws.html">Report an old law</a></div>
+  </div></section>
 
-  <div class="controls" id="controls">
-    <label><input type="checkbox" data-layer="heat" checked> <strong>Priority heat map</strong></label>
-    <label><input type="checkbox" data-layer="priority" checked> <span class="sw" style="background:#7a0177"></span> High-overlap counties</label>
-    <label><input type="checkbox" data-layer="lynch" checked> <span class="sw" style="background:#67000d"></span> Lynchings 1877–1950 (EJI)</label>
-    <label><input type="checkbox" data-layer="police"> <span class="sw" style="background:#e31a1c"></span> Police killings 2013–present (MPV)</label>
-    <label><input type="checkbox" data-layer="hate"> <span class="sw" style="background:#ff7f00"></span> Race/ethnicity hate crimes (FBI)</label>
-    <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census ACS)</label>
-    <label><input type="checkbox" data-layer="redlining"> <span class="sw" style="background:#d9534f"></span> HOLC redlining maps</label>
-    <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> States with segregated schools by law (pre-1954)</label>
-    <label><input type="checkbox" data-layer="residual" checked> <span class="sw" style="background:gold"></span> Residual segregation/sundown ordinances</label>
-    <label><input type="checkbox" data-layer="allies"> <span class="sw" style="background:#1a1a1a"></span> Allies &amp; key members of Congress</label>
-    <span class="status" id="loadStatus">Loading data…</span>
+  <div class="map-wrap">
+    <details class="layers controls" id="controls" open>
+      <summary>Map layers <span class="count" id="layerCount"></span></summary>
+      <div class="group">
+        <h4>Priority</h4>
+        <label><input type="checkbox" data-layer="heat" checked> <strong>Priority heat map</strong></label>
+        <label><input type="checkbox" data-layer="priority" checked> <span class="sw" style="background:#7a0177"></span> High-overlap counties</label>
+        <h4>Racial violence</h4>
+        <label><input type="checkbox" data-layer="lynch" checked> <span class="sw" style="background:#67000d"></span> Lynchings 1877–1950 (EJI)</label>
+        <label><input type="checkbox" data-layer="deaths"> <span class="sw" style="background:#000"></span> Contested hanging deaths</label>
+        <label><input type="checkbox" data-layer="police"> <span class="sw" style="background:#e31a1c"></span> Police killings 2013–present (MPV)</label>
+        <label><input type="checkbox" data-layer="hate"> <span class="sw" style="background:#ff7f00"></span> Race/ethnicity hate crimes (FBI)</label>
+        <h4>Population &amp; history</h4>
+        <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census)</label>
+        <label><input type="checkbox" data-layer="redlining"> <span class="sw" style="background:#d9534f"></span> HOLC redlining maps</label>
+        <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> Segregated schools by law (pre-1954)</label>
+        <label><input type="checkbox" data-layer="residual" checked> <span class="sw" style="background:gold"></span> Old segregation/sundown laws</label>
+        <h4>Allies</h4>
+        <label><input type="checkbox" data-layer="allies"> <span class="sw" style="background:#1a1a1a"></span> Allies &amp; key members of Congress</label>
+      </div>
+      <span class="status" id="loadStatus">Loading data…</span>
+    </details>
+    <div id="map"></div>
   </div>
-  <div id="map"></div>
 
   <div class="info">
     <div class="priority"><strong>Prioritization without filtering:</strong> The heat map and the purple “high-overlap” rings mark counties where several factors coincide: a history of racial terror lynching, high rates of police killings, race-motivated hate crimes, and large minority populations. Every other data point stays on the map and every layer can be toggled. See <a href="data.html">data &amp; methodology</a> for how the score is computed.</div>
@@ -97,6 +133,8 @@
     </div>
   </div>
 
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
@@ -128,7 +166,7 @@
 
     // ---------------------------------------------------------------- Map
     const map = L.map('map', { preferCanvas: true });
-    map.fitBounds([[24.5, -124.8], [49.4, -66.9]]);
+    map.fitBounds([[24.5, -124.8], [49.4, -66.9]], window.matchMedia('(max-width: 700px)').matches ? {} : { paddingTopLeft: [300, 0] });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
     map.createPane('choropleth'); map.getPane('choropleth').style.zIndex = 350;
     map.createPane('heat'); map.getPane('heat').style.zIndex = 380; map.getPane('heat').style.pointerEvents = 'none';
@@ -218,6 +256,14 @@
           onEachFeature: (f, l) => l.bindPopup('<b>' + esc(f.properties.name) + '</b><br>Required racially segregated public schools by law when <i>Brown v. Board of Education</i> was decided (1954). These laws are no longer enforceable.<br><a href="https://www.archives.gov/education/lessons/brown-v-board" target="_blank" rel="noopener">National Archives</a>')
         });
       }),
+      deaths: () => getJSON('data/contested_deaths.json').then(d => {
+        const g = L.layerGroup();
+        d.cases.forEach(c => L.circleMarker([c.lat, c.lon], { radius: 7, color: '#fff', weight: 2, fillColor: '#000', fillOpacity: 0.9 })
+          .bindPopup('<b>' + esc(c.name) + (c.age ? ', ' + c.age : '') + '</b><br>' + esc(c.place) + ', ' + esc(c.state) + ' · ' + esc(c.date_text) +
+            '<br>Official ruling: ' + esc(c.official_ruling) + '<br><i>' + esc(c.dispute) + '</i><br><a href="deaths.html#cases">All contested cases</a> · ' +
+            c.sources.map(s => '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">source</a>').join(' · ')).addTo(g));
+        return g;
+      }),
       residual: () => getJSON('data/residual_ordinances.json').then(d => {
         const g = L.layerGroup();
         d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { radius: 8, color: '#000', weight: 2, fillColor: 'gold', fillOpacity: 1 })
@@ -271,18 +317,25 @@
         map.removeLayer(layers[name]);
       }
     }
-    document.querySelectorAll('#controls input[data-layer]').forEach(cb => {
-      cb.addEventListener('change', () => setLayer(cb.dataset.layer, cb.checked));
+    const wanted = new URLSearchParams(location.search).get('layers');
+    const boxes = document.querySelectorAll('#controls input[data-layer]');
+    if (wanted) { const w = wanted.split(','); boxes.forEach(cb => { if (w.includes(cb.dataset.layer)) cb.checked = true; }); }
+    const countOn = () => { document.getElementById('layerCount').textContent = Array.from(boxes).filter(b => b.checked).length + ' on'; };
+    boxes.forEach(cb => {
+      cb.addEventListener('change', () => { setLayer(cb.dataset.layer, cb.checked); countOn(); });
       if (cb.checked) setLayer(cb.dataset.layer, true);
     });
+    countOn();
+    if (window.matchMedia('(max-width: 700px)').matches) document.getElementById('controls').open = false;
 
     const legend = L.control({ position: 'bottomright' });
     legend.onAdd = () => {
       const d = L.DomUtil.create('div', 'legend');
-      d.innerHTML = '<b>Priority score</b><div class="grad"></div><div style="display:flex;justify-content:space-between"><span>lower</span><span>higher</span></div>' +
+      d.innerHTML = '<button class="legend-toggle" type="button">Legend ▾</button><div class="body"><b>Priority score</b><div class="grad"></div><div style="display:flex;justify-content:space-between"><span>lower</span><span>higher</span></div>' +
         '<b>Police killings: victim race</b>' + ['B', 'H', 'N', 'A', 'W', 'U'].map(k => '<i style="background:' + RACE_COLOR[k] + '"></i>' + RACE[k]).join('<br>') +
         '<b>Redlining (HOLC)</b><i style="background:#76a865"></i>A <i style="background:#7cb5bd"></i>B <i style="background:#ffff00"></i>C <i style="background:#d9533c"></i>D' +
-        '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local';
+        '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local<b>Contested deaths</b><i style="background:#000;border-radius:50%"></i>Disputed hanging death</div>';
+      d.querySelector('.legend-toggle').addEventListener('click', () => d.classList.toggle('open'));
       L.DomEvent.disableScrollPropagation(d);
       return d;
     };

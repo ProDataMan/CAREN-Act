@@ -1,0 +1,46 @@
+name: Report a residual discriminatory law
+description: A segregation, sundown, Jim Crow or other racially discriminatory provision still in an official code, constitution or ordinance book.
+title: "[Residual law] <state> — <city/county or 'statewide'> — <citation>"
+labels: ["residual-law", "needs-verification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping clear these laws off the books. An editor verifies every report against the **current official code** before it goes into the public tracker.
+        Please only report text that is **still in the current code**. Laws that were already repealed belong in the history section.
+  - type: input
+    id: state
+    attributes: { label: State (two-letter), placeholder: "MS" }
+    validations: { required: true }
+  - type: dropdown
+    id: level
+    attributes:
+      label: Type of law
+      options: [State constitution, State statute, County ordinance, City/town ordinance, Other (explain below)]
+    validations: { required: true }
+  - type: input
+    id: jurisdiction
+    attributes: { label: Jurisdiction (city/county name, or "statewide"), placeholder: "Example City" }
+    validations: { required: true }
+  - type: input
+    id: citation
+    attributes: { label: Citation, placeholder: "Ord. No. 136 (1933) / Code § 12-34 / Const. art. X § 5" }
+    validations: { required: true }
+  - type: input
+    id: link
+    attributes: { label: Link to the provision in the CURRENT official code, placeholder: "https://library.municode.com/..." }
+    validations: { required: true }
+  - type: textarea
+    id: text
+    attributes: { label: Exact text of the provision, description: Copy the discriminatory language exactly as it appears. }
+    validations: { required: true }
+  - type: input
+    id: checked
+    attributes: { label: Date you confirmed it is still in the current code, placeholder: "2026-11-08" }
+    validations: { required: true }
+  - type: input
+    id: body
+    attributes: { label: Who can repeal it, placeholder: "City Commission / County Board / State Legislature" }
+  - type: textarea
+    id: notes
+    attributes: { label: Anything else (news coverage, prior repeal attempts, local contacts) }

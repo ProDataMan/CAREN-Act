@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contested Hanging Deaths</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .viz-root {
+      --surface-1: #fcfcfb; --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #77756f; --grid: #e6e5e1;
+      --s-black: #2a78d6; --s-white: #eb6834; --s-hispanic: #1baf7a; --s-native: #eda100; --s-asian: #e87ba4; --s-nhpi: #008300;
+      --s-1: #2a78d6; --s-2: #eb6834; --s-3: #1baf7a;
+    }
+    .cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 12px 0; }
+    .case { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: #fff; font-size: .9rem; }
+    .case h3 { margin: 0 0 2px; font-size: 1rem; }
+    .case .where { color: var(--muted); font-size: .84rem; }
+    .case dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; margin: 8px 0; }
+    .case dt { color: var(--muted); }
+    .case dd { margin: 0; }
+    .case .src { font-size: .8rem; }
+    .chart-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px 14px 8px; margin: 16px 0; background: var(--surface-1); }
+    .chart-card h3 { margin: 0; font-size: 1rem; color: var(--text-primary); }
+    .chart-card .sub { margin: 2px 0 8px; font-size: .84rem; color: var(--text-secondary); }
+    .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .82rem; color: var(--text-secondary); margin: 4px 0 6px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+    .chart { position: relative; width: 100%; }
+    .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .chart .axis text { fill: var(--text-muted); font-size: 11px; }
+    .chart .grid line { stroke: var(--grid); stroke-width: 1; }
+    .chart .endlabel { fill: var(--text-secondary); font-size: 11px; }
+    .tip { position: absolute; pointer-events: none; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font-size: .78rem; box-shadow: 0 2px 8px rgba(0,0,0,.12); color: var(--text-primary); white-space: nowrap; display: none; z-index: 5; }
+    .tip b { display: block; margin-bottom: 2px; }
+    .tip i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+    .chart-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: .78rem; color: var(--text-muted); margin-top: 4px; }
+    .linkish { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font: inherit; font-size: .8rem; }
+    .chart-table { display: none; margin-top: 8px; }
+    .chart-card.show-table .chart-table { display: block; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1>Contested Hanging Deaths and Unnatural Deaths by Race</h1>
+    <p class="lede">Black Americans are still being found hanged, sometimes from trees. When those deaths are ruled suicides, families sometimes say the investigations were incomplete. This page tracks the disputed cases and sets them beside national death data, which shows Black Americans have the highest rate of hanging deaths ruled <em>homicide</em>.</p>
+    <div class="callout"><b>How to read this page.</b> A case appears here because the official finding is publicly disputed, <em>not</em> because a crime has been proven. Every case cites the reporting it comes from. Lynching has been a federal hate crime since the <a href="https://www.congress.gov/bill/117th-congress/house-bill/55">Emmett Till Antilynching Act</a> (2022), and families can ask the FBI and the DOJ Civil Rights Division to review a death.</div>
+
+    <h2 id="cases">Disputed cases</h2>
+    <p class="note" id="casesNote">Loading…</p>
+    <div class="cases" id="cases-list"></div>
+    <p><a class="btn" href="https://github.com/ProDataMan/CAREN-Act/issues/new?template=contested-death.yml" target="_blank" rel="noopener">Report a case</a> <a class="btn secondary" href="index.html?layers=deaths">See them on the map</a></p>
+    <p class="note">Reports need at least one reputable source: news coverage, a court filing, or an official record. An editor checks the sources before a case is added. Please don't post private information about families.</p>
+
+    <h3>What other investigations have found</h3>
+    <ul id="aggregates"></ul>
+
+    <h2 id="national">National data: hanging and other unnatural deaths by race</h2>
+    <p>The CDC doesn't publish individual death records. It does publish yearly totals by race and by how a death was classified: suicide, homicide, accident, legal intervention, or <em>undetermined</em>. “Suffocation” is the CDC category that includes hanging and strangulation.</p>
+    <div id="charts"></div>
+
+    <h3>All injury deaths by intent and race (crude rate per 100,000)</h3>
+    <div class="table-wrap"><table class="data" id="intentTable"></table></div>
+    <p class="note">Source: CDC/NCHS Injury Mortality: United States (data.cdc.gov nt65-c7a7). This series currently ends in 2016. Newer years and state or county breakdowns by race exist in <a href="https://wonder.cdc.gov/ucd-icd10-expanded.html">CDC WONDER</a>, but CDC only allows those to be downloaded by hand from its website, not automatically.</p>
+
+    <h2>Gaps we are working to close</h2>
+    <ul>
+      <li><b>No national case registry.</b> No public database lists individual deaths ruled suicide that families dispute. This page's case list, together with partners such as JULIAN and the NAACP Legal Defense Fund (which has asked Congress for a commission on suspicious Black deaths), is a start.</li>
+      <li><b>State and county numbers by race</b> have to be exported by hand from CDC WONDER (Underlying Cause of Death, ICD-10 codes X70, X91 and Y20, grouped by state, year and race). Drop the export into <code>data/cdc_wonder/</code> and open an issue, and we'll add it to the map.</li>
+      <li><b>Deaths in custody.</b> Under the Death in Custody Reporting Act, agencies must report deaths in jails and prisons, but the Justice Department's published data is incomplete.</li>
+    </ul>
+  </main>
+  <footer id="siteFooter"></footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const css = v => getComputedStyle(document.querySelector('.viz-root') || document.body).getPropertyValue(v).trim();
+    document.querySelector('main').classList.add('viz-root');
+
+    // ---------------- Cases ----------------
+    fetch('data/contested_deaths.json').then(r => r.json()).then(d => {
+      const list = d.cases.slice().sort((a, b) => String(b.found || '').localeCompare(String(a.found || '')));
+      document.getElementById('casesNote').textContent = list.length + ' cases verified so far (list updated ' + d.updated + '). ' + d.location_precision;
+      document.getElementById('cases-list').innerHTML = list.map(c =>
+        '<article class="case"><h3>' + esc(c.name) + (c.age ? ', ' + c.age : '') + '</h3>' +
+        '<div class="where">' + esc(c.place) + ', ' + esc(c.state) + ' · ' + esc(c.date_text) + '</div>' +
+        '<dl><dt>Found</dt><dd>' + esc(c.location_type) + '</dd>' +
+        '<dt>Ruling</dt><dd>' + esc(c.official_ruling) + (c.ruled_by ? ' <span class="note">(' + esc(c.ruled_by) + ')</span>' : '') + '</dd>' +
+        '<dt>Dispute</dt><dd>' + esc(c.dispute) + '</dd>' +
+        (c.federal_review ? '<dt>Federal review</dt><dd>' + esc(c.federal_review) + '</dd>' : '') + '</dl>' +
+        '<div class="src">' + c.sources.map(s => '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + '</a>').join('<br>') + '</div></article>').join('');
+      document.getElementById('aggregates').innerHTML = d.aggregate_reports.map(a => '<li>' + esc(a.claim) + ' <span class="note">— <a href="' + esc(a.url) + '" target="_blank" rel="noopener">' + esc(a.source) + '</a></span></li>').join('');
+    });
+
+    // ---------------- Line chart ----------------
+    function niceMax(v) { const p = Math.pow(10, Math.floor(Math.log10(v || 1))); const n = v / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; }
+    function fmtNum(v, dec) { return v >= 10000 ? Math.round(v / 1000) + 'K' : v.toLocaleString(undefined, { maximumFractionDigits: dec, minimumFractionDigits: 0 }); }
+
+    function lineChart(host, cfg) {
+      // cfg: {title, sub, unit, dec, series:[{name, colorVar, pts:[[x,y]...]}]}
+      const card = document.createElement('section');
+      card.className = 'chart-card';
+      card.innerHTML = '<h3>' + esc(cfg.title) + '</h3><p class="sub">' + esc(cfg.sub) + '</p>' +
+        '<div class="legend">' + cfg.series.map(s => '<span><i style="background:var(' + s.colorVar + ')"></i>' + esc(s.name) + '</span>').join('') + '</div>' +
+        '<div class="chart" role="img" aria-label="' + esc(cfg.title) + '"></div>' +
+        '<div class="chart-foot"><span>' + esc(cfg.source) + '</span><button class="linkish" type="button">Show table</button></div>' +
+        '<div class="chart-table table-wrap"></div>';
+      host.appendChild(card);
+      const box = card.querySelector('.chart');
+      const tip = document.createElement('div'); tip.className = 'tip'; box.appendChild(tip);
+      const xs = Array.from(new Set(cfg.series.flatMap(s => s.pts.map(p => p[0])))).sort((a, b) => a - b);
+
+      // table view
+      card.querySelector('.chart-table').innerHTML = '<table class="data"><tr><th>Year</th>' + cfg.series.map(s => '<th>' + esc(s.name) + '</th>').join('') + '</tr>' +
+        xs.map(x => '<tr><td>' + x + '</td>' + cfg.series.map(s => { const p = s.pts.find(q => q[0] === x); return '<td>' + (p ? fmtNum(p[1], cfg.dec) : '—') + '</td>'; }).join('') + '</tr>').join('') + '</table>';
+      card.querySelector('.linkish').addEventListener('click', e => { const on = card.classList.toggle('show-table'); e.target.textContent = on ? 'Hide table' : 'Show table'; });
+
+      function draw() {
+        const W = Math.max(300, box.clientWidth), narrow = W < 520;
+        const H = narrow ? 240 : 280, m = { t: 10, r: cfg.series.length <= 4 && !narrow ? 92 : 14, b: 26, l: 40 };
+        const iw = W - m.l - m.r, ih = H - m.t - m.b;
+        const ymax = niceMax(Math.max(...cfg.series.flatMap(s => s.pts.map(p => p[1]))) * 1.05);
+        const x = v => m.l + (xs.length > 1 ? (v - xs[0]) / (xs[xs.length - 1] - xs[0]) * iw : iw / 2);
+        const y = v => m.t + ih - v / ymax * ih;
+        const ticks = [0, .25, .5, .75, 1].map(f => f * ymax);
+        const step = Math.ceil(xs.length / (narrow ? 5 : 9));
+        let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '"><g class="grid">' +
+          ticks.map(t => '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(t) + '" y2="' + y(t) + '"/>').join('') + '</g><g class="axis">' +
+          ticks.map(t => '<text x="' + (m.l - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + fmtNum(t, ymax <= 2 ? 2 : ymax < 5 ? 1 : 0) + '</text>').join('') +
+          xs.filter((v, i) => i % step === 0 || (i === xs.length - 1 && (xs.length - 1) % step >= step / 2)).map(v => '<text x="' + x(v) + '" y="' + (H - 8) + '" text-anchor="middle">' + v + '</text>').join('') + '</g>';
+        cfg.series.forEach(s => {
+          const d = s.pts.map((p, i) => (i ? 'L' : 'M') + x(p[0]).toFixed(1) + ' ' + y(p[1]).toFixed(1)).join('');
+          svg += '<path d="' + d + '" fill="none" stroke="' + css(s.colorVar) + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+          const last = s.pts[s.pts.length - 1];
+          svg += '<circle cx="' + x(last[0]) + '" cy="' + y(last[1]) + '" r="4" fill="' + css(s.colorVar) + '" stroke="' + css('--surface-1') + '" stroke-width="2"/>';
+        });
+        // direct end labels (<=4 series, wide screens) with simple collision avoidance
+        if (m.r > 20) {
+          const labels = cfg.series.map(s => { const l = s.pts[s.pts.length - 1]; return { s, yy: y(l[1]), v: l[1] }; }).sort((a, b) => a.yy - b.yy);
+          for (let i = 1; i < labels.length; i++) if (labels[i].yy - labels[i - 1].yy < 13) labels[i].yy = labels[i - 1].yy + 13;
+          labels.forEach(l => { svg += '<text class="endlabel" x="' + (W - m.r + 8) + '" y="' + (l.yy + 4) + '">' + esc(l.s.name) + ' ' + fmtNum(l.v, cfg.dec) + '</text>'; });
+        }
+        svg += '<line class="xh" x1="0" x2="0" y1="' + m.t + '" y2="' + (m.t + ih) + '" stroke="' + css('--text-muted') + '" stroke-width="1" visibility="hidden"/>';
+        svg += '<rect x="' + m.l + '" y="' + m.t + '" width="' + iw + '" height="' + ih + '" fill="transparent" class="hit"/></svg>';
+        box.querySelector('svg') && box.querySelector('svg').remove();
+        box.insertAdjacentHTML('afterbegin', svg);
+        const hit = box.querySelector('.hit'), xh = box.querySelector('.xh');
+        function move(ev) {
+          const r = box.getBoundingClientRect(), px = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+          const xv = xs.reduce((a, b) => Math.abs(x(b) - px) < Math.abs(x(a) - px) ? b : a, xs[0]);
+          xh.setAttribute('x1', x(xv)); xh.setAttribute('x2', x(xv)); xh.setAttribute('visibility', 'visible');
+          const rows = cfg.series.map(s => ({ s, p: s.pts.find(q => q[0] === xv) })).filter(o => o.p).sort((a, b) => b.p[1] - a.p[1]);
+          tip.innerHTML = '<b>' + xv + '</b>' + rows.map(o => '<div><i style="background:' + css(o.s.colorVar) + '"></i>' + esc(o.s.name) + ': ' + fmtNum(o.p[1], cfg.dec) + (cfg.unit ? ' ' + esc(cfg.unit) : '') + '</div>').join('');
+          tip.style.display = 'block';
+          const tx = x(xv) + 12 + tip.offsetWidth > W ? x(xv) - tip.offsetWidth - 12 : x(xv) + 12;
+          tip.style.left = tx + 'px'; tip.style.top = m.t + 'px';
+        }
+        hit.addEventListener('mousemove', move);
+        hit.addEventListener('touchstart', move, { passive: true });
+        hit.addEventListener('touchmove', move, { passive: true });
+        hit.addEventListener('mouseleave', () => { tip.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); });
+      }
+      draw();
+      let raf; new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }).observe(box);
+    }
+
+    // ---------------- CDC data ----------------
+    const RACE_VAR = { Black: '--s-black', White: '--s-white', Hispanic: '--s-hispanic' };
+    fetch('data/cdc_deaths.json').then(r => r.json()).then(d => {
+      const host = document.getElementById('charts');
+      const series = (intent, field, races) => races.map(rc => ({
+        name: rc, colorVar: RACE_VAR[rc],
+        pts: Object.entries((d.injury.suffocation[intent] || {})[rc] || {}).map(([yr, v]) => [+yr, v[field]]).sort((a, b) => a[0] - b[0])
+      }));
+      const yrs = d.injury_years[0] + '–' + d.injury_years[1];
+      const src = 'Source: CDC/NCHS, data.cdc.gov';
+      lineChart(host, { title: 'Hanging and suffocation deaths ruled suicide', sub: 'Deaths per 100,000 people, ' + yrs, unit: 'per 100k', dec: 2, series: series('Suicide', 1, ['Black', 'White', 'Hispanic']), source: src });
+      lineChart(host, { title: 'Hanging and suffocation deaths ruled homicide', sub: 'Deaths per 100,000 people, ' + yrs + '. Black Americans have the highest rate in every year.', unit: 'per 100k', dec: 2, series: series('Homicide', 1, ['Black', 'White', 'Hispanic']), source: src });
+      const B = d.injury.suffocation;
+      lineChart(host, { title: 'Black Americans: hanging and suffocation deaths by official classification', sub: 'Number of deaths per year, ' + yrs, unit: 'deaths', dec: 0, source: src, series: [
+        { name: 'Suicide', colorVar: '--s-1', pts: Object.entries(B.Suicide.Black).map(([yr, v]) => [+yr, v[0]]) },
+        { name: 'Homicide', colorVar: '--s-2', pts: Object.entries(B.Homicide.Black).map(([yr, v]) => [+yr, v[0]]) },
+        { name: 'Undetermined', colorVar: '--s-3', pts: Object.entries(B.Undetermined.Black).map(([yr, v]) => [+yr, v[0]]) }
+      ].map(s => (s.pts.sort((a, b) => a[0] - b[0]), s)) });
+
+      const SU = d.suicide_age_adjusted, map = [
+        ['Black only, non-Hispanic', 'Black', '--s-black'], ['White only, non-Hispanic', 'White', '--s-white'], ['All races, Hispanic', 'Hispanic', '--s-hispanic'],
+        ['American Indian and Alaska Native only, non-Hispanic', 'Native American', '--s-native'], ['Asian only, non-Hispanic', 'Asian', '--s-asian'],
+        ['Native Hawaiian or Other Pacific Islander only, non-Hispanic', 'Pacific Islander', '--s-nhpi']];
+      const sui = map.filter(m => SU[m[0]]).map(m => ({ name: m[1], colorVar: m[2], pts: Object.entries(SU[m[0]]).map(([yr, v]) => [+yr, v]).sort((a, b) => a[0] - b[0]) }));
+      if (sui.length) lineChart(host, { title: 'Suicide rate by race (all methods)', sub: 'Age-adjusted deaths per 100,000, ' + Math.min(...sui.flatMap(s => s.pts.map(p => p[0]))) + '–' + Math.max(...sui.flatMap(s => s.pts.map(p => p[0]))), unit: 'per 100k', dec: 1, series: sui, source: 'Source: CDC/NCHS Health, United States' });
+
+      // Intent table (latest year)
+      const ly = String(d.injury_years[1]);
+      const intents = ['Homicide', 'Suicide', 'Unintentional', 'Undetermined', 'Legal intervention/war'];
+      const races = ['Black', 'Hispanic', 'White', 'All'];
+      const all = d.injury.all;
+      document.getElementById('intentTable').innerHTML = '<tr><th>' + ly + '</th>' + races.map(r => '<th>' + r + '</th>').join('') + '</tr>' +
+        intents.filter(i => all[i]).map(i => '<tr><td>' + esc(i) + '</td>' + races.map(r => { const v = (all[i][r] || {})[ly]; return '<td>' + (v ? v[1].toFixed(1) + ' <span class="note">(' + v[0].toLocaleString() + ')</span>' : '—') + '</td>'; }).join('') + '</tr>').join('');
+    });
+  })();
+  </script>
+</body>
+</html>

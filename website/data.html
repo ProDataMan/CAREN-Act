@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data and Methodology</title>
+  <link rel="stylesheet" href="assets/site.css">
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 880px; margin: 20px auto; padding: 0 16px 60px; line-height: 1.6; color: #222; background: #fff; }
-    nav a { margin-right: 14px; }
-    h1 { font-size: 1.6rem; }
+    main.page { max-width: 880px; line-height: 1.6; }
     h2 { font-size: 1.2rem; margin-top: 30px; }
     table { border-collapse: collapse; width: 100%; font-size: .9rem; }
     th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; }
@@ -18,7 +17,8 @@
   </style>
 </head>
 <body>
-  <nav><a href="index.html">← Advocacy map</a><a href="bill.html">Draft bill</a><a href="history.html">History</a></nav>
+  <header id="siteHeader"></header>
+  <main class="page">
   <h1>Data and Methodology</h1>
   <p>Every map layer is built from the original publisher's data. A <a href="https://github.com/ProDataMan/CAREN-Act/blob/main/.github/workflows/refresh-data.yml">GitHub Actions workflow</a> reruns <a href="https://github.com/ProDataMan/CAREN-Act/blob/main/scripts/build_data.py"><code>scripts/build_data.py</code></a> every Monday. When a source publishes new data, the map updates automatically. Congressional membership and committee rosters load live in your browser each time you open the page.</p>
   <p id="generated"></p>
@@ -65,13 +65,16 @@
     <tr><td><a href="https://policescorecard.org/">Police Scorecard</a></td><td>Department-level use of force, arrests for low-level offenses, and accountability metrics.</td><td>Downloadable data</td></tr>
     <tr><td><a href="https://bjs.ojp.gov/data-collection/police-public-contact-survey-ppcs">BJS Police-Public Contact Survey</a></td><td>National rates of police-initiated and resident-initiated contact by race. Useful for the bill's findings section.</td><td>Public tables</td></tr>
     <tr><td><a href="https://www.census.gov/data/developers.html">Census API</a> 🔑: ACS by congressional district</td><td>Demographics of each member's district, to prioritize outreach to members representing large affected populations.</td><td>Free key</td></tr>
-    <tr><td><a href="https://justice.tougaloo.edu/sundowntowns/">Sundown Towns database</a> (Tougaloo College / James Loewen)</td><td>Documented sundown towns, which would replace a currently empty historical layer with real locations.</td><td>Request permission for bulk use</td></tr>
+    <tr><td><a href="https://sundown.tougaloo.edu/">Sundown Towns database</a> (Tougaloo College / James Loewen)</td><td>Documented sundown towns, which would replace a currently empty historical layer with real locations.</td><td>Request permission for bulk use</td></tr>
     <tr><td><a href="https://monroeworktoday.org/">Monroe Work Today</a></td><td>Broader lynching data including Latino, Native American, Asian, and white victims, and some incidents outside EJI's window.</td><td>CC BY-NC-SA; county file download</td></tr>
     <tr><td><a href="https://mappingprejudice.umn.edu/">Mapping Prejudice</a> and similar covenant projects</td><td>Racially restrictive housing covenants, a residential-exclusion record that complements HOLC redlining.</td><td>Open data for covered cities</td></tr>
     <tr><td><a href="https://www.adl.org/resources/tools-to-track-hate/heat-map">ADL H.E.A.T. Map</a> and <a href="https://stopaapihate.org/">Stop AAPI Hate</a></td><td>Hate and harassment incidents beyond what police agencies report to the FBI.</td><td>Downloads or partnership</td></tr>
     <tr><td><a href="https://civilrights.org/">Leadership Conference voting record</a> and <a href="https://naacp.org/">NAACP civil rights report card</a></td><td>Score members of Congress on civil-rights votes, to replace “position-only” ally coloring with demonstrated record.</td><td>Published report cards</td></tr>
   </table></div>
 
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
   <script>
     fetch('data/manifest.json').then(r => r.json()).then(m => {
       const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -84,6 +87,8 @@
         ['Race & ethnicity', 'U.S. Census Bureau, ' + D.acs.vintage, n(D.acs.records) + ' counties', 'Choropleth; priority score', D.acs.source],
         ['Redlining', 'Mapping Inequality (Univ. of Richmond)', n(D.redlining.features) + ' HOLC areas, 1935–40', 'Polygons by grade', D.redlining.source],
         ['ZIP → district', 'U.S. Census Bureau', n(D.zip_districts.zips) + ' ZIP codes, 119th Congress', 'Representative lookup without a street address', D.zip_districts.source],
+        ['Hanging & unnatural deaths by race', 'CDC National Center for Health Statistics', 'Injury deaths ' + (D.cdc_deaths ? D.cdc_deaths.injury.match(/\((.*)\)/)[1] : '') + '; suicide rates through ' + (D.cdc_deaths ? D.cdc_deaths.latest_suicide_year : ''), 'Charts on the contested-deaths page', 'https://data.cdc.gov/'],
+        ['Contested hanging deaths', 'Curated from reputable reporting (Capital B News, Mississippi Today, Mississippi Free Press)', 'Verified cases only', 'Map layer; contested-deaths page', 'deaths.html'],
         ['Members & committees', '@unitedstates/congress-legislators', 'Live', 'Allies layer; representative lookup', 'https://github.com/unitedstates/congress-legislators']
       ];
       document.getElementById('ds').insertAdjacentHTML('beforeend', rows.map(r => '<tr><td><a href="' + esc(r[4]) + '">' + esc(r[0]) + '</a></td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) + '</td><td>' + esc(r[3]) + '</td></tr>').join(''));

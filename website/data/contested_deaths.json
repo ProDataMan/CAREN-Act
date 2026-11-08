@@ -1,0 +1,96 @@
+{
+  "location_precision": "City-level coordinates only.",
+  "note": "Curated list of hanging deaths of Black Americans and other people of color where the official finding is disputed by family or advocates. Inclusion means the finding is publicly disputed, not that a crime is proven. Every entry must cite reputable reporting. Submit additions through the 'Report a contested death' GitHub issue form; an editor verifies sources before adding.",
+  "updated": "2026-11-08",
+  "cases": [
+    {
+      "name": "Demartravion \"Trey\" Reed",
+      "age": 21,
+      "found": "2025-09-15",
+      "date_text": "September 15, 2025",
+      "place": "Delta State University, Cleveland",
+      "county": "Bolivar",
+      "state": "MS",
+      "lat": 33.7440, "lon": -90.7246,
+      "location_type": "Tree on a university campus",
+      "official_ruling": "Suicide",
+      "ruled_by": "Mississippi State Medical Examiner (announced by Cleveland police)",
+      "dispute": "Family disputes the ruling. Early accounts of where he was found conflicted, and the family commissioned an independent autopsy. The NAACP expressed skepticism about the preliminary findings.",
+      "federal_review": null,
+      "sources": [
+        {"title": "Mississippi Today: family awaits independent autopsy results", "url": "https://mississippitoday.org/2025/10/24/family-awaits-results-independent-autopsy-delta-state-student-trey-reed/"},
+        {"title": "Mississippi Free Press: family calls for independent autopsy", "url": "https://www.mississippifreepress.org/trey-reeds-family-calls-for-an-independent-autopsy-after-he-was-found-hanging-in-a-tree/"},
+        {"title": "Capital B News (Sept. 24, 2026)", "url": "https://capitalbnews.org/black-hanging-deaths/"}
+      ]
+    },
+    {
+      "name": "Torrance \"Tory\" Medley",
+      "age": 39,
+      "found": "2025-11",
+      "date_text": "November 2025",
+      "place": "Brookfield Hills Golf Course, Brookfield",
+      "county": "Waukesha",
+      "state": "WI",
+      "lat": 43.0606, "lon": -88.1065,
+      "location_type": "Tree on a golf course",
+      "official_ruling": "Treated by police as suicide; no medical examiner ruling reported",
+      "ruled_by": "Brookfield police (said surveillance footage showed no probable cause of a crime)",
+      "dispute": "Family says police rushed to label the death a suicide. They hired an attorney and an independent autopsy, whose results have not been made public.",
+      "federal_review": null,
+      "sources": [{"title": "Capital B News (Sept. 24, 2026)", "url": "https://capitalbnews.org/black-hanging-deaths/"}]
+    },
+    {
+      "name": "Tasia Fortune",
+      "age": 29,
+      "found": null,
+      "date_text": "Aug. 3 (reported by Capital B News, Sept. 24, 2026)",
+      "place": "Jackson",
+      "county": "Hinds",
+      "state": "MS",
+      "lat": 32.2988, "lon": -90.1848,
+      "location_type": "Tree behind an abandoned house",
+      "official_ruling": "Not reported. Capital B reports that police later made an arrest.",
+      "ruled_by": null,
+      "dispute": "Her mother says, \"I know my daughter, and she did not do this to herself.\"",
+      "federal_review": null,
+      "sources": [{"title": "Capital B News (Sept. 24, 2026)", "url": "https://capitalbnews.org/black-hanging-deaths/"}]
+    },
+    {
+      "name": "Justice Kai James",
+      "age": 21,
+      "found": null,
+      "date_text": "June 21 (reported by Capital B News, Sept. 24, 2026)",
+      "place": "Turner Job Corps Center, Albany",
+      "county": "Dougherty",
+      "state": "GA",
+      "lat": 31.5785, "lon": -84.1557,
+      "location_type": "Outside a cafeteria at a Job Corps center",
+      "official_ruling": "Suicide (ruled nearly a month later)",
+      "ruled_by": "Investigators (agency not named in reporting)",
+      "dispute": "His aunt, who raised him, says he had no known mental-health issues. Police told her they would not share surveillance footage with the family.",
+      "federal_review": null,
+      "sources": [{"title": "Capital B News (Sept. 24, 2026)", "url": "https://capitalbnews.org/black-hanging-deaths/"}]
+    },
+    {
+      "name": "To'Nea Nicole Miller",
+      "age": 27,
+      "found": null,
+      "date_text": "June 18 (reported by Capital B News, Sept. 24, 2026)",
+      "place": "Gwen Cherry Park, Miami",
+      "county": "Miami-Dade",
+      "state": "FL",
+      "lat": 25.7617, "lon": -80.1918,
+      "location_type": "Tree in a public park",
+      "official_ruling": "Suicide, no foul play (two days after she was found)",
+      "ruled_by": "Miami-Dade Sheriff's Office and medical examiner",
+      "dispute": "Her eldest sister disputes the finding. Reporting notes the sheriff's official statement did not mention the hanging.",
+      "federal_review": null,
+      "sources": [{"title": "Capital B News (Sept. 24, 2026)", "url": "https://capitalbnews.org/black-hanging-deaths/"}]
+    }
+  ],
+  "aggregate_reports": [
+    {"claim": "At least eight Black men were found hanging from trees in Mississippi between 2000 and 2025, besides Trey Reed; all were ruled suicides.", "source": "The Marshall Project, Nov. 4, 2025 (review of past news stories)", "url": "https://www.themarshallproject.org/2025/11/04/delta-state-university-mississippi-hanging"},
+    {"claim": "70 cases described as modern-day lynchings across Mississippi, Texas, Georgia, Louisiana, Florida, Tennessee and Alabama, 2000-2025.", "source": "JULIAN report (2026), as cited by Capital B News", "url": "https://capitalbnews.org/black-hanging-deaths/"},
+    {"claim": "At least 10 Black people found hanging from trees in the year before September 2026.", "source": "Capital B News count, Sept. 24, 2026", "url": "https://capitalbnews.org/black-hanging-deaths/"}
+  ]
+}
