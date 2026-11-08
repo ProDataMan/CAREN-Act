@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-11-08T21:24:21+00:00",
+  "datasets": {
+    "gazetteer": {
+      "source": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2026_Gazetteer/2026_Gaz_counties_national.zip",
+      "year": 2026,
+      "records": 3222
+    },
+    "acs": {
+      "source": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b03002.dat",
+      "vintage": "ACS 5-year 2020-2024",
+      "records": 3222,
+      "publisher": "U.S. Census Bureau",
+      "table": "B03002 Hispanic or Latino Origin by Race"
+    },
+    "lynchings": {
+      "source": "https://eji.org/wp-content/uploads/2020/02/02-07-20-lynching-in-america-county-supplement.pdf",
+      "publisher": "Equal Justice Initiative",
+      "description": "Documented African American racial terror lynching victims, 1877-1950, per county (EJI county supplement, updated Feb 2020)",
+      "total_victims": 4447,
+      "counties": 942,
+      "unmatched": []
+    },
+    "police_killings": {
+      "source": "https://mappingpoliceviolence.org/",
+      "download": "https://mappingpoliceviolence.us/s/MPVDatasetDownload.xlsx",
+      "publisher": "Mapping Police Violence",
+      "records": 15162,
+      "latest_incident": "2026-08-18",
+      "by_year": {
+        "2013": 1075,
+        "2014": 1039,
+        "2015": 1099,
+        "2016": 1065,
+        "2017": 1091,
+        "2018": 1138,
+        "2019": 1099,
+        "2020": 1161,
+        "2021": 1148,
+        "2022": 1204,
+        "2023": 1248,
+        "2024": 1270,
+        "2025": 1201,
+        "2026": 712
+      }
+    },
+    "hate_crimes": {
+      "source": "https://cde.ucr.cjis.gov/",
+      "publisher": "FBI Uniform Crime Reporting (Crime Data Explorer)",
+      "years": "2021-2025",
+      "agencies": 6659,
+      "agencies_without_coordinates": 431,
+      "incidents": 57961,
+      "caveat": "Hate crime reporting to the FBI is voluntary and uneven; low counts can mean low reporting."
+    },
+    "priority_index": {
+      "description": "Composite county score = 0.30 x lynchings (log-scaled) + 0.30 x police killings per capita + 0.15 x race/ethnicity-bias hate crimes per capita + 0.25 x minority population share. Per-capita rates are smoothed (population + 25,000) so very small counties are not dominated by single incidents. Each factor is capped at its 95th percentile and scaled 0-1. 'overlap' counts how many factors are high (lynchings >= median of counties with any, killings/hate crime rates >= 75th pct, minority >= 40%).",
+      "counties": 3222
+    },
+    "redlining": {
+      "source": "https://dsl.richmond.edu/panorama/redlining/",
+      "publisher": "Mapping Inequality (University of Richmond)",
+      "description": "HOLC residential security maps, 1935-1940",
+      "features": 9324,
+      "grade_counts": {
+        "A": 1095,
+        "B": 2481,
+        "C": 3560,
+        "D": 2188
+      }
+    },
+    "zip_districts": {
+      "source": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/cd-sld/tab20_cd11920_zcta520_natl.txt",
+      "publisher": "U.S. Census Bureau",
+      "description": "2020 ZCTA to 119th Congress district relationship",
+      "zips": 33791
+    }
+  }
+}

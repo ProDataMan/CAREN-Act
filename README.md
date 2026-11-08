@@ -7,6 +7,7 @@ This repository supports efforts to introduce and pass a federal version of San 
 - **Home / interactive priority heat map:** https://prodataman.github.io/CAREN-Act/website/
 - **Draft federal bill (click a paragraph to suggest edits):** https://prodataman.github.io/CAREN-Act/website/bill.html
 - **How the SF CAREN Act came about:** https://prodataman.github.io/CAREN-Act/website/history.html
+- **Data sources & methodology:** https://prodataman.github.io/CAREN-Act/website/data.html
 - **Original SF ordinance (PDF):** https://prodataman.github.io/CAREN-Act/docs/SF-CAREN-Act.pdf
 
 https://prodataman.github.io/CAREN-Act/ redirects to the site. Pages deploys from the `main` branch, repository root.
@@ -20,17 +21,41 @@ Supervisor Shamann Walton introduced it in July 2020. It followed the June 2020 
 ## Contents
 
 - `docs/SF-CAREN-Act.pdf`: original San Francisco ordinance, with legislative history on the last page
-- `website/index.html`: advocacy map (priority heat map plus toggleable layers) and contact form
-- `website/bill.html`: draft federal bill with per-paragraph comments and suggested edits
+- `website/index.html`: advocacy map built on live public data, plus a lookup that finds your representatives and drafts a letter to each
+- `website/bill.html` + `website/bill.json`: draft federal bill (text lives in `bill.json`) with public, per-paragraph comments
 - `website/history.html`: origin story of the SF CAREN Act
+- `website/data.html`: data sources, priority-score methodology, recommended additional sources
+- `website/data/`: generated datasets (do not hand-edit, except the curated `residual_ordinances.json`)
+- `scripts/build_data.py`: fetches every dataset from its publisher and rebuilds `website/data/`
+- `.github/workflows/refresh-data.yml`: reruns the data build every Monday (and on demand)
+- `.github/workflows/bill-comments.yml` + `.github/scripts/apply-accepted.js`: comment labeling and accepted-edit merging
 - `context.md`: living project status document
 
 ## Commenting on the Draft Bill
 
-- Click a paragraph to propose a revised wording and/or add a comment. Suggested edits show as a word-level diff.
-- Click the comment icon next to a paragraph to see its comments and add a new one.
-- Paragraphs with comments are highlighted in yellow.
-- Comments are stored in your browser for now. Use **Share on GitHub** on a comment to open a pre-filled issue (label `bill-comment`) so maintainers and others can see it, or use **Export** / **Import** to move comments as JSON.
+- Click a paragraph to propose a revised wording and/or add a comment. GitHub opens with the comment pre-filled; a free GitHub account is required to post.
+- Comments are public GitHub issues labeled `bill-comment`. The page lists them live.
+- Paragraphs with comments are highlighted in yellow. Click the comment icon to see them, and click a comment to see its proposed changes (removed words in red, added words in green). The bill itself always shows the current approved text.
+
+### For editors (approving comments)
+
+1. Open the comment's **View on GitHub** link (or the [issue list](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment)).
+2. Add the **`accepted`** label. The `Bill comments` workflow checks that you have write access, merges the proposed text into `website/bill.json`, keeps the previous text in the paragraph's `history`, comments ⭐ on the issue, and closes it. The commenter gets a gold star on the site.
+3. Add the **`hidden`** label to remove spam or abuse from the site.
+
+## Data
+
+Run `python3 scripts/build_data.py` (needs `openpyxl` and `pdftotext`/poppler) to rebuild everything locally. Sources:
+
+- EJI lynchings
+- Mapping Police Violence
+- FBI Crime Data Explorer hate crimes and agency locations
+- Census ACS 5-year B03002
+- Census Gazetteer
+- Mapping Inequality HOLC
+- Census ZCTA to 119th-Congress district file
+
+Members of Congress and committee rosters load live from [@unitedstates/congress-legislators](https://github.com/unitedstates/congress-legislators). Address-to-district lookups go through the Census Geocoder. See [data.html](https://prodataman.github.io/CAREN-Act/website/data.html) for methodology and recommended additional sources.
 
 ## Goal
 
@@ -38,7 +63,7 @@ Make similar protections against discriminatory emergency calls available nation
 
 ## Disclaimer
 
-Map layers use publicly available historical and statistical data for educational and advocacy purposes. They illustrate patterns from sources such as the Equal Justice Initiative (lynchings 1877–1950), FBI Uniform Crime Reporting (hate crimes), Mapping Inequality / HOLC (redlining), Mapping Police Violence, and historical research on sundown towns (e.g., James Loewen). The heat map weights are illustrative, not a statistical index. Formal sundown ordinances have been repealed. Claims of current operational "sundown laws" or active Jim Crow statutes require specific verification, as most have been struck down or repealed. Always verify with primary sources.
+Map layers use publicly available historical and statistical data for educational and advocacy purposes. They illustrate patterns from sources such as the Equal Justice Initiative (lynchings 1877–1950), FBI Uniform Crime Reporting (hate crimes), Mapping Inequality / HOLC (redlining), Mapping Police Violence, and historical research on sundown towns (e.g., James Loewen). The priority-score weights are an advocacy judgment, documented on the methodology page. Formal sundown ordinances have been repealed. Claims of current operational "sundown laws" or active Jim Crow statutes require specific verification, as most have been struck down or repealed. Always verify with primary sources.
 
 ## Getting Involved
 

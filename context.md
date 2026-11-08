@@ -35,6 +35,21 @@ Create a public GitHub repository and advocacy website to support making the San
    - Map: added priority heat-map layer (leaflet.heat, illustrative weights), links to history and PDF, escaped contact-form output.
    - Bill comments rebuilt: click paragraph → suggest edit (prefilled text, word diff) + comment; comment icon with count → side panel listing comments + "Add new comment"; yellow highlight for paragraphs with comments; per-comment "Share on GitHub" issue link; JSON export/import. Still localStorage (v1 suggestions auto-migrated).
 
+10. **2026-11-08 (second update):**
+   - All map sample data replaced with real data built by scripts/build_data.py (weekly GitHub Action refresh):
+     - EJI lynchings: 4,447 victims, 942 counties
+     - Mapping Police Violence: 15k+ killings through 2026
+     - FBI hate crimes 2021–2025, geolocated by agency
+     - Census ACS 2020–24 minority share
+     - Mapping Inequality HOLC polygons
+     - Composite county priority score (methodology in website/data.html)
+   - Allies layer is live: House and Senate Judiciary members (color by chair/ranking vs member), Rep. Janelle Bynum (OR-5, author of Oregon's 2019 law) as champion, Sup. Walton as local ally.
+   - Residual ordinances: curated, cited file (Boynton Beach verified).
+   - Segregation layer: 17 states + DC with legally segregated schools pre-1954.
+   - Representative lookup: street address goes to the Census Geocoder (ACS2025_Current vintage = 119th districts). ZIP-only uses the ZCTA→CD119 file. Members come from congress-legislators. A personalized letter is drafted per member, with contact form, phone, and office address.
+   - Bill comments are public via GitHub Issues (label bill-comment). The bill text lives in website/bill.json. Adding the `accepted` label triggers the workflow that merges the edit, records history, and gives the commenter a gold star; `hidden` hides spam.
+   - The 120th Congress starts 2027-01-03, and several states redrew districts. The ZIP file and geocoder vintage need updating to CD120 then; congress-legislators updates members automatically.
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.
@@ -42,11 +57,14 @@ Create a public GitHub repository and advocacy website to support making the San
 - Lynchings: EJI. Police violence: Mapping Police Violence (disproportionate minority impact documented). Hate crimes: FBI UCR.
 - No comprehensive national public geocoded dataset of race-motivated 911 calls exists.
 - Most formal Jim Crow statutes have been repealed or struck down.
+- Census Data API now requires a key; the pipeline uses keyless bulk files instead. WaPo police-shootings data stopped at 2024-12-31, so Mapping Police Violence is used.
 
 ## Next Steps
 1. ~~Enable GitHub Pages~~ Done: https://prodataman.github.io/CAREN-Act/website/
 2. ~~Upload the SF CAREN Act PDF~~ Done.
-2a. Decide on a shared comment backend (GitHub Issues/giscus, Supabase/Firebase, or similar) so all visitors see each other's comments.
+2a. ~~Shared comment backend~~ Done (GitHub Issues). Optional later: allow comments without a GitHub account (would need a hosted backend plus moderation).
+2b. Jan 2027: switch the ZIP→district file to CD120 and the geocoder layer to 120th districts.
+2c. Add recommended data sources (LegiScan, Congress.gov, Stanford Open Policing, city 911 data). See website/data.html.
 3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).
 4. Identify and list specific potential congressional sponsors/champions (especially Judiciary members or newly elected with civil rights records).
 5. Add a short data-methodology page.

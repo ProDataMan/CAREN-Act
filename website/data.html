@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data and Methodology</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 880px; margin: 20px auto; padding: 0 16px 60px; line-height: 1.6; color: #222; background: #fff; }
+    nav a { margin-right: 14px; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; margin-top: 30px; }
+    table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+    th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #f3f3f3; }
+    .table-wrap { overflow-x: auto; }
+    code { background: #f3f3f3; padding: 1px 4px; border-radius: 3px; }
+    .caveat { background: #fff8e1; border-left: 4px solid #e0b400; padding: 10px 14px; }
+  </style>
+</head>
+<body>
+  <nav><a href="index.html">← Advocacy map</a><a href="bill.html">Draft bill</a><a href="history.html">History</a></nav>
+  <h1>Data and Methodology</h1>
+  <p>Every map layer is built from the original publisher's data. A <a href="https://github.com/ProDataMan/CAREN-Act/blob/main/.github/workflows/refresh-data.yml">GitHub Actions workflow</a> reruns <a href="https://github.com/ProDataMan/CAREN-Act/blob/main/scripts/build_data.py"><code>scripts/build_data.py</code></a> every Monday. When a source publishes new data, the map updates automatically. Congressional membership and committee rosters load live in your browser each time you open the page.</p>
+  <p id="generated"></p>
+
+  <h2>Datasets in use</h2>
+  <div class="table-wrap"><table id="ds"><tr><th>Dataset</th><th>Publisher</th><th>Coverage</th><th>How it's used</th></tr></table></div>
+
+  <h2>Priority score</h2>
+  <p>Each county gets a score from 0 to 1:</p>
+  <p><code>score = 0.30 × lynchings + 0.30 × police killings per capita + 0.15 × race/ethnicity hate crimes per capita + 0.25 × minority population share</code></p>
+  <ul>
+    <li><b>Lynchings</b> are log-scaled, so one county's extreme count doesn't flatten everything else.</li>
+    <li><b>Per-capita rates</b> divide by population + 25,000. This keeps a small county with one incident from outranking a large county with a sustained pattern.</li>
+    <li>Each factor is <b>capped at its 95th percentile</b> and scaled to 0–1.</li>
+    <li>“High-overlap” counties (purple rings) are high on at least 3 of 4 factors:
+      <ul>
+        <li>lynchings at or above the median of counties with any;</li>
+        <li>police-killing rate at or above the 75th percentile, with at least 2 killings;</li>
+        <li>hate-crime rate at or above the 75th percentile, with at least 2 incidents;</li>
+        <li>minority share of 40% or more.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>The weights are an advocacy judgment, not a statistical model. They are set in <code>build_priority()</code> and easy to change.</p>
+
+  <div class="caveat"><b>Caveats.</b>
+    <ul>
+      <li>No national dataset tracks racially motivated 911 calls themselves. These layers are proxies for where such calls are likely to cause harm.</li>
+      <li>FBI hate-crime reporting is voluntary, and participation varies widely by agency.</li>
+      <li>Police-killing locations are geocoded by Mapping Police Violence.</li>
+      <li>EJI counts cover African American victims only, 1877–1950.</li>
+      <li>County-level choropleths use 2017-vintage county shapes, so Connecticut's new planning regions show as gray.</li>
+    </ul>
+  </div>
+
+  <h2>More data we recommend adding</h2>
+  <p>These are ranked roughly by value to the campaign. Items marked 🔑 need a free API key, which can be stored as a GitHub Actions secret.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Source</th><th>Why it matters</th><th>Access</th></tr>
+    <tr><td><a href="https://legiscan.com/legiscan">LegiScan API</a> 🔑</td><td>Live tracking of state bills on discriminatory or false police reports (CAREN-style laws), so the map can show where states are moving.</td><td>Free key, JSON API</td></tr>
+    <tr><td><a href="https://api.congress.gov/">Congress.gov API</a> 🔑</td><td>Track a federal CAREN bill once introduced, its cosponsors, and members' cosponsorship of related civil-rights and policing bills, to rank likely allies by record.</td><td>Free api.data.gov key</td></tr>
+    <tr><td><a href="https://openpolicing.stanford.edu/data/">Stanford Open Policing Project</a></td><td>Traffic and pedestrian stops by race for dozens of states and cities. Direct evidence of disproportionate police contact.</td><td>CSV downloads</td></tr>
+    <tr><td>City 911 / calls-for-service open data (e.g. <a href="https://data.sfgov.org/">San Francisco</a>, <a href="https://data.nola.gov/">New Orleans</a>, <a href="https://data.detroitmi.gov/">Detroit</a>, <a href="https://data.seattle.gov/">Seattle</a>)</td><td>Closest available signal for “suspicious person” calls by neighborhood, which can be compared with neighborhood demographics.</td><td>Socrata/ArcGIS APIs (CORS-enabled)</td></tr>
+    <tr><td><a href="https://policescorecard.org/">Police Scorecard</a></td><td>Department-level use of force, arrests for low-level offenses, and accountability metrics.</td><td>Downloadable data</td></tr>
+    <tr><td><a href="https://bjs.ojp.gov/data-collection/police-public-contact-survey-ppcs">BJS Police-Public Contact Survey</a></td><td>National rates of police-initiated and resident-initiated contact by race. Useful for the bill's findings section.</td><td>Public tables</td></tr>
+    <tr><td><a href="https://www.census.gov/data/developers.html">Census API</a> 🔑: ACS by congressional district</td><td>Demographics of each member's district, to prioritize outreach to members representing large affected populations.</td><td>Free key</td></tr>
+    <tr><td><a href="https://justice.tougaloo.edu/sundowntowns/">Sundown Towns database</a> (Tougaloo College / James Loewen)</td><td>Documented sundown towns, which would replace a currently empty historical layer with real locations.</td><td>Request permission for bulk use</td></tr>
+    <tr><td><a href="https://monroeworktoday.org/">Monroe Work Today</a></td><td>Broader lynching data including Latino, Native American, Asian, and white victims, and some incidents outside EJI's window.</td><td>CC BY-NC-SA; county file download</td></tr>
+    <tr><td><a href="https://mappingprejudice.umn.edu/">Mapping Prejudice</a> and similar covenant projects</td><td>Racially restrictive housing covenants, a residential-exclusion record that complements HOLC redlining.</td><td>Open data for covered cities</td></tr>
+    <tr><td><a href="https://www.adl.org/resources/tools-to-track-hate/heat-map">ADL H.E.A.T. Map</a> and <a href="https://stopaapihate.org/">Stop AAPI Hate</a></td><td>Hate and harassment incidents beyond what police agencies report to the FBI.</td><td>Downloads or partnership</td></tr>
+    <tr><td><a href="https://civilrights.org/">Leadership Conference voting record</a> and <a href="https://naacp.org/">NAACP civil rights report card</a></td><td>Score members of Congress on civil-rights votes, to replace “position-only” ally coloring with demonstrated record.</td><td>Published report cards</td></tr>
+  </table></div>
+
+  <script>
+    fetch('data/manifest.json').then(r => r.json()).then(m => {
+      const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const D = m.datasets, n = x => Number(x).toLocaleString();
+      document.getElementById('generated').textContent = 'Last refresh: ' + new Date(m.generated_at).toLocaleString() + '.';
+      const rows = [
+        ['Racial terror lynchings', 'Equal Justice Initiative', n(D.lynchings.total_victims) + ' victims, ' + D.lynchings.counties + ' counties, 1877–1950', 'County circles; priority score', D.lynchings.source],
+        ['Police killings', 'Mapping Police Violence', n(D.police_killings.records) + ' killings, 2013 – ' + D.police_killings.latest_incident, 'Points by victim race; priority score', D.police_killings.source],
+        ['Hate crimes', 'FBI UCR / Crime Data Explorer', n(D.hate_crimes.incidents) + ' incidents ' + D.hate_crimes.years + '; ' + n(D.hate_crimes.agencies) + ' agencies located', 'Agency circles; priority score', D.hate_crimes.source],
+        ['Race & ethnicity', 'U.S. Census Bureau, ' + D.acs.vintage, n(D.acs.records) + ' counties', 'Choropleth; priority score', D.acs.source],
+        ['Redlining', 'Mapping Inequality (Univ. of Richmond)', n(D.redlining.features) + ' HOLC areas, 1935–40', 'Polygons by grade', D.redlining.source],
+        ['ZIP → district', 'U.S. Census Bureau', n(D.zip_districts.zips) + ' ZIP codes, 119th Congress', 'Representative lookup without a street address', D.zip_districts.source],
+        ['Members & committees', '@unitedstates/congress-legislators', 'Live', 'Allies layer; representative lookup', 'https://github.com/unitedstates/congress-legislators']
+      ];
+      document.getElementById('ds').insertAdjacentHTML('beforeend', rows.map(r => '<tr><td><a href="' + esc(r[4]) + '">' + esc(r[0]) + '</a></td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) + '</td><td>' + esc(r[3]) + '</td></tr>').join(''));
+    });
+  </script>
+</body>
+</html>

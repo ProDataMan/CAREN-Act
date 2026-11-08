@@ -1,0 +1,17 @@
+{
+  "note": "Curated list. Each entry must cite a primary or reputable news source. These ordinances are unenforceable; the list tracks discriminatory text that stayed on the books and whether it has been repealed.",
+  "entries": [
+    {
+      "place": "Boynton Beach, FL",
+      "lat": 26.5318, "lon": -80.0905,
+      "ordinances": "Ord. 37 (1924) and Ord. 47 (1924) creating segregated residential districts; Ord. 136 (1933) sundown law",
+      "status": "repealed",
+      "repealed": "2024-02-20",
+      "summary": "City commission unanimously repealed three segregation-era ordinances, including a 1933 sundown law barring people of another race from segregated districts after dark.",
+      "sources": [
+        {"title": "WLRN (2024)", "url": "https://www.wlrn.org/government-politics/2024-02-22/boynton-beach-sundown-law-repeal-segregation-florida"},
+        {"title": "City of Boynton Beach Unity Project", "url": "https://boynton-beach.org/640/Unity-Project"}
+      ]
+    }
+  ]
+}

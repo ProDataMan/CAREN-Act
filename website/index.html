@@ -6,154 +6,427 @@
   <title>Support the Federal CAREN Act</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    body { margin: 0; font-family: system-ui, sans-serif; }
-    #map { height: 65vh; }
-    .controls { padding: 10px; background: #f5f5f5; display: flex; flex-wrap: wrap; gap: 10px; }
-    .layer-toggle { margin: 5px; }
-    .info { padding: 10px; max-width: 1000px; }
-    h1 { margin: 10px; }
-    .priority { background: #fff3cd; padding: 8px; border-left: 4px solid #ffc107; margin: 10px 0; }
-    .form-section { background: #e9ecef; padding: 15px; margin: 15px 0; border-radius: 5px; }
-    .form-section input, .form-section textarea, .form-section select { width: 100%; max-width: 500px; padding: 8px; margin: 5px 0; }
-    button { padding: 8px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+    :root { --accent: #0b5cad; --muted: #666; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; color: #222; background: #fff; line-height: 1.5; }
+    header.top { padding: 10px 16px 4px; }
+    header.top h1 { margin: 0 0 4px; font-size: 1.6rem; }
+    header.top nav a { margin-right: 14px; }
+    .controls { padding: 8px 16px; background: #f5f5f5; display: flex; flex-wrap: wrap; gap: 4px 16px; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
+    .controls label { display: inline-flex; align-items: center; gap: 6px; font-size: .92rem; cursor: pointer; }
+    .controls .sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; border: 1px solid rgba(0,0,0,.3); }
+    .controls .status { font-size: .75rem; color: var(--muted); }
+    #map { height: 68vh; min-height: 420px; }
+    .legend { background: rgba(255,255,255,.95); padding: 8px 10px; border-radius: 6px; font-size: 12px; line-height: 1.5; box-shadow: 0 1px 4px rgba(0,0,0,.25); max-width: 230px; }
+    .legend b { display: block; margin-top: 4px; }
+    .legend i { display: inline-block; width: 12px; height: 12px; margin-right: 5px; vertical-align: -1px; border-radius: 2px; }
+    .grad { height: 10px; border-radius: 2px; background: linear-gradient(to right, #2c7bb6, #abd9e9, #ffffbf, #fdae61, #d7191c); }
+    .info { padding: 10px 16px; max-width: 1100px; }
+    .priority { background: #fff3cd; padding: 8px 12px; border-left: 4px solid #ffc107; margin: 10px 0; }
+    table.sources { border-collapse: collapse; width: 100%; font-size: .88rem; }
+    table.sources th, table.sources td { border: 1px solid #ddd; padding: 5px 8px; text-align: left; vertical-align: top; }
+    table.sources th { background: #f3f3f3; }
+    .table-wrap { overflow-x: auto; }
+    .form-section { background: #eef2f6; padding: 16px; margin: 15px 0; border-radius: 6px; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 14px; max-width: 900px; }
+    .form-grid label { font-size: .85rem; font-weight: 600; display: block; }
+    .form-grid input, .form-grid select { width: 100%; padding: 8px; font: inherit; border: 1px solid #bbb; border-radius: 4px; }
+    button.primary { padding: 9px 16px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font: inherit; }
+    button.secondary, a.secondary { padding: 6px 12px; background: #fff; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; cursor: pointer; font: inherit; font-size: .88rem; text-decoration: none; display: inline-block; }
+    #repStatus { margin: 10px 0; font-size: .92rem; }
+    .reps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 12px; }
+    .rep { background: #fff; border: 1px solid #d5d9de; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .rep .head { display: flex; gap: 10px; align-items: center; }
+    .rep img { width: 56px; height: 68px; object-fit: cover; border-radius: 4px; background: #eee; }
+    .rep h4 { margin: 0; font-size: 1rem; }
+    .rep .sub { font-size: .82rem; color: var(--muted); }
+    .rep .badge { display: inline-block; font-size: .72rem; background: #fde9b6; color: #6b4d00; padding: 1px 6px; border-radius: 3px; margin-top: 2px; }
+    .rep textarea { width: 100%; min-height: 220px; font: inherit; font-size: .85rem; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    .rep .actions { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rep dl { margin: 0; font-size: .85rem; display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; }
+    .rep dt { color: var(--muted); }
+    .rep dd { margin: 0; }
+    .note { font-size: .8rem; color: var(--muted); }
+    .leaflet-popup-content { font-size: 13px; }
+    .leaflet-popup-content table td { padding: 1px 6px 1px 0; }
   </style>
 </head>
 <body>
-  <h1>Support the Federal CAREN Act</h1>
-  <p style="margin:0 10px 10px">Making discriminatory 911 calls illegal nationwide. Based on San Francisco's CAREN Act (Police Code §637).<br>
-    <a href="bill.html">View &amp; comment on the draft federal bill</a> · <a href="history.html">How the SF CAREN Act came about</a> · <a href="../docs/SF-CAREN-Act.pdf" download>Download the original SF ordinance (PDF)</a></p>
-  <div class="controls">
-    <label class="layer-toggle"><input type="checkbox" id="heatmap" checked> <strong>Priority heat map</strong> (combined, weighted by overlapping factors)</label>
-    <label class="layer-toggle"><input type="checkbox" id="hateCrimes" checked> Hate Crimes (FBI UCR)</label>
-    <label class="layer-toggle"><input type="checkbox" id="lynchings" checked> Historical Lynchings (EJI)</label>
-    <label class="layer-toggle"><input type="checkbox" id="policeViolence" checked> Police Killings / Disproportionate Contact (Mapping Police Violence)</label>
-    <label class="layer-toggle"><input type="checkbox" id="minorityPop"> Larger Minority Populations (Census patterns)</label>
-    <label class="layer-toggle"><input type="checkbox" id="southernHistory"> Southern States (Slavery / Jim Crow history)</label>
-    <label class="layer-toggle"><input type="checkbox" id="sundownRedlining" checked> Sundown / Redlining Histories (historical color) vs Residual Ordinances (highlight color)</label>
-    <label class="layer-toggle"><input type="checkbox" id="allies"> Potential Allies (color by power/position)</label>
+  <header class="top">
+    <h1>Support the Federal CAREN Act</h1>
+    <div>Making discriminatory 911 calls illegal nationwide, modeled on San Francisco's CAREN Act (Police Code §637).</div>
+    <nav><a href="bill.html">Draft federal bill &amp; comments</a><a href="history.html">How the SF CAREN Act came about</a><a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a><a href="data.html">Data &amp; methodology</a><a href="#contact">Contact your representatives</a></nav>
+  </header>
+
+  <div class="controls" id="controls">
+    <label><input type="checkbox" data-layer="heat" checked> <strong>Priority heat map</strong></label>
+    <label><input type="checkbox" data-layer="priority" checked> <span class="sw" style="background:#7a0177"></span> High-overlap counties</label>
+    <label><input type="checkbox" data-layer="lynch" checked> <span class="sw" style="background:#67000d"></span> Lynchings 1877–1950 (EJI)</label>
+    <label><input type="checkbox" data-layer="police"> <span class="sw" style="background:#e31a1c"></span> Police killings 2013–present (MPV)</label>
+    <label><input type="checkbox" data-layer="hate"> <span class="sw" style="background:#ff7f00"></span> Race/ethnicity hate crimes (FBI)</label>
+    <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census ACS)</label>
+    <label><input type="checkbox" data-layer="redlining"> <span class="sw" style="background:#d9534f"></span> HOLC redlining maps</label>
+    <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> States with segregated schools by law (pre-1954)</label>
+    <label><input type="checkbox" data-layer="residual" checked> <span class="sw" style="background:gold"></span> Residual segregation/sundown ordinances</label>
+    <label><input type="checkbox" data-layer="allies"> <span class="sw" style="background:#1a1a1a"></span> Allies &amp; key members of Congress</label>
+    <span class="status" id="loadStatus">Loading data…</span>
   </div>
   <div id="map"></div>
+
   <div class="info">
-    <h2>About the Map & Data Layers</h2>
-    <p>All layers remain available and toggleable. High-priority locations (overlaps of high lynching counts, residual discriminatory language, elevated police violence or disproportionate minority contact, and larger minority populations) are highlighted with larger or bolder markers, but no data is filtered out. Sample markers are illustrative and linked to real public sources. Full national datasets are large; production versions can load GeoJSON.</p>
-    <div class="priority"><strong>Prioritization (without filtering):</strong> Areas with multiple overlapping factors (high historical lynchings + residual ordinances + higher rates of police killings or disproportionate arrests/contacts with minorities + larger minority populations) are emphasized for advocacy focus. This does not remove or hide other locations.</div>
-    <ul>
-      <li><strong>Priority heat map:</strong> blends the sample locations from every layer, weighted by how many advocacy factors overlap there (lynching history, police violence, residual ordinances, minority population share, hate crimes). Warmer areas are where more factors overlap. The weights are illustrative, not a statistical index.</li>
-      <li><strong>Hate Crimes:</strong> FBI UCR. <a href="https://cde.ucr.cjis.gov/" target="_blank">Crime Data Explorer</a>.</li>
-      <li><strong>Lynchings:</strong> EJI >4,000 racial terror lynchings (1877–1950). <a href="https://lynchinginamerica.eji.org/" target="_blank">EJI map</a>.</li>
-      <li><strong>Police Killings & Disproportionate Contact:</strong> Mapping Police Violence tracks fatal police encounters. Black Americans are disproportionately represented relative to population. <a href="https://mappingpoliceviolence.org/" target="_blank">mappingpoliceviolence.org</a>. Disproportionate arrests/contacts drawn from public analyses and BJS patterns.</li>
-      <li><strong>Minority Populations:</strong> Census-based patterns of higher Black, Latino, Native, and other minority shares (illustrative urban and southern examples).</li>
-      <li><strong>Sundown / Redlining:</strong> Historical (Loewen database, HOLC maps via <a href="https://dsl.richmond.edu/panorama/redlining/" target="_blank">Mapping Inequality</a>) shown in one color. Residual/zombie ordinances (obsolete text still in some codes until repealed; unenforceable) shown in a different highlight color. Example residual case cleaned up: Boynton Beach, FL (2024).</li>
-      <li><strong>Allies:</strong> Color-coded by position and potential influence (e.g., Judiciary chairs/ranking members darker, other members lighter, local officials different hue). Sample only; expand with public records.</li>
-    </ul>
-    <h2>Take Action</h2>
+    <div class="priority"><strong>Prioritization without filtering:</strong> The heat map and the purple “high-overlap” rings mark counties where several factors coincide: a history of racial terror lynching, high rates of police killings, race-motivated hate crimes, and large minority populations. Every other data point stays on the map and every layer can be toggled. See <a href="data.html">data &amp; methodology</a> for how the score is computed.</div>
+
+    <h2>Data sources</h2>
+    <p class="note" id="freshness"></p>
+    <div class="table-wrap"><table class="sources" id="sourcesTable"><tr><th>Layer</th><th>Source</th><th>Coverage</th></tr></table></div>
+
+    <h2 id="contact">Contact Your Representatives</h2>
     <div class="form-section">
-      <h3>Contact Your Representative / Forward This Bill</h3>
-      <p>Enter your details to generate a pre-filled message. (In production this can integrate with congress.gov lookup or email APIs. For now, it prepares text you can copy or opens a mailto.)</p>
-      <form id="contactForm">
-        <input type="text" id="name" placeholder="Your name" required><br>
-        <input type="email" id="email" placeholder="Your email" required><br>
-        <input type="text" id="zip" placeholder="Your ZIP code (for district lookup)"><br>
-        <select id="recipient">
-          <option value="judiciary">House/Senate Judiciary Committee members</option>
-          <option value="myrep">My representative (use ZIP)</option>
-          <option value="other">Other</option>
-        </select><br>
-        <textarea id="message" rows="6" placeholder="Message (pre-filled with bill summary)">I support a federal version of the San Francisco CAREN Act that makes discriminatory emergency calls illegal nationwide, with a minimum $1,000 in statutory damages ($500 from the individual caller and $500 from the responding police department) plus fees. Please sponsor or co-sponsor this legislation to protect communities from race-motivated harassment via 911.</textarea><br>
-        <button type="button" onclick="prepareContact()">Prepare Message / Open Email</button>
+      <p style="margin-top:0">Enter your address to find your two U.S. Senators and your U.S. Representative. We draft a personal letter to each one and give you their official contact form, phone number, and office address. Your address is sent only to the U.S. Census Bureau geocoder to find your district. It is never stored.</p>
+      <form id="repForm" class="form-grid" autocomplete="on">
+        <div><label for="fName">Your name</label><input id="fName" autocomplete="name" required></div>
+        <div><label for="fStreet">Street address <span class="note">(most accurate)</span></label><input id="fStreet" autocomplete="street-address" placeholder="123 Main St"></div>
+        <div><label for="fCity">City</label><input id="fCity" autocomplete="address-level2"></div>
+        <div><label for="fState">State</label><input id="fState" autocomplete="address-level1" maxlength="20" placeholder="CA"></div>
+        <div><label for="fZip">ZIP code</label><input id="fZip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" required></div>
+        <div style="align-self:end"><button class="primary" type="submit">Find my representatives</button></div>
       </form>
-      <p id="contactResult"></p>
+      <div id="repStatus"></div>
+      <div class="reps" id="reps"></div>
+      <p class="note">Member data: <a href="https://github.com/unitedstates/congress-legislators">@unitedstates/congress-legislators</a> (public domain, updated as membership changes). District lookup: <a href="https://geocoding.geo.census.gov/">U.S. Census Geocoder</a> (119th Congress boundaries) or Census ZIP-to-district relationship files. Members of Congress don't publish email addresses, so use the official contact form; it is the channel offices track. Members shown serve in the 119th Congress through January 3, 2027. Several states redrew districts for the 120th Congress.</p>
     </div>
-    <p><a href="bill.html">View the full draft federal bill and click any paragraph to suggest changes</a> | <a href="history.html">History of the SF CAREN Act</a> | <a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a></p>
   </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
   <script>
-    const map = L.map('map').setView([37.8, -96], 4);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Layers
-    const southernStates = L.layerGroup();
-    L.circle([32.5, -86.5], {radius: 400000, color: 'brown', fillOpacity: 0.15}).addTo(southernStates).bindPopup('Southern states: History of slavery and Jim Crow (historical; most formal laws repealed/struck down)');
-
-    const lynchingsLayer = L.layerGroup();
-    L.circle([32.7, -89.7], {radius: 180000, color: 'darkred', fillOpacity: 0.35, weight: 3}).addTo(lynchingsLayer).bindPopup('<b>High-priority example:</b> Mississippi region with very high EJI lynching counts. See full EJI map.');
-    L.circle([33.5, -86.8], {radius: 120000, color: 'red', fillOpacity: 0.25}).addTo(lynchingsLayer).bindPopup('Alabama: High historical lynching concentration (EJI).');
-
-    const policeLayer = L.layerGroup();
-    L.circle([41.8, -87.6], {radius: 80000, color: 'crimson', fillOpacity: 0.4, weight: 4}).addTo(policeLayer).bindPopup('<b>High-priority:</b> Chicago area — elevated police killings and disproportionate impact on Black residents (Mapping Police Violence).');
-    L.circle([38.6, -90.2], {radius: 70000, color: 'crimson', fillOpacity: 0.4, weight: 4}).addTo(policeLayer).bindPopup('<b>High-priority:</b> St. Louis area — high rates of police killings relative to population, disproportionate minority impact.');
-    L.marker([33.4, -112.0]).addTo(policeLayer).bindPopup('Phoenix: Among higher per-capita police killing rates in major cities (Mapping Police Violence).');
-
-    const minorityLayer = L.layerGroup();
-    L.circle([33.7, -84.4], {radius: 100000, color: 'blue', fillOpacity: 0.2}).addTo(minorityLayer).bindPopup('Atlanta metro: Larger Black population share (Census patterns).');
-    L.circle([29.7, -95.4], {radius: 120000, color: 'blue', fillOpacity: 0.2}).addTo(minorityLayer).bindPopup('Houston: Large and diverse minority populations.');
-
-    const hateLayer = L.layerGroup();
-    L.circle([40.7, -74], {radius: 100000, color: 'orange', fillOpacity: 0.2}).addTo(hateLayer).bindPopup('NYC area: Higher volume of reported hate crime incidents (FBI UCR).');
-
-    const sundownHistorical = L.layerGroup();
-    L.circle([41.5, -88.1], {radius: 60000, color: 'purple', fillOpacity: 0.2}).addTo(sundownHistorical).bindPopup('Historical sundown town research area (Loewen database). Formal ordinances unenforceable.');
-    L.circle([42.3, -83.0], {radius: 50000, color: 'purple', fillOpacity: 0.2}).addTo(sundownHistorical).bindPopup('Example historical exclusionary practices / redlining vicinity.');
-
-    const residualOrdinances = L.layerGroup();
-    L.marker([26.53, -80.09], {icon: L.divIcon({className: 'residual-marker', html: '<div style="background:gold;width:12px;height:12px;border-radius:50%;border:2px solid black;"></div>'})}).addTo(residualOrdinances).bindPopup('<b>Residual/zombie example (cleaned):</b> Boynton Beach, FL repealed three segregation/sundown-era ordinances in 2024. These were unenforceable but remained on the books until actively removed. Highlight color indicates residual language priority.');
-
-    const alliesLayer = L.layerGroup();
-    // Color by power: darker = higher influence sample
-    L.marker([38.9, -77.0], {icon: L.divIcon({html: '<div style="background:#1a1a1a;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">High</div>'})}).addTo(alliesLayer).bindPopup('DC: High-power allies — Judiciary chairs/ranking members or senior members with strong civil rights records (sample).');
-    L.marker([38.9, -77.03], {icon: L.divIcon({html: '<div style="background:#555;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">Med</div>'})}).addTo(alliesLayer).bindPopup('Medium-influence members or those with relevant sponsorship history.');
-    L.marker([37.77, -122.42], {icon: L.divIcon({html: '<div style="background:#888;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">Local</div>'})}).addTo(alliesLayer).bindPopup('Local/state officials or advocates (e.g., SF Supervisor Walton who introduced the original CAREN Act).');
-
-    // Priority heat map: [lat, lng, weight 0-1]; weight reflects number of overlapping factors (illustrative)
-    const heatPoints = [
-      [32.7, -89.7, 1.0],   // Mississippi: lynchings + minority pop + Southern history
-      [33.5, -86.8, 0.9],   // Alabama: lynchings + minority pop
-      [38.6, -90.2, 0.9],   // St. Louis: police violence + minority pop + redlining
-      [41.8, -87.6, 0.85],  // Chicago: police violence + redlining + minority pop
-      [33.7, -84.4, 0.7],   // Atlanta: minority pop + Southern history
-      [29.7, -95.4, 0.6],   // Houston: minority pop
-      [33.4, -112.0, 0.6],  // Phoenix: police killing rate
-      [41.5, -88.1, 0.5],   // historical sundown research area
-      [42.3, -83.0, 0.55],  // Detroit vicinity: redlining
-      [40.7, -74.0, 0.5],   // NYC: hate crime volume
-      [26.53, -80.09, 0.45] // Boynton Beach: residual ordinance (cleaned 2024)
+  (function () {
+    'use strict';
+    const LEGISLATORS = 'https://unitedstates.github.io/congress-legislators/legislators-current.json';
+    const COMMITTEES = 'https://unitedstates.github.io/congress-legislators/committee-membership-current.json';
+    const ATLAS = 'https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/counties-10m.json';
+    const BILL_URL = 'https://prodataman.github.io/CAREN-Act/website/bill.html';
+    const STATE_FIPS = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY","60":"AS","66":"GU","69":"MP","72":"PR","78":"VI"};
+    // 17 states + DC required racially segregated public schools by law when Brown v. Board was decided (1954).
+    const SEGREGATION_STATES = ['AL','AR','DE','FL','GA','KY','LA','MD','MS','MO','NC','OK','SC','TN','TX','VA','WV','DC'];
+    // Additional allies outside the Judiciary Committees (verified record on this issue).
+    const CHAMPIONS = [
+      { bioguide: 'B001326', why: 'As an Oregon state legislator, authored Oregon’s 2019 law letting people sue over racially motivated police calls, after police were called on her while canvassing.' }
     ];
-    const heatLayer = L.heatLayer(heatPoints, { radius: 55, blur: 40, maxZoom: 5, max: 0.6, minOpacity: 0.45,
-      gradient: { 0.3: '#2c7bb6', 0.5: '#abd9e9', 0.65: '#ffffbf', 0.8: '#fdae61', 1.0: '#d7191c' } });
-    heatLayer.addTo(map);
+    const LOCAL_ALLIES = [
+      { name: 'Supervisor Shamann Walton', where: 'San Francisco, CA', lat: 37.7793, lon: -122.4193, why: 'Author of the San Francisco CAREN Act (Ordinance 219-20, 2020).' }
+    ];
+    const RACE = { B: 'Black', W: 'White', H: 'Hispanic', A: 'Asian', N: 'Native American', P: 'Pacific Islander', U: 'Unknown' };
+    const RACE_COLOR = { B: '#e31a1c', H: '#ff7f00', N: '#6a3d9a', A: '#1f78b4', P: '#33a02c', W: '#9e9e9e', U: '#bdbdbd' };
 
-    // Toggles
-    document.getElementById('heatmap').addEventListener('change', e => e.target.checked ? heatLayer.addTo(map) : map.removeLayer(heatLayer));
-    document.getElementById('hateCrimes').addEventListener('change', e => e.target.checked ? hateLayer.addTo(map) : map.removeLayer(hateLayer));
-    document.getElementById('lynchings').addEventListener('change', e => e.target.checked ? lynchingsLayer.addTo(map) : map.removeLayer(lynchingsLayer));
-    document.getElementById('policeViolence').addEventListener('change', e => e.target.checked ? policeLayer.addTo(map) : map.removeLayer(policeLayer));
-    document.getElementById('minorityPop').addEventListener('change', e => e.target.checked ? minorityLayer.addTo(map) : map.removeLayer(minorityLayer));
-    document.getElementById('southernHistory').addEventListener('change', e => e.target.checked ? southernStates.addTo(map) : map.removeLayer(southernStates));
-    document.getElementById('sundownRedlining').addEventListener('change', e => {
-      if (e.target.checked) { sundownHistorical.addTo(map); residualOrdinances.addTo(map); }
-      else { map.removeLayer(sundownHistorical); map.removeLayer(residualOrdinances); }
-    });
-    document.getElementById('allies').addEventListener('change', e => e.target.checked ? alliesLayer.addTo(map) : map.removeLayer(alliesLayer));
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const fmt = n => Number(n).toLocaleString();
+    const getJSON = url => fetch(url).then(r => { if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); });
+    const cache = {};
+    const once = (key, fn) => cache[key] || (cache[key] = fn());
 
-    // Initial visible (no filtering of data; user can toggle all)
-    lynchingsLayer.addTo(map);
-    policeLayer.addTo(map);
-    sundownHistorical.addTo(map);
-    residualOrdinances.addTo(map);
-    hateLayer.addTo(map);
+    // ---------------------------------------------------------------- Map
+    const map = L.map('map', { preferCanvas: true });
+    map.fitBounds([[24.5, -124.8], [49.4, -66.9]]);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+    map.createPane('choropleth'); map.getPane('choropleth').style.zIndex = 350;
+    map.createPane('heat'); map.getPane('heat').style.zIndex = 380; map.getPane('heat').style.pointerEvents = 'none';
 
-    function prepareContact() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const msg = document.getElementById('message').value;
-      const result = document.getElementById('contactResult');
-      const full = `From: ${name} <${email}>\n\n${msg}\n\n---\nRead the draft federal CAREN Act: https://prodataman.github.io/CAREN-Act/website/bill.html`;
-      const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-      result.innerHTML = `<strong>Prepared message:</strong><br><pre style="white-space:pre-wrap">${esc(full)}</pre><br><a href="mailto:?subject=${encodeURIComponent('Support for Federal CAREN Act')}&body=${encodeURIComponent(full)}">Open in email client</a> or copy the text above.`;
+    const layers = {};
+    const status = document.getElementById('loadStatus');
+    let pending = 0;
+    function busy(d) { pending += d; status.textContent = pending > 0 ? 'Loading data…' : ''; }
+
+    const counties = () => once('counties', () => getJSON('data/counties.json'));
+    const atlas = () => once('atlas', () => getJSON(ATLAS));
+    const legislators = () => once('leg', () => getJSON(LEGISLATORS));
+    const committees = () => once('com', () => getJSON(COMMITTEES));
+
+    function countyPopup(r) {
+      return '<b>' + esc(r[1]) + ', ' + esc(r[2]) + '</b><table>' +
+        '<tr><td>Priority score</td><td><b>' + r[13].toFixed(2) + '</b> (' + r[14] + ' of 4 factors high)</td></tr>' +
+        '<tr><td>Population</td><td>' + fmt(r[5]) + '</td></tr>' +
+        '<tr><td>Minority share</td><td>' + r[6] + '% (Black ' + r[7] + '%, Hispanic ' + r[8] + '%)</td></tr>' +
+        '<tr><td>Lynching victims 1877–1950</td><td>' + r[9] + '</td></tr>' +
+        '<tr><td>Police killings since 2013</td><td>' + r[10] + ' (' + r[11] + ' Black victims)</td></tr>' +
+        '<tr><td>Race/ethnicity hate crimes</td><td>' + r[12] + '</td></tr></table>';
     }
+
+    const builders = {
+      heat: () => counties().then(d => L.heatLayer(
+        d.rows.filter(r => r[13] > 0.15).map(r => [r[3], r[4], Math.pow(r[13], 2)]),
+        { pane: 'heat', radius: 20, blur: 16, maxZoom: 7, max: 0.9, minOpacity: 0.2,
+          gradient: { 0.25: '#2c7bb6', 0.45: '#abd9e9', 0.6: '#ffffbf', 0.8: '#fdae61', 1.0: '#d7191c' } })),
+      priority: () => counties().then(d => {
+        const g = L.layerGroup();
+        d.rows.filter(r => r[14] >= 3).forEach(r => L.circleMarker([r[3], r[4]], {
+          radius: 5 + r[14] * 1.5, color: '#7a0177', weight: r[14] === 4 ? 3.5 : 2, fill: false
+        }).bindPopup(countyPopup(r)).addTo(g));
+        return g;
+      }),
+      lynch: () => counties().then(d => {
+        const g = L.layerGroup();
+        d.rows.filter(r => r[9] > 0).forEach(r => L.circleMarker([r[3], r[4]], {
+          radius: 2 + Math.sqrt(r[9]) * 1.6, color: '#67000d', weight: 1, fillColor: '#a50f15', fillOpacity: 0.55
+        }).bindPopup('<b>' + esc(r[1]) + ', ' + esc(r[2]) + '</b><br>' + r[9] + ' documented African American victims of racial terror lynching, 1877–1950 (EJI).<hr>' + countyPopup(r)).addTo(g));
+        return g;
+      }),
+      police: () => getJSON('data/police_killings.json').then(d => {
+        const g = L.layerGroup();
+        d.rows.forEach(p => L.circleMarker([p[0], p[1]], {
+          radius: 3, weight: 0.5, color: '#333', fillColor: RACE_COLOR[p[3]] || '#bdbdbd', fillOpacity: 0.8
+        }).bindPopup('<b>' + esc(p[4] || 'Name withheld') + '</b><br>' + esc(p[2]) + ' · ' + esc(RACE[p[3]] || 'Unknown') +
+          (p[8] === 'U' ? ' · <b>unarmed</b>' : '') + '<br>' + esc(p[5]) + ', ' + esc(p[6]) + '<br>' + esc(p[7]) +
+          '<br><a href="https://mappingpoliceviolence.org/" target="_blank" rel="noopener">Mapping Police Violence</a>').addTo(g));
+        return g;
+      }),
+      hate: () => getJSON('data/hate_crimes.json').then(d => {
+        const g = L.layerGroup();
+        d.rows.filter(r => r[5] > 0).forEach(r => L.circleMarker([r[0], r[1]], {
+          radius: 1.5 + Math.sqrt(r[5]) * 0.6, color: '#b35806', weight: 0.5, fillColor: '#ff7f00', fillOpacity: 0.45
+        }).bindPopup('<b>' + esc(r[2]) + '</b>, ' + esc(r[3]) + '<br>' + d.years[0] + '–' + d.years[1] + ' reported hate crime incidents:<br>' +
+          r[5] + ' race/ethnicity bias (' + r[6] + ' anti-Black)<br>' + r[4] + ' total, all bias types<br><span class="note">Reporting to the FBI is voluntary; low counts may mean low reporting.</span>').addTo(g));
+        return g;
+      }),
+      minority: () => Promise.all([atlas(), counties()]).then(([topo, d]) => {
+        const byF = {}; d.rows.forEach(r => byF[r[0]] = r);
+        const color = v => v >= 70 ? '#08519c' : v >= 50 ? '#3182bd' : v >= 35 ? '#6baed6' : v >= 20 ? '#bdd7e7' : '#eff3ff';
+        return L.geoJSON(topojson.feature(topo, topo.objects.counties), {
+          pane: 'choropleth',
+          style: f => { const r = byF[f.id]; return { weight: 0.2, color: '#fff', fillColor: r ? color(r[6]) : '#ddd', fillOpacity: 0.6 }; },
+          onEachFeature: (f, l) => { const r = byF[f.id]; if (r) l.bindPopup(countyPopup(r)); }
+        });
+      }),
+      redlining: () => getJSON('data/redlining.json').then(d => {
+        const C = { A: '#76a865', B: '#7cb5bd', C: '#ffff00', D: '#d9533c' };
+        return L.geoJSON(d, {
+          pane: 'choropleth',
+          style: f => ({ weight: 0.5, color: '#555', fillColor: C[f.properties.g], fillOpacity: 0.55 }),
+          onEachFeature: (f, l) => l.bindPopup('<b>' + esc(f.properties.c) + ', ' + esc(f.properties.s) + '</b><br>HOLC grade ' + esc(f.properties.g) + (f.properties.l ? ' (' + esc(f.properties.l) + ')' : '') +
+            (f.properties.g === 'D' ? '<br>“Hazardous”: redlined, typically because of Black or immigrant residents.' : '') +
+            '<br><a href="https://dsl.richmond.edu/panorama/redlining/" target="_blank" rel="noopener">Mapping Inequality</a>')
+        });
+      }),
+      segregation: () => atlas().then(topo => {
+        const set = new Set(SEGREGATION_STATES);
+        const states = topojson.feature(topo, topo.objects.states);
+        states.features = states.features.filter(f => set.has(STATE_FIPS[f.id]));
+        return L.geoJSON(states, {
+          pane: 'choropleth',
+          style: { weight: 1.5, color: '#8c6d31', fillColor: '#bf9b30', fillOpacity: 0.18, dashArray: '4 3' },
+          onEachFeature: (f, l) => l.bindPopup('<b>' + esc(f.properties.name) + '</b><br>Required racially segregated public schools by law when <i>Brown v. Board of Education</i> was decided (1954). These laws are no longer enforceable.<br><a href="https://www.archives.gov/education/lessons/brown-v-board" target="_blank" rel="noopener">National Archives</a>')
+        });
+      }),
+      residual: () => getJSON('data/residual_ordinances.json').then(d => {
+        const g = L.layerGroup();
+        d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { radius: 8, color: '#000', weight: 2, fillColor: 'gold', fillOpacity: 1 })
+          .bindPopup('<b>' + esc(e.place) + '</b> (' + esc(e.status) + (e.repealed ? ' ' + esc(e.repealed) : '') + ')<br>' + esc(e.ordinances) + '<br>' + esc(e.summary) + '<br>' +
+            e.sources.map(s => '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + '</a>').join(' · ')).addTo(g));
+        return g;
+      }),
+      allies: () => Promise.all([legislators(), committees(), counties()]).then(([leg, com, cty]) => {
+        const byId = {}; leg.forEach(p => byId[p.id.bioguide] = p);
+        // Population-weighted state centers from county data
+        const acc = {};
+        cty.rows.forEach(r => { const a = acc[r[2]] = acc[r[2]] || [0, 0, 0]; a[0] += r[3] * r[5]; a[1] += r[4] * r[5]; a[2] += r[5]; });
+        const center = st => acc[st] ? [acc[st][0] / acc[st][2], acc[st][1] / acc[st][2]] : null;
+        const seen = {};
+        const g = L.layerGroup();
+        function place(p, tier, note) {
+          const t = p.terms[p.terms.length - 1];
+          const c = center(t.state); if (!c) return;
+          const k = t.state; const n = seen[k] = (seen[k] || 0) + 1;
+          const ang = n * 2.4, rad = 0.35 * Math.sqrt(n);
+          const pos = [c[0] + rad * Math.sin(ang), c[1] + rad * Math.cos(ang) * 1.3];
+          const col = { high: '#1a1a1a', medium: '#5a5a5a', champion: '#1b7837' }[tier];
+          L.marker(pos, { icon: L.divIcon({ className: '', html: '<div style="background:' + col + ';color:#fff;padding:1px 4px;border-radius:3px;font-size:10px;white-space:nowrap;border:1px solid #fff">' + esc(p.name.last) + '</div>' }) })
+            .bindPopup('<b>' + esc(p.name.official_full) + '</b> (' + esc(t.party[0]) + '-' + esc(t.state) + (t.type === 'rep' ? '-' + esc(t.district) : '') + ')<br>' +
+              (t.type === 'sen' ? 'U.S. Senator' : 'U.S. Representative') + '<br>' + esc(note) + '<br>' +
+              (t.phone ? 'Phone: <a href="tel:' + esc(t.phone) + '">' + esc(t.phone) + '</a><br>' : '') +
+              (t.contact_form ? '<a href="' + esc(t.contact_form) + '" target="_blank" rel="noopener">Official contact form</a> · ' : '') +
+              (t.url ? '<a href="' + esc(t.url) + '" target="_blank" rel="noopener">Website</a>' : '')).addTo(g);
+        }
+        [['HSJU', 'House Judiciary Committee'], ['SSJU', 'Senate Judiciary Committee']].forEach(([code, label]) => {
+          (com[code] || []).forEach(m => {
+            const p = byId[m.bioguide]; if (!p) return;
+            const high = m.title && /chair|ranking/i.test(m.title);
+            place(p, high ? 'high' : 'medium', label + (m.title ? ' — ' + m.title : ' member') + '. A federal CAREN Act would be referred to this committee.');
+          });
+        });
+        CHAMPIONS.forEach(c => { if (byId[c.bioguide]) place(byId[c.bioguide], 'champion', c.why); });
+        LOCAL_ALLIES.forEach(a => L.marker([a.lat, a.lon], { icon: L.divIcon({ className: '', html: '<div style="background:#888;color:#fff;padding:1px 4px;border-radius:3px;font-size:10px;white-space:nowrap">Local</div>' }) })
+          .bindPopup('<b>' + esc(a.name) + '</b><br>' + esc(a.where) + '<br>' + esc(a.why)).addTo(g));
+        return g;
+      })
+    };
+
+    function setLayer(name, on) {
+      if (on) {
+        busy(1);
+        Promise.resolve(layers[name] || builders[name]()).then(l => { layers[name] = l; l.addTo(map); })
+          .catch(e => { console.error(e); alert('Could not load the ' + name + ' layer: ' + e.message); })
+          .finally(() => busy(-1));
+      } else if (layers[name]) {
+        map.removeLayer(layers[name]);
+      }
+    }
+    document.querySelectorAll('#controls input[data-layer]').forEach(cb => {
+      cb.addEventListener('change', () => setLayer(cb.dataset.layer, cb.checked));
+      if (cb.checked) setLayer(cb.dataset.layer, true);
+    });
+
+    const legend = L.control({ position: 'bottomright' });
+    legend.onAdd = () => {
+      const d = L.DomUtil.create('div', 'legend');
+      d.innerHTML = '<b>Priority score</b><div class="grad"></div><div style="display:flex;justify-content:space-between"><span>lower</span><span>higher</span></div>' +
+        '<b>Police killings: victim race</b>' + ['B', 'H', 'N', 'A', 'W', 'U'].map(k => '<i style="background:' + RACE_COLOR[k] + '"></i>' + RACE[k]).join('<br>') +
+        '<b>Redlining (HOLC)</b><i style="background:#76a865"></i>A <i style="background:#7cb5bd"></i>B <i style="background:#ffff00"></i>C <i style="background:#d9533c"></i>D' +
+        '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local';
+      L.DomEvent.disableScrollPropagation(d);
+      return d;
+    };
+    legend.addTo(map);
+
+    // ---------------------------------------------------------------- Sources table
+    getJSON('data/manifest.json').then(m => {
+      document.getElementById('freshness').textContent = 'Datasets last refreshed ' + new Date(m.generated_at).toLocaleString() + ' (automatically every week from the original publishers).';
+      const D = m.datasets;
+      const rows = [
+        ['Lynchings', 'Equal Justice Initiative, <a href="https://lynchinginamerica.eji.org/">Lynching in America</a> county supplement', fmt(D.lynchings.total_victims) + ' victims in ' + D.lynchings.counties + ' counties, 1877–1950'],
+        ['Police killings', '<a href="https://mappingpoliceviolence.org/">Mapping Police Violence</a>', fmt(D.police_killings.records) + ' killings, 2013 to ' + D.police_killings.latest_incident],
+        ['Hate crimes', 'FBI UCR <a href="https://cde.ucr.cjis.gov/">Crime Data Explorer</a>', fmt(D.hate_crimes.incidents) + ' incidents, ' + D.hate_crimes.years + ', ' + fmt(D.hate_crimes.agencies) + ' agencies'],
+        ['Minority population', 'U.S. Census Bureau, ' + esc(D.acs.vintage) + ', table B03002', fmt(D.acs.records) + ' counties'],
+        ['Redlining', '<a href="https://dsl.richmond.edu/panorama/redlining/">Mapping Inequality</a>, University of Richmond', fmt(D.redlining.features) + ' HOLC-graded areas, 1935–1940'],
+        ['Segregated schools', '<a href="https://www.archives.gov/education/lessons/brown-v-board">National Archives: Brown v. Board</a>', '17 states + DC (historical)'],
+        ['Residual ordinances', 'Curated, cited list (<a href="https://github.com/ProDataMan/CAREN-Act/blob/main/website/data/residual_ordinances.json">edit on GitHub</a>)', 'Verified examples only'],
+        ['Allies', '<a href="https://github.com/unitedstates/congress-legislators">congress-legislators</a> (live)', 'Current House &amp; Senate Judiciary Committees']
+      ];
+      document.getElementById('sourcesTable').insertAdjacentHTML('beforeend', rows.map(r => '<tr><td>' + r.join('</td><td>') + '</td></tr>').join(''));
+    }).catch(() => {});
+
+    // ---------------------------------------------------------------- Representative lookup
+    const repStatus = document.getElementById('repStatus');
+    const repsDiv = document.getElementById('reps');
+
+    function jsonp(url) {
+      return new Promise((resolve, reject) => {
+        const cb = 'censusCb' + Date.now() + Math.floor(Math.random() * 1e6);
+        const s = document.createElement('script');
+        const timer = setTimeout(() => { cleanup(); reject(new Error('Census geocoder timed out')); }, 20000);
+        function cleanup() { clearTimeout(timer); delete window[cb]; s.remove(); }
+        window[cb] = data => { cleanup(); resolve(data); };
+        s.onerror = () => { cleanup(); reject(new Error('Census geocoder unavailable')); };
+        s.src = url + '&format=jsonp&callback=' + cb;
+        document.head.appendChild(s);
+      });
+    }
+
+    // Returns [{state:'CA', district:11}] candidates
+    async function findDistricts(street, city, state, zip) {
+      if (street) {
+        const addr = [street, city, state, zip].filter(Boolean).join(', ');
+        const url = 'https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?benchmark=Public_AR_Current&vintage=ACS2025_Current&layers=all&address=' + encodeURIComponent(addr);
+        try {
+          const d = await jsonp(url);
+          const m = d.result && d.result.addressMatches && d.result.addressMatches[0];
+          if (m) {
+            const key = Object.keys(m.geographies).find(k => /119th Congressional/.test(k)) || Object.keys(m.geographies).find(k => /Congressional/.test(k));
+            const cd = key && m.geographies[key][0];
+            if (cd) return { exact: true, matched: m.matchedAddress, list: [{ state: STATE_FIPS[cd.STATE], district: (parseInt(cd.GEOID.slice(2), 10) % 98) }] };
+          }
+        } catch (e) { console.warn(e); }
+      }
+      const zips = await once('zips', () => getJSON('data/zip_districts.json'));
+      const list = (zips[zip] || []).map(g => ({ state: STATE_FIPS[g.slice(0, 2)], district: parseInt(g.slice(2), 10) }));
+      return { exact: false, list };
+    }
+
+    function letter(p, t, me) {
+      const title = t.type === 'sen' ? 'Senator' : 'Representative';
+      const where = [me.city, me.state, me.zip].filter(Boolean).join(', ');
+      return 'Dear ' + title + ' ' + p.name.last + ',\n\n' +
+        'My name is ' + me.name + ', and I am your constituent' + (where ? ' in ' + where : '') + '. I am writing to ask you to sponsor or cosponsor a federal version of San Francisco’s CAREN Act (Caution Against Racial and Exploitative Non-Emergencies).\n\n' +
+        'Calls to police made with the specific intent to harass or discriminate against people because of their race or other protected characteristics put innocent people at risk of detention, humiliation, financial harm, and violence. San Francisco unanimously passed the CAREN Act in 2020 (Police Code §637), and states such as Oregon have enacted similar protections, but most Americans have no remedy at all.\n\n' +
+        'The draft federal bill would:\n' +
+        '• Prohibit knowingly causing law enforcement to contact a person with the specific intent to discriminate;\n' +
+        '• Provide minimum statutory damages of $1,000 ($500 from the caller and $500 from the responding agency), plus attorneys’ fees;\n' +
+        '• Protect good-faith reports of real emergencies and crimes; and\n' +
+        '• Preserve stronger state and local laws.\n\n' +
+        'You can read the draft and public comments here: ' + BILL_URL + '\n\n' +
+        'Will you introduce or cosponsor this legislation' + (p._judiciary ? ', and support it in the ' + p._judiciary : '') + '? I would appreciate a response.\n\n' +
+        'Sincerely,\n' + me.name + (me.street ? '\n' + me.street : '') + (where ? '\n' + where : '');
+    }
+
+    function card(p, me, note) {
+      const t = p.terms[p.terms.length - 1];
+      const id = p.id.bioguide;
+      const title = t.type === 'sen' ? 'U.S. Senator, ' + t.state + (t.state_rank ? ' (' + t.state_rank + ')' : '') : 'U.S. Representative, ' + t.state + (t.district === 0 ? ' at-large' : '-' + t.district);
+      const txt = letter(p, t, me);
+      const div = document.createElement('div');
+      div.className = 'rep';
+      div.innerHTML =
+        '<div class="head"><img alt="" src="https://unitedstates.github.io/images/congress/225x275/' + esc(id) + '.jpg" onerror="this.style.visibility=\'hidden\'">' +
+        '<div><h4>' + esc(p.name.official_full || (p.name.first + ' ' + p.name.last)) + '</h4><div class="sub">' + esc(title) + ' · ' + esc(t.party) + '</div>' +
+        (p._judiciary ? '<span class="badge">' + esc(p._judiciary) + (p._jtitle ? ' — ' + esc(p._jtitle) : '') + '</span>' : '') +
+        (note ? '<div class="sub">' + esc(note) + '</div>' : '') + '</div></div>' +
+        '<dl>' + (t.phone ? '<dt>Phone</dt><dd><a href="tel:' + esc(t.phone) + '">' + esc(t.phone) + '</a></dd>' : '') +
+        (t.address ? '<dt>Office</dt><dd>' + esc(t.address) + '</dd>' : '') +
+        (t.url ? '<dt>Website</dt><dd><a href="' + esc(t.url) + '" target="_blank" rel="noopener">' + esc(t.url.replace(/^https?:\/\//, '')) + '</a></dd>' : '') + '</dl>' +
+        '<textarea aria-label="Letter to ' + esc(p.name.last) + '"></textarea>' +
+        '<div class="actions"><button type="button" class="secondary" data-copy>Copy letter</button>' +
+        (t.contact_form ? '<a class="secondary" href="' + esc(t.contact_form) + '" target="_blank" rel="noopener">Open official contact form ↗</a>' : '') +
+        '<a class="secondary" data-mail href="#">Email draft to myself</a></div>';
+      const ta = div.querySelector('textarea');
+      ta.value = txt;
+      div.querySelector('[data-copy]').addEventListener('click', e => {
+        const b = e.currentTarget;
+        (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject()).then(() => { b.textContent = 'Copied ✓'; })
+          .catch(() => { ta.select(); document.execCommand('copy'); b.textContent = 'Copied ✓'; });
+        setTimeout(() => { b.textContent = 'Copy letter'; }, 2000);
+      });
+      div.querySelector('[data-mail]').addEventListener('click', e => {
+        e.currentTarget.href = 'mailto:?subject=' + encodeURIComponent('Letter to ' + (t.type === 'sen' ? 'Senator ' : 'Rep. ') + p.name.last + ' — Federal CAREN Act') + '&body=' + encodeURIComponent(ta.value);
+      });
+      return div;
+    }
+
+    document.getElementById('repForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const me = {
+        name: document.getElementById('fName').value.trim(),
+        street: document.getElementById('fStreet').value.trim(),
+        city: document.getElementById('fCity').value.trim(),
+        state: document.getElementById('fState').value.trim(),
+        zip: document.getElementById('fZip').value.trim().slice(0, 5)
+      };
+      repsDiv.innerHTML = '';
+      repStatus.textContent = 'Looking up your district…';
+      try {
+        const [res, leg, com] = await Promise.all([findDistricts(me.street, me.city, me.state, me.zip), legislators(), committees()]);
+        if (!res.list.length) { repStatus.textContent = 'We could not find that ZIP code. Please check it, or add your street address.'; return; }
+        const jud = {};
+        (com.HSJU || []).forEach(m => jud[m.bioguide] = ['House Judiciary Committee', m.title]);
+        (com.SSJU || []).forEach(m => jud[m.bioguide] = ['Senate Judiciary Committee', m.title]);
+        leg.forEach(p => { const j = jud[p.id.bioguide]; if (j) { p._judiciary = j[0]; p._jtitle = j[1]; } });
+        const st = res.list[0].state;
+        const cur = p => p.terms[p.terms.length - 1];
+        const senators = leg.filter(p => cur(p).type === 'sen' && cur(p).state === st);
+        const reps = [];
+        res.list.forEach(c => leg.filter(p => cur(p).type === 'rep' && cur(p).state === c.state && cur(p).district === c.district).forEach(p => reps.push(p)));
+        let msg = res.exact ? 'Matched address: ' + res.matched + '. ' : '';
+        if (!res.exact && res.list.length > 1) msg += 'ZIP ' + me.zip + ' spans ' + res.list.length + ' congressional districts. All possible representatives are shown; add your street address to narrow it to one. ';
+        else if (!res.exact) msg += 'Based on ZIP ' + me.zip + '. ';
+        if (!reps.length) msg += 'No voting U.S. Representative was found for this location (the seat may be vacant or a non-voting delegate). ';
+        repStatus.textContent = msg + 'Edit any letter below before sending.';
+        senators.concat(reps).forEach(p => repsDiv.appendChild(card(p, me, !res.exact && res.list.length > 1 && cur(p).type === 'rep' ? 'Possible representative for your ZIP' : '')));
+        if (!me.name) repStatus.textContent += ' Tip: add your name so the letters are signed.';
+      } catch (err) {
+        console.error(err);
+        repStatus.textContent = 'Lookup failed: ' + err.message + '. Please try again.';
+      }
+    });
+  })();
   </script>
 </body>
 </html>
