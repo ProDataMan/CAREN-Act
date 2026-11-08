@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Support the Federal CAREN Act</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
@@ -13,14 +14,16 @@
     h1 { margin: 10px; }
     .priority { background: #fff3cd; padding: 8px; border-left: 4px solid #ffc107; margin: 10px 0; }
     .form-section { background: #e9ecef; padding: 15px; margin: 15px 0; border-radius: 5px; }
-    input, textarea, select { width: 100%; max-width: 500px; padding: 8px; margin: 5px 0; }
+    .form-section input, .form-section textarea, .form-section select { width: 100%; max-width: 500px; padding: 8px; margin: 5px 0; }
     button { padding: 8px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
   <h1>Support the Federal CAREN Act</h1>
-  <p>Making discriminatory 911 calls illegal nationwide. Based on San Francisco's CAREN Act (Police Code §637). <a href="bill.html">View & comment on the draft federal bill</a></p>
+  <p style="margin:0 10px 10px">Making discriminatory 911 calls illegal nationwide. Based on San Francisco's CAREN Act (Police Code §637).<br>
+    <a href="bill.html">View &amp; comment on the draft federal bill</a> · <a href="history.html">How the SF CAREN Act came about</a> · <a href="../docs/SF-CAREN-Act.pdf" download>Download the original SF ordinance (PDF)</a></p>
   <div class="controls">
+    <label class="layer-toggle"><input type="checkbox" id="heatmap" checked> <strong>Priority heat map</strong> (combined, weighted by overlapping factors)</label>
     <label class="layer-toggle"><input type="checkbox" id="hateCrimes" checked> Hate Crimes (FBI UCR)</label>
     <label class="layer-toggle"><input type="checkbox" id="lynchings" checked> Historical Lynchings (EJI)</label>
     <label class="layer-toggle"><input type="checkbox" id="policeViolence" checked> Police Killings / Disproportionate Contact (Mapping Police Violence)</label>
@@ -35,6 +38,7 @@
     <p>All layers remain available and toggleable. High-priority locations (overlaps of high lynching counts, residual discriminatory language, elevated police violence or disproportionate minority contact, and larger minority populations) are highlighted with larger or bolder markers, but no data is filtered out. Sample markers are illustrative and linked to real public sources. Full national datasets are large; production versions can load GeoJSON.</p>
     <div class="priority"><strong>Prioritization (without filtering):</strong> Areas with multiple overlapping factors (high historical lynchings + residual ordinances + higher rates of police killings or disproportionate arrests/contacts with minorities + larger minority populations) are emphasized for advocacy focus. This does not remove or hide other locations.</div>
     <ul>
+      <li><strong>Priority heat map:</strong> blends the sample locations from every layer, weighted by how many advocacy factors overlap there (lynching history, police violence, residual ordinances, minority population share, hate crimes). Warmer areas are where more factors overlap. The weights are illustrative, not a statistical index.</li>
       <li><strong>Hate Crimes:</strong> FBI UCR. <a href="https://cde.ucr.cjis.gov/" target="_blank">Crime Data Explorer</a>.</li>
       <li><strong>Lynchings:</strong> EJI >4,000 racial terror lynchings (1877–1950). <a href="https://lynchinginamerica.eji.org/" target="_blank">EJI map</a>.</li>
       <li><strong>Police Killings & Disproportionate Contact:</strong> Mapping Police Violence tracks fatal police encounters. Black Americans are disproportionately represented relative to population. <a href="https://mappingpoliceviolence.org/" target="_blank">mappingpoliceviolence.org</a>. Disproportionate arrests/contacts drawn from public analyses and BJS patterns.</li>
@@ -60,9 +64,10 @@
       </form>
       <p id="contactResult"></p>
     </div>
-    <p><a href="bill.html">View the full draft federal bill and click any paragraph to suggest changes</a> | Original SF ordinance notes in repo docs/</p>
+    <p><a href="bill.html">View the full draft federal bill and click any paragraph to suggest changes</a> | <a href="history.html">History of the SF CAREN Act</a> | <a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a></p>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
   <script>
     const map = L.map('map').setView([37.8, -96], 4);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -102,7 +107,26 @@
     L.marker([38.9, -77.03], {icon: L.divIcon({html: '<div style="background:#555;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">Med</div>'})}).addTo(alliesLayer).bindPopup('Medium-influence members or those with relevant sponsorship history.');
     L.marker([37.77, -122.42], {icon: L.divIcon({html: '<div style="background:#888;color:white;padding:2px 4px;border-radius:3px;font-size:10px;">Local</div>'})}).addTo(alliesLayer).bindPopup('Local/state officials or advocates (e.g., SF Supervisor Walton who introduced the original CAREN Act).');
 
+    // Priority heat map: [lat, lng, weight 0-1]; weight reflects number of overlapping factors (illustrative)
+    const heatPoints = [
+      [32.7, -89.7, 1.0],   // Mississippi: lynchings + minority pop + Southern history
+      [33.5, -86.8, 0.9],   // Alabama: lynchings + minority pop
+      [38.6, -90.2, 0.9],   // St. Louis: police violence + minority pop + redlining
+      [41.8, -87.6, 0.85],  // Chicago: police violence + redlining + minority pop
+      [33.7, -84.4, 0.7],   // Atlanta: minority pop + Southern history
+      [29.7, -95.4, 0.6],   // Houston: minority pop
+      [33.4, -112.0, 0.6],  // Phoenix: police killing rate
+      [41.5, -88.1, 0.5],   // historical sundown research area
+      [42.3, -83.0, 0.55],  // Detroit vicinity: redlining
+      [40.7, -74.0, 0.5],   // NYC: hate crime volume
+      [26.53, -80.09, 0.45] // Boynton Beach: residual ordinance (cleaned 2024)
+    ];
+    const heatLayer = L.heatLayer(heatPoints, { radius: 55, blur: 40, maxZoom: 5, max: 0.6, minOpacity: 0.45,
+      gradient: { 0.3: '#2c7bb6', 0.5: '#abd9e9', 0.65: '#ffffbf', 0.8: '#fdae61', 1.0: '#d7191c' } });
+    heatLayer.addTo(map);
+
     // Toggles
+    document.getElementById('heatmap').addEventListener('change', e => e.target.checked ? heatLayer.addTo(map) : map.removeLayer(heatLayer));
     document.getElementById('hateCrimes').addEventListener('change', e => e.target.checked ? hateLayer.addTo(map) : map.removeLayer(hateLayer));
     document.getElementById('lynchings').addEventListener('change', e => e.target.checked ? lynchingsLayer.addTo(map) : map.removeLayer(lynchingsLayer));
     document.getElementById('policeViolence').addEventListener('change', e => e.target.checked ? policeLayer.addTo(map) : map.removeLayer(policeLayer));
@@ -126,8 +150,9 @@
       const email = document.getElementById('email').value;
       const msg = document.getElementById('message').value;
       const result = document.getElementById('contactResult');
-      const full = `From: ${name} <${email}>\n\n${msg}\n\n---\nDraft federal CAREN Act proposal available at the advocacy site.`;
-      result.innerHTML = `<strong>Prepared message:</strong><br><pre>${full}</pre><br><a href="mailto:?subject=Support for Federal CAREN Act&body=${encodeURIComponent(full)}">Open in email client</a> or copy the text above.`;
+      const full = `From: ${name} <${email}>\n\n${msg}\n\n---\nRead the draft federal CAREN Act: https://prodataman.github.io/CAREN-Act/website/bill.html`;
+      const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      result.innerHTML = `<strong>Prepared message:</strong><br><pre style="white-space:pre-wrap">${esc(full)}</pre><br><a href="mailto:?subject=${encodeURIComponent('Support for Federal CAREN Act')}&body=${encodeURIComponent(full)}">Open in email client</a> or copy the text above.`;
     }
   </script>
 </body>

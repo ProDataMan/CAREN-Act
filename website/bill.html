@@ -2,91 +2,318 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Draft Federal CAREN Act</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; line-height: 1.6; }
-    .bill-para { margin: 15px 0; padding: 10px; border-left: 3px solid #ddd; cursor: pointer; }
-    .bill-para:hover { background: #f8f9fa; border-left-color: #007bff; }
-    .suggestion-box { display: none; margin-top: 10px; padding: 10px; background: #e9ecef; border-radius: 5px; }
-    .suggestion-box textarea { width: 100%; height: 80px; }
-    button { padding: 5px 10px; margin-top: 5px; }
-    .suggestions-list { font-size: 0.9em; color: #555; margin-top: 5px; }
-    h1, h2 { color: #333; }
+    :root { --accent: #0b5cad; --hl: #fff3a3; --hl-border: #e0b400; --muted: #666; --panel: #fafafa; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.6; color: #222; background: #fff; }
+    header { max-width: 820px; margin: 20px auto 0; padding: 0 16px; }
+    nav a { margin-right: 14px; }
+    main { max-width: 820px; margin: 0 auto; padding: 0 16px 80px; }
+    h1 { font-size: 1.6rem; line-height: 1.3; }
+    h2 { font-size: 1.15rem; margin-top: 28px; color: #333; }
+    .intro { background: #eef4fb; border-left: 4px solid var(--accent); padding: 10px 14px; font-size: .95rem; }
+    .legend { display: inline-block; background: var(--hl); border: 1px solid var(--hl-border); padding: 0 6px; border-radius: 3px; }
+    .para-row { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0; }
+    .bill-para { flex: 1; padding: 10px 12px; border-left: 3px solid #ddd; cursor: pointer; border-radius: 0 4px 4px 0; transition: background .15s; }
+    .bill-para:hover, .bill-para:focus { background: #f3f6fa; border-left-color: var(--accent); outline: none; }
+    .bill-para.has-comments { background: var(--hl); border-left-color: var(--hl-border); }
+    .bill-para.has-comments:hover { background: #ffec70; }
+    .bill-para.active { box-shadow: 0 0 0 2px var(--accent); }
+    .comment-btn { flex: none; position: relative; width: 40px; height: 40px; border: 1px solid #ccc; background: #fff; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #555; }
+    .comment-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .comment-btn svg { width: 20px; height: 20px; }
+    .comment-btn .count { position: absolute; top: -7px; right: -7px; background: #d93025; color: #fff; font-size: 11px; font-weight: 600; min-width: 18px; height: 18px; border-radius: 9px; padding: 0 4px; line-height: 18px; text-align: center; }
+    .comment-btn .count:empty { display: none; }
+
+    /* Side panel */
+    #panel { position: fixed; top: 0; right: 0; height: 100%; width: min(440px, 100%); background: var(--panel); border-left: 1px solid #ccc; box-shadow: -4px 0 16px rgba(0,0,0,.12); transform: translateX(100%); transition: transform .2s; display: flex; flex-direction: column; z-index: 1000; }
+    #panel.open { transform: translateX(0); }
+    #panel header { margin: 0; padding: 12px 16px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; max-width: none; }
+    #panel header h3 { margin: 0; font-size: 1rem; }
+    #panelBody { padding: 12px 16px; overflow-y: auto; flex: 1; }
+    .orig { font-size: .85rem; color: var(--muted); background: #fff; border: 1px solid #e3e3e3; padding: 8px; border-radius: 4px; max-height: 140px; overflow-y: auto; }
+    .comment { background: #fff; border: 1px solid #e3e3e3; border-radius: 6px; padding: 10px; margin: 10px 0; font-size: .92rem; }
+    .comment .meta { font-size: .78rem; color: var(--muted); margin-bottom: 4px; display: flex; justify-content: space-between; gap: 8px; }
+    .comment .tag { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; padding: 1px 6px; border-radius: 3px; background: #e8eef6; color: var(--accent); }
+    .comment .tag.edit { background: #fdeccc; color: #8a5a00; }
+    .diff { background: #fbfbfb; border: 1px dashed #ccc; padding: 6px 8px; margin-top: 6px; border-radius: 4px; }
+    .diff del { background: #fde2e1; color: #a12622; }
+    .diff ins { background: #dcf5dd; color: #1d6b25; text-decoration: none; }
+    .comment .actions { margin-top: 6px; display: flex; gap: 10px; }
+    .linkish { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font-size: .8rem; }
+    form label { display: block; font-size: .85rem; font-weight: 600; margin-top: 10px; }
+    form input, form textarea, form select { width: 100%; padding: 7px; font: inherit; font-size: .92rem; border: 1px solid #bbb; border-radius: 4px; }
+    form textarea { min-height: 90px; }
+    .btn { padding: 7px 14px; border-radius: 4px; border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; font: inherit; font-size: .9rem; }
+    .btn.secondary { background: #fff; color: var(--accent); }
+    .btn-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .empty { color: var(--muted); font-style: italic; }
+    .toolbar { margin: 16px 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: .9rem; }
+    .note { font-size: .8rem; color: var(--muted); }
   </style>
 </head>
 <body>
-  <h1>Draft Federal Caution Against Racial and Exploitative Non-Emergencies (CAREN) Act</h1>
-  <p><em>Model legislation for discussion. Based on San Francisco Police Code §637. Click any paragraph to suggest changes. Suggestions are stored locally in your browser for now (anyone can contribute; future versions will require login and moderation).</em></p>
-  <p><a href="index.html">← Back to advocacy map</a></p>
+  <header>
+    <nav><a href="index.html">← Advocacy map</a><a href="history.html">History of the SF CAREN Act</a><a href="../docs/SF-CAREN-Act.pdf" download>Download original SF ordinance (PDF)</a></nav>
+    <h1>Draft Federal Caution Against Racial and Exploitative Non-Emergencies (CAREN) Act</h1>
+    <p class="intro">Model legislation for discussion, based on San Francisco Police Code §637 (Ordinance No. 219-20).
+      <strong>Click any paragraph</strong> to suggest an edit. Click the <strong>comment icon</strong> to read the comments on that paragraph.
+      Paragraphs that have comments are <span class="legend">highlighted in yellow</span>.</p>
+  </header>
 
-  <div id="bill">
-    <h2>Section 1. Short Title</h2>
-    <div class="bill-para" data-id="1">This Act may be cited as the “Caution Against Racial and Exploitative Non-Emergencies Act” or the “Federal CAREN Act.”</div>
+  <main>
+    <div class="toolbar">
+      <button class="btn secondary" id="exportBtn" type="button">Export all comments (JSON)</button>
+      <label class="btn secondary" style="margin:0">Import JSON<input type="file" id="importFile" accept="application/json" hidden></label>
+      <span class="note" id="storageNote">Comments are saved in this browser only. Use “Share on GitHub” on a comment to post it publicly.</span>
+    </div>
 
-    <h2>Section 2. Findings</h2>
-    <div class="bill-para" data-id="2">Congress finds that discriminatory calls to law enforcement that are made with the specific intent to harass, intimidate, or discriminate against individuals on the basis of race, color, ancestry, ethnicity, national origin, or other protected characteristics impose significant harms, including detention, embarrassment, financial costs, reputational damage, and in extreme cases physical harm or death. Historical patterns of racial terror (documented by the Equal Justice Initiative), residual discriminatory language in some local codes, and disproportionate police contact and fatal encounters with minority communities (tracked by sources such as Mapping Police Violence) demonstrate the need for a uniform national civil remedy.</div>
+    <div id="bill">
+      <h2>Section 1. Short Title</h2>
+      <div class="bill-para" data-id="1">This Act may be cited as the “Caution Against Racial and Exploitative Non-Emergencies Act” or the “Federal CAREN Act.”</div>
 
-    <h2>Section 3. Prohibition</h2>
-    <div class="bill-para" data-id="3">It shall be unlawful for any person to knowingly cause a peace officer or other law enforcement officer to arrive at a location to contact another person with the specific intent to discriminate against that person on the basis of the person’s actual or perceived race, color, ancestry, ethnicity, national origin, place of birth, sex, age, religion, creed, disability, sexual orientation, gender identity, weight, or height, or with the specific intent to cause any of the following harms: infringement of a constitutional right, harassment, expulsion from a place in which the person has a right to be, or damage to the person’s reputation or financial interests.</div>
+      <h2>Section 2. Findings</h2>
+      <div class="bill-para" data-id="2">Congress finds that discriminatory calls to law enforcement that are made with the specific intent to harass, intimidate, or discriminate against individuals on the basis of race, color, ancestry, ethnicity, national origin, or other protected characteristics impose significant harms, including detention, embarrassment, financial costs, reputational damage, and in extreme cases physical harm or death. Historical patterns of racial terror (documented by the Equal Justice Initiative), residual discriminatory language in some local codes, and disproportionate police contact and fatal encounters with minority communities (tracked by sources such as Mapping Police Violence) demonstrate the need for a uniform national civil remedy.</div>
 
-    <h2>Section 4. Private Right of Action and Damages</h2>
-    <div class="bill-para" data-id="4">Any person harmed by a violation of Section 3 may bring a civil action in an appropriate United States district court or state court of competent jurisdiction. In any such action, the court shall award statutory damages of not less than $1,000, consisting of $500 recoverable from the individual who made the discriminatory report and $500 recoverable from the law enforcement agency that responded (or the employing municipality or entity). The court shall also award reasonable attorneys’ fees and costs to a prevailing plaintiff. Punitive damages may be awarded where the violation is found to be malicious or reckless. This remedy is in addition to any other rights or remedies available under federal, state, or local law.</div>
+      <h2>Section 3. Prohibition</h2>
+      <div class="bill-para" data-id="3">It shall be unlawful for any person to knowingly cause a peace officer or other law enforcement officer to arrive at a location to contact another person with the specific intent to discriminate against that person on the basis of the person’s actual or perceived race, color, ancestry, ethnicity, national origin, place of birth, sex, age, religion, creed, disability, sexual orientation, gender identity, weight, or height, or with the specific intent to cause any of the following harms: infringement of a constitutional right, harassment, expulsion from a place in which the person has a right to be, or damage to the person’s reputation or financial interests.</div>
 
-    <h2>Section 5. Good-Faith Exception</h2>
-    <div class="bill-para" data-id="5">This Act shall not be construed to discourage or penalize any person from making a good-faith report to law enforcement concerning an actual or reasonably suspected crime, emergency, or imminent threat to public safety. A defendant may establish a defense by proving by a preponderance of the evidence that the report was made in good faith based on a reasonable belief of criminal activity or danger.</div>
+      <h2>Section 4. Private Right of Action and Damages</h2>
+      <div class="bill-para" data-id="4">Any person harmed by a violation of Section 3 may bring a civil action in an appropriate United States district court or state court of competent jurisdiction. In any such action, the court shall award statutory damages of not less than $1,000, consisting of $500 recoverable from the individual who made the discriminatory report and $500 recoverable from the law enforcement agency that responded (or the employing municipality or entity). The court shall also award reasonable attorneys’ fees and costs to a prevailing plaintiff. Punitive damages may be awarded where the violation is found to be malicious or reckless. This remedy is in addition to any other rights or remedies available under federal, state, or local law.</div>
 
-    <h2>Section 6. No Preemption</h2>
-    <div class="bill-para" data-id="6">Nothing in this Act shall be construed to preempt or limit any stronger protection against discriminatory emergency reporting provided by state or local law.</div>
+      <h2>Section 5. Good-Faith Exception</h2>
+      <div class="bill-para" data-id="5">This Act shall not be construed to discourage or penalize any person from making a good-faith report to law enforcement concerning an actual or reasonably suspected crime, emergency, or imminent threat to public safety. A defendant may establish a defense by proving by a preponderance of the evidence that the report was made in good faith based on a reasonable belief of criminal activity or danger.</div>
 
-    <h2>Section 7. Data Collection (Optional)</h2>
-    <div class="bill-para" data-id="7">The Attorney General shall study and, within two years, report to Congress on the feasibility of improved national data collection regarding emergency calls that are later determined to have been motivated by discriminatory intent, consistent with privacy protections.</div>
+      <h2>Section 6. No Preemption</h2>
+      <div class="bill-para" data-id="6">Nothing in this Act shall be construed to preempt or limit any stronger protection against discriminatory emergency reporting provided by state or local law.</div>
 
-    <h2>Section 8. Severability</h2>
-    <div class="bill-para" data-id="8">If any provision of this Act is held invalid, the remainder shall not be affected.</div>
-  </div>
+      <h2>Section 7. Data Collection (Optional)</h2>
+      <div class="bill-para" data-id="7">The Attorney General shall study and, within two years, report to Congress on the feasibility of improved national data collection regarding emergency calls that are later determined to have been motivated by discriminatory intent, consistent with privacy protections.</div>
 
-  <div id="suggestionModal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; border:1px solid #ccc; padding:20px; z-index:1000; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-    <h3>Suggest a change to this paragraph</h3>
-    <textarea id="suggestionText" placeholder="Your suggested revision or comment..."></textarea><br>
-    <button onclick="saveSuggestion()">Save Suggestion (local only)</button>
-    <button onclick="closeModal()">Cancel</button>
-    <div id="existingSuggestions" class="suggestions-list"></div>
-  </div>
+      <h2>Section 8. Severability</h2>
+      <div class="bill-para" data-id="8">If any provision of this Act is held invalid, the remainder shall not be affected.</div>
+    </div>
+  </main>
+
+  <aside id="panel" aria-hidden="true" aria-labelledby="panelTitle">
+    <header>
+      <h3 id="panelTitle">Comments</h3>
+      <button class="linkish" id="closePanel" type="button" style="font-size:1.4rem" aria-label="Close">×</button>
+    </header>
+    <div id="panelBody"></div>
+  </aside>
 
   <script>
-    let currentParaId = null;
-    document.querySelectorAll('.bill-para').forEach(para => {
-      para.addEventListener('click', () => {
-        currentParaId = para.dataset.id;
-        document.getElementById('suggestionModal').style.display = 'block';
-        loadSuggestions();
-      });
+  (function () {
+    const REPO = 'ProDataMan/CAREN-Act';
+    const STORE_KEY = 'caren-comments-v2';
+    const PAGE_URL = 'https://prodataman.github.io/CAREN-Act/website/bill.html';
+
+    // ---------- Storage (swap this object for a shared backend later) ----------
+    const store = {
+      _mem: null,
+      load() {
+        if (this._mem) return this._mem;
+        let data = {};
+        try {
+          data = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+          // migrate v1 suggestions (caren-suggestions-<id>)
+          document.querySelectorAll('.bill-para').forEach(p => {
+            const old = localStorage.getItem('caren-suggestions-' + p.dataset.id);
+            if (!old) return;
+            const list = JSON.parse(old);
+            data[p.dataset.id] = (data[p.dataset.id] || []).concat(list.map(s => ({
+              id: uid(), type: 'comment', name: '', text: s.text, proposed: '', time: s.time
+            })));
+            localStorage.removeItem('caren-suggestions-' + p.dataset.id);
+          });
+          localStorage.setItem(STORE_KEY, JSON.stringify(data));
+        } catch (e) {
+          document.getElementById('storageNote').textContent = 'Browser storage is unavailable; comments will be lost when you leave this page. Use Export or Share on GitHub.';
+        }
+        this._mem = data;
+        return data;
+      },
+      save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(this._mem)); } catch (e) {} },
+      list(pid) { return this.load()[pid] || []; },
+      add(pid, c) { const d = this.load(); (d[pid] = d[pid] || []).push(c); this.save(); },
+      remove(pid, cid) { const d = this.load(); d[pid] = (d[pid] || []).filter(c => c.id !== cid); this.save(); },
+      merge(incoming) {
+        const d = this.load();
+        Object.keys(incoming).forEach(pid => {
+          const have = new Set((d[pid] || []).map(c => c.id));
+          d[pid] = (d[pid] || []).concat((incoming[pid] || []).filter(c => c && c.id && !have.has(c.id)));
+        });
+        this.save();
+      }
+    };
+
+    // ---------- Helpers ----------
+    function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+    function esc(s) { return String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch])); }
+    function paraEl(pid) { return document.querySelector('.bill-para[data-id="' + pid + '"]'); }
+    function paraText(pid) { return paraEl(pid).textContent.trim(); }
+    function sectionTitle(pid) { const h = paraEl(pid).closest('.para-row').previousElementSibling; return h ? h.textContent : 'Paragraph ' + pid; }
+
+    // Word-level diff (LCS) for suggested edits
+    function diffWords(a, b) {
+      const A = a.split(/(\s+)/), B = b.split(/(\s+)/);
+      const n = A.length, m = B.length;
+      if (n * m > 400000) return '<ins>' + esc(b) + '</ins>';
+      const dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+      for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+        dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+      let i = 0, j = 0, out = '';
+      while (i < n && j < m) {
+        if (A[i] === B[j]) { out += esc(A[i]); i++; j++; }
+        else if (dp[i + 1][j] >= dp[i][j + 1]) { out += '<del>' + esc(A[i++]) + '</del>'; }
+        else { out += '<ins>' + esc(B[j++]) + '</ins>'; }
+      }
+      while (i < n) out += '<del>' + esc(A[i++]) + '</del>';
+      while (j < m) out += '<ins>' + esc(B[j++]) + '</ins>';
+      return out;
+    }
+
+    function githubIssueUrl(pid, c) {
+      const title = '[Bill comment] ' + sectionTitle(pid);
+      let body = '**Paragraph:** ' + sectionTitle(pid) + ' (id ' + pid + ')\n**Page:** ' + PAGE_URL + '\n';
+      if (c.name) body += '**From:** ' + c.name + '\n';
+      body += '\n### Comment\n' + (c.text || '_(none)_') + '\n';
+      if (c.proposed) body += '\n### Proposed revision\n> ' + c.proposed.replace(/\n/g, '\n> ') + '\n\n<details><summary>Original text</summary>\n\n> ' + paraText(pid) + '\n</details>\n';
+      return 'https://github.com/' + REPO + '/issues/new?labels=bill-comment&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+    }
+
+    // ---------- Build paragraph rows with comment icons ----------
+    const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+    document.querySelectorAll('.bill-para').forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'para-row';
+      p.parentNode.insertBefore(row, p);
+      row.appendChild(p);
+      p.tabIndex = 0;
+      p.setAttribute('role', 'button');
+      p.setAttribute('aria-label', 'Suggest an edit to ' + (row.previousElementSibling ? row.previousElementSibling.textContent : 'this paragraph'));
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'comment-btn';
+      btn.dataset.id = p.dataset.id;
+      btn.innerHTML = ICON + '<span class="count"></span>';
+      btn.title = 'View comments';
+      row.appendChild(btn);
+
+      p.addEventListener('click', () => openPanel(p.dataset.id, 'form'));
+      p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(p.dataset.id, 'form'); } });
+      btn.addEventListener('click', () => openPanel(p.dataset.id, 'list'));
     });
 
-    function closeModal() {
-      document.getElementById('suggestionModal').style.display = 'none';
-      document.getElementById('suggestionText').value = '';
+    function refreshHighlights() {
+      document.querySelectorAll('.bill-para').forEach(p => {
+        const n = store.list(p.dataset.id).length;
+        p.classList.toggle('has-comments', n > 0);
+        const btn = p.parentNode.querySelector('.comment-btn');
+        btn.querySelector('.count').textContent = n ? n : '';
+        btn.setAttribute('aria-label', n + ' comment' + (n === 1 ? '' : 's') + ' on ' + sectionTitle(p.dataset.id));
+      });
     }
 
-    function saveSuggestion() {
-      const text = document.getElementById('suggestionText').value.trim();
-      if (!text || !currentParaId) return;
-      const key = 'caren-suggestions-' + currentParaId;
-      let existing = JSON.parse(localStorage.getItem(key) || '[]');
-      existing.push({text: text, time: new Date().toISOString()});
-      localStorage.setItem(key, JSON.stringify(existing));
-      loadSuggestions();
-      document.getElementById('suggestionText').value = '';
-      alert('Suggestion saved locally in your browser.');
+    // ---------- Panel ----------
+    const panel = document.getElementById('panel');
+    const body = document.getElementById('panelBody');
+    let current = null;
+
+    function openPanel(pid, mode) {
+      current = pid;
+      document.querySelectorAll('.bill-para.active').forEach(el => el.classList.remove('active'));
+      paraEl(pid).classList.add('active');
+      document.getElementById('panelTitle').textContent = sectionTitle(pid);
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      mode === 'form' ? renderForm(pid) : renderList(pid);
+    }
+    function closePanel() {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+      document.querySelectorAll('.bill-para.active').forEach(el => el.classList.remove('active'));
+      current = null;
+    }
+    document.getElementById('closePanel').addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && current) closePanel(); });
+
+    function renderList(pid) {
+      const list = store.list(pid);
+      let html = '<button class="btn" id="addNew" type="button">+ Add new comment</button>';
+      if (!list.length) html += '<p class="empty">No comments on this paragraph yet.</p>';
+      list.slice().reverse().forEach(c => {
+        const original = c.original || paraText(pid);
+        html += '<div class="comment"><div class="meta"><span>' + esc(c.name || 'Anonymous') + ' · ' + esc(new Date(c.time).toLocaleString()) + '</span>' +
+          '<span class="tag ' + (c.proposed ? 'edit' : '') + '">' + (c.proposed ? 'Suggested edit' : 'Comment') + '</span></div>' +
+          (c.text ? '<div>' + esc(c.text).replace(/\n/g, '<br>') + '</div>' : '') +
+          (c.proposed ? '<div class="diff">' + diffWords(original, c.proposed) + '</div>' : '') +
+          '<div class="actions"><a class="linkish" target="_blank" rel="noopener" href="' + esc(githubIssueUrl(pid, c)) + '">Share on GitHub</a>' +
+          '<button class="linkish" type="button" data-del="' + esc(c.id) + '">Delete</button></div></div>';
+      });
+      body.innerHTML = html;
+      document.getElementById('addNew').addEventListener('click', () => renderForm(pid));
+      body.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => {
+        if (!confirm('Delete this comment from this browser?')) return;
+        store.remove(pid, b.dataset.del);
+        refreshHighlights();
+        renderList(pid);
+      }));
     }
 
-    function loadSuggestions() {
-      if (!currentParaId) return;
-      const key = 'caren-suggestions-' + currentParaId;
-      const existing = JSON.parse(localStorage.getItem(key) || '[]');
-      const div = document.getElementById('existingSuggestions');
-      div.innerHTML = existing.length ? '<strong>Previous suggestions (this browser):</strong><ul>' + existing.map(s => `<li>${s.text} <small>(${new Date(s.time).toLocaleString()})</small></li>`).join('') + '</ul>' : 'No suggestions yet for this paragraph.';
+    function renderForm(pid) {
+      const original = paraText(pid);
+      body.innerHTML =
+        '<p class="note">Original text:</p><div class="orig">' + esc(original) + '</div>' +
+        '<form id="cform">' +
+        '<label for="cName">Your name (optional)</label><input id="cName" autocomplete="name">' +
+        '<label for="cProposed">Suggested revision (edit the text, or leave unchanged to comment only)</label>' +
+        '<textarea id="cProposed" rows="7"></textarea>' +
+        '<label for="cText">Comment / rationale</label><textarea id="cText" placeholder="Why should this change?"></textarea>' +
+        '<div class="btn-row"><button class="btn" type="submit">Save comment</button>' +
+        '<button class="btn secondary" type="button" id="viewAll">View comments (' + store.list(pid).length + ')</button></div>' +
+        '</form>';
+      const prop = document.getElementById('cProposed');
+      prop.value = original;
+      try { document.getElementById('cName').value = localStorage.getItem('caren-name') || ''; } catch (e) {}
+      document.getElementById('viewAll').addEventListener('click', () => renderList(pid));
+      document.getElementById('cform').addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('cName').value.trim();
+        const text = document.getElementById('cText').value.trim();
+        const proposedRaw = prop.value.trim();
+        const proposed = proposedRaw && proposedRaw !== original ? proposedRaw : '';
+        if (!text && !proposed) { alert('Please edit the paragraph text or enter a comment.'); return; }
+        try { localStorage.setItem('caren-name', name); } catch (e) {}
+        store.add(pid, { id: uid(), type: proposed ? 'edit' : 'comment', name, text, proposed, original: proposed ? original : '', time: new Date().toISOString() });
+        refreshHighlights();
+        renderList(pid);
+      });
+      prop.focus();
     }
+
+    // ---------- Export / import ----------
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(store.load(), null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'caren-bill-comments-' + new Date().toISOString().slice(0, 10) + '.json';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+    document.getElementById('importFile').addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (!f) return;
+      f.text().then(t => { store.merge(JSON.parse(t)); refreshHighlights(); if (current) renderList(current); alert('Comments imported.'); })
+        .catch(() => alert('Could not read that file.'));
+      e.target.value = '';
+    });
+
+    refreshHighlights();
+  })();
   </script>
 </body>
 </html>

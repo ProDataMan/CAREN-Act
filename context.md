@@ -28,6 +28,12 @@ Create a public GitHub repository and advocacy website to support making the San
    - Damages: minimum $1,000 statutory ($500 from the individual caller + $500 from the responding police department/agency) + fees + possible punitives.
    - Click any paragraph to suggest changes (suggestions stored locally in browser via localStorage; open to anyone for now; future login/moderation planned).
 8. context.md maintained as the living status document.
+9. **2026-11-08 update:**
+   - GitHub Pages confirmed live (source: main, root). Root index.html redirects to /website/.
+   - README updated with live URLs. Original SF PDF committed to docs/SF-CAREN-Act.pdf (from sfbos.org).
+   - website/history.html added: origins (Walton; Pacific Heights chalk incident June 2020; Amy Cooper/Central Park May 2020), legislative timeline from the PDF (final passage 11–0 on Oct 27, 2020), provisions, parallel state laws, sources.
+   - Map: added priority heat-map layer (leaflet.heat, illustrative weights), links to history and PDF, escaped contact-form output.
+   - Bill comments rebuilt: click paragraph → suggest edit (prefilled text, word diff) + comment; comment icon with count → side panel listing comments + "Add new comment"; yellow highlight for paragraphs with comments; per-comment "Share on GitHub" issue link; JSON export/import. Still localStorage (v1 suggestions auto-migrated).
 
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
@@ -38,10 +44,9 @@ Create a public GitHub repository and advocacy website to support making the San
 - Most formal Jim Crow statutes have been repealed or struck down.
 
 ## Next Steps
-1. **Enable GitHub Pages** (manual):
-   - Repo Settings → Pages → Deploy from branch → main → /website.
-   - Live URL: https://prodataman.github.io/CAREN-Act/ (or with /website/ depending on config).
-2. Upload the SF CAREN Act PDF to docs/SF-CAREN-Act.pdf.
+1. ~~Enable GitHub Pages~~ Done: https://prodataman.github.io/CAREN-Act/website/
+2. ~~Upload the SF CAREN Act PDF~~ Done.
+2a. Decide on a shared comment backend (GitHub Issues/giscus, Supabase/Firebase, or similar) so all visitors see each other's comments.
 3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).
 4. Identify and list specific potential congressional sponsors/champions (especially Judiciary members or newly elected with civil rights records).
 5. Add a short data-methodology page.
@@ -59,7 +64,7 @@ Create a public GitHub repository and advocacy website to support making the San
 ## How to Continue on Another Machine/Account
 - Clone or browse https://github.com/ProDataMan/CAREN-Act
 - Read this context.md first for full status.
-- Website: website/index.html (map + contact) and website/bill.html (draft + suggestions).
+- Website: website/index.html (map + heat map + contact), website/bill.html (draft + comments), website/history.html (origins).
 - To update files: use GitHub web editor, git, or API tools as available.
 - After any successful change, update this context.md with new progress and revised next steps.
 
