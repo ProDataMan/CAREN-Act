@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draft Federal CAREN Act</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; line-height: 1.6; }
+    .bill-para { margin: 15px 0; padding: 10px; border-left: 3px solid #ddd; cursor: pointer; }
+    .bill-para:hover { background: #f8f9fa; border-left-color: #007bff; }
+    .suggestion-box { display: none; margin-top: 10px; padding: 10px; background: #e9ecef; border-radius: 5px; }
+    .suggestion-box textarea { width: 100%; height: 80px; }
+    button { padding: 5px 10px; margin-top: 5px; }
+    .suggestions-list { font-size: 0.9em; color: #555; margin-top: 5px; }
+    h1, h2 { color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Draft Federal Caution Against Racial and Exploitative Non-Emergencies (CAREN) Act</h1>
+  <p><em>Model legislation for discussion. Based on San Francisco Police Code §637. Click any paragraph to suggest changes. Suggestions are stored locally in your browser for now (anyone can contribute; future versions will require login and moderation).</em></p>
+  <p><a href="index.html">← Back to advocacy map</a></p>
+
+  <div id="bill">
+    <h2>Section 1. Short Title</h2>
+    <div class="bill-para" data-id="1">This Act may be cited as the “Caution Against Racial and Exploitative Non-Emergencies Act” or the “Federal CAREN Act.”</div>
+
+    <h2>Section 2. Findings</h2>
+    <div class="bill-para" data-id="2">Congress finds that discriminatory calls to law enforcement that are made with the specific intent to harass, intimidate, or discriminate against individuals on the basis of race, color, ancestry, ethnicity, national origin, or other protected characteristics impose significant harms, including detention, embarrassment, financial costs, reputational damage, and in extreme cases physical harm or death. Historical patterns of racial terror (documented by the Equal Justice Initiative), residual discriminatory language in some local codes, and disproportionate police contact and fatal encounters with minority communities (tracked by sources such as Mapping Police Violence) demonstrate the need for a uniform national civil remedy.</div>
+
+    <h2>Section 3. Prohibition</h2>
+    <div class="bill-para" data-id="3">It shall be unlawful for any person to knowingly cause a peace officer or other law enforcement officer to arrive at a location to contact another person with the specific intent to discriminate against that person on the basis of the person’s actual or perceived race, color, ancestry, ethnicity, national origin, place of birth, sex, age, religion, creed, disability, sexual orientation, gender identity, weight, or height, or with the specific intent to cause any of the following harms: infringement of a constitutional right, harassment, expulsion from a place in which the person has a right to be, or damage to the person’s reputation or financial interests.</div>
+
+    <h2>Section 4. Private Right of Action and Damages</h2>
+    <div class="bill-para" data-id="4">Any person harmed by a violation of Section 3 may bring a civil action in an appropriate United States district court or state court of competent jurisdiction. In any such action, the court shall award statutory damages of not less than $1,000, consisting of $500 recoverable from the individual who made the discriminatory report and $500 recoverable from the law enforcement agency that responded (or the employing municipality or entity). The court shall also award reasonable attorneys’ fees and costs to a prevailing plaintiff. Punitive damages may be awarded where the violation is found to be malicious or reckless. This remedy is in addition to any other rights or remedies available under federal, state, or local law.</div>
+
+    <h2>Section 5. Good-Faith Exception</h2>
+    <div class="bill-para" data-id="5">This Act shall not be construed to discourage or penalize any person from making a good-faith report to law enforcement concerning an actual or reasonably suspected crime, emergency, or imminent threat to public safety. A defendant may establish a defense by proving by a preponderance of the evidence that the report was made in good faith based on a reasonable belief of criminal activity or danger.</div>
+
+    <h2>Section 6. No Preemption</h2>
+    <div class="bill-para" data-id="6">Nothing in this Act shall be construed to preempt or limit any stronger protection against discriminatory emergency reporting provided by state or local law.</div>
+
+    <h2>Section 7. Data Collection (Optional)</h2>
+    <div class="bill-para" data-id="7">The Attorney General shall study and, within two years, report to Congress on the feasibility of improved national data collection regarding emergency calls that are later determined to have been motivated by discriminatory intent, consistent with privacy protections.</div>
+
+    <h2>Section 8. Severability</h2>
+    <div class="bill-para" data-id="8">If any provision of this Act is held invalid, the remainder shall not be affected.</div>
+  </div>
+
+  <div id="suggestionModal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; border:1px solid #ccc; padding:20px; z-index:1000; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    <h3>Suggest a change to this paragraph</h3>
+    <textarea id="suggestionText" placeholder="Your suggested revision or comment..."></textarea><br>
+    <button onclick="saveSuggestion()">Save Suggestion (local only)</button>
+    <button onclick="closeModal()">Cancel</button>
+    <div id="existingSuggestions" class="suggestions-list"></div>
+  </div>
+
+  <script>
+    let currentParaId = null;
+    document.querySelectorAll('.bill-para').forEach(para => {
+      para.addEventListener('click', () => {
+        currentParaId = para.dataset.id;
+        document.getElementById('suggestionModal').style.display = 'block';
+        loadSuggestions();
+      });
+    });
+
+    function closeModal() {
+      document.getElementById('suggestionModal').style.display = 'none';
+      document.getElementById('suggestionText').value = '';
+    }
+
+    function saveSuggestion() {
+      const text = document.getElementById('suggestionText').value.trim();
+      if (!text || !currentParaId) return;
+      const key = 'caren-suggestions-' + currentParaId;
+      let existing = JSON.parse(localStorage.getItem(key) || '[]');
+      existing.push({text: text, time: new Date().toISOString()});
+      localStorage.setItem(key, JSON.stringify(existing));
+      loadSuggestions();
+      document.getElementById('suggestionText').value = '';
+      alert('Suggestion saved locally in your browser.');
+    }
+
+    function loadSuggestions() {
+      if (!currentParaId) return;
+      const key = 'caren-suggestions-' + currentParaId;
+      const existing = JSON.parse(localStorage.getItem(key) || '[]');
+      const div = document.getElementById('existingSuggestions');
+      div.innerHTML = existing.length ? '<strong>Previous suggestions (this browser):</strong><ul>' + existing.map(s => `<li>${s.text} <small>(${new Date(s.time).toLocaleString()})</small></li>`).join('') + '</ul>' : 'No suggestions yet for this paragraph.';
+    }
+  </script>
+</body>
+</html>
