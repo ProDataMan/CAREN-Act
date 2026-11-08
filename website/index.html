@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support the Federal CAREN Act</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    #map { height: 70vh; }
+    .controls { padding: 10px; background: #f5f5f5; }
+    .layer-toggle { margin: 5px; }
+    .info { padding: 10px; max-width: 800px; }
+    h1 { margin: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Support the Federal CAREN Act</h1>
+  <p>Making discriminatory 911 calls illegal nationwide. Based on San Francisco's CAREN Act (Police Code §637).</p>
+  <div class="controls">
+    <label class="layer-toggle"><input type="checkbox" id="hateCrimes" checked> Hate Crimes (FBI UCR, illustrative)</label>
+    <label class="layer-toggle"><input type="checkbox" id="lynchings"> Historical Lynchings (EJI, 1877–1950)</label>
+    <label class="layer-toggle"><input type="checkbox" id="southernHistory"> Southern States (Slavery / Jim Crow history)</label>
+    <label class="layer-toggle"><input type="checkbox" id="sundownRedlining"> Sundown Town Histories / Redlining (illustrative)</label>
+    <label class="layer-toggle"><input type="checkbox" id="allies"> Potential Allies / Members of Color (sample)</label>
+  </div>
+  <div id="map"></div>
+  <div class="info">
+    <h2>About the Map</h2>
+    <p>Layers are illustrative based on public data sources and are not exhaustive or real-time. Use for awareness and advocacy. See README for data notes and limitations.</p>
+    <ul>
+      <li><strong>Hate Crimes:</strong> Aggregated from FBI UCR reports. Full data at <a href="https://cde.ucr.cjis.gov/" target="_blank">FBI Crime Data Explorer</a>.</li>
+      <li><strong>Lynchings:</strong> Based on Equal Justice Initiative research. See <a href="https://lynchinginamerica.eji.org/" target="_blank">EJI map</a>.</li>
+      <li><strong>Historical:</strong> Southern states with documented histories of slavery and Jim Crow laws (most formal laws repealed or struck down).</li>
+      <li><strong>Sundown / Redlining:</strong> Histories of exclusionary practices (James Loewen; HOLC maps via Mapping Inequality). Formal sundown ordinances are not currently in force.</li>
+      <li><strong>Allies:</strong> Sample of members of Congress with civil rights records. Contact your representatives.</li>
+    </ul>
+    <h2>Take Action</h2>
+    <p>Contact members of the House and Senate Judiciary Committees to request sponsorship of a federal CAREN Act bill. The original SF ordinance PDF should be added to the docs/ folder.</p>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([37.8, -96], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const southernStates = L.layerGroup();
+    L.circle([32.5, -86.5], {radius: 400000, color: 'brown', fillOpacity: 0.2}).addTo(southernStates).bindPopup('Southern states: History of slavery and Jim Crow (historical)');
+    L.circle([33, -90], {radius: 300000, color: 'brown', fillOpacity: 0.2}).addTo(southernStates).bindPopup('Mississippi: High historical lynching concentration (EJI)');
+
+    const lynchingsLayer = L.layerGroup();
+    L.circle([32.7, -89.7], {radius: 200000, color: 'red', fillOpacity: 0.3}).addTo(lynchingsLayer).bindPopup('Example: High lynching counties in MS/AL/GA (see EJI for full data)');
+
+    const hateLayer = L.layerGroup();
+    L.circle([40.7, -74], {radius: 150000, color: 'orange', fillOpacity: 0.2}).addTo(hateLayer).bindPopup('Sample: Urban areas often report higher hate crime incidents (FBI UCR)');
+
+    const sundownLayer = L.layerGroup();
+    L.circle([41.8, -87.6], {radius: 100000, color: 'purple', fillOpacity: 0.2}).addTo(sundownLayer).bindPopup('Example: Historical sundown town research areas / redlining (Mapping Inequality)');
+
+    const alliesLayer = L.layerGroup();
+    L.marker([38.9, -77.0]).addTo(alliesLayer).bindPopup('Washington DC: Many members of Congress. Research civil rights voting records and sponsorships.');
+
+    document.getElementById('hateCrimes').addEventListener('change', e => e.target.checked ? hateLayer.addTo(map) : map.removeLayer(hateLayer));
+    document.getElementById('lynchings').addEventListener('change', e => e.target.checked ? lynchingsLayer.addTo(map) : map.removeLayer(lynchingsLayer));
+    document.getElementById('southernHistory').addEventListener('change', e => e.target.checked ? southernStates.addTo(map) : map.removeLayer(southernStates));
+    document.getElementById('sundownRedlining').addEventListener('change', e => e.target.checked ? sundownLayer.addTo(map) : map.removeLayer(sundownLayer));
+    document.getElementById('allies').addEventListener('change', e => e.target.checked ? alliesLayer.addTo(map) : map.removeLayer(alliesLayer));
+
+    hateLayer.addTo(map);
+  </script>
+</body>
+</html>
