@@ -107,6 +107,7 @@
   </main>
   <footer id="siteFooter"></footer>
   <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
   <script>
   (function () {
     'use strict';
@@ -134,33 +135,31 @@
       document.getElementById('needs').innerHTML = needs.length ? needs.map(s => '<span>' + s + '</span>').join('') : '<span>Every priority state has an ally. Thank you!</span>';
     }
 
-    // ---------------- Private sign-up via the campaign API (Azure) ----------------
-    const AZURE = 'https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io';
-    const sameOrigin = /azurecontainerapps\.io$|^localhost$|^127\./.test(location.hostname);
-    const API = sameOrigin ? '' : AZURE;
-    const apiCoverage = fetch(API + '/api/volunteers/coverage').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    // ---------------- Private sign-up via the campaign API (Azure SQL) ----------------
+    const A = window.CarenAPI;
+    const apiCoverage = A.get('/api/volunteers/coverage').catch(() => ({}));
     const sel = document.getElementById('vState');
     Object.entries(NAMES).sort().forEach(([n, a]) => sel.insertAdjacentHTML('beforeend', '<option value="' + a + '">' + n + '</option>'));
-    fetch(API + '/api/health').then(r => r.json()).then(h => {
+    A.get('/api/health').then(h => {
       if (!h.ok || h.db === 'not-configured' || h.db === 'error') return;
       document.getElementById('vform').classList.add('on');
       document.getElementById('ghSignup').textContent = 'Or sign up with GitHub';
       document.getElementById('ghSignup').classList.add('secondary');
       document.getElementById('ghNote').textContent = 'Public sign-up on GitHub, if you prefer.';
-      if (sameOrigin && (h.auth.google || h.auth.facebook)) {
-        const si = document.getElementById('signin');
-        const next = encodeURIComponent(location.pathname);
-        if (h.auth.google) si.insertAdjacentHTML('beforeend', '<a class="btn secondary" href="/auth/google?next=' + next + '">Sign in with Google</a>');
-        if (h.auth.facebook) si.insertAdjacentHTML('beforeend', '<a class="btn secondary" href="/auth/facebook?next=' + next + '">Sign in with Facebook</a>');
-        si.classList.add('on');
-        fetch('/api/me', { credentials: 'same-origin' }).then(r => r.json()).then(me => {
-          if (!me.signedIn) return;
-          si.classList.remove('on');
-          document.getElementById('who').textContent = 'Signed in as ' + (me.name || me.email) + '.';
-          if (me.name) document.getElementById('vName').value = me.name;
-          if (me.email) document.getElementById('vEmail').value = me.email;
-        }).catch(() => {});
-      }
+      if (!(h.auth.google || h.auth.facebook)) return;
+      const si = document.getElementById('signin');
+      if (h.auth.google) si.insertAdjacentHTML('beforeend', '<a class="btn secondary" href="' + A.signInUrl('google') + '">Sign in with Google</a>');
+      if (h.auth.facebook) si.insertAdjacentHTML('beforeend', '<a class="btn secondary" href="' + A.signInUrl('facebook') + '">Sign in with Facebook</a>');
+      si.classList.add('on');
+      A.get('/api/me').then(me => {
+        if (!me.signedIn) return;
+        si.classList.remove('on');
+        const who = document.getElementById('who');
+        who.innerHTML = 'Signed in as ' + (me.name || me.email).replace(/[<>&]/g, '') + '. <button class="linkish" type="button" id="signOut" style="background:none;border:0;color:var(--accent);cursor:pointer;font:inherit">Sign out</button>';
+        document.getElementById('signOut').addEventListener('click', () => A.signOut().then(() => location.reload()));
+        if (me.name) document.getElementById('vName').value = me.name;
+        if (me.email) document.getElementById('vEmail').value = me.email;
+      }).catch(() => {});
     }).catch(() => {});
     document.getElementById('vform').addEventListener('submit', e => {
       e.preventDefault();
@@ -173,14 +172,10 @@
         agree: document.getElementById('vAgree').checked, website: document.getElementById('vWebsite').value
       };
       msg.className = 'msg'; msg.textContent = 'Sending… (the first sign-up of the day can take up to a minute while the database wakes up)';
-      fetch(API + '/api/volunteers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: sameOrigin ? 'same-origin' : 'omit', body: JSON.stringify(body) })
-        .then(r => r.json().then(j => ({ ok: r.ok, j })))
-        .then(({ ok, j }) => {
-          if (!ok) throw new Error(j.error || 'Sign-up failed');
-          msg.className = 'msg ok'; msg.textContent = 'Thank you! An editor will contact you about verification work in your state.';
-          e.target.querySelectorAll('input, select, textarea, button').forEach(x => x.disabled = true);
-        })
-        .catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
+      A.post('/api/volunteers', body).then(() => {
+        msg.className = 'msg ok'; msg.textContent = 'Thank you! An editor will contact you about verification work in your state.';
+        e.target.querySelectorAll('input, select, textarea, button').forEach(x => x.disabled = true);
+      }).catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
     });
 
     Promise.all([

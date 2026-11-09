@@ -103,6 +103,13 @@ Create a public GitHub repository and advocacy website to support making the San
      - `gh auth refresh -s workflow,write:packages && git push`, then make the GHCR package caren-act-server public.
    - Later: new Google/Facebook OAuth clients for CAREN (don't reuse Ohana's), then set the env vars on the container app.
 
+14. **2026-11-08 (GitHub Pages + Azure SQL):**
+   - GitHub Pages is still live and serves the same site. Both copies use Azure SQL through the API.
+   - Cross-site sign-in: /auth/:provider?next=<allowed origin URL> returns to GitHub Pages with #caren_token=<session>. assets/api.js stores it in localStorage and sends `Authorization: Bearer`. The server accepts the bearer or the cookie; CORS allows Authorization/PATCH for CORS_ORIGINS.
+   - volunteer.html and admin.html use assets/api.js, so the admin page works on GitHub Pages too.
+   - Added website/privacy.html (required for the Google/Facebook apps) and a footer link.
+   - README now has an "Owner's to-do list" (steps 1–9: setup script, SQL grant, gh scopes + push, public package, verify, OAuth setup, editor tasks, outreach, Jan 2027 switch, costs).
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.

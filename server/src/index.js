@@ -54,15 +54,30 @@ function cors(req, res, next) {
   if (o && CORS_ORIGINS.includes(o)) {
     res.set('Access-Control-Allow-Origin', o);
     res.set('Vary', 'Origin');
-    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.set('Access-Control-Max-Age', '600');
   }
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
 }
 
+// Session id comes from the first-party cookie (Azure-hosted pages) or an
+// "Authorization: Bearer <id>" header (GitHub Pages, where cross-site cookies are blocked).
+function sessionId(req) {
+  const m = /^Bearer ([a-f0-9]{64})$/.exec(req.headers.authorization || '');
+  return m ? m[1] : cookies(req).caren_sid;
+}
+// Where to send the browser after sign-in: a path on this site, or a page on an allowed origin (GitHub Pages).
+function safeReturn(v) {
+  const s = str(v, 500);
+  if (s.startsWith('/') && !s.startsWith('//')) return s;
+  try { const u = new URL(s); if (CORS_ORIGINS.includes(u.origin)) return u.origin + u.pathname + u.search; } catch (e) { /* not a URL */ }
+  return '/website/volunteer.html';
+}
+
 async function currentUser(req) {
-  const sid = cookies(req).caren_sid;
+  const sid = sessionId(req);
   if (!sid || !/^[a-f0-9]{64}$/.test(sid) || !configured()) return null;
   const pool = await getPool();
   const r = await pool.request().input('id', sql.Char(64), sid)
@@ -120,8 +135,7 @@ app.get('/auth/:provider', (req, res) => {
   const p = PROVIDERS[req.params.provider];
   if (!p || !p.enabled()) return res.status(404).send('Sign-in with this provider is not configured.');
   const state = crypto.randomBytes(24).toString('hex');
-  const next = str(req.query.next, 200);
-  setCookie(res, 'caren_oauth', JSON.stringify({ state, next: next.startsWith('/') && !next.startsWith('//') ? next : '/website/volunteer.html' }), 600);
+  setCookie(res, 'caren_oauth', JSON.stringify({ state, next: safeReturn(req.query.next) }), 600);
   res.redirect(p.authorize(`${baseUrl(req)}/auth/${req.params.provider}/callback`, state));
 });
 
@@ -147,13 +161,16 @@ app.get('/auth/:provider/callback', async (req, res, next) => {
     await pool.request().input('id', sql.Char(64), sid).input('uid', sql.Int, u.recordset[0].id).input('days', sql.Int, SESSION_DAYS)
       .query('INSERT INTO dbo.sessions (id, user_id, expires_at) VALUES (@id, @uid, DATEADD(day, @days, SYSUTCDATETIME()))');
     setCookie(res, 'caren_sid', sid, SESSION_DAYS * 86400);
-    res.redirect(saved.next || '/website/volunteer.html');
+    const dest = safeReturn(saved.next);
+    // Cross-site return (GitHub Pages): hand the session over in the URL fragment, which is never sent to any server.
+    res.redirect(dest.startsWith('/') ? dest : dest + '#caren_token=' + sid);
   } catch (e) { next(e); }
 });
 
-app.post('/auth/logout', async (req, res, next) => {
+app.options('/auth/logout', cors);
+app.post('/auth/logout', cors, async (req, res, next) => {
   try {
-    const sid = cookies(req).caren_sid;
+    const sid = sessionId(req);
     if (sid && /^[a-f0-9]{64}$/.test(sid) && configured()) {
       const pool = await getPool();
       await pool.request().input('id', sql.Char(64), sid).query('DELETE FROM dbo.sessions WHERE id = @id');

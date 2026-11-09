@@ -44,7 +44,7 @@
   if (footer) {
     footer.className = 'site-footer';
     footer.innerHTML =
-      '<div><a href="https://github.com/ProDataMan/CAREN-Act">GitHub</a>·<a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a>·<a href="data.html">Data &amp; methodology</a></div>' +
+      '<div><a href="https://github.com/ProDataMan/CAREN-Act">GitHub</a>·<a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a>·<a href="data.html">Data &amp; methodology</a>·<a href="privacy.html">Privacy</a></div>' +
       '<div style="margin-top:6px">Public data from EJI, Mapping Police Violence, FBI, CDC, U.S. Census Bureau and Mapping Inequality. Verify with primary sources.</div>';
   }
 })();
