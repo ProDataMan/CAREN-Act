@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn Module</title>
+  <meta name="description" content="A short, sourced lesson on the history of systemic racism, with every claim labeled documented, debated, or belief or myth.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    main.page { line-height: 1.65; }
+    .crumbs { font-size: .86rem; margin-top: 14px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .86rem; color: var(--muted); }
+    section.s { border-top: 1px solid var(--line); padding-top: 4px; margin-top: 22px; }
+    section.s h2 { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
+    section.s ul { padding-left: 20px; }
+    section.s li { margin: 6px 0; }
+    .refs { font-size: .8rem; color: var(--muted); }
+    .refs a { margin-right: 6px; }
+    ol.sources li { font-size: .88rem; margin: 4px 0; }
+    .finish { background: #eef4fb; border-radius: 10px; padding: 14px 16px; margin: 24px 0; }
+    .quest-card { border: 2px solid #f2c14e; border-radius: 12px; padding: 14px 16px; margin: 16px 0; background: #fffbea; }
+    .pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+    .maplinks a { display: inline-block; margin: 4px 8px 4px 0; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page" id="main">
+    <p>Loading…</p>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
+  <script>
+  (function () {
+    const L = CarenLearn, ui = L.ui, esc = ui.esc, main = document.getElementById('main');
+    const id = new URLSearchParams(location.search).get('m');
+    L.catalog().then(cat => {
+      const i = cat.modules.findIndex(m => m.id === id);
+      if (i < 0) { main.innerHTML = '<h1>Module not found</h1><p><a href="learn.html">See all modules</a></p>'; return; }
+      const m = cat.modules[i], prev = cat.modules[i - 1], next = cat.modules[i + 1];
+      document.title = 'Module ' + m.num + ': ' + m.title.split(':')[0];
+      const srcIds = Object.keys(m.sourcesList || {});
+      const refNum = k => srcIds.indexOf(k) + 1;
+      let h = '<p class="crumbs"><a href="learn.html">Learn</a> › Module ' + m.num + '</p>' +
+        '<h1>' + esc(m.title) + '</h1>' +
+        '<div class="meta">' + (m.minutes ? '<span>' + m.minutes + ' min read</span>·' : '') +
+        '<span>' + (m.status === 'outline' ? 'Outline: being written' : 'Draft, awaiting historian review') + '</span>·' +
+        Object.keys(cat.labels).map(k => ui.chip(cat, k)).join(' ') + '</div>';
+      if (m.status === 'outline') {
+        h += '<p class="lede">' + esc(m.short) + '</p><h2>What this module will cover</h2><ul>' + m.topics.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>' +
+          '<div class="callout info">This module is being written. Know this history well, or have sources to add? <a href="volunteer.html#reviewer">Join as a researcher or history reviewer</a>, or <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=' + encodeURIComponent('[Learn] Module ' + m.num + ': ') + '" target="_blank" rel="noopener">suggest a source</a>.</div>';
+      } else {
+        h += '<p class="lede">' + esc(m.intro) + '</p>';
+        h += m.sections.map((s, n) => '<section class="s" id="s' + (n + 1) + '"><h2>' + esc(s.h) + ' ' + ui.chip(cat, s.label) + '</h2>' + s.body +
+          ((s.sources || []).length ? '<div class="refs">Sources: ' + s.sources.map(k => '<a href="#src-' + k + '">[' + refNum(k) + ']</a>').join('') + '</div>' : '') + '</section>').join('');
+        if ((m.timeline || []).length) h += '<h2>Timeline</h2>' + ui.timeline(cat, m.timeline, false);
+      }
+      if ((m.map || []).length) h += '<h2>See it on the map</h2><p class="maplinks">' + m.map.map(x => '<a class="btn secondary" href="' + x.href + '">🗺 ' + esc(x.t) + '</a>').join('') + '</p>';
+      if (m.status !== 'outline') {
+        h += '<div class="finish" id="finish"></div>';
+        if ((m.quiz || []).length) h += '<h2 id="quiz">Check what you learned</h2><p>Get ' + Math.ceil(m.quiz.length * cat.xp.quizPass) + ' of ' + m.quiz.length + ' right for ' + cat.xp.quiz + ' XP.</p><div id="quizBox"></div>';
+        const q = cat.quests.find(x => x.id === m.quest);
+        if (q) h += '<div class="quest-card"><b>Quest: ' + esc(q.title) + ' (' + q.xp + ' XP)</b><p style="margin:6px 0">' + esc(q.desc) + '</p><a class="btn" href="' + q.href + '">Go</a> <a class="btn secondary" href="learn.html#quests">All quests</a></div>';
+      }
+      if (srcIds.length) h += '<h2 id="sources">Sources</h2><ol class="sources">' + srcIds.map(k => {
+        const s = m.sourcesList[k];
+        return '<li id="src-' + k + '">' + (s.url ? '<a href="' + esc(s.url) + '"' + (/^https?:/.test(s.url) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(s.t) + '</a>' : esc(s.t)) + '</li>';
+      }).join('') + '</ol><p class="note">Some links go to encyclopedia overviews that cite the primary documents; reviewers are replacing them with the originals.</p>';
+      h += '<div class="pager">' + (prev ? '<a href="module.html?m=' + prev.id + '">← Module ' + prev.num + ': ' + esc(prev.title.split(':')[0]) + '</a>' : '<span></span>') +
+        (next ? '<a href="module.html?m=' + next.id + '">Module ' + next.num + ': ' + esc(next.title.split(':')[0]) + ' →</a>' : '<a href="learn.html#quests">Quest board →</a>') + '</div>';
+      main.innerHTML = h;
+
+      const finish = document.getElementById('finish');
+      function drawFinish() {
+        if (!finish) return;
+        finish.innerHTML = L.has('read:' + m.id)
+          ? '✓ <b>You finished this module.</b> ' + (next ? '<a href="module.html?m=' + next.id + '">Next: ' + esc(next.title.split(':')[0]) + ' →</a>' : '')
+          : '<b>Finished reading?</b> <button class="btn" type="button" id="markRead">Mark as read (+' + cat.xp.read + ' XP)</button>';
+        const b = document.getElementById('markRead');
+        if (b) b.addEventListener('click', () => ui.award('read:' + m.id, 'Module ' + m.num).then(drawFinish));
+      }
+      drawFinish();
+      L.onChange(drawFinish);
+      const qb = document.getElementById('quizBox');
+      if (qb) {
+        if (L.has('quiz:' + m.id)) qb.insertAdjacentHTML('beforebegin', '<p class="note">✓ You already passed this quiz. You can take it again for practice.</p>');
+        ui.quiz(qb, m.quiz, { pass: cat.xp.quizPass, onPass: () => ui.award('quiz:' + m.id, 'Quiz passed') });
+      }
+      if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+      L.sync();
+    });
+  })();
+  </script>
+</body>
+</html>

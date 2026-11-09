@@ -25,6 +25,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | Google sign-in | `GOOGLE_OAUTH_CLIENT_ID` is set and the `google-client-secret` secret exists, but `GOOGLE_OAUTH_CLIENT_SECRET=secretref:google-client-secret` isn't set (same command) |
 | Facebook sign-in | Not started |
 | Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
+| Learn | Live. Hub `learn.html`, renderer `module.html`, content `data/learn.json`. Modules 1, 5, 8 and 10 drafted; 2, 3, 4, 6, 7 and 9 outlined. Not reviewed by a historian yet; recruiting through the volunteer role `history-reviewer` |
 | Outreach | Letters to JULIAN and LDF drafted (kept out of the repo), not sent |
 
 ## Architecture
@@ -32,8 +33,11 @@ A public repository and advocacy site supporting a federal version of San Franci
 - **Static site** in `website/`. The shared header, menu, footer and race-breakdown helper (`window.CarenRace`) live in `assets/site.js` and `site.css`.
   - `assets/api.js`: client for the Azure API. Same origin on Azure or localhost; otherwise the Azure URL plus a bearer token.
   - `assets/reps.js`: lawmaker lookup, used by `index.html`, `act.html` and `embed.html`.
+  - `assets/learn.js`: `window.CarenLearn`. Handles the device ID (`localStorage` `caren-device`), local progress (`caren-learn`), syncing through `/api/learn/sync`, XP, levels and badges, plus shared UI (`ui.quiz`, `ui.timeline`, `ui.chip`, `ui.award`).
+  - **Learn content:** all in `data/learn.json`. The server reads the same file to set XP, so the browser can't award itself XP.
 - **Server** in `server/`: Node 22, Express, `mssql` with managed-identity auth, migrations in `src/migrations`.
-  - **Endpoints:** health, volunteers (sign-up, coverage, admin), comments (creates a GitHub issue), Google/Facebook OAuth.
+  - **Endpoints:** health, volunteers (sign-up, coverage, admin), comments (creates a GitHub issue), Learn (`/api/learn/sync`, `/api/learn/teams`), Google/Facebook OAuth.
+  - **Migrations:** `001_initial` (users, sessions, volunteers) and `002_learn` (`learn_events`: `device_id` or `user_id`, `event_key`, `xp`, `state`). Signing in claims the device's rows and removes duplicates.
   - **Sessions:** a cookie on Azure; on GitHub Pages, a bearer token handed back as `#caren_token=` only to `CORS_ORIGINS`.
 - **Azure:**
   - **Container App:** `caren-act-server` in RG `CARENAct` (centralus), env `caren-act-env`, 0–2 replicas, port 8080, system identity e184de7e-b9a5-41b6-9467-855ad5312ae4.
@@ -64,7 +68,8 @@ A public repository and advocacy site supporting a federal version of San Franci
 | covenants.json | UMNLibraries/mp-us-racial-covenants GeoJSON via Git LFS media URLs, 13 counties, ~105k covenants in 0.0025° cells |
 | bjs_contacts.json | PPCS 2020 tables 3 and 6. Threat or use of force: Black 4.3%, Hispanic 2.4%, White 1.5%, Asian 1.0%. Street stops ending in search or arrest: Black 14.2%, White 3.0% |
 | police_killings.json, hate_crimes.json, redlining.json, zip_districts.json, cdc_deaths.json, cdc_wonder_states.json | As named. CDC WONDER exports are made by hand |
-| contested_deaths.json, residual_ordinances.json | Curated and cited. The only hand-edited data files |
+| contested_deaths.json, residual_ordinances.json | Curated and cited. Hand-edited |
+| learn.json | Learn content: modules, the Source detective quiz, quests and XP, levels and badges. Hand-edited. Section labels: `documented` / `debated` / `belief` |
 
 ## Decisions (and why)
 
@@ -77,6 +82,9 @@ A public repository and advocacy site supporting a federal version of San Franci
 - **Node instead of Vapor for the server:** no maintained SQL Server driver for Swift.
 - **Race breakdowns:** groups largest first, stopping once the groups shown cover ≥50% of the people-of-color share or both Black and Hispanic are shown (user's rule).
 - **Education content is labeled by evidence level, and modules are reviewed by an expert before publishing.** Religious or conspiracy stories (the Curse of Ham, race myths built on Enoch, "Planned Parenthood was founded to exterminate Black Americans") are explained and labeled as beliefs, next to what the record shows. One weak claim would discredit the documented ones.
+- **Learn progress:** saved by an anonymous device ID by default. Google sign-in adds a profile that works across devices and a badge card (owner's choice). XP scales with how much a task matters, from 15 to 400. Quests use the honor system until they can be verified.
+- **Learn is its own menu item**, and the History page links to its key modules (owner's choice).
+- **Standing rule (owner):** whenever we find a new law or a new history source, update the Learn modules in `learn.json`, then the README and context.md.
 - **Bill damages:** $500 from the caller plus $500 from the responding agency (user's structure).
 
 ## Key legal and data notes
@@ -105,7 +113,13 @@ A public repository and advocacy site supporting a federal version of San Franci
    - Open States key for legislator names and a weekly state bill watcher with hearing alerts;
    - Congress.gov key.
 9. Optional: Spanish translations of `act.html` and the letters, reviewed by a volunteer.
-10. **Education component ("Learn"):** plan in `docs/education-plan.md`. It covers 10 history modules with evidence labels (documented / debated / belief or myth), a History map layer group with a year slider, quests tied to real tasks, and state team scores. Phase 1 builds the evidence policy, the timeline, and modules 1 (why the fear), 5 (science and reproductive control) and 8 (policing). Waiting on the owner's answers to the open questions at the end of the plan.
+10. **Learn, next steps** (plan in `docs/education-plan.md`):
+    - Recruit a history reviewer, and have them review modules 1, 5, 8 and 10 before promoting them from `draft`.
+    - Replace Wikipedia links with primary sources.
+    - Write modules 2, 3, 4, 6, 7 and 9.
+    - Add history map layers with a year slider: boarding schools, incarceration camps, massacres, sterilizations by state.
+    - Verify quest completion automatically where possible (volunteer sign-up, accepted bill edits, verified law reports).
+    - Build a teach-in kit.
 
 ## History (condensed)
 
@@ -129,4 +143,10 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **Heat map:** explainer on the map page with example views, `?at=` support, `?layers=` made exact, and worked score examples on the data page.
   - **Workflow fixes:** the refresh and comment workflows now redeploy Azure after their commits, and the covenant listing uses the workflow token.
   - **Education plan:** `docs/education-plan.md` drafted (systemic racism history, map history layers, gamified quests).
+  - **Learn built:**
+    - hub and module pages;
+    - modules 1, 5, 8 and 10 drafted, with timelines, quizzes and sources;
+    - the Source detective quiz, 12 quests, 6 levels and 9 badges;
+    - progress saved by device ID with an optional profile, plus state teams;
+    - the history-reviewer volunteer role, History page links, and privacy policy updates.
   - **The owner's test comment:** it was never posted and lives only in their browser as Pending. Discard removes it.

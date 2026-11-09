@@ -1,6 +1,6 @@
 # Education plan: how we got here, and the way out
 
-**Status:** plan, not built yet. Drafted 2026-11-09.
+**Status:** Phase 1 and part of Phase 4 are built (2026-11-09). Modules 1, 5, 8 and 10 are drafted, the others are outlined. Progress, XP, badges and state teams work. The open questions below have been answered. The content lives in `website/data/learn.json`.
 
 ## What this adds
 
@@ -151,8 +151,11 @@ These are remedies with a real record, each with a quest:
    - a teach-in kit, with slides and a printable handout for each module.
 5. **The remaining modules**, and Spanish translations reviewed by volunteers.
 
-## Open questions for the owner
+## Owner's decisions (2026-11-09)
 
-- Should the Learn section be a separate menu item, or part of the existing History page?
-- Should progress sync require sign-in? Google sign-in needs the README Step A command first.
-- Do we have a historian or librarian to review module 1 before it is published?
+- **Menu:** Learn is its own menu item, and the History page links to its key modules.
+- **Saving progress:** progress saves by device ID without an account. Signing in adds a profile with progress that follows you, digital badges and XP tracking. XP rewards completed tasks, with more for higher-value tasks.
+- **Reviewers:** we recruit them through the allies (volunteer) section, which now has a "History reviewer" role.
+- **Standing rule:** whenever we find a new law or history source, update the Learn modules, README and context.md.
+
+**Editorial rule (proposed by Claude, open to change):** the site takes no position on abortion. It documents coercion wherever it happened.

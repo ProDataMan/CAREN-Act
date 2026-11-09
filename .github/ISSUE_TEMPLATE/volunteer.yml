@@ -79,6 +79,7 @@ body:
         - label: "Local deliverer: deliver repeal requests to my city council, county commission or legislators"
         - label: "Legal reviewer: review draft repeal ordinances and bills (attorneys, law students)"
         - label: "Researcher: search code libraries and archives for old laws"
+        - label: "History reviewer: check the Learn modules' claims and sources (historians, librarians, archivists, teachers)"
   - type: dropdown
     id: background
     attributes:

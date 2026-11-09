@@ -2,6 +2,7 @@
 const express = require('express');
 const crypto = require('crypto');
 const path = require('path');
+const fs = require('fs');
 const { sql, getPool, configured } = require('./db');
 
 const app = express();
@@ -12,7 +13,7 @@ const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').toLowerCase().split(',').m
 const CORS_ORIGINS = (process.env.CORS_ORIGINS || 'https://prodataman.github.io').split(',').map(s => s.trim()).filter(Boolean);
 const SESSION_DAYS = 30;
 const STATES = new Set('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
-const ROLES = new Set(['law-verifier', 'case-verifier', 'cdc-exporter', 'local-deliverer', 'legal-reviewer', 'researcher']);
+const ROLES = new Set(['law-verifier', 'case-verifier', 'cdc-exporter', 'local-deliverer', 'legal-reviewer', 'researcher', 'history-reviewer']);
 
 app.disable('x-powered-by');
 app.set('trust proxy', true);
@@ -283,6 +284,63 @@ app.post('/api/comments', rateLimit(10, 3600e3), async (req, res, next) => {
     }
     const j = await r.json();
     res.json({ ok: true, number: j.number, url: j.html_url, author: by });
+  } catch (e) { next(e); }
+});
+
+// ---------- Learn: progress, XP and team scores ----------
+// XP values come from website/data/learn.json, the same file the pages use, so the client can't set its own XP.
+let learnCat = null, learnCatAt = 0;
+function learnCatalog() {
+  if (!learnCat || Date.now() - learnCatAt > 300e3) {
+    try { learnCat = JSON.parse(fs.readFileSync(path.join(ROOT, 'website', 'data', 'learn.json'), 'utf8')); learnCatAt = Date.now(); } catch (e) { console.error('[learn] catalog', e.message); }
+  }
+  return learnCat;
+}
+function learnXp(key) {
+  const cat = learnCatalog(); if (!cat || typeof key !== 'string') return 0;
+  const m = /^(read|quiz|quest):([a-z0-9-]{1,60})$/.exec(key); if (!m) return 0;
+  if (m[1] === 'read') { const x = cat.modules.find(y => y.id === m[2]); return x && x.status !== 'outline' ? cat.xp.read : 0; }
+  if (m[1] === 'quiz') { const x = cat.modules.find(y => y.id === m[2]); return x && x.quiz && x.quiz.length ? cat.xp.quiz : 0; }
+  const q = cat.quests.find(y => y.id === m[2]); return q ? q.xp : 0;
+}
+
+app.post('/api/learn/sync', rateLimit(120, 3600e3), async (req, res, next) => {
+  try {
+    const b = req.body || {};
+    const device = /^[a-f0-9]{32}$/.test(b.device || '') ? b.device : null;
+    const state = STATES.has(str(b.state, 2).toUpperCase()) ? str(b.state, 2).toUpperCase() : null;
+    const keys = (Array.isArray(b.keys) ? b.keys : []).slice(0, 200).filter(k => learnXp(k) > 0);
+    const user = await currentUser(req).catch(() => null);
+    if (!device && !user) return res.status(400).json({ error: 'Missing device ID.' });
+    const pool = await getPool();
+    const own = () => pool.request().input('d', sql.Char(32), device).input('u', sql.Int, user ? user.id : null);
+    const ownerSql = user ? 'user_id = @u' : 'device_id = @d AND user_id IS NULL';
+    if (user && device) {
+      // Signing in claims this device's anonymous progress, then drops duplicates.
+      await own().query(`UPDATE dbo.learn_events SET user_id = @u WHERE device_id = @d AND user_id IS NULL;
+        WITH c AS (SELECT ROW_NUMBER() OVER (PARTITION BY event_key ORDER BY created_at) AS rn FROM dbo.learn_events WHERE user_id = @u) DELETE FROM c WHERE rn > 1;`);
+    }
+    for (const k of keys) {
+      await own().input('k', sql.NVarChar(80), k).input('xp', sql.Int, learnXp(k)).input('st', sql.Char(2), state)
+        .query(`IF NOT EXISTS (SELECT 1 FROM dbo.learn_events WHERE ${ownerSql} AND event_key = @k)
+                INSERT INTO dbo.learn_events (device_id, user_id, event_key, xp, state) VALUES (@d, @u, @k, @xp, @st)`);
+    }
+    if (state) await own().input('st', sql.Char(2), state).query(`UPDATE dbo.learn_events SET state = @st WHERE ${ownerSql} AND (state IS NULL OR state <> @st)`);
+    const r = await own().query(`SELECT event_key AS [key], xp, created_at AS at FROM dbo.learn_events WHERE ${ownerSql} ORDER BY created_at`);
+    res.json({
+      signedIn: !!user, name: user ? user.name : null, picture: user ? user.picture : null,
+      events: r.recordset, xp: r.recordset.reduce((a, e) => a + e.xp, 0)
+    });
+  } catch (e) { next(e); }
+});
+
+app.get('/api/learn/teams', async (req, res, next) => {
+  try {
+    const pool = await getPool();
+    const r = await pool.request().query(`SELECT state, SUM(xp) AS xp, COUNT(DISTINCT COALESCE(CAST(user_id AS VARCHAR(40)), device_id)) AS people
+      FROM dbo.learn_events WHERE state IS NOT NULL GROUP BY state`);
+    res.set('Cache-Control', 'public, max-age=300');
+    res.json({ states: Object.fromEntries(r.recordset.map(x => [x.state, { xp: x.xp, people: x.people }])) });
   } catch (e) { next(e); }
 });
 

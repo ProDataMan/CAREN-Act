@@ -13,6 +13,10 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 - **Volunteer as a state ally:** https://prodataman.github.io/CAREN-Act/website/volunteer.html
 - **Embeddable lawmaker lookup for partner sites:** https://prodataman.github.io/CAREN-Act/website/embed.html (embed code on the Take action page)
 
+**Learn**
+- **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
+- **First modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
+
 **Map and data**
 - **Priority heat map:** https://prodataman.github.io/CAREN-Act/website/
 - **How to read the map, with one-click example views:** https://prodataman.github.io/CAREN-Act/website/#how-to-read
@@ -41,6 +45,7 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | Google sign-in | ⚠️ Client ID and secret are stored, but the secret isn't switched on (see [Step B](#b-finish-google-sign-in-1-minute)) |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
+| Learn section | ✅ Live: 4 modules drafted (1, 5, 8, 10), 6 outlined. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 
@@ -116,10 +121,6 @@ Member names and contact details update on their own from `congress-legislators`
 
 ---
 
-## Coming next: Learn (education)
-
-The plan for a history-and-education section is in [docs/education-plan.md](docs/education-plan.md). It covers 10 modules on how systemic racism was built, with every claim labeled by evidence level, plus history layers on the map and quests that turn learning into action. It isn't built yet. The open questions at the end of the plan need the owner's answers.
-
 ## Ongoing editor work
 
 | Task | Where | How |
@@ -129,6 +130,8 @@ The plan for a history-and-education section is in [docs/education-plan.md](docs
 | Welcome a volunteer | `/website/admin.html` (private sign-ups) or [issues labeled `volunteer`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Avolunteer) | Set status **active** on the admin page, or add `volunteer-active`, then assign them to reports in their state. |
 | Add a contested-death case | [Issues labeled `contested-death`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Acontested-death) | Verify the sources, then add an entry to `website/data/contested_deaths.json` and push. |
 | Add CDC WONDER exports | [Issues labeled `cdc-wonder`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Acdc-wonder) | Save the `.txt` files to `website/data/cdc_wonder/`, run `python3 scripts/build_data.py wonder`, and push. |
+| **New law or history source found** | `website/data/learn.json`, then README and `context.md` | **Standing rule:** add it to the right module's section, timeline and `sourcesList`, with an evidence label (`documented`, `debated` or `belief`). Then update this README and `context.md`. |
+| Review a Learn module | `website/data/learn.json` | Once a historian has reviewed a module, change its `status` from `draft` to `reviewed` and update the `review` note at the top. |
 | Refresh map data now | Actions → **Refresh map data** → **Run workflow** | Runs automatically every Monday. |
 | Change the priority-score weights | `PRIORITY_WEIGHTS` in `scripts/build_data.py` | Keep them adding up to 1, run `python3 scripts/build_data.py`, and push. Examples are on [data.html#score](https://prodataman.github.io/CAREN-Act/website/data.html#score). |
 | Watch the server | `az containerapp logs show -n caren-act-server -g CARENAct --tail 100` | Also see https://github.com/ProDataMan/CAREN-Act/actions for deploys. |
@@ -179,6 +182,8 @@ Node.js 22 + Express + `mssql`. It serves `website/` and `docs/`, and creates it
 | `GET /api/volunteers/coverage` | Public counts by state only |
 | `POST /api/comments` | Posts a bill comment as a labeled GitHub issue (needs `GITHUB_TOKEN`). Validates the comment format, allows 10 per hour per IP, and disables @mentions |
 | `GET /api/me` | Current sign-in |
+| `POST /api/learn/sync` | Learn progress. Takes the browser's random device ID and its event keys (`read:<module>`, `quiz:<module>`, `quest:<id>`). Returns the saved events. XP comes from `learn.json` on the server, never from the browser. When signed in, it moves the device's progress onto the profile. 120 calls per hour per IP |
+| `GET /api/learn/teams` | XP and learner counts by state (public totals only) |
 | `GET /api/admin/volunteers`, `PATCH /api/admin/volunteers/:id` | Admin only |
 | `/auth/google`, `/auth/facebook`, `/auth/logout` | Sign-in. After sign-in, GitHub Pages gets its session token in the URL fragment, and only origins in `CORS_ORIGINS` can receive it |
 
@@ -224,7 +229,19 @@ Race breakdowns ("63% people of color (Asian 35%)") list groups largest first. T
 
 ### State allies (volunteers)
 
-The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.html) has a private sign-up form, stored in Azure SQL and visible only to admins, plus a public GitHub sign-up as a fallback. The tile map shows coverage by state from both. The roles are law verifier, case verifier, CDC data exporter, local deliverer, legal reviewer and researcher. The [privacy policy](https://prodataman.github.io/CAREN-Act/website/privacy.html) explains what's collected and how to delete it.
+The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.html) has a private sign-up form, stored in Azure SQL and visible only to admins, plus a public GitHub sign-up as a fallback. The tile map shows coverage by state from both. The roles are law verifier, case verifier, CDC data exporter, local deliverer, legal reviewer, researcher and history reviewer. The [privacy policy](https://prodataman.github.io/CAREN-Act/website/privacy.html) explains what's collected and how to delete it.
+
+### Learn (education)
+
+[learn.html](https://prodataman.github.io/CAREN-Act/website/learn.html) is the hub, and `module.html?m=<id>` renders each module. All the content lives in **`website/data/learn.json`**: modules (sections, timelines, quizzes, sources), the Source detective quiz, quests, XP values, levels and badges. To add or fix content you edit only that file. The plan and the build phases are in [docs/education-plan.md](docs/education-plan.md).
+
+- **Evidence labels:** every section is labeled *Documented*, *Debated* or *Belief or myth*.
+- **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–400 for quests, depending on how much the task matters. Quests are on the honor system for now.
+- **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.
+- **Badges:** 9.
+- **Saving progress:** without an account, progress lives in the browser under a random device ID and is backed up to Azure SQL (`learn_events`). Signing in with Google moves it onto a profile that works on any device and adds a downloadable badge card.
+- **State teams:** pick a state and your XP counts toward its total on the leaderboard.
+- **Recruiting reviewers:** the volunteer page has a new *History reviewer* role ([volunteer.html#reviewer](https://prodataman.github.io/CAREN-Act/website/volunteer.html#reviewer)).
 
 ### Old laws tracker
 
@@ -268,12 +285,13 @@ Repeal is a legislative act, so the tracker never files legal motions or sends a
 ## Contents
 
 - `website/`: the site.
-  - **Pages:** `index.html` (map), `act.html`, `county.html`, `embed.html`, `bill.html` + `bill.json`, `deaths.html`, `laws.html`, `history.html`, `data.html`, `volunteer.html`, `admin.html`, `privacy.html`.
-  - **`assets/`:** `site.css`, `site.js` (header, menu, footer, race breakdown), `api.js` (Azure API client), `reps.js` (lawmaker lookup).
+  - **Pages:** `index.html` (map), `act.html`, `county.html`, `embed.html`, `bill.html` + `bill.json`, `deaths.html`, `laws.html`, `history.html`, `learn.html` + `module.html` (content in `data/learn.json`), `data.html`, `volunteer.html`, `admin.html`, `privacy.html`.
+  - **`assets/`:** `site.css`, `site.js` (header, menu, footer, race breakdown), `api.js` (Azure API client), `reps.js` (lawmaker lookup), `learn.js` (Learn progress, XP, badges, quizzes).
   - **`data/`:** generated datasets.
 - `server/`: Node.js API and static server for Azure, with `Dockerfile` and `sql/grant-app-identity.sql`.
 - `scripts/build_data.py`: data pipeline. `scripts/azure-setup.sh`: one-time Azure permissions.
 - `.github/workflows/`, `.github/scripts/apply-accepted.js`, `.github/ISSUE_TEMPLATE/`: automation and issue forms.
+- `docs/education-plan.md`: the plan for the Learn section.
 - `docs/SF-CAREN-Act.pdf`: the original ordinance, with its legislative history on the last page.
 - `context.md`: project status and decisions.
 

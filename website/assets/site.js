@@ -9,6 +9,7 @@
     { href: 'deaths.html', label: 'Contested deaths' },
     { href: 'laws.html', label: 'Old laws tracker' },
     { href: 'history.html', label: 'History' },
+    { href: 'learn.html', label: 'Learn' },
     { href: 'data.html', label: 'Data' },
     { href: 'volunteer.html', label: 'Volunteer' },
     { href: 'act.html', label: 'Take action', cta: true }
@@ -19,7 +20,7 @@
   if (header) {
     header.className = 'site-header';
     var links = NAV.map(function (n) {
-      var current = n.href === page ? ' aria-current="page"' : '';
+      var current = (n.href === page || (page === 'module.html' && n.href === 'learn.html')) ? ' aria-current="page"' : '';
       return '<a href="' + n.href + '"' + current + (n.cta ? ' class="cta"' : '') + '>' + n.label + '</a>';
     }).join('');
     header.innerHTML =

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn: How We Got Here</title>
+  <meta name="description" content="Short, sourced lessons on how systemic racism was built in America, from the first slave laws to the weaponized 911 call, and what has worked to undo it. Earn XP and badges for learning and taking action.">
+  <meta property="og:title" content="Learn how we got here">
+  <meta property="og:description" content="Sourced lessons on the history of systemic racism, with every claim labeled documented, debated, or belief or myth. Then act.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+    .panel { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--surface-2); }
+    .panel h2 { margin: 0 0 4px; font-size: 1.05rem; }
+    .lvl { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .lvl b { font-size: 1.15rem; }
+    .profile { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: .9rem; }
+    .profile img { width: 36px; height: 36px; border-radius: 50%; }
+    .panel select { font: inherit; padding: 5px; border-radius: 4px; border: 1px solid #bbb; }
+    .labels { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin: 10px 0; }
+    .labels div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .9rem; }
+    .mods { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; margin: 12px 0; }
+    .mod { display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--line); border-radius: 12px; padding: 14px; text-decoration: none; color: var(--ink); background: #fff; }
+    .mod:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(11,92,173,.12); }
+    .mod .n { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; display: flex; justify-content: space-between; }
+    .mod h3 { margin: 0; font-size: 1.02rem; }
+    .mod p { margin: 0; font-size: .88rem; color: #333; }
+    .mod .st { font-size: .76rem; font-weight: 700; }
+    .mod.outline { background: var(--surface-2); }
+    .quests { display: grid; gap: 8px; margin: 10px 0; }
+    .quest { display: grid; grid-template-columns: 64px 1fr auto; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+    .quest .xp { font-weight: 800; color: var(--accent); text-align: center; }
+    .quest h3 { margin: 0; font-size: .98rem; }
+    .quest p { margin: 2px 0 0; font-size: .86rem; color: #333; }
+    .quest.done { background: #f1f8f3; }
+    .quest.done .xp::after { content: " ✓"; color: #1b7837; }
+    @media (max-width: 560px) { .quest { grid-template-columns: 52px 1fr; } .quest .act { grid-column: 1 / -1; } }
+    .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .filters button { font: inherit; font-size: .82rem; padding: 4px 10px; border-radius: 999px; border: 1px solid #b9c2cc; background: #fff; cursor: pointer; }
+    .filters button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+    table.data td.num { text-align: right; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page-wide">
+    <div class="hero">
+      <div>
+        <h1>How we got here, and the way out</h1>
+        <p class="lede">Why are Black, Brown and Native people still harassed, policed, deported and pushed to the margins, even while they meet or beat every standard set for them? These short lessons trace it back to where it started, using laws, court records and data, and every one ends with something you can do about it.</p>
+        <p>There is no forgotten ancient secret. The record shows something more useful: race was <b>built</b>, by people, through laws we can name, for reasons we can name. What was built can be taken apart. <a href="module.html?m=before-race">Start with module 1 →</a></p>
+        <div class="callout info" id="reviewNote"></div>
+      </div>
+      <aside class="panel" id="me" aria-label="Your progress">
+        <h2>Your progress</h2>
+        <div class="lvl"><span>Level <span id="lvlNum">1</span>: <b id="lvlName">Listener</b></span><span><b id="xp">0</b> XP</span></div>
+        <div class="xpbar" aria-hidden="true"><i id="xpBar" style="width:0"></i></div>
+        <div class="note" id="xpNext"></div>
+        <div class="badge-grid" id="badges"></div>
+        <div id="profile"></div>
+        <p style="margin:8px 0 0;font-size:.88rem"><label for="state">Your state, for team scores:</label> <select id="state"><option value="">Choose…</option></select></p>
+        <p class="note" id="syncNote">Your progress is saved on this device.</p>
+        <p class="note" style="margin:0"><a href="#" id="resetLink">Reset progress on this device</a></p>
+      </aside>
+    </div>
+
+    <h2>How to read these lessons</h2>
+    <p>Every claim carries one of three labels, so you always know how solid the ground is. Lawmakers, reporters and opponents check sources, and one weak claim can discredit a hundred strong ones.</p>
+    <div class="labels" id="labels"></div>
+
+    <h2>Modules</h2>
+    <p>Each one is a 5–10 minute read with a timeline, primary sources, map links, a short quiz and a quest.</p>
+    <div class="mods" id="mods"></div>
+
+    <h2 id="detective">Source detective</h2>
+    <p>Ten claims you'll hear about race and history. Is each one <b>documented</b>, <b>debated</b>, or a <b>belief or myth</b>? Get 8 right to earn the quest.</p>
+    <div id="detQuiz"></div>
+
+    <h2 id="quests">Quest board</h2>
+    <p>Learning counts; acting counts more. Bigger tasks earn more XP. Quests are on the honor system for now: when you've done one, mark it.</p>
+    <div class="quests" id="questList"></div>
+
+    <h2 id="teams">State teams</h2>
+    <p>Laws get passed state by state and district by district, so we keep score the same way. Pick your state above and your XP counts for your team.</p>
+    <div class="table-wrap"><table class="data" id="teamTable"><tr><td>Loading…</td></tr></table></div>
+
+    <h2 id="timeline">The whole timeline</h2>
+    <div class="filters" id="tlFilters" role="group" aria-label="Filter the timeline by module"></div>
+    <div id="tl"></div>
+
+    <h2 id="help">Help build this</h2>
+    <p>These lessons are drafts until a historian, librarian or archivist reviews them. If that's you, or someone you know, <a href="volunteer.html#reviewer">sign up as a history reviewer</a>. Found an error or a better source? <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BLearn%5D%20" target="_blank" rel="noopener">Tell us on GitHub</a>.</p>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
+  <script>
+  (function () {
+    const L = CarenLearn, ui = L.ui, $ = id => document.getElementById(id);
+    const STATES = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' ');
+    STATES.forEach(s => $('state').insertAdjacentHTML('beforeend', '<option>' + s + '</option>'));
+    $('state').addEventListener('change', e => L.setState(e.target.value));
+    $('resetLink').addEventListener('click', e => { e.preventDefault(); if (confirm('Clear all Learn progress on this device? Progress saved to a signed-in profile is kept.')) { L.reset(); location.reload(); } });
+
+    L.catalog().then(cat => {
+      $('reviewNote').innerHTML = '<b>Drafts under review.</b> ' + ui.esc(cat.review.split(':')[0]) + '. <a href="volunteer.html#reviewer">Help review them</a>.';
+      $('labels').innerHTML = Object.keys(cat.labels).map(k => '<div>' + ui.chip(cat, k) + '<br>' + ui.esc(cat.labels[k].desc) + '</div>').join('');
+
+      function render(s) {
+        const xp = L.total(), lv = L.level(cat, xp);
+        $('xp').textContent = xp; $('lvlNum').textContent = lv.num; $('lvlName').textContent = lv.name;
+        $('xpBar').style.width = (lv.next ? Math.round(100 * (xp - lv.xp) / (lv.next.xp - lv.xp)) : 100) + '%';
+        $('xpNext').textContent = lv.next ? (lv.next.xp - xp) + ' XP to ' + lv.next.name : 'Top level reached. Thank you.';
+        $('badges').innerHTML = L.badges(cat, s).map(b => '<div class="b' + (b.earned ? '' : ' locked') + '" title="' + ui.esc(b.desc) + '"><span class="i" aria-hidden="true">' + b.icon + '</span><b>' + ui.esc(b.name) + '</b>' + (b.earned ? 'Earned' : 'Locked') + '</div>').join('');
+        if (s.state) $('state').value = s.state;
+        $('mods').innerHTML = cat.modules.map(m => {
+          const read = s.events['read:' + m.id], quiz = s.events['quiz:' + m.id];
+          const st = m.status === 'outline' ? '<span class="st" style="color:var(--muted)">Outline: being written</span>'
+            : '<span class="st" style="color:' + (read ? '#1b7837' : 'var(--accent)') + '">' + (read ? '✓ Read' : m.minutes + ' min read') + (quiz ? ' · ✓ Quiz' : '') + '</span>';
+          return '<a class="mod' + (m.status === 'outline' ? ' outline' : '') + '" href="module.html?m=' + m.id + '"><span class="n"><span>Module ' + m.num + '</span>' + (m.status === 'draft' ? '<span>Draft</span>' : '') + '</span><h3>' + ui.esc(m.title) + '</h3><p>' + ui.esc(m.short) + '</p>' + st + '</a>';
+        }).join('');
+        $('questList').innerHTML = cat.quests.map(q => {
+          const done = s.events['quest:' + q.id];
+          const act = q.kind === 'quiz' ? '<a class="btn secondary" href="#detective">Take the quiz</a>'
+            : done ? '<span class="note">Done</span>'
+            : '<a class="btn secondary" href="' + q.href + '">Go</a> <button class="btn secondary" type="button" data-q="' + q.id + '">I did this</button>';
+          return '<div class="quest' + (done ? ' done' : '') + '"><div class="xp">' + q.xp + ' XP</div><div><h3>' + ui.esc(q.title) + '</h3><p>' + ui.esc(q.desc) + '</p></div><div class="act">' + act + '</div></div>';
+        }).join('');
+        const p = s.profile;
+        if (p) {
+          $('profile').innerHTML = '<div class="profile">' + (p.picture ? '<img src="' + ui.esc(p.picture) + '" alt="">' : '') + '<div>Signed in as <b>' + ui.esc(p.name || 'you') + '</b><br><button class="btn secondary" type="button" id="shareBadge" style="margin-top:4px">Download my badge card</button></div></div>';
+          $('shareBadge').addEventListener('click', () => badgeCard(cat, s, p));
+          $('syncNote').textContent = 'Your progress is saved to your profile and follows you to any device.';
+        } else {
+          $('profile').innerHTML = '<div id="signIn"></div>';
+          $('syncNote').textContent = 'Your progress is saved on this device' + (s.synced ? ' and backed up to our server' : '') + '. Sign in to keep it on every device and get a shareable badge card.';
+          CarenAPI.get('/api/health').then(h => {
+            if (h.auth && h.auth.google) $('signIn').innerHTML = '<a class="btn" href="' + CarenAPI.signInUrl('google') + '">Sign in with Google</a>';
+          }).catch(() => {});
+        }
+      }
+      L.onChange(render);
+      render(L.state());
+      L.sync();
+
+      $('questList').addEventListener('click', e => {
+        const b = e.target.closest('button[data-q]'); if (!b) return;
+        const q = cat.quests.find(x => x.id === b.dataset.q);
+        if (confirm('Mark “' + q.title + '” as done? Quests are on the honor system.')) ui.award('quest:' + q.id, q.title);
+      });
+
+      ui.quiz($('detQuiz'), cat.detective, {
+        choices: Object.keys(cat.labels).map(k => ({ id: k, name: cat.labels[k].name })), pass: 0.8,
+        onPass: () => ui.award('quest:source-detective', 'Source detective')
+      });
+
+      // Combined timeline
+      const all = [];
+      cat.modules.forEach(m => (m.timeline || []).forEach(t => all.push(Object.assign({ mod: m }, t))));
+      all.sort((a, b) => a.y - b.y);
+      const withTl = cat.modules.filter(m => (m.timeline || []).length);
+      let filter = null;
+      function drawTl() {
+        $('tl').innerHTML = ui.timeline(cat, filter ? all.filter(t => t.mod.id === filter) : all, true);
+        $('tlFilters').innerHTML = '<button type="button" aria-pressed="' + !filter + '" data-f="">All</button>' +
+          withTl.map(m => '<button type="button" aria-pressed="' + (filter === m.id) + '" data-f="' + m.id + '">' + m.num + '. ' + ui.esc(m.title.split(':')[0]) + '</button>').join('');
+      }
+      $('tlFilters').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { filter = b.dataset.f || null; drawTl(); } });
+      drawTl();
+    });
+
+    CarenAPI.get('/api/learn/teams').then(t => {
+      const rows = Object.entries(t.states || {}).sort((a, b) => b[1].xp - a[1].xp);
+      $('teamTable').innerHTML = '<tr><th>#</th><th>State</th><th>Learners</th><th>Team XP</th></tr>' +
+        (rows.length ? rows.map((r, i) => '<tr><td>' + (i + 1) + '</td><td>' + r[0] + '</td><td class="num">' + r[1].people + '</td><td class="num">' + r[1].xp + '</td></tr>').join('')
+          : '<tr><td colspan="4">No team scores yet. Pick your state and be the first.</td></tr>');
+    }).catch(() => { $('teamTable').innerHTML = '<tr><td>Team scores are unavailable right now.</td></tr>'; });
+
+    // Shareable badge card (signed-in profiles)
+    function badgeCard(cat, s, p) {
+      const c = document.createElement('canvas'); c.width = 1200; c.height = 630;
+      const g = c.getContext('2d'), xp = L.total(), lv = L.level(cat, xp), earned = L.badges(cat, s).filter(b => b.earned);
+      g.fillStyle = '#0e2a47'; g.fillRect(0, 0, 1200, 630);
+      g.fillStyle = '#f2c14e'; g.fillRect(0, 0, 1200, 10);
+      g.fillStyle = '#fff'; g.font = 'bold 54px system-ui, sans-serif'; g.fillText(p.name || 'CAREN Act learner', 60, 120);
+      g.font = '36px system-ui, sans-serif'; g.fillStyle = '#dbe6f3'; g.fillText('Level ' + lv.num + ': ' + lv.name + '  ·  ' + xp + ' XP', 60, 180);
+      g.font = '64px system-ui, sans-serif';
+      earned.slice(0, 9).forEach((b, i) => g.fillText(b.icon, 60 + i * 120, 320));
+      g.font = '26px system-ui, sans-serif'; g.fillStyle = '#fff';
+      g.fillText(earned.length ? earned.map(b => b.name).join(' · ').slice(0, 80) : 'Just getting started', 60, 380);
+      g.fillStyle = '#f2c14e'; g.font = 'bold 34px system-ui, sans-serif'; g.fillText('Learn how we got here, and help pass the CAREN Act', 60, 520);
+      g.fillStyle = '#dbe6f3'; g.font = '26px system-ui, sans-serif'; g.fillText('prodataman.github.io/CAREN-Act/website/learn.html', 60, 570);
+      c.toBlob(blob => {
+        const file = new File([blob], 'caren-learn-badges.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: 'My CAREN Act badges' }).catch(() => {});
+        else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file.name; a.click(); }
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
