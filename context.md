@@ -1,203 +1,129 @@
-# CAREN Act Federal Advocacy — Project Context
+# CAREN Act Federal Advocacy: Project Context
 
-**Last updated:** 2026-11-08
+**Last updated:** 2026-11-09
+
+Read this first when picking up the project. The README holds the owner's to-do list and how-tos; this file holds the current state, the decisions and their reasons, and the history.
 
 ## Goal
-Create a public GitHub repository and advocacy website to support making the San Francisco CAREN Act (Caution Against Racial and Exploitative Non-Emergencies, Police Code §637 / Ordinance No. 219-20) a federal law. The federal version should prohibit discriminatory 911/emergency calls nationwide with a private right of action.
 
-## Repository
-- **URL:** https://github.com/ProDataMan/CAREN-Act
-- **Owner:** ProDataMan
-- **Visibility:** Public
+A public repository and advocacy site supporting a federal version of San Francisco's CAREN Act (Caution Against Racial and Exploitative Non-Emergencies, Police Code §637, Ordinance No. 219-20). The federal bill would prohibit knowingly causing police to contact someone with the specific intent to discriminate, with a private right of action. The draft sets a $1,000 minimum, $500 from the caller and $500 from the responding agency, plus fees.
 
-## Progress to Date
-1. Repository created (public, auto-init README).
-2. README.md updated with project overview, goals, structure, and data/legal disclaimers.
-3. docs/README.md added with notes on the original SF ordinance and instructions for uploading the PDF.
-4. Original SF CAREN Act PDF downloaded locally (Ordinance No. 219-20). Binary not yet committed to the repo (tool limitation for binary files); user can upload manually to docs/SF-CAREN-Act.pdf.
-5. website/index.html created and iteratively updated with interactive Leaflet map, toggleable layers, source links, prioritization guidance, and accurate notes on zombie ordinances.
-6. **Major website expansion (latest):**
-   - Added layers for police killings / disproportionate contact (linking Mapping Police Violence) and larger minority populations (Census patterns).
-   - Historical sundown/redlining shown in one color; residual/zombie ordinances highlighted in a different color (example: Boynton Beach, FL 2024 repeal).
-   - Allies color-coded by position and potential power/influence (high/medium/local samples).
-   - Prioritization of high-overlap areas (lynchings + residual language + police violence + minority populations) via bolder/larger markers without filtering or removing other data.
-   - Contact-your-representative form that prepares a pre-filled message supporting the $1,000 damages structure and opens mailto or allows copy.
-   - Link to the draft bill.
-7. **Draft federal bill created** as website/bill.html:
-   - Model language with specific-intent standard, good-faith exception, no preemption of stronger laws, optional data collection.
-   - Damages: minimum $1,000 statutory ($500 from the individual caller + $500 from the responding police department/agency) + fees + possible punitives.
-   - Click any paragraph to suggest changes (suggestions stored locally in browser via localStorage; open to anyone for now; future login/moderation planned).
-8. context.md maintained as the living status document.
-9. **2026-11-08 update:**
-   - GitHub Pages confirmed live (source: main, root). Root index.html redirects to /website/.
-   - README updated with live URLs. Original SF PDF committed to docs/SF-CAREN-Act.pdf (from sfbos.org).
-   - website/history.html added: origins (Walton; Pacific Heights chalk incident June 2020; Amy Cooper/Central Park May 2020), legislative timeline from the PDF (final passage 11–0 on Oct 27, 2020), provisions, parallel state laws, sources.
-   - Map: added priority heat-map layer (leaflet.heat, illustrative weights), links to history and PDF, escaped contact-form output.
-   - Bill comments rebuilt: click paragraph → suggest edit (prefilled text, word diff) + comment; comment icon with count → side panel listing comments + "Add new comment"; yellow highlight for paragraphs with comments; per-comment "Share on GitHub" issue link; JSON export/import. Still localStorage (v1 suggestions auto-migrated).
+## Where things are
 
-10. **2026-11-08 (second update):**
-   - All map sample data replaced with real data built by scripts/build_data.py (weekly GitHub Action refresh):
-     - EJI lynchings: 4,447 victims, 942 counties
-     - Mapping Police Violence: 15k+ killings through 2026
-     - FBI hate crimes 2021–2025, geolocated by agency
-     - Census ACS 2020–24 minority share
-     - Mapping Inequality HOLC polygons
-     - Composite county priority score (methodology in website/data.html)
-   - Allies layer is live: House and Senate Judiciary members (color by chair/ranking vs member), Rep. Janelle Bynum (OR-5, author of Oregon's 2019 law) as champion, Sup. Walton as local ally.
-   - Residual ordinances: curated, cited file (Boynton Beach verified).
-   - Segregation layer: 17 states + DC with legally segregated schools pre-1954.
-   - Representative lookup: street address goes to the Census Geocoder (ACS2025_Current vintage = 119th districts). ZIP-only uses the ZCTA→CD119 file. Members come from congress-legislators. A personalized letter is drafted per member, with contact form, phone, and office address.
-   - Bill comments are public via GitHub Issues (label bill-comment). The bill text lives in website/bill.json. Adding the `accepted` label triggers the workflow that merges the edit, records history, and gives the commenter a gold star; `hidden` hides spam.
-   - The 120th Congress starts 2027-01-03, and several states redrew districts. The ZIP file and geocoder vintage need updating to CD120 then; congress-legislators updates members automatically.
+- **Repo:** https://github.com/ProDataMan/CAREN-Act (public; owner ProDataMan; commits as ProDataMan <Antoine.Victor@ProDataMan.com>)
+- **Site:** https://prodataman.github.io/CAREN-Act/website/ (GitHub Pages, `main`, repo root; the root `index.html` redirects)
+- **Azure copy and API:** https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io
 
-11. **2026-11-08 (third update):**
-   - New page website/deaths.html:
-     - 5 verified disputed hanging deaths (Trey Reed, Tory Medley, Tasia Fortune, Justice Kai James, To'Nea Miller) in data/contested_deaths.json. Sources: Capital B News (Sept 24, 2026), Mississippi Today, Mississippi Free Press. Map layer "Contested hanging deaths".
-     - CDC charts (data.cdc.gov nt65-c7a7 injury deaths by race and intent 1999–2016; w26f-tf3h suicide rates by race to 2024), built by build_data.py (`python3 scripts/build_data.py cdc` runs only this step).
-     - Finding: Black Americans have the highest rate of hanging/suffocation deaths ruled homicide in every year 1999–2016, and a lower hanging-suicide rate than White Americans.
-   - CDC WONDER API returns an Akamai 403 for automated requests, and CDC policy limits its API to national data anyway. State and county numbers by race need manual exports.
-   - Individual case data for "all hangings in 50 years" does not exist publicly. The plan is a crowdsourced, verified case registry (issue form contested-death.yml) plus partners: JULIAN (70 cases 2000–2025), NAACP LDF (asked Congress for a commission), Capital B, The Marshall Project.
-   - New page website/laws.html, the old laws tracker:
-     - Issue form residual-law.yml.
-     - Status labels: needs-verification → verified → repeal-requested → repeal-introduced → repealed (also not-residual).
-     - Generates a cover letter plus a model repeal ordinance or state bill.
-     - laws-followup.yml sends daily 30-day reminders to the adopter.
-     - DECIDED: no automated legal motions, class actions, or messages sent on allies' behalf. Repeal is legislative, unenforced laws give no standing, and auto-sending or impersonation would be spam or fraud. Real people deliver each request.
-   - Design: shared header and mobile hamburger menu (assets/site.css, assets/site.js) on all pages.
-     - Map page: hero with calls to action; layer panel as a card over the map on desktop, collapsible on mobile; collapsible legend; `?layers=deaths` URL parameter.
-     - Bill panel sits below the sticky header and is full-width on phones.
-   - Labels created: residual-law, needs-verification, verified, repeal-requested, repeal-introduced, repealed, not-residual, contested-death.
-   - BLOCKER: the gh token lacks the `workflow` scope. The workflow files (bill-comments, refresh-data, laws-followup) are committed locally but NOT pushed. The user must run `gh auth refresh -s workflow && git push`.
+## Current state (2026-11-09)
 
-12. **2026-11-08 (fourth update):**
-   - Volunteer recruitment:
-     - website/volunteer.html with role cards and a state tile grid counting open `volunteer` issues.
-     - Priority states: 17 segregation states + DC + the top 10 states by high-overlap counties.
-     - Issue form volunteer.yml (state dropdown, roles, background, hours, commitments; no contact details because sign-ups are public).
-     - Labels: volunteer, volunteer-active, cdc-wonder.
-     - "Volunteer" added to the nav; the hamburger breakpoint is now 1080px.
-   - CDC WONDER:
-     - deaths.html#export has step-by-step instructions for two exports: hanging X70/X91/Y20 by state × race × ICD sub-chapter, and injury intent by state × race.
-     - build_data.py `build_cdc_wonder()` parses website/data/cdc_wonder/*.txt into cdc_wonder_states.json (`python3 scripts/build_data.py wonder`), shown as a state table on deaths.html.
-     - Volunteers upload exports through a GitHub issue labeled cdc-wonder.
-   - Outreach letters drafted to JULIAN (Jill Collen Jefferson; "A Crimson Record", Feb 18 2026, 70+ cases in 7 states, database at julianfreedom.org) and the Legal Defense Fund (Aug 24 2026 letters to Congress and the UN). Kept out of the repo and handed to the user.
-   - Lead to follow: congressional Democrats' Sept 2026 letter asking DOJ to investigate the hanging deaths (theGrio). Its signers are potential allies to add to the map.
-   - Planned: Google/Facebook login (e.g. Supabase Auth) so volunteers and commenters don't need GitHub accounts.
+| Area | State |
+|---|---|
+| GitHub Pages | Live |
+| Azure | Live. Image deployed for commit 0f5a9bb+. `/api/health`: `db ok`, `comments false`, `google false`, `facebook false` |
+| Workflows | All four pushed. Deploy succeeds. Refresh run tested by hand on 2026-11-09 |
+| Comments | `github-token` secret exists on the app, but the `GITHUB_TOKEN` setting isn't connected to it. Command in README Step A |
+| Google sign-in | `GOOGLE_OAUTH_CLIENT_ID` is set and the `google-client-secret` secret exists, but `GOOGLE_OAUTH_CLIENT_SECRET=secretref:google-client-secret` isn't set (same command) |
+| Facebook sign-in | Not started |
+| Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
+| Outreach | Letters to JULIAN and LDF drafted (kept out of the repo), not sent |
 
-13. **2026-11-08 (Azure deployment, following Ohana_Belltown's process):**
-   - Ohana's process: GitHub Actions builds the Docker image, pushes it to GHCR (public package), then runs `az containerapp update` through OIDC with app registration `ohana-belltown-github-deploy` (appId c7d8073d-…). That registration is shared with No_Limit_Auto_Salon via one federated credential per repo plus Contributor on each resource group.
-   - "Database server" = Azure SQL server **postgresdata.database.windows.net** (SQL Server despite the name) in RG Ohana. Existing DB: Ohana_Data (free serverless). The Ohana app itself stores JSON files and doesn't use it.
-   - CREATED:
-     - DB **CAREN_Act** on postgresdata (GP_S_Gen5 serverless, free limit, auto-pause 60 min, local backup redundancy).
-     - RG **CARENAct** (centralus), environment **caren-act-env**, container app **caren-act-server** (system-assigned identity principal e184de7e-b9a5-41b6-9467-855ad5312ae4, 0.25 vCPU/0.5Gi, min 0 / max 2 replicas). Currently on the placeholder image.
-     - App URL: https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io
-     - Env vars set: DB_SERVER, DB_NAME, PUBLIC_BASE_URL, CORS_ORIGINS, NODE_ENV, PORT, ADMIN_EMAILS.
-   - Code:
-     - server/ (Node 22 + Express + mssql, managed-identity auth, migrations, volunteers API, Google/Facebook OAuth gated by env vars, admin endpoints).
-     - server/Dockerfile (repo-root build context).
-     - .github/workflows/deploy-server.yml (local commit; needs workflow scope).
-     - website/volunteer.html private sign-up form; website/admin.html.
-   - BLOCKED (Claude's auto-mode refused permission grants; the user must run these):
-     - scripts/azure-setup.sh: federated credential `caren-act-main`, Contributor on CARENAct, repo secrets AZURE_CLIENT_ID/TENANT_ID/SUBSCRIPTION_ID.
-     - server/sql/grant-app-identity.sql in the Portal query editor (creates the DB user for the managed identity).
-     - `gh auth refresh -s workflow,write:packages && git push`, then make the GHCR package caren-act-server public.
-   - Later: new Google/Facebook OAuth clients for CAREN (don't reuse Ohana's), then set the env vars on the container app.
+## Architecture
 
-14. **2026-11-08 (GitHub Pages + Azure SQL):**
-   - GitHub Pages is still live and serves the same site. Both copies use Azure SQL through the API.
-   - Cross-site sign-in: /auth/:provider?next=<allowed origin URL> returns to GitHub Pages with #caren_token=<session>. assets/api.js stores it in localStorage and sends `Authorization: Bearer`. The server accepts the bearer or the cookie; CORS allows Authorization/PATCH for CORS_ORIGINS.
-   - volunteer.html and admin.html use assets/api.js, so the admin page works on GitHub Pages too.
-   - Added website/privacy.html (required for the Google/Facebook apps) and a footer link.
-   - README now has an "Owner's to-do list" (steps 1–9: setup script, SQL grant, gh scopes + push, public package, verify, OAuth setup, editor tasks, outreach, Jan 2027 switch, costs).
+- **Static site** in `website/`. The shared header, menu, footer and race-breakdown helper (`window.CarenRace`) live in `assets/site.js` and `site.css`.
+  - `assets/api.js`: client for the Azure API. Same origin on Azure or localhost; otherwise the Azure URL plus a bearer token.
+  - `assets/reps.js`: lawmaker lookup, used by `index.html`, `act.html` and `embed.html`.
+- **Server** in `server/`: Node 22, Express, `mssql` with managed-identity auth, migrations in `src/migrations`.
+  - **Endpoints:** health, volunteers (sign-up, coverage, admin), comments (creates a GitHub issue), Google/Facebook OAuth.
+  - **Sessions:** a cookie on Azure; on GitHub Pages, a bearer token handed back as `#caren_token=` only to `CORS_ORIGINS`.
+- **Azure:**
+  - **Container App:** `caren-act-server` in RG `CARENAct` (centralus), env `caren-act-env`, 0–2 replicas, port 8080, system identity e184de7e-b9a5-41b6-9467-855ad5312ae4.
+  - **Database:** `CAREN_Act` on `postgresdata.database.windows.net` (Azure SQL despite the name, RG `Ohana`), GP_S_Gen5 serverless on the free offer, auto-pause after 60 minutes, pauses when the free limit is used up.
+  - **Ohana_Data:** Ohana's own database on the same server, untouched.
+- **Deploy:** GHCR image `ghcr.io/prodataman/caren-act-server:<sha>` (public), then `az containerapp update --image` through OIDC.
+  - **Identity:** app registration `ohana-belltown-github-deploy` (shared with Ohana_Belltown and No_Limit_Auto_Salon), with Contributor on `CARENAct`.
+  - **Federated credentials:** `caren-act-main` (`repo:ProDataMan/CAREN-Act:ref:refs/heads/main`) and `caren-act-main-withid` (`repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main`). GitHub now sends the ID-based form.
+- **Workflows:**
+  - `deploy-server.yml`: push to server/website/docs, or a manual run.
+  - `refresh-data.yml`: Mondays 09:17 UTC. Commits data, rebuilds Pages, and starts the deploy with `gh workflow run`, because pushes made with the workflow token don't trigger workflows.
+  - `bill-comments.yml`: labels comments, merges accepted edits, stars the commenter and redeploys.
+  - `laws-followup.yml`: daily 30-day reminders.
+- **Data pipeline:** `scripts/build_data.py`.
+  - The full run rebuilds everything.
+  - Standalone runs: `cdc`, `wonder`, `calls`, `covenants`, `mwt`, `bjs`, `acs`. `acs` also refreshes the race columns in `counties.json` in place.
+  - The newer builders fail soft and keep last week's manifest entry.
+  - Score weights are in `PRIORITY_WEIGHTS`.
 
-15. **2026-11-08 (Take action features, no new keys):**
-   - The lawmaker lookup moved to website/assets/reps.js (shared by index.html, act.html, embed.html).
-   - New in the lookup:
-     - an optional "Why does this matter to you?" story, added to every letter and call script and updated live (hand edits are kept);
-     - a click-to-call button and a 30-second call script for each member;
-     - a state-lawmaker card with the visitor's exact State Senate/House districts from the Census Geocoder, a state-bill letter and an Open States link. OR and CA letters ask to strengthen the existing law;
-     - a city council / county board card with a local-ordinance letter. San Francisco instead gets a "thank your supervisor and back a federal bill" letter;
-     - a share bar.
-   - New pages:
-     - act.html: Take action hub with steps, lookup, vote links (vote.gov, vote.org, VOTE411), know-your-rights links (ACLU, ILRC red cards, IDP, United We Dream, NILC, LDF, NLG) and embed code;
-     - county.html?f=FIPS: stat tiles, priority rank, canvas share image (Web Share with file on mobile, download elsewhere), Facebook/X links;
-     - embed.html: iframe widget.
-   - Nav: added "Your county"; the CTA is now "Take action" (act.html). Menu breakpoint is now 1180px. Map county popups link to county pages.
-   - Not built yet (need keys): AI letter helper (Anthropic API key; Haiku 5.5 ≈ $0.001/letter) and the state bill watcher / legislator names (free Open States key).
+## Data files (website/data)
 
-16. **2026-11-08 (recommended data sources added):**
-   - New builders in scripts/build_data.py (standalone: `calls`, `covenants`, `mwt`, `bjs`, `acs`). In the full run, each one fails soft and keeps last week's manifest entry.
-     - **districts.json:** ACS B03002 for 437 congressional (5001900US), 1,958 state senate (610U900US) and 4,873 state house (620L900US) districts, from the same bulk file as the counties. reps.js shows "% people of color" on House and state cards.
-     - **city_calls.json:** resident-initiated "suspicious person" calls, past 365 days, from SF (data.sf.gov 2zdj-bwza), Seattle (33kz-ixgy) and New Orleans (yearly "Calls for Service YYYY" datasets found through the Socrata catalog). Outcomes are bucketed per city into enforcement / nothing found / other, with duplicates and cancellations dropped. Points are on a 0.005° grid, cells under 3 calls dropped. Results: SF 28,302 calls, 0.9% enforcement; Seattle 36,962, 24.0% (its category includes vehicles and incidents); New Orleans 12,549, 8.9% (reports only).
-     - **lynchings_all_races.json:** Monroe Work Today explore/data/s_1_3.txt. 5,027 victims, 1818–2021; race codes grouped into B/L/N/A/W/U; 36 unknown-county records are kept but not mapped; CC BY-NC 4.0.
-     - **covenants.json:** UMNLibraries/mp-us-racial-covenants GeoJSON (via Git LFS media URLs), 13 counties, about 105k covenants, grouped into 0.0025° cells (415 KB).
-     - **bjs_contacts.json:** PPCS 2020 tables 3 and 6 (force: Black 4.3%, Hispanic 2.4%, White 1.5%, Asian 1.0%; street stops ending in search or arrest: Black 14.2% vs White 3.0%).
-   - Map: new layers `mwt`, `calls`, `covenants`, plus legend and sources-table rows. Legend max-height is 55vh.
-   - data.html: new dataset rows, a #calls outcomes table, a BJS table, and a status column on the recommendations (✅ / 🔑 / ✋).
-   - Not added: LegiScan, Congress.gov and Police Scorecard (keys); Stanford OPP (multi-GB per city); Sundown Towns (permission); ADL HEAT (blocks automated download); LCCR/NAACP report cards (PDFs).
+| File | Source / notes |
+|---|---|
+| counties.json | Gazetteer + ACS B03002 + EJI + MPV + FBI. Fields 0–14: fips, name, state, lat, lon, pop, pct_minority, pct_black, pct_hispanic, lynchings, police_killings, police_killings_black, race_hate_crimes, score, overlap. 15–18: pct_asian, pct_native, pct_pacific, pct_other_or_multiracial |
+| districts.json | ACS B03002 for 437 CD119 (`5001900US`), 1,958 state senate (`610U900US`) and 4,873 state house (`620L900US`) districts. Entry: [pop, minority, black, hispanic, asian, native, pacific, other]. Keys match Census Geocoder GEOIDs |
+| city_calls.json | Resident-initiated "suspicious person" calls, past 365 days. SF (data.sf.gov 2zdj-bwza), Seattle (33kz-ixgy; category includes vehicles and incidents), New Orleans (yearly "Calls for Service YYYY" datasets found through the Socrata catalog). Outcomes are bucketed per city. Points on a 0.005° grid, cells under 3 calls dropped. Nov 2026: SF 28,302 calls, 0.9% arrest/citation/report; Seattle 36,962, 24.0%; New Orleans 12,549, 8.9% (reports only) |
+| lynchings_all_races.json | Monroe Work Today explore/data/s_1_3.txt. 5,027 victims; race codes grouped B/L/N/A/W/U; 36 unknown-county records kept but unmapped (lat null). CC BY-NC 4.0 |
+| covenants.json | UMNLibraries/mp-us-racial-covenants GeoJSON via Git LFS media URLs, 13 counties, ~105k covenants in 0.0025° cells |
+| bjs_contacts.json | PPCS 2020 tables 3 and 6. Threat or use of force: Black 4.3%, Hispanic 2.4%, White 1.5%, Asian 1.0%. Street stops ending in search or arrest: Black 14.2%, White 3.0% |
+| police_killings.json, hate_crimes.json, redlining.json, zip_districts.json, cdc_deaths.json, cdc_wonder_states.json | As named. CDC WONDER exports are made by hand |
+| contested_deaths.json, residual_ordinances.json | Curated and cited. The only hand-edited data files |
 
-17. **2026-11-09 (deploy, comments, county location):**
-   - The user ran `gh auth refresh -s workflow,write:packages`. The four workflows were pushed, and the Azure secrets were already set (Step 1 ran).
-   - The first deploy failed at OIDC login (AADSTS700213). GitHub sends ID-based subjects (`repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main`). Creating the federated credential was blocked in auto mode, so the README has the exact command for the user. azure-setup.sh now creates both forms.
-   - Comments weren't appearing because none had ever been posted. The repo had zero issues: the flow needs a GitHub sign-in and clicking Create, and the labeling workflow wasn't pushed yet.
-   - Fix: POST /api/comments on the server creates the labeled issue with GITHUB_TOKEN (a fine-grained PAT, Issues read/write on this repo only; README Step 6b). It validates the marker, JSON block and title; rate-limits 10/hour per IP; has a honeypot; breaks @mentions; and adds "Posted from the website by: <name>". /api/health reports `comments: true/false`.
-   - bill.html posts through the API when available (optional name field), otherwise falls back to GitHub with a clear "not saved until you click Create" note. parseIssue shows `data.name` (or Anonymous) for website comments.
-   - county.html: "Use my location" button (browser geolocation → Census geocoder coordinates → county; nearest-centroid fallback).
-   - Race breakdown (window.CarenRace in site.js): groups listed largest first, stopping once the groups shown cover ≥50% of the people-of-color share or once both Black and Hispanic are shown. Used in map pop-ups, county tiles and lawmaker cards (embed.html now loads site.js).
-   - Data: counties.json rows gained pct_asian, pct_native, pct_pacific and pct_other_or_multiracial (indices 15–18); districts.json entries gained the same (indices 4–7). The standalone `acs` build refreshes them in place.
+## Decisions (and why)
 
-18. **2026-11-09:** The user added the ID-based federated credential, and the deploy succeeded (run 42565633712). /api/health: db ok, comments false (GITHUB_TOKEN not set yet), auth not configured. CORS from prodataman.github.io verified. Remaining owner steps: 6b (comment token) and 6 (OAuth).
+- **No automated legal filings, class actions or messages on anyone's behalf.** Repeal is legislative, unenforced laws give no one standing to sue, and auto-sending or impersonation would be spam or fraud. People deliver every request themselves, and the site only drafts.
+- **Contested deaths are presented as disputed, not as proven lynchings.** Only verified cases from reputable reporting are included.
+- **No sending to the CDC WONDER API or ADL** to get around their blocks. Those exports are done by hand by volunteers.
+- **Auto-mode limits:** Claude's auto mode is blocked from granting Azure permissions (federated credentials, role assignments, SQL grants, firewall rules). Those steps are written out for the owner to run.
+- **Raw IDs stay out of the public repo:** no subscription or tenant IDs. Scripts look them up at runtime.
+- **Comments go through GitHub issues** so moderation, history and editor approval stay in one place. The server posts on visitors' behalf only with a narrowly scoped token, validated and rate-limited.
+- **Node instead of Vapor for the server:** no maintained SQL Server driver for Swift.
+- **Race breakdowns:** groups largest first, stopping once the groups shown cover ≥50% of the people-of-color share or both Black and Hispanic are shown (user's rule).
+- **Bill damages:** $500 from the caller plus $500 from the responding agency (user's structure).
 
-19. **2026-11-09 (map explainer):**
-   - index.html has a #how-to-read section: how the heat works (score² weighting, glows add up, zoom), purple rings, five example views, and a Hinds vs Cook reading example.
-   - `?layers=` now shows exactly the listed layers instead of adding to the defaults. New `?at=lat,lon,zoom`.
-   - data.html #score: a worked-example table (Dallas AL, Hinds MS, San Francisco, Cook IL), the current 95th-percentile caps, and how to change the weights with two example weightings.
-   - The weights are now the single constant `PRIORITY_WEIGHTS` in build_data.py.
-   - The user's test bill comment was never posted to GitHub (zero issues); it only lives in their browser's localStorage as "Pending". Delete it with Discard in the comment panel.
+## Key legal and data notes
 
-## Key Legal & Data Notes (for accuracy)
-- SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
-- Explicit good-faith exception retained.
-- Formal sundown ordinances are not currently enforceable. Residual “zombie” language exists in some codes until cleaned up and is shown in a distinct highlight color. Historical research areas use a different color.
-- Lynchings: EJI. Police violence: Mapping Police Violence (disproportionate minority impact documented). Hate crimes: FBI UCR.
-- No comprehensive national public geocoded dataset of race-motivated 911 calls exists.
-- Most formal Jim Crow statutes have been repealed or struck down.
-- Census Data API now requires a key; the pipeline uses keyless bulk files instead. WaPo police-shootings data stopped at 2024-12-31, so Mapping Police Violence is used.
+- The SF CAREN Act is a local civil ordinance. Related state laws: Oregon (2019, $250 cap) and California AB 1775 (2020, criminal penalties).
+- Formal sundown ordinances and most Jim Crow statutes have been repealed or struck down. Leftover "zombie" text is tracked only once verified.
+- No national dataset of race-motivated 911 calls exists. The map shows proxies, and city outcome data is the closest direct evidence.
+- The Census API needs a key, so the pipeline uses keyless bulk files. The Washington Post police-shootings data ended 2024-12-31, so the site uses Mapping Police Violence.
+- The 120th Congress starts 2027-01-03, and several states redrew districts. The lookup uses 119th districts until then.
 
-## Next Steps
-1. ~~Enable GitHub Pages~~ Done: https://prodataman.github.io/CAREN-Act/website/
-2. ~~Upload the SF CAREN Act PDF~~ Done.
-2a. ~~Shared comment backend~~ Done (GitHub Issues). Optional later: allow comments without a GitHub account (would need a hosted backend plus moderation).
-2b. Jan 2027: switch the ZIP→district file to CD120 and the geocoder layer to 120th districts.
-2d. Push workflow files after `gh auth refresh -s workflow`.
-2e. Seed the old laws tracker: check UNC "On the Books" (NC) and the South Carolina project results against the current codes; recruit verifiers per state.
-2f. Send the outreach letters to JULIAN and LDF (drafted 2026-11-08).
-2g. Add Google/Facebook sign-in (Supabase Auth or Firebase) for volunteers and commenters; move volunteer contact details to private storage.
-2h. Add the signers of the Sept 2026 congressional letter asking DOJ to investigate the hangings as allies on the map.
-2i. When keys exist: AI letter helper endpoint on the Azure server (Anthropic key, Haiku 5.5, rate limits, Console spend cap) and the weekly Open States + Congress.gov bill watcher Action with hearing alerts to state volunteers.
-2k. Data follow-ups: add more cities to CITY_CALLS (Detroit, Cincinnati, Dallas…); a one-time Stanford OPP extract of search rates by race; ask Tougaloo for Sundown Towns data; have a volunteer export ADL HEAT and transcribe the LCCR scorecard; consider citing the 911-outcome and BJS figures in the bill's findings.
-2j. Optional: Spanish translations of act.html and the letters (volunteer-reviewed).
-2c. Add recommended data sources (LegiScan, Congress.gov, Stanford Open Policing, city 911 data). See website/data.html.
-3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).
-4. Identify and list specific potential congressional sponsors/champions (especially Judiciary members or newly elected with civil rights records).
-5. Add a short data-methodology page.
-6. Improve suggestion system (export suggestions, optional backend later).
-7. Refine contact form with actual district lookup if possible.
+## Next steps
 
-## Clarifying Questions Outstanding / Resolved
-- Prioritization without filtering: implemented via emphasis markers.
-- Residual vs historical: different colors applied.
-- Allies: color-coded by power/position (samples).
-- Focus on high lynchings/police killings/disproportionate contact + larger minority populations: layers added and prioritized.
-- Bill damages structure: $500 individual + $500 agency implemented in draft.
-- Click-to-suggest on bill paragraphs: implemented (localStorage).
+1. **Owner:** connect `GITHUB_TOKEN` and `GOOGLE_OAUTH_CLIENT_SECRET` to their secrets (README Step A). Then test a website comment and the admin sign-in.
+2. **Owner:** Facebook sign-in (optional, README Step C). Send the outreach letters (Step D).
+3. **2027-01-03:** switch the ZIP file, geocoder vintage and districts to the 120th Congress (README Step E).
+4. Seed the old laws tracker: check UNC "On the Books" (NC) and the South Carolina project findings against current codes, and recruit verifiers in each state.
+5. Add the signers of the Sept 2026 congressional letter asking DOJ to investigate the hanging deaths as allies on the map.
+6. Consider citing the 911-outcome and BJS figures in the bill's findings section.
+7. Data follow-ups:
+   - more cities in `CITY_CALLS` (Detroit, Cincinnati, Dallas);
+   - a one-time Stanford Open Policing extract of search rates by race;
+   - ask Tougaloo for the Sundown Towns data;
+   - a volunteer to export ADL HEAT and transcribe the civil-rights scorecards.
+8. When keys exist:
+   - AI letter helper (Anthropic key, Claude Haiku 5.5, about $0.001 per letter, Console spend cap);
+   - Open States key for legislator names and a weekly state bill watcher with hearing alerts;
+   - Congress.gov key.
+9. Optional: Spanish translations of `act.html` and the letters, reviewed by a volunteer.
 
-## How to Continue on Another Machine/Account
-- Clone or browse https://github.com/ProDataMan/CAREN-Act
-- Read this context.md first for full status.
-- Website: index.html (map + contact Congress), bill.html (draft + public comments), deaths.html (contested deaths + CDC data), laws.html (old laws tracker), history.html, data.html. Shared nav: assets/site.js + site.css.
-- To update files: use GitHub web editor, git, or API tools as available.
-- After any successful change, update this context.md with new progress and revised next steps.
+## History (condensed)
 
----
-*This file is the single source of truth for project status. Update it after every successful action.*
+- **2026-11-08:**
+  - **Foundation:** repo, README, original SF PDF (from sfbos.org), history page, GitHub Pages.
+  - **Map on live data:** EJI, MPV, FBI, ACS, HOLC, segregation states, residual ordinances, allies (House and Senate Judiciary members, Rep. Janelle Bynum, Sup. Shamann Walton), priority score and heat map.
+  - **Draft bill:** in `bill.json`, with public per-paragraph comments through GitHub issues, word diffs, editor acceptance and gold stars.
+  - **Lawmaker lookup:** Census Geocoder, ZIP fallback, letter for each member.
+  - **Contested deaths page:** 5 verified cases, CDC charts, CDC WONDER volunteer export guide.
+  - **Old laws tracker:** issue form, statuses, generated repeal drafts, 30-day follow-up.
+  - **Shared design:** nav and mobile menu.
+  - **Volunteer recruitment:** private Azure SQL sign-up, admin page, privacy page.
+  - **Azure deployment:** following Ohana_Belltown's process.
+  - **GitHub Pages ↔ Azure:** CORS and bearer-token sign-in.
+  - **Take action features:** call scripts, personal story, state and local letters, county share cards, embed widget.
+  - **Recommended data sources added:** district demographics, city 911 outcomes, Monroe Work Today, Mapping Prejudice, BJS.
+- **2026-11-09:**
+  - **Workflows and deploy:** the owner added the `workflow` and `write:packages` scopes, the workflows were pushed, and the ID-based federated credential fixed the deploy (AADSTS700213).
+  - **Comments:** found that none had ever been posted (GitHub's Create step), and added `POST /api/comments` with a clearer fallback.
+  - **County page:** "Use my location", plus the fuller race breakdown, with Asian, Native, Pacific and other shares added to the county and district data.
+  - **Heat map:** explainer on the map page with example views, `?at=` support, `?layers=` made exact, and worked score examples on the data page.
+  - **Workflow fixes:** the refresh and comment workflows now redeploy Azure after their commits, and the covenant listing uses the workflow token.
+  - **The owner's test comment:** it was never posted and lives only in their browser as Pending. Discard removes it.
