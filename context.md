@@ -146,6 +146,8 @@ Create a public GitHub repository and advocacy website to support making the San
    - Race breakdown (window.CarenRace in site.js): groups listed largest first, stopping once the groups shown cover ≥50% of the people-of-color share or once both Black and Hispanic are shown. Used in map pop-ups, county tiles and lawmaker cards (embed.html now loads site.js).
    - Data: counties.json rows gained pct_asian, pct_native, pct_pacific and pct_other_or_multiracial (indices 15–18); districts.json entries gained the same (indices 4–7). The standalone `acs` build refreshes them in place.
 
+18. **2026-11-09:** The user added the ID-based federated credential, and the deploy succeeded (run 42565633712). /api/health: db ok, comments false (GITHUB_TOKEN not set yet), auth not configured. CORS from prodataman.github.io verified. Remaining owner steps: 6b (comment token) and 6 (OAuth).
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.

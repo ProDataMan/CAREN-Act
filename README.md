@@ -46,17 +46,9 @@ Do these **in order**. Steps 1–6b are one-time setup for the Azure deployment.
 
 What's already done: database `CAREN_Act` on `postgresdata`, resource group `CARENAct`, Container Apps environment `caren-act-env`, and Container App `caren-act-server` with its managed identity and settings. The app is still running a placeholder image.
 
-### ⚠️ Right now: one command to unblock the deploy
+### Status (Nov 9, 2026)
 
-Steps 1 and 3 are done. The first deploy (Nov 9) failed at the Azure login with `AADSTS700213: No matching federated identity record`. GitHub now identifies this repo by permanent account and repo IDs: `repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main`. The credential from Step 1 used the older name-only format. Your No_Limit_Auto_Salon repo already has a credential in the new format. Add the matching one for CAREN-Act, then re-run the deploy:
-
-```bash
-APP_ID=$(az ad app list --display-name ohana-belltown-github-deploy --query "[0].appId" -o tsv)
-az ad app federated-credential create --id "$APP_ID" --parameters '{"name":"caren-act-main-withid","issuer":"https://token.actions.githubusercontent.com","subject":"repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main","audiences":["api://AzureADTokenExchange"]}'
-gh run rerun --failed -R ProDataMan/CAREN-Act $(gh run list -R ProDataMan/CAREN-Act -w "Build and deploy server" -L 1 --json databaseId --jq '.[0].databaseId')
-```
-
-`scripts/azure-setup.sh` now creates both credentials, so this won't recur if you rerun it. Then continue with Step 2 (if you haven't run the SQL grant yet), Step 4 and Step 5, and Step 6b to turn on website comments.
+Steps 1–5 are done. The deploy runs on every push, the server is live, and `/api/health` reports `"db":"ok"`. A second federated credential, `caren-act-main-withid`, was added because GitHub now identifies repos by permanent IDs, and `scripts/azure-setup.sh` creates both. **Next: Step 6b (website comments), then Step 6 (sign-in).**
 
 ### Step 1. Let GitHub Actions deploy to Azure (about 2 minutes)
 
