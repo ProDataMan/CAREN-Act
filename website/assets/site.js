@@ -9,6 +9,7 @@
     { href: 'laws.html', label: 'Old laws tracker' },
     { href: 'history.html', label: 'History' },
     { href: 'data.html', label: 'Data' },
+    { href: 'volunteer.html', label: 'Volunteer' },
     { href: 'index.html#contact', label: 'Contact Congress', cta: true }
   ];
   var page = (location.pathname.split('/').pop() || 'index.html');

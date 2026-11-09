@@ -69,6 +69,21 @@ Create a public GitHub repository and advocacy website to support making the San
    - Labels created: residual-law, needs-verification, verified, repeal-requested, repeal-introduced, repealed, not-residual, contested-death.
    - BLOCKER: the gh token lacks the `workflow` scope. The workflow files (bill-comments, refresh-data, laws-followup) are committed locally but NOT pushed. The user must run `gh auth refresh -s workflow && git push`.
 
+12. **2026-11-08 (fourth update):**
+   - Volunteer recruitment:
+     - website/volunteer.html with role cards and a state tile grid counting open `volunteer` issues.
+     - Priority states: 17 segregation states + DC + the top 10 states by high-overlap counties.
+     - Issue form volunteer.yml (state dropdown, roles, background, hours, commitments; no contact details because sign-ups are public).
+     - Labels: volunteer, volunteer-active, cdc-wonder.
+     - "Volunteer" added to the nav; the hamburger breakpoint is now 1080px.
+   - CDC WONDER:
+     - deaths.html#export has step-by-step instructions for two exports: hanging X70/X91/Y20 by state × race × ICD sub-chapter, and injury intent by state × race.
+     - build_data.py `build_cdc_wonder()` parses website/data/cdc_wonder/*.txt into cdc_wonder_states.json (`python3 scripts/build_data.py wonder`), shown as a state table on deaths.html.
+     - Volunteers upload exports through a GitHub issue labeled cdc-wonder.
+   - Outreach letters drafted to JULIAN (Jill Collen Jefferson; "A Crimson Record", Feb 18 2026, 70+ cases in 7 states, database at julianfreedom.org) and the Legal Defense Fund (Aug 24 2026 letters to Congress and the UN). Kept out of the repo and handed to the user.
+   - Lead to follow: congressional Democrats' Sept 2026 letter asking DOJ to investigate the hanging deaths (theGrio). Its signers are potential allies to add to the map.
+   - Planned: Google/Facebook login (e.g. Supabase Auth) so volunteers and commenters don't need GitHub accounts.
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.
@@ -85,7 +100,9 @@ Create a public GitHub repository and advocacy website to support making the San
 2b. Jan 2027: switch the ZIP→district file to CD120 and the geocoder layer to 120th districts.
 2d. Push workflow files after `gh auth refresh -s workflow`.
 2e. Seed the old laws tracker: check UNC "On the Books" (NC) and the South Carolina project results against the current codes; recruit verifiers per state.
-2f. Contact JULIAN and the NAACP LDF about sharing their contested-death case lists.
+2f. Send the outreach letters to JULIAN and LDF (drafted 2026-11-08).
+2g. Add Google/Facebook sign-in (Supabase Auth or Firebase) for volunteers and commenters; move volunteer contact details to private storage.
+2h. Add the signers of the Sept 2026 congressional letter asking DOJ to investigate the hangings as allies on the map.
 2c. Add recommended data sources (LegiScan, Congress.gov, Stanford Open Policing, city 911 data). See website/data.html.
 3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).
 4. Identify and list specific potential congressional sponsors/champions (especially Judiciary members or newly elected with civil rights records).

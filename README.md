@@ -10,6 +10,8 @@ This repository supports efforts to introduce and pass a federal version of San 
 - **Contested hanging deaths & unnatural deaths by race (CDC):** https://prodataman.github.io/CAREN-Act/website/deaths.html
 - **Old laws tracker (get Jim Crow / sundown laws off the books):** https://prodataman.github.io/CAREN-Act/website/laws.html
 - **Data sources & methodology:** https://prodataman.github.io/CAREN-Act/website/data.html
+- **Volunteer as a state ally (verifiers, data exporters, local deliverers):** https://prodataman.github.io/CAREN-Act/website/volunteer.html
+- **CDC WONDER export guide for volunteers:** https://prodataman.github.io/CAREN-Act/website/deaths.html#export
 - **Report an old law:** https://github.com/ProDataMan/CAREN-Act/issues/new?template=residual-law.yml
 - **Report a contested death:** https://github.com/ProDataMan/CAREN-Act/issues/new?template=contested-death.yml
 - **Original SF ordinance (PDF):** https://prodataman.github.io/CAREN-Act/docs/SF-CAREN-Act.pdf
@@ -31,7 +33,9 @@ Supervisor Shamann Walton introduced it in July 2020. It followed the June 2020 
 - `website/deaths.html`: disputed hanging deaths (curated in `website/data/contested_deaths.json`) and CDC charts of hanging/unnatural deaths by race
 - `website/laws.html`: tracker for residual Jim Crow / sundown laws, from report → verification → drafted repeal ordinance or bill → delivery → follow-up
 - `website/assets/site.css`, `website/assets/site.js`: shared header, mobile menu, and footer used by every page
-- `.github/ISSUE_TEMPLATE/`: forms for reporting old laws and contested deaths
+- `website/volunteer.html`: state ally recruitment, with a coverage grid built from `volunteer` issues
+- `website/data/cdc_wonder/`: drop hand-exported CDC WONDER `.txt` files here; the build turns them into `cdc_wonder_states.json`
+- `.github/ISSUE_TEMPLATE/`: forms for reporting old laws and contested deaths, and for volunteering as a state ally
 - `.github/workflows/laws-followup.yml`: daily check that reminds the volunteer on a repeal case after 30 days without an update
 - `website/data.html`: data sources, priority-score methodology, recommended additional sources
 - `website/data/`: generated datasets (do not hand-edit, except the curated `residual_ordinances.json`)
@@ -51,6 +55,19 @@ Supervisor Shamann Walton introduced it in July 2020. It followed the June 2020 
 1. Open the comment's **View on GitHub** link (or the [issue list](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment)).
 2. Add the **`accepted`** label. The `Bill comments` workflow checks that you have write access, merges the proposed text into `website/bill.json`, keeps the previous text in the paragraph's `history`, comments ⭐ on the issue, and closes it. The commenter gets a gold star on the site.
 3. Add the **`hidden`** label to remove spam or abuse from the site.
+
+## State Allies (volunteers)
+
+Volunteers sign up through the [volunteer form](https://github.com/ProDataMan/CAREN-Act/issues/new?template=volunteer.yml) (label `volunteer`). Editors add `volunteer-active` and assign them to reports in their state. Roles:
+
+- law verifier
+- case verifier
+- CDC data exporter
+- local deliverer
+- legal reviewer
+- researcher
+
+Sign-ups are public, so the form asks for no contact details. Planned: Google/Facebook sign-in, which needs a hosted auth backend such as Supabase Auth or Firebase Auth, plus private volunteer records.
 
 ## Old Laws Tracker
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volunteer as a State Ally</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 14px 0; }
+    .role { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; }
+    .role h3 { margin: 0 0 4px; font-size: 1rem; }
+    .role p { margin: 0; font-size: .9rem; color: #333; }
+    .tiles { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; max-width: 720px; margin: 12px 0 6px; }
+    .tile { min-width: 0; overflow: hidden; aspect-ratio: 1; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: .78rem; font-weight: 700; color: #0e2a47; background: #eef1f4; border: 2px solid transparent; position: relative; cursor: default; }
+    .tile .n { font-size: .68rem; font-weight: 600; opacity: .8; }
+    .tile.c1 { background: #b7d3f6; }
+    .tile.c2 { background: #6da7ec; color: #fff; }
+    .tile.c3 { background: #256abf; color: #fff; }
+    .tile.prio { border-color: #c98500; }
+    .tile:focus-visible { outline: 3px solid #f2c14e; }
+    .key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); align-items: center; }
+    .key i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+    .needs { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .needs span { background: #fff4cc; color: #6b4d00; border-radius: 999px; padding: 2px 10px; font-size: .82rem; }
+    .signup { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 14px 0; }
+    @media (max-width: 600px) { .tiles { gap: 2px; } .tile { font-size: .62rem; border-radius: 4px; border-width: 1.5px; } .tile .n { font-size: .55rem; } }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1>Volunteer as a State Ally</h1>
+    <p class="lede">We need people in every state who can check facts against primary sources: confirming an old law is still in the current code, checking the reporting behind a contested death, or delivering a repeal request to their own city council. Nothing gets published or sent until a local ally has verified it.</p>
+
+    <div class="signup">
+      <a class="btn" href="https://github.com/ProDataMan/CAREN-Act/issues/new?template=volunteer.yml" target="_blank" rel="noopener">Sign up as a state ally</a>
+      <span class="note">Takes about 2 minutes. Uses a free GitHub account for now. Sign-in with Google or Facebook is coming.</span>
+    </div>
+
+    <h2>Roles</h2>
+    <div class="roles">
+      <div class="role"><h3>Law verifier</h3><p>Check reported segregation or sundown provisions against your state's or city's <em>current</em> official code, then mark them verified.</p></div>
+      <div class="role"><h3>Case verifier</h3><p>Review the sources behind contested-death reports before they are added to the public list.</p></div>
+      <div class="role"><h3>CDC data exporter</h3><p>Run two short CDC WONDER exports by hand. <a href="deaths.html#export">Step-by-step instructions</a>.</p></div>
+      <div class="role"><h3>Local deliverer</h3><p>Deliver verified repeal requests to your council, commission or state legislators, and post updates.</p></div>
+      <div class="role"><h3>Legal reviewer</h3><p>Attorneys and law students: review draft repeal ordinances and bills before delivery.</p></div>
+      <div class="role"><h3>Researcher</h3><p>Search municipal code libraries, session laws and archives for provisions that were never repealed.</p></div>
+    </div>
+
+    <h2>Coverage by state</h2>
+    <p class="note" id="covNote">Loading sign-ups…</p>
+    <div class="tiles" id="tiles" role="list" aria-label="Volunteers by state"></div>
+    <div class="key"><span><i style="background:#eef1f4"></i>No allies yet</span><span><i style="background:#b7d3f6"></i>1</span><span><i style="background:#6da7ec"></i>2–4</span><span><i style="background:#256abf"></i>5+</span><span><i style="background:#fff;border:2px solid #c98500"></i>Priority state</span></div>
+    <h3>Priority states still needing allies</h3>
+    <div class="needs" id="needs"></div>
+    <p class="note">Priority states required segregated schools by law before 1954 or have the most high-overlap counties on the <a href="index.html">map</a>.</p>
+
+    <h2>What happens after you sign up</h2>
+    <ol>
+      <li>An editor welcomes you on your sign-up issue and adds the <code>volunteer-active</code> label.</li>
+      <li>You get assigned to reports in your state, such as old-law reports from the <a href="laws.html">tracker</a>, contested-death reports, or data exports.</li>
+      <li>You record what you checked and where, citing the official code section or the source URL, in a comment on the report.</li>
+    </ol>
+    <div class="callout info"><b>Privacy:</b> sign-ups are public GitHub issues, so share only what you're comfortable having public. Editors contact you by @mentioning you on GitHub.</div>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const GRID = { AK:[0,0],ME:[11,0],WI:[6,1],VT:[10,1],NH:[11,1],WA:[1,2],ID:[2,2],MT:[3,2],ND:[4,2],MN:[5,2],IL:[6,2],MI:[7,2],NY:[9,2],MA:[10,2],
+      OR:[1,3],NV:[2,3],WY:[3,3],SD:[4,3],IA:[5,3],IN:[6,3],OH:[7,3],PA:[8,3],NJ:[9,3],CT:[10,3],RI:[11,3],CA:[1,4],UT:[2,4],CO:[3,4],NE:[4,4],MO:[5,4],KY:[6,4],
+      WV:[7,4],VA:[8,4],MD:[9,4],DE:[10,4],AZ:[2,5],NM:[3,5],KS:[4,5],AR:[5,5],TN:[6,5],NC:[7,5],SC:[8,5],DC:[9,5],OK:[4,6],LA:[5,6],MS:[6,6],AL:[7,6],GA:[8,6],HI:[0,7],TX:[4,7],FL:[9,7] };
+    const NAMES = { Alabama:'AL',Alaska:'AK',Arizona:'AZ',Arkansas:'AR',California:'CA',Colorado:'CO',Connecticut:'CT',Delaware:'DE','District of Columbia':'DC',Florida:'FL',Georgia:'GA',Hawaii:'HI',Idaho:'ID',Illinois:'IL',Indiana:'IN',Iowa:'IA',Kansas:'KS',Kentucky:'KY',Louisiana:'LA',Maine:'ME',Maryland:'MD',Massachusetts:'MA',Michigan:'MI',Minnesota:'MN',Mississippi:'MS',Missouri:'MO',Montana:'MT',Nebraska:'NE',Nevada:'NV','New Hampshire':'NH','New Jersey':'NJ','New Mexico':'NM','New York':'NY','North Carolina':'NC','North Dakota':'ND',Ohio:'OH',Oklahoma:'OK',Oregon:'OR',Pennsylvania:'PA','Rhode Island':'RI','South Carolina':'SC','South Dakota':'SD',Tennessee:'TN',Texas:'TX',Utah:'UT',Vermont:'VT',Virginia:'VA',Washington:'WA','West Virginia':'WV',Wisconsin:'WI',Wyoming:'WY' };
+    const SEG = ['AL','AR','DE','FL','GA','KY','LA','MD','MS','MO','NC','OK','SC','TN','TX','VA','WV','DC'];
+
+    function render(counts, prio) {
+      const el = document.getElementById('tiles');
+      el.innerHTML = '';
+      Object.entries(GRID).forEach(([st, [c, r]]) => {
+        const n = counts[st] || 0;
+        const t = document.createElement('div');
+        t.className = 'tile' + (n >= 5 ? ' c3' : n >= 2 ? ' c2' : n === 1 ? ' c1' : '') + (prio.has(st) ? ' prio' : '');
+        t.style.gridColumn = (c + 1); t.style.gridRow = (r + 1);
+        t.setAttribute('role', 'listitem'); t.tabIndex = 0;
+        t.title = st + ': ' + n + ' ' + (n === 1 ? 'ally' : 'allies') + (prio.has(st) ? ' (priority state)' : '');
+        t.setAttribute('aria-label', t.title);
+        t.innerHTML = st + '<span class="n">' + n + '</span>';
+        el.appendChild(t);
+      });
+      const needs = Array.from(prio).filter(s => !counts[s]).sort();
+      document.getElementById('needs').innerHTML = needs.length ? needs.map(s => '<span>' + s + '</span>').join('') : '<span>Every priority state has an ally. Thank you!</span>';
+    }
+
+    Promise.all([
+      fetch('https://api.github.com/repos/ProDataMan/CAREN-Act/issues?labels=volunteer&state=open&per_page=100').then(r => r.ok ? r.json() : Promise.reject(new Error('GitHub ' + r.status))),
+      fetch('data/counties.json').then(r => r.json()).catch(() => ({ rows: [] }))
+    ]).then(([issues, cty]) => {
+      const counts = {};
+      issues.filter(i => !i.pull_request).forEach(i => {
+        const m = String(i.body || '').match(/### State\s+([^\n]+)/);
+        const st = m && NAMES[m[1].trim()];
+        if (st) counts[st] = (counts[st] || 0) + 1;
+      });
+      const hi = {}; cty.rows.forEach(r => { if (r[14] >= 3) hi[r[2]] = (hi[r[2]] || 0) + 1; });
+      const prio = new Set(SEG.concat(Object.entries(hi).sort((a, b) => b[1] - a[1]).slice(0, 10).map(e => e[0])));
+      const total = Object.values(counts).reduce((a, b) => a + b, 0);
+      document.getElementById('covNote').textContent = total + ' state all' + (total === 1 ? 'y' : 'ies') + ' signed up in ' + Object.keys(counts).length + ' states.';
+      render(counts, prio);
+    }).catch(e => {
+      document.getElementById('covNote').textContent = 'Could not load sign-ups (' + e.message + ').';
+      render({}, new Set(SEG));
+    });
+  })();
+  </script>
+</body>
+</html>

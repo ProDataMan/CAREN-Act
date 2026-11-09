@@ -493,6 +493,65 @@ def build_cdc_deaths():
     }
 
 
+# ---------------------------------------------------------------- CDC WONDER manual exports (state x race x intent)
+def num(v):
+    v = (v or "").replace(",", "").strip()
+    try:
+        return float(v) if "." in v else int(v)
+    except ValueError:
+        return None  # "Suppressed", "Unreliable", "Not Applicable"
+
+
+def build_cdc_wonder():
+    """Parse tab-delimited CDC WONDER exports dropped into website/data/cdc_wonder/ by volunteers."""
+    folder = os.path.join(OUT, "cdc_wonder")
+    files = sorted(f for f in os.listdir(folder) if f.lower().endswith(".txt")) if os.path.isdir(folder) else []
+    if not files:
+        log("CDC WONDER: no exports yet (website/data/cdc_wonder/*.txt)")
+        return
+    log(f"CDC WONDER: {len(files)} export(s)")
+    rows, meta = [], []
+    for fn in files:
+        with open(os.path.join(folder, fn), encoding="utf-8", errors="replace") as f:
+            lines = f.read().splitlines()
+        data_lines, footer = [], []
+        for ln in lines:
+            if ln.strip().strip('"') == "---":
+                footer = lines[lines.index(ln) + 1:]
+                break
+            data_lines.append(ln)
+        reader = csv.reader(data_lines, delimiter="\t", quotechar='"')
+        header = next(reader, [])
+        col = {h.strip(): i for i, h in enumerate(header)}
+        def find(*names):
+            for n in names:
+                for h, i in col.items():
+                    if h.lower() == n.lower():
+                        return i
+            return None
+        c_state, c_race = find("State"), find("Single Race 6", "Race", "Single Race 3")
+        c_cat = find("UCD - ICD Sub-Chapter", "UCD - Injury Intent", "ICD Sub-Chapter", "Injury Intent", "UCD - ICD-10 Codes", "Cause of death")
+        c_year = find("Year")
+        c_d, c_p, c_r = find("Deaths"), find("Population"), find("Crude Rate")
+        if c_state is None or c_d is None:
+            log(f"  skipped {fn}: needs at least State and Deaths columns")
+            continue
+        n = 0
+        for r in reader:
+            if not r or len(r) <= c_d or (r[0] or "").strip().lower() == "total" or not r[c_state].strip():
+                continue
+            g = lambda c: r[c].strip() if c is not None and c < len(r) else ""
+            rows.append({"file": fn, "state": g(c_state), "race": g(c_race) or "All", "category": g(c_cat) or "All",
+                         "year": g(c_year) or None, "deaths": num(g(c_d)), "population": num(g(c_p)),
+                         "rate": num(g(c_r)), "flag": None if num(g(c_d)) is not None else g(c_d)})
+            n += 1
+        dataset = next((x.strip('"').split(":", 1)[1].strip() for x in footer if x.strip('"').startswith("Dataset:")), "")
+        meta.append({"file": fn, "rows": n, "dataset": dataset})
+    write_json("cdc_wonder_states.json", {"files": meta, "rows": rows})
+    manifest["datasets"]["cdc_wonder"] = {"source": "https://wonder.cdc.gov/", "publisher": "CDC WONDER (manual exports by volunteers)",
+                                          "files": meta, "records": len(rows)}
+
+
 # ---------------------------------------------------------------- County priority index
 def pctl(values, q):
     v = sorted(values)
@@ -545,10 +604,13 @@ def build_priority(counties, acs, lynch, police, police_black, hate):
 def main():
     os.makedirs(OUT, exist_ok=True)
     only = set(sys.argv[1:])
-    if only == {"cdc"}:
+    if only <= {"cdc", "wonder"} and only:
         global manifest
         manifest = json.load(open(os.path.join(OUT, "manifest.json")))
-        build_cdc_deaths()
+        if "cdc" in only:
+            build_cdc_deaths()
+        if "wonder" in only:
+            build_cdc_wonder()
         json.dump(manifest, open(os.path.join(OUT, "manifest.json"), "w"), indent=2)
         return
     counties, by_name = build_gazetteer()
@@ -562,6 +624,7 @@ def main():
     if not only or "zip" in only:
         build_zip_districts()
     build_cdc_deaths()
+    build_cdc_wonder()
     manifest_path = os.path.join(OUT, "manifest.json")
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)

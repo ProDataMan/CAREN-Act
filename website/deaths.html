@@ -49,7 +49,7 @@
     <h2 id="cases">Disputed cases</h2>
     <p class="note" id="casesNote">Loading…</p>
     <div class="cases" id="cases-list"></div>
-    <p><a class="btn" href="https://github.com/ProDataMan/CAREN-Act/issues/new?template=contested-death.yml" target="_blank" rel="noopener">Report a case</a> <a class="btn secondary" href="index.html?layers=deaths">See them on the map</a></p>
+    <p><a class="btn" href="https://github.com/ProDataMan/CAREN-Act/issues/new?template=contested-death.yml" target="_blank" rel="noopener">Report a case</a> <a class="btn secondary" href="index.html?layers=deaths">See them on the map</a> <a class="btn secondary" href="volunteer.html">Volunteer to verify</a></p>
     <p class="note">Reports need at least one reputable source: news coverage, a court filing, or an official record. An editor checks the sources before a case is added. Please don't post private information about families.</p>
 
     <h3>What other investigations have found</h3>
@@ -66,9 +66,34 @@
     <h2>Gaps we are working to close</h2>
     <ul>
       <li><b>No national case registry.</b> No public database lists individual deaths ruled suicide that families dispute. This page's case list, together with partners such as JULIAN and the NAACP Legal Defense Fund (which has asked Congress for a commission on suspicious Black deaths), is a start.</li>
-      <li><b>State and county numbers by race</b> have to be exported by hand from CDC WONDER (Underlying Cause of Death, ICD-10 codes X70, X91 and Y20, grouped by state, year and race). Drop the export into <code>data/cdc_wonder/</code> and open an issue, and we'll add it to the map.</li>
+      <li><b>State numbers by race</b> have to be exported by hand from CDC WONDER. <a href="#export">Volunteers: here's how.</a></li>
       <li><b>Deaths in custody.</b> Under the Death in Custody Reporting Act, agencies must report deaths in jails and prisons, but the Justice Department's published data is incomplete.</li>
     </ul>
+    <h2 id="state-data">Hanging and unnatural deaths by state and race</h2>
+    <div id="wonder"><p class="note">No state exports yet. Volunteers can add them using the steps below.</p></div>
+
+    <h2 id="export">Volunteer guide: exporting CDC WONDER data</h2>
+    <p>CDC only allows state-level data by race to be downloaded by hand through its website. Each export takes about 10 minutes, and there are two. CDC's <a href="https://wonder.cdc.gov/DataUse.html">data use restrictions</a> apply: never try to identify individuals, and never work out or publish counts that WONDER marks “Suppressed.”</p>
+    <h3>Export 1: hanging deaths by state, race and official classification</h3>
+    <ol>
+      <li>Open <a href="https://wonder.cdc.gov/ucd-icd10-expanded.html">Underlying Cause of Death, Single Race</a> and click <b>I Agree</b> on the data use restrictions.</li>
+      <li><b>Section 1</b> (Organize table layout): Group results by <b>State</b>, then by <b>Single Race 6</b>, then by <b>UCD - ICD Sub-Chapter</b>. Leave the other two boxes as <i>None</i>.</li>
+      <li><b>Section 2</b> (Location): leave as <i>The United States</i>, which means all states.</li>
+      <li><b>Section 4</b> (Year): leave <i>All Years</i>. Combining years keeps fewer numbers suppressed.</li>
+      <li><b>Section 6</b> (Cause of death): choose <b>ICD-10 Codes</b>. Use <i>Search</i> to find and add these three codes, then click <b>Add</b> after each:
+        <ul><li><code>X70</code>: intentional self-harm by hanging, strangulation and suffocation</li>
+            <li><code>X91</code>: assault by hanging, strangulation and suffocation</li>
+            <li><code>Y20</code>: hanging, strangulation and suffocation, undetermined intent</li></ul></li>
+      <li><b>Section 7</b> (Other options): check <b>Export Results</b> and <b>Show Suppressed Values</b>. Click <b>Send</b>. A <code>.txt</code> file downloads.</li>
+    </ol>
+    <h3>Export 2: all unnatural (injury) deaths by state, race and intent</h3>
+    <ol>
+      <li>Start a new request on the same page. <b>Section 1</b>: group by <b>State</b>, <b>Single Race 6</b>, then <b>UCD - Injury Intent</b>.</li>
+      <li><b>Section 6</b>: choose <b>Injury Intent and Mechanism</b>. Under Intent, select <i>Unintentional, Suicide, Homicide, Undetermined</i> and <i>Legal Intervention / Operations of War</i> (Ctrl/Cmd-click to select several). Leave Mechanism as <i>All Causes of Death</i>.</li>
+      <li><b>Section 7</b>: check <b>Export Results</b> and <b>Show Suppressed Values</b>, then click <b>Send</b>.</li>
+    </ol>
+    <h3>Send us the files</h3>
+    <p><a class="btn" href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BCDC%20WONDER%20export%5D%20&labels=cdc-wonder&body=Attach%20the%20.txt%20export(s)%20here%20(drag%20and%20drop).%20Do%20not%20edit%20the%20files." target="_blank" rel="noopener">Upload exports on GitHub</a> <span class="note">Drag the <code>.txt</code> files into the issue. An editor adds them to <code>website/data/cdc_wonder/</code>, and the table above fills in on the next data refresh.</span></p>
   </main>
   <footer id="siteFooter"></footer>
 
@@ -166,6 +191,25 @@
       draw();
       let raf; new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }).observe(box);
     }
+
+    // ---------------- CDC WONDER state exports (if any) ----------------
+    fetch('data/cdc_wonder_states.json').then(r => r.ok ? r.json() : null).then(w => {
+      if (!w || !w.rows.length) return;
+      const box = document.getElementById('wonder');
+      const cats = Array.from(new Set(w.rows.map(r => r.category)));
+      const races = ['Black or African American', 'White', 'American Indian or Alaska Native', 'Asian'];
+      const short = { 'Black or African American': 'Black', White: 'White', 'American Indian or Alaska Native': 'Native American', Asian: 'Asian' };
+      box.innerHTML = '<label class="note">Classification <select id="wCat">' + cats.map(c => '<option>' + esc(c) + '</option>').join('') + '</select></label>' +
+        '<div class="table-wrap"><table class="data" id="wTable"></table></div><p class="note">Deaths (crude rate per 100,000). “Suppressed” means CDC withholds counts under 10. Source: CDC WONDER, ' + esc(w.files.map(f => f.dataset).filter(Boolean).join('; ')) + '.</p>';
+      const draw = () => {
+        const cat = document.getElementById('wCat').value;
+        const states = Array.from(new Set(w.rows.filter(r => r.category === cat).map(r => r.state))).sort();
+        const cell = (st, rc) => { const r = w.rows.find(x => x.state === st && x.race === rc && x.category === cat); if (!r) return '—'; return r.deaths == null ? '<span class="note">' + esc(r.flag) + '</span>' : r.deaths.toLocaleString() + (r.rate != null ? ' <span class="note">(' + r.rate + ')</span>' : ''); };
+        document.getElementById('wTable').innerHTML = '<tr><th>State</th>' + races.map(r => '<th>' + short[r] + '</th>').join('') + '</tr>' + states.map(st => '<tr><td>' + esc(st) + '</td>' + races.map(rc => '<td>' + cell(st, rc) + '</td>').join('') + '</tr>').join('');
+      };
+      document.getElementById('wCat').addEventListener('change', draw);
+      draw();
+    }).catch(() => {});
 
     // ---------------- CDC data ----------------
     const RACE_VAR = { Black: '--s-black', White: '--s-white', Hispanic: '--s-hispanic' };

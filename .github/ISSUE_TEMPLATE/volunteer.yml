@@ -1,0 +1,103 @@
+name: Volunteer as a state ally
+description: Help verify old laws, contested-death reports and CDC data in your state, or deliver repeal requests locally.
+title: "[Volunteer] <state> — <your role>"
+labels: ["volunteer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for volunteering! **This sign-up is public**, so please don't include your email address, phone number or home address. Editors will reply on this issue by @mentioning you, and GitHub will notify you.
+        (Sign-in with Google or Facebook is planned. Until then, a free GitHub account is needed.)
+  - type: dropdown
+    id: state
+    attributes:
+      label: State
+      options:
+        - Alabama
+        - Alaska
+        - Arizona
+        - Arkansas
+        - California
+        - Colorado
+        - Connecticut
+        - Delaware
+        - District of Columbia
+        - Florida
+        - Georgia
+        - Hawaii
+        - Idaho
+        - Illinois
+        - Indiana
+        - Iowa
+        - Kansas
+        - Kentucky
+        - Louisiana
+        - Maine
+        - Maryland
+        - Massachusetts
+        - Michigan
+        - Minnesota
+        - Mississippi
+        - Missouri
+        - Montana
+        - Nebraska
+        - Nevada
+        - New Hampshire
+        - New Jersey
+        - New Mexico
+        - New York
+        - North Carolina
+        - North Dakota
+        - Ohio
+        - Oklahoma
+        - Oregon
+        - Pennsylvania
+        - Rhode Island
+        - South Carolina
+        - South Dakota
+        - Tennessee
+        - Texas
+        - Utah
+        - Vermont
+        - Virginia
+        - Washington
+        - West Virginia
+        - Wisconsin
+        - Wyoming
+    validations: { required: true }
+  - type: input
+    id: area
+    attributes: { label: City or county you know well (optional), placeholder: "Bolivar County" }
+  - type: checkboxes
+    id: roles
+    attributes:
+      label: How would you like to help?
+      options:
+        - label: "Law verifier: check reported provisions against the current official state or city code"
+        - label: "Case verifier: check sources for contested-death reports"
+        - label: "CDC data exporter: run CDC WONDER exports by hand (instructions provided)"
+        - label: "Local deliverer: deliver repeal requests to my city council, county commission or legislators"
+        - label: "Legal reviewer: review draft repeal ordinances and bills (attorneys, law students)"
+        - label: "Researcher: search code libraries and archives for old laws"
+  - type: dropdown
+    id: background
+    attributes:
+      label: Background
+      options: [Attorney, Law student, Paralegal, Librarian or archivist, Journalist, Academic researcher, Community organizer, Government or legislative staff, Other]
+  - type: dropdown
+    id: hours
+    attributes:
+      label: Time available
+      options: [1–2 hours a month, 3–5 hours a month, 6–10 hours a month, More than 10 hours a month]
+  - type: textarea
+    id: experience
+    attributes: { label: Relevant experience (optional) }
+  - type: checkboxes
+    id: agree
+    attributes:
+      label: Commitments
+      options:
+        - label: I will verify against primary sources (the current official code, court records, official reports or reputable reporting) before marking anything verified.
+          required: true
+        - label: I won't post private information about families, victims or officials.
+          required: true
