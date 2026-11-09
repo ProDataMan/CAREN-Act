@@ -76,6 +76,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 - **Comments go through GitHub issues** so moderation, history and editor approval stay in one place. The server posts on visitors' behalf only with a narrowly scoped token, validated and rate-limited.
 - **Node instead of Vapor for the server:** no maintained SQL Server driver for Swift.
 - **Race breakdowns:** groups largest first, stopping once the groups shown cover ≥50% of the people-of-color share or both Black and Hispanic are shown (user's rule).
+- **Education content is labeled by evidence level, and modules are reviewed by an expert before publishing.** Religious or conspiracy stories (the Curse of Ham, race myths built on Enoch, "Planned Parenthood was founded to exterminate Black Americans") are explained and labeled as beliefs, next to what the record shows. One weak claim would discredit the documented ones.
 - **Bill damages:** $500 from the caller plus $500 from the responding agency (user's structure).
 
 ## Key legal and data notes
@@ -104,6 +105,7 @@ A public repository and advocacy site supporting a federal version of San Franci
    - Open States key for legislator names and a weekly state bill watcher with hearing alerts;
    - Congress.gov key.
 9. Optional: Spanish translations of `act.html` and the letters, reviewed by a volunteer.
+10. **Education component ("Learn"):** plan in `docs/education-plan.md`. It covers 10 history modules with evidence labels (documented / debated / belief or myth), a History map layer group with a year slider, quests tied to real tasks, and state team scores. Phase 1 builds the evidence policy, the timeline, and modules 1 (why the fear), 5 (science and reproductive control) and 8 (policing). Waiting on the owner's answers to the open questions at the end of the plan.
 
 ## History (condensed)
 
@@ -126,4 +128,5 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **County page:** "Use my location", plus the fuller race breakdown, with Asian, Native, Pacific and other shares added to the county and district data.
   - **Heat map:** explainer on the map page with example views, `?at=` support, `?layers=` made exact, and worked score examples on the data page.
   - **Workflow fixes:** the refresh and comment workflows now redeploy Azure after their commits, and the covenant listing uses the workflow token.
+  - **Education plan:** `docs/education-plan.md` drafted (systemic racism history, map history layers, gamified quests).
   - **The owner's test comment:** it was never posted and lives only in their browser as Pending. Discard removes it.

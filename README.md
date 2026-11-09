@@ -116,6 +116,10 @@ Member names and contact details update on their own from `congress-legislators`
 
 ---
 
+## Coming next: Learn (education)
+
+The plan for a history-and-education section is in [docs/education-plan.md](docs/education-plan.md). It covers 10 modules on how systemic racism was built, with every claim labeled by evidence level, plus history layers on the map and quests that turn learning into action. It isn't built yet. The open questions at the end of the plan need the owner's answers.
+
 ## Ongoing editor work
 
 | Task | Where | How |
