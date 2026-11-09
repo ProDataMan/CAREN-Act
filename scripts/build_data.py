@@ -684,7 +684,11 @@ def polygon_center(geom):
 
 def build_covenants():
     log("Mapping Prejudice racial covenants")
-    listing = json.loads(fetch(f"https://api.github.com/repos/{COVENANT_REPO}/contents", binary=False))
+    req = urllib.request.Request(f"https://api.github.com/repos/{COVENANT_REPO}/contents", headers={"User-Agent": UA})
+    if os.environ.get("GITHUB_TOKEN"):
+        req.add_header("Authorization", "Bearer " + os.environ["GITHUB_TOKEN"])
+    with urllib.request.urlopen(req, timeout=120) as r:
+        listing = json.loads(r.read())
     rows, per = [], {}
     for item in listing:
         if item["type"] != "dir":
