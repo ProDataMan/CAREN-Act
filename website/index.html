@@ -170,7 +170,7 @@
       return '<b>' + esc(r[1]) + ', ' + esc(r[2]) + '</b><table>' +
         '<tr><td>Priority score</td><td><b>' + r[13].toFixed(2) + '</b> (' + r[14] + ' of 4 factors high)</td></tr>' +
         '<tr><td>Population</td><td>' + fmt(r[5]) + '</td></tr>' +
-        '<tr><td>Minority share</td><td>' + r[6] + '% (Black ' + r[7] + '%, Hispanic ' + r[8] + '%)</td></tr>' +
+        '<tr><td>Race &amp; ethnicity</td><td>' + esc(CarenRace.describe(r[6], CarenRace.fromCounty(r))) + '</td></tr>' +
         '<tr><td>Lynching victims 1877–1950</td><td>' + r[9] + '</td></tr>' +
         '<tr><td>Police killings since 2013</td><td>' + r[10] + ' (' + r[11] + ' Black victims)</td></tr>' +
         '<tr><td>Race/ethnicity hate crimes</td><td>' + r[12] + '</td></tr></table>' +

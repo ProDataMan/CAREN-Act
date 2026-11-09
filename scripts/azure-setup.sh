@@ -17,6 +17,17 @@ az ad app federated-credential create --id "$APP_ID" --parameters '{
   "audiences": ["api://AzureADTokenExchange"]
 }'
 
+# GitHub now sends subjects with immutable owner/repo IDs (repo:Owner@<id>/Repo@<id>:...).
+# Add that form too; the IDs come from the GitHub API.
+OWNER_ID=$(gh api "repos/$REPO" --jq .owner.id)
+REPO_ID=$(gh api "repos/$REPO" --jq .id)
+az ad app federated-credential create --id "$APP_ID" --parameters "{
+  \"name\": \"caren-act-main-withid\",
+  \"issuer\": \"https://token.actions.githubusercontent.com\",
+  \"subject\": \"repo:ProDataMan@${OWNER_ID}/CAREN-Act@${REPO_ID}:ref:refs/heads/main\",
+  \"audiences\": [\"api://AzureADTokenExchange\"]
+}"
+
 # 2. Allow that identity to update resources in the CARENAct resource group only
 az role assignment create --assignee "$APP_ID" --role Contributor \
   --scope "/subscriptions/$SUB/resourceGroups/CARENAct"

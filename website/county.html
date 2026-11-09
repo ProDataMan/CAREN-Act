@@ -31,7 +31,9 @@
       <input id="q" list="countyList" placeholder="Type a county, e.g. Hinds County, MS" aria-label="County" autocomplete="off">
       <datalist id="countyList"></datalist>
       <button class="btn" type="submit">Show</button>
+      <button class="btn secondary" type="button" id="locate">📍 Use my location</button>
     </form>
+    <p class="note" id="locNote">Your location is sent only to the U.S. Census Bureau to look up your county. It is never sent to us or stored.</p>
     <div id="out" hidden>
       <p class="rank" id="rank"></p>
       <div class="tiles" id="tiles"></div>
@@ -77,13 +79,55 @@
       show(r);
     });
 
+    // ---- Use my location: browser geolocation -> Census geocoder county (JSONP), nearest county as fallback
+    function jsonp(url) {
+      return new Promise((resolve, reject) => {
+        const cb = 'cty' + Date.now(), s = document.createElement('script');
+        const t = setTimeout(() => { done(); reject(new Error('timeout')); }, 15000);
+        function done() { clearTimeout(t); delete window[cb]; s.remove(); }
+        window[cb] = d => { done(); resolve(d); };
+        s.onerror = () => { done(); reject(new Error('unavailable')); };
+        s.src = url + '&format=jsonp&callback=' + cb;
+        document.head.appendChild(s);
+      });
+    }
+    function nearest(lat, lon) {
+      let best = null, bd = Infinity;
+      rows.forEach(r => { const d = (r[3] - lat) ** 2 + ((r[4] - lon) * Math.cos(lat * Math.PI / 180)) ** 2; if (d < bd) { bd = d; best = r; } });
+      return best;
+    }
+    $('locate').addEventListener('click', () => {
+      const note = $('locNote'), btn = $('locate');
+      if (!navigator.geolocation) { note.textContent = 'Your browser can’t share its location. Type your county instead.'; return; }
+      btn.disabled = true; note.textContent = 'Finding your location…';
+      navigator.geolocation.getCurrentPosition(async pos => {
+        const { latitude: lat, longitude: lon } = pos.coords;
+        let r = null;
+        try {
+          const d = await jsonp('https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=' + lon + '&y=' + lat + '&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties');
+          const c = d.result && d.result.geographies && d.result.geographies.Counties && d.result.geographies.Counties[0];
+          if (c) r = rows.find(x => x[0] === c.GEOID);
+        } catch (e) { /* fall back below */ }
+        const approx = !r;
+        if (!r) r = nearest(lat, lon);
+        btn.disabled = false;
+        if (!r) { note.textContent = 'We couldn’t match your location to a U.S. county. Type your county instead.'; return; }
+        note.textContent = approx ? 'Showing the nearest county to your location (the Census lookup didn’t respond).' : 'Showing the county for your current location.';
+        history.replaceState(null, '', '?f=' + r[0]);
+        show(r);
+      }, err => {
+        btn.disabled = false;
+        note.textContent = err.code === 1 ? 'Location permission was denied. You can type your county instead.' : 'We couldn’t get your location. Type your county instead.';
+      }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 600000 });
+    });
+
     function stats(r) {
       const hc = manifest.hate_crimes || {}, pk = manifest.police_killings || {};
       return [
         { n: r[9], l: 'documented victims of racial terror lynching, 1877–1950 (EJI)', hi: r[9] > 0 },
         { n: r[10], l: 'people killed by police since 2013' + (pk.latest_incident ? ' (through ' + pk.latest_incident + ')' : '') + ', ' + fmt(r[11]) + ' of them Black', hi: r[10] > 0 },
         { n: r[12], l: 'race or ethnicity hate crimes reported to the FBI' + (hc.years ? ', ' + hc.years : ''), hi: r[12] > 0 },
-        { n: r[6] + '%', l: 'of residents are people of color (Black ' + r[7] + '%, Hispanic ' + r[8] + '%)' },
+        { n: CarenRace.pct(r[6]), l: 'of residents are people of color' + CarenRace.describe(r[6], CarenRace.fromCounty(r)).replace(/^[^(]*/, ' ') },
         { n: fmt(r[5]), l: 'residents (Census ACS)' }
       ];
     }

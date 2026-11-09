@@ -185,11 +185,13 @@ def build_acs():
         kind = dist_prefix.get(g[:9])
         if kind:
             try:
-                tot, nhw, blk, hisp = (int(r[ix[k]]) for k in ("B03002_E001", "B03002_E003", "B03002_E004", "B03002_E012"))
+                tot, nhw, blk, hisp, aian, asn, nhpi, oth, multi = (int(r[ix[k]]) for k in (
+                    "B03002_E001", "B03002_E003", "B03002_E004", "B03002_E012", "B03002_E005", "B03002_E006", "B03002_E007", "B03002_E008", "B03002_E009"))
             except (ValueError, KeyError):
                 continue
             if tot > 0:
-                districts[kind][g[9:]] = [tot, round(100 * (tot - nhw) / tot, 1), round(100 * blk / tot, 1), round(100 * hisp / tot, 1)]
+                pc = lambda x: round(100 * x / tot, 1)  # noqa: E731
+                districts[kind][g[9:]] = [tot, pc(tot - nhw), pc(blk), pc(hisp), pc(asn), pc(aian), pc(nhpi), pc(oth + multi)]
             continue
         if not g.startswith("0500000US"):
             continue
@@ -199,6 +201,8 @@ def build_acs():
             blk = int(r[ix["B03002_E004"]])
             aian = int(r[ix["B03002_E005"]])
             asn = int(r[ix["B03002_E006"]])
+            nhpi = int(r[ix["B03002_E007"]])
+            oth = int(r[ix["B03002_E008"]]) + int(r[ix["B03002_E009"]])
             hisp = int(r[ix["B03002_E012"]])
         except (ValueError, KeyError):
             continue
@@ -211,8 +215,10 @@ def build_acs():
             "hispanic": round(100 * hisp / tot, 1),
             "native": round(100 * aian / tot, 1),
             "asian": round(100 * asn / tot, 1),
+            "pacific": round(100 * nhpi / tot, 1),
+            "other": round(100 * oth / tot, 1),
         }
-    write_json("districts.json", {"fields": ["pop", "pct_minority", "pct_black", "pct_hispanic"], "vintage": f"ACS 5-year {y - 4}-{y}", **districts})
+    write_json("districts.json", {"fields": ["pop", "pct_minority", "pct_black", "pct_hispanic", "pct_asian", "pct_native", "pct_pacific", "pct_other_or_multiracial"], "vintage": f"ACS 5-year {y - 4}-{y}", **districts})
     manifest["datasets"]["districts"] = {"source": url, "publisher": "U.S. Census Bureau", "vintage": f"ACS 5-year {y - 4}-{y}",
                                          "congressional": len(districts["cd"]), "state_senate": len(districts["sldu"]),
                                          "state_house": len(districts["sldl"])}
@@ -819,6 +825,26 @@ def pctl(values, q):
     return v[min(len(v) - 1, int(q * (len(v) - 1)))]
 
 
+COUNTY_EXTRA_FIELDS = ["pct_asian", "pct_native", "pct_pacific", "pct_other_or_multiracial"]
+
+
+def county_extra(a):
+    return [a.get("asian", 0), a.get("native", 0), a.get("pacific", 0), a.get("other", 0)]
+
+
+def refresh_county_demographics(acs):
+    """Standalone `acs` run: update the race columns in counties.json without rebuilding everything else."""
+    path = os.path.join(OUT, "counties.json")
+    d = json.load(open(path, encoding="utf-8"))
+    d["fields"] = d["fields"][:15] + COUNTY_EXTRA_FIELDS
+    for r in d["rows"]:
+        a = acs.get(r[0])
+        if a:
+            r[5:9] = [a["pop"], a["minority"], a["black"], a["hispanic"]]
+        r[15:] = county_extra(a or {})
+    write_json("counties.json", d)
+
+
 def build_priority(counties, acs, lynch, police, police_black, hate):
     log("Priority index")
     # Smoothed per-100k rates: adding a 25k-person prior keeps tiny counties with one incident from dominating.
@@ -842,11 +868,11 @@ def build_priority(counties, acs, lynch, police, police_black, hate):
         overlap = sum([lynch.get(f, 0) >= max(thr["l"], 1), rates_p.get(f, 0) >= thr["p"] and police.get(f, 0) >= 2,
                        rates_h.get(f, 0) >= thr["h"] and hate.get(f, 0) >= 2, a["minority"] >= thr["m"]])
         rows.append([f, c["name"], c["st"], c["lat"], c["lon"], a["pop"], a["minority"], a["black"], a["hispanic"],
-                     lynch.get(f, 0), police.get(f, 0), police_black.get(f, 0), hate.get(f, 0), score, overlap])
+                     lynch.get(f, 0), police.get(f, 0), police_black.get(f, 0), hate.get(f, 0), score, overlap] + county_extra(a))
     rows.sort(key=lambda r: -r[13])
     write_json("counties.json", {
         "fields": ["fips", "name", "state", "lat", "lon", "pop", "pct_minority", "pct_black", "pct_hispanic",
-                   "lynchings", "police_killings", "police_killings_black", "race_hate_crimes", "score", "overlap"],
+                   "lynchings", "police_killings", "police_killings_black", "race_hate_crimes", "score", "overlap"] + COUNTY_EXTRA_FIELDS,
         "weights": {"lynchings": 0.3, "police_killings_per_capita": 0.3, "race_hate_crimes_per_capita": 0.15, "pct_minority": 0.25},
         "rows": rows,
     })
@@ -865,7 +891,7 @@ def main():
     only = set(sys.argv[1:])
     # Standalone builders: `python3 scripts/build_data.py calls covenants` reruns just those and keeps the rest of the manifest.
     standalone = {"cdc": build_cdc_deaths, "wonder": build_cdc_wonder, "calls": build_city_calls, "covenants": build_covenants,
-                  "mwt": build_mwt, "bjs": build_bjs, "acs": build_acs}
+                  "mwt": build_mwt, "bjs": build_bjs, "acs": lambda: refresh_county_demographics(build_acs()[0])}
     if only and only <= set(standalone):
         global manifest
         manifest = json.load(open(os.path.join(OUT, "manifest.json")))

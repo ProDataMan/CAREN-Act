@@ -136,6 +136,16 @@ Create a public GitHub repository and advocacy website to support making the San
    - data.html: new dataset rows, a #calls outcomes table, a BJS table, and a status column on the recommendations (✅ / 🔑 / ✋).
    - Not added: LegiScan, Congress.gov and Police Scorecard (keys); Stanford OPP (multi-GB per city); Sundown Towns (permission); ADL HEAT (blocks automated download); LCCR/NAACP report cards (PDFs).
 
+17. **2026-11-09 (deploy, comments, county location):**
+   - The user ran `gh auth refresh -s workflow,write:packages`. The four workflows were pushed, and the Azure secrets were already set (Step 1 ran).
+   - The first deploy failed at OIDC login (AADSTS700213). GitHub sends ID-based subjects (`repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main`). Creating the federated credential was blocked in auto mode, so the README has the exact command for the user. azure-setup.sh now creates both forms.
+   - Comments weren't appearing because none had ever been posted. The repo had zero issues: the flow needs a GitHub sign-in and clicking Create, and the labeling workflow wasn't pushed yet.
+   - Fix: POST /api/comments on the server creates the labeled issue with GITHUB_TOKEN (a fine-grained PAT, Issues read/write on this repo only; README Step 6b). It validates the marker, JSON block and title; rate-limits 10/hour per IP; has a honeypot; breaks @mentions; and adds "Posted from the website by: <name>". /api/health reports `comments: true/false`.
+   - bill.html posts through the API when available (optional name field), otherwise falls back to GitHub with a clear "not saved until you click Create" note. parseIssue shows `data.name` (or Anonymous) for website comments.
+   - county.html: "Use my location" button (browser geolocation → Census geocoder coordinates → county; nearest-centroid fallback).
+   - Race breakdown (window.CarenRace in site.js): groups listed largest first, stopping once the groups shown cover ≥50% of the people-of-color share or once both Black and Hispanic are shown. Used in map pop-ups, county tiles and lawmaker cards (embed.html now loads site.js).
+   - Data: counties.json rows gained pct_asian, pct_native, pct_pacific and pct_other_or_multiracial (indices 15–18); districts.json entries gained the same (indices 4–7). The standalone `acs` build refreshes them in place.
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.

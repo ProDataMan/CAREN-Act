@@ -77,7 +77,8 @@
   var districts = function () { return once('dist', function () { return getJSON(BASE + 'data/districts.json').catch(function () { return {}; }); }); };
   function demo(d) {
     if (!d) return '';
-    return Math.round(d[1]) + '% people of color (Black ' + Math.round(d[2]) + '%, Hispanic ' + Math.round(d[3]) + '%), population ' + d[0].toLocaleString();
+    var R = window.CarenRace;
+    return (R ? R.describe(d[1], R.fromDistrict(d)) : Math.round(d[1]) + '% people of color') + ', population ' + d[0].toLocaleString();
   }
 
   function storyPara(me) {

@@ -41,6 +41,31 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); toggle.focus(); } });
   }
 
+  // "63% people of color (Asian 35%, Hispanic 16%)": list groups largest first, and stop once the groups
+  // shown add up to at least half of all people of color, or once both Black and Hispanic have been shown.
+  function pct(v) { return (v >= 9.95 || v === 0 ? Math.round(v) : Math.round(v * 10) / 10) + '%'; }
+  window.CarenRace = {
+    pct: pct,
+    // groups: { Black: 4.7, Hispanic: 16.2, Asian: 34.9, ... } as percentages of the whole population
+    describe: function (minority, groups) {
+      var list = Object.keys(groups).map(function (k) { return [k, Number(groups[k]) || 0]; })
+        .filter(function (g) { return g[1] > 0; }).sort(function (a, b) { return b[1] - a[1]; });
+      var shown = [], sum = 0, sawB = false, sawH = false;
+      for (var i = 0; i < list.length; i++) {
+        shown.push(list[i][0] + ' ' + pct(list[i][1]));
+        sum += list[i][1];
+        if (list[i][0] === 'Black') sawB = true;
+        if (list[i][0] === 'Hispanic') sawH = true;
+        if (sum >= minority / 2 || (sawB && sawH)) break;
+      }
+      return pct(minority) + ' people of color' + (shown.length ? ' (' + shown.join(', ') + ')' : '');
+    },
+    // counties.json row -> groups
+    fromCounty: function (r) { return { Black: r[7], Hispanic: r[8], Asian: r[15], 'Native American': r[16], 'Pacific Islander': r[17], 'Other or multiracial': r[18] }; },
+    // districts.json entry -> groups
+    fromDistrict: function (d) { return { Black: d[2], Hispanic: d[3], Asian: d[4], 'Native American': d[5], 'Pacific Islander': d[6], 'Other or multiracial': d[7] }; }
+  };
+
   var footer = document.getElementById('siteFooter');
   if (footer) {
     footer.className = 'site-footer';

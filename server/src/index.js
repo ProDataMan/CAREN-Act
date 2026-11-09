@@ -184,7 +184,7 @@ app.post('/auth/logout', cors, async (req, res, next) => {
 app.use('/api', cors);
 
 app.get('/api/health', async (req, res) => {
-  const out = { ok: true, db: configured() ? 'unknown' : 'not-configured', auth: { google: PROVIDERS.google.enabled(), facebook: PROVIDERS.facebook.enabled() } };
+  const out = { ok: true, db: configured() ? 'unknown' : 'not-configured', comments: Boolean(process.env.GITHUB_TOKEN), auth: { google: PROVIDERS.google.enabled(), facebook: PROVIDERS.facebook.enabled() } };
   if (configured()) {
     try {
       const pool = await Promise.race([getPool(), new Promise((_, rej) => setTimeout(() => rej(new Error('waking')), 4000))]);
@@ -243,6 +243,46 @@ app.post('/api/volunteers', rateLimit(5, 3600e3), async (req, res, next) => {
       .query(`INSERT INTO dbo.volunteers (user_id, name, email, phone, state, area, roles, background, hours, experience, source)
               VALUES (@uid, @name, @email, @phone, @state, @area, @roles, @bg, @hours, @exp, @src)`);
     res.status(201).json({ ok: true });
+  } catch (e) { next(e); }
+});
+
+// ---------- Bill comments posted from the website (no GitHub account needed) ----------
+// The server creates a labeled GitHub issue in the same format the bill page builds, so the
+// existing pipeline (display, editor approval, gold stars) works unchanged.
+// Needs GITHUB_TOKEN: a fine-grained token with Issues read/write on this repository only.
+const GH_REPO = process.env.GITHUB_REPO || 'ProDataMan/CAREN-Act';
+const COMMENT_MARKER = '<!-- caren-bill-comment -->';
+app.post('/api/comments', rateLimit(10, 3600e3), async (req, res, next) => {
+  try {
+    if (!process.env.GITHUB_TOKEN) return res.status(503).json({ error: 'Posting from the website is not set up yet.' });
+    const b = req.body || {};
+    if (b.website) return res.json({ ok: true }); // honeypot
+    const title = String(b.title || '').trim();
+    let body = String(b.body || '');
+    const name = String(b.name || '').replace(/[<>@\[\]`*_#]/g, '').trim().slice(0, 60);
+    const m = body.match(/```json\n(\{.*\})\n```/);
+    let data = null;
+    try { data = m && JSON.parse(m[1]); } catch (e) { data = null; }
+    if (!/^\[Bill (comment|edit)\] .{1,180}$/.test(title) || !body.startsWith(COMMENT_MARKER) || body.length > 12000 ||
+        !data || !/^[\w.-]{1,40}$/.test(String(data.para || '')) || !/^[a-z0-9]{6,40}$/i.test(String(data.token || ''))) {
+      return res.status(400).json({ error: 'That comment could not be read. Please reload the page and try again.' });
+    }
+    const user = await currentUser(req).catch(() => null);
+    const by = (user && user.name) || name || 'Anonymous';
+    // Break @mentions so a comment can't notify arbitrary GitHub users.
+    body = body.replace(/@(?=[\w-])/g, '@​');
+    body = body.replace(COMMENT_MARKER + '\n', COMMENT_MARKER + '\n**Posted from the website by:** ' + by + (user ? ' (signed in)' : '') + '\n');
+    const r = await fetch('https://api.github.com/repos/' + GH_REPO + '/issues', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + process.env.GITHUB_TOKEN, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'caren-act-server', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, body, labels: ['bill-comment'] })
+    });
+    if (!r.ok) {
+      console.error('GitHub issue create failed', r.status, (await r.text()).slice(0, 300));
+      return res.status(502).json({ error: 'GitHub did not accept the comment. Please try again later.' });
+    }
+    const j = await r.json();
+    res.json({ ok: true, number: j.number, url: j.html_url, author: by });
   } catch (e) { next(e); }
 });
 

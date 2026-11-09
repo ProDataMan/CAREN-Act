@@ -42,9 +42,21 @@ Until the setup steps below are finished, the Azure API isn't running. GitHub Pa
 
 ## Owner's to-do list (step by step)
 
-Do these **in order**. Steps 1–6 are one-time setup for the Azure deployment. Step 7 onward covers ongoing work.
+Do these **in order**. Steps 1–6b are one-time setup for the Azure deployment. Step 7 onward covers ongoing work.
 
 What's already done: database `CAREN_Act` on `postgresdata`, resource group `CARENAct`, Container Apps environment `caren-act-env`, and Container App `caren-act-server` with its managed identity and settings. The app is still running a placeholder image.
+
+### ⚠️ Right now: one command to unblock the deploy
+
+Steps 1 and 3 are done. The first deploy (Nov 9) failed at the Azure login with `AADSTS700213: No matching federated identity record`. GitHub now identifies this repo by permanent account and repo IDs: `repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main`. The credential from Step 1 used the older name-only format. Your No_Limit_Auto_Salon repo already has a credential in the new format. Add the matching one for CAREN-Act, then re-run the deploy:
+
+```bash
+APP_ID=$(az ad app list --display-name ohana-belltown-github-deploy --query "[0].appId" -o tsv)
+az ad app federated-credential create --id "$APP_ID" --parameters '{"name":"caren-act-main-withid","issuer":"https://token.actions.githubusercontent.com","subject":"repo:ProDataMan@9538094/CAREN-Act@1450580633:ref:refs/heads/main","audiences":["api://AzureADTokenExchange"]}'
+gh run rerun --failed -R ProDataMan/CAREN-Act $(gh run list -R ProDataMan/CAREN-Act -w "Build and deploy server" -L 1 --json databaseId --jq '.[0].databaseId')
+```
+
+`scripts/azure-setup.sh` now creates both credentials, so this won't recur if you rerun it. Then continue with Step 2 (if you haven't run the SQL grant yet), Step 4 and Step 5, and Step 6b to turn on website comments.
 
 ### Step 1. Let GitHub Actions deploy to Azure (about 2 minutes)
 
@@ -58,7 +70,7 @@ bash scripts/azure-setup.sh  # read it first, it's short
 
 The script does three things:
 
-1. Adds a federated credential named `caren-act-main` to the `ohana-belltown-github-deploy` app registration, so GitHub Actions on this repo's `main` branch can sign in to Azure without a password.
+1. Adds federated credentials named `caren-act-main` and `caren-act-main-withid` (GitHub's newer ID-based format) to the `ohana-belltown-github-deploy` app registration, so GitHub Actions on this repo's `main` branch can sign in to Azure without a password.
 2. Gives that identity **Contributor on the `CARENAct` resource group only**. It gets no new access to `Ohana` or the SQL server.
 3. Sets the repo secrets `AZURE_CLIENT_ID`, `AZURE_TENANT_ID` and `AZURE_SUBSCRIPTION_ID`, the same names Ohana uses.
 
@@ -167,6 +179,24 @@ Sign-in is needed for the admin page. Your email is already the admin (`ADMIN_EM
 ```bash
 az containerapp update -n caren-act-server -g CARENAct --set-env-vars ADMIN_EMAILS=you@example.com,other@example.com
 ```
+
+### Step 6b. Let visitors post bill comments without a GitHub account (about 3 minutes)
+
+Without this, commenting opens GitHub with the comment pre-filled. The comment isn't saved until the person signs in to GitHub and clicks **Create**, and most people won't. With it, the Azure server posts the comment for them as a labeled GitHub issue, and it appears on the bill page right away.
+
+1. Create a fine-grained token: https://github.com/settings/personal-access-tokens/new
+   - **Token name:** `caren-act-comments`. **Expiration:** 1 year. Add a calendar reminder to renew it.
+   - **Repository access:** *Only select repositories* → `CAREN-Act`
+   - **Permissions → Repository → Issues:** *Read and write*. Leave everything else as *No access*.
+   - Click **Generate token** and copy it.
+2. Store it on the app:
+   ```bash
+   az containerapp secret set -n caren-act-server -g CARENAct --secrets github-token=PASTE_TOKEN_HERE
+   az containerapp update -n caren-act-server -g CARENAct --set-env-vars GITHUB_TOKEN=secretref:github-token
+   ```
+3. Check that `curl https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io/api/health` shows `"comments":true`. The bill page's button then reads **Post comment** instead of **Continue to post on GitHub**.
+
+Website comments show "Posted from the website by: <name>" (or *Anonymous*). Each IP address can post 10 per hour, and @mentions are disabled so a comment can't notify GitHub users. Remove spam by adding the `hidden` label.
 
 ### Step 7. Ongoing editor work (on GitHub)
 

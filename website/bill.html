@@ -79,7 +79,7 @@
   <main>
     <div class="banner" id="statusBanner">Loading bill and public comments…</div>
     <details class="admin"><summary>How comments work / for editors</summary>
-      <p>Comments are public and stored as <a href="https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment" target="_blank" rel="noopener">GitHub issues</a>. Posting one requires a free GitHub account: after you write your suggestion here, GitHub opens with it pre-filled and you click <em>Create</em>.</p>
+      <p>Comments are public and stored as <a href="https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment" target="_blank" rel="noopener">GitHub issues</a>. You can post directly from this page, no account needed. If the campaign server is unavailable, GitHub opens with your comment pre-filled instead, and you click <em>Create</em> there (free GitHub account).</p>
       <p><strong>Editors:</strong> open a comment's “View on GitHub” link. Add the <code>accepted</code> label to approve it: an automated workflow merges the proposed text into the bill, records the previous version, and the commenter receives a gold star. Add the <code>hidden</code> label to remove spam or abuse from this page.</p>
     </details>
     <div id="bill"></div>
@@ -95,6 +95,7 @@
   </aside>
 
   <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
   <script>
   (function () {
     'use strict';
@@ -148,6 +149,7 @@
     function buildIssue(pid, c) {
       const p = paraById[pid];
       const data = { v: 1, para: pid, rev: p.rev, token: c.token };
+      if (c.name) data.name = c.name;
       if (c.proposed) data.proposed = c.proposed;
       const json = JSON.stringify(data).replace(/`/g, '\\u0060');
       let body = MARKER + '\n**Paragraph:** ' + titleById[pid] + ' (id ' + pid + ', revision ' + p.rev + ')\n**Page:** ' + PAGE_URL + '\n\n';
@@ -173,10 +175,15 @@
       return {
         id: 'gh' + issue.number, number: issue.number, url: issue.html_url, para: String(data.para), rev: data.rev,
         proposed: typeof data.proposed === 'string' ? data.proposed : '', text, token: data.token,
-        author: issue.user && issue.user.login, avatar: issue.user && issue.user.avatar_url,
+        author: data.name || (/\*\*Posted from the website by:\*\*/.test(body) ? 'Anonymous' : issue.user && issue.user.login),
+        avatar: data.name || /\*\*Posted from the website by:\*\*/.test(body) ? '' : issue.user && issue.user.avatar_url,
         time: issue.created_at, accepted: labels.includes('accepted'), hidden: labels.includes('hidden')
       };
     }
+
+    // Post through the campaign server when it has a GitHub token configured; otherwise fall back to GitHub.
+    let apiComments = false;
+    if (window.CarenAPI) window.CarenAPI.get('/api/health').then(h => { apiComments = Boolean(h.comments); }).catch(() => {});
 
     async function fetchIssues() {
       const cached = (() => { try { return JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch (e) { return null; } })();
@@ -301,7 +308,7 @@
           (c.text ? '<div>' + esc(c.text).replace(/\n/g, '<br>') + '</div>' : '') +
           (c.proposed ? '<div class="hint">▸ Click to see proposed changes</div><div class="diff">' + diffWords(base, c.proposed) + '</div>' : '') +
           '<div class="actions">' + (c.url ? '<a target="_blank" rel="noopener" href="' + esc(c.url) + '">View on GitHub</a>' : '') +
-          (c.pending ? '<a target="_blank" rel="noopener" href="' + esc(c.postUrl) + '">Finish posting on GitHub</a><button class="linkish" type="button" data-discard="' + esc(c.token) + '">Discard</button>' : '') +
+          (c.pending ? '<span class="note">Not saved yet. Click Create on GitHub to publish it.</span> <a target="_blank" rel="noopener" href="' + esc(c.postUrl) + '">Finish posting on GitHub</a><button class="linkish" type="button" data-discard="' + esc(c.token) + '">Discard</button>' : '') +
           '</div></div>';
       });
       body.innerHTML = html;
@@ -327,8 +334,11 @@
         '<label for="cProposed">Suggested revision: edit the text below, or leave it unchanged to comment only</label>' +
         '<textarea id="cProposed" rows="8"></textarea>' +
         '<label for="cText">Comment / rationale</label><textarea id="cText" placeholder="Why should this change?"></textarea>' +
-        '<p class="note">Comments are public. Next, GitHub opens with your comment pre-filled. Sign in (free) and click <em>Create</em> to publish it.</p>' +
-        '<div class="btn-row"><button class="btn" type="submit">Continue to post on GitHub ↗</button>' +
+        (apiComments ? '<label for="cName">Your name <span class="note">(optional, shown publicly)</span></label><input id="cName" maxlength="60" autocomplete="name" style="width:100%;padding:8px;font:inherit;border:1px solid #bbb;border-radius:4px">' +
+          '<input id="cWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">' +
+          '<p class="note">Comments are public and appear here within a minute.</p>'
+          : '<p class="note">Comments are public. Next, GitHub opens with your comment pre-filled. Sign in (free) and click <em>Create</em>. <b>Your comment is not saved until you click Create on GitHub.</b></p>') +
+        '<div class="btn-row"><button class="btn" type="submit" id="cSubmit">' + (apiComments ? 'Post comment' : 'Continue to post on GitHub ↗') + '</button>' +
         '<button class="btn secondary" type="button" id="viewAll">View comments (' + (comments[pid] || []).length + ')</button></div>' +
         '</form>';
       const prop = document.getElementById('cProposed');
@@ -340,8 +350,26 @@
         const raw = prop.value.trim();
         const proposed = raw && raw !== original ? raw : '';
         if (!text && !proposed) { alert('Please edit the paragraph text or enter a comment.'); return; }
-        const c = { token: uid(), para: pid, rev: paraById[pid].rev, text, proposed, time: new Date().toISOString() };
+        const nameEl = document.getElementById('cName');
+        const c = { token: uid(), para: pid, rev: paraById[pid].rev, text, proposed, time: new Date().toISOString(), name: nameEl ? nameEl.value.trim().slice(0, 60) : '' };
         const issue = buildIssue(pid, c);
+        if (apiComments) {
+          const btn = document.getElementById('cSubmit');
+          btn.disabled = true; btn.textContent = 'Posting…';
+          window.CarenAPI.post('/api/comments', { title: issue.title, body: issue.body, name: c.name, website: (document.getElementById('cWebsite') || {}).value })
+            .then(r => {
+              (comments[pid] = comments[pid] || []).push(Object.assign({}, c, { author: r.author || c.name || 'Anonymous', url: r.url, id: 'gh' + r.number, number: r.number }));
+              try { sessionStorage.removeItem(CACHE_KEY); } catch (err) {}
+              refreshHighlights();
+              renderList(pid);
+            })
+            .catch(err => {
+              alert((err && err.message ? err.message + ' ' : '') + 'You can still post it through GitHub instead.');
+              apiComments = false;
+              btn.disabled = false; btn.textContent = 'Continue to post on GitHub ↗';
+            });
+          return;
+        }
         let url = 'https://github.com/' + REPO + '/issues/new?title=' + encodeURIComponent(issue.title) + '&body=' + encodeURIComponent(issue.body);
         if (url.length > 7800) {
           // Too long for a URL: copy the body and open a blank issue
