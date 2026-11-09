@@ -19,10 +19,10 @@ A public repository and advocacy site supporting a federal version of San Franci
 | Area | State |
 |---|---|
 | GitHub Pages | Live |
-| Azure | Live. Image deployed for commit 0f5a9bb+. `/api/health`: `db ok`, `comments false`, `google false`, `facebook false` |
+| Azure | Live, deployed for commit c359e78 (Learn). `/api/health`: `comments true`, `google true`, `facebook false`. Migration 002 applied, and `/api/learn/sync` tested live |
 | Workflows | All four pushed. Deploy succeeds. Refresh run tested by hand on 2026-11-09 |
-| Comments | `github-token` secret exists on the app, but the `GITHUB_TOKEN` setting isn't connected to it. Command in README Step A |
-| Google sign-in | `GOOGLE_OAUTH_CLIENT_ID` is set and the `google-client-secret` secret exists, but `GOOGLE_OAUTH_CLIENT_SECRET=secretref:google-client-secret` isn't set (same command) |
+| Comments | `GITHUB_TOKEN` is connected (2026-11-09). Posting from the website is on; no live test comment yet |
+| Google sign-in | Connected (2026-11-09). Not tested end to end yet |
 | Facebook sign-in | Not started |
 | Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
 | Learn | Live. Hub `learn.html`, renderer `module.html`, content `data/learn.json`. Modules 1, 5, 8 and 10 drafted; 2, 3, 4, 6, 7 and 9 outlined. Not reviewed by a historian yet; recruiting through the volunteer role `history-reviewer` |
@@ -97,7 +97,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 
 ## Next steps
 
-1. **Owner:** connect `GITHUB_TOKEN` and `GOOGLE_OAUTH_CLIENT_SECRET` to their secrets (README Step A). Then test a website comment and the admin sign-in.
+1. **Owner:** test a website comment, the admin sign-in and the Learn profile sign-in. The env vars were connected on 2026-11-09.
 2. **Owner:** Facebook sign-in (optional, README Step C). Send the outreach letters (Step D).
 3. **2027-01-03:** switch the ZIP file, geocoder vintage and districts to the 120th Congress (README Step E).
 4. Seed the old laws tracker: check UNC "On the Books" (NC) and the South Carolina project findings against current codes, and recruit verifiers in each state.

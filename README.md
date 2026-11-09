@@ -41,8 +41,8 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | GitHub Pages site | ✅ Live, redeploys on every push to `main` |
 | Azure server + database | ✅ Live. Deploys on every push. `/api/health` reports `"db":"ok"` |
 | Volunteer sign-up (private, Azure SQL) | ✅ Works on both copies of the site. No sign-ups yet |
-| Bill comments | ⚠️ The comment token is stored on Azure but not switched on (see [Step A](#a-switch-on-website-comments-1-minute)). Until then, comments go through GitHub's **Create** page |
-| Google sign-in | ⚠️ Client ID and secret are stored, but the secret isn't switched on (see [Step B](#b-finish-google-sign-in-1-minute)) |
+| Bill comments | ✅ Switched on (Nov 9): the website posts comments directly. A first live test comment is still to come |
+| Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
 | Learn section | ✅ Live: 4 modules drafted (1, 5, 8, 10), 6 outlined. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
