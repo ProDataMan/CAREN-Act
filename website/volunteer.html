@@ -23,6 +23,21 @@
     .needs { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
     .needs span { background: #fff4cc; color: #6b4d00; border-radius: 999px; padding: 2px 10px; font-size: .82rem; }
     .signup { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 14px 0; }
+    .vform { display: none; border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: #fafbfc; margin: 14px 0; }
+    .vform.on { display: block; }
+    .vform .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 14px; }
+    .vform label { display: block; font-size: .85rem; font-weight: 600; }
+    .vform input[type=text], .vform input[type=email], .vform input[type=tel], .vform select, .vform textarea { width: 100%; padding: 9px; font: inherit; border: 1px solid #bbb; border-radius: 6px; background: #fff; }
+    .vform fieldset { border: 0; padding: 0; margin: 12px 0 0; }
+    .vform legend { font-size: .85rem; font-weight: 600; margin-bottom: 4px; }
+    .vform .check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; margin: 6px 0; }
+    .vform .check input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
+    .vform .hp { position: absolute; left: -5000px; }
+    .signin { display: none; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+    .signin.on { display: flex; }
+    .msg { margin-top: 10px; font-size: .92rem; }
+    .msg.err { color: #b3261e; }
+    .msg.ok { color: #1b5e20; font-weight: 600; }
     @media (max-width: 600px) { .tiles { gap: 2px; } .tile { font-size: .62rem; border-radius: 4px; border-width: 1.5px; } .tile .n { font-size: .55rem; } }
   </style>
 </head>
@@ -32,9 +47,36 @@
     <h1>Volunteer as a State Ally</h1>
     <p class="lede">We need people in every state who can check facts against primary sources: confirming an old law is still in the current code, checking the reporting behind a contested death, or delivering a repeal request to their own city council. Nothing gets published or sent until a local ally has verified it.</p>
 
+    <form class="vform" id="vform" novalidate>
+      <h2 style="margin-top:0">Sign up</h2>
+      <div class="signin" id="signin"><span class="note">Optional: sign in to fill in your name and email</span></div>
+      <p class="note" id="who"></p>
+      <div class="grid">
+        <div><label for="vName">Name</label><input type="text" id="vName" autocomplete="name" required></div>
+        <div><label for="vEmail">Email</label><input type="email" id="vEmail" autocomplete="email" required></div>
+        <div><label for="vPhone">Phone (optional)</label><input type="tel" id="vPhone" autocomplete="tel"></div>
+        <div><label for="vState">State</label><select id="vState" required><option value="">Choose…</option></select></div>
+        <div><label for="vArea">City or county you know well (optional)</label><input type="text" id="vArea"></div>
+        <div><label for="vBg">Background</label><select id="vBg"><option value="">Choose…</option><option>Attorney</option><option>Law student</option><option>Paralegal</option><option>Librarian or archivist</option><option>Journalist</option><option>Academic researcher</option><option>Community organizer</option><option>Government or legislative staff</option><option>Other</option></select></div>
+        <div><label for="vHours">Time available</label><select id="vHours"><option value="">Choose…</option><option>1–2 hours a month</option><option>3–5 hours a month</option><option>6–10 hours a month</option><option>More than 10 hours a month</option></select></div>
+      </div>
+      <fieldset><legend>How would you like to help?</legend>
+        <label class="check"><input type="checkbox" name="role" value="law-verifier"> Law verifier</label>
+        <label class="check"><input type="checkbox" name="role" value="case-verifier"> Case verifier</label>
+        <label class="check"><input type="checkbox" name="role" value="cdc-exporter"> CDC data exporter</label>
+        <label class="check"><input type="checkbox" name="role" value="local-deliverer"> Local deliverer</label>
+        <label class="check"><input type="checkbox" name="role" value="legal-reviewer"> Legal reviewer</label>
+        <label class="check"><input type="checkbox" name="role" value="researcher"> Researcher</label>
+      </fieldset>
+      <label for="vExp" style="margin-top:10px">Relevant experience (optional)</label><textarea id="vExp" rows="3"></textarea>
+      <label class="check" style="margin-top:10px"><input type="checkbox" id="vAgree"> I'll verify against primary sources before marking anything verified, and I won't post private information about families, victims or officials.</label>
+      <input class="hp" type="text" id="vWebsite" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="signup" style="margin-bottom:0"><button class="btn" type="submit">Sign up</button><span class="note">Your contact details stay private. Only campaign editors see them.</span></div>
+      <div class="msg" id="vMsg" role="status"></div>
+    </form>
     <div class="signup">
-      <a class="btn" href="https://github.com/ProDataMan/CAREN-Act/issues/new?template=volunteer.yml" target="_blank" rel="noopener">Sign up as a state ally</a>
-      <span class="note">Takes about 2 minutes. Uses a free GitHub account for now. Sign-in with Google or Facebook is coming.</span>
+      <a class="btn" id="ghSignup" href="https://github.com/ProDataMan/CAREN-Act/issues/new?template=volunteer.yml" target="_blank" rel="noopener">Sign up as a state ally</a>
+      <span class="note" id="ghNote">Takes about 2 minutes and uses a free GitHub account.</span>
     </div>
 
     <h2>Roles</h2>
@@ -92,11 +134,61 @@
       document.getElementById('needs').innerHTML = needs.length ? needs.map(s => '<span>' + s + '</span>').join('') : '<span>Every priority state has an ally. Thank you!</span>';
     }
 
+    // ---------------- Private sign-up via the campaign API (Azure) ----------------
+    const AZURE = 'https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io';
+    const sameOrigin = /azurecontainerapps\.io$|^localhost$|^127\./.test(location.hostname);
+    const API = sameOrigin ? '' : AZURE;
+    const apiCoverage = fetch(API + '/api/volunteers/coverage').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    const sel = document.getElementById('vState');
+    Object.entries(NAMES).sort().forEach(([n, a]) => sel.insertAdjacentHTML('beforeend', '<option value="' + a + '">' + n + '</option>'));
+    fetch(API + '/api/health').then(r => r.json()).then(h => {
+      if (!h.ok || h.db === 'not-configured' || h.db === 'error') return;
+      document.getElementById('vform').classList.add('on');
+      document.getElementById('ghSignup').textContent = 'Or sign up with GitHub';
+      document.getElementById('ghSignup').classList.add('secondary');
+      document.getElementById('ghNote').textContent = 'Public sign-up on GitHub, if you prefer.';
+      if (sameOrigin && (h.auth.google || h.auth.facebook)) {
+        const si = document.getElementById('signin');
+        const next = encodeURIComponent(location.pathname);
+        if (h.auth.google) si.insertAdjacentHTML('beforeend', '<a class="btn secondary" href="/auth/google?next=' + next + '">Sign in with Google</a>');
+        if (h.auth.facebook) si.insertAdjacentHTML('beforeend', '<a class="btn secondary" href="/auth/facebook?next=' + next + '">Sign in with Facebook</a>');
+        si.classList.add('on');
+        fetch('/api/me', { credentials: 'same-origin' }).then(r => r.json()).then(me => {
+          if (!me.signedIn) return;
+          si.classList.remove('on');
+          document.getElementById('who').textContent = 'Signed in as ' + (me.name || me.email) + '.';
+          if (me.name) document.getElementById('vName').value = me.name;
+          if (me.email) document.getElementById('vEmail').value = me.email;
+        }).catch(() => {});
+      }
+    }).catch(() => {});
+    document.getElementById('vform').addEventListener('submit', e => {
+      e.preventDefault();
+      const msg = document.getElementById('vMsg');
+      const body = {
+        name: document.getElementById('vName').value, email: document.getElementById('vEmail').value, phone: document.getElementById('vPhone').value,
+        state: sel.value, area: document.getElementById('vArea').value, background: document.getElementById('vBg').value,
+        hours: document.getElementById('vHours').value, experience: document.getElementById('vExp').value,
+        roles: Array.from(document.querySelectorAll('input[name=role]:checked')).map(c => c.value),
+        agree: document.getElementById('vAgree').checked, website: document.getElementById('vWebsite').value
+      };
+      msg.className = 'msg'; msg.textContent = 'Sending… (the first sign-up of the day can take up to a minute while the database wakes up)';
+      fetch(API + '/api/volunteers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: sameOrigin ? 'same-origin' : 'omit', body: JSON.stringify(body) })
+        .then(r => r.json().then(j => ({ ok: r.ok, j })))
+        .then(({ ok, j }) => {
+          if (!ok) throw new Error(j.error || 'Sign-up failed');
+          msg.className = 'msg ok'; msg.textContent = 'Thank you! An editor will contact you about verification work in your state.';
+          e.target.querySelectorAll('input, select, textarea, button').forEach(x => x.disabled = true);
+        })
+        .catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
+    });
+
     Promise.all([
       fetch('https://api.github.com/repos/ProDataMan/CAREN-Act/issues?labels=volunteer&state=open&per_page=100').then(r => r.ok ? r.json() : Promise.reject(new Error('GitHub ' + r.status))),
-      fetch('data/counties.json').then(r => r.json()).catch(() => ({ rows: [] }))
-    ]).then(([issues, cty]) => {
-      const counts = {};
+      fetch('data/counties.json').then(r => r.json()).catch(() => ({ rows: [] })),
+      apiCoverage
+    ]).then(([issues, cty, apiCounts]) => {
+      const counts = Object.assign({}, apiCounts);
       issues.filter(i => !i.pull_request).forEach(i => {
         const m = String(i.body || '').match(/### State\s+([^\n]+)/);
         const st = m && NAMES[m[1].trim()];

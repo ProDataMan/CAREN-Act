@@ -84,6 +84,25 @@ Create a public GitHub repository and advocacy website to support making the San
    - Lead to follow: congressional Democrats' Sept 2026 letter asking DOJ to investigate the hanging deaths (theGrio). Its signers are potential allies to add to the map.
    - Planned: Google/Facebook login (e.g. Supabase Auth) so volunteers and commenters don't need GitHub accounts.
 
+13. **2026-11-08 (Azure deployment, following Ohana_Belltown's process):**
+   - Ohana's process: GitHub Actions builds the Docker image, pushes it to GHCR (public package), then runs `az containerapp update` through OIDC with app registration `ohana-belltown-github-deploy` (appId c7d8073d-…). That registration is shared with No_Limit_Auto_Salon via one federated credential per repo plus Contributor on each resource group.
+   - "Database server" = Azure SQL server **postgresdata.database.windows.net** (SQL Server despite the name) in RG Ohana. Existing DB: Ohana_Data (free serverless). The Ohana app itself stores JSON files and doesn't use it.
+   - CREATED:
+     - DB **CAREN_Act** on postgresdata (GP_S_Gen5 serverless, free limit, auto-pause 60 min, local backup redundancy).
+     - RG **CARENAct** (centralus), environment **caren-act-env**, container app **caren-act-server** (system-assigned identity principal e184de7e-b9a5-41b6-9467-855ad5312ae4, 0.25 vCPU/0.5Gi, min 0 / max 2 replicas). Currently on the placeholder image.
+     - App URL: https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io
+     - Env vars set: DB_SERVER, DB_NAME, PUBLIC_BASE_URL, CORS_ORIGINS, NODE_ENV, PORT, ADMIN_EMAILS.
+   - Code:
+     - server/ (Node 22 + Express + mssql, managed-identity auth, migrations, volunteers API, Google/Facebook OAuth gated by env vars, admin endpoints).
+     - server/Dockerfile (repo-root build context).
+     - .github/workflows/deploy-server.yml (local commit; needs workflow scope).
+     - website/volunteer.html private sign-up form; website/admin.html.
+   - BLOCKED (Claude's auto-mode refused permission grants; the user must run these):
+     - scripts/azure-setup.sh: federated credential `caren-act-main`, Contributor on CARENAct, repo secrets AZURE_CLIENT_ID/TENANT_ID/SUBSCRIPTION_ID.
+     - server/sql/grant-app-identity.sql in the Portal query editor (creates the DB user for the managed identity).
+     - `gh auth refresh -s workflow,write:packages && git push`, then make the GHCR package caren-act-server public.
+   - Later: new Google/Facebook OAuth clients for CAREN (don't reuse Ohana's), then set the env vars on the container app.
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.

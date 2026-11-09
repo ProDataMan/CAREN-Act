@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Volunteer Admin</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+    .toolbar select, .toolbar input { padding: 8px; font: inherit; border: 1px solid #bbb; border-radius: 6px; }
+    td select { padding: 4px; font: inherit; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page-wide">
+    <h1>Volunteer Admin</h1>
+    <p class="note" id="status">Checking sign-in…</p>
+    <div id="signin"></div>
+    <div class="toolbar" id="toolbar" hidden>
+      <label>State <select id="fState"><option value="">All</option></select></label>
+      <label>Status <select id="fStatus"><option value="">All</option><option>new</option><option>active</option><option>inactive</option><option>withdrawn</option></select></label>
+      <input type="search" id="fText" placeholder="Search name, email, area">
+      <button class="btn secondary" type="button" id="csv">Download CSV</button>
+    </div>
+    <div class="table-wrap"><table class="data" id="tbl"></table></div>
+  </main>
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const status = document.getElementById('status');
+    let rows = [];
+    function draw() {
+      const st = document.getElementById('fState').value, ss = document.getElementById('fStatus').value, q = document.getElementById('fText').value.toLowerCase();
+      const list = rows.filter(r => (!st || r.state === st) && (!ss || r.status === ss) && (!q || [r.name, r.email, r.area].join(' ').toLowerCase().includes(q)));
+      document.getElementById('tbl').innerHTML = '<tr><th>Date</th><th>Name</th><th>Email</th><th>Phone</th><th>State</th><th>Area</th><th>Roles</th><th>Background</th><th>Hours</th><th>Experience</th><th>Status</th></tr>' +
+        list.map(r => '<tr><td>' + esc(String(r.created_at).slice(0, 10)) + '</td><td>' + esc(r.name) + '</td><td><a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a></td><td>' + esc(r.phone) + '</td><td>' + esc(r.state) + '</td><td>' + esc(r.area) + '</td><td>' + esc(String(r.roles).replace(/,/g, ', ')) + '</td><td>' + esc(r.background) + '</td><td>' + esc(r.hours) + '</td><td>' + esc(r.experience) + '</td>' +
+          '<td><select data-id="' + r.id + '">' + ['new', 'active', 'inactive', 'withdrawn'].map(s => '<option' + (s === r.status ? ' selected' : '') + '>' + s + '</option>').join('') + '</select></td></tr>').join('');
+      document.querySelectorAll('select[data-id]').forEach(s => s.addEventListener('change', () => {
+        fetch('/api/admin/volunteers/' + s.dataset.id, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: s.value }) })
+          .then(r => { if (!r.ok) throw new Error(); rows.find(x => x.id == s.dataset.id).status = s.value; }).catch(() => alert('Could not update status'));
+      }));
+      status.textContent = list.length + ' of ' + rows.length + ' volunteers';
+    }
+    fetch('/api/me').then(r => r.json()).then(me => {
+      if (!me.signedIn) {
+        status.textContent = 'Sign in with an admin account.';
+        document.getElementById('signin').innerHTML = '<a class="btn" href="/auth/google?next=/website/admin.html">Sign in with Google</a> <a class="btn secondary" href="/auth/facebook?next=/website/admin.html">Sign in with Facebook</a>';
+        return;
+      }
+      if (!me.isAdmin) { status.textContent = 'Signed in as ' + (me.email || me.name) + ', which is not an admin account.'; return; }
+      return fetch('/api/admin/volunteers').then(r => r.json()).then(data => {
+        rows = data;
+        Array.from(new Set(rows.map(r => r.state))).sort().forEach(s => document.getElementById('fState').insertAdjacentHTML('beforeend', '<option>' + esc(s) + '</option>'));
+        document.getElementById('toolbar').hidden = false;
+        ['fState', 'fStatus', 'fText'].forEach(id => document.getElementById(id).addEventListener('input', draw));
+        draw();
+      });
+    }).catch(() => { status.textContent = 'The admin API is only available on the Azure-hosted site.'; });
+    document.getElementById('csv').addEventListener('click', () => {
+      const cols = ['created_at', 'name', 'email', 'phone', 'state', 'area', 'roles', 'background', 'hours', 'experience', 'status'];
+      const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => { let v = String(r[c] == null ? '' : r[c]); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }).join(','))).join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'caren-volunteers.csv'; a.click();
+    });
+  })();
+  </script>
+</body>
+</html>

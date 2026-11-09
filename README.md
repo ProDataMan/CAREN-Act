@@ -16,7 +16,33 @@ This repository supports efforts to introduce and pass a federal version of San 
 - **Report a contested death:** https://github.com/ProDataMan/CAREN-Act/issues/new?template=contested-death.yml
 - **Original SF ordinance (PDF):** https://prodataman.github.io/CAREN-Act/docs/SF-CAREN-Act.pdf
 
-https://prodataman.github.io/CAREN-Act/ redirects to the site. Pages deploys from the `main` branch, repository root.
+https://prodataman.github.io/CAREN-Act/ redirects to the site.
+
+## Azure deployment (site + API + database)
+
+The same site also runs on Azure with a small API and a private database. It uses the same deployment process and Azure account as Ohana_Belltown.
+
+- **URL:** https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io/website/
+- **Admin (volunteer list):** `/website/admin.html` (sign in with Google or Facebook using an email in `ADMIN_EMAILS`)
+- **App:** Azure Container App `caren-act-server` in resource group `CARENAct` (Central US), environment `caren-act-env`, scales to zero when idle
+- **Database:** `CAREN_Act` on the existing Azure SQL server `postgresdata.database.windows.net` (resource group `Ohana`), free serverless tier that pauses when idle. The app signs in with its **managed identity**, so there is no database password.
+- **Deploy:** `.github/workflows/deploy-server.yml` builds `server/Dockerfile`, pushes `ghcr.io/prodataman/caren-act-server:<sha>`, then runs `az containerapp update` through OIDC with the same `ohana-belltown-github-deploy` app registration. It runs on every push to `main` that touches `server/`, `website/` or `docs/`.
+- **One-time setup still required:** `scripts/azure-setup.sh` (federated credential, role on CARENAct, repo secrets) and `server/sql/grant-app-identity.sql` (database access for the app). See the script's comments.
+
+### Server (`server/`)
+
+Node.js + Express with the `mssql` driver. Vapor, the Swift framework Ohana uses, has no maintained SQL Server driver. The server:
+
+- serves `website/` and `docs/`;
+- `GET /api/health`: reports database and sign-in status;
+- `POST /api/volunteers`: private volunteer sign-up (rate-limited, honeypot). It is also callable from the GitHub Pages copy via CORS;
+- `GET /api/volunteers/coverage`: public counts by state only;
+- `GET /api/admin/volunteers`, `PATCH /api/admin/volunteers/:id`: admin only;
+- `/auth/google`, `/auth/facebook`: sign-in, enabled only when `GOOGLE_OAUTH_CLIENT_ID`/`GOOGLE_OAUTH_CLIENT_SECRET` or `FACEBOOK_OAUTH_APP_ID`/`FACEBOOK_OAUTH_APP_SECRET` are set. These are the same variable names Ohana uses. Use new OAuth clients branded for this campaign. Redirect URIs: `<base>/auth/google/callback` and `<base>/auth/facebook/callback`.
+
+Tables are created automatically from `server/src/migrations/*.sql` on first start. Run it locally with `cd server && npm install && DB_SERVER=postgresdata.database.windows.net DB_NAME=CAREN_Act npm start`; your `az login` must be allowed through the SQL firewall.
+
+Container app settings: `DB_SERVER`, `DB_NAME`, `PUBLIC_BASE_URL`, `CORS_ORIGINS`, `ADMIN_EMAILS`, `NODE_ENV`, `PORT`, plus the optional OAuth keys. Pages deploys from the `main` branch, repository root.
 
 ## About the Original Ordinance
 
@@ -33,7 +59,10 @@ Supervisor Shamann Walton introduced it in July 2020. It followed the June 2020 
 - `website/deaths.html`: disputed hanging deaths (curated in `website/data/contested_deaths.json`) and CDC charts of hanging/unnatural deaths by race
 - `website/laws.html`: tracker for residual Jim Crow / sundown laws, from report → verification → drafted repeal ordinance or bill → delivery → follow-up
 - `website/assets/site.css`, `website/assets/site.js`: shared header, mobile menu, and footer used by every page
-- `website/volunteer.html`: state ally recruitment, with a coverage grid built from `volunteer` issues
+- `website/volunteer.html`: state ally recruitment, with a private sign-up form (Azure API) or a public GitHub sign-up, and a coverage grid
+- `website/admin.html`: volunteer list for admins (Azure-hosted site only)
+- `server/`: Node.js API and static server for Azure (see "Azure deployment")
+- `scripts/azure-setup.sh`, `server/sql/grant-app-identity.sql`: one-time permission setup for the Azure deployment
 - `website/data/cdc_wonder/`: drop hand-exported CDC WONDER `.txt` files here; the build turns them into `cdc_wonder_states.json`
 - `.github/ISSUE_TEMPLATE/`: forms for reporting old laws and contested deaths, and for volunteering as a state ally
 - `.github/workflows/laws-followup.yml`: daily check that reminds the volunteer on a repeal case after 30 days without an update
