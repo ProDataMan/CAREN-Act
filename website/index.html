@@ -95,7 +95,44 @@
   </div>
 
   <div class="info">
-    <div class="priority"><strong>Prioritization without filtering:</strong> The heat map and the purple “high-overlap” rings mark counties where several factors coincide: a history of racial terror lynching, high rates of police killings, race-motivated hate crimes, and large minority populations. Every other data point stays on the map and every layer can be toggled. See <a href="data.html">data &amp; methodology</a> for how the score is computed.</div>
+    <div class="priority"><strong>Prioritization without filtering:</strong> The heat map and the purple “high-overlap” rings mark counties where several factors coincide: a history of racial terror lynching, high rates of police killings, race-motivated hate crimes, and large minority populations. Every other data point stays on the map and every layer can be toggled. <a href="#how-to-read">How to read the map</a> · <a href="data.html#score">how the score is computed</a>.</div>
+
+    <h2 id="how-to-read">How to read the map</h2>
+    <h3>The heat map</h3>
+    <p>Every U.S. county gets a <b>priority score from 0 to 1</b> that combines four things:</p>
+    <ul>
+      <li>its history of racial terror lynching (30% of the score);</li>
+      <li>its rate of police killings per resident (30%);</li>
+      <li>its rate of race-motivated hate crimes per resident (15%);</li>
+      <li>its share of residents who are people of color (25%).</li>
+    </ul>
+    <p>Each county with a score above 0.15 (about 2,000 of 3,222) adds a glow centered on that county.</p>
+    <ul>
+      <li><b>Color runs from blue (lower) to red (higher).</b> The glow is weighted by the score squared, so high-scoring counties stand out much more than middling ones.</li>
+      <li><b>Glows add up.</b> A deep red area means <i>several neighboring</i> counties all score high, as in the Black Belt from Mississippi to Georgia. One high-scoring county surrounded by low ones shows as a smaller orange spot. So red marks regional patterns, not single counties.</li>
+      <li><b>Zoom changes the picture.</b> At the national view, nearby counties blend together. Zoom in and they separate, so you can see which counties drive a hot spot.</li>
+      <li><b>For exact numbers, use the purple rings or the county layer.</b> Purple rings mark the 104 counties that are high on at least 3 of the 4 factors; a thick ring means all 4. Click a ring, or turn on <i>Minority population share</i> and click any county, to see its score and the numbers behind it. Each pop-up links to a shareable county page.</li>
+    </ul>
+    <p>The heat map is a way to <b>prioritize outreach</b>: where the harm of discriminatory police calls is likely to land hardest. It is not a measure of how many such calls happen. No national data on that exists.</p>
+
+    <h3>Try these views</h3>
+    <p>Each link turns on a set of layers (and zooms in where useful). You can also check or uncheck any layer in the <b>Map layers</b> panel. Every view is a shareable link: the layers you pick are listed after <code>?layers=</code>, and the place after <code>&amp;at=</code> (latitude, longitude, zoom).</p>
+    <ul>
+      <li><a href="?layers=heat,police,hate"><b>Today's harm only</b></a>: priority heat plus recent police killings (colored by victim race) and hate crimes, with the historical lynching layer off. Notice how the dots concentrate inside the hot spots.</li>
+      <li><a href="?layers=priority,lynch,mwt&amp;at=32.6,-88.3,7"><b>History of racial terror in the Deep South</b></a>: EJI counties (dark red circles, sized by number of victims) next to Monroe Work Today's individual cases (dots colored by victim race). Click a dot to read who was killed and why.</li>
+      <li><a href="?layers=redlining,covenants&amp;at=44.96,-93.27,12"><b>Housing exclusion in Minneapolis</b></a>: 1930s redlining grades (red = “hazardous”) and the racial covenants written into property deeds. The purple dots show where people of color were barred from buying homes. Notice how they fill the green and blue “desirable” neighborhoods: covenants kept those areas white, and redlining starved the red ones of loans.</li>
+      <li><a href="?layers=calls,minority&amp;at=37.76,-122.44,12"><b>911 “suspicious person” calls in San Francisco</b></a>: each blue circle is a ~500 m area, sized by number of calls in the past year. Click one to see how few calls citywide led to an arrest, citation or report.</li>
+      <li><a href="?layers=heat,allies,residual"><b>Where to organize</b></a>: hot spots, members of Congress on the Judiciary Committees (who would hear the bill), and old segregation laws still on the books.</li>
+    </ul>
+
+    <h3>Reading a county</h3>
+    <p>Example: <a href="county.html?f=28049">Hinds County, Mississippi</a> (Jackson) ranks #2 of 3,222 counties with a score of 0.83:</p>
+    <ul>
+      <li>22 documented lynching victims, which hits the maximum for that factor;</li>
+      <li>21 people killed by police since 2013, among the highest rates per resident in the country;</li>
+      <li>77% of residents are people of color.</li>
+    </ul>
+    <p>Its hate-crime rate is moderate, so 3 of its 4 factors are high. By contrast, Cook County, Illinois (Chicago) has far more police killings in total (165), but per resident its rate is about a third of Hinds County's, so it ranks #484. Rates matter more than raw counts. The <a href="data.html#score">data page</a> walks through the math.</p>
 
     <h2>Data sources</h2>
     <p class="note" id="freshness"></p>
@@ -152,6 +189,9 @@
     // ---------------------------------------------------------------- Map
     const map = L.map('map', { preferCanvas: true });
     map.fitBounds([[24.5, -124.8], [49.4, -66.9]], window.matchMedia('(max-width: 700px)').matches ? {} : { paddingTopLeft: [300, 0] });
+    // ?at=lat,lon,zoom opens the map on a specific place (used by the examples below the map)
+    const at = (new URLSearchParams(location.search).get('at') || '').split(',').map(Number);
+    if (at.length === 3 && at.every(Number.isFinite)) map.setView([at[0], at[1]], at[2]);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
     map.createPane('choropleth'); map.getPane('choropleth').style.zIndex = 350;
     map.createPane('heat'); map.getPane('heat').style.zIndex = 380; map.getPane('heat').style.pointerEvents = 'none';
@@ -330,7 +370,7 @@
     }
     const wanted = new URLSearchParams(location.search).get('layers');
     const boxes = document.querySelectorAll('#controls input[data-layer]');
-    if (wanted) { const w = wanted.split(','); boxes.forEach(cb => { if (w.includes(cb.dataset.layer)) cb.checked = true; }); }
+    if (wanted) { const w = wanted.split(','); boxes.forEach(cb => { cb.checked = w.includes(cb.dataset.layer); }); }
     const countOn = () => { document.getElementById('layerCount').textContent = Array.from(boxes).filter(b => b.checked).length + ' on'; };
     boxes.forEach(cb => {
       cb.addEventListener('change', () => { setLayer(cb.dataset.layer, cb.checked); countOn(); });

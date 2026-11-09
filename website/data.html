@@ -26,7 +26,7 @@
   <h2>Datasets in use</h2>
   <div class="table-wrap"><table id="ds"><tr><th>Dataset</th><th>Publisher</th><th>Coverage</th><th>How it's used</th></tr></table></div>
 
-  <h2>Priority score</h2>
+  <h2 id="score">Priority score</h2>
   <p>Each county gets a score from 0 to 1:</p>
   <p><code>score = 0.30 × lynchings + 0.30 × police killings per capita + 0.15 × race/ethnicity hate crimes per capita + 0.25 × minority population share</code></p>
   <ul>
@@ -42,7 +42,24 @@
       </ul>
     </li>
   </ul>
-  <p>The weights are an advocacy judgment, not a statistical model. They are set in <code>build_priority()</code> and easy to change.</p>
+  <h3>Worked examples</h3>
+  <p>Each factor is scaled from 0 to 1, multiplied by its weight, and added up. The 95th-percentile caps currently fall at 14 lynching victims, 9.0 police killings per 100,000 residents and 17.7 race/ethnicity hate crimes per 100,000 residents.</p>
+  <div class="table-wrap"><table>
+    <tr><th>County</th><th>Lynching (×0.30)</th><th>Police killings (×0.30)</th><th>Hate crimes (×0.15)</th><th>People of color (×0.25)</th><th>Score (rank)</th></tr>
+    <tr><td>Dallas County, AL (Selma)</td><td>19 victims → 1.00 → <b>0.30</b></td><td>8.1 per 100k → 0.90 → <b>0.27</b></td><td>29.1 per 100k → 1.00 → <b>0.15</b></td><td>73% → <b>0.18</b></td><td><b>0.90</b> (#1, all 4 high)</td></tr>
+    <tr><td>Hinds County, MS (Jackson)</td><td>22 → 1.00 → <b>0.30</b></td><td>8.6 → 0.96 → <b>0.29</b></td><td>5.3 → 0.30 → <b>0.05</b></td><td>77% → <b>0.19</b></td><td><b>0.83</b> (#2, 3 high)</td></tr>
+    <tr><td>San Francisco, CA</td><td>0 → <b>0.00</b></td><td>3.9 → 0.43 → <b>0.13</b></td><td>20.1 → 1.00 → <b>0.15</b></td><td>63% → <b>0.16</b></td><td><b>0.44</b> (#385)</td></tr>
+    <tr><td>Cook County, IL (Chicago)</td><td>1 → 0.26 → <b>0.08</b></td><td>3.2 → 0.35 → <b>0.11</b></td><td>9.0 → 0.51 → <b>0.08</b></td><td>60% → <b>0.15</b></td><td><b>0.41</b> (#484)</td></tr>
+  </table></div>
+  <p class="note">Values are from the current data and change slightly with each weekly refresh. EJI's lynching data covers 1877–1950 and is concentrated in the South, which is why San Francisco scores zero on that factor. Turn on the Monroe Work Today layer to see lynchings of Latino, Chinese and Native American victims in the West.</p>
+
+  <h3>Changing the weights</h3>
+  <p>The weights are an advocacy judgment, not a statistical model. To change them, edit <code>PRIORITY_WEIGHTS</code> near <code>build_priority()</code> in <a href="https://github.com/ProDataMan/CAREN-Act/blob/main/scripts/build_data.py"><code>scripts/build_data.py</code></a>. Keep the four numbers adding up to 1. Then run <code>python3 scripts/build_data.py</code> and commit the updated <code>website/data/counties.json</code>, or wait for the Monday refresh. For example:</p>
+  <ul>
+    <li><b>Focus on present-day policing:</b> <code>lynchings 0.15, police 0.40, hate crimes 0.20, people of color 0.25</code>. Large cities with high police-killing rates rise; Deep South counties with old lynching records but little recent violence fall.</li>
+    <li><b>Focus on where people are most exposed:</b> <code>lynchings 0.20, police 0.25, hate crimes 0.15, people of color 0.40</code>. Majority-minority counties rise everywhere, including the Southwest and Texas border counties.</li>
+  </ul>
+  <p>The “high-overlap” rings don't depend on the weights. They count how many of the four factors are high on their own.</p>
 
   <div class="caveat"><b>Caveats.</b>
     <ul>

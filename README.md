@@ -5,6 +5,7 @@ This repository supports efforts to introduce and pass a federal version of San 
 ## Live Site (GitHub Pages)
 
 - **Home / interactive priority heat map:** https://prodataman.github.io/CAREN-Act/website/
+- **How to read the heat map, with example views:** https://prodataman.github.io/CAREN-Act/website/#how-to-read. Links like `?layers=redlining,covenants&at=44.96,-93.27,12` open a chosen set of layers at a place. Score weights live in `PRIORITY_WEIGHTS` in `scripts/build_data.py`; there's a worked example at https://prodataman.github.io/CAREN-Act/website/data.html#score
 - **Take action (call and write Congress, state lawmakers and city council; register to vote; know your rights):** https://prodataman.github.io/CAREN-Act/website/act.html
 - **Your county's numbers + share image:** https://prodataman.github.io/CAREN-Act/website/county.html (e.g. [Hinds County, MS](https://prodataman.github.io/CAREN-Act/website/county.html?f=28049))
 - **Embeddable lawmaker lookup for partner sites:** https://prodataman.github.io/CAREN-Act/website/embed.html (embed code on the Take action page)

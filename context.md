@@ -148,6 +148,13 @@ Create a public GitHub repository and advocacy website to support making the San
 
 18. **2026-11-09:** The user added the ID-based federated credential, and the deploy succeeded (run 42565633712). /api/health: db ok, comments false (GITHUB_TOKEN not set yet), auth not configured. CORS from prodataman.github.io verified. Remaining owner steps: 6b (comment token) and 6 (OAuth).
 
+19. **2026-11-09 (map explainer):**
+   - index.html has a #how-to-read section: how the heat works (score² weighting, glows add up, zoom), purple rings, five example views, and a Hinds vs Cook reading example.
+   - `?layers=` now shows exactly the listed layers instead of adding to the defaults. New `?at=lat,lon,zoom`.
+   - data.html #score: a worked-example table (Dallas AL, Hinds MS, San Francisco, Cook IL), the current 95th-percentile caps, and how to change the weights with two example weightings.
+   - The weights are now the single constant `PRIORITY_WEIGHTS` in build_data.py.
+   - The user's test bill comment was never posted to GitHub (zero issues); it only lives in their browser's localStorage as "Pending". Delete it with Discard in the comment panel.
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.

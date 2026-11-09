@@ -845,6 +845,11 @@ def refresh_county_demographics(acs):
     write_json("counties.json", d)
 
 
+# Priority-score weights. Change these to re-balance the heat map (they should add up to 1),
+# then run the full build: python3 scripts/build_data.py
+PRIORITY_WEIGHTS = {"lynchings": 0.30, "police_killings_per_capita": 0.30, "race_hate_crimes_per_capita": 0.15, "pct_minority": 0.25}
+
+
 def build_priority(counties, acs, lynch, police, police_black, hate):
     log("Priority index")
     # Smoothed per-100k rates: adding a 25k-person prior keeps tiny counties with one incident from dominating.
@@ -864,7 +869,8 @@ def build_priority(counties, acs, lynch, police, police_black, hate):
         P = min(1, rates_p.get(f, 0) / cap_p)
         H = min(1, rates_h.get(f, 0) / cap_h)
         M = a["minority"] / 100
-        score = round(0.3 * L + 0.3 * P + 0.15 * H + 0.25 * M, 3)
+        W = PRIORITY_WEIGHTS
+        score = round(W["lynchings"] * L + W["police_killings_per_capita"] * P + W["race_hate_crimes_per_capita"] * H + W["pct_minority"] * M, 3)
         overlap = sum([lynch.get(f, 0) >= max(thr["l"], 1), rates_p.get(f, 0) >= thr["p"] and police.get(f, 0) >= 2,
                        rates_h.get(f, 0) >= thr["h"] and hate.get(f, 0) >= 2, a["minority"] >= thr["m"]])
         rows.append([f, c["name"], c["st"], c["lat"], c["lon"], a["pop"], a["minority"], a["black"], a["hispanic"],
@@ -873,7 +879,7 @@ def build_priority(counties, acs, lynch, police, police_black, hate):
     write_json("counties.json", {
         "fields": ["fips", "name", "state", "lat", "lon", "pop", "pct_minority", "pct_black", "pct_hispanic",
                    "lynchings", "police_killings", "police_killings_black", "race_hate_crimes", "score", "overlap"] + COUNTY_EXTRA_FIELDS,
-        "weights": {"lynchings": 0.3, "police_killings_per_capita": 0.3, "race_hate_crimes_per_capita": 0.15, "pct_minority": 0.25},
+        "weights": PRIORITY_WEIGHTS,
         "rows": rows,
     })
     manifest["datasets"]["priority_index"] = {
