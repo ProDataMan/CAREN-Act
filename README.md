@@ -5,6 +5,9 @@ This repository supports efforts to introduce and pass a federal version of San 
 ## Live Site (GitHub Pages)
 
 - **Home / interactive priority heat map:** https://prodataman.github.io/CAREN-Act/website/
+- **Take action (call and write Congress, state lawmakers and city council; register to vote; know your rights):** https://prodataman.github.io/CAREN-Act/website/act.html
+- **Your county's numbers + share image:** https://prodataman.github.io/CAREN-Act/website/county.html (e.g. [Hinds County, MS](https://prodataman.github.io/CAREN-Act/website/county.html?f=28049))
+- **Embeddable lawmaker lookup for partner sites:** https://prodataman.github.io/CAREN-Act/website/embed.html (embed code on the Take action page)
 - **Draft federal bill (click a paragraph to suggest edits):** https://prodataman.github.io/CAREN-Act/website/bill.html
 - **How the SF CAREN Act came about:** https://prodataman.github.io/CAREN-Act/website/history.html
 - **Contested hanging deaths & unnatural deaths by race (CDC):** https://prodataman.github.io/CAREN-Act/website/deaths.html
@@ -183,9 +186,16 @@ Send the letters to JULIAN (Jill Collen Jefferson) and the Legal Defense Fund (s
 Several states redrew their districts. When the new Congress is seated:
 
 1. In `scripts/build_data.py`, change `zcta_cd` to the Census `tab20_cd12020_zcta520_natl.txt` file once it's published, then rebuild the data.
-2. In `website/index.html`, change the geocoder lookup to look for `/120th Congressional/` and use `vintage=Current_Current`.
+2. In `website/assets/reps.js`, change the geocoder lookup to look for `/120th Congressional/` and use `vintage=Current_Current`.
 
 Member names and contact details update on their own from `congress-legislators`.
+
+### Later: the AI letter helper and automatic bill watcher (optional)
+
+These need keys you don't have yet. Everything else on the Take action page already works without them.
+
+- **AI letter helper** (turns a visitor's few sentences into a polished personal letter they review and send). This needs an Anthropic API key from https://console.anthropic.com. It is billed separately from a Claude Pro subscription. With the Claude Haiku 5.5 model, a letter costs about $0.001, so 1,000 letters is roughly $1. Set a monthly spend limit (for example $10) in the Console under Billing → Limits so it can never cost more. Tell Claude when you have the key, and it will add the endpoint to the Azure server with per-visitor rate limits.
+- **State legislator names in the lookup and the bill watcher** (weekly search for CAREN-style bills in every state). These need a free Open States API key from https://open.pluralpolicy.com/accounts/profile/. Until then, the lookup shows each visitor's exact state districts and links to Open States to find the names.
 
 ### Costs
 
@@ -229,7 +239,11 @@ Supervisor Shamann Walton introduced it in July 2020. It followed the June 2020 
 ## Contents
 
 - `docs/SF-CAREN-Act.pdf`: original San Francisco ordinance, with legislative history on the last page
-- `website/index.html`: advocacy map built on live public data, plus a lookup that finds your representatives and drafts a letter to each
+- `website/index.html`: advocacy map built on live public data, plus the lawmaker lookup
+- `website/act.html`: Take action hub: lawmaker lookup, county sharing, voter registration, know-your-rights links, embed code
+- `website/county.html`: one county's numbers (`?f=<FIPS>`) with a downloadable or shareable 1080×1080 image
+- `website/embed.html`: compact lawmaker lookup for partner sites to embed in an iframe
+- `website/assets/reps.js`: shared lookup used by the three pages above. Census Geocoder → congressional, state legislative and local districts; members from congress-legislators; a call script and click-to-call for each member; letters to Congress, state lawmakers and the city council or county board, rewritten live around the visitor's own story
 - `website/bill.html` + `website/bill.json`: draft federal bill (text lives in `bill.json`) with public, per-paragraph comments
 - `website/history.html`: origin story of the SF CAREN Act
 - `website/deaths.html`: disputed hanging deaths (curated in `website/data/contested_deaths.json`) and CDC charts of hanging/unnatural deaths by race

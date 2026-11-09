@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your County's Numbers</title>
+  <meta name="description" content="Racial terror lynchings, police killings and hate crimes in your county, from public data. Share your county's numbers and ask your lawmakers to pass the CAREN Act.">
+  <meta property="og:title" content="What happened in your county?">
+  <meta property="og:description" content="Lynchings, police killings and hate crimes in every U.S. county, from public data. Then ask your lawmakers to make discriminatory 911 calls illegal.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .picker { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+    .picker input { flex: 1 1 260px; padding: 10px; font: inherit; border: 1px solid #bbb; border-radius: 6px; }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 18px 0; }
+    .tile { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--surface); }
+    .tile .n { font-size: clamp(1.5rem, 3vw, 1.9rem); overflow-wrap: anywhere; font-weight: 800; line-height: 1.1; color: var(--ink); }
+    .tile .l { font-size: .88rem; color: var(--muted); margin-top: 4px; }
+    .tile.hi { border-color: #c9a227; background: #fffaeb; }
+    .share { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    canvas { width: 100%; max-width: 420px; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; margin: 12px 0; }
+    .rank { font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1 id="title">What happened in your county?</h1>
+    <p class="lede" id="lede">Pick a county to see its history of racial violence and policing, from public data. Then share it and ask your lawmakers to act.</p>
+    <form class="picker" id="pick">
+      <input id="q" list="countyList" placeholder="Type a county, e.g. Hinds County, MS" aria-label="County" autocomplete="off">
+      <datalist id="countyList"></datalist>
+      <button class="btn" type="submit">Show</button>
+    </form>
+    <div id="out" hidden>
+      <p class="rank" id="rank"></p>
+      <div class="tiles" id="tiles"></div>
+      <h2>Share it</h2>
+      <p>Post the image to Instagram, Facebook or a group chat, or share the link. Numbers travel further when people see their own county.</p>
+      <div class="share">
+        <button class="btn" type="button" id="shareImg">Share image</button>
+        <button class="btn secondary" type="button" id="dlImg">Download image</button>
+        <button class="btn secondary" type="button" id="copyLink">Copy link</button>
+        <a class="btn secondary" id="fb" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn secondary" id="x" target="_blank" rel="noopener">X / Twitter</a>
+      </div>
+      <canvas id="card" width="1080" height="1080" role="img" aria-label="Share image with this county's numbers"></canvas>
+      <h2>Now act on it</h2>
+      <p><a class="btn" href="act.html">Contact your lawmakers (2 minutes)</a> <a class="btn secondary" id="mapLink" href="index.html">See it on the map</a></p>
+      <p class="note" id="srcNote"></p>
+    </div>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const SITE = 'https://prodataman.github.io/CAREN-Act/website/';
+    const fmt = n => Number(n).toLocaleString();
+    const $ = id => document.getElementById(id);
+    let rows = [], manifest = {}, row = null;
+
+    Promise.all([fetch('data/counties.json').then(r => r.json()), fetch('data/manifest.json').then(r => r.json()).catch(() => ({}))]).then(([d, m]) => {
+      rows = d.rows; manifest = m.datasets || {};
+      rows.sort((a, b) => b[13] - a[13]).forEach((r, i) => r.rank = i + 1);
+      $('countyList').innerHTML = rows.map(r => '<option value="' + r[1].replace(/"/g, '') + ', ' + r[2] + '">').join('');
+      const f = new URLSearchParams(location.search).get('f');
+      if (f) show(rows.find(r => r[0] === f));
+    });
+
+    $('pick').addEventListener('submit', e => {
+      e.preventDefault();
+      const q = $('q').value.trim().toLowerCase();
+      const r = rows.find(r => (r[1] + ', ' + r[2]).toLowerCase() === q) || rows.find(r => (r[1] + ', ' + r[2]).toLowerCase().startsWith(q)) || rows.find(r => (r[1] + ', ' + r[2]).toLowerCase().includes(q));
+      if (!r) { alert('No county matched "' + $('q').value + '". Try the county name and state, like "Cook County, IL".'); return; }
+      history.replaceState(null, '', '?f=' + r[0]);
+      show(r);
+    });
+
+    function stats(r) {
+      const hc = manifest.hate_crimes || {}, pk = manifest.police_killings || {};
+      return [
+        { n: r[9], l: 'documented victims of racial terror lynching, 1877–1950 (EJI)', hi: r[9] > 0 },
+        { n: r[10], l: 'people killed by police since 2013' + (pk.latest_incident ? ' (through ' + pk.latest_incident + ')' : '') + ', ' + fmt(r[11]) + ' of them Black', hi: r[10] > 0 },
+        { n: r[12], l: 'race or ethnicity hate crimes reported to the FBI' + (hc.years ? ', ' + hc.years : ''), hi: r[12] > 0 },
+        { n: r[6] + '%', l: 'of residents are people of color (Black ' + r[7] + '%, Hispanic ' + r[8] + '%)' },
+        { n: fmt(r[5]), l: 'residents (Census ACS)' }
+      ];
+    }
+
+    function show(r) {
+      if (!r) return;
+      row = r;
+      const name = r[1] + ', ' + r[2];
+      document.title = name + ': The Numbers';
+      $('title').textContent = name;
+      $('lede').textContent = 'Racial violence and policing in ' + name + ', from public data.';
+      $('q').value = name;
+      $('rank').innerHTML = 'Ranks <b>#' + fmt(r.rank) + ' of ' + fmt(rows.length) + '</b> U.S. counties on the campaign’s priority score (' + r[14] + ' of 4 factors high). <a href="data.html">How the score works</a>.';
+      $('tiles').innerHTML = stats(r).map(s => '<div class="tile' + (s.hi ? ' hi' : '') + '"><div class="n">' + (typeof s.n === 'number' ? fmt(s.n) : s.n) + '</div><div class="l">' + s.l + '</div></div>').join('');
+      $('mapLink').href = 'index.html?layers=lynch,police,hate';
+      $('srcNote').innerHTML = 'Sources: Equal Justice Initiative, Mapping Police Violence, FBI Crime Data Explorer (reporting is voluntary, so low counts can mean low reporting), U.S. Census Bureau. Details on the <a href="data.html">data page</a>.';
+      const url = SITE + 'county.html?f=' + r[0];
+      const text = name + ': ' + fmt(r[9]) + ' lynching victims, ' + fmt(r[10]) + ' police killings since 2013. Help make discriminatory 911 calls illegal:';
+      $('fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+      $('x').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+      $('copyLink').onclick = e => { navigator.clipboard.writeText(text + ' ' + url).then(() => { e.target.textContent = 'Copied ✓'; setTimeout(() => e.target.textContent = 'Copy link', 2000); }); };
+      draw(r);
+      $('out').hidden = false;
+    }
+
+    function wrap(ctx, text, x, y, maxW, lh) {
+      const words = text.split(' '); let line = '';
+      words.forEach(w => { const t = line ? line + ' ' + w : w; if (ctx.measureText(t).width > maxW && line) { ctx.fillText(line, x, y); y += lh; line = w; } else line = t; });
+      ctx.fillText(line, x, y); return y + lh;
+    }
+
+    function draw(r) {
+      const c = $('card'), ctx = c.getContext('2d'), W = 1080, F = 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+      ctx.fillStyle = '#0e2a47'; ctx.fillRect(0, 0, W, W);
+      ctx.fillStyle = '#f2c14e'; ctx.fillRect(0, 0, W, 14);
+      ctx.fillStyle = '#ffffff'; ctx.font = '800 64px ' + F;
+      let y = wrap(ctx, r[1] + ', ' + r[2], 80, 150, W - 160, 74);
+      ctx.fillStyle = '#c9d6e4'; ctx.font = '400 32px ' + F;
+      ctx.fillText('From public records:', 80, y + 10); y += 90;
+      [[r[9], 'victims of racial terror lynching, 1877–1950'], [r[10], 'people killed by police since 2013'], [r[12], 'race/ethnicity hate crimes reported to the FBI']].forEach(([n, l]) => {
+        ctx.fillStyle = '#f2c14e'; ctx.font = '800 110px ' + F; ctx.fillText(fmt(n), 80, y + 80);
+        const w = ctx.measureText(fmt(n)).width;
+        ctx.fillStyle = '#ffffff'; ctx.font = '500 34px ' + F;
+        wrap(ctx, l, 80 + w + 32, y + 30, W - 160 - w - 32, 42);
+        y += 170;
+      });
+      ctx.fillStyle = '#ffffff'; ctx.font = '700 40px ' + F;
+      wrap(ctx, 'Make discriminatory 911 calls illegal. Pass the CAREN Act.', 80, W - 150, W - 160, 48);
+      ctx.fillStyle = '#c9d6e4'; ctx.font = '400 23px ' + F;
+      ctx.fillText('prodataman.github.io/CAREN-Act · Sources: EJI, Mapping Police Violence, FBI', 80, W - 50);
+    }
+
+    function blob() { return new Promise(res => $('card').toBlob(res, 'image/png')); }
+    const fname = () => (row ? row[1] + '-' + row[2] : 'county').replace(/[^A-Za-z0-9]+/g, '-') + '-CAREN.png';
+    $('dlImg').addEventListener('click', () => blob().then(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = fname(); a.click(); }));
+    $('shareImg').addEventListener('click', () => blob().then(b => {
+      const file = new File([b], fname(), { type: 'image/png' });
+      const url = SITE + 'county.html?f=' + row[0];
+      if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: row[1] + ', ' + row[2], text: 'Help make discriminatory 911 calls illegal: ' + url }).catch(() => {});
+      else if (navigator.share) navigator.share({ title: row[1] + ', ' + row[2], url }).catch(() => {});
+      else $('dlImg').click();
+    }));
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Your Lawmakers</title>
+  <base target="_blank">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    body { background: #fff; }
+    .embed-wrap { padding: 12px; }
+    .embed-wrap h1 { font-size: 1.2rem; margin: 0 0 4px; }
+    .embed-wrap .form-section { margin: 8px 0; }
+    .credit { font-size: .78rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="embed-wrap">
+    <h1>Ask your lawmakers to make discriminatory 911 calls illegal</h1>
+    <p class="note" style="margin:0">Find your members of Congress, state lawmakers and city council. Get a call script and a letter in your own words. Your address goes only to the U.S. Census Bureau and is never stored.</p>
+    <div class="form-section">
+      <form id="repForm" class="form-grid" autocomplete="on" target="_self">
+        <div><label for="fName">Your name</label><input id="fName" autocomplete="name" required></div>
+        <div><label for="fStreet">Street address</label><input id="fStreet" autocomplete="street-address" placeholder="123 Main St"></div>
+        <div><label for="fCity">City</label><input id="fCity" autocomplete="address-level2"></div>
+        <div><label for="fState">State</label><input id="fState" autocomplete="address-level1" maxlength="20" placeholder="CA"></div>
+        <div><label for="fZip">ZIP code</label><input id="fZip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" required></div>
+        <div class="wide"><label for="fStory">Why does this matter to you? <span class="note">(optional)</span></label><textarea id="fStory" rows="2" maxlength="800" placeholder="A sentence or two in your own words counts more than any form letter."></textarea></div>
+        <div style="align-self:end"><button class="primary" type="submit">Find my lawmakers</button></div>
+      </form>
+      <div id="repStatus"></div>
+      <div class="reps" id="reps"></div>
+    </div>
+    <p class="credit">From the <a href="https://prodataman.github.io/CAREN-Act/website/act.html">Federal CAREN Act campaign</a> · <a href="https://prodataman.github.io/CAREN-Act/website/privacy.html">Privacy</a></p>
+  </div>
+  <script src="assets/reps.js"></script>
+</body>
+</html>

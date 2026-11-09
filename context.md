@@ -110,6 +110,21 @@ Create a public GitHub repository and advocacy website to support making the San
    - Added website/privacy.html (required for the Google/Facebook apps) and a footer link.
    - README now has an "Owner's to-do list" (steps 1–9: setup script, SQL grant, gh scopes + push, public package, verify, OAuth setup, editor tasks, outreach, Jan 2027 switch, costs).
 
+15. **2026-11-08 (Take action features, no new keys):**
+   - The lawmaker lookup moved to website/assets/reps.js (shared by index.html, act.html, embed.html).
+   - New in the lookup:
+     - an optional "Why does this matter to you?" story, added to every letter and call script and updated live (hand edits are kept);
+     - a click-to-call button and a 30-second call script for each member;
+     - a state-lawmaker card with the visitor's exact State Senate/House districts from the Census Geocoder, a state-bill letter and an Open States link. OR and CA letters ask to strengthen the existing law;
+     - a city council / county board card with a local-ordinance letter. San Francisco instead gets a "thank your supervisor and back a federal bill" letter;
+     - a share bar.
+   - New pages:
+     - act.html: Take action hub with steps, lookup, vote links (vote.gov, vote.org, VOTE411), know-your-rights links (ACLU, ILRC red cards, IDP, United We Dream, NILC, LDF, NLG) and embed code;
+     - county.html?f=FIPS: stat tiles, priority rank, canvas share image (Web Share with file on mobile, download elsewhere), Facebook/X links;
+     - embed.html: iframe widget.
+   - Nav: added "Your county"; the CTA is now "Take action" (act.html). Menu breakpoint is now 1180px. Map county popups link to county pages.
+   - Not built yet (need keys): AI letter helper (Anthropic API key; Haiku 5.5 ≈ $0.001/letter) and the state bill watcher / legislator names (free Open States key).
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.
@@ -129,6 +144,8 @@ Create a public GitHub repository and advocacy website to support making the San
 2f. Send the outreach letters to JULIAN and LDF (drafted 2026-11-08).
 2g. Add Google/Facebook sign-in (Supabase Auth or Firebase) for volunteers and commenters; move volunteer contact details to private storage.
 2h. Add the signers of the Sept 2026 congressional letter asking DOJ to investigate the hangings as allies on the map.
+2i. When keys exist: AI letter helper endpoint on the Azure server (Anthropic key, Haiku 5.5, rate limits, Console spend cap) and the weekly Open States + Congress.gov bill watcher Action with hearing alerts to state volunteers.
+2j. Optional: Spanish translations of act.html and the letters (volunteer-reviewed).
 2c. Add recommended data sources (LegiScan, Congress.gov, Stanford Open Policing, city 911 data). See website/data.html.
 3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).
 4. Identify and list specific potential congressional sponsors/champions (especially Judiciary members or newly elected with civil rights records).

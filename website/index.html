@@ -50,25 +50,6 @@
     table.sources th, table.sources td { border: 1px solid #ddd; padding: 5px 8px; text-align: left; vertical-align: top; }
     table.sources th { background: #f3f3f3; }
     .table-wrap { overflow-x: auto; }
-    .form-section { background: #eef2f6; padding: 16px; margin: 15px 0; border-radius: 6px; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 14px; max-width: 900px; }
-    .form-grid label { font-size: .85rem; font-weight: 600; display: block; }
-    .form-grid input, .form-grid select { width: 100%; padding: 8px; font: inherit; border: 1px solid #bbb; border-radius: 4px; }
-    button.primary { padding: 9px 16px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font: inherit; }
-    button.secondary, a.secondary { padding: 6px 12px; background: #fff; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; cursor: pointer; font: inherit; font-size: .88rem; text-decoration: none; display: inline-block; }
-    #repStatus { margin: 10px 0; font-size: .92rem; }
-    .reps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 12px; }
-    .rep { background: #fff; border: 1px solid #d5d9de; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-    .rep .head { display: flex; gap: 10px; align-items: center; }
-    .rep img { width: 56px; height: 68px; object-fit: cover; border-radius: 4px; background: #eee; }
-    .rep h4 { margin: 0; font-size: 1rem; }
-    .rep .sub { font-size: .82rem; color: var(--muted); }
-    .rep .badge { display: inline-block; font-size: .72rem; background: #fde9b6; color: #6b4d00; padding: 1px 6px; border-radius: 3px; margin-top: 2px; }
-    .rep textarea { width: 100%; min-height: 220px; font: inherit; font-size: .85rem; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-    .rep .actions { display: flex; flex-wrap: wrap; gap: 6px; }
-    .rep dl { margin: 0; font-size: .85rem; display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; }
-    .rep dt { color: var(--muted); }
-    .rep dd { margin: 0; }
     .note { font-size: .8rem; color: var(--muted); }
     .leaflet-popup-content { font-size: 13px; }
     .leaflet-popup-content table td { padding: 1px 6px 1px 0; }
@@ -81,7 +62,7 @@
       <h1>Make discriminatory 911 calls illegal nationwide</h1>
       <p>A federal version of San Francisco's CAREN Act (Police Code §637). The map shows where the harm of racially motivated police calls lands hardest, built from live public data.</p>
     </div>
-    <div class="ctas"><a class="primary" href="#contact">Contact Congress</a><a href="bill.html">Comment on the bill</a><a href="laws.html">Report an old law</a></div>
+    <div class="ctas"><a class="primary" href="act.html">Take action</a><a href="bill.html">Comment on the bill</a><a href="laws.html">Report an old law</a></div>
   </div></section>
 
   <div class="map-wrap">
@@ -118,13 +99,14 @@
 
     <h2 id="contact">Contact Your Representatives</h2>
     <div class="form-section">
-      <p style="margin-top:0">Enter your address to find your two U.S. Senators and your U.S. Representative. We draft a personal letter to each one and give you their official contact form, phone number, and office address. Your address is sent only to the U.S. Census Bureau geocoder to find your district. It is never stored.</p>
+      <p style="margin-top:0">Enter your address to find your two U.S. Senators, your U.S. Representative, and your state and local lawmakers. You get a call script and a letter for each one, written around your own story if you add one, plus their official contact form, phone number and office address. Your address is sent only to the U.S. Census Bureau geocoder to find your district. It is never stored.</p>
       <form id="repForm" class="form-grid" autocomplete="on">
         <div><label for="fName">Your name</label><input id="fName" autocomplete="name" required></div>
         <div><label for="fStreet">Street address <span class="note">(most accurate)</span></label><input id="fStreet" autocomplete="street-address" placeholder="123 Main St"></div>
         <div><label for="fCity">City</label><input id="fCity" autocomplete="address-level2"></div>
         <div><label for="fState">State</label><input id="fState" autocomplete="address-level1" maxlength="20" placeholder="CA"></div>
         <div><label for="fZip">ZIP code</label><input id="fZip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" required></div>
+        <div class="wide"><label for="fStory">Why does this matter to you? <span class="note">(optional, 2–3 sentences, added to every letter and call script)</span></label><textarea id="fStory" rows="3" maxlength="800" placeholder="Has someone called the police on you or someone you know for no reason? What happened, and how did it affect you? A sentence or two in your own words counts more than any form letter."></textarea></div>
         <div style="align-self:end"><button class="primary" type="submit">Find my representatives</button></div>
       </form>
       <div id="repStatus"></div>
@@ -144,7 +126,6 @@
     const LEGISLATORS = 'https://unitedstates.github.io/congress-legislators/legislators-current.json';
     const COMMITTEES = 'https://unitedstates.github.io/congress-legislators/committee-membership-current.json';
     const ATLAS = 'https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/counties-10m.json';
-    const BILL_URL = 'https://prodataman.github.io/CAREN-Act/website/bill.html';
     const STATE_FIPS = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY","60":"AS","66":"GU","69":"MP","72":"PR","78":"VI"};
     // 17 states + DC required racially segregated public schools by law when Brown v. Board was decided (1954).
     const SEGREGATION_STATES = ['AL','AR','DE','FL','GA','KY','LA','MD','MS','MO','NC','OK','SC','TN','TX','VA','WV','DC'];
@@ -188,7 +169,8 @@
         '<tr><td>Minority share</td><td>' + r[6] + '% (Black ' + r[7] + '%, Hispanic ' + r[8] + '%)</td></tr>' +
         '<tr><td>Lynching victims 1877–1950</td><td>' + r[9] + '</td></tr>' +
         '<tr><td>Police killings since 2013</td><td>' + r[10] + ' (' + r[11] + ' Black victims)</td></tr>' +
-        '<tr><td>Race/ethnicity hate crimes</td><td>' + r[12] + '</td></tr></table>';
+        '<tr><td>Race/ethnicity hate crimes</td><td>' + r[12] + '</td></tr></table>' +
+        '<a href="county.html?f=' + esc(r[0]) + '">County page &amp; share card →</a>';
     }
 
     const builders = {
@@ -358,128 +340,8 @@
       document.getElementById('sourcesTable').insertAdjacentHTML('beforeend', rows.map(r => '<tr><td>' + r.join('</td><td>') + '</td></tr>').join(''));
     }).catch(() => {});
 
-    // ---------------------------------------------------------------- Representative lookup
-    const repStatus = document.getElementById('repStatus');
-    const repsDiv = document.getElementById('reps');
-
-    function jsonp(url) {
-      return new Promise((resolve, reject) => {
-        const cb = 'censusCb' + Date.now() + Math.floor(Math.random() * 1e6);
-        const s = document.createElement('script');
-        const timer = setTimeout(() => { cleanup(); reject(new Error('Census geocoder timed out')); }, 20000);
-        function cleanup() { clearTimeout(timer); delete window[cb]; s.remove(); }
-        window[cb] = data => { cleanup(); resolve(data); };
-        s.onerror = () => { cleanup(); reject(new Error('Census geocoder unavailable')); };
-        s.src = url + '&format=jsonp&callback=' + cb;
-        document.head.appendChild(s);
-      });
-    }
-
-    // Returns [{state:'CA', district:11}] candidates
-    async function findDistricts(street, city, state, zip) {
-      if (street) {
-        const addr = [street, city, state, zip].filter(Boolean).join(', ');
-        const url = 'https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?benchmark=Public_AR_Current&vintage=ACS2025_Current&layers=all&address=' + encodeURIComponent(addr);
-        try {
-          const d = await jsonp(url);
-          const m = d.result && d.result.addressMatches && d.result.addressMatches[0];
-          if (m) {
-            const key = Object.keys(m.geographies).find(k => /119th Congressional/.test(k)) || Object.keys(m.geographies).find(k => /Congressional/.test(k));
-            const cd = key && m.geographies[key][0];
-            if (cd) return { exact: true, matched: m.matchedAddress, list: [{ state: STATE_FIPS[cd.STATE], district: (parseInt(cd.GEOID.slice(2), 10) % 98) }] };
-          }
-        } catch (e) { console.warn(e); }
-      }
-      const zips = await once('zips', () => getJSON('data/zip_districts.json'));
-      const list = (zips[zip] || []).map(g => ({ state: STATE_FIPS[g.slice(0, 2)], district: parseInt(g.slice(2), 10) }));
-      return { exact: false, list };
-    }
-
-    function letter(p, t, me) {
-      const title = t.type === 'sen' ? 'Senator' : 'Representative';
-      const where = [me.city, me.state, me.zip].filter(Boolean).join(', ');
-      return 'Dear ' + title + ' ' + p.name.last + ',\n\n' +
-        'My name is ' + me.name + ', and I am your constituent' + (where ? ' in ' + where : '') + '. I am writing to ask you to sponsor or cosponsor a federal version of San Francisco’s CAREN Act (Caution Against Racial and Exploitative Non-Emergencies).\n\n' +
-        'Calls to police made with the specific intent to harass or discriminate against people because of their race or other protected characteristics put innocent people at risk of detention, humiliation, financial harm, and violence. San Francisco unanimously passed the CAREN Act in 2020 (Police Code §637), and states such as Oregon have enacted similar protections, but most Americans have no remedy at all.\n\n' +
-        'The draft federal bill would:\n' +
-        '• Prohibit knowingly causing law enforcement to contact a person with the specific intent to discriminate;\n' +
-        '• Provide minimum statutory damages of $1,000 ($500 from the caller and $500 from the responding agency), plus attorneys’ fees;\n' +
-        '• Protect good-faith reports of real emergencies and crimes; and\n' +
-        '• Preserve stronger state and local laws.\n\n' +
-        'You can read the draft and public comments here: ' + BILL_URL + '\n\n' +
-        'Will you introduce or cosponsor this legislation' + (p._judiciary ? ', and support it in the ' + p._judiciary : '') + '? I would appreciate a response.\n\n' +
-        'Sincerely,\n' + me.name + (me.street ? '\n' + me.street : '') + (where ? '\n' + where : '');
-    }
-
-    function card(p, me, note) {
-      const t = p.terms[p.terms.length - 1];
-      const id = p.id.bioguide;
-      const title = t.type === 'sen' ? 'U.S. Senator, ' + t.state + (t.state_rank ? ' (' + t.state_rank + ')' : '') : 'U.S. Representative, ' + t.state + (t.district === 0 ? ' at-large' : '-' + t.district);
-      const txt = letter(p, t, me);
-      const div = document.createElement('div');
-      div.className = 'rep';
-      div.innerHTML =
-        '<div class="head"><img alt="" src="https://unitedstates.github.io/images/congress/225x275/' + esc(id) + '.jpg" onerror="this.style.visibility=\'hidden\'">' +
-        '<div><h4>' + esc(p.name.official_full || (p.name.first + ' ' + p.name.last)) + '</h4><div class="sub">' + esc(title) + ' · ' + esc(t.party) + '</div>' +
-        (p._judiciary ? '<span class="badge">' + esc(p._judiciary) + (p._jtitle ? ' — ' + esc(p._jtitle) : '') + '</span>' : '') +
-        (note ? '<div class="sub">' + esc(note) + '</div>' : '') + '</div></div>' +
-        '<dl>' + (t.phone ? '<dt>Phone</dt><dd><a href="tel:' + esc(t.phone) + '">' + esc(t.phone) + '</a></dd>' : '') +
-        (t.address ? '<dt>Office</dt><dd>' + esc(t.address) + '</dd>' : '') +
-        (t.url ? '<dt>Website</dt><dd><a href="' + esc(t.url) + '" target="_blank" rel="noopener">' + esc(t.url.replace(/^https?:\/\//, '')) + '</a></dd>' : '') + '</dl>' +
-        '<textarea aria-label="Letter to ' + esc(p.name.last) + '"></textarea>' +
-        '<div class="actions"><button type="button" class="secondary" data-copy>Copy letter</button>' +
-        (t.contact_form ? '<a class="secondary" href="' + esc(t.contact_form) + '" target="_blank" rel="noopener">Open official contact form ↗</a>' : '') +
-        '<a class="secondary" data-mail href="#">Email draft to myself</a></div>';
-      const ta = div.querySelector('textarea');
-      ta.value = txt;
-      div.querySelector('[data-copy]').addEventListener('click', e => {
-        const b = e.currentTarget;
-        (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject()).then(() => { b.textContent = 'Copied ✓'; })
-          .catch(() => { ta.select(); document.execCommand('copy'); b.textContent = 'Copied ✓'; });
-        setTimeout(() => { b.textContent = 'Copy letter'; }, 2000);
-      });
-      div.querySelector('[data-mail]').addEventListener('click', e => {
-        e.currentTarget.href = 'mailto:?subject=' + encodeURIComponent('Letter to ' + (t.type === 'sen' ? 'Senator ' : 'Rep. ') + p.name.last + ' — Federal CAREN Act') + '&body=' + encodeURIComponent(ta.value);
-      });
-      return div;
-    }
-
-    document.getElementById('repForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const me = {
-        name: document.getElementById('fName').value.trim(),
-        street: document.getElementById('fStreet').value.trim(),
-        city: document.getElementById('fCity').value.trim(),
-        state: document.getElementById('fState').value.trim(),
-        zip: document.getElementById('fZip').value.trim().slice(0, 5)
-      };
-      repsDiv.innerHTML = '';
-      repStatus.textContent = 'Looking up your district…';
-      try {
-        const [res, leg, com] = await Promise.all([findDistricts(me.street, me.city, me.state, me.zip), legislators(), committees()]);
-        if (!res.list.length) { repStatus.textContent = 'We could not find that ZIP code. Please check it, or add your street address.'; return; }
-        const jud = {};
-        (com.HSJU || []).forEach(m => jud[m.bioguide] = ['House Judiciary Committee', m.title]);
-        (com.SSJU || []).forEach(m => jud[m.bioguide] = ['Senate Judiciary Committee', m.title]);
-        leg.forEach(p => { const j = jud[p.id.bioguide]; if (j) { p._judiciary = j[0]; p._jtitle = j[1]; } });
-        const st = res.list[0].state;
-        const cur = p => p.terms[p.terms.length - 1];
-        const senators = leg.filter(p => cur(p).type === 'sen' && cur(p).state === st);
-        const reps = [];
-        res.list.forEach(c => leg.filter(p => cur(p).type === 'rep' && cur(p).state === c.state && cur(p).district === c.district).forEach(p => reps.push(p)));
-        let msg = res.exact ? 'Matched address: ' + res.matched + '. ' : '';
-        if (!res.exact && res.list.length > 1) msg += 'ZIP ' + me.zip + ' spans ' + res.list.length + ' congressional districts. All possible representatives are shown; add your street address to narrow it to one. ';
-        else if (!res.exact) msg += 'Based on ZIP ' + me.zip + '. ';
-        if (!reps.length) msg += 'No voting U.S. Representative was found for this location (the seat may be vacant or a non-voting delegate). ';
-        repStatus.textContent = msg + 'Edit any letter below before sending.';
-        senators.concat(reps).forEach(p => repsDiv.appendChild(card(p, me, !res.exact && res.list.length > 1 && cur(p).type === 'rep' ? 'Possible representative for your ZIP' : '')));
-        if (!me.name) repStatus.textContent += ' Tip: add your name so the letters are signed.';
-      } catch (err) {
-        console.error(err);
-        repStatus.textContent = 'Lookup failed: ' + err.message + '. Please try again.';
-      }
-    });
   })();
   </script>
+  <script src="assets/reps.js"></script>
 </body>
 </html>

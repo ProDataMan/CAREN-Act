@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Take Action</title>
+  <meta name="description" content="Call and write your members of Congress, state lawmakers and city council in two minutes, in your own words. Then share your county's numbers and volunteer.">
+  <meta property="og:title" content="Make discriminatory 911 calls illegal">
+  <meta property="og:description" content="Find your lawmakers, get a call script and a letter in your own words, and ask them to pass the CAREN Act. Two minutes.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .steps { counter-reset: s; list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 10px; }
+    .steps li { counter-increment: s; display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+    .steps li::before { content: counter(s); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #0e2a47; color: #fff; font-weight: 700; }
+    .steps h3 { margin: 4px 0 4px; font-size: 1.02rem; }
+    .steps p { margin: 0 0 6px; }
+    .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 10px 0; }
+    .links a { display: block; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; text-decoration: none; color: var(--ink); }
+    .links a b { color: var(--accent); display: block; }
+    .links a span { font-size: .86rem; color: var(--muted); }
+    pre.embed { background: var(--surface-2); padding: 10px; border-radius: 6px; overflow-x: auto; font-size: .82rem; white-space: pre-wrap; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page-wide">
+    <h1>Take action in 10 minutes</h1>
+    <p class="lede">The people who decide whether discriminatory 911 calls stay legal are your members of Congress, your state lawmakers and your city council. Here is how to reach all of them, plus a few other things that make a real difference.</p>
+
+    <ol class="steps">
+      <li><div><h3>Call and write your lawmakers <span class="note">(2–5 minutes)</span></h3><p>Enter your address below. You get your two U.S. Senators, your U.S. Representative, and letters for your state lawmakers and city council. Calls count most, so each card has a call button and a 30-second script. <a href="#contact">Start now ↓</a></p></div></li>
+      <li><div><h3>Share your county’s numbers</h3><p>People act when they see their own county. <a href="county.html">Make a share image for your county</a>.</p></div></li>
+      <li><div><h3>Make sure you can vote</h3><p>Lawmakers listen hardest to constituents who vote, and city councils, district attorneys and sheriffs are often elected by a few thousand votes.</p></div></li>
+      <li><div><h3>Know your rights, and share them</h3><p>If the police are called on you, or immigration agents come to your door, knowing your rights protects you and the people around you.</p></div></li>
+      <li><div><h3>Join the campaign in your state</h3><p><a href="volunteer.html">Volunteer</a> to verify old laws, export CDC data, or organize locally, and <a href="bill.html">suggest edits to the draft bill</a>.</p></div></li>
+    </ol>
+
+    <h2 id="contact">Contact your lawmakers</h2>
+    <div class="form-section">
+      <p style="margin-top:0">Your address goes only to the U.S. Census Bureau geocoder to find your districts. It is never sent to us or stored.</p>
+      <form id="repForm" class="form-grid" autocomplete="on">
+        <div><label for="fName">Your name</label><input id="fName" autocomplete="name" required></div>
+        <div><label for="fStreet">Street address <span class="note">(finds state districts too)</span></label><input id="fStreet" autocomplete="street-address" placeholder="123 Main St"></div>
+        <div><label for="fCity">City</label><input id="fCity" autocomplete="address-level2"></div>
+        <div><label for="fState">State</label><input id="fState" autocomplete="address-level1" maxlength="20" placeholder="CA"></div>
+        <div><label for="fZip">ZIP code</label><input id="fZip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" required></div>
+        <div class="wide"><label for="fStory">Why does this matter to you? <span class="note">(optional, added to every letter and call script)</span></label><textarea id="fStory" rows="3" maxlength="800" placeholder="Has someone called the police on you or someone you know for no reason? What happened, and how did it affect you? A sentence or two in your own words counts more than any form letter."></textarea></div>
+        <div style="align-self:end"><button class="primary" type="submit">Find my lawmakers</button></div>
+      </form>
+      <div id="repStatus"></div>
+      <div class="reps" id="reps"></div>
+      <p class="note">Tips that make your message count: say you are a constituent and give your ZIP code; keep it to one ask; your own experience matters more than statistics; be polite to staff, since they tally every contact. Members of Congress don't publish email addresses, so use the official contact form. New members of Congress take office January 3, 2027. Writing to them early, before their priorities are set, is especially useful.</p>
+    </div>
+
+    <h2>Register and vote</h2>
+    <div class="links">
+      <a href="https://vote.gov/" target="_blank" rel="noopener"><b>Vote.gov ↗</b><span>Official U.S. government site to register in your state</span></a>
+      <a href="https://www.vote.org/am-i-registered-to-vote/" target="_blank" rel="noopener"><b>Check your registration ↗</b><span>Vote.org: confirm you're still on the rolls</span></a>
+      <a href="https://www.vote.org/election-reminders/" target="_blank" rel="noopener"><b>Election reminders ↗</b><span>Vote.org: texts or emails before every election, including local ones</span></a>
+      <a href="https://www.vote411.org/" target="_blank" rel="noopener"><b>VOTE411 ↗</b><span>League of Women Voters: what's on your ballot, down to city council</span></a>
+    </div>
+
+    <h2>Know your rights</h2>
+    <p>These organizations publish free, up-to-date guides. We link to them rather than giving legal advice ourselves.</p>
+    <div class="links">
+      <a href="https://www.aclu.org/know-your-rights/stopped-by-police" target="_blank" rel="noopener"><b>If you're stopped by police ↗</b><span>ACLU guide, in several languages</span></a>
+      <a href="https://www.aclu.org/know-your-rights/immigrants-rights" target="_blank" rel="noopener"><b>Immigrants' rights ↗</b><span>ACLU: what to do if ICE comes to your home, work or car</span></a>
+      <a href="https://www.ilrc.org/red-cards" target="_blank" rel="noopener"><b>Red cards ↗</b><span>Immigrant Legal Resource Center: printable rights cards in many languages</span></a>
+      <a href="https://www.immigrantdefenseproject.org/" target="_blank" rel="noopener"><b>Immigrant Defense Project ↗</b><span>ICE raid guides and rights materials</span></a>
+      <a href="https://unitedwedream.org/" target="_blank" rel="noopener"><b>United We Dream ↗</b><span>Rapid-response networks and reporting ICE activity</span></a>
+      <a href="https://www.nilc.org/" target="_blank" rel="noopener"><b>National Immigration Law Center ↗</b><span>Policy updates and know-your-rights resources</span></a>
+      <a href="https://www.naacpldf.org/" target="_blank" rel="noopener"><b>NAACP Legal Defense Fund ↗</b><span>Civil rights, policing and voting rights</span></a>
+      <a href="https://www.nlg.org/" target="_blank" rel="noopener"><b>National Lawyers Guild ↗</b><span>Legal observers and protest legal support</span></a>
+    </div>
+    <div class="callout"><b>If someone calls the police on you to discriminate:</b> stay calm and stay safe first. Afterward, write down what happened, the time and place, and any officer names or badge numbers, and save any video. Where a CAREN-style law exists (San Francisco, Oregon), you may be able to sue. Elsewhere, a civil rights organization or your local civilian police oversight board can advise you. Sharing what happened, in your own words, in your letters above is one of the most persuasive things you can do.</div>
+
+    <h2>Put this on your website</h2>
+    <p>Partner organizations, chapters and churches can embed the lawmaker lookup on their own site. Paste this where you want it to appear:</p>
+    <pre class="embed" id="embedCode">&lt;iframe src="https://prodataman.github.io/CAREN-Act/website/embed.html" title="Contact your lawmakers about the CAREN Act" style="width:100%;height:900px;border:0" loading="lazy"&gt;&lt;/iframe&gt;</pre>
+    <button class="btn secondary" type="button" id="copyEmbed">Copy embed code</button>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/reps.js"></script>
+  <script>
+    document.getElementById('copyEmbed').addEventListener('click', e => {
+      navigator.clipboard.writeText(document.getElementById('embedCode').textContent).then(() => { e.target.textContent = 'Copied ✓'; setTimeout(() => e.target.textContent = 'Copy embed code', 2000); });
+    });
+  </script>
+</body>
+</html>

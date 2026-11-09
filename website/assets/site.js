@@ -4,13 +4,14 @@
   'use strict';
   var NAV = [
     { href: 'index.html', label: 'Map' },
+    { href: 'county.html', label: 'Your county' },
     { href: 'bill.html', label: 'Draft bill' },
     { href: 'deaths.html', label: 'Contested deaths' },
     { href: 'laws.html', label: 'Old laws tracker' },
     { href: 'history.html', label: 'History' },
     { href: 'data.html', label: 'Data' },
     { href: 'volunteer.html', label: 'Volunteer' },
-    { href: 'index.html#contact', label: 'Contact Congress', cta: true }
+    { href: 'act.html', label: 'Take action', cta: true }
   ];
   var page = (location.pathname.split('/').pop() || 'index.html');
 
@@ -18,7 +19,7 @@
   if (header) {
     header.className = 'site-header';
     var links = NAV.map(function (n) {
-      var current = !n.cta && n.href === page ? ' aria-current="page"' : '';
+      var current = n.href === page ? ' aria-current="page"' : '';
       return '<a href="' + n.href + '"' + current + (n.cta ? ' class="cta"' : '') + '>' + n.label + '</a>';
     }).join('');
     header.innerHTML =
