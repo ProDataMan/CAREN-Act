@@ -177,8 +177,20 @@ def build_acs():
     header = next(rows)
     ix = {h: i for i, h in enumerate(header)}
     out = {}
+    # Districts from the same file: 119th Congress (5001900US), state senate (610U900US), state house (620L900US).
+    dist_prefix = {"5001900US": "cd", "610U900US": "sldu", "620L900US": "sldl"}
+    districts = {"cd": {}, "sldu": {}, "sldl": {}}
     for r in rows:
         g = r[0]
+        kind = dist_prefix.get(g[:9])
+        if kind:
+            try:
+                tot, nhw, blk, hisp = (int(r[ix[k]]) for k in ("B03002_E001", "B03002_E003", "B03002_E004", "B03002_E012"))
+            except (ValueError, KeyError):
+                continue
+            if tot > 0:
+                districts[kind][g[9:]] = [tot, round(100 * (tot - nhw) / tot, 1), round(100 * blk / tot, 1), round(100 * hisp / tot, 1)]
+            continue
         if not g.startswith("0500000US"):
             continue
         try:
@@ -200,6 +212,10 @@ def build_acs():
             "native": round(100 * aian / tot, 1),
             "asian": round(100 * asn / tot, 1),
         }
+    write_json("districts.json", {"fields": ["pop", "pct_minority", "pct_black", "pct_hispanic"], "vintage": f"ACS 5-year {y - 4}-{y}", **districts})
+    manifest["datasets"]["districts"] = {"source": url, "publisher": "U.S. Census Bureau", "vintage": f"ACS 5-year {y - 4}-{y}",
+                                         "congressional": len(districts["cd"]), "state_senate": len(districts["sldu"]),
+                                         "state_house": len(districts["sldl"])}
     manifest["datasets"]["acs"] = {"source": url, "vintage": f"ACS 5-year {y - 4}-{y}", "records": len(out),
                                    "publisher": "U.S. Census Bureau", "table": "B03002 Hispanic or Latino Origin by Race"}
     return out, y
@@ -552,6 +568,249 @@ def build_cdc_wonder():
                                           "files": meta, "records": len(rows)}
 
 
+# ---------------------------------------------------------------- City "suspicious person" 911 calls
+# Resident-initiated calls only. Outcomes are grouped into three buckets so cities can be compared.
+# Locations are binned to a ~500 m grid and bins with fewer than 3 calls are dropped.
+CITY_CALLS = [
+    {
+        "city": "San Francisco, CA", "portal": "https://data.sfgov.org/d/2zdj-bwza",
+        "url": "https://data.sf.gov/resource/2zdj-bwza.json", "time": "received_datetime",
+        "where": "call_type_final_desc='SUSPICIOUS PERSON' AND onview_flag='N'",
+        "call_type": "Suspicious person (final call type), resident-initiated",
+        "outcome": "disposition", "point": "intersection_point",
+        "enforce": {"ARR", "CIT", "REP"}, "nothing": {"GOA", "UTL", "NOM"}, "drop": {"CAN", "DUP"},
+    },
+    {
+        "city": "Seattle, WA", "portal": "https://data.seattle.gov/d/33kz-ixgy",
+        "url": "https://data.seattle.gov/resource/33kz-ixgy.json", "time": "cad_event_original_time_queued",
+        "where": "initial_call_type='SUSPICIOUS PERSON, VEHICLE, OR INCIDENT'",
+        "call_type": "Suspicious person, vehicle or incident (initial call type)",
+        "outcome": "cad_event_clearance_description", "lat": "dispatch_latitude", "lon": "dispatch_longitude",
+        "enforce": {"PHYSICAL ARREST MADE", "CITATION", "REPORT WRITTEN (NO ARREST)", "OTHER REPORT MADE", "FOLLOW-UP REPORT MADE"},
+        "nothing": {"UNABLE TO LOCATE INCIDENT OR COMPLAINANT", "FALSE COMPLAINT/UNFOUNDED", "NO POLICE ACTION POSSIBLE OR NECESSARY"},
+        "drop": {"DUPLICATE EVENT", "CANCELLED EVENT", "RESPONDING UNIT(S) CANCELLED BY RADIO"},
+    },
+    {
+        "city": "New Orleans, LA", "portal": "https://data.nola.gov/", "nola": True, "time": "timecreate",
+        "where": "initialtypetext='SUSPICIOUS PERSON' AND selfinitiated='N'",
+        "call_type": "Suspicious person (initial call type), resident-initiated",
+        "outcome": "dispositiontext", "point": "location",
+        "enforce": {"REPORT TO FOLLOW"}, "nothing": {"GONE ON ARRIVAL", "UNFOUNDED"},
+        "drop": {"DUPLICATE", "VOID", "Canceled By Complainant"},
+    },
+]
+
+
+def nola_datasets(years):
+    cat = json.loads(fetch("https://api.us.socrata.com/api/catalog/v1?domains=data.nola.gov&q=calls%20for%20service&limit=50", binary=False))
+    ids = {}
+    for r in cat["results"]:
+        m = re.fullmatch(r"Calls for Service (\d{4})", r["resource"]["name"].strip())
+        if m and int(m.group(1)) in years:
+            ids[int(m.group(1))] = r["resource"]["id"]
+    return [f"https://data.nola.gov/resource/{ids[y]}.json" for y in sorted(ids)]
+
+
+def soql(url, query):
+    return json.loads(fetch(url + "?" + urllib.parse.urlencode({"$query": query}), binary=False, timeout=300))
+
+
+def build_city_calls():
+    log("City suspicious-person 911 calls")
+    since = (TODAY - dt.timedelta(days=365)).isoformat()
+    cities = []
+    for c in CITY_CALLS:
+        urls = nola_datasets({TODAY.year - 1, TODAY.year}) if c.get("nola") else [c["url"]]
+        where = f"{c['where']} AND {c['time']} > '{since}'"
+        outcomes, grid = Counter(), Counter()
+        for url in urls:
+            for r in soql(url, f"SELECT {c['outcome']} AS o, count(*) AS n WHERE {where} GROUP BY {c['outcome']} LIMIT 1000"):
+                outcomes[r.get("o") or ""] += int(r["n"])
+            cols = c["point"] if "point" in c else f"{c['lat']}, {c['lon']}"
+            off = 0
+            while True:
+                rows = soql(url, f"SELECT {cols} WHERE {where} LIMIT 50000 OFFSET {off}")
+                for r in rows:
+                    try:
+                        if "point" in c:
+                            lon, lat = r[c["point"]]["coordinates"]
+                        else:
+                            lat, lon = float(r[c["lat"]]), float(r[c["lon"]])
+                    except (KeyError, TypeError, ValueError):
+                        continue
+                    if lat and lon:
+                        grid[(round(lat / 0.005) * 0.005, round(lon / 0.005) * 0.005)] += 1
+                if len(rows) < 50000:
+                    break
+                off += 50000
+        # Drop grid cells far from the city's main cluster (bad geocodes, e.g. 0,0 or out of state).
+        if grid:
+            pts = sorted(grid.items(), key=lambda kv: -kv[1])
+            clat, clon = pts[0][0]
+            grid = Counter({k: v for k, v in grid.items() if abs(k[0] - clat) < 0.6 and abs(k[1] - clon) < 0.6})
+        total = sum(n for o, n in outcomes.items() if o not in c["drop"])
+        enforce = sum(n for o, n in outcomes.items() if o in c["enforce"])
+        nothing = sum(n for o, n in outcomes.items() if o in c["nothing"])
+        cities.append({
+            "city": c["city"], "portal": c["portal"], "call_type": c["call_type"], "since": since,
+            "calls": total, "enforcement": enforce, "nothing_found": nothing, "other": total - enforce - nothing,
+            "enforcement_codes": sorted(c["enforce"]), "nothing_codes": sorted(c["nothing"]),
+            "outcomes": dict(outcomes.most_common(25)),
+            "points": [[round(k[0], 3), round(k[1], 3), v] for k, v in sorted(grid.items()) if v >= 3],
+        })
+        log(f"  {c['city']}: {total} calls, {enforce} enforcement, {len(cities[-1]['points'])} grid cells")
+    write_json("city_calls.json", {"generated": TODAY.isoformat(), "cities": cities})
+    manifest["datasets"]["city_calls"] = {"publisher": "City open-data portals (San Francisco, Seattle, New Orleans)",
+                                          "since": since, "cities": {x["city"]: x["calls"] for x in cities},
+                                          "source": "https://data.sfgov.org/d/2zdj-bwza"}
+
+
+# ---------------------------------------------------------------- Racial covenants (Mapping Prejudice)
+COVENANT_REPO = "UMNLibraries/mp-us-racial-covenants"
+
+
+def polygon_center(geom):
+    coords = geom["coordinates"]
+    ring = coords[0][0] if geom["type"] == "MultiPolygon" else coords[0]
+    xs, ys = [p[0] for p in ring], [p[1] for p in ring]
+    return sum(ys) / len(ys), sum(xs) / len(xs)
+
+
+def build_covenants():
+    log("Mapping Prejudice racial covenants")
+    listing = json.loads(fetch(f"https://api.github.com/repos/{COVENANT_REPO}/contents", binary=False))
+    rows, per = [], {}
+    for item in listing:
+        if item["type"] != "dir":
+            continue
+        name = item["name"]
+        url = f"https://media.githubusercontent.com/media/{COVENANT_REPO}/main/{name}/covenants-{name}.geojson"
+        try:
+            d = json.loads(fetch(url, timeout=600))
+        except Exception as e:  # noqa: BLE001
+            log(f"  skipped {name}: {e}")
+            continue
+        n = 0
+        cells = {}
+        for f in d.get("features", []):
+            p, g = f.get("properties") or {}, f.get("geometry")
+            if not g:
+                continue
+            try:
+                lat, lon = polygon_center(g)
+            except (IndexError, KeyError, TypeError, ZeroDivisionError):
+                continue
+            yr = p.get("deed_year")
+            yr = int(yr) if isinstance(yr, (int, float)) and yr else None
+            # ~250 m cells keep the file small; each cell keeps a count, deed-year range and the most common city.
+            key = (round(lat / 0.0025) * 0.0025, round(lon / 0.0025) * 0.0025)
+            c = cells.setdefault(key, [0, None, None, Counter()])
+            c[0] += 1
+            if yr:
+                c[1] = yr if c[1] is None else min(c[1], yr)
+                c[2] = yr if c[2] is None else max(c[2], yr)
+            c[3][(p.get("city") or "").title()] += 1
+            n += 1
+        county = name.split("-", 1)[1].replace("-", " ").title()
+        for (lat, lon), (cnt, y0, y1, cities) in cells.items():
+            rows.append([round(lat, 4), round(lon, 4), cnt, y0, y1, cities.most_common(1)[0][0], county, name[:2].upper()])
+        per[name] = n
+        log(f"  {name}: {n}")
+    write_json("covenants.json", {"fields": ["lat", "lon", "count", "first_year", "last_year", "city", "jurisdiction", "state"],
+                                  "cell_degrees": 0.0025, "total": sum(per.values()), "rows": rows})
+    manifest["datasets"]["covenants"] = {"source": f"https://github.com/{COVENANT_REPO}", "publisher": "Mapping Prejudice (University of Minnesota) and partners",
+                                         "records": sum(per.values()), "cells": len(rows), "jurisdictions": per}
+
+
+# ---------------------------------------------------------------- Lynchings of all races (Monroe Work Today)
+MWT_URL = "https://monroeworktoday.org/explore/data/s_1_3.txt"
+
+
+def mwt_group(r):
+    r = float(r)
+    if r == 2:
+        return "B"
+    if 3 <= r < 4:
+        return "L"
+    if 4 <= r < 5:
+        return "N"
+    if r in (5, 9):
+        return "A"
+    if r in (1, 6, 7, 8):
+        return "W"
+    return "U"
+
+
+def build_mwt():
+    log("Monroe Work Today lynchings (all races)")
+    d = json.loads(fetch(MWT_URL, timeout=300))
+    rows = []
+    for f in d["features"]:
+        p, g = f["properties"], f.get("geometry") or {}
+        try:
+            lon, lat = g["coordinates"][:2]
+            r = mwt_group(p.get("r") or 99)
+        except (KeyError, TypeError, ValueError):
+            continue
+        yr = int(p["yr"]) if str(p.get("yr", "")).isdigit() else None
+        cty = p.get("cty_m") or p.get("cty_k") or ""
+        # MWT parks cases with an unknown county offshore; keep the record but leave it off the map.
+        unknown = bool(re.search(r"unknown|indeterminate", cty, re.I))
+        place = ", ".join(x for x in [p.get("town") or "", "" if unknown or not cty else cty + " County", p.get("st_k") or ""] if x)
+        rows.append([None if unknown else round(lat, 4), None if unknown else round(lon, 4), yr, r, (p.get("name") or "").strip(), place, (p.get("web_n") or "").strip()])
+    groups = Counter(r[3] for r in rows)
+    years = [r[2] for r in rows if r[2]]
+    write_json("lynchings_all_races.json", {"fields": ["lat", "lon", "year", "group", "name", "place", "summary"],
+                                            "groups": {"B": "Black", "L": "Latino / Mexican", "N": "Native American", "A": "Asian", "W": "White (incl. Italian, Irish)", "U": "Unknown / other"},
+                                            "license": "Summaries CC BY-NC 4.0, Monroe Work Today (monroeworktoday.org)", "rows": rows})
+    manifest["datasets"]["mwt"] = {"source": "https://monroeworktoday.org/", "publisher": "Monroe Work Today (auut studio)",
+                                   "records": len(rows), "unmapped_unknown_county": sum(1 for r in rows if r[0] is None), "years": f"{min(years)}-{max(years)}", "groups": dict(groups),
+                                   "license": "CC BY-NC 4.0 (attribution, non-commercial)"}
+
+
+# ---------------------------------------------------------------- BJS Police-Public Contact Survey
+BJS_PPCS = "https://bjs.ojp.gov/document/cbpp20.zip"
+
+
+def bjs_table(z, name):
+    text = z.read(name).decode("latin-1").lstrip("ï»¿﻿")
+    return list(csv.reader(io.StringIO(text)))
+
+
+def pnum(v):
+    try:
+        return float(v.replace(",", ""))
+    except (AttributeError, ValueError):
+        return None
+
+
+def build_bjs():
+    log("BJS Police-Public Contact Survey 2020")
+    z = zipfile.ZipFile(io.BytesIO(fetch(BJS_PPCS, timeout=300)))
+    races = {"White": "White", "Black": "Black", "Hispanic": "Hispanic", "Asian": "Asian"}
+    force, street = {}, {}
+    for row in bjs_table(z, "cbpp20t03.csv"):
+        if len(row) > 12 and row[1]:
+            k = row[1].split("/")[0].rstrip("*")
+            if k in races:
+                force[races[k]] = pnum(row[12])
+    for row in bjs_table(z, "cbpp20t06.csv"):
+        if len(row) > 21 and row[1]:
+            k = row[1].split("/")[0].rstrip("*")
+            if k in races:
+                street[races[k]] = {"no_enforcement": pnum(row[15]), "search_or_arrest": pnum(row[21])}
+    out = {
+        "survey": "Police-Public Contact Survey, 2020", "report": "Contacts Between Police and the Public, 2020 (NCJ 304527)",
+        "report_url": "https://bjs.ojp.gov/library/publications/contacts-between-police-and-public-2020",
+        "force_pct_of_contacts": force, "street_stops": street,
+        "notes": "Percent of residents 16+ with any police contact whose contact involved the threat or nonfatal use of force (table 3), and "
+                 "outcomes of street stops (table 6). Blank values were suppressed by BJS for small samples.",
+    }
+    write_json("bjs_contacts.json", out)
+    manifest["datasets"]["bjs"] = {"source": out["report_url"], "publisher": "Bureau of Justice Statistics", "survey": out["survey"],
+                                   "force_pct_of_contacts": force}
+
+
 # ---------------------------------------------------------------- County priority index
 def pctl(values, q):
     v = sorted(values)
@@ -604,13 +863,16 @@ def build_priority(counties, acs, lynch, police, police_black, hate):
 def main():
     os.makedirs(OUT, exist_ok=True)
     only = set(sys.argv[1:])
-    if only <= {"cdc", "wonder"} and only:
+    # Standalone builders: `python3 scripts/build_data.py calls covenants` reruns just those and keeps the rest of the manifest.
+    standalone = {"cdc": build_cdc_deaths, "wonder": build_cdc_wonder, "calls": build_city_calls, "covenants": build_covenants,
+                  "mwt": build_mwt, "bjs": build_bjs, "acs": build_acs}
+    if only and only <= set(standalone):
         global manifest
         manifest = json.load(open(os.path.join(OUT, "manifest.json")))
-        if "cdc" in only:
-            build_cdc_deaths()
-        if "wonder" in only:
-            build_cdc_wonder()
+        manifest["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+        for k in standalone:
+            if k in only:
+                standalone[k]()
         json.dump(manifest, open(os.path.join(OUT, "manifest.json"), "w"), indent=2)
         return
     counties, by_name = build_gazetteer()
@@ -625,6 +887,18 @@ def main():
         build_zip_districts()
     build_cdc_deaths()
     build_cdc_wonder()
+    # Newer sources: a failure in one shouldn't block the weekly refresh of the others.
+    try:
+        previous = json.load(open(os.path.join(OUT, "manifest.json")))["datasets"]
+    except (OSError, ValueError, KeyError):
+        previous = {}
+    for fn, key in ((build_city_calls, "city_calls"), (build_covenants, "covenants"), (build_mwt, "mwt"), (build_bjs, "bjs")):
+        try:
+            fn()
+        except Exception as e:  # noqa: BLE001
+            log(f"  {fn.__name__} failed, keeping last week's file: {e}")
+            if key in previous:
+                manifest["datasets"][key] = previous[key]
     manifest_path = os.path.join(OUT, "manifest.json")
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)

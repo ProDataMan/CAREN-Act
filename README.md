@@ -13,6 +13,8 @@ This repository supports efforts to introduce and pass a federal version of San 
 - **Contested hanging deaths & unnatural deaths by race (CDC):** https://prodataman.github.io/CAREN-Act/website/deaths.html
 - **Old laws tracker (get Jim Crow / sundown laws off the books):** https://prodataman.github.io/CAREN-Act/website/laws.html
 - **Data sources & methodology:** https://prodataman.github.io/CAREN-Act/website/data.html
+- **What "suspicious person" 911 calls lead to (SF, Seattle, New Orleans):** https://prodataman.github.io/CAREN-Act/website/data.html#calls
+- **New map layers:** [lynchings of all races, 911 calls, racial covenants](https://prodataman.github.io/CAREN-Act/website/?layers=mwt,calls,covenants)
 - **Volunteer as a state ally (verifiers, data exporters, local deliverers):** https://prodataman.github.io/CAREN-Act/website/volunteer.html
 - **CDC WONDER export guide for volunteers:** https://prodataman.github.io/CAREN-Act/website/deaths.html#export
 - **Report an old law:** https://github.com/ProDataMan/CAREN-Act/issues/new?template=residual-law.yml
@@ -312,6 +314,15 @@ Run `python3 scripts/build_data.py` (needs `openpyxl` and `pdftotext`/poppler) t
 - Mapping Inequality HOLC
 - Census ZCTA to 119th-Congress district file
 - CDC/NCHS injury mortality by race and intent, 1999–2016, and suicide rates by race through 2024 (data.cdc.gov)
+- Census ACS 5-year B03002 for every 119th-Congress district and state legislative district (`districts.json`, shown on lawmaker cards)
+- "Suspicious person" 911 calls and their outcomes, past 12 months, from the San Francisco, Seattle and New Orleans open-data portals (`city_calls.json`). To add a city, append an entry to `CITY_CALLS`.
+- Monroe Work Today lynchings of all races (`lynchings_all_races.json`, CC BY-NC 4.0 with attribution)
+- Mapping Prejudice racial covenants from 13 counties, grouped into ~250 m cells (`covenants.json`)
+- BJS Police-Public Contact Survey 2020: force and street-stop outcomes by race (`bjs_contacts.json`)
+
+Rebuild a single source with `python3 scripts/build_data.py calls` (also `covenants`, `mwt`, `bjs`, `acs`, `cdc`, `wonder`). If one of the newer sources fails during the weekly refresh, last week's file stays in place.
+
+Still not added: LegiScan, Congress.gov and Police Scorecard (need API keys), Stanford Open Policing (multi-GB files), the Sundown Towns database (needs permission), ADL H.E.A.T. and civil-rights report cards (need a volunteer export or a partnership). See the status column on the data page.
 
 CDC WONDER (state and county numbers by race) blocks automated access, so those have to be exported by hand. Contested deaths are curated from reputable reporting and verified before they are added.
 

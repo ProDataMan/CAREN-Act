@@ -40,7 +40,7 @@
       .legend.open .body { display: block; }
       .legend-toggle { display: block; background: none; border: 0; font: inherit; font-weight: 700; font-size: 12px; padding: 0; cursor: pointer; color: #222; }
     }
-    .legend { background: rgba(255,255,255,.95); padding: 8px 10px; border-radius: 6px; font-size: 12px; line-height: 1.5; box-shadow: 0 1px 4px rgba(0,0,0,.25); max-width: 230px; }
+    .legend { max-height: 55vh; overflow-y: auto; background: rgba(255,255,255,.95); padding: 8px 10px; border-radius: 6px; font-size: 12px; line-height: 1.5; box-shadow: 0 1px 4px rgba(0,0,0,.25); max-width: 230px; }
     .legend b { display: block; margin-top: 4px; }
     .legend i { display: inline-block; width: 12px; height: 12px; margin-right: 5px; vertical-align: -1px; border-radius: 2px; }
     .grad { height: 10px; border-radius: 2px; background: linear-gradient(to right, #2c7bb6, #abd9e9, #ffffbf, #fdae61, #d7191c); }
@@ -74,12 +74,16 @@
         <label><input type="checkbox" data-layer="priority" checked> <span class="sw" style="background:#7a0177"></span> High-overlap counties</label>
         <h4>Racial violence</h4>
         <label><input type="checkbox" data-layer="lynch" checked> <span class="sw" style="background:#67000d"></span> Lynchings 1877–1950 (EJI)</label>
+        <label><input type="checkbox" data-layer="mwt"> <span class="sw" style="background:#6a3d9a"></span> Lynchings of all races (Monroe Work Today)</label>
         <label><input type="checkbox" data-layer="deaths"> <span class="sw" style="background:#000"></span> Contested hanging deaths</label>
         <label><input type="checkbox" data-layer="police"> <span class="sw" style="background:#e31a1c"></span> Police killings 2013–present (MPV)</label>
         <label><input type="checkbox" data-layer="hate"> <span class="sw" style="background:#ff7f00"></span> Race/ethnicity hate crimes (FBI)</label>
+        <h4>911 calls</h4>
+        <label><input type="checkbox" data-layer="calls"> <span class="sw" style="background:#0570b0"></span> “Suspicious person” calls: SF, Seattle, New Orleans</label>
         <h4>Population &amp; history</h4>
         <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census)</label>
         <label><input type="checkbox" data-layer="redlining"> <span class="sw" style="background:#d9534f"></span> HOLC redlining maps</label>
+        <label><input type="checkbox" data-layer="covenants"> <span class="sw" style="background:#54278f"></span> Racial covenants on deeds (Mapping Prejudice)</label>
         <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> Segregated schools by law (pre-1954)</label>
         <label><input type="checkbox" data-layer="residual" checked> <span class="sw" style="background:gold"></span> Old segregation/sundown laws</label>
         <h4>Allies</h4>
@@ -238,6 +242,31 @@
           onEachFeature: (f, l) => l.bindPopup('<b>' + esc(f.properties.name) + '</b><br>Required racially segregated public schools by law when <i>Brown v. Board of Education</i> was decided (1954). These laws are no longer enforceable.<br><a href="https://www.archives.gov/education/lessons/brown-v-board" target="_blank" rel="noopener">National Archives</a>')
         });
       }),
+      mwt: () => getJSON('data/lynchings_all_races.json').then(d => {
+        const C = { B: RACE_COLOR.B, L: RACE_COLOR.H, N: RACE_COLOR.N, A: RACE_COLOR.A, W: RACE_COLOR.W, U: RACE_COLOR.U };
+        const g = L.layerGroup();
+        d.rows.filter(r => r[0] != null).forEach(r => L.circleMarker([r[0], r[1]], { radius: 3.5, weight: 0.5, color: '#222', fillColor: C[r[3]], fillOpacity: 0.85 })
+          .bindPopup('<b>' + esc(r[4] || 'Name unknown') + '</b>' + (r[2] ? ', ' + r[2] : '') + '<br>' + esc(d.groups[r[3]]) + ' · ' + esc(r[5]) +
+            (r[6] ? '<br>' + esc(r[6]) : '') + '<br><span class="note">Marker placed in the county, not the exact spot. <a href="https://monroeworktoday.org/" target="_blank" rel="noopener">Monroe Work Today</a> (CC BY-NC 4.0)</span>').addTo(g));
+        return g;
+      }),
+      calls: () => getJSON('data/city_calls.json').then(d => {
+        const g = L.layerGroup();
+        d.cities.forEach(c => {
+          const pct = x => (100 * x / c.calls).toFixed(1) + '%';
+          c.points.forEach(p => L.circleMarker([p[0], p[1]], { radius: 1.5 + Math.sqrt(p[2]) * 0.3, weight: 0.5, color: '#034e7b', fillColor: '#0570b0', fillOpacity: 0.5 })
+            .bindPopup('<b>' + p[2] + ' “suspicious person” calls</b> in this ~500 m area, past 12 months<br>' + esc(c.city) + ' citywide: ' + c.calls.toLocaleString() + ' calls; ' +
+              pct(c.enforcement) + ' led to an arrest, citation or police report, ' + pct(c.nothing_found) + ' found nothing.<br><a href="data.html#calls">How these are counted</a> · <a href="' + esc(c.portal) + '" target="_blank" rel="noopener">City open data</a>').addTo(g));
+        });
+        return g;
+      }),
+      covenants: () => getJSON('data/covenants.json').then(d => {
+        const g = L.layerGroup();
+        d.rows.forEach(r => L.circleMarker([r[0], r[1]], { radius: 1.5 + Math.sqrt(r[2]) * 0.6, weight: 0, fillColor: '#54278f', fillOpacity: 0.55 })
+          .bindPopup('<b>' + r[2] + ' racially restrictive covenant' + (r[2] > 1 ? 's' : '') + '</b> on property deeds here' + (r[3] ? ', ' + (r[3] === r[4] ? r[3] : r[3] + '–' + r[4]) : '') +
+            '<br>' + esc([r[5], r[6], r[7]].filter(Boolean).join(', ')) + '<br>Covenants barred people of color from buying or living in homes. Courts stopped enforcing them in 1948 and the Fair Housing Act banned them in 1968.<br><a href="https://mappingprejudice.umn.edu/" target="_blank" rel="noopener">Mapping Prejudice</a>').addTo(g));
+        return g;
+      }),
       deaths: () => getJSON('data/contested_deaths.json').then(d => {
         const g = L.layerGroup();
         d.cases.forEach(c => L.circleMarker([c.lat, c.lon], { radius: 7, color: '#fff', weight: 2, fillColor: '#000', fillOpacity: 0.9 })
@@ -316,7 +345,9 @@
       d.innerHTML = '<button class="legend-toggle" type="button">Legend ▾</button><div class="body"><b>Priority score</b><div class="grad"></div><div style="display:flex;justify-content:space-between"><span>lower</span><span>higher</span></div>' +
         '<b>Police killings: victim race</b>' + ['B', 'H', 'N', 'A', 'W', 'U'].map(k => '<i style="background:' + RACE_COLOR[k] + '"></i>' + RACE[k]).join('<br>') +
         '<b>Redlining (HOLC)</b><i style="background:#76a865"></i>A <i style="background:#7cb5bd"></i>B <i style="background:#ffff00"></i>C <i style="background:#d9533c"></i>D' +
-        '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local<b>Contested deaths</b><i style="background:#000;border-radius:50%"></i>Disputed hanging death</div>';
+        '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local<b>Contested deaths</b><i style="background:#000;border-radius:50%"></i>Disputed hanging death' +
+        '<b>Lynchings, all races (MWT)</b>' + [['B', 'Black'], ['H', 'Latino / Mexican'], ['N', 'Native American'], ['A', 'Asian'], ['W', 'White']].map(k => '<i style="background:' + RACE_COLOR[k[0]] + '"></i>' + k[1]).join('<br>') +
+        '<b>Other layers</b><i style="background:#0570b0;border-radius:50%"></i>“Suspicious person” 911 calls<br><i style="background:#54278f;border-radius:50%"></i>Racial covenants</div>';
       d.querySelector('.legend-toggle').addEventListener('click', () => d.classList.toggle('open'));
       L.DomEvent.disableScrollPropagation(d);
       return d;
@@ -335,9 +366,12 @@
         ['Redlining', '<a href="https://dsl.richmond.edu/panorama/redlining/">Mapping Inequality</a>, University of Richmond', fmt(D.redlining.features) + ' HOLC-graded areas, 1935–1940'],
         ['Segregated schools', '<a href="https://www.archives.gov/education/lessons/brown-v-board">National Archives: Brown v. Board</a>', '17 states + DC (historical)'],
         ['Residual ordinances', 'Curated, cited list (<a href="https://github.com/ProDataMan/CAREN-Act/blob/main/website/data/residual_ordinances.json">edit on GitHub</a>)', 'Verified examples only'],
-        ['Allies', '<a href="https://github.com/unitedstates/congress-legislators">congress-legislators</a> (live)', 'Current House &amp; Senate Judiciary Committees']
+        ['Allies', '<a href="https://github.com/unitedstates/congress-legislators">congress-legislators</a> (live)', 'Current House &amp; Senate Judiciary Committees'],
+        D.mwt && ['Lynchings, all races', '<a href="https://monroeworktoday.org/">Monroe Work Today</a> (CC BY-NC 4.0)', fmt(D.mwt.records) + ' victims, ' + D.mwt.years],
+        D.city_calls && ['“Suspicious person” 911 calls', 'City open data: <a href="https://data.sfgov.org/d/2zdj-bwza">San Francisco</a>, <a href="https://data.seattle.gov/d/33kz-ixgy">Seattle</a>, <a href="https://data.nola.gov/">New Orleans</a>', 'Past 12 months, ' + fmt(Object.values(D.city_calls.cities).reduce((a, b) => a + b, 0)) + ' calls'],
+        D.covenants && ['Racial covenants', '<a href="https://mappingprejudice.umn.edu/">Mapping Prejudice</a> and partners', fmt(D.covenants.records) + ' covenants in ' + Object.keys(D.covenants.jurisdictions).length + ' counties']
       ];
-      document.getElementById('sourcesTable').insertAdjacentHTML('beforeend', rows.map(r => '<tr><td>' + r.join('</td><td>') + '</td></tr>').join(''));
+      document.getElementById('sourcesTable').insertAdjacentHTML('beforeend', rows.filter(Boolean).map(r => '<tr><td>' + r.join('</td><td>') + '</td></tr>').join(''));
     }).catch(() => {});
 
   })();

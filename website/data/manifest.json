@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T21:24:21+00:00",
+  "generated_at": "2026-11-09T03:52:43+00:00",
   "datasets": {
     "gazetteer": {
       "source": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2026_Gazetteer/2026_Gaz_counties_national.zip",
@@ -82,6 +82,71 @@
       "suicide": "https://data.cdc.gov/resource/w26f-tf3h.json",
       "latest_suicide_year": "2024",
       "caveat": "National totals only: CDC does not allow state/county breakdowns by race through automated access."
+    },
+    "mwt": {
+      "source": "https://monroeworktoday.org/",
+      "publisher": "Monroe Work Today (auut studio)",
+      "records": 5027,
+      "unmapped_unknown_county": 36,
+      "years": "1818-2021",
+      "groups": {
+        "B": 3948,
+        "N": 118,
+        "L": 783,
+        "A": 114,
+        "W": 64
+      },
+      "license": "CC BY-NC 4.0 (attribution, non-commercial)"
+    },
+    "bjs": {
+      "source": "https://bjs.ojp.gov/library/publications/contacts-between-police-and-public-2020",
+      "publisher": "Bureau of Justice Statistics",
+      "survey": "Police-Public Contact Survey, 2020",
+      "force_pct_of_contacts": {
+        "White": 1.5,
+        "Black": 4.3,
+        "Hispanic": 2.4,
+        "Asian": 1.0
+      }
+    },
+    "districts": {
+      "source": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b03002.dat",
+      "publisher": "U.S. Census Bureau",
+      "vintage": "ACS 5-year 2020-2024",
+      "congressional": 437,
+      "state_senate": 1958,
+      "state_house": 4873
+    },
+    "city_calls": {
+      "publisher": "City open-data portals (San Francisco, Seattle, New Orleans)",
+      "since": "2025-11-08",
+      "cities": {
+        "San Francisco, CA": 28302,
+        "Seattle, WA": 36962,
+        "New Orleans, LA": 12549
+      },
+      "source": "https://data.sfgov.org/d/2zdj-bwza"
+    },
+    "covenants": {
+      "source": "https://github.com/UMNLibraries/mp-us-racial-covenants",
+      "publisher": "Mapping Prejudice (University of Minnesota) and partners",
+      "records": 105113,
+      "cells": 6386,
+      "jurisdictions": {
+        "ca-contra-costa-county": 679,
+        "dc-washington-dc": 27640,
+        "mi-washtenaw-county": 8502,
+        "mn-anoka-county": 1831,
+        "mn-dakota-county": 798,
+        "mn-hennepin-county": 24118,
+        "mn-olmsted-county": 1006,
+        "mn-ramsey-county": 5859,
+        "mn-sherburne-county": 358,
+        "mn-stearns-county": 358,
+        "mn-washington-county": 746,
+        "nc-forsyth-county": 712,
+        "wi-milwaukee-county": 32506
+      }
     }
   }
 }

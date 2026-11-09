@@ -54,22 +54,32 @@
     </ul>
   </div>
 
+  <h2 id="calls">What “suspicious person” 911 calls lead to</h2>
+  <p>No city publishes the race of the person a 911 caller reports. What cities do publish is what happened next. Most resident-initiated “suspicious person” calls end with officers finding nothing, or with no enforcement at all. Every one of those calls still sends armed officers to confront someone.</p>
+  <div class="table-wrap"><table id="callsTbl"><tr><th>City (past 12 months)</th><th>Calls</th><th>Arrest, citation or police report</th><th>Nothing found</th><th>Other outcomes</th></tr></table></div>
+  <p class="note" id="callsNote">Duplicate, cancelled and voided calls are excluded. “Nothing found” means gone on arrival, unable to locate, unfounded or no merit. “Other” includes advised, assistance rendered and “necessary action taken”. Call types differ by city: Seattle's category also covers suspicious vehicles and incidents, and New Orleans doesn't code arrests separately from reports. Map points are grouped into ~500 m cells, and cells with fewer than 3 calls are dropped.</p>
+
+  <h2>Police contact by race (national survey)</h2>
+  <p>From the Bureau of Justice Statistics' most recent Police-Public Contact Survey (2020), which asks a national sample of residents about their encounters with police.</p>
+  <div class="table-wrap"><table id="bjsTbl"><tr><th>Group</th><th>Police contacts involving threat or use of force</th><th>Street stops ending in a search or arrest</th></tr></table></div>
+  <p class="note" id="bjsNote"></p>
+
   <h2>More data we recommend adding</h2>
-  <p>These are ranked roughly by value to the campaign. Items marked 🔑 need a free API key, which can be stored as a GitHub Actions secret.</p>
+  <p>Status as of November 2026. ✅ = now on the site. 🔑 = needs a free API key (stored as a GitHub Actions secret). ✋ = needs permission, a partnership or a manual export by a volunteer.</p>
   <div class="table-wrap"><table>
-    <tr><th>Source</th><th>Why it matters</th><th>Access</th></tr>
-    <tr><td><a href="https://legiscan.com/legiscan">LegiScan API</a> 🔑</td><td>Live tracking of state bills on discriminatory or false police reports (CAREN-style laws), so the map can show where states are moving.</td><td>Free key, JSON API</td></tr>
-    <tr><td><a href="https://api.congress.gov/">Congress.gov API</a> 🔑</td><td>Track a federal CAREN bill once introduced, its cosponsors, and members' cosponsorship of related civil-rights and policing bills, to rank likely allies by record.</td><td>Free api.data.gov key</td></tr>
-    <tr><td><a href="https://openpolicing.stanford.edu/data/">Stanford Open Policing Project</a></td><td>Traffic and pedestrian stops by race for dozens of states and cities. Direct evidence of disproportionate police contact.</td><td>CSV downloads</td></tr>
-    <tr><td>City 911 / calls-for-service open data (e.g. <a href="https://data.sfgov.org/">San Francisco</a>, <a href="https://data.nola.gov/">New Orleans</a>, <a href="https://data.detroitmi.gov/">Detroit</a>, <a href="https://data.seattle.gov/">Seattle</a>)</td><td>Closest available signal for “suspicious person” calls by neighborhood, which can be compared with neighborhood demographics.</td><td>Socrata/ArcGIS APIs (CORS-enabled)</td></tr>
-    <tr><td><a href="https://policescorecard.org/">Police Scorecard</a></td><td>Department-level use of force, arrests for low-level offenses, and accountability metrics.</td><td>Downloadable data</td></tr>
-    <tr><td><a href="https://bjs.ojp.gov/data-collection/police-public-contact-survey-ppcs">BJS Police-Public Contact Survey</a></td><td>National rates of police-initiated and resident-initiated contact by race. Useful for the bill's findings section.</td><td>Public tables</td></tr>
-    <tr><td><a href="https://www.census.gov/data/developers.html">Census API</a> 🔑: ACS by congressional district</td><td>Demographics of each member's district, to prioritize outreach to members representing large affected populations.</td><td>Free key</td></tr>
-    <tr><td><a href="https://sundown.tougaloo.edu/">Sundown Towns database</a> (Tougaloo College / James Loewen)</td><td>Documented sundown towns, which would replace a currently empty historical layer with real locations.</td><td>Request permission for bulk use</td></tr>
-    <tr><td><a href="https://monroeworktoday.org/">Monroe Work Today</a></td><td>Broader lynching data including Latino, Native American, Asian, and white victims, and some incidents outside EJI's window.</td><td>CC BY-NC-SA; county file download</td></tr>
-    <tr><td><a href="https://mappingprejudice.umn.edu/">Mapping Prejudice</a> and similar covenant projects</td><td>Racially restrictive housing covenants, a residential-exclusion record that complements HOLC redlining.</td><td>Open data for covered cities</td></tr>
-    <tr><td><a href="https://www.adl.org/resources/tools-to-track-hate/heat-map">ADL H.E.A.T. Map</a> and <a href="https://stopaapihate.org/">Stop AAPI Hate</a></td><td>Hate and harassment incidents beyond what police agencies report to the FBI.</td><td>Downloads or partnership</td></tr>
-    <tr><td><a href="https://civilrights.org/">Leadership Conference voting record</a> and <a href="https://naacp.org/">NAACP civil rights report card</a></td><td>Score members of Congress on civil-rights votes, to replace “position-only” ally coloring with demonstrated record.</td><td>Published report cards</td></tr>
+    <tr><th>Source</th><th>Why it matters</th><th>Status</th></tr>
+    <tr><td><a href="https://legiscan.com/legiscan">LegiScan API</a> 🔑</td><td>Live tracking of state bills on discriminatory or false police reports (CAREN-style laws), so the map can show where states are moving.</td><td>🔑 Free key. Will power a weekly bill watcher.</td></tr>
+    <tr><td><a href="https://api.congress.gov/">Congress.gov API</a> 🔑</td><td>Track a federal CAREN bill once introduced, its cosponsors, and members' cosponsorship of related civil-rights and policing bills, to rank likely allies by record.</td><td>🔑 Free api.data.gov key</td></tr>
+    <tr><td><a href="https://openpolicing.stanford.edu/data/">Stanford Open Policing Project</a></td><td>Traffic and pedestrian stops by race for dozens of states and cities. Direct evidence of disproportionate police contact.</td><td>✋ Per-city files are several GB each, too large for the weekly refresh. Planned as a one-time extract of search rates by race for selected cities.</td></tr>
+    <tr><td>City 911 / calls-for-service open data (e.g. <a href="https://data.sfgov.org/">San Francisco</a>, <a href="https://data.nola.gov/">New Orleans</a>, <a href="https://data.detroitmi.gov/">Detroit</a>, <a href="https://data.seattle.gov/">Seattle</a>)</td><td>Closest available signal for “suspicious person” calls by neighborhood, which can be compared with neighborhood demographics.</td><td>✅ San Francisco, Seattle and New Orleans (<a href="#calls">see above</a>). More cities can be added to <code>CITY_CALLS</code> in the build script.</td></tr>
+    <tr><td><a href="https://policescorecard.org/">Police Scorecard</a></td><td>Department-level use of force, arrests for low-level offenses, and accountability metrics.</td><td>🔑 Their API now requires a key (request at policescorecard.org)</td></tr>
+    <tr><td><a href="https://bjs.ojp.gov/data-collection/police-public-contact-survey-ppcs">BJS Police-Public Contact Survey</a></td><td>National rates of police-initiated and resident-initiated contact by race. Useful for the bill's findings section.</td><td>✅ Added (<a href="#bjsTbl">see above</a>)</td></tr>
+    <tr><td><a href="https://www.census.gov/data/developers.html">Census API</a> 🔑: ACS by congressional district</td><td>Demographics of each member's district, to prioritize outreach to members representing large affected populations.</td><td>✅ Added without a key, from the Census bulk summary files. Includes state legislative districts, too.</td></tr>
+    <tr><td><a href="https://sundown.tougaloo.edu/">Sundown Towns database</a> (Tougaloo College / James Loewen)</td><td>Documented sundown towns, which would replace a currently empty historical layer with real locations.</td><td>✋ Request permission for bulk use</td></tr>
+    <tr><td><a href="https://monroeworktoday.org/">Monroe Work Today</a></td><td>Broader lynching data including Latino, Native American, Asian, and white victims, and some incidents outside EJI's window.</td><td>✅ Added as a map layer (CC BY-NC 4.0, with attribution)</td></tr>
+    <tr><td><a href="https://mappingprejudice.umn.edu/">Mapping Prejudice</a> and similar covenant projects</td><td>Racially restrictive housing covenants, a residential-exclusion record that complements HOLC redlining.</td><td>✅ Added: 13 counties (Minneapolis–St. Paul area, Milwaukee, Washington DC, Ann Arbor area, Winston-Salem, Contra Costa)</td></tr>
+    <tr><td><a href="https://www.adl.org/resources/tools-to-track-hate/heat-map">ADL H.E.A.T. Map</a> and <a href="https://stopaapihate.org/">Stop AAPI Hate</a></td><td>Hate and harassment incidents beyond what police agencies report to the FBI.</td><td>✋ ADL's map blocks automated downloads, so a volunteer would need to export it, or we'd need a partnership</td></tr>
+    <tr><td><a href="https://civilrights.org/">Leadership Conference voting record</a> and <a href="https://naacp.org/">NAACP civil rights report card</a></td><td>Score members of Congress on civil-rights votes, to replace “position-only” ally coloring with demonstrated record.</td><td>✋ Published as PDFs. A volunteer could transcribe scores for the current Congress</td></tr>
   </table></div>
 
   </main>
@@ -89,8 +99,22 @@
         ['ZIP → district', 'U.S. Census Bureau', n(D.zip_districts.zips) + ' ZIP codes, 119th Congress', 'Representative lookup without a street address', D.zip_districts.source],
         ['Hanging & unnatural deaths by race', 'CDC National Center for Health Statistics', 'Injury deaths ' + (D.cdc_deaths ? D.cdc_deaths.injury.match(/\((.*)\)/)[1] : '') + '; suicide rates through ' + (D.cdc_deaths ? D.cdc_deaths.latest_suicide_year : ''), 'Charts on the contested-deaths page', 'https://data.cdc.gov/'],
         ['Contested hanging deaths', 'Curated from reputable reporting (Capital B News, Mississippi Today, Mississippi Free Press)', 'Verified cases only', 'Map layer; contested-deaths page', 'deaths.html'],
-        ['Members & committees', '@unitedstates/congress-legislators', 'Live', 'Allies layer; representative lookup', 'https://github.com/unitedstates/congress-legislators']
-      ];
+        ['Members & committees', '@unitedstates/congress-legislators', 'Live', 'Allies layer; representative lookup', 'https://github.com/unitedstates/congress-legislators'],
+        D.districts && ['District demographics', 'U.S. Census Bureau, ' + D.districts.vintage, n(D.districts.congressional) + ' congressional, ' + n(D.districts.state_senate) + ' state senate and ' + n(D.districts.state_house) + ' state house districts', 'Shown on each lawmaker card in the lookup', D.districts.source],
+        D.city_calls && ['“Suspicious person” 911 calls', 'San Francisco, Seattle and New Orleans open-data portals', n(Object.values(D.city_calls.cities).reduce((a, b) => a + b, 0)) + ' resident-initiated calls since ' + D.city_calls.since, 'Map layer; outcomes table below', '#calls'],
+        D.mwt && ['Lynchings of all races', 'Monroe Work Today (CC BY-NC 4.0)', n(D.mwt.records) + ' victims, ' + D.mwt.years, 'Map layer colored by victim group', D.mwt.source],
+        D.covenants && ['Racial covenants', 'Mapping Prejudice (Univ. of Minnesota) and partners', n(D.covenants.records) + ' covenants, ' + Object.keys(D.covenants.jurisdictions).length + ' counties', 'Map layer (grouped into ~250 m cells)', D.covenants.source],
+        D.bjs && ['Police contact by race', 'Bureau of Justice Statistics, ' + D.bjs.survey, 'National survey estimates', 'Table below; findings for the bill', D.bjs.source]
+      ].filter(Boolean);
+      fetch('data/city_calls.json').then(r => r.json()).then(c => {
+        const p = (x, t) => (100 * x / t).toFixed(1) + '%';
+        document.getElementById('callsTbl').insertAdjacentHTML('beforeend', c.cities.map(x => '<tr><td><a href="' + esc(x.portal) + '">' + esc(x.city) + '</a><br><span class="note">' + esc(x.call_type) + '</span></td><td>' + n(x.calls) + '</td><td><b>' + p(x.enforcement, x.calls) + '</b> (' + n(x.enforcement) + ')</td><td>' + p(x.nothing_found, x.calls) + '</td><td>' + p(x.other, x.calls) + '</td></tr>').join(''));
+      }).catch(() => {});
+      fetch('data/bjs_contacts.json').then(r => r.json()).then(b => {
+        const v = x => x == null ? '<span class="note">too few cases</span>' : x + '%';
+        document.getElementById('bjsTbl').insertAdjacentHTML('beforeend', ['Black', 'Hispanic', 'Asian', 'White'].map(k => '<tr><td>' + k + '</td><td>' + v(b.force_pct_of_contacts[k]) + '</td><td>' + v((b.street_stops[k] || {}).search_or_arrest) + '</td></tr>').join(''));
+        document.getElementById('bjsNote').innerHTML = 'Source: <a href="' + esc(b.report_url) + '">' + esc(b.report) + '</a>. ' + esc(b.notes);
+      }).catch(() => {});
       document.getElementById('ds').insertAdjacentHTML('beforeend', rows.map(r => '<tr><td><a href="' + esc(r[4]) + '">' + esc(r[0]) + '</a></td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) + '</td><td>' + esc(r[3]) + '</td></tr>').join(''));
     });
   </script>

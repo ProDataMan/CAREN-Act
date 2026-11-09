@@ -125,6 +125,17 @@ Create a public GitHub repository and advocacy website to support making the San
    - Nav: added "Your county"; the CTA is now "Take action" (act.html). Menu breakpoint is now 1180px. Map county popups link to county pages.
    - Not built yet (need keys): AI letter helper (Anthropic API key; Haiku 5.5 ≈ $0.001/letter) and the state bill watcher / legislator names (free Open States key).
 
+16. **2026-11-08 (recommended data sources added):**
+   - New builders in scripts/build_data.py (standalone: `calls`, `covenants`, `mwt`, `bjs`, `acs`). In the full run, each one fails soft and keeps last week's manifest entry.
+     - **districts.json:** ACS B03002 for 437 congressional (5001900US), 1,958 state senate (610U900US) and 4,873 state house (620L900US) districts, from the same bulk file as the counties. reps.js shows "% people of color" on House and state cards.
+     - **city_calls.json:** resident-initiated "suspicious person" calls, past 365 days, from SF (data.sf.gov 2zdj-bwza), Seattle (33kz-ixgy) and New Orleans (yearly "Calls for Service YYYY" datasets found through the Socrata catalog). Outcomes are bucketed per city into enforcement / nothing found / other, with duplicates and cancellations dropped. Points are on a 0.005° grid, cells under 3 calls dropped. Results: SF 28,302 calls, 0.9% enforcement; Seattle 36,962, 24.0% (its category includes vehicles and incidents); New Orleans 12,549, 8.9% (reports only).
+     - **lynchings_all_races.json:** Monroe Work Today explore/data/s_1_3.txt. 5,027 victims, 1818–2021; race codes grouped into B/L/N/A/W/U; 36 unknown-county records are kept but not mapped; CC BY-NC 4.0.
+     - **covenants.json:** UMNLibraries/mp-us-racial-covenants GeoJSON (via Git LFS media URLs), 13 counties, about 105k covenants, grouped into 0.0025° cells (415 KB).
+     - **bjs_contacts.json:** PPCS 2020 tables 3 and 6 (force: Black 4.3%, Hispanic 2.4%, White 1.5%, Asian 1.0%; street stops ending in search or arrest: Black 14.2% vs White 3.0%).
+   - Map: new layers `mwt`, `calls`, `covenants`, plus legend and sources-table rows. Legend max-height is 55vh.
+   - data.html: new dataset rows, a #calls outcomes table, a BJS table, and a status column on the recommendations (✅ / 🔑 / ✋).
+   - Not added: LegiScan, Congress.gov and Police Scorecard (keys); Stanford OPP (multi-GB per city); Sundown Towns (permission); ADL HEAT (blocks automated download); LCCR/NAACP report cards (PDFs).
+
 ## Key Legal & Data Notes (for accuracy)
 - SF CAREN Act is a local civil ordinance only. Federal version modeled on it.
 - Explicit good-faith exception retained.
@@ -145,6 +156,7 @@ Create a public GitHub repository and advocacy website to support making the San
 2g. Add Google/Facebook sign-in (Supabase Auth or Firebase) for volunteers and commenters; move volunteer contact details to private storage.
 2h. Add the signers of the Sept 2026 congressional letter asking DOJ to investigate the hangings as allies on the map.
 2i. When keys exist: AI letter helper endpoint on the Azure server (Anthropic key, Haiku 5.5, rate limits, Console spend cap) and the weekly Open States + Congress.gov bill watcher Action with hearing alerts to state volunteers.
+2k. Data follow-ups: add more cities to CITY_CALLS (Detroit, Cincinnati, Dallas…); a one-time Stanford OPP extract of search rates by race; ask Tougaloo for Sundown Towns data; have a volunteer export ADL HEAT and transcribe the LCCR scorecard; consider citing the 911-outcome and BJS figures in the bill's findings.
 2j. Optional: Spanish translations of act.html and the letters (volunteer-reviewed).
 2c. Add recommended data sources (LegiScan, Congress.gov, Stanford Open Policing, city 911 data). See website/data.html.
 3. Further expand map samples or begin integrating real GeoJSON (county boundaries + attributes from EJI, Mapping Police Violence, Census).

@@ -60,8 +60,8 @@
             var co = first(g, /^Counties$/), pl = first(g, /Incorporated Places/);
             return {
               exact: true, matched: m.matchedAddress,
-              list: [{ state: STATE_FIPS[cd.STATE], district: (parseInt(cd.GEOID.slice(2), 10) % 98) }],
-              upper: up && up.NAME, lower: lo && lo.NAME,
+              list: [{ state: STATE_FIPS[cd.STATE], district: (parseInt(cd.GEOID.slice(2), 10) % 98), geoid: cd.GEOID }],
+              upper: up && up.NAME, lower: lo && lo.NAME, upperId: up && up.GEOID, lowerId: lo && lo.GEOID,
               county: co && co.NAME, countyFips: co && co.GEOID, place: pl && pl.BASENAME, placeId: pl && pl.GEOID
             };
           }
@@ -69,8 +69,15 @@
       } catch (e) { console.warn(e); }
     }
     var zips = await once('zips', function () { return getJSON(BASE + 'data/zip_districts.json'); });
-    var list = (zips[zip] || []).map(function (g) { return { state: STATE_FIPS[g.slice(0, 2)], district: parseInt(g.slice(2), 10) }; });
+    var list = (zips[zip] || []).map(function (g) { return { state: STATE_FIPS[g.slice(0, 2)], district: parseInt(g.slice(2), 10), geoid: g }; });
     return { exact: false, list: list };
+  }
+
+  // District demographics (ACS 5-year, built by scripts/build_data.py). Optional: cards work without it.
+  var districts = function () { return once('dist', function () { return getJSON(BASE + 'data/districts.json').catch(function () { return {}; }); }); };
+  function demo(d) {
+    if (!d) return '';
+    return Math.round(d[1]) + '% people of color (Black ' + Math.round(d[2]) + '%, Hispanic ' + Math.round(d[3]) + '%), population ' + d[0].toLocaleString();
   }
 
   function storyPara(me) {
@@ -149,8 +156,9 @@
     generated.push(entry);
   }
 
-  function card(p, me, note) {
+  function card(p, me, note, dist) {
     var t = p.terms[p.terms.length - 1];
+    var dline = t.type === 'rep' ? demo(dist && dist.cd && dist.cd[p._geoid]) : '';
     var id = p.id.bioguide;
     var title = t.type === 'sen' ? 'U.S. Senator, ' + t.state + (t.state_rank ? ' (' + t.state_rank + ')' : '') : 'U.S. Representative, ' + t.state + (t.district === 0 ? ' at-large' : '-' + t.district);
     var div = document.createElement('div');
@@ -159,7 +167,7 @@
       '<div class="head"><img alt="" src="https://unitedstates.github.io/images/congress/225x275/' + esc(id) + '.jpg" onerror="this.style.visibility=\'hidden\'">' +
       '<div><h4>' + esc(p.name.official_full || (p.name.first + ' ' + p.name.last)) + '</h4><div class="sub">' + esc(title) + ' · ' + esc(t.party) + '</div>' +
       (p._judiciary ? '<span class="badge">' + esc(p._judiciary) + (p._jtitle ? ' — ' + esc(p._jtitle) : '') + '</span>' : '') +
-      (note ? '<div class="sub">' + esc(note) + '</div>' : '') + '</div></div>' +
+      (note ? '<div class="sub">' + esc(note) + '</div>' : '') + (dline ? '<div class="sub">District: ' + esc(dline) + '</div>' : '') + '</div></div>' +
       (t.phone ? '<a class="call-now" href="tel:' + esc(t.phone.replace(/[^0-9+]/g, '')) + '">📞 Call ' + esc(t.phone) + '</a>' : '') +
       '<details class="script"><summary>Call script (30 seconds)</summary><p data-script></p><p class="note">Calls are tallied by staff, usually by ZIP code. If you reach voicemail, leave your name, ZIP code and the same message.</p></details>' +
       '<dl>' + (t.address ? '<dt>Office</dt><dd>' + esc(t.address) + '</dd>' : '') +
@@ -180,7 +188,7 @@
     return div;
   }
 
-  function extraCard(kind, me, res) {
+  function extraCard(kind, me, res, dd) {
     var st = (res.list[0] || {}).state;
     var div = document.createElement('div');
     div.className = 'rep rep-local';
@@ -189,6 +197,7 @@
       var dist = [res.upper, res.lower].filter(Boolean);
       head = '<h4>Your state lawmakers' + (STATE_NAMES[st] ? ' in ' + esc(STATE_NAMES[st].replace(/^the /, '')) : '') + '</h4>' +
         '<div class="sub">' + (dist.length ? esc(dist.join(' · ')) : 'Add your street address to see your exact state districts.') + '</div>' +
+        [[res.upper, 'sldu', res.upperId], [res.lower, 'sldl', res.lowerId]].map(function (x) { var d = dd && dd[x[1]] && dd[x[1]][x[2]]; return d ? '<div class="sub">' + esc(x[0]) + ': ' + esc(demo(d)) + '</div>' : ''; }).join('') +
         '<div class="sub">State and city laws are where CAREN-style protections have actually passed so far.</div>';
       links = '<a class="secondary" href="https://openstates.org/find_your_legislator/" target="_blank" rel="noopener">Find their names &amp; emails (Open States) ↗</a>';
     } else if (LOCAL_LAWS[res.placeId] || LOCAL_LAWS[res.countyFips]) {
@@ -241,8 +250,8 @@
     repsDiv.innerHTML = '';
     repStatus.textContent = 'Looking up your district…';
     try {
-      var all = await Promise.all([findDistricts(me.street, me.city, me.state, me.zip), legislators(), committees()]);
-      var res = all[0], leg = all[1], com = all[2];
+      var all = await Promise.all([findDistricts(me.street, me.city, me.state, me.zip), legislators(), committees(), districts()]);
+      var res = all[0], leg = all[1], com = all[2], dd = all[3];
       if (!res.list.length) { repStatus.textContent = 'We could not find that ZIP code. Please check it, or add your street address.'; return; }
       var jud = {};
       (com.HSJU || []).forEach(function (m) { jud[m.bioguide] = ['House Judiciary Committee', m.title]; });
@@ -253,14 +262,14 @@
       var cur = function (p) { return p.terms[p.terms.length - 1]; };
       var senators = leg.filter(function (p) { return cur(p).type === 'sen' && cur(p).state === st; });
       var reps = [];
-      res.list.forEach(function (c) { leg.filter(function (p) { return cur(p).type === 'rep' && cur(p).state === c.state && cur(p).district === c.district; }).forEach(function (p) { reps.push(p); }); });
+      res.list.forEach(function (c) { leg.filter(function (p) { return cur(p).type === 'rep' && cur(p).state === c.state && cur(p).district === c.district; }).forEach(function (p) { p._geoid = c.geoid; reps.push(p); }); });
       var msg = res.exact ? 'Matched address: ' + res.matched + '. ' : '';
       if (!res.exact && res.list.length > 1) msg += 'ZIP ' + me.zip + ' spans ' + res.list.length + ' congressional districts. All possible representatives are shown; add your street address to narrow it to one. ';
       else if (!res.exact) msg += 'Based on ZIP ' + me.zip + '. ';
       if (!reps.length) msg += 'No voting U.S. Representative was found for this location (the seat may be vacant or a non-voting delegate). ';
       repStatus.textContent = msg + 'A phone call counts most; a personal letter is next. Edit anything before sending.';
-      senators.concat(reps).forEach(function (p) { repsDiv.appendChild(card(p, me, !res.exact && res.list.length > 1 && cur(p).type === 'rep' ? 'Possible representative for your ZIP' : '')); });
-      repsDiv.appendChild(extraCard('state', me, res));
+      senators.concat(reps).forEach(function (p) { repsDiv.appendChild(card(p, me, !res.exact && res.list.length > 1 && cur(p).type === 'rep' ? 'Possible representative for your ZIP' : '', dd)); });
+      repsDiv.appendChild(extraCard('state', me, res, dd));
       repsDiv.appendChild(extraCard('local', me, res));
       repsDiv.appendChild(shareBar(res));
       if (!me.name) repStatus.textContent += ' Tip: add your name so the letters are signed.';
