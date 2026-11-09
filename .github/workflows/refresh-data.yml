@@ -1,0 +1,47 @@
+name: Refresh map data
+
+on:
+  schedule:
+    - cron: '17 9 * * 1'   # Mondays 09:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          pip install --quiet openpyxl
+      - name: Build datasets
+        run: python scripts/build_data.py
+      - name: Commit if changed
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/data
+          # manifest.json always changes (timestamp); only commit when a dataset changed
+          if git diff --cached --quiet -- website/data ':(exclude)website/data/manifest.json'; then
+            echo "No data changes"; git reset -q; echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -q -m "Refresh map data ($(date -u +%Y-%m-%d))" && git push && echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Request GitHub Pages rebuild
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true

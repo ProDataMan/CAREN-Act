@@ -1,0 +1,30 @@
+name: Old laws follow-up
+
+# Reminds the volunteer/ally who adopted a repeal case to check its status.
+# It never contacts officials itself: deliveries are made by real people.
+on:
+  schedule:
+    - cron: '0 14 * * *'   # daily 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const DAY = 864e5, now = Date.now();
+            for (const label of ['repeal-requested', 'repeal-introduced']) {
+              const issues = await github.paginate(github.rest.issues.listForRepo, { ...context.repo, labels: label, state: 'open', per_page: 100 });
+              for (const i of issues) {
+                if (now - Date.parse(i.updated_at) < 30 * DAY) continue;
+                const who = (i.assignees || []).map(a => '@' + a.login).join(' ') || '@' + i.user.login;
+                await github.rest.issues.createComment({ ...context.repo, issue_number: i.number, body:
+                  `⏰ 30-day follow-up: ${who}, please check with the body that can repeal this law and post an update here ` +
+                  `(meeting date, agenda item, sponsor, or response). Editors: change the label to \`repeal-introduced\` or \`repealed\` as it moves.` });
+              }
+            }

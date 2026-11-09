@@ -1,0 +1,42 @@
+name: Bill comments
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+
+concurrency:
+  group: bill-comments
+  cancel-in-progress: false
+
+jobs:
+  label:
+    # Tag comments posted from the website so the site can list them
+    if: github.event.action != 'labeled' && contains(github.event.issue.body, '<!-- caren-bill-comment -->')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.addLabels({ ...context.repo, issue_number: context.issue.number, labels: ['bill-comment'] });
+
+  apply:
+    # An editor approved the comment: merge its proposed text into website/bill.json
+    if: github.event.action == 'labeled' && github.event.label.name == 'accepted' && contains(github.event.issue.body, '<!-- caren-bill-comment -->')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const apply = require('./.github/scripts/apply-accepted.js');
+            await apply({ github, context, core });
+      - name: Request GitHub Pages rebuild
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
