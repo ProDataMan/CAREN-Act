@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T05:42:42+00:00",
+  "generated_at": "2026-11-09T19:46:33+00:00",
   "datasets": {
     "gazetteer": {
       "source": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2026_Gazetteer/2026_Gaz_counties_national.zip",
@@ -95,9 +95,9 @@
       "publisher": "City open-data portals (San Francisco, Seattle, New Orleans)",
       "since": "2025-11-09",
       "cities": {
-        "San Francisco, CA": 28244,
+        "San Francisco, CA": 28301,
         "Seattle, WA": 36878,
-        "New Orleans, LA": 12513
+        "New Orleans, LA": 12539
       },
       "source": "https://data.sfgov.org/d/2zdj-bwza"
     },
