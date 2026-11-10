@@ -70,6 +70,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | police_killings.json, hate_crimes.json, redlining.json, zip_districts.json, cdc_deaths.json, cdc_wonder_states.json | As named. CDC WONDER exports are made by hand |
 | contested_deaths.json, residual_ordinances.json | Curated and cited. Hand-edited |
 | destroyed_communities.json | Curated, 34 places (Tulsa/Greenwood, Colfax, Wilmington, Elaine, Ocoee, Rosewood, Seneca Village, Bruce's Beach, Vanport, Katrina, urban renewal and highways, Chinese expulsions, gentrification). Map layer `destroyed`, colored by type: massacre, expulsion, flood, seized, renewal, gentrification. Hand-edited |
+| history_sites.json | 10 WRA incarceration camps and 16 major federal Indian boarding schools (of the 408 in the Interior report), with years. Map layer `history`. Hand-edited |
 | learn.json | Learn content: modules, the Source detective quiz, quests and XP, levels and badges. Hand-edited. Section labels: `documented` / `debated` / `belief` |
 
 ## Decisions (and why)
@@ -114,7 +115,7 @@ A public repository and advocacy site supporting a federal version of San Franci
    - Open States key for legislator names and a weekly state bill watcher with hearing alerts;
    - Congress.gov key.
 9. Optional: Spanish translations of `act.html` and the letters, reviewed by a volunteer.
-10. **Learn, next steps** (plan in `docs/education-plan.md`):
+10. **Learn, next steps** (as of 2026-11-10, every module is written): (plan in `docs/education-plan.md`):
     - Recruit a history reviewer, and have them review modules 1, 5, 8 and 10 before promoting them from `draft`.
     - Replace Wikipedia links with primary sources.
     - Write modules 2, 3, 4, 6, 7 and 9.
@@ -164,6 +165,8 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **Six more modules:** black-towns, wealth, voting, incarceration, many-targets (Latino, Asian, Native) and performance (audit studies, achievement, the inferiority myth). Modules were reordered roughly by time.
   - **Quests and badges:** 26 new quests in community, pro bono and build-wealth categories, plus advocacy (register voters, poll worker, op-ed, fair hiring, run for office); 4 new badges; "three things everyone should know".
   - **The six outlines are now full modules:** conquest, slavery-law, reconstruction, borders, place, world. New quests: `whose-land` and `check-deed`.
+  - **Map:** `history` layer, and a year slider (`?year=`) that filters any layer whose markers carry a `year` option (mwt, destroyed, history).
+  - **Automatic quests:** `quest:volunteer` on a successful sign-up and `quest:suggest-bill-edit` on a successful website comment (`learn.js` is loaded on `volunteer.html` and `bill.html`).
   - **New topic modules:** environment, surveillance, media, veterans, schools, health, women, lgbtq and faith, plus the reading list.
   - **How movements won** (`movements`, with the `plan` label and the `power-map` quest) and **teach-in kits** (`teach.html`).
   - **Fundraising:** discussed with the owner, not built. The recommendation is a fiscal sponsor or nonprofit structure before collecting money (see the plan).

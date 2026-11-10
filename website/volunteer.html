@@ -110,6 +110,7 @@
   <footer id="siteFooter"></footer>
   <script src="assets/site.js"></script>
   <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
   <script>
   (function () {
     'use strict';
@@ -176,6 +177,7 @@
       msg.className = 'msg'; msg.textContent = 'Sending… (the first sign-up of the day can take up to a minute while the database wakes up)';
       A.post('/api/volunteers', body).then(() => {
         msg.className = 'msg ok'; msg.textContent = 'Thank you! An editor will contact you about verification work in your state.';
+        if (window.CarenLearn) CarenLearn.ui.award('quest:volunteer', 'Joined as a state ally');
         e.target.querySelectorAll('input, select, textarea, button').forEach(x => x.disabled = true);
       }).catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
     });

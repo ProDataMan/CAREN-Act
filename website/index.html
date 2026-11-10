@@ -83,12 +83,17 @@
         <h4>Population &amp; history</h4>
         <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census)</label>
         <label><input type="checkbox" data-layer="destroyed"> <span class="sw" style="background:#b35806"></span> Communities burned, flooded or taken</label>
+        <label><input type="checkbox" data-layer="history"> <span class="sw" style="background:#7f3b08"></span> Indian boarding schools &amp; incarceration camps</label>
         <label><input type="checkbox" data-layer="redlining"> <span class="sw" style="background:#d9534f"></span> HOLC redlining maps</label>
         <label><input type="checkbox" data-layer="covenants"> <span class="sw" style="background:#54278f"></span> Racial covenants on deeds (Mapping Prejudice)</label>
         <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> Segregated schools by law (pre-1954)</label>
         <label><input type="checkbox" data-layer="residual" checked> <span class="sw" style="background:gold"></span> Old segregation/sundown laws</label>
         <h4>Allies</h4>
         <label><input type="checkbox" data-layer="allies"> <span class="sw" style="background:#1a1a1a"></span> Allies &amp; key members of Congress</label>
+        <h4>Time</h4>
+        <label for="yearRange" style="display:block">History shown: <b id="yearOut">all years</b></label>
+        <input type="range" id="yearRange" min="1800" max="2026" step="1" value="2026" style="width:100%" aria-describedby="yearHelp">
+        <span id="yearHelp" style="display:block;font-size:.75rem;color:var(--muted)">Slide back in time. Applies to lynchings of all races, communities burned or taken, and boarding schools and camps.</span>
       </div>
       <span class="status" id="loadStatus">Loading data…</span>
     </details>
@@ -124,6 +129,7 @@
       <li><a href="?layers=redlining,covenants&amp;at=44.96,-93.27,12"><b>Housing exclusion in Minneapolis</b></a>: 1930s redlining grades (red = “hazardous”) and the racial covenants written into property deeds. The purple dots show where people of color were barred from buying homes. Notice how they fill the green and blue “desirable” neighborhoods: covenants kept those areas white, and redlining starved the red ones of loans.</li>
       <li><a href="?layers=calls,minority&amp;at=37.76,-122.44,12"><b>911 “suspicious person” calls in San Francisco</b></a>: each blue circle is a ~500 m area, sized by number of calls in the past year. Click one to see how few calls citywide led to an arrest, citation or report.</li>
       <li><a href="?layers=destroyed,redlining&amp;at=36.16,-95.99,13"><b>Greenwood, Tulsa (“Black Wall Street”)</b></a>: the district burned in 1921, with the 1930s redlining map on top. Then <a href="?layers=destroyed">zoom out to see every community burned, flooded, seized or bulldozed</a>, colored by what happened. Click any dot for the story and the source.</li>
+      <li><a href="?layers=mwt,destroyed,history&amp;year=1921"><b>America in 1921</b></a>: every lynching, destroyed community, boarding school and camp up to the year Greenwood burned. Drag the <b>Time</b> slider in the layers panel to move through history.</li>
       <li><a href="?layers=heat,allies,residual"><b>Where to organize</b></a>: hot spots, members of Congress on the Judiciary Committees (who would hear the bill), and old segregation laws still on the books.</li>
     </ul>
 
@@ -288,7 +294,7 @@
       mwt: () => getJSON('data/lynchings_all_races.json').then(d => {
         const C = { B: RACE_COLOR.B, L: RACE_COLOR.H, N: RACE_COLOR.N, A: RACE_COLOR.A, W: RACE_COLOR.W, U: RACE_COLOR.U };
         const g = L.layerGroup();
-        d.rows.filter(r => r[0] != null).forEach(r => L.circleMarker([r[0], r[1]], { radius: 3.5, weight: 0.5, color: '#222', fillColor: C[r[3]], fillOpacity: 0.85 })
+        d.rows.filter(r => r[0] != null).forEach(r => L.circleMarker([r[0], r[1]], { year: r[2], radius: 3.5, weight: 0.5, color: '#222', fillColor: C[r[3]], fillOpacity: 0.85 })
           .bindPopup('<b>' + esc(r[4] || 'Name unknown') + '</b>' + (r[2] ? ', ' + r[2] : '') + '<br>' + esc(d.groups[r[3]]) + ' · ' + esc(r[5]) +
             (r[6] ? '<br>' + esc(r[6]) : '') + '<br><span class="note">Marker placed in the county, not the exact spot. <a href="https://monroeworktoday.org/" target="_blank" rel="noopener">Monroe Work Today</a> (CC BY-NC 4.0)</span>').addTo(g));
         return g;
@@ -320,10 +326,17 @@
       }),
       destroyed: () => getJSON('data/destroyed_communities.json').then(d => {
         const g = L.layerGroup();
-        d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { radius: 8, color: '#fff', weight: 2, fillColor: DESTROYED_COLOR[e.type] || '#b35806', fillOpacity: 0.95 })
+        d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { year: parseInt(e.year, 10), radius: 8, color: '#fff', weight: 2, fillColor: DESTROYED_COLOR[e.type] || '#b35806', fillOpacity: 0.95 })
           .bindPopup('<b>' + esc(e.name) + '</b><br>' + esc(e.place) + ', ' + esc(e.state) + ' · ' + esc(e.year) + ' · <i>' + esc(d.types[e.type] || e.type) + '</i><br>' + esc(e.summary) +
             '<br>' + (e.source.url ? '<a href="' + esc(e.source.url) + '" target="_blank" rel="noopener">' + esc(e.source.t) + '</a>' : 'Source: ' + esc(e.source.t)) +
             ' · <a href="module.html?m=destroyed">Learn module</a>').addTo(g));
+        return g;
+      }),
+      history: () => getJSON('data/history_sites.json').then(d => {
+        const g = L.layerGroup();
+        d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { year: e.year, radius: 7, color: '#fff', weight: 2, fillColor: e.type === 'camp' ? '#542788' : '#7f3b08', fillOpacity: 0.95 })
+          .bindPopup('<b>' + esc(e.name) + '</b><br>' + esc(e.place) + ', ' + esc(e.state) + ' · ' + e.year + (e.end ? '–' + e.end : '–') + ' · <i>' + esc(d.types[e.type]) + '</i><br>' + esc(e.summary) +
+            '<br><a href="' + esc(e.source.url) + '" target="_blank" rel="noopener">' + esc(e.source.t) + '</a> · <a href="module.html?m=' + (e.type === 'camp' ? 'borders' : 'conquest') + '">Learn module</a>').addTo(g));
         return g;
       }),
       residual: () => getJSON('data/residual_ordinances.json').then(d => {
@@ -369,10 +382,26 @@
       })
     };
 
+    // Year slider: layers whose markers carry a `year` option show only events up to the chosen year.
+    let maxYear = null;
+    function applyYear(name) {
+      const g = layers[name];
+      if (!g || !g.getLayers) return;
+      if (!g._dated) { const all = g.getLayers(); g._dated = all.filter(m => m.options && m.options.year != null); g._undated = all.filter(m => !(m.options && m.options.year != null)); }
+      if (!g._dated.length) return;
+      g.clearLayers();
+      g._undated.forEach(m => g.addLayer(m));
+      g._dated.forEach(m => { if (maxYear == null || m.options.year <= maxYear) g.addLayer(m); });
+    }
+    function setYear(y) {
+      maxYear = y;
+      document.getElementById('yearOut').textContent = y == null ? 'all years' : 'through ' + y;
+      Object.keys(layers).forEach(applyYear);
+    }
     function setLayer(name, on) {
       if (on) {
         busy(1);
-        Promise.resolve(layers[name] || builders[name]()).then(l => { layers[name] = l; l.addTo(map); })
+        Promise.resolve(layers[name] || builders[name]()).then(l => { layers[name] = l; applyYear(name); l.addTo(map); })
           .catch(e => { console.error(e); alert('Could not load the ' + name + ' layer: ' + e.message); })
           .finally(() => busy(-1));
       } else if (layers[name]) {
@@ -388,6 +417,10 @@
       if (cb.checked) setLayer(cb.dataset.layer, true);
     });
     countOn();
+    const yr = document.getElementById('yearRange');
+    const qy = parseInt(new URLSearchParams(location.search).get('year'), 10);
+    if (qy >= 1800 && qy < 2026) { yr.value = qy; setYear(qy); }
+    yr.addEventListener('input', () => setYear(+yr.value >= 2026 ? null : +yr.value));
     if (window.matchMedia('(max-width: 700px)').matches) document.getElementById('controls').open = false;
 
     const legend = L.control({ position: 'bottomright' });
@@ -398,6 +431,7 @@
         '<b>Redlining (HOLC)</b><i style="background:#76a865"></i>A <i style="background:#7cb5bd"></i>B <i style="background:#ffff00"></i>C <i style="background:#d9533c"></i>D' +
         '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local<b>Contested deaths</b><i style="background:#000;border-radius:50%"></i>Disputed hanging death' +
         '<b>Lynchings, all races (MWT)</b>' + [['B', 'Black'], ['H', 'Latino / Mexican'], ['N', 'Native American'], ['A', 'Asian'], ['W', 'White']].map(k => '<i style="background:' + RACE_COLOR[k[0]] + '"></i>' + k[1]).join('<br>') +
+        '<b>Boarding schools and camps</b><i style="background:#7f3b08;border-radius:50%"></i>Indian boarding school<br><i style="background:#542788;border-radius:50%"></i>Incarceration camp' +
         '<b>Communities burned, flooded or taken</b>' + [['massacre', 'Burned or attacked'], ['expulsion', 'Driven out'], ['flood', 'Flooded'], ['seized', 'Seized'], ['renewal', 'Bulldozed'], ['gentrification', 'Gentrification']].map(k => '<i style="background:' + DESTROYED_COLOR[k[0]] + ';border-radius:50%"></i>' + k[1]).join('<br>') +
         '<b>Other layers</b><i style="background:#0570b0;border-radius:50%"></i>“Suspicious person” 911 calls<br><i style="background:#54278f;border-radius:50%"></i>Racial covenants</div>';
       d.querySelector('.legend-toggle').addEventListener('click', () => d.classList.toggle('open'));

@@ -1,0 +1,400 @@
+{
+ "updated": "2026-11-10",
+ "note": "Japanese American incarceration camps (the 10 War Relocation Authority centers; peak populations are approximate, from Densho and the National Park Service) and a selection of major federal Indian boarding schools. The Interior Department identified 408 federal boarding schools; this list is a starting point, not the full set.",
+ "types": {
+  "camp": "Japanese American incarceration camp",
+  "school": "Federal Indian boarding school"
+ },
+ "entries": [
+  {
+   "name": "Manzanar War Relocation Center",
+   "place": "Manzanar",
+   "state": "CA",
+   "lat": 36.728,
+   "lon": -118.154,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 10,000 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Manzanar",
+    "url": "https://en.wikipedia.org/wiki/Manzanar"
+   }
+  },
+  {
+   "name": "Tule Lake War Relocation Center",
+   "place": "Tule Lake",
+   "state": "CA",
+   "lat": 41.889,
+   "lon": -121.375,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 18,700 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Tule Lake",
+    "url": "https://en.wikipedia.org/wiki/Tule_Lake_National_Monument"
+   }
+  },
+  {
+   "name": "Poston War Relocation Center",
+   "place": "Poston",
+   "state": "AZ",
+   "lat": 33.987,
+   "lon": -114.401,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 17,800 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Poston",
+    "url": "https://en.wikipedia.org/wiki/Poston_War_Relocation_Center"
+   }
+  },
+  {
+   "name": "Gila River War Relocation Center",
+   "place": "Gila River",
+   "state": "AZ",
+   "lat": 33.064,
+   "lon": -111.854,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 13,300 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Gila River",
+    "url": "https://en.wikipedia.org/wiki/Gila_River_War_Relocation_Center"
+   }
+  },
+  {
+   "name": "Topaz War Relocation Center",
+   "place": "Topaz",
+   "state": "UT",
+   "lat": 39.418,
+   "lon": -112.773,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 8,100 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Topaz",
+    "url": "https://en.wikipedia.org/wiki/Topaz_War_Relocation_Center"
+   }
+  },
+  {
+   "name": "Heart Mountain War Relocation Center",
+   "place": "Heart Mountain",
+   "state": "WY",
+   "lat": 44.671,
+   "lon": -108.946,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 10,700 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Heart Mountain",
+    "url": "https://en.wikipedia.org/wiki/Heart_Mountain_Relocation_Center"
+   }
+  },
+  {
+   "name": "Minidoka War Relocation Center",
+   "place": "Minidoka",
+   "state": "ID",
+   "lat": 42.679,
+   "lon": -114.244,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 9,400 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Minidoka",
+    "url": "https://en.wikipedia.org/wiki/Minidoka_National_Historic_Site"
+   }
+  },
+  {
+   "name": "Granada (Amache) War Relocation Center",
+   "place": "Granada (Amache)",
+   "state": "CO",
+   "lat": 38.049,
+   "lon": -102.329,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 7,300 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Granada (Amache)",
+    "url": "https://en.wikipedia.org/wiki/Granada_War_Relocation_Center"
+   }
+  },
+  {
+   "name": "Rohwer War Relocation Center",
+   "place": "Rohwer",
+   "state": "AR",
+   "lat": 33.769,
+   "lon": -91.276,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 8,400 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Rohwer",
+    "url": "https://en.wikipedia.org/wiki/Rohwer_War_Relocation_Center"
+   }
+  },
+  {
+   "name": "Jerome War Relocation Center",
+   "place": "Jerome",
+   "state": "AR",
+   "lat": 33.411,
+   "lon": -91.475,
+   "type": "camp",
+   "year": 1942,
+   "end": 1945,
+   "summary": "Held about 8,400 people of Japanese ancestry at its peak, most of them U.S. citizens.",
+   "source": {
+    "t": "Jerome",
+    "url": "https://en.wikipedia.org/wiki/Jerome_War_Relocation_Center"
+   }
+  },
+  {
+   "name": "Carlisle Indian Industrial School",
+   "place": "Carlisle",
+   "state": "PA",
+   "lat": 40.205,
+   "lon": -77.18,
+   "type": "school",
+   "year": 1879,
+   "end": 1918,
+   "summary": "Federal Indian boarding school, opened 1879, closed 1918. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Carlisle Indian Industrial School",
+    "url": "https://en.wikipedia.org/wiki/Carlisle_Indian_Industrial_School"
+   }
+  },
+  {
+   "name": "Chemawa Indian School",
+   "place": "Salem",
+   "state": "OR",
+   "lat": 44.991,
+   "lon": -123.018,
+   "type": "school",
+   "year": 1880,
+   "end": null,
+   "summary": "Federal Indian boarding school, opened 1880, still operating in a different form. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Chemawa Indian School",
+    "url": "https://en.wikipedia.org/wiki/Chemawa_Indian_School"
+   }
+  },
+  {
+   "name": "Haskell Institute",
+   "place": "Lawrence",
+   "state": "KS",
+   "lat": 38.94,
+   "lon": -95.232,
+   "type": "school",
+   "year": 1884,
+   "end": null,
+   "summary": "Federal Indian boarding school, opened 1884, still operating in a different form. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Haskell Institute",
+    "url": "https://en.wikipedia.org/wiki/Haskell_Indian_Nations_University"
+   }
+  },
+  {
+   "name": "Chilocco Indian Agricultural School",
+   "place": "Chilocco",
+   "state": "OK",
+   "lat": 36.983,
+   "lon": -97.067,
+   "type": "school",
+   "year": 1884,
+   "end": 1980,
+   "summary": "Federal Indian boarding school, opened 1884, closed 1980. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Chilocco Indian Agricultural School",
+    "url": "https://en.wikipedia.org/wiki/Chilocco_Indian_Agricultural_School"
+   }
+  },
+  {
+   "name": "Genoa Indian Industrial School",
+   "place": "Genoa",
+   "state": "NE",
+   "lat": 41.45,
+   "lon": -97.73,
+   "type": "school",
+   "year": 1884,
+   "end": 1934,
+   "summary": "Federal Indian boarding school, opened 1884, closed 1934. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Genoa Indian Industrial School",
+    "url": "https://en.wikipedia.org/wiki/Genoa_Indian_Industrial_School"
+   }
+  },
+  {
+   "name": "Phoenix Indian School",
+   "place": "Phoenix",
+   "state": "AZ",
+   "lat": 33.495,
+   "lon": -112.072,
+   "type": "school",
+   "year": 1891,
+   "end": 1990,
+   "summary": "Federal Indian boarding school, opened 1891, closed 1990. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Phoenix Indian School",
+    "url": "https://en.wikipedia.org/wiki/Phoenix_Indian_School"
+   }
+  },
+  {
+   "name": "Sherman Institute",
+   "place": "Riverside",
+   "state": "CA",
+   "lat": 33.92,
+   "lon": -117.4,
+   "type": "school",
+   "year": 1902,
+   "end": null,
+   "summary": "Federal Indian boarding school, opened 1902, still operating in a different form. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Sherman Institute",
+    "url": "https://en.wikipedia.org/wiki/Sherman_Indian_High_School"
+   }
+  },
+  {
+   "name": "Stewart Indian School",
+   "place": "Carson City",
+   "state": "NV",
+   "lat": 39.115,
+   "lon": -119.76,
+   "type": "school",
+   "year": 1890,
+   "end": 1980,
+   "summary": "Federal Indian boarding school, opened 1890, closed 1980. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Stewart Indian School",
+    "url": "https://en.wikipedia.org/wiki/Stewart_Indian_School"
+   }
+  },
+  {
+   "name": "Santa Fe Indian School",
+   "place": "Santa Fe",
+   "state": "NM",
+   "lat": 35.645,
+   "lon": -105.96,
+   "type": "school",
+   "year": 1890,
+   "end": null,
+   "summary": "Federal Indian boarding school, opened 1890, still operating in a different form. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Santa Fe Indian School",
+    "url": "https://en.wikipedia.org/wiki/Santa_Fe_Indian_School"
+   }
+  },
+  {
+   "name": "Albuquerque Indian School",
+   "place": "Albuquerque",
+   "state": "NM",
+   "lat": 35.1,
+   "lon": -106.65,
+   "type": "school",
+   "year": 1881,
+   "end": 1981,
+   "summary": "Federal Indian boarding school, opened 1881, closed 1981. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Albuquerque Indian School",
+    "url": "https://en.wikipedia.org/wiki/Albuquerque_Indian_School"
+   }
+  },
+  {
+   "name": "Flandreau Indian School",
+   "place": "Flandreau",
+   "state": "SD",
+   "lat": 44.045,
+   "lon": -96.59,
+   "type": "school",
+   "year": 1893,
+   "end": null,
+   "summary": "Federal Indian boarding school, opened 1893, still operating in a different form. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Flandreau Indian School",
+    "url": "https://en.wikipedia.org/wiki/Flandreau_Indian_School"
+   }
+  },
+  {
+   "name": "Pipestone Indian School",
+   "place": "Pipestone",
+   "state": "MN",
+   "lat": 44.0,
+   "lon": -96.32,
+   "type": "school",
+   "year": 1893,
+   "end": 1953,
+   "summary": "Federal Indian boarding school, opened 1893, closed 1953. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Federal Indian Boarding School Initiative Investigative Report",
+    "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+   }
+  },
+  {
+   "name": "Mount Pleasant Indian Industrial Boarding School",
+   "place": "Mount Pleasant",
+   "state": "MI",
+   "lat": 43.598,
+   "lon": -84.785,
+   "type": "school",
+   "year": 1893,
+   "end": 1934,
+   "summary": "Federal Indian boarding school, opened 1893, closed 1934. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Federal Indian Boarding School Initiative Investigative Report",
+    "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+   }
+  },
+  {
+   "name": "Tomah Indian Industrial School",
+   "place": "Tomah",
+   "state": "WI",
+   "lat": 43.98,
+   "lon": -90.505,
+   "type": "school",
+   "year": 1893,
+   "end": 1935,
+   "summary": "Federal Indian boarding school, opened 1893, closed 1935. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Federal Indian Boarding School Initiative Investigative Report",
+    "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+   }
+  },
+  {
+   "name": "Rapid City Indian School",
+   "place": "Rapid City",
+   "state": "SD",
+   "lat": 44.08,
+   "lon": -103.23,
+   "type": "school",
+   "year": 1898,
+   "end": 1933,
+   "summary": "Federal Indian boarding school, opened 1898, closed 1933. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Federal Indian Boarding School Initiative Investigative Report",
+    "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+   }
+  },
+  {
+   "name": "Riverside Indian School",
+   "place": "Anadarko",
+   "state": "OK",
+   "lat": 35.1,
+   "lon": -98.25,
+   "type": "school",
+   "year": 1871,
+   "end": null,
+   "summary": "Federal Indian boarding school, opened 1871, still operating in a different form. Children were separated from their families and forbidden to speak their languages.",
+   "source": {
+    "t": "Riverside Indian School",
+    "url": "https://en.wikipedia.org/wiki/Riverside_Indian_School"
+   }
+  }
+ ]
+}

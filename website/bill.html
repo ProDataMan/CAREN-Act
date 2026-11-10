@@ -96,6 +96,7 @@
 
   <script src="assets/site.js"></script>
   <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
   <script>
   (function () {
     'use strict';
@@ -362,6 +363,7 @@
               try { sessionStorage.removeItem(CACHE_KEY); } catch (err) {}
               refreshHighlights();
               renderList(pid);
+              if (window.CarenLearn) CarenLearn.ui.award('quest:suggest-bill-edit', 'Improved the bill');
             })
             .catch(err => {
               alert((err && err.message ? err.message + ' ' : '') + 'You can still post it through GitHub instead.');

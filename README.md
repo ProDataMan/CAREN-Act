@@ -20,6 +20,7 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 - **Start here, three things everyone should know:** https://prodataman.github.io/CAREN-Act/website/learn.html#three
 - **New modules (Nov 10):** [What we built: Black towns](https://prodataman.github.io/CAREN-Act/website/module.html?m=black-towns), [Wealth: built, blocked and taken](https://prodataman.github.io/CAREN-Act/website/module.html?m=wealth), [The fight for the vote](https://prodataman.github.io/CAREN-Act/website/module.html?m=voting), [Mass incarceration](https://prodataman.github.io/CAREN-Act/website/module.html?m=incarceration), [Many targets: Latino, Asian, Native](https://prodataman.github.io/CAREN-Act/website/module.html?m=many-targets), [Equal or better: what the evidence shows](https://prodataman.github.io/CAREN-Act/website/module.html?m=performance)
 - **Earlier modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Burned, flooded and taken (Black Wall Street and more)](https://prodataman.github.io/CAREN-Act/website/module.html?m=destroyed), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
+- **Map through time:** the **Time** slider in the layers panel filters lynchings, destroyed communities, boarding schools and camps by year. For example, [America in 1921](https://prodataman.github.io/CAREN-Act/website/?layers=mwt,destroyed,history&year=1921) (`?year=` sets it).
 - **Map of communities burned, flooded or taken:** https://prodataman.github.io/CAREN-Act/website/?layers=destroyed (Greenwood, Tulsa: [?layers=destroyed,redlining&at=36.16,-95.99,13](https://prodataman.github.io/CAREN-Act/website/?layers=destroyed,redlining&at=36.16,-95.99,13))
 
 **Map and data**
@@ -243,7 +244,8 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 
 - **Evidence labels:** every section is labeled *Documented*, *Debated* or *Belief or myth*.
 - **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–500 for quests, depending on how much the task matters.
-- **Quests:** 39, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
+- **Automatic quests:** signing up as a volunteer and posting a bill comment from the website award their quests without the honor-system button.
+- **Quests:** 42, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
 - **Teach-in kits:** `teach.html` lists them, and `teach.html?m=<id>&view=guide|slides|handout` builds each one from `learn.json`. Slides use the arrow keys, F for full screen and A to reveal quiz answers. Discussion questions come from the module's optional `discuss` list plus generic prompts.
 - **Fourth label:** `plan` ("Our recommendation") marks campaign advice, as opposed to historical claims.
 - **Reading list:** `readingList` in `learn.json`, shown at `learn.html#reading`.
@@ -287,6 +289,7 @@ Repeal is a legislative act, so the tracker never files legal motions or sends a
 | Contested deaths (curated from reputable reporting) | `contested_deaths.json` |
 | Communities burned, flooded, seized, bulldozed or gentrified (curated, cited; 34 places) | `destroyed_communities.json` |
 | Learn content: modules, quizzes, quests, XP, badges (hand-edited) | `learn.json` |
+| Japanese American incarceration camps (10) and major federal Indian boarding schools (16 of 408) (curated) | `history_sites.json` |
 | Residual ordinances (curated, cited; the only hand-edited data file besides contested deaths) | `residual_ordinances.json` |
 
 **Not added yet** (see the status column on [data.html](https://prodataman.github.io/CAREN-Act/website/data.html)):
