@@ -50,7 +50,7 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
-| Learn section | ✅ Live: 11 of 17 modules written; the other 6 (conquest, slavery law, Reconstruction, borders, place, world) are outlines. 39 quests in 6 categories. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
+| Learn section | ✅ Live: all 18 modules written, with teach-in kits. 42 quests in 6 categories. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 

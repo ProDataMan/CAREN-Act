@@ -163,6 +163,7 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **Proposed modules** added to `docs/education-plan.md`.
   - **Six more modules:** black-towns, wealth, voting, incarceration, many-targets (Latino, Asian, Native) and performance (audit studies, achievement, the inferiority myth). Modules were reordered roughly by time.
   - **Quests and badges:** 26 new quests in community, pro bono and build-wealth categories, plus advocacy (register voters, poll worker, op-ed, fair hiring, run for office); 4 new badges; "three things everyone should know".
+  - **The six outlines are now full modules:** conquest, slavery-law, reconstruction, borders, place, world. New quests: `whose-land` and `check-deed`.
   - **How movements won** (`movements`, with the `plan` label and the `power-map` quest) and **teach-in kits** (`teach.html`).
   - **Fundraising:** discussed with the owner, not built. The recommendation is a fiscal sponsor or nonprofit structure before collecting money (see the plan).
   - **The owner's test comment:** it was never posted and lives only in their browser as Pending. Discard removes it.

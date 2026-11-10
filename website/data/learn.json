@@ -371,6 +371,22 @@
       "title": "Map who decides",
       "desc": "List the people who decide on a CAREN-style law where you live: your two Senators, your Representative, your state lawmakers, your council member and your DA. Note whether each one sits on a Judiciary or public safety committee, and who on their staff handles it.",
       "href": "act.html#contact"
+    },
+    {
+      "id": "whose-land",
+      "cat": "learn",
+      "xp": 30,
+      "title": "Learn whose land you're on",
+      "desc": "Look up the Native nations whose land you live on, learn one thing about their history and their government today, and support a Native-led organization.",
+      "href": "https://native-land.ca/"
+    },
+    {
+      "id": "check-deed",
+      "cat": "verify",
+      "xp": 50,
+      "title": "Check your deed",
+      "desc": "Look up your home's deed (or your family's) for a racial covenant. If you find one and your state allows it, have it formally struck, and tell us so we can add it to the map.",
+      "href": "https://mappingprejudice.umn.edu/"
     }
   ],
   "badges": [
@@ -912,73 +928,666 @@
     },
     {
       "id": "conquest",
-      "num": 2,
       "title": "Discovery and conquest",
-      "short": "How the Doctrine of Discovery became U.S. law, and what it did to Native nations: removal, broken treaties and boarding schools.",
-      "status": "outline",
-      "topics": [
-        "The Doctrine of Discovery in U.S. law (Johnson v. M'Intosh, 1823)",
-        "The Indian Removal Act (1830) and the Trail of Tears",
-        "Land cessions and broken treaties",
-        "Federal Indian boarding schools: 408 schools, and at least 973 documented deaths (Interior Department reports, 2022 and 2024)",
-        "Native resistance and sovereignty today"
-      ],
-      "sourcesList": {
-        "boarding": {
-          "t": "U.S. Department of the Interior, Federal Indian Boarding School Initiative Investigative Report (vol. 1, 2022; vol. 2, 2024)",
-          "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+      "short": "How the Doctrine of Discovery became U.S. law, and what it did to Native nations: war, removal, allotment and boarding schools, and the fight for sovereignty today.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "Before there was a color line in North America, there was a land line. The idea that Christian Europeans could claim lands already lived on became U.S. law, and every Native nation lived with the consequences.",
+      "sections": [
+        {
+          "h": "Nations, not wilderness",
+          "label": "documented",
+          "body": "<p>Hundreds of nations with their own governments, trade networks and cities lived here. Cahokia, near present-day St. Louis, had perhaps 10,000 to 20,000 people around 1100 CE. Disease, war and enslavement followed contact; by 1900 the U.S. census counted only about 237,000 Native people. Historian Andrés Reséndez estimates that 2.5 to 5 million Native people were enslaved across the Americas between 1492 and 1900, a figure that is still debated.</p>",
+          "sources": [
+            "cahokia",
+            "resendez"
+          ]
+        },
+        {
+          "h": "Discovery becomes law; removal follows",
+          "label": "documented",
+          "body": "<p>In <em>Johnson v. M'Intosh</em> (1823) the Supreme Court held that “discovery” gave the U.S. title to Native land. In <em>Worcester v. Georgia</em> (1832) it ruled that Georgia had no authority over Cherokee land, but President Jackson's government enforced the Indian Removal Act (1830) anyway. The Cherokee, Chickasaw, Choctaw, Muscogee (Creek) and Seminole nations were forced west; thousands of Cherokee died on the Trail of Tears in 1838–39. Some of these nations had adopted slavery, and enslaved Black people were forced along the same trails.</p>",
+          "sources": [
+            "johnson",
+            "removal",
+            "worcester"
+          ]
+        },
+        {
+          "h": "War and extermination",
+          "label": "documented",
+          "body": "<p>At Sand Creek, Colorado, in 1864, U.S. volunteers killed more than 150 Cheyenne and Arapaho people, most of them women, children and elders, at a camp flying a U.S. flag. At Wounded Knee in 1890, soldiers killed about 250 or more Lakota. In California, Governor Peter Burnett declared in 1851 that “a war of extermination will continue to be waged”; state-funded militias killed thousands, and the Native population fell from about 150,000 to about 30,000 between 1846 and 1870. In 2019 California's governor apologized and called it genocide.</p>",
+          "sources": [
+            "sandcreek",
+            "woundedknee",
+            "madley"
+          ]
+        },
+        {
+          "h": "Allotment and termination",
+          "label": "documented",
+          "body": "<p>The Dawes Act (1887) broke reservations into individual plots and sold the “surplus.” Native-held land fell from about 138 million acres in 1887 to about 48 million by 1934. In the 1950s, “termination” policy ended federal recognition of more than 100 tribes, and the Relocation program moved Native families to cities with promises of jobs that often didn't exist.</p>",
+          "sources": [
+            "dawes",
+            "termination"
+          ]
+        },
+        {
+          "h": "Boarding schools",
+          "label": "documented",
+          "body": "<p>“Kill the Indian in him, and save the man,” said Richard Henry Pratt, who founded the Carlisle Indian Industrial School in 1879. The federal government ran or supported 408 boarding schools that took children from their families, banned their languages and religions, and used harsh discipline. The Interior Department's investigation documented at least 973 deaths of children (2024). In October 2024 President Biden formally apologized.</p>",
+          "sources": [
+            "boarding"
+          ]
+        },
+        {
+          "h": "Resistance and sovereignty today",
+          "label": "documented",
+          "body": "<p>Native activists occupied Alcatraz (1969–71) and Wounded Knee (1973), and won the Indian Self-Determination Act (1975). In <em>McGirt v. Oklahoma</em> (2020) the Supreme Court held that much of eastern Oklahoma remains Muscogee (Creek) reservation for purposes of federal criminal law. The protests at Standing Rock (2016) drew thousands of supporters, and in 2021 Deb Haaland (Laguna Pueblo) became the first Native American cabinet secretary.</p>",
+          "sources": [
+            "mcgirt",
+            "standingrock"
+          ]
         }
-      }
+      ],
+      "timeline": [
+        {
+          "y": 1823,
+          "t": "Johnson v. M'Intosh",
+          "label": "documented"
+        },
+        {
+          "y": 1830,
+          "t": "Indian Removal Act",
+          "label": "documented"
+        },
+        {
+          "y": 1832,
+          "t": "Worcester v. Georgia",
+          "label": "documented"
+        },
+        {
+          "y": 1838,
+          "t": "Trail of Tears",
+          "label": "documented"
+        },
+        {
+          "y": 1851,
+          "t": "California governor calls for a “war of extermination”",
+          "label": "documented"
+        },
+        {
+          "y": 1864,
+          "t": "Sand Creek massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1879,
+          "t": "Carlisle Indian Industrial School opens",
+          "label": "documented"
+        },
+        {
+          "y": 1887,
+          "t": "Dawes Act",
+          "label": "documented"
+        },
+        {
+          "y": 1890,
+          "t": "Wounded Knee",
+          "label": "documented"
+        },
+        {
+          "y": 1934,
+          "t": "Indian Reorganization Act ends allotment",
+          "label": "documented"
+        },
+        {
+          "y": 1969,
+          "t": "Alcatraz occupation",
+          "label": "documented"
+        },
+        {
+          "y": 1975,
+          "t": "Indian Self-Determination Act",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "California apologizes for genocide",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "McGirt v. Oklahoma",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "Presidential apology for boarding schools",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What did Worcester v. Georgia (1832) decide?",
+          "options": [
+            "Georgia could seize Cherokee land",
+            "Georgia had no authority over Cherokee land",
+            "Removal was required",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "The government carried out removal anyway."
+        },
+        {
+          "q": "About how much land did Native nations hold in 1934, down from 138 million acres in 1887?",
+          "options": [
+            "130 million",
+            "90 million",
+            "48 million",
+            "None"
+          ],
+          "a": 2,
+          "why": "About 48 million acres."
+        },
+        {
+          "q": "How many federal Indian boarding schools did the Interior Department identify?",
+          "options": [
+            "12",
+            "40",
+            "408",
+            "4,000"
+          ],
+          "a": 2,
+          "why": "408."
+        }
+      ],
+      "quest": "whose-land",
+      "map": [],
+      "sourcesList": {
+        "cahokia": {
+          "t": "Cahokia",
+          "url": "https://en.wikipedia.org/wiki/Cahokia"
+        },
+        "resendez": {
+          "t": "Andrés Reséndez, The Other Slavery (2016)"
+        },
+        "johnson": {
+          "t": "Johnson v. M'Intosh (1823)",
+          "url": "https://supreme.justia.com/cases/federal/us/21/543/"
+        },
+        "removal": {
+          "t": "Indian Removal Act; Trail of Tears",
+          "url": "https://en.wikipedia.org/wiki/Trail_of_Tears"
+        },
+        "worcester": {
+          "t": "Worcester v. Georgia (1832)",
+          "url": "https://en.wikipedia.org/wiki/Worcester_v._Georgia"
+        },
+        "sandcreek": {
+          "t": "Sand Creek massacre",
+          "url": "https://en.wikipedia.org/wiki/Sand_Creek_massacre"
+        },
+        "woundedknee": {
+          "t": "Wounded Knee Massacre",
+          "url": "https://en.wikipedia.org/wiki/Wounded_Knee_Massacre"
+        },
+        "madley": {
+          "t": "Benjamin Madley, An American Genocide: The United States and the California Indian Catastrophe (2016)"
+        },
+        "dawes": {
+          "t": "Dawes Act",
+          "url": "https://en.wikipedia.org/wiki/Dawes_Act"
+        },
+        "termination": {
+          "t": "Indian termination policy",
+          "url": "https://en.wikipedia.org/wiki/Indian_termination_policy"
+        },
+        "boarding": {
+          "t": "U.S. Department of the Interior, Federal Indian Boarding School Initiative Investigative Report (2022, 2024)",
+          "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+        },
+        "mcgirt": {
+          "t": "McGirt v. Oklahoma (2020)",
+          "url": "https://en.wikipedia.org/wiki/McGirt_v._Oklahoma"
+        },
+        "standingrock": {
+          "t": "Dakota Access Pipeline protests",
+          "url": "https://en.wikipedia.org/wiki/Dakota_Access_Pipeline_protests"
+        }
+      },
+      "num": 2
     },
     {
       "id": "slavery-law",
-      "num": 3,
       "title": "Slavery makes race law",
-      "short": "The Atlantic slave trade, the economy it built, and the laws that made slavery permanent and hereditary.",
-      "status": "outline",
-      "topics": [
-        "About 12.5 million people forced aboard slave ships, 1514–1866 (SlaveVoyages.org)",
-        "Slave codes, state by state",
-        "Cotton, banks and the national economy",
-        "The Fugitive Slave Acts and Dred Scott (1857)",
-        "Resistance: revolts, escape, the Underground Railroad"
+      "short": "The Atlantic slave trade, the national economy it built, the laws that made slavery permanent and hereditary, and the people who resisted.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "Slavery in America was not a Southern side story. It was written into the Constitution, financed by Northern banks, and was the country's largest financial asset by 1860.",
+      "sections": [
+        {
+          "h": "The trade",
+          "label": "documented",
+          "body": "<p>About 12.5 million Africans were forced onto slave ships between the 1500s and 1866, and about 10.7 million survived the Middle Passage (SlaveVoyages.org). About 388,000 were brought directly to mainland North America. After Congress banned importing enslaved people in 1808, a domestic trade forcibly moved about a million people from the Upper South to the cotton fields of the Deep South, tearing families apart.</p>",
+          "sources": [
+            "voyages",
+            "berlin"
+          ]
+        },
+        {
+          "h": "Built into the nation's economy",
+          "label": "documented",
+          "body": "<p>By 1860, about 3.95 million people were enslaved in the U.S. Their market value as “property” was greater than that of all the country's railroads and factories combined. Cotton grown by enslaved people made up more than half of U.S. exports. Northern banks took enslaved people as loan collateral, insurers wrote policies on their lives, and universities profited: in 1838 the Jesuits who ran Georgetown sold 272 people to keep the college afloat.</p>",
+          "sources": [
+            "blight",
+            "georgetown",
+            "jpm"
+          ]
+        },
+        {
+          "h": "Written into the law",
+          "label": "documented",
+          "body": "<p>The Constitution counted enslaved people as three-fifths of a person for representation, protected the slave trade until 1808, and required escaped people to be returned. The Fugitive Slave Act of 1850 forced free states to help capture them. In <em>Dred Scott v. Sandford</em> (1857) Chief Justice Taney wrote that Black people had “no rights which the white man was bound to respect.”</p>",
+          "sources": [
+            "constitution",
+            "dredscott"
+          ]
+        },
+        {
+          "h": "Did violence drive cotton's productivity?",
+          "label": "debated",
+          "body": "<p>Historian Edward Baptist (<em>The Half Has Never Been Told</em>, 2014) argued that rising cotton-picking rates came largely from systematic torture and quotas. Economists Alan Olmstead and Paul Rhode answered that better cotton varieties explain most of the gain. Both sides agree enslaved people were whipped, sold and separated from their families; the debate is over how much violence drove productivity.</p>",
+          "sources": [
+            "baptist",
+            "olmstead"
+          ]
+        },
+        {
+          "h": "Resistance and freedom",
+          "label": "documented",
+          "body": "<p>Enslaved people resisted every day, by slowing work, escaping and rebelling: Stono (1739), the German Coast uprising (1811), Nat Turner (1831). Harriet Tubman made about 13 trips back into Maryland and led about 70 people to freedom. Maroon communities lived in places like the Great Dismal Swamp. About 179,000 Black men served in the Union Army. On June 19, 1865, Union troops announced emancipation in Galveston, Texas; Juneteenth became a federal holiday in 2021.</p>",
+          "sources": [
+            "tubman",
+            "usct",
+            "juneteenth"
+          ]
+        }
       ],
+      "timeline": [
+        {
+          "y": 1739,
+          "t": "Stono Rebellion",
+          "label": "documented"
+        },
+        {
+          "y": 1787,
+          "t": "Constitution's three-fifths and fugitive slave clauses",
+          "label": "documented"
+        },
+        {
+          "y": 1808,
+          "t": "Importation of enslaved people banned; domestic trade grows",
+          "label": "documented"
+        },
+        {
+          "y": 1811,
+          "t": "German Coast uprising",
+          "label": "documented"
+        },
+        {
+          "y": 1838,
+          "t": "Georgetown's Jesuits sell 272 people",
+          "label": "documented"
+        },
+        {
+          "y": 1850,
+          "t": "Fugitive Slave Act",
+          "label": "documented"
+        },
+        {
+          "y": 1857,
+          "t": "Dred Scott v. Sandford",
+          "label": "documented"
+        },
+        {
+          "y": 1863,
+          "t": "Emancipation Proclamation; Black soldiers join the Union Army",
+          "label": "documented"
+        },
+        {
+          "y": 1865,
+          "t": "Juneteenth; 13th Amendment",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Juneteenth becomes a federal holiday",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About how many Africans were forced onto slave ships?",
+          "options": [
+            "About 1 million",
+            "About 12.5 million",
+            "About 50 million",
+            "Unknown"
+          ],
+          "a": 1,
+          "why": "SlaveVoyages.org estimate."
+        },
+        {
+          "q": "In 1860, enslaved people's market value was greater than:",
+          "options": [
+            "Nothing",
+            "All U.S. railroads and factories combined",
+            "Only Southern farms",
+            "The national debt only"
+          ],
+          "a": 1,
+          "why": "That's how central slavery was to the economy."
+        },
+        {
+          "q": "What is debated about Edward Baptist's argument?",
+          "options": [
+            "Whether slavery existed",
+            "How much violence drove cotton productivity",
+            "Whether people were sold",
+            "Whether Tubman existed"
+          ],
+          "a": 1,
+          "why": "The violence is documented; its share of productivity gains is debated."
+        }
+      ],
+      "quest": "read-book",
+      "map": [],
       "sourcesList": {
         "voyages": {
-          "t": "SlaveVoyages.org: Trans-Atlantic Slave Trade Database",
+          "t": "SlaveVoyages.org, Trans-Atlantic Slave Trade Database",
           "url": "https://www.slavevoyages.org/"
+        },
+        "berlin": {
+          "t": "Ira Berlin, The Making of African America: The Four Great Migrations (2010)"
+        },
+        "blight": {
+          "t": "David W. Blight, lectures and writing on the economics of slavery; U.S. Census of 1860"
+        },
+        "georgetown": {
+          "t": "Georgetown Slavery Archive",
+          "url": "https://slaveryarchive.georgetown.edu/"
+        },
+        "jpm": {
+          "t": "JPMorgan Chase disclosure and apology for predecessor banks' ties to slavery (2005)"
+        },
+        "constitution": {
+          "t": "Three-fifths Compromise",
+          "url": "https://en.wikipedia.org/wiki/Three-fifths_Compromise"
+        },
+        "dredscott": {
+          "t": "Dred Scott v. Sandford (1857)",
+          "url": "https://en.wikipedia.org/wiki/Dred_Scott_v._Sandford"
+        },
+        "baptist": {
+          "t": "Edward E. Baptist, The Half Has Never Been Told (2014)"
+        },
+        "olmstead": {
+          "t": "Alan L. Olmstead & Paul W. Rhode, “Cotton, slavery, and the new history of capitalism,” Explorations in Economic History (2018)"
+        },
+        "tubman": {
+          "t": "Harriet Tubman",
+          "url": "https://en.wikipedia.org/wiki/Harriet_Tubman"
+        },
+        "usct": {
+          "t": "United States Colored Troops",
+          "url": "https://en.wikipedia.org/wiki/United_States_Colored_Troops"
+        },
+        "juneteenth": {
+          "t": "Juneteenth",
+          "url": "https://en.wikipedia.org/wiki/Juneteenth"
         }
-      }
+      },
+      "num": 3
     },
     {
       "id": "reconstruction",
-      "num": 4,
       "title": "Reconstruction overthrown",
-      "short": "Freedom, Black political power, and the terror and laws that took both away.",
-      "status": "outline",
-      "topics": [
-        "The 13th, 14th and 15th Amendments, and the 13th's “punishment for crime” exception",
-        "Black Codes and convict leasing",
-        "Lynching: more than 4,400 documented victims, 1877–1950 (EJI)",
-        "Massacres: Colfax 1873, Wilmington 1898, Elaine 1919, Tulsa 1921, Rosewood 1923 (told in full in “Burned, flooded and taken”)",
-        "Jim Crow laws and their remnants (see the old laws tracker)"
+      "short": "Freedom, citizenship and Black political power after the Civil War, and the terror, court rulings and laws that took them away.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "For about a decade after the Civil War, the United States tried to become a multiracial democracy. How that effort was destroyed explains much of the century that followed.",
+      "sections": [
+        {
+          "h": "A second founding",
+          "label": "documented",
+          "body": "<p>The 13th Amendment (1865) ended slavery, the 14th (1868) made everyone born here a citizen with “equal protection of the laws,” and the 15th (1870) barred race discrimination in voting. The Freedmen's Bureau helped found schools across the South. About 2,000 Black men held office, including 16 members of Congress such as Senators Hiram Revels and Blanche K. Bruce and Representative Robert Smalls. Reconstruction legislatures created the South's first public school systems.</p>",
+          "sources": [
+            "amendments",
+            "foner"
+          ]
+        },
+        {
+          "h": "Terror",
+          "label": "documented",
+          "body": "<p>The Ku Klux Klan formed in 1865–66. White mobs killed dozens of Black people in Memphis and New Orleans in 1866, and as many as 150 at Colfax in 1873. Congress passed the Enforcement Acts and the Ku Klux Klan Act (1870–71), and President Grant sent troops and suspended habeas corpus in nine South Carolina counties. For a time, it worked.</p>",
+          "sources": [
+            "kkk",
+            "colfax"
+          ]
+        },
+        {
+          "h": "The courts and Congress walk away",
+          "label": "documented",
+          "body": "<p>The Supreme Court narrowed the 14th Amendment in the <em>Slaughter-House Cases</em> (1873), freed the Colfax killers in <em>U.S. v. Cruikshank</em> (1876), and struck down the Civil Rights Act of 1875 in the <em>Civil Rights Cases</em> (1883). In <em>Plessy v. Ferguson</em> (1896) it approved “separate but equal.”</p>",
+          "sources": [
+            "cruikshank",
+            "plessy"
+          ]
+        },
+        {
+          "h": "The “Compromise of 1877”",
+          "label": "debated",
+          "body": "<p>After the disputed 1876 election, Rutherford B. Hayes became president and federal troops stopped protecting Reconstruction governments in the South. Historians debate whether a formal deal was struck or the outcome reflected a broader Northern retreat. The result is not debated: Southern states were left to white “Redeemer” governments.</p>",
+          "sources": [
+            "comp1877"
+          ]
+        },
+        {
+          "h": "Jim Crow and lynching",
+          "label": "documented",
+          "body": "<p>States passed segregation laws and stripped Black voting rights (see the module on the vote). EJI documented more than 4,400 racial terror lynchings from 1877 to 1950. Ida B. Wells exposed the lie that lynching punished crime in <em>Southern Horrors</em> (1892). Congress failed to pass an anti-lynching law for more than a century, until the Emmett Till Antilynching Act was signed in 2022. About 6 million Black Southerners left in the Great Migration (1910–1970).</p>",
+          "sources": [
+            "eji",
+            "wells",
+            "till",
+            "migration"
+          ]
+        },
+        {
+          "h": "The “Lost Cause”",
+          "label": "belief",
+          "body": "<p>The claim that the Civil War was about states' rights or tariffs rather than slavery spread after the war through textbooks, monuments and films. The secession documents say otherwise. Mississippi's declared: “Our position is thoroughly identified with the institution of slavery.” Most Confederate monuments were put up between about 1900 and the 1920s, and again in the 1950s and 1960s, during Jim Crow and the civil rights movement, not right after the war.</p>",
+          "sources": [
+            "secession",
+            "whoseheritage"
+          ]
+        }
       ],
+      "timeline": [
+        {
+          "y": 1865,
+          "t": "13th Amendment; Freedmen's Bureau; KKK founded",
+          "label": "documented"
+        },
+        {
+          "y": 1866,
+          "t": "Memphis and New Orleans massacres",
+          "label": "documented"
+        },
+        {
+          "y": 1868,
+          "t": "14th Amendment",
+          "label": "documented"
+        },
+        {
+          "y": 1870,
+          "t": "15th Amendment; Hiram Revels seated",
+          "label": "documented"
+        },
+        {
+          "y": 1871,
+          "t": "Ku Klux Klan Act",
+          "label": "documented"
+        },
+        {
+          "y": 1873,
+          "t": "Colfax massacre; Slaughter-House Cases",
+          "label": "documented"
+        },
+        {
+          "y": 1876,
+          "t": "U.S. v. Cruikshank",
+          "label": "documented"
+        },
+        {
+          "y": 1877,
+          "t": "Federal troops withdrawn",
+          "label": "debated"
+        },
+        {
+          "y": 1883,
+          "t": "Civil Rights Act of 1875 struck down",
+          "label": "documented"
+        },
+        {
+          "y": 1892,
+          "t": "Ida B. Wells publishes Southern Horrors",
+          "label": "documented"
+        },
+        {
+          "y": 1896,
+          "t": "Plessy v. Ferguson",
+          "label": "documented"
+        },
+        {
+          "y": 1910,
+          "t": "Great Migration begins",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Emmett Till Antilynching Act",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which amendment made everyone born in the U.S. a citizen?",
+          "options": [
+            "13th",
+            "14th",
+            "15th",
+            "19th"
+          ],
+          "a": 1,
+          "why": "The 14th, in 1868."
+        },
+        {
+          "q": "Which case approved “separate but equal”?",
+          "options": [
+            "Dred Scott",
+            "Plessy v. Ferguson",
+            "Brown v. Board",
+            "Cruikshank"
+          ],
+          "a": 1,
+          "why": "1896."
+        },
+        {
+          "q": "When did Congress finally pass a federal anti-lynching law?",
+          "options": [
+            "1871",
+            "1922",
+            "1964",
+            "2022"
+          ],
+          "a": 3,
+          "why": "The Emmett Till Antilynching Act, 2022."
+        },
+        {
+          "q": "The claim that the Civil War wasn't about slavery is labeled:",
+          "options": [
+            "Documented",
+            "Debated",
+            "Belief or myth"
+          ],
+          "a": 2,
+          "why": "The secession documents themselves name slavery."
+        }
+      ],
+      "quest": "verify-old-law",
       "map": [
         {
           "t": "Lynchings in the Deep South",
           "href": "index.html?layers=priority,lynch,mwt&at=32.6,-88.3,7"
         },
         {
-          "t": "Old segregation laws still on the books",
+          "t": "Old segregation laws",
           "href": "index.html?layers=segregation,residual"
         }
       ],
       "sourcesList": {
+        "amendments": {
+          "t": "Reconstruction Amendments",
+          "url": "https://en.wikipedia.org/wiki/Reconstruction_Amendments"
+        },
+        "foner": {
+          "t": "Eric Foner, Reconstruction: America's Unfinished Revolution (1988)"
+        },
+        "kkk": {
+          "t": "Ku Klux Klan Act (1871)",
+          "url": "https://en.wikipedia.org/wiki/Enforcement_Act_of_1871"
+        },
+        "colfax": {
+          "t": "Colfax massacre",
+          "url": "https://en.wikipedia.org/wiki/Colfax_massacre"
+        },
+        "cruikshank": {
+          "t": "United States v. Cruikshank (1876)",
+          "url": "https://en.wikipedia.org/wiki/United_States_v._Cruikshank"
+        },
+        "plessy": {
+          "t": "Plessy v. Ferguson (1896)",
+          "url": "https://supreme.justia.com/cases/federal/us/163/537/"
+        },
+        "comp1877": {
+          "t": "Compromise of 1877",
+          "url": "https://en.wikipedia.org/wiki/Compromise_of_1877"
+        },
         "eji": {
           "t": "Equal Justice Initiative, Lynching in America",
           "url": "https://eji.org/reports/lynching-in-america/"
+        },
+        "wells": {
+          "t": "Ida B. Wells, Southern Horrors (1892)",
+          "url": "https://en.wikipedia.org/wiki/Ida_B._Wells"
+        },
+        "till": {
+          "t": "Emmett Till Antilynching Act (2022)",
+          "url": "https://en.wikipedia.org/wiki/Emmett_Till_Antilynching_Act"
+        },
+        "migration": {
+          "t": "Isabel Wilkerson, The Warmth of Other Suns (2010)"
+        },
+        "secession": {
+          "t": "Mississippi's Declaration of the Immediate Causes of Secession (1861)"
+        },
+        "whoseheritage": {
+          "t": "Southern Poverty Law Center, Whose Heritage? Public Symbols of the Confederacy"
         }
-      }
+      },
+      "num": 4
     },
     {
       "id": "black-towns",
@@ -1481,40 +2090,391 @@
     },
     {
       "id": "borders",
-      "num": 7,
       "title": "Borders: who gets to be American",
-      "short": "Chinese Exclusion, racial quotas, mass deportations of Mexican Americans, Japanese American incarceration, and today's enforcement.",
-      "status": "outline",
-      "topics": [
-        "The Naturalization Act of 1790 (“free white persons”)",
-        "The Chinese Exclusion Act (1882)",
-        "The 1924 Immigration Act's national-origin quotas",
-        "Mexican Repatriation (1929–1936), which removed many U.S. citizens",
-        "Executive Order 9066 and the incarceration of about 120,000 Japanese Americans; the 1988 apology and payments",
-        "“Operation Wetback” (1954) and today's deportations"
+      "short": "“Free white persons,” Chinese Exclusion, racial quotas, mass deportations of Mexican Americans, Japanese American incarceration, and today's enforcement.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Immigration law has always been a way of deciding who counts as American. For most of U.S. history, it did so openly by race.",
+      "sections": [
+        {
+          "h": "“Free white persons”",
+          "label": "documented",
+          "body": "<p>The first Naturalization Act (1790) limited citizenship by naturalization to “free white persons.” Courts then had to decide who was white. In <em>Ozawa</em> (1922) the Supreme Court ruled a Japanese immigrant was not; in <em>Thind</em> (1923) it ruled that an Indian Sikh immigrant was not either, even though anthropologists classed him as “Caucasian.” Racial bars to naturalization weren't fully removed until 1952.</p>",
+          "sources": [
+            "natact",
+            "thind"
+          ]
+        },
+        {
+          "h": "Chinese Exclusion",
+          "label": "documented",
+          "body": "<p>The Page Act (1875) effectively barred Chinese women, and the Chinese Exclusion Act (1882) barred Chinese laborers, the first U.S. law to exclude a group by nationality. It wasn't repealed until 1943. Chinese immigrants were held and interrogated at Angel Island in San Francisco Bay (1910–1940).</p>",
+          "sources": [
+            "exclusion"
+          ]
+        },
+        {
+          "h": "Quotas by race",
+          "label": "documented",
+          "body": "<p>The Immigration Act of 1924 set quotas based on the national origins of the U.S. population in 1890, to favor Northern Europeans, and barred almost all immigration from Asia. Eugenicists testified in its favor. The quota system lasted until the Immigration and Nationality Act of 1965.</p>",
+          "sources": [
+            "act1924"
+          ]
+        },
+        {
+          "h": "Mexican Americans: repatriation and “Operation Wetback”",
+          "label": "documented",
+          "body": "<p>During the Depression (1929–1936), federal, state and local officials pushed out hundreds of thousands of Mexicans and Mexican Americans; estimates range from about 400,000 to more than a million, and many were U.S. citizens, including children. California apologized in 2005. During World War II the Bracero program recruited Mexican workers; in 1954 “Operation Wetback” carried out mass deportations. The government claimed over a million removals that year; historians consider that number inflated.</p>",
+          "sources": [
+            "repatriation",
+            "wetback"
+          ]
+        },
+        {
+          "h": "Japanese American incarceration",
+          "label": "documented",
+          "body": "<p>Executive Order 9066 (February 1942) led to the forced removal of about 120,000 people of Japanese ancestry from the West Coast, two-thirds of them U.S. citizens, to camps behind barbed wire. The Supreme Court upheld it in <em>Korematsu</em> (1944). The Civil Liberties Act of 1988 apologized and paid $20,000 to each surviving person who had been incarcerated, and in 2018 the Court said <em>Korematsu</em> “was gravely wrong the day it was decided.”</p>",
+          "sources": [
+            "eo9066",
+            "korematsu"
+          ]
+        },
+        {
+          "h": "Today",
+          "label": "documented",
+          "body": "<p>In 2018 the “zero tolerance” policy separated thousands of children from their parents at the border. Immigration detention holds tens of thousands of people on a given day. In September 2025 the Supreme Court allowed immigration agents in the Los Angeles area to resume stops that a lower court had found relied on factors including apparent ethnicity, language and type of work, while the case continues. A CAREN-style law protects anyone, citizen or not, from being reported to police in order to discriminate.</p>",
+          "sources": [
+            "separation",
+            "perdomo"
+          ]
+        }
       ],
-      "sourcesList": {}
+      "timeline": [
+        {
+          "y": 1790,
+          "t": "Naturalization limited to “free white persons”",
+          "label": "documented"
+        },
+        {
+          "y": 1882,
+          "t": "Chinese Exclusion Act",
+          "label": "documented"
+        },
+        {
+          "y": 1922,
+          "t": "Ozawa v. United States",
+          "label": "documented"
+        },
+        {
+          "y": 1923,
+          "t": "United States v. Thind",
+          "label": "documented"
+        },
+        {
+          "y": 1924,
+          "t": "National-origins quotas",
+          "label": "documented"
+        },
+        {
+          "y": 1929,
+          "t": "Mexican Repatriation begins",
+          "label": "documented"
+        },
+        {
+          "y": 1942,
+          "t": "Executive Order 9066",
+          "label": "documented"
+        },
+        {
+          "y": 1944,
+          "t": "Korematsu v. United States",
+          "label": "documented"
+        },
+        {
+          "y": 1954,
+          "t": "“Operation Wetback”",
+          "label": "documented"
+        },
+        {
+          "y": 1965,
+          "t": "Quotas ended",
+          "label": "documented"
+        },
+        {
+          "y": 1988,
+          "t": "Civil Liberties Act apology and payments",
+          "label": "documented"
+        },
+        {
+          "y": 2005,
+          "t": "California apologizes for Mexican Repatriation",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Family separation; Korematsu repudiated",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Who could naturalize under the 1790 law?",
+          "options": [
+            "Anyone",
+            "Free white persons",
+            "Only Europeans with property",
+            "Only English speakers"
+          ],
+          "a": 1,
+          "why": "Racial bars lasted until 1952."
+        },
+        {
+          "q": "Which law was the first to exclude a group by nationality?",
+          "options": [
+            "The 1924 Immigration Act",
+            "The Chinese Exclusion Act of 1882",
+            "Executive Order 9066",
+            "The Page Act"
+          ],
+          "a": 1,
+          "why": "1882, repealed in 1943."
+        },
+        {
+          "q": "About what share of Japanese Americans incarcerated in WWII were U.S. citizens?",
+          "options": [
+            "None",
+            "About a third",
+            "About two-thirds",
+            "All"
+          ],
+          "a": 2,
+          "why": "About two-thirds."
+        }
+      ],
+      "quest": "know-rights-training",
+      "map": [],
+      "sourcesList": {
+        "natact": {
+          "t": "Naturalization Act of 1790",
+          "url": "https://en.wikipedia.org/wiki/Naturalization_Act_of_1790"
+        },
+        "thind": {
+          "t": "United States v. Bhagat Singh Thind (1923); Takao Ozawa v. United States (1922)",
+          "url": "https://en.wikipedia.org/wiki/United_States_v._Bhagat_Singh_Thind"
+        },
+        "exclusion": {
+          "t": "Chinese Exclusion Act",
+          "url": "https://en.wikipedia.org/wiki/Chinese_Exclusion_Act"
+        },
+        "act1924": {
+          "t": "Immigration Act of 1924",
+          "url": "https://en.wikipedia.org/wiki/Immigration_Act_of_1924"
+        },
+        "repatriation": {
+          "t": "Mexican Repatriation",
+          "url": "https://en.wikipedia.org/wiki/Mexican_Repatriation"
+        },
+        "wetback": {
+          "t": "Operation Wetback",
+          "url": "https://en.wikipedia.org/wiki/Operation_Wetback"
+        },
+        "eo9066": {
+          "t": "Executive Order 9066; Densho Encyclopedia",
+          "url": "https://encyclopedia.densho.org/"
+        },
+        "korematsu": {
+          "t": "Korematsu v. United States (1944); Trump v. Hawaii (2018)",
+          "url": "https://en.wikipedia.org/wiki/Korematsu_v._United_States"
+        },
+        "separation": {
+          "t": "Trump administration family separation policy",
+          "url": "https://en.wikipedia.org/wiki/Trump_administration_family_separation_policy"
+        },
+        "perdomo": {
+          "t": "Noem v. Vasquez Perdomo (U.S. Supreme Court order, September 2025)"
+        }
+      },
+      "num": 7
     },
     {
       "id": "place",
-      "num": 8,
       "title": "Place: who gets to live where",
-      "short": "Redlining, racial covenants, sundown towns, urban renewal and highways, and the wealth gap they left.",
-      "status": "outline",
-      "topics": [
-        "HOLC redlining maps (1930s)",
-        "Racial covenants in property deeds",
-        "Sundown towns",
-        "Exclusion from New Deal and GI Bill housing benefits",
-        "The wealth gap today (for burned, flooded and bulldozed communities, see “Burned, flooded and taken”)"
+      "short": "Racial zoning, covenants, redlining, sundown towns, blockbusting and the Fair Housing Act, and why neighborhoods are still divided.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Most American neighborhoods didn't become segregated by accident or by choice alone. Governments drew the lines, and many of those lines are still visible on the map.",
+      "sections": [
+        {
+          "h": "Racial zoning, then covenants",
+          "label": "documented",
+          "body": "<p>Baltimore passed the first citywide racial zoning law in 1910; the Supreme Court struck racial zoning down in <em>Buchanan v. Warley</em> (1917). Developers and neighbors turned to racial covenants written into deeds, which the Court let stand in 1926. In <em>Shelley v. Kraemer</em> (1948) it ruled courts couldn't enforce them, but the language remains in millions of deeds. Some states, such as Minnesota (2019), now let owners formally strike it. The map's covenants layer shows more than 100,000 of them.</p>",
+          "sources": [
+            "buchanan",
+            "shelley",
+            "mpre"
+          ]
+        },
+        {
+          "h": "Redlining",
+          "label": "documented",
+          "body": "<p>From 1935 to 1940 the federal Home Owners' Loan Corporation graded neighborhoods in about 200 cities; Black and immigrant neighborhoods were colored red as “hazardous.” The Federal Housing Administration refused to insure loans in or near Black neighborhoods and recommended covenants. In Detroit in 1941, a developer built a half-mile wall to separate a new white subdivision from a Black neighborhood so the FHA would back its loans. Studies find formerly redlined areas today are poorer, have lower life expectancy, and run several degrees hotter in summer.</p>",
+          "sources": [
+            "holc",
+            "rothstein",
+            "heat"
+          ]
+        },
+        {
+          "h": "Sundown towns and white flight",
+          "label": "documented",
+          "body": "<p>Historian James Loewen documented hundreds of towns that kept Black residents out after dark, by sign, ordinance or violence (see the old laws tracker). As Black families moved north and into new neighborhoods, real estate agents practiced “blockbusting,” scaring white owners into selling cheaply and reselling to Black families at a markup. The Fair Housing Act passed on April 11, 1968, a week after Martin Luther King Jr. was killed.</p>",
+          "sources": [
+            "loewen",
+            "fha1968"
+          ]
+        },
+        {
+          "h": "Does zoning still keep neighborhoods apart?",
+          "label": "debated",
+          "body": "<p>Explicit racial rules are illegal, but zoning that allows only single-family homes on large lots raises the price of entry to many neighborhoods. Researchers broadly agree such rules preserve economic segregation; they debate how much they preserve racial segregation today, compared with income differences, preferences and discrimination by landlords and lenders, which fair-housing tests still find.</p>",
+          "sources": [
+            "zoning"
+          ]
+        },
+        {
+          "h": "What to do",
+          "label": "documented",
+          "body": "<p>Look up your neighborhood on the redlining and covenant layers. If your deed has a covenant and your state allows it, have it struck. Support fair-housing testing, inclusive zoning reform and down-payment help for first-time buyers in formerly redlined areas. (See also the modules on wealth and on communities destroyed.)</p>",
+          "sources": [
+            "mpre"
+          ]
+        }
       ],
+      "timeline": [
+        {
+          "y": 1910,
+          "t": "Baltimore's racial zoning ordinance",
+          "label": "documented"
+        },
+        {
+          "y": 1917,
+          "t": "Buchanan v. Warley strikes down racial zoning",
+          "label": "documented"
+        },
+        {
+          "y": 1926,
+          "t": "Corrigan v. Buckley lets covenants stand",
+          "label": "documented"
+        },
+        {
+          "y": 1935,
+          "t": "HOLC redlining maps begin",
+          "label": "documented"
+        },
+        {
+          "y": 1941,
+          "t": "Detroit's Birwood (Eight Mile) wall",
+          "label": "documented"
+        },
+        {
+          "y": 1948,
+          "t": "Shelley v. Kraemer",
+          "label": "documented"
+        },
+        {
+          "y": 1968,
+          "t": "Fair Housing Act",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Minnesota lets owners strike covenants",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What did Shelley v. Kraemer (1948) decide?",
+          "options": [
+            "Covenants are required",
+            "Courts can't enforce racial covenants",
+            "Redlining is legal",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "The language stayed in deeds anyway."
+        },
+        {
+          "q": "Why was the Detroit wall built in 1941?",
+          "options": [
+            "Flood control",
+            "So the FHA would insure loans for a white subdivision",
+            "A highway",
+            "A prison"
+          ],
+          "a": 1,
+          "why": "A literal color line."
+        },
+        {
+          "q": "When did the Fair Housing Act pass?",
+          "options": [
+            "1948",
+            "1954",
+            "1968",
+            "1988"
+          ],
+          "a": 2,
+          "why": "A week after Dr. King was killed."
+        }
+      ],
+      "quest": "check-deed",
       "map": [
         {
           "t": "Redlining and covenants in Minneapolis",
           "href": "index.html?layers=redlining,covenants&at=44.96,-93.27,12"
+        },
+        {
+          "t": "Old segregation and sundown laws",
+          "href": "index.html?layers=segregation,residual"
         }
       ],
-      "sourcesList": {}
+      "sourcesList": {
+        "buchanan": {
+          "t": "Buchanan v. Warley (1917)",
+          "url": "https://en.wikipedia.org/wiki/Buchanan_v._Warley"
+        },
+        "shelley": {
+          "t": "Shelley v. Kraemer (1948)",
+          "url": "https://en.wikipedia.org/wiki/Shelley_v._Kraemer"
+        },
+        "mpre": {
+          "t": "Mapping Prejudice (University of Minnesota) and Just Deeds",
+          "url": "https://mappingprejudice.umn.edu/"
+        },
+        "holc": {
+          "t": "Mapping Inequality: Redlining in New Deal America",
+          "url": "https://dsl.richmond.edu/panorama/redlining/"
+        },
+        "rothstein": {
+          "t": "Richard Rothstein, The Color of Law (2017)"
+        },
+        "heat": {
+          "t": "Hoffman, Shandas & Pendleton, “The Effects of Historical Housing Policies on Resident Exposure to Intra-Urban Heat,” Climate (2020)"
+        },
+        "loewen": {
+          "t": "James W. Loewen, Sundown Towns (2005); Tougaloo College Sundown Towns database",
+          "url": "https://sundown.tougaloo.edu/"
+        },
+        "fha1968": {
+          "t": "Civil Rights Act of 1968 (Fair Housing Act)",
+          "url": "https://en.wikipedia.org/wiki/Civil_Rights_Act_of_1968"
+        },
+        "zoning": {
+          "t": "Exclusionary zoning",
+          "url": "https://en.wikipedia.org/wiki/Exclusionary_zoning"
+        }
+      },
+      "num": 8
     },
     {
       "id": "destroyed",
@@ -3201,18 +4161,215 @@
     },
     {
       "id": "world",
-      "num": 16,
       "title": "A world system",
-      "short": "How empires divided Africa, how apartheid and Nazi lawyers studied American race law, and how other countries are reckoning with their past.",
-      "status": "outline",
-      "topics": [
-        "The Berlin Conference (1884–85) and the partition of Africa",
-        "Belgian King Leopold II's Congo",
-        "Hitler's American Model: Nazi lawyers studied U.S. race law (James Q. Whitman, 2017)",
-        "Apartheid South Africa and its Truth and Reconciliation Commission",
-        "White Australia, the Stolen Generations, and Canada's residential schools"
+      "short": "Britain paying slaveholders, the partition of Africa, genocide in the Congo and Namibia, Nazi lawyers studying American race law, apartheid, and how other nations are reckoning.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "American racism was part of a global system of empire. Seeing that system helps explain why the same patterns appear on every continent, and what other countries have tried in order to repair them.",
+      "sections": [
+        {
+          "h": "Abolition paid the enslavers",
+          "label": "documented",
+          "body": "<p>Britain banned the slave trade in 1807 and slavery in most of its colonies in 1833. It paid £20 million in compensation, about 40% of the government's annual budget, to slaveholders, not to the people they had enslaved. The loan raised to pay it was not fully paid off until 2015. France forced Haiti to pay for its own freedom (see the module “Before race”).</p>",
+          "sources": [
+            "ukcomp"
+          ]
+        },
+        {
+          "h": "The scramble for Africa",
+          "label": "documented",
+          "body": "<p>At the Berlin Conference (1884–85), European powers set rules for dividing Africa among themselves, with no Africans present. In King Leopold II's Congo Free State, forced rubber collection brought mass killing, mutilation and famine; estimates of the dead range widely, from about 1 million to 10 million. In German South West Africa (Namibia), German troops killed tens of thousands of Herero and Nama people in 1904–08; Germany acknowledged it as genocide in 2021.</p>",
+          "sources": [
+            "berlinconf",
+            "congo",
+            "herero"
+          ]
+        },
+        {
+          "h": "Hitler's American model",
+          "label": "documented",
+          "body": "<p>Law professor James Q. Whitman showed in 2017 that Nazi lawyers drafting the 1935 Nuremberg Laws studied American race law, including state bans on interracial marriage, Jim Crow, and race-based immigration and citizenship rules. Some of them found U.S. law harsher than they were prepared to go, for example in its “one drop” definitions of race.</p>",
+          "sources": [
+            "whitman"
+          ]
+        },
+        {
+          "h": "Apartheid, and the world's response",
+          "label": "documented",
+          "body": "<p>South Africa's apartheid system (1948–1994) classified every person by race and confined Black South Africans to “homelands.” Police killed 69 protesters at Sharpeville in 1960. A global divestment movement, led in the U.S. by students, churches and the Congressional Black Caucus, pushed Congress to pass sanctions in 1986 over President Reagan's veto. Nelson Mandela was freed in 1990 and elected president in 1994, and a Truth and Reconciliation Commission followed.</p>",
+          "sources": [
+            "apartheid",
+            "caaa"
+          ]
+        },
+        {
+          "h": "Other settler nations",
+          "label": "documented",
+          "body": "<p>Australia's “White Australia” policy restricted non-European immigration from 1901 into the 1970s, and its governments removed Aboriginal and Torres Strait Islander children from their families (the Stolen Generations); Prime Minister Kevin Rudd apologized in 2008. In Canada about 150,000 Indigenous children were sent to residential schools; the Truth and Reconciliation Commission called it cultural genocide in 2015, and Pope Francis apologized in 2022.</p>",
+          "sources": [
+            "stolen",
+            "canadatrc"
+          ]
+        },
+        {
+          "h": "Can repair work?",
+          "label": "debated",
+          "body": "<p>West Germany began paying reparations to Israel and Holocaust survivors in 1952. Caribbean nations (CARICOM) adopted a ten-point reparations plan in 2013. Germany pledged about €1.1 billion in development aid to Namibia in 2021, which many Herero and Nama leaders rejected as inadequate. Whether reparations, apologies and truth commissions repair harm, and in what form, is actively debated. The precedents themselves are documented.</p>",
+          "sources": [
+            "germany",
+            "caricom"
+          ]
+        }
       ],
-      "sourcesList": {}
+      "timeline": [
+        {
+          "y": 1807,
+          "t": "Britain bans the slave trade",
+          "label": "documented"
+        },
+        {
+          "y": 1833,
+          "t": "Britain abolishes slavery and compensates slaveholders",
+          "label": "documented"
+        },
+        {
+          "y": 1884,
+          "t": "Berlin Conference",
+          "label": "documented"
+        },
+        {
+          "y": 1904,
+          "t": "Herero and Nama genocide begins",
+          "label": "documented"
+        },
+        {
+          "y": 1935,
+          "t": "Nuremberg Laws",
+          "label": "documented"
+        },
+        {
+          "y": 1948,
+          "t": "Apartheid begins",
+          "label": "documented"
+        },
+        {
+          "y": 1952,
+          "t": "German reparations agreement with Israel",
+          "label": "documented"
+        },
+        {
+          "y": 1960,
+          "t": "Sharpeville massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1986,
+          "t": "U.S. sanctions on South Africa over a veto",
+          "label": "documented"
+        },
+        {
+          "y": 1994,
+          "t": "Mandela elected",
+          "label": "documented"
+        },
+        {
+          "y": 2008,
+          "t": "Australia apologizes to the Stolen Generations",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "Britain finishes repaying the slaveholder-compensation loan; Canada's TRC report",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Germany acknowledges the Namibian genocide",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Who received Britain's £20 million slavery compensation?",
+          "options": [
+            "The formerly enslaved",
+            "Slaveholders",
+            "The colonies",
+            "No one"
+          ],
+          "a": 1,
+          "why": "Slaveholders."
+        },
+        {
+          "q": "What did James Whitman show about the Nuremberg Laws?",
+          "options": [
+            "They were invented from nothing",
+            "Nazi lawyers studied American race law",
+            "They copied British law",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Hitler's American Model, 2017."
+        },
+        {
+          "q": "How did U.S. sanctions on apartheid South Africa pass in 1986?",
+          "options": [
+            "Unanimously",
+            "Over President Reagan's veto",
+            "By executive order",
+            "They didn't"
+          ],
+          "a": 1,
+          "why": "After years of divestment campaigns."
+        }
+      ],
+      "quest": "read-book",
+      "map": [],
+      "sourcesList": {
+        "ukcomp": {
+          "t": "Slavery Abolition Act 1833; UCL Legacies of British Slavery",
+          "url": "https://www.ucl.ac.uk/lbs/"
+        },
+        "berlinconf": {
+          "t": "Berlin Conference",
+          "url": "https://en.wikipedia.org/wiki/Berlin_Conference"
+        },
+        "congo": {
+          "t": "Atrocities in the Congo Free State",
+          "url": "https://en.wikipedia.org/wiki/Atrocities_in_the_Congo_Free_State"
+        },
+        "herero": {
+          "t": "Herero and Nama genocide",
+          "url": "https://en.wikipedia.org/wiki/Herero_and_Nama_genocide"
+        },
+        "whitman": {
+          "t": "James Q. Whitman, Hitler's American Model (Princeton, 2017)"
+        },
+        "apartheid": {
+          "t": "Apartheid",
+          "url": "https://en.wikipedia.org/wiki/Apartheid"
+        },
+        "caaa": {
+          "t": "Comprehensive Anti-Apartheid Act (1986)",
+          "url": "https://en.wikipedia.org/wiki/Comprehensive_Anti-Apartheid_Act"
+        },
+        "stolen": {
+          "t": "Stolen Generations",
+          "url": "https://en.wikipedia.org/wiki/Stolen_Generations"
+        },
+        "canadatrc": {
+          "t": "Truth and Reconciliation Commission of Canada",
+          "url": "https://en.wikipedia.org/wiki/Truth_and_Reconciliation_Commission_of_Canada"
+        },
+        "germany": {
+          "t": "Reparations Agreement between Israel and the Federal Republic of Germany (1952)",
+          "url": "https://en.wikipedia.org/wiki/Reparations_Agreement_between_Israel_and_the_Federal_Republic_of_Germany"
+        },
+        "caricom": {
+          "t": "CARICOM Reparations Commission, Ten Point Plan (2013)"
+        }
+      },
+      "num": 16
     },
     {
       "id": "movements",
