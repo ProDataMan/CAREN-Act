@@ -93,7 +93,10 @@ Module 8, **Burned, flooded and taken**, covers Greenwood/Black Wall Street, oth
 - 26 new quests, in three new categories: Show up for your community, Give your professional skills, and Build wealth back home.
 - The "three things everyone should know" box at the top of the Learn page.
 
-**Still proposed:** 5 (environmental racism), 7 (how movements won), 8 (surveillance), 10 (media) and 11 (veterans). New candidates: education and school segregation, health beyond reproduction, Black women organizers, Black LGBTQ history (Bayard Rustin), religion as a force for liberation, and a reading list.
+**Also built (2026-11-10):**
+- **Modules:** how movements won, environmental racism, surveillance, media, veterans, schools, health, women organizers, Black LGBTQ history and faith.
+- **Every remaining outline written in full:** conquest, slavery law, Reconstruction, borders, place and world.
+- **Teach-in kits** (`teach.html`) and a reading list.
 
 **Fundraising (owner question):** don't collect money through a personal GoFundMe. First:
 1. Set up a fiscal sponsor or a nonprofit. Note that lobbying for a bill is limited for 501(c)(3)s and unlimited for 501(c)(4)s.

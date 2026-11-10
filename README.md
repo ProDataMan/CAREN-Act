@@ -50,7 +50,7 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
-| Learn section | ✅ Live: all 18 modules written, with teach-in kits. 42 quests in 6 categories. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
+| Learn section | ✅ Live: 27 modules, all written, each with a teach-in kit. 42 quests in 6 categories, plus a reading list of 18 books. ⚠️ Not yet reviewed by a historian | Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 
@@ -246,6 +246,7 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 - **Quests:** 39, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
 - **Teach-in kits:** `teach.html` lists them, and `teach.html?m=<id>&view=guide|slides|handout` builds each one from `learn.json`. Slides use the arrow keys, F for full screen and A to reveal quiz answers. Discussion questions come from the module's optional `discuss` list plus generic prompts.
 - **Fourth label:** `plan` ("Our recommendation") marks campaign advice, as opposed to historical claims.
+- **Reading list:** `readingList` in `learn.json`, shown at `learn.html#reading`.
 - **"Three things everyone should know":** set in `threeThings` in `learn.json` and shown at the top of the hub. Quests are on the honor system for now.
 - **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.
 - **Badges:** 13.

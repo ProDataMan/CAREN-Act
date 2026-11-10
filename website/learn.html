@@ -101,6 +101,10 @@
     <div class="filters" id="tlFilters" role="group" aria-label="Filter the timeline by module"></div>
     <div id="tl"></div>
 
+    <h2 id="reading">Reading list</h2>
+    <p>Books that go deeper, each tied to a module. Reading one and discussing it is a quest. Try your local library first, or a Black-owned bookstore.</p>
+    <div class="table-wrap"><table class="data" id="readTable"></table></div>
+
     <h2 id="help">Help build this</h2>
     <p>These lessons are drafts until a historian, librarian or archivist reviews them. If that's you, or someone you know, <a href="volunteer.html#reviewer">sign up as a history reviewer</a>. Found an error or a better source? <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BLearn%5D%20" target="_blank" rel="noopener">Tell us on GitHub</a>.</p>
   </main>
@@ -118,6 +122,10 @@
 
     L.catalog().then(cat => {
       $('reviewNote').innerHTML = '<b>Drafts under review.</b> ' + ui.esc(cat.review.split(':')[0]) + '. <a href="volunteer.html#reviewer">Help review them</a>.';
+      $('readTable').innerHTML = '<tr><th>Book</th><th>Author</th><th>About</th><th>Module</th></tr>' + (cat.readingList || []).map(b => {
+        const mod = cat.modules.find(x => x.id === b.module);
+        return '<tr><td><b>' + ui.esc(b.t) + '</b> (' + b.y + ')</td><td>' + ui.esc(b.a) + '</td><td>' + ui.esc(b.why) + '</td><td>' + (mod ? '<a href="module.html?m=' + mod.id + '">' + ui.esc(mod.title.split(':')[0]) + '</a>' : '') + '</td></tr>';
+      }).join('');
       $('three-list').innerHTML = (cat.threeThings || []).map(t => '<a href="' + t.href + '"><h3>' + ui.esc(t.h) + '</h3><p>' + ui.esc(t.p) + '</p><span>Learn more →</span></a>').join('');
       $('labels').innerHTML = Object.keys(cat.labels).map(k => '<div>' + ui.chip(cat, k) + '<br>' + ui.esc(cat.labels[k].desc) + '</div>').join('');
 

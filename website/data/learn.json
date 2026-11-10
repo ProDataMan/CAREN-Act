@@ -161,8 +161,8 @@
       "title": "Read and discuss a book",
       "xp": 40,
       "cat": "learn",
-      "desc": "Read one book from the module sources (for example The Color of Law, The Warmth of Other Suns, or Stamped from the Beginning) and discuss it with at least one other person.",
-      "href": "learn.html#help"
+      "desc": "Read one book from the reading list and discuss it with at least one other person.",
+      "href": "learn.html#reading"
     },
     {
       "id": "oral-history",
@@ -1817,8 +1817,365 @@
       "num": 5
     },
     {
+      "id": "faith",
+      "title": "Faith: used to oppress, used to liberate",
+      "short": "How scripture justified slavery and how the Black church, abolitionists and people of many faiths turned it into a force for freedom.",
+      "status": "draft",
+      "minutes": 6,
+      "intro": "Religion has been on both sides of this history. The same Bible that was cut down into a “Slave Bible” carried the Exodus story that enslaved people sang about.",
+      "sections": [
+        {
+          "h": "The invisible church",
+          "label": "documented",
+          "body": "<p>Many enslavers controlled worship, but enslaved people met secretly in “hush harbors” to pray and sing their own way. In the 1790s Richard Allen and Absalom Jones walked out of Philadelphia's St. George's Methodist Church after being pulled from their knees during prayer for sitting in the “wrong” section; Allen went on to found the African Methodist Episcopal Church in 1816.</p>",
+          "sources": [
+            "allen"
+          ]
+        },
+        {
+          "h": "Did spirituals carry escape codes?",
+          "label": "debated",
+          "body": "<p>Spirituals spoke of crossing Jordan and reaching the promised land, and many listeners heard freedom in them. The popular claim that specific songs like “Follow the Drinking Gourd” were coded maps for the Underground Railroad is debated; historians have found little evidence that song was known before the 1920s. The broader point, that faith sustained resistance, is well documented.</p>",
+          "sources": [
+            "gourd"
+          ]
+        },
+        {
+          "h": "Faith against slavery",
+          "label": "documented",
+          "body": "<p>Quakers in Germantown, Pennsylvania, issued one of the first protests against slavery in 1688. Frederick Douglass drew a sharp line between “the Christianity of this land” and “the Christianity of Christ.” Nat Turner understood his rebellion as a religious calling.</p>",
+          "sources": [
+            "germantown",
+            "douglass"
+          ]
+        },
+        {
+          "h": "The movement's churches",
+          "label": "documented",
+          "body": "<p>Ministers founded the Southern Christian Leadership Conference in 1957, and churches served as meeting halls, schools and sanctuaries, which made them targets: the 1963 bombing of Birmingham's 16th Street Baptist Church killed four girls, and in 2015 a white supremacist murdered nine worshippers at Charleston's Emanuel AME Church. People of other faiths marched too: Rabbi Abraham Joshua Heschel said that at Selma he felt his legs were praying. Malcolm X's 1964 pilgrimage to Mecca changed how he saw race.</p>",
+          "sources": [
+            "sixteenth",
+            "emanuel",
+            "heschel"
+          ]
+        },
+        {
+          "h": "Today",
+          "label": "documented",
+          "body": "<p>Congregations run “Souls to the Polls” voting drives, food pantries and reentry programs, and the revived Poor People's Campaign (2018) organizes across faiths. Faith communities are natural hosts for teach-ins and coalitions.</p>",
+          "sources": [
+            "ppc"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1688,
+          "t": "Germantown Quaker protest against slavery",
+          "label": "documented"
+        },
+        {
+          "y": 1816,
+          "t": "AME Church founded",
+          "label": "documented"
+        },
+        {
+          "y": 1845,
+          "t": "Douglass's Narrative and its appendix on Christianity",
+          "label": "documented"
+        },
+        {
+          "y": 1957,
+          "t": "SCLC founded",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "16th Street Baptist Church bombing",
+          "label": "documented"
+        },
+        {
+          "y": 1964,
+          "t": "Malcolm X's pilgrimage to Mecca",
+          "label": "documented"
+        },
+        {
+          "y": 1965,
+          "t": "Rabbi Heschel marches at Selma",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "Emanuel AME massacre",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Poor People's Campaign revived",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Why did Richard Allen and Absalom Jones leave St. George's church?",
+          "options": [
+            "A dispute about money",
+            "They were pulled from prayer for sitting in the “wrong” section",
+            "They moved away",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Allen founded the AME Church."
+        },
+        {
+          "q": "The claim that “Follow the Drinking Gourd” was an escape map is labeled:",
+          "options": [
+            "Documented",
+            "Debated",
+            "Belief or myth"
+          ],
+          "a": 1,
+          "why": "Little evidence it existed before the 1920s."
+        },
+        {
+          "q": "Which church was bombed in 1963, killing four girls?",
+          "options": [
+            "Emanuel AME",
+            "16th Street Baptist Church",
+            "Ebenezer Baptist",
+            "Mother Bethel"
+          ],
+          "a": 1,
+          "why": "In Birmingham."
+        }
+      ],
+      "quest": "teach-in",
+      "map": [],
+      "sourcesList": {
+        "allen": {
+          "t": "Richard Allen (bishop)",
+          "url": "https://en.wikipedia.org/wiki/Richard_Allen_(bishop)"
+        },
+        "gourd": {
+          "t": "Follow the Drinkin' Gourd",
+          "url": "https://en.wikipedia.org/wiki/Follow_the_Drinkin%27_Gourd"
+        },
+        "germantown": {
+          "t": "1688 Germantown Quaker Petition Against Slavery",
+          "url": "https://en.wikipedia.org/wiki/1688_Germantown_Quaker_Petition_Against_Slavery"
+        },
+        "douglass": {
+          "t": "Frederick Douglass, Narrative of the Life of Frederick Douglass (1845), Appendix"
+        },
+        "sixteenth": {
+          "t": "16th Street Baptist Church bombing",
+          "url": "https://en.wikipedia.org/wiki/16th_Street_Baptist_Church_bombing"
+        },
+        "emanuel": {
+          "t": "Charleston church shooting",
+          "url": "https://en.wikipedia.org/wiki/Charleston_church_shooting"
+        },
+        "heschel": {
+          "t": "Abraham Joshua Heschel",
+          "url": "https://en.wikipedia.org/wiki/Abraham_Joshua_Heschel"
+        },
+        "ppc": {
+          "t": "Poor People's Campaign: A National Call for Moral Revival",
+          "url": "https://www.poorpeoplescampaign.org/"
+        }
+      },
+      "num": 6
+    },
+    {
+      "id": "veterans",
+      "title": "Black veterans: fighting for a country that fought them",
+      "short": "From the Revolution to Vietnam: Black soldiers who fought abroad and were attacked at home, and how a veteran's blinding helped desegregate the military.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "Black Americans have served in every U.S. war. Many came home expecting the freedom they had fought for, and that expectation made them targets.",
+      "sections": [
+        {
+          "h": "Revolution and Civil War",
+          "label": "documented",
+          "body": "<p>Crispus Attucks, a man of African and Native descent, was the first killed in the Boston Massacre (1770). Thousands of Black soldiers fought for independence, while others joined the British, who promised freedom to people enslaved by rebels. In the Civil War, about 179,000 Black men served in the Union Army. Confederates massacred surrendering Black soldiers at Fort Pillow in 1864.</p>",
+          "sources": [
+            "attucks",
+            "usct"
+          ]
+        },
+        {
+          "h": "World War I and the backlash",
+          "label": "documented",
+          "body": "<p>The 369th Infantry, the “Harlem Hellfighters,” spent more time in combat than almost any other American unit. At home, the Army hanged 19 Black soldiers of the 24th Infantry after the 1917 Houston riot, 13 of them in a single day without appeal; in 2023 the Army set aside the convictions of 110 of the soldiers. After the war, Black veterans were beaten and lynched, some in uniform, during the Red Summer of 1919 (EJI, <em>Targeting Black Veterans</em>).</p>",
+          "sources": [
+            "houston",
+            "ejivets"
+          ]
+        },
+        {
+          "h": "World War II and “Double V”",
+          "label": "documented",
+          "body": "<p>More than a million Black Americans served in World War II, including the Tuskegee Airmen. The <em>Pittsburgh Courier</em>'s “Double V” campaign called for victory over fascism abroad and racism at home. In 1944 an explosion at Port Chicago, California, killed 320 men, most of them Black sailors loading ammunition; 50 who refused to return to the same unsafe work were convicted of mutiny. The Navy exonerated them in 2024.</p>",
+          "sources": [
+            "doublev",
+            "portchicago"
+          ]
+        },
+        {
+          "h": "Isaac Woodard and desegregation",
+          "label": "documented",
+          "body": "<p>In February 1946, hours after his honorable discharge, Sergeant Isaac Woodard was pulled off a bus in Batesburg, South Carolina, and beaten by the police chief until he was blind. An all-white jury acquitted the chief. Outrage over the case helped move President Truman to order the desegregation of the armed forces in 1948 (Executive Order 9981). Many civil rights leaders, including Medgar Evers, were veterans; Tulsa's defenders in 1921 were veterans too.</p>",
+          "sources": [
+            "woodard",
+            "eo9981"
+          ]
+        },
+        {
+          "h": "Recognition delayed",
+          "label": "documented",
+          "body": "<p>No Black soldier received the Medal of Honor for World War II until 1997, when seven were finally awarded it after a review; only one, Vernon Baker, was still alive. Black veterans were also largely shut out of the GI Bill's benefits (see the module on wealth).</p>",
+          "sources": [
+            "moh"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1770,
+          "t": "Crispus Attucks killed",
+          "label": "documented"
+        },
+        {
+          "y": 1864,
+          "t": "Fort Pillow massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1917,
+          "t": "Houston riot; soldiers hanged",
+          "label": "documented"
+        },
+        {
+          "y": 1919,
+          "t": "Veterans attacked in the Red Summer",
+          "label": "documented"
+        },
+        {
+          "y": 1942,
+          "t": "“Double V” campaign",
+          "label": "documented"
+        },
+        {
+          "y": 1944,
+          "t": "Port Chicago explosion",
+          "label": "documented"
+        },
+        {
+          "y": 1946,
+          "t": "Isaac Woodard blinded",
+          "label": "documented"
+        },
+        {
+          "y": 1948,
+          "t": "Executive Order 9981 desegregates the military",
+          "label": "documented"
+        },
+        {
+          "y": 1997,
+          "t": "Seven Black WWII soldiers receive the Medal of Honor",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "Army sets aside Houston convictions",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "Navy exonerates the Port Chicago 50",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What helped move Truman to desegregate the military?",
+          "options": [
+            "A court order",
+            "Outrage over the blinding of Sgt. Isaac Woodard",
+            "A strike",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Executive Order 9981, 1948."
+        },
+        {
+          "q": "What was the “Double V” campaign?",
+          "options": [
+            "A war bond",
+            "Victory over fascism abroad and racism at home",
+            "A medal",
+            "A battle plan"
+          ],
+          "a": 1,
+          "why": "Pittsburgh Courier, 1942."
+        },
+        {
+          "q": "When did Black WWII soldiers first receive the Medal of Honor?",
+          "options": [
+            "1945",
+            "1965",
+            "1997",
+            "Never"
+          ],
+          "a": 2,
+          "why": "Seven, after a review."
+        }
+      ],
+      "quest": "oral-history",
+      "map": [],
+      "sourcesList": {
+        "attucks": {
+          "t": "Crispus Attucks",
+          "url": "https://en.wikipedia.org/wiki/Crispus_Attucks"
+        },
+        "usct": {
+          "t": "United States Colored Troops",
+          "url": "https://en.wikipedia.org/wiki/United_States_Colored_Troops"
+        },
+        "houston": {
+          "t": "Houston riot of 1917",
+          "url": "https://en.wikipedia.org/wiki/Houston_riot_of_1917"
+        },
+        "ejivets": {
+          "t": "Equal Justice Initiative, Lynching in America: Targeting Black Veterans (2017)",
+          "url": "https://eji.org/"
+        },
+        "doublev": {
+          "t": "Double V campaign",
+          "url": "https://en.wikipedia.org/wiki/Double_V_campaign"
+        },
+        "portchicago": {
+          "t": "Port Chicago disaster",
+          "url": "https://en.wikipedia.org/wiki/Port_Chicago_disaster"
+        },
+        "woodard": {
+          "t": "Isaac Woodard",
+          "url": "https://en.wikipedia.org/wiki/Isaac_Woodard"
+        },
+        "eo9981": {
+          "t": "Executive Order 9981",
+          "url": "https://en.wikipedia.org/wiki/Executive_Order_9981"
+        },
+        "moh": {
+          "t": "Vernon Baker; 1997 Medal of Honor awards",
+          "url": "https://en.wikipedia.org/wiki/Vernon_Baker"
+        }
+      },
+      "num": 7
+    },
+    {
       "id": "science",
-      "num": 6,
+      "num": 8,
       "title": "Science as a weapon: medicine, eugenics and reproductive control",
       "short": "Scientific racism, medical experiments, and the forced sterilization of tens of thousands of Americans, plus what the evidence does and doesn't show about Planned Parenthood.",
       "status": "draft",
@@ -2089,6 +2446,162 @@
       }
     },
     {
+      "id": "health",
+      "title": "Health: segregated care and false beliefs about bodies",
+      "short": "Segregated hospitals, myths about pain and skin, race “corrections” in medical formulas, COVID, and the toll of living with racism.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "The medical abuses in the module on science are not the whole story. Everyday care has also been shaped by segregation and by false beliefs that Black bodies are different.",
+      "sections": [
+        {
+          "h": "Segregated hospitals",
+          "label": "documented",
+          "body": "<p>The Hill-Burton Act (1946) funded hospital construction and explicitly allowed “separate but equal” facilities. A federal court struck that down in <em>Simkins v. Moses H. Cone Memorial Hospital</em> (1963). Medicare, launched in 1966, finished the job: hospitals had to integrate to get paid, and about a thousand did so within months.</p>",
+          "sources": [
+            "simkins",
+            "medicare"
+          ]
+        },
+        {
+          "h": "False beliefs about Black bodies",
+          "label": "documented",
+          "body": "<p>A 2016 study in <em>PNAS</em> found that about half of the white medical students and residents surveyed believed at least one false claim about biological differences, such as Black people having thicker skin, and those who did rated Black patients' pain lower. Pulse oximeters overestimate blood oxygen in patients with darker skin (<em>New England Journal of Medicine</em>, 2020), which can delay treatment. Medical groups have removed race “corrections” from the kidney function formula (2021) and lung function tests (2023).</p>",
+          "sources": [
+            "hoffman",
+            "sjoding",
+            "egfr"
+          ]
+        },
+        {
+          "h": "The gap in years",
+          "label": "documented",
+          "body": "<p>Black Americans' life expectancy has been several years shorter than white Americans', about five years in recent CDC data. During COVID-19, Black, Hispanic and Native Americans were hospitalized and died at higher rates than white Americans (CDC). Black maternal mortality is covered in the module on science.</p>",
+          "sources": [
+            "cdc"
+          ]
+        },
+        {
+          "h": "Weathering, and doctors who look like you",
+          "label": "debated",
+          "body": "<p>Public health researcher Arline Geronimus proposed in 1992 that the chronic stress of facing racism “weathers” bodies, causing earlier illness. Many studies support the idea; the exact biological pathways are still debated. A 2020 study found Black newborns were more likely to survive when cared for by Black doctors; a 2024 reanalysis argued the effect mostly disappears after accounting for very low birth weight. Both studies are serious; the question isn't settled.</p>",
+          "sources": [
+            "geronimus",
+            "greenwood"
+          ]
+        },
+        {
+          "h": "What helps",
+          "label": "documented",
+          "body": "<p>More Black doctors, nurses and midwives; community health workers and doulas; insurance coverage; and removing race-based shortcuts from clinical tools. Health professionals can give their skills through the pro bono quests.</p>",
+          "sources": [
+            "egfr"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1946,
+          "t": "Hill-Burton Act allows separate hospitals",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "Simkins v. Moses H. Cone",
+          "label": "documented"
+        },
+        {
+          "y": 1966,
+          "t": "Medicare forces hospital integration",
+          "label": "documented"
+        },
+        {
+          "y": 1992,
+          "t": "“Weathering” hypothesis",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "Study on false beliefs about pain",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Pulse oximeter study; COVID-19 disparities",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Race removed from the kidney function formula",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What forced most hospitals to integrate quickly?",
+          "options": [
+            "Brown v. Board",
+            "Medicare payments in 1966",
+            "A strike",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Hospitals had to integrate to be paid."
+        },
+        {
+          "q": "What did the 2016 PNAS study find?",
+          "options": [
+            "No false beliefs",
+            "About half of surveyed white trainees held false beliefs about biological differences",
+            "Pain is equal in all patients",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Linked to undertreating pain."
+        },
+        {
+          "q": "The Black-doctor newborn survival finding is labeled debated because:",
+          "options": [
+            "It wasn't published",
+            "A 2024 reanalysis challenged it",
+            "Doctors don't matter",
+            "It's a myth"
+          ],
+          "a": 1,
+          "why": "The question isn't settled."
+        }
+      ],
+      "quest": "pro-bono-skills",
+      "map": [],
+      "sourcesList": {
+        "simkins": {
+          "t": "Simkins v. Moses H. Cone Memorial Hospital (4th Cir. 1963)",
+          "url": "https://en.wikipedia.org/wiki/Simkins_v._Moses_H._Cone_Memorial_Hospital"
+        },
+        "medicare": {
+          "t": "David Barton Smith, The Power to Heal: Civil Rights, Medicare, and the Struggle to Transform America's Health Care System (2016)"
+        },
+        "hoffman": {
+          "t": "Hoffman et al., “Racial bias in pain assessment and treatment recommendations,” PNAS (2016)"
+        },
+        "sjoding": {
+          "t": "Sjoding et al., “Racial Bias in Pulse Oximetry Measurement,” NEJM (2020)"
+        },
+        "egfr": {
+          "t": "National Kidney Foundation and American Society of Nephrology task force (2021); American Thoracic Society statement on race in spirometry (2023)"
+        },
+        "cdc": {
+          "t": "CDC National Center for Health Statistics, life expectancy and COVID-19 data by race and ethnicity"
+        },
+        "geronimus": {
+          "t": "Arline T. Geronimus, Weathering (2023)"
+        },
+        "greenwood": {
+          "t": "Greenwood et al., PNAS (2020); Borjas & VerBruggen reanalysis, PNAS (2024)"
+        }
+      },
+      "num": 9
+    },
+    {
       "id": "borders",
       "title": "Borders: who gets to be American",
       "short": "“Free white persons,” Chinese Exclusion, racial quotas, mass deportations of Mexican Americans, Japanese American incarceration, and today's enforcement.",
@@ -2294,7 +2807,7 @@
           "t": "Noem v. Vasquez Perdomo (U.S. Supreme Court order, September 2025)"
         }
       },
-      "num": 7
+      "num": 10
     },
     {
       "id": "place",
@@ -2474,11 +2987,11 @@
           "url": "https://en.wikipedia.org/wiki/Exclusionary_zoning"
         }
       },
-      "num": 8
+      "num": 11
     },
     {
       "id": "destroyed",
-      "num": 9,
+      "num": 12,
       "title": "Burned, flooded and taken: the communities America destroyed",
       "short": "Black Wall Street in Tulsa and dozens of other Black, Brown and immigrant communities that were burned, driven out, flooded, seized or bulldozed, plus how gentrification continues the pattern.",
       "status": "draft",
@@ -2858,6 +3371,180 @@
       }
     },
     {
+      "id": "schools",
+      "title": "Schools: separate, unequal and still divided",
+      "short": "Laws against reading, Rosenwald schools, Brown and the resistance to it, 38,000 Black educators pushed out, busing's limits, and unequal funding today.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Education has always been both a target and a path to freedom. Enslaved people were forbidden to read; their children built thousands of schools.",
+      "sections": [
+        {
+          "h": "Forbidden to read, determined to learn",
+          "label": "documented",
+          "body": "<p>After Nat Turner's rebellion, Southern states tightened laws against teaching enslaved people to read. After emancipation, freed people built and funded schools themselves, with help from the Freedmen's Bureau. Between 1912 and 1932, Black communities, Booker T. Washington and philanthropist Julius Rosenwald built nearly 5,000 “Rosenwald schools” across the South, with Black families raising much of the money.</p>",
+          "sources": [
+            "rosenwald"
+          ]
+        },
+        {
+          "h": "Brown, and massive resistance",
+          "label": "documented",
+          "body": "<p><em>Brown v. Board of Education</em> (1954) ruled segregated schools unconstitutional; a year later the Court ordered desegregation “with all deliberate speed,” which many states treated as never. The Little Rock Nine needed federal troops in 1957; six-year-old Ruby Bridges needed federal marshals in 1960. Prince Edward County, Virginia, closed its public schools from 1959 to 1964 rather than integrate, while white students attended private “segregation academies.”</p>",
+          "sources": [
+            "brown",
+            "prince"
+          ]
+        },
+        {
+          "h": "The educators who were pushed out",
+          "label": "documented",
+          "body": "<p>As schools merged, Black schools were usually closed and Black principals and teachers fired or demoted. An estimated 38,000 Black teachers and administrators in 17 Southern and border states lost their jobs between 1954 and 1965. Research today finds that Black students who have even one Black teacher are more likely to graduate and go to college.</p>",
+          "sources": [
+            "teachers"
+          ]
+        },
+        {
+          "h": "Busing, and the line at the city limits",
+          "label": "documented",
+          "body": "<p>The Supreme Court upheld busing to desegregate within a district in 1971 (<em>Swann</em>). But in <em>Milliken v. Bradley</em> (1974) it barred courts from including mostly white suburbs in Detroit's remedy, so families could avoid desegregation by moving across a district line.</p>",
+          "sources": [
+            "swann",
+            "milliken"
+          ]
+        },
+        {
+          "h": "Resegregation and funding today",
+          "label": "debated",
+          "body": "<p>A 2016 federal report (GAO) found the share of schools that are high-poverty and mostly Black or Hispanic grew from 2000 to 2013; researchers debate how much this reflects housing patterns versus policy choices. Funding gaps are documented: a 2019 EdBuild analysis estimated that districts serving mostly students of color received about $23 billion less a year than mostly white districts serving the same number of students, largely because schools rely on local property taxes.</p>",
+          "sources": [
+            "gao",
+            "edbuild"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1912,
+          "t": "Rosenwald school program begins",
+          "label": "documented"
+        },
+        {
+          "y": 1954,
+          "t": "Brown v. Board of Education",
+          "label": "documented"
+        },
+        {
+          "y": 1955,
+          "t": "“All deliberate speed”",
+          "label": "documented"
+        },
+        {
+          "y": 1957,
+          "t": "Little Rock Nine",
+          "label": "documented"
+        },
+        {
+          "y": 1959,
+          "t": "Prince Edward County closes its schools",
+          "label": "documented"
+        },
+        {
+          "y": 1960,
+          "t": "Ruby Bridges",
+          "label": "documented"
+        },
+        {
+          "y": 1971,
+          "t": "Swann upholds busing",
+          "label": "documented"
+        },
+        {
+          "y": 1974,
+          "t": "Milliken v. Bradley",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "GAO report on school segregation",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "EdBuild funding gap estimate",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About how many Rosenwald schools were built?",
+          "options": [
+            "About 50",
+            "About 500",
+            "Nearly 5,000",
+            "50,000"
+          ],
+          "a": 2,
+          "why": "1912–1932."
+        },
+        {
+          "q": "What did Prince Edward County, Virginia, do from 1959 to 1964?",
+          "options": [
+            "Integrated early",
+            "Closed its public schools",
+            "Built new schools",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Rather than integrate."
+        },
+        {
+          "q": "What did Milliken v. Bradley (1974) decide?",
+          "options": [
+            "Busing is illegal",
+            "Suburbs couldn't be included in Detroit's desegregation remedy",
+            "Schools must integrate immediately",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "District lines became walls."
+        }
+      ],
+      "quest": "tutor",
+      "map": [],
+      "sourcesList": {
+        "rosenwald": {
+          "t": "Rosenwald School",
+          "url": "https://en.wikipedia.org/wiki/Rosenwald_School"
+        },
+        "brown": {
+          "t": "Brown v. Board of Education (1954)",
+          "url": "https://supreme.justia.com/cases/federal/us/347/483/"
+        },
+        "prince": {
+          "t": "Prince Edward County, Virginia, school closings",
+          "url": "https://en.wikipedia.org/wiki/Prince_Edward_County,_Virginia"
+        },
+        "teachers": {
+          "t": "Leslie T. Fenwick, Jim Crow's Pink Slip (2022)"
+        },
+        "swann": {
+          "t": "Swann v. Charlotte-Mecklenburg Board of Education (1971)",
+          "url": "https://en.wikipedia.org/wiki/Swann_v._Charlotte-Mecklenburg_Board_of_Education"
+        },
+        "milliken": {
+          "t": "Milliken v. Bradley (1974)",
+          "url": "https://en.wikipedia.org/wiki/Milliken_v._Bradley"
+        },
+        "gao": {
+          "t": "U.S. GAO, K-12 Education: Better Use of Information Could Help Agencies Identify Disparities and Address Racial Discrimination, GAO-16-345 (2016)"
+        },
+        "edbuild": {
+          "t": "EdBuild, $23 Billion (2019)"
+        }
+      },
+      "num": 13
+    },
+    {
       "id": "wealth",
       "title": "Wealth: built, blocked and taken",
       "short": "Why the typical white family has about six times the wealth of the typical Black family: forty acres promised and taken back, a failed bank, New Deal and GI Bill exclusions, redlining, subprime lending, and how to rebuild.",
@@ -3065,7 +3752,169 @@
           "t": "City of Evanston, Local Reparations program"
         }
       },
-      "num": 10
+      "num": 14
+    },
+    {
+      "id": "environment",
+      "title": "Environmental racism: who breathes the dirty air",
+      "short": "Toxic waste, Cancer Alley, Flint, highways and heat: why polluting facilities cluster near Black, Latino and Native communities, and the movement that fought back.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "The same maps that show redlining and urban renewal often show where the landfills, refineries and highways went. Pollution is another way place decides health and wealth.",
+      "sections": [
+        {
+          "h": "Where the movement started",
+          "label": "documented",
+          "body": "<p>In 1982, residents of mostly Black Warren County, North Carolina, lay down in the road to stop trucks carrying soil contaminated with PCBs to a new landfill; more than 500 people were arrested. In 1987 the United Church of Christ's report <em>Toxic Wastes and Race</em> found that race was the strongest predictor of where hazardous waste facilities were located in the U.S.</p>",
+          "sources": [
+            "warren",
+            "ucc"
+          ]
+        },
+        {
+          "h": "Cancer Alley",
+          "label": "documented",
+          "body": "<p>Along about 85 miles of the Mississippi River between Baton Rouge and New Orleans sit well over a hundred petrochemical plants and refineries, many next to Black communities founded by freed people. In 2014 the EPA estimated that census tracts near the Denka chloroprene plant in LaPlace had among the highest cancer risks from air toxics in the country.</p>",
+          "sources": [
+            "canceralley"
+          ]
+        },
+        {
+          "h": "Flint",
+          "label": "documented",
+          "body": "<p>In April 2014, state-appointed managers switched majority-Black Flint, Michigan, to river water without proper corrosion control, and lead leached into homes for more than a year while officials dismissed residents' complaints. The Michigan Civil Rights Commission concluded in 2017 that systemic racism played a role. A settlement of about $626 million was approved in 2021.</p>",
+          "sources": [
+            "flint"
+          ]
+        },
+        {
+          "h": "Air and heat",
+          "label": "documented",
+          "body": "<p>A 2019 study in <em>PNAS</em> found that Black and Hispanic Americans breathe more fine-particle pollution than is caused by their own consumption, while white Americans breathe less. Highways built through Black neighborhoods (see “Burned, flooded and taken”) brought traffic pollution, and formerly redlined areas run hotter in summer (see the module on place).</p>",
+          "sources": [
+            "tessum"
+          ]
+        },
+        {
+          "h": "Intent or economics?",
+          "label": "debated",
+          "body": "<p>Researchers debate why facilities end up near communities of color. Some evidence shows they were deliberately placed where residents had the least political power. Other studies find that, in some places, poorer residents moved in after facilities were built because land and housing became cheap. Both paths lead to the same unequal exposure.</p>",
+          "sources": [
+            "been"
+          ]
+        },
+        {
+          "h": "What helps",
+          "label": "documented",
+          "body": "<p>Communities have won by organizing, testing their own air and water, and suing. Federal environmental justice programs expanded under the Justice40 initiative (2021) and were largely rolled back in 2025, so state and local action matters more. Show up at permit hearings; they are often decided by who attends.</p>",
+          "sources": [
+            "ucc"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1982,
+          "t": "Warren County protests",
+          "label": "documented"
+        },
+        {
+          "y": 1987,
+          "t": "Toxic Wastes and Race",
+          "label": "documented"
+        },
+        {
+          "y": 2014,
+          "t": "Flint water switch; EPA air-toxics estimates for LaPlace",
+          "label": "documented"
+        },
+        {
+          "y": 2017,
+          "t": "Michigan Civil Rights Commission report on Flint",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "PNAS study on pollution inequity",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Flint settlement approved; Justice40",
+          "label": "documented"
+        },
+        {
+          "y": 2025,
+          "t": "Federal environmental justice programs rolled back",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What did Toxic Wastes and Race (1987) find?",
+          "options": [
+            "Pollution is random",
+            "Race was the strongest predictor of where hazardous waste facilities were",
+            "Only income matters",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "United Church of Christ report."
+        },
+        {
+          "q": "What caused Flint's lead crisis?",
+          "options": [
+            "A storm",
+            "A water switch without corrosion control",
+            "Old paint only",
+            "Nothing happened"
+          ],
+          "a": 1,
+          "why": "State-appointed managers made the switch in 2014."
+        },
+        {
+          "q": "Why is the cause of unequal siting labeled debated?",
+          "options": [
+            "Facilities don't cluster",
+            "Researchers disagree on intentional siting versus people moving in later",
+            "The data is secret",
+            "It isn't debated"
+          ],
+          "a": 1,
+          "why": "Both happen."
+        }
+      ],
+      "quest": "speak-council",
+      "map": [
+        {
+          "t": "Redlining in your city",
+          "href": "index.html?layers=redlining"
+        }
+      ],
+      "sourcesList": {
+        "warren": {
+          "t": "Warren County PCB landfill protests",
+          "url": "https://en.wikipedia.org/wiki/Warren_County_PCB_Landfill"
+        },
+        "ucc": {
+          "t": "United Church of Christ Commission for Racial Justice, Toxic Wastes and Race in the United States (1987)"
+        },
+        "canceralley": {
+          "t": "Cancer Alley",
+          "url": "https://en.wikipedia.org/wiki/Cancer_Alley"
+        },
+        "flint": {
+          "t": "Flint water crisis",
+          "url": "https://en.wikipedia.org/wiki/Flint_water_crisis"
+        },
+        "tessum": {
+          "t": "Tessum et al., “Inequity in consumption of goods and services adds to racial–ethnic disparities in air pollution exposure,” PNAS (2019)"
+        },
+        "been": {
+          "t": "Vicki Been, “Locally Undesirable Land Uses in Minority Neighborhoods: Disproportionate Siting or Market Dynamics?” Yale Law Journal (1994)"
+        }
+      },
+      "num": 15
     },
     {
       "id": "voting",
@@ -3303,7 +4152,7 @@
           "url": "https://en.wikipedia.org/wiki/Rucho_v._Common_Cause"
         }
       },
-      "num": 11
+      "num": 16
     },
     {
       "id": "incarceration",
@@ -3495,11 +4344,11 @@
           "url": "https://www.cleanslateinitiative.org/"
         }
       },
-      "num": 12
+      "num": 17
     },
     {
       "id": "policing",
-      "num": 13,
+      "num": 18,
       "title": "Policing and the 911 call",
       "short": "From slave patrols and vagrancy laws to the weaponized 911 call, and what the data shows about who gets stopped and hurt.",
       "status": "draft",
@@ -3698,6 +4547,349 @@
           "t": "Dee & Pyne, “A community response approach to mental health and substance abuse crises reduced crime,” Science Advances (2022)"
         }
       }
+    },
+    {
+      "id": "surveillance",
+      "title": "Watched: surveillance of Black and Brown communities",
+      "short": "COINTELPRO's war on Dr. King and the Black Panthers, the killing of Fred Hampton, surveillance of Muslim neighborhoods, facial recognition errors, and the neighborhood app.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "A weaponized 911 call is one person watching another and calling the police. Governments have done the same thing on a much larger scale.",
+      "sections": [
+        {
+          "h": "COINTELPRO",
+          "label": "documented",
+          "body": "<p>From 1956 to 1971, the FBI ran a secret program to “expose, disrupt, misdirect, discredit, or otherwise neutralize” political groups, with a heavy focus on civil rights and Black organizations. Wiretaps on Dr. King were approved in 1963, and in 1964 the FBI mailed him an anonymous letter that urged him to kill himself. The program was exposed in 1971 when activists broke into an FBI office in Media, Pennsylvania, and mailed the files to reporters. The Senate's Church Committee investigated in 1975–76.</p>",
+          "sources": [
+            "cointelpro",
+            "church"
+          ]
+        },
+        {
+          "h": "Fred Hampton",
+          "label": "documented",
+          "body": "<p>On December 4, 1969, Chicago police, working with information from an FBI informant inside the Black Panther Party, raided an apartment before dawn and killed Illinois Panther leader Fred Hampton, 21, in his bed, along with Mark Clark. Nearly all the shots came from police. In 1982 the city, county and federal government paid $1.85 million to settle the survivors' lawsuit.</p>",
+          "sources": [
+            "hampton"
+          ]
+        },
+        {
+          "h": "After 9/11 and today",
+          "label": "documented",
+          "body": "<p>The NYPD's “Demographics Unit” mapped and monitored Muslim neighborhoods, mosques and businesses for years; the department later testified it never produced a single terrorism lead, and it was disbanded in 2014. In 2017 an FBI report invented the category “Black identity extremists.” Facial recognition has led to wrongful arrests of Black people, including Robert Williams (2020) and Porcha Woodruff, who was eight months pregnant (2023); a 2019 federal test (NIST) found many algorithms produced more false matches for Black and Asian faces.</p>",
+          "sources": [
+            "nypd",
+            "nist",
+            "williams"
+          ]
+        },
+        {
+          "h": "Does predictive policing work?",
+          "label": "debated",
+          "body": "<p>Some departments use software to predict where crime will happen or who will commit it. A RAND evaluation of a Shreveport program found no statistically significant effect on crime, and critics say such systems recycle biased arrest data into more stops in the same neighborhoods. Supporters say better-designed systems can help. The evidence so far is thin.</p>",
+          "sources": [
+            "rand"
+          ]
+        },
+        {
+          "h": "The neighborhood app",
+          "label": "documented",
+          "body": "<p>Neighborhood apps and doorbell cameras have made it easy to report anyone as “suspicious.” In 2016, after complaints that its crime and safety posts were full of racial profiling, Nextdoor changed its reporting form to require details beyond race. That is the same principle as the CAREN Act: being a person of color in a place is not suspicious.</p>",
+          "sources": [
+            "nextdoor"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1956,
+          "t": "COINTELPRO begins",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "Wiretaps on Dr. King approved",
+          "label": "documented"
+        },
+        {
+          "y": 1964,
+          "t": "FBI's anonymous letter to Dr. King",
+          "label": "documented"
+        },
+        {
+          "y": 1969,
+          "t": "Fred Hampton killed",
+          "label": "documented"
+        },
+        {
+          "y": 1971,
+          "t": "Media, Pennsylvania break-in exposes COINTELPRO",
+          "label": "documented"
+        },
+        {
+          "y": 1975,
+          "t": "Church Committee",
+          "label": "documented"
+        },
+        {
+          "y": 2014,
+          "t": "NYPD Demographics Unit disbanded",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "Nextdoor changes its reporting form",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Robert Williams wrongly arrested by facial recognition",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "How was COINTELPRO exposed?",
+          "options": [
+            "A congressional vote",
+            "Activists took files from an FBI office in 1971",
+            "The FBI announced it",
+            "It never was"
+          ],
+          "a": 1,
+          "why": "Media, Pennsylvania."
+        },
+        {
+          "q": "How many terrorism leads did the NYPD say its Demographics Unit produced?",
+          "options": [
+            "None",
+            "Dozens",
+            "Hundreds",
+            "Thousands"
+          ],
+          "a": 0,
+          "why": "It was disbanded in 2014."
+        },
+        {
+          "q": "What did Nextdoor change in 2016?",
+          "options": [
+            "Nothing",
+            "It required details beyond race in safety reports",
+            "It banned all posts",
+            "It shared data with police"
+          ],
+          "a": 1,
+          "why": "To reduce racial profiling."
+        }
+      ],
+      "quest": "know-rights-training",
+      "map": [],
+      "sourcesList": {
+        "cointelpro": {
+          "t": "COINTELPRO",
+          "url": "https://en.wikipedia.org/wiki/COINTELPRO"
+        },
+        "church": {
+          "t": "Church Committee final reports (1976)",
+          "url": "https://en.wikipedia.org/wiki/Church_Committee"
+        },
+        "hampton": {
+          "t": "Fred Hampton",
+          "url": "https://en.wikipedia.org/wiki/Fred_Hampton"
+        },
+        "nypd": {
+          "t": "NYPD Intelligence Division Demographics Unit (Associated Press investigation, 2011–2012)"
+        },
+        "nist": {
+          "t": "NIST, Face Recognition Vendor Test Part 3: Demographic Effects (2019)"
+        },
+        "williams": {
+          "t": "ACLU, Williams v. City of Detroit"
+        },
+        "rand": {
+          "t": "RAND Corporation, Evaluation of the Shreveport Predictive Policing Experiment (2014)"
+        },
+        "nextdoor": {
+          "t": "Nextdoor's 2016 changes to reduce racial profiling (news coverage, e.g. NPR)"
+        }
+      },
+      "num": 19
+    },
+    {
+      "id": "media",
+      "title": "Media and image-making",
+      "short": "From minstrel shows and The Birth of a Nation to “superpredators” and crime news, and the cameras that turned the story around.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "How people are shown shapes how they're treated, including who a caller sees as “suspicious.”",
+      "sections": [
+        {
+          "h": "Minstrelsy and “Jim Crow”",
+          "label": "documented",
+          "body": "<p>In the 1830s white performer Thomas D. Rice blacked up to play a character he called “Jim Crow,” and minstrel shows became America's most popular entertainment for decades. The character's name later became the name for the whole system of segregation laws. Caricatures sold products for more than a century; the Aunt Jemima brand was only retired in 2020–2021.</p>",
+          "sources": [
+            "minstrel",
+            "jimcrowmuseum"
+          ]
+        },
+        {
+          "h": "The Birth of a Nation",
+          "label": "documented",
+          "body": "<p>D.W. Griffith's 1915 film portrayed Reconstruction's Black officeholders as menacing and the Ku Klux Klan as heroes. It was screened at the White House. The NAACP protested it nationwide. That November, a new Ku Klux Klan was founded at Stone Mountain, Georgia, and grew to millions of members in the 1920s.</p>",
+          "sources": [
+            "birth"
+          ]
+        },
+        {
+          "h": "Crime news",
+          "label": "documented",
+          "body": "<p>The 1968 Kerner Commission, appointed after urban uprisings, criticized news organizations for reporting “from the standpoint of a white man's world.” Studies of local TV news have found Black people shown as criminal suspects more often than arrest data would predict. In 1989 five Black and Latino teenagers were convicted in the Central Park jogger case after intense coverage and a full-page newspaper ad calling for the death penalty; they were exonerated in 2002. In 1995 political scientist John DiIulio warned of coming juvenile “superpredators”; the wave never came, and he later expressed regret.</p>",
+          "sources": [
+            "kerner",
+            "exonerated",
+            "superpredator"
+          ]
+        },
+        {
+          "h": "How much does coverage change minds?",
+          "label": "debated",
+          "body": "<p>Experiments have found that viewers shown a Black suspect in a news story become more supportive of punitive policies than viewers shown a white suspect or none. Researchers debate how large and lasting these effects are outside the lab.</p>",
+          "sources": [
+            "gilliam"
+          ]
+        },
+        {
+          "h": "Cameras that turned the story",
+          "label": "documented",
+          "body": "<p>Ida B. Wells used reporting to expose lynching. In 1955 Mamie Till-Mobley insisted on an open casket for her son Emmett, and <em>Jet</em> published the photographs. In 2020, 17-year-old Darnella Frazier recorded George Floyd's murder; she received a special Pulitzer citation in 2021. Many of the 911 calls that led to CAREN laws became known because someone recorded them.</p>",
+          "sources": [
+            "till",
+            "frazier"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1830,
+          "t": "Thomas D. Rice's “Jim Crow” character",
+          "label": "documented"
+        },
+        {
+          "y": 1915,
+          "t": "The Birth of a Nation; the Klan is revived",
+          "label": "documented"
+        },
+        {
+          "y": 1955,
+          "t": "Jet publishes Emmett Till's photographs",
+          "label": "documented"
+        },
+        {
+          "y": 1968,
+          "t": "Kerner Commission report",
+          "label": "documented"
+        },
+        {
+          "y": 1989,
+          "t": "Central Park Five convicted",
+          "label": "documented"
+        },
+        {
+          "y": 1995,
+          "t": "“Superpredator” warning",
+          "label": "documented"
+        },
+        {
+          "y": 2002,
+          "t": "Central Park Five exonerated",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Darnella Frazier's video; Aunt Jemima retired",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Frazier's Pulitzer citation",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Where does the name “Jim Crow” come from?",
+          "options": [
+            "A senator",
+            "A minstrel-show character",
+            "A town",
+            "A court case"
+          ],
+          "a": 1,
+          "why": "Thomas D. Rice's act in the 1830s."
+        },
+        {
+          "q": "What happened after The Birth of a Nation was released in 1915?",
+          "options": [
+            "Nothing",
+            "A new Ku Klux Klan was founded",
+            "It was banned nationwide",
+            "It was forgotten"
+          ],
+          "a": 1,
+          "why": "At Stone Mountain, Georgia."
+        },
+        {
+          "q": "What happened to the Central Park Five?",
+          "options": [
+            "They were executed",
+            "They were exonerated in 2002",
+            "They were never charged",
+            "They confessed truthfully"
+          ],
+          "a": 1,
+          "why": "After years in prison."
+        }
+      ],
+      "quest": "op-ed",
+      "map": [],
+      "sourcesList": {
+        "minstrel": {
+          "t": "Jim Crow (character); minstrel show",
+          "url": "https://en.wikipedia.org/wiki/Jim_Crow_(character)"
+        },
+        "jimcrowmuseum": {
+          "t": "Jim Crow Museum of Racist Memorabilia, Ferris State University",
+          "url": "https://jimcrowmuseum.ferris.edu/"
+        },
+        "birth": {
+          "t": "The Birth of a Nation",
+          "url": "https://en.wikipedia.org/wiki/The_Birth_of_a_Nation"
+        },
+        "kerner": {
+          "t": "Kerner Commission report (1968)",
+          "url": "https://en.wikipedia.org/wiki/Kerner_Commission"
+        },
+        "exonerated": {
+          "t": "Central Park jogger case",
+          "url": "https://en.wikipedia.org/wiki/Central_Park_jogger_case"
+        },
+        "superpredator": {
+          "t": "Superpredator",
+          "url": "https://en.wikipedia.org/wiki/Superpredator"
+        },
+        "gilliam": {
+          "t": "Gilliam & Iyengar, “Prime Suspects: The Influence of Local Television News on the Viewing Public,” American Journal of Political Science (2000)"
+        },
+        "till": {
+          "t": "Emmett Till",
+          "url": "https://en.wikipedia.org/wiki/Emmett_Till"
+        },
+        "frazier": {
+          "t": "Darnella Frazier",
+          "url": "https://en.wikipedia.org/wiki/Darnella_Frazier"
+        }
+      },
+      "num": 20
     },
     {
       "id": "many-targets",
@@ -3957,7 +5149,340 @@
           "url": "https://en.wikipedia.org/wiki/Yuri_Kochiyama"
         }
       },
-      "num": 14
+      "num": 21
+    },
+    {
+      "id": "women",
+      "title": "The women who organized the movement",
+      "short": "Ida B. Wells, Mary Church Terrell, Claudette Colvin, Ella Baker, Septima Clark, Diane Nash, Fannie Lou Hamer, and the women who founded Black Lives Matter.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "Black women did much of the organizing behind the movement's best-known moments, often without the microphone.",
+      "sections": [
+        {
+          "h": "Founders",
+          "label": "documented",
+          "body": "<p>Ida B. Wells investigated lynchings at the risk of her life. Mary Church Terrell co-founded the National Association of Colored Women (1896) and, at 89, won the lawsuit that desegregated Washington, D.C.'s restaurants (<em>District of Columbia v. John R. Thompson Co.</em>, 1953).</p>",
+          "sources": [
+            "wells",
+            "terrell"
+          ]
+        },
+        {
+          "h": "Montgomery's women",
+          "label": "documented",
+          "body": "<p>In 1944 Rosa Parks investigated the rape of Recy Taylor for the NAACP, years before her bus protest. Fifteen-year-old Claudette Colvin refused to give up her bus seat in March 1955, nine months before Parks. Colvin and Aurelia Browder were among the plaintiffs in <em>Browder v. Gayle</em>, the case that ended Montgomery's bus segregation. Jo Ann Robinson's Women's Political Council launched the boycott.</p>",
+          "sources": [
+            "mcguire",
+            "colvin"
+          ]
+        },
+        {
+          "h": "Respectability: a strategy debated",
+          "label": "debated",
+          "body": "<p>Leaders chose Rosa Parks rather than Claudette Colvin as the face of the boycott, partly because Colvin was a pregnant teenager. Historians and activists still debate “respectability politics”: whether presenting the most sympathetic plaintiffs helped win public support, or excluded people and narrowed whose dignity counted.</p>",
+          "sources": [
+            "colvin"
+          ]
+        },
+        {
+          "h": "Organizers and strategists",
+          "label": "documented",
+          "body": "<p>Ella Baker built the NAACP's branches, ran the SCLC's first office and guided SNCC. Septima Clark's Citizenship Schools taught thousands of adults to read and pass voter tests. Diane Nash led the Nashville sit-ins and kept the Freedom Rides going in 1961. Fannie Lou Hamer was beaten in a Winona, Mississippi, jail in 1963 for organizing voters. Dorothy Height helped plan the March on Washington, where almost no women were allowed to speak.</p>",
+          "sources": [
+            "baker",
+            "clark",
+            "nash",
+            "hamer"
+          ]
+        },
+        {
+          "h": "Today",
+          "label": "documented",
+          "body": "<p>Alicia Garza, Patrisse Cullors and Opal Tometi started Black Lives Matter in 2013. The #SayHerName campaign (2014) brought attention to Black women killed by police, such as Breonna Taylor in 2020. Black women are among the most reliable voters in America, and their organizing has decided close elections.</p>",
+          "sources": [
+            "blm",
+            "sayhername"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1896,
+          "t": "National Association of Colored Women founded",
+          "label": "documented"
+        },
+        {
+          "y": 1944,
+          "t": "Rosa Parks investigates the attack on Recy Taylor",
+          "label": "documented"
+        },
+        {
+          "y": 1953,
+          "t": "Mary Church Terrell wins the D.C. restaurant case",
+          "label": "documented"
+        },
+        {
+          "y": 1955,
+          "t": "Claudette Colvin's arrest in March; Rosa Parks's in December",
+          "label": "documented"
+        },
+        {
+          "y": 1957,
+          "t": "Septima Clark's first Citizenship School",
+          "label": "documented"
+        },
+        {
+          "y": 1961,
+          "t": "Diane Nash keeps the Freedom Rides going",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "Fannie Lou Hamer beaten in the Winona jail",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Black Lives Matter founded",
+          "label": "documented"
+        },
+        {
+          "y": 2014,
+          "t": "#SayHerName",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Who refused to give up her bus seat nine months before Rosa Parks?",
+          "options": [
+            "Ella Baker",
+            "Claudette Colvin",
+            "Diane Nash",
+            "Ida B. Wells"
+          ],
+          "a": 1,
+          "why": "At 15, in March 1955."
+        },
+        {
+          "q": "What did Septima Clark's Citizenship Schools do?",
+          "options": [
+            "Trained lawyers",
+            "Taught adults to read and register to vote",
+            "Ran hospitals",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Thousands of adults."
+        },
+        {
+          "q": "“Respectability politics” is labeled:",
+          "options": [
+            "Documented",
+            "Debated",
+            "Belief or myth"
+          ],
+          "a": 1,
+          "why": "Its value as a strategy is debated."
+        }
+      ],
+      "quest": "mentor-youth",
+      "map": [],
+      "sourcesList": {
+        "wells": {
+          "t": "Ida B. Wells",
+          "url": "https://en.wikipedia.org/wiki/Ida_B._Wells"
+        },
+        "terrell": {
+          "t": "Mary Church Terrell",
+          "url": "https://en.wikipedia.org/wiki/Mary_Church_Terrell"
+        },
+        "mcguire": {
+          "t": "Danielle L. McGuire, At the Dark End of the Street (2010)"
+        },
+        "colvin": {
+          "t": "Claudette Colvin",
+          "url": "https://en.wikipedia.org/wiki/Claudette_Colvin"
+        },
+        "baker": {
+          "t": "Ella Baker",
+          "url": "https://en.wikipedia.org/wiki/Ella_Baker"
+        },
+        "clark": {
+          "t": "Septima Poinsette Clark",
+          "url": "https://en.wikipedia.org/wiki/Septima_Poinsette_Clark"
+        },
+        "nash": {
+          "t": "Diane Nash",
+          "url": "https://en.wikipedia.org/wiki/Diane_Nash"
+        },
+        "hamer": {
+          "t": "Fannie Lou Hamer",
+          "url": "https://en.wikipedia.org/wiki/Fannie_Lou_Hamer"
+        },
+        "blm": {
+          "t": "Black Lives Matter",
+          "url": "https://en.wikipedia.org/wiki/Black_Lives_Matter"
+        },
+        "sayhername": {
+          "t": "African American Policy Forum, #SayHerName",
+          "url": "https://www.aapf.org/sayhername"
+        }
+      },
+      "num": 22
+    },
+    {
+      "id": "lgbtq",
+      "title": "Black LGBTQ history",
+      "short": "Bayard Rustin, who organized the March on Washington, the Harlem Renaissance, Stonewall, James Baldwin, Audre Lorde and Pauli Murray, and the violence facing Black trans women today.",
+      "status": "draft",
+      "minutes": 6,
+      "intro": "Some of the movement's most important strategists were gay, lesbian or gender-nonconforming, and many were pushed to the side because of it. San Francisco's CAREN Act protects sexual orientation and gender identity too.",
+      "sections": [
+        {
+          "h": "Bayard Rustin",
+          "label": "documented",
+          "body": "<p>Rustin taught Dr. King about Gandhian nonviolence and was the chief organizer of the 1963 March on Washington. Because he was openly gay, and had been arrested in 1953 on a “morals” charge, other leaders kept him out of the spotlight; Senator Strom Thurmond attacked him on the Senate floor weeks before the march. He received the Presidential Medal of Freedom posthumously in 2013, and California pardoned his 1953 conviction in 2020.</p>",
+          "sources": [
+            "rustin"
+          ]
+        },
+        {
+          "h": "Harlem and literature",
+          "label": "debated",
+          "body": "<p>Many Harlem Renaissance figures, including philosopher Alain Locke and performer Gladys Bentley, lived openly or semi-openly as gay or lesbian. Whether others, such as Langston Hughes, were gay is debated by biographers. James Baldwin wrote openly about gay love in <em>Giovanni's Room</em> (1956), and poet Audre Lorde described herself as a “Black, lesbian, mother, warrior, poet.”</p>",
+          "sources": [
+            "harlem",
+            "baldwin",
+            "lorde"
+          ]
+        },
+        {
+          "h": "Pauli Murray",
+          "label": "documented",
+          "body": "<p>Pauli Murray's legal writing argued that segregation violated the 14th Amendment, an argument Thurgood Marshall's team drew on for <em>Brown</em>, and later shaped Ruth Bader Ginsburg's sex-discrimination cases. Murray co-founded the National Organization for Women and in 1977 became the first Black woman ordained an Episcopal priest. Murray's private papers describe a lifelong struggle with gender identity.</p>",
+          "sources": [
+            "murray"
+          ]
+        },
+        {
+          "h": "Stonewall",
+          "label": "debated",
+          "body": "<p>The 1969 Stonewall uprising in New York is often credited to Marsha P. Johnson, a Black trans activist, and Sylvia Rivera. Johnson herself said she arrived after the fighting began; witnesses also credit Stormé DeLarverie, a Black butch lesbian. Their activism afterward, including founding a shelter for homeless trans youth, is documented.</p>",
+          "sources": [
+            "stonewall"
+          ]
+        },
+        {
+          "h": "Today",
+          "label": "documented",
+          "body": "<p>Human Rights Campaign tracking of fatal violence against transgender people in the U.S. finds that a majority of the victims are Black trans women. Calls to police about people's gender or sexuality are a form of the harm the CAREN Act targets.</p>",
+          "sources": [
+            "hrc"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1956,
+          "t": "Giovanni's Room",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "Bayard Rustin organizes the March on Washington",
+          "label": "documented"
+        },
+        {
+          "y": 1969,
+          "t": "Stonewall uprising",
+          "label": "documented"
+        },
+        {
+          "y": 1977,
+          "t": "Pauli Murray ordained",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Rustin's posthumous Medal of Freedom",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "California pardons Rustin",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Who was the chief organizer of the 1963 March on Washington?",
+          "options": [
+            "Bayard Rustin",
+            "Malcolm X",
+            "Thurgood Marshall",
+            "Langston Hughes"
+          ],
+          "a": 0,
+          "why": "Kept out of the spotlight because he was gay."
+        },
+        {
+          "q": "Whose legal arguments influenced Brown v. Board and later sex-discrimination law?",
+          "options": [
+            "Pauli Murray",
+            "Audre Lorde",
+            "Gladys Bentley",
+            "Marsha P. Johnson"
+          ],
+          "a": 0,
+          "why": "Murray."
+        },
+        {
+          "q": "Why is the Stonewall section labeled debated?",
+          "options": [
+            "It didn't happen",
+            "Accounts differ on who started it",
+            "It was in another city",
+            "It isn't"
+          ],
+          "a": 1,
+          "why": "Johnson said she arrived after it began."
+        }
+      ],
+      "quest": "coalition",
+      "map": [],
+      "sourcesList": {
+        "rustin": {
+          "t": "Bayard Rustin",
+          "url": "https://en.wikipedia.org/wiki/Bayard_Rustin"
+        },
+        "harlem": {
+          "t": "Harlem Renaissance",
+          "url": "https://en.wikipedia.org/wiki/Harlem_Renaissance"
+        },
+        "baldwin": {
+          "t": "James Baldwin",
+          "url": "https://en.wikipedia.org/wiki/James_Baldwin"
+        },
+        "lorde": {
+          "t": "Audre Lorde",
+          "url": "https://en.wikipedia.org/wiki/Audre_Lorde"
+        },
+        "murray": {
+          "t": "Pauli Murray",
+          "url": "https://en.wikipedia.org/wiki/Pauli_Murray"
+        },
+        "stonewall": {
+          "t": "Stonewall riots",
+          "url": "https://en.wikipedia.org/wiki/Stonewall_riots"
+        },
+        "hrc": {
+          "t": "Human Rights Campaign, annual reports on fatal violence against the transgender and gender non-conforming community",
+          "url": "https://www.hrc.org/"
+        }
+      },
+      "num": 23
     },
     {
       "id": "performance",
@@ -4157,7 +5682,7 @@
           "t": "National Assessment of Educational Progress, Long-Term Trend results"
         }
       },
-      "num": 15
+      "num": 24
     },
     {
       "id": "world",
@@ -4369,7 +5894,7 @@
           "t": "CARICOM Reparations Commission, Ten Point Plan (2013)"
         }
       },
-      "num": 16
+      "num": 25
     },
     {
       "id": "movements",
@@ -4623,11 +6148,11 @@
           "url": "https://en.wikipedia.org/wiki/2018_Florida_Amendment_4"
         }
       },
-      "num": 17
+      "num": 26
     },
     {
       "id": "path-forward",
-      "num": 18,
+      "num": 27,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",
@@ -4724,6 +6249,134 @@
       "h": "Ordinary people enforced it, and ordinary people end it.",
       "p": "Mobs, false accusations and weaponized 911 calls were carried out by everyday people. Everyday people also registered voters in Mississippi, crossed the bridge in Selma, and passed San Francisco's CAREN Act. Each of us decides which side of that history we're on.",
       "href": "module.html?m=policing"
+    }
+  ],
+  "readingList": [
+    {
+      "t": "The Warmth of Other Suns",
+      "a": "Isabel Wilkerson",
+      "y": 2010,
+      "why": "The Great Migration through three lives",
+      "module": "reconstruction"
+    },
+    {
+      "t": "The Color of Law",
+      "a": "Richard Rothstein",
+      "y": 2017,
+      "why": "How government segregated neighborhoods",
+      "module": "place"
+    },
+    {
+      "t": "Stamped from the Beginning",
+      "a": "Ibram X. Kendi",
+      "y": 2016,
+      "why": "The history of racist ideas",
+      "module": "before-race"
+    },
+    {
+      "t": "The New Jim Crow",
+      "a": "Michelle Alexander",
+      "y": 2010,
+      "why": "Mass incarceration as a racial caste system",
+      "module": "incarceration"
+    },
+    {
+      "t": "Reconstruction: America's Unfinished Revolution",
+      "a": "Eric Foner",
+      "y": 1988,
+      "why": "The definitive history of Reconstruction",
+      "module": "reconstruction"
+    },
+    {
+      "t": "Slavery by Another Name",
+      "a": "Douglas A. Blackmon",
+      "y": 2008,
+      "why": "Convict leasing after slavery",
+      "module": "policing"
+    },
+    {
+      "t": "Medical Apartheid",
+      "a": "Harriet A. Washington",
+      "y": 2006,
+      "why": "Medical experimentation on Black Americans",
+      "module": "science"
+    },
+    {
+      "t": "Killing the Black Body",
+      "a": "Dorothy Roberts",
+      "y": 1997,
+      "why": "Reproductive control and Black women",
+      "module": "science"
+    },
+    {
+      "t": "Sundown Towns",
+      "a": "James W. Loewen",
+      "y": 2005,
+      "why": "The towns that kept Black people out",
+      "module": "place"
+    },
+    {
+      "t": "Blood at the Root",
+      "a": "Patrick Phillips",
+      "y": 2016,
+      "why": "The 1912 expulsion from Forsyth County",
+      "module": "destroyed"
+    },
+    {
+      "t": "When Affirmative Action Was White",
+      "a": "Ira Katznelson",
+      "y": 2005,
+      "why": "New Deal and GI Bill exclusions",
+      "module": "wealth"
+    },
+    {
+      "t": "Race for Profit",
+      "a": "Keeanga-Yamahtta Taylor",
+      "y": 2019,
+      "why": "Predatory inclusion in housing",
+      "module": "wealth"
+    },
+    {
+      "t": "An Indigenous Peoples' History of the United States",
+      "a": "Roxanne Dunbar-Ortiz",
+      "y": 2014,
+      "why": "U.S. history from Native perspectives",
+      "module": "conquest"
+    },
+    {
+      "t": "The Making of Asian America",
+      "a": "Erika Lee",
+      "y": 2015,
+      "why": "Asian American history",
+      "module": "many-targets"
+    },
+    {
+      "t": "Parting the Waters",
+      "a": "Taylor Branch",
+      "y": 1988,
+      "why": "The civil rights movement, 1954–63",
+      "module": "movements"
+    },
+    {
+      "t": "At the Dark End of the Street",
+      "a": "Danielle L. McGuire",
+      "y": 2010,
+      "why": "Black women, rape and resistance",
+      "module": "women"
+    },
+    {
+      "t": "Hitler's American Model",
+      "a": "James Q. Whitman",
+      "y": 2017,
+      "why": "How Nazi lawyers studied U.S. race law",
+      "module": "world"
+    },
+    {
+      "t": "“The Case for Reparations” (essay)",
+      "a": "Ta-Nehisi Coates",
+      "y": 2014,
+      "why": "The Atlantic's landmark essay",
+      "module": "wealth"
     }
   ]
 }
