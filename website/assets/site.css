@@ -38,6 +38,13 @@ img { max-width: 100%; }
   .site-nav a.cta { margin: 14px 0 0; text-align: center; border-radius: 8px; border: 0; }
   body.nav-open { overflow: hidden; }
 }
+/* Same menu when the header links don't fit (longer translations), set by site.js */
+.site-header.compact .nav-toggle { display: inline-flex; }
+.site-header.compact .site-nav { position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 12px 24px; background: #0e2a47; overflow-y: auto; transform: translateY(-110%); visibility: hidden; transition: transform .2s ease, visibility .2s; }
+.site-header.compact .site-nav.open { transform: none; visibility: visible; }
+.site-header.compact .site-nav a { padding: 14px 12px; font-size: 1.05rem; border-bottom: 1px solid rgba(255,255,255,.08); border-radius: 0; }
+.site-header.compact .site-nav a.cta { margin: 14px 0 0; text-align: center; border-radius: 8px; border: 0; }
+body.nav-open { overflow: hidden; }
 
 /* ---------- Representative lookup (assets/reps.js) ---------- */
 .form-section { background: #eef2f6; padding: 16px; margin: 15px 0; border-radius: 6px; }
@@ -125,3 +132,11 @@ table.data th { background: var(--surface-2); }
 .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: #0e2a47; color: #fff; padding: 10px 16px; border-radius: 8px; z-index: 3000; box-shadow: 0 4px 16px rgba(0,0,0,.25); font-weight: 600; }
 .ev.plan { background: #e3eefb; color: #0b4a8c; }
 .ev.plan::before { content: "➜"; }
+
+/* ---------- Language selector and translation ---------- */
+.lang-select { margin-left: auto; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 6px; height: 34px; padding: 0 6px; font: inherit; font-size: .85rem; cursor: pointer; }
+.lang-select option { color: #1f2328; }
+.site-nav { margin-left: 8px; }
+@media (max-width: 1240px) { .nav-toggle { margin-left: 8px; } }
+html.i18n-pending body { visibility: hidden; }
+.lang-select + .nav-toggle { margin-left: 8px; }

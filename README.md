@@ -41,6 +41,22 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 
 ---
 
+## Languages (English and Spanish)
+
+The site uses a **hub and spoke** model: English is the hub, and each other language is a spoke.
+- **Choosing the language:** a selector in the header of every page. The site also switches automatically: `?lang=es`, then the visitor's saved choice, then the browser's language (any `es-*` locale gets Spanish).
+- **Page text:** `website/i18n/es.json`. The engine at the bottom of `assets/site.js` swaps English text for Spanish as pages render. It maps exact English strings in `strings`, uses regex `patterns` for text that contains numbers, and leaves missing strings in English.
+- **Lesson content:** `website/data/learn.es.json`, which overlays `learn.json` by module ID and position. Modules without a translation show a notice and stay in English.
+- **To find untranslated text:** run `python3 scripts/i18n_extract.py`, or `python3 scripts/i18n_extract.py es --missing`. It extracts every English string from the pages and scripts and reports which ones a spoke lacks.
+- **To add a language:** add it to `LANGS` in `site.js`, then create `i18n/<lang>.json` and `data/learn.<lang>.json`.
+- **Status (Nov 10):**
+  - all page text is translated except proper names;
+  - all Learn interface text, quests, badges and the three things are translated, and every module's title and summary;
+  - five full modules are translated (before race, evidence, policing, path forward);
+  - the other modules still need their full text translated.
+- **Kept in English on purpose:** the bill text, letters to lawmakers and repeal drafts, because officials receive them in English.
+- Translations are drafts and need review by a fluent volunteer.
+
 ## Status at a glance (November 9, 2026)
 
 | Area | Status |
@@ -306,6 +322,7 @@ Repeal is a legislative act, so the tracker never files legal motions or sends a
   - **`assets/`:** `site.css`, `site.js` (header, menu, footer, race breakdown), `api.js` (Azure API client), `reps.js` (lawmaker lookup), `learn.js` (Learn progress, XP, badges, quizzes).
   - **`data/`:** generated datasets.
 - `server/`: Node.js API and static server for Azure, with `Dockerfile` and `sql/grant-app-identity.sql`.
+- `scripts/i18n_extract.py`: lists the English hub strings and what each language spoke is missing.
 - `scripts/build_data.py`: data pipeline. `scripts/azure-setup.sh`: one-time Azure permissions.
 - `.github/workflows/`, `.github/scripts/apply-accepted.js`, `.github/ISSUE_TEMPLATE/`: automation and issue forms.
 - `docs/education-plan.md`: the plan for the Learn section.

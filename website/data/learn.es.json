@@ -1,0 +1,762 @@
+{
+ "review": "Ningún módulo ha sido revisado todavía por un historiador. Estamos buscando revisores: volunteer.html#reviewer",
+ "labels": {
+  "documented": {
+   "name": "Documentada",
+   "desc": "Fuentes primarias o registros oficiales muestran que ocurrió."
+  },
+  "debated": {
+   "name": "Debatida",
+   "desc": "Los hechos están documentados, pero los historiadores discrepan sobre su significado o alcance."
+  },
+  "belief": {
+   "name": "Creencia o mito",
+   "desc": "Una historia religiosa, popular o conspirativa. Explicamos quién la sostiene, pero no está respaldada como historia."
+  },
+  "plan": {
+   "name": "Nuestra recomendación",
+   "desc": "Lo que propone esta campaña a partir de la historia. Un plan, no una afirmación histórica."
+  }
+ },
+ "levels": [
+  "Oyente",
+  "Aprendiz",
+  "Testigo",
+  "Aliado",
+  "Organizador",
+  "Agente de cambio"
+ ],
+ "questCategories": {
+  "learn": {
+   "name": "Aprende y comparte",
+   "desc": "Construye tu propio entendimiento y luego difúndelo."
+  },
+  "advocate": {
+   "name": "Incide",
+   "desc": "Cambia las leyes y a quienes las hacen."
+  },
+  "verify": {
+   "name": "Investiga y verifica",
+   "desc": "Ayuda a que los datos de esta campaña sean irrefutables."
+  },
+  "community": {
+   "name": "Apoya a tu comunidad",
+   "desc": "Ayuda directa y práctica, como las comunidades negras siempre se han cuidado entre sí."
+  },
+  "probono": {
+   "name": "Aporta tus habilidades profesionales",
+   "desc": "Abogados, contadores, médicos, docentes, diseñadores, ingenieros: tus habilidades valen más que un cheque."
+  },
+  "build": {
+   "name": "Construye riqueza en tu comunidad de origen",
+   "desc": "Para quien ha prosperado: formas de ayudar a la comunidad de donde vienes a ser dueña, ganar y crecer, no solo a recibir."
+  }
+ },
+ "quests": {
+  "source-detective": {
+   "title": "Detective de fuentes",
+   "desc": "Clasifica 10 afirmaciones como documentadas, debatidas o creencia o mito. Acierta 8 o más."
+  },
+  "share-county": {
+   "title": "Comparte los datos de tu condado",
+   "desc": "Crea y comparte la imagen de tu condado."
+  },
+  "write-lawmakers": {
+   "title": "Escribe a tus legisladores",
+   "desc": "Envía la carta (con tus propias palabras) al menos a un legislador."
+  },
+  "call-lawmakers": {
+   "title": "Llama a tus legisladores",
+   "desc": "Llama a tu representante o a un senador federal sobre la Ley CAREN."
+  },
+  "suggest-bill-edit": {
+   "title": "Mejora el proyecto de ley",
+   "desc": "Publica un comentario o un cambio sugerido en el proyecto de ley."
+  },
+  "volunteer": {
+   "title": "Únete como aliado estatal",
+   "desc": "Inscríbete como voluntario en tu estado."
+  },
+  "local-history": {
+   "title": "Descubre la historia local",
+   "desc": "Encuentra cerca de ti una comunidad negra, morena, indígena o inmigrante que fue quemada, expulsada, inundada, confiscada o arrasada. Envíanos su historia con una fuente y la añadiremos al mapa."
+  },
+  "cdc-export": {
+   "title": "Exporta datos de los CDC",
+   "desc": "Haz las dos exportaciones de CDC WONDER para tu estado y envíanoslas."
+  },
+  "verify-old-law": {
+   "title": "Verifica una ley antigua",
+   "desc": "Compara una ley de la era de la segregación con el código oficial vigente y reporta lo que encontraste."
+  },
+  "recruit-reviewer": {
+   "title": "Recluta a un revisor de historia",
+   "desc": "Consigue que un historiador, bibliotecario o archivista se inscriba como revisor de Aprende."
+  },
+  "bill-edit-accepted": {
+   "title": "Logra que acepten un cambio",
+   "desc": "Se aceptó uno de tus cambios sugeridos al proyecto (ganaste una estrella dorada)."
+  },
+  "teach-in": {
+   "title": "Organiza un taller",
+   "desc": "Enseña uno de estos módulos a un grupo (una clase, iglesia, club o capítulo) con un kit de taller gratuito: diapositivas, folleto y guía para facilitadores."
+  },
+  "council-resolution": {
+   "title": "Gana una resolución local",
+   "desc": "Consigue que tu concejo municipal, junta del condado o legislador estatal apoye formalmente una ley tipo CAREN o una derogación."
+  },
+  "read-book": {
+   "title": "Lee y conversa un libro",
+   "desc": "Lee un libro de la lista de lecturas y conversa sobre él con al menos otra persona."
+  },
+  "oral-history": {
+   "title": "Graba la historia de una persona mayor",
+   "desc": "Graba a un familiar o vecino mayor contando lo que vivió: la segregación, la Gran Migración, un barrio que ya no existe. Guárdalo para tu familia y compártelo con nosotros si está de acuerdo."
+  },
+  "register-voters": {
+   "title": "Registra votantes",
+   "desc": "Ayuda a registrar votantes con un grupo no partidista (Liga de Mujeres Votantes, la oficina electoral de tu condado, una campaña en un campus o iglesia)."
+  },
+  "poll-worker": {
+   "title": "Trabaja en las urnas",
+   "desc": "Sirve como trabajador electoral el día de la elección. A muchos condados les faltan, y es pagado."
+  },
+  "op-ed": {
+   "title": "Publica tu opinión",
+   "desc": "Publica una carta al editor o una columna sobre la Ley CAREN o una historia local de estos módulos."
+  },
+  "speak-council": {
+   "title": "Habla en una reunión pública",
+   "desc": "Habla en el turno de comentarios públicos de tu concejo municipal, junta del condado o junta escolar sobre una ley tipo CAREN o un tema de historia local."
+  },
+  "fair-hiring": {
+   "title": "Haz más justa la contratación en tu trabajo",
+   "desc": "Consigue que tu empleador adopte una práctica de contratación más justa: revisión de currículums a ciegas, entrevistas estructuradas o una política de oportunidad justa ante antecedentes penales."
+  },
+  "coalition": {
+   "title": "Construye una coalición",
+   "desc": "Reúne a dos organizaciones de comunidades distintas (por ejemplo, una iglesia negra y un grupo asiático-americano, latino o indígena) en torno a un tema común."
+  },
+  "run-for-office": {
+   "title": "Postúlate a un cargo local",
+   "desc": "Postúlate a la junta escolar, el concejo municipal u otro cargo local, o dirige la campaña de alguien que comparta estos objetivos."
+  },
+  "feed-neighbors": {
+   "title": "Alimenta a tus vecinos",
+   "desc": "Haz un turno como voluntario en un banco de alimentos, refrigerador comunitario, comedor o programa de entrega de comidas."
+  },
+  "tutor": {
+   "title": "Da tutorías o lee con niños",
+   "desc": "Da tutorías o lee con estudiantes en una escuela, biblioteca o programa extraescolar."
+  },
+  "court-watch": {
+   "title": "Observa un tribunal",
+   "desc": "Únete a un programa de observación de tribunales o asiste a audiencias de fianza e informa lo que ves. Los tribunales actúan distinto cuando el público observa."
+  },
+  "know-rights-training": {
+   "title": "Organiza una sesión de conoce tus derechos",
+   "desc": "Organiza o coorganiza una sesión de conoce tus derechos con los materiales gratuitos de la ACLU y el ILRC de la página Actúa."
+  },
+  "mentor-youth": {
+   "title": "Sé mentor de una persona joven",
+   "desc": "Sé mentor de una persona joven al menos durante un semestre escolar (Big Brothers Big Sisters, un programa escolar, una iglesia o una liga deportiva)."
+  },
+  "clean-slate": {
+   "title": "Ayuda a limpiar un antecedente",
+   "desc": "Ayuda a alguien a solicitar el sellado o la eliminación de un antecedente antiguo, en una clínica legal o guiándole por el proceso de tu estado."
+  },
+  "tax-prep": {
+   "title": "Prepara impuestos gratis",
+   "desc": "Sé voluntario en el programa gratuito VITA del IRS para ayudar a familias de bajos ingresos a declarar y reclamar los créditos que les corresponden."
+  },
+  "pro-bono-skills": {
+   "title": "Dona tus habilidades profesionales",
+   "desc": "Aporta al menos 10 horas de trabajo profesional (contabilidad, diseño, informática, mercadeo, exámenes médicos, redacción de subvenciones) a una organización comunitaria o un pequeño negocio de dueños negros."
+  },
+  "heirs-property": {
+   "title": "Protege la tierra familiar",
+   "desc": "Ayuda a una familia a hacer un testamento o a resolver una propiedad heredada sin título claro para que la tierra siga en la familia. Los abogados pueden liderar; cualquiera puede conectar a una familia con ayuda."
+  },
+  "pro-bono-legal": {
+   "title": "Toma un caso pro bono",
+   "desc": "Abogados: tomen un caso pro bono o atiendan una clínica legal (eliminación de antecedentes, defensa contra desalojos, discriminación o un reclamo tipo CAREN donde exista)."
+  },
+  "buy-black": {
+   "title": "Cambia tus compras",
+   "desc": "Durante un mes, lleva tus compras habituales (comida, servicios, regalos) a negocios locales y de dueños negros de tu zona."
+  },
+  "bank-black": {
+   "title": "Usa bancos de tu comunidad",
+   "desc": "Abre una cuenta o pasa tus depósitos a un banco de dueños negros, una institución depositaria minoritaria o una cooperativa de crédito de desarrollo comunitario."
+  },
+  "money-workshop": {
+   "title": "Da un taller de finanzas",
+   "desc": "Da un taller gratuito sobre comprar vivienda, crédito, inversión o emprender en una iglesia, escuela o centro comunitario."
+  },
+  "mentor-founder": {
+   "title": "Sé mentor de un emprendedor",
+   "desc": "Sé mentor de un emprendedor de tu comunidad de origen al menos durante tres meses (SCORE, una aceleradora o de manera informal)."
+  },
+  "hire-local": {
+   "title": "Contrata en tu comunidad",
+   "desc": "Contrata, subcontrata o crea pasantías pagadas para personas y negocios de la comunidad de donde vienes."
+  },
+  "board-seat": {
+   "title": "Ocupa un lugar en la mesa",
+   "desc": "Únete a la junta directiva de una organización sin fines de lucro, escuela, corporación de desarrollo comunitario, cooperativa de crédito o fideicomiso de tierras."
+  },
+  "invest-local": {
+   "title": "Invierte, no solo dones",
+   "desc": "Pon tu dinero a trabajar donde genere propiedad: invierte en un negocio o cooperativa comunitaria, un fideicomiso comunitario de tierras o una CDFI que preste en tu antiguo barrio."
+  },
+  "power-map": {
+   "title": "Mapea quién decide",
+   "desc": "Haz una lista de quienes deciden sobre una ley tipo CAREN donde vives: tus dos senadores, tu representante, tus legisladores estatales, tu concejal y tu fiscal de distrito. Anota si cada uno está en un comité judicial o de seguridad pública, y quién de su equipo lleva el tema."
+  },
+  "whose-land": {
+   "title": "Aprende en qué tierra vives",
+   "desc": "Averigua qué naciones indígenas habitaban la tierra donde vives, aprende algo sobre su historia y su gobierno actual, y apoya a una organización dirigida por indígenas."
+  },
+  "check-deed": {
+   "title": "Revisa tu escritura",
+   "desc": "Busca en la escritura de tu casa (o la de tu familia) una cláusula racial. Si la encuentras y tu estado lo permite, haz que se elimine formalmente, y avísanos para añadirla al mapa."
+  }
+ },
+ "badges": {
+  "first-lesson": {
+   "name": "Primera lección",
+   "desc": "Terminaste tu primer módulo."
+  },
+  "scholar": {
+   "name": "Estudioso",
+   "desc": "Terminaste tres módulos."
+  },
+  "sharp-eye": {
+   "name": "Detective de fuentes",
+   "desc": "Sabes distinguir la evidencia del mito."
+  },
+  "quiz-ace": {
+   "name": "As de los cuestionarios",
+   "desc": "Aprobaste tres cuestionarios de módulos."
+  },
+  "voice": {
+   "name": "Alzaste tu voz",
+   "desc": "Llamaste o escribiste a tus legisladores."
+  },
+  "truth-keeper": {
+   "name": "Guardián de la verdad",
+   "desc": "Verificaste una ley o exportaste datos públicos."
+  },
+  "recruiter": {
+   "name": "Reclutador",
+   "desc": "Sumaste a un revisor de historia."
+  },
+  "organizer": {
+   "name": "Organizador",
+   "desc": "Organizaste un taller o ganaste una resolución local."
+  },
+  "gold-star": {
+   "name": "Coautor del proyecto",
+   "desc": "Un cambio que sugeriste ya está en el proyecto de ley."
+  },
+  "neighbor": {
+   "name": "Buen vecino",
+   "desc": "Apoyaste a tu comunidad."
+  },
+  "pro-bono": {
+   "name": "Pro bono",
+   "desc": "Aportaste tus habilidades profesionales."
+  },
+  "builder": {
+   "name": "Constructor",
+   "desc": "Ayudaste a construir riqueza en una comunidad."
+  },
+  "ballot": {
+   "name": "Guardián de la democracia",
+   "desc": "Registraste votantes o trabajaste en las urnas."
+  }
+ },
+ "threeThings": [
+  {
+   "h": "La raza se creó por ley, hace poco, y la ley puede deshacerla.",
+   "p": "La raza moderna se escribió en la ley entre 1450 y 1700 para justificar la toma de tierras y de trabajo. La segregación, el redlining y Tuskegee terminaron en vida de personas que viven hoy. Nada de eso es natural ni antiguo, así que nada de eso es permanente."
+  },
+  {
+   "h": "Las brechas son una herencia de políticas, no una medida de las personas.",
+   "p": "Se arrebató riqueza (Tulsa, las cuarenta acres, la Ley GI), se bloqueó el voto, y currículums idénticos todavía reciben menos llamadas con nombres negros. Las personas negras construyeron pueblos, bancos y negocios de todos modos, y muchos fueron destruidos por tener éxito."
+  },
+  {
+   "h": "Gente común lo impuso, y gente común lo termina.",
+   "p": "Las turbas, las acusaciones falsas y las llamadas al 911 usadas como arma las hicieron personas comunes. También fueron personas comunes quienes registraron votantes en Misisipi, cruzaron el puente en Selma y aprobaron la Ley CAREN de San Francisco. Cada uno de nosotros decide de qué lado de esa historia está."
+  }
+ ],
+ "detective": [
+  {
+   "q": "Génesis 9 maldice a Cam y a sus descendientes con la piel oscura.",
+   "why": "Génesis 9:25 maldice a Canaán, hijo de Cam, y no dice nada del color de la piel. La lectura racial se añadió muchos siglos después."
+  },
+  {
+   "q": "En 1662 Virginia estableció que un niño era esclavo o libre según la condición de la madre.",
+   "why": "La ley de Virginia de 1662 (partus sequitur ventrem) está en los estatutos de la colonia. Significó que los hijos de mujeres esclavizadas, incluso los engendrados por sus esclavizadores, nacían esclavizados."
+  },
+  {
+   "q": "Margaret Sanger, fundadora del grupo que se convirtió en Planned Parenthood, apoyaba la eugenesia.",
+   "why": "Lo muestran sus escritos y discursos, y Planned Parenthood lo reconoció en 2020."
+  },
+  {
+   "q": "Planned Parenthood se fundó para exterminar a los estadounidenses negros.",
+   "why": "El registro no lo respalda. Sanger se oponía al aborto en vida, y Planned Parenthood no ofreció abortos hasta alrededor de 1970. Los abusos reales y documentados son las esterilizaciones forzadas por programas estatales y federales."
+  },
+  {
+   "q": "Después de la Rebelión de Bacon (1676), los líderes de Virginia usaron deliberadamente la raza para dividir a los trabajadores blancos pobres y negros.",
+   "why": "Las leyes posteriores están documentadas. Qué tan deliberada fue la estrategia lo debaten los historiadores (ver Edmund Morgan y sus críticos)."
+  },
+  {
+   "q": "El Servicio de Salud Pública de EE. UU. observó durante 40 años a cientos de hombres negros con sífilis sin tratarlos.",
+   "why": "El estudio de Tuskegee duró de 1932 a 1972. Un panel federal lo revisó y el presidente Clinton pidió perdón en 1997."
+  },
+  {
+   "q": "La policía moderna de EE. UU. surgió directamente de las patrullas de esclavos.",
+   "why": "Las patrullas de esclavos están bien documentadas y moldearon la policía del Sur. Los departamentos del Norte surgieron también de otros modelos, como la policía de Londres, así que qué tan directa es la línea sigue en debate."
+  },
+  {
+   "q": "El Libro de Enoc explica el origen de las distintas razas.",
+   "why": "1 Enoc habla de ángeles caídos (los Vigilantes) y sus hijos gigantes. No enseña nada sobre la raza. Algunos grupos modernos han construido mitos raciales sobre él."
+  },
+  {
+   "q": "El Vaticano repudió formalmente la “Doctrina del Descubrimiento” en 2023.",
+   "why": "Dos dicasterios del Vaticano emitieron una declaración conjunta el 30 de marzo de 2023 rechazando la doctrina."
+  },
+  {
+   "q": "El racismo fue una consecuencia de la esclavitud, no su causa original.",
+   "why": "Fue el argumento de Eric Williams en Capitalismo y esclavitud (1944). Muchos historiadores coinciden; otros subrayan prejuicios más antiguos, anteriores a la esclavitud atlántica."
+  }
+ ],
+ "modules": {
+  "before-race": {
+   "title": "Antes de la raza: de dónde vino el miedo",
+   "short": "No hay un secreto antiguo. La raza se construyó, sobre todo entre 1450 y 1700, para justificar la toma de tierras y personas, y el miedo detrás era miedo a perder el poder.",
+   "intro": "Mucha gente pregunta por qué el acoso contra las personas negras, morenas e indígenas ha durado tanto, y si algún origen olvidado lo explica. El registro da una respuesta más clara: la raza moderna es reciente, se escribió en la ley a propósito, y se ha defendido con cualquier argumento a mano, incluidas las escrituras y la ciencia.",
+   "sections": [
+    {
+     "h": "El mundo antiguo clasificaba a las personas de otra manera",
+     "body": "<p>La esclavitud es antigua, pero durante la mayor parte de la historia no se basó en el color de la piel. Griegos, romanos, egipcios, africanos, árabes y europeos esclavizaron a personas capturadas en guerras, vendidas por deudas o nacidas de madres esclavizadas, y las personas esclavizadas venían de todas las regiones. La palabra <em>esclavo</em> viene de <em>eslavo</em>, porque en la Edad Media se esclavizó a muchísimos europeos del este.</p><p>El historiador Frank Snowden mostró que los escritores griegos y romanos describían a los africanos con curiosidad y a veces admiración, sin la idea de una jerarquía racial fija.</p>"
+    },
+    {
+     "h": "La raza se escribió en la ley (1452–1705)",
+     "body": "<p>La idea de que algunas personas están naturalmente destinadas a ser poseídas se fue escribiendo paso a paso:</p><ul><li><b>1452–1455:</b> las bulas <em>Dum Diversas</em> y <em>Romanus Pontifex</em> del papa Nicolás V autorizaron al rey de Portugal a conquistar a “sarracenos y paganos” y reducirlos a esclavitud perpetua. La trata portuguesa de africanos creció bajo ellas.</li><li><b>1493:</b> <em>Inter caetera</em> otorgó a España las tierras “descubiertas” en América. Estas bulas se convirtieron en la <b>Doctrina del Descubrimiento</b>, que la Corte Suprema de EE. UU. adoptó en <em>Johnson v. M'Intosh</em> (1823) para negar a las naciones indígenas la plena propiedad de su tierra. El Vaticano repudió la doctrina en 2023. La Corte Suprema no.</li><li><b>1662:</b> Virginia decidió que un hijo sigue la condición de la madre, así que los hijos de mujeres esclavizadas, incluidos los hijos de sus esclavizadores, nacían esclavizados.</li><li><b>1667–1705:</b> Virginia declaró que el bautismo no libera a un esclavo (1667), que matar a una persona esclavizada durante una “corrección” no era delito grave (1669), prohibió el matrimonio interracial (1691) y lo reunió todo en los códigos de esclavos de 1705. El <em>Code Noir</em> de Francia (1685) hizo lo mismo en sus colonias.</li></ul>"
+    },
+    {
+     "h": "Dividir a quienes podían unirse",
+     "body": "<p>En 1676, la Rebelión de Bacon unió a sirvientes blancos por contrato y africanos esclavizados en una revuelta armada contra el gobierno de Virginia. En las décadas siguientes, las leyes de Virginia dieron a los blancos pobres pequeños privilegios (pagos al terminar su servidumbre, el derecho a portar armas, el derecho a golpear a una persona negra) mientras quitaban derechos a todas las personas negras, libres o esclavizadas.</p><p>Que las leyes cambiaron está documentado. El historiador Edmund Morgan sostuvo que la élite usó la raza a propósito para impedir que los blancos y negros pobres volvieran a unirse. Otros creen que el cambio se debió más a que los africanos esclavizados se volvieron más baratos que los sirvientes ingleses. La mayoría coincide en que el efecto fue el mismo.</p>"
+    },
+    {
+     "h": "Primero la práctica, después las ideas",
+     "body": "<p>En 1944, el historiador trinitense Eric Williams escribió que “la esclavitud no nació del racismo: más bien, el racismo fue consecuencia de la esclavitud”. <em>Stamped from the Beginning</em> (2016) de Ibram X. Kendi sigue el mismo patrón durante cinco siglos: las ideas racistas se desarrollaron para defender políticas que ya eran rentables.</p><p>Thomas Jefferson, que esclavizó a más de 600 personas a lo largo de su vida, planteó la inferioridad negra “solo como una sospecha” en sus <em>Notas sobre el estado de Virginia</em> (1785). En pocas décadas, “científicos” medían cráneos para probarlo (ver el módulo sobre la ciencia).</p>"
+    },
+    {
+     "h": "De qué se trataba realmente el miedo",
+     "body": "<p>El miedo era real. Era miedo a la rebelión, a la venganza y a perder el poder en las urnas:</p><ul><li><b>Haití, 1791–1804:</b> las personas esclavizadas derrocaron el dominio francés y fundaron la primera república negra libre. Después, Francia obligó a Haití a pagar 150 millones de francos (rebajados a 90 millones) por su propia libertad, una deuda que Haití pagó durante unos 120 años.</li><li><b>La rebelión de Nat Turner, 1831:</b> después, Virginia y otros estados endurecieron las prohibiciones de enseñar a leer a las personas negras y de los predicadores y reuniones negros.</li><li><b>La Reconstrucción, 1867–1877:</b> los hombres negros votaron y ocuparon cargos, y la cámara baja de Carolina del Sur tuvo mayoría negra. La violencia supremacista blanca le puso fin, incluido el golpe de 1898 en Wilmington, Carolina del Norte, donde un gobierno birracial electo fue derrocado por la fuerza.</li><li><b>El “reemplazo”:</b> <em>The Passing of the Great Race</em> (1916) de Madison Grant advirtió que los blancos estadounidenses estaban siendo superados en número. Ayudó a aprobar las cuotas migratorias de 1924. El mismo miedo, rebautizado como el “Gran Reemplazo”, fue citado por los asesinos de El Paso (2019) y Buffalo (2022).</li></ul>"
+    },
+    {
+     "h": "Cómo se usaron, y se tergiversaron, las escrituras",
+     "body": "<p><b>La “maldición de Cam”.</b> En Génesis 9:20–27, Noé maldice a <em>Canaán</em>, hijo de Cam, para que sea siervo. El texto no dice nada sobre el color de la piel ni sobre África. Vincular la maldición con la piel oscura vino mucho después y se difundió por intérpretes de varias tradiciones. En el siglo XIX era un argumento proesclavista habitual en los púlpitos estadounidenses.</p><p><b>La “Biblia del esclavo”.</b> En 1807, una sociedad misionera británica imprimió <em>Select Parts of the Holy Bible, for the Use of the Negro Slaves</em>. Eliminó la mayor parte del Antiguo Testamento, incluido el relato del Éxodo y la liberación de la esclavitud, y conservó pasajes como “Siervos, obedeced a vuestros amos”.</p><p>Las escrituras también fueron el arma más fuerte <em>contra</em> la esclavitud: las personas esclavizadas cantaban sobre Moisés y el Éxodo, y los abolicionistas, desde Frederick Douglass hasta la iglesia negra, basaron en ellas su causa.</p>"
+    },
+    {
+     "h": "El Libro de Enoc y los mitos raciales modernos",
+     "body": "<p><b>1 Enoc</b> es un antiguo libro judío que forma parte de la Biblia de la Iglesia Ortodoxa Etíope; se hallaron fragmentos entre los Rollos del Mar Muerto, y la Carta de Judas (versículos 14–15) lo cita. Cuenta cómo unos ángeles llamados los Vigilantes bajaron a la tierra, enseñaron conocimientos prohibidos y engendraron gigantes (los Nefilim de Génesis 6). <b>No contiene ninguna enseñanza sobre la raza.</b></p><p>Aun así, movimientos modernos han construido historias raciales sobre el Génesis y Enoc. Las describimos para que puedas reconocerlas, no porque sean ciertas:</p><ul><li><b>La teología de las “dos simientes” de Christian Identity</b>, una doctrina supremacista blanca que afirma que los judíos y las personas de color descienden de la serpiente o de razas “preadámicas”.</li><li><b>La historia de Yakub de la Nación del Islam</b>, que enseña que un científico llamado Yakub creó a los blancos hace miles de años.</li><li>Algunos grupos israelitas hebreos enseñan que los negros, hispanos e indígenas americanos son los verdaderos israelitas y que los demás están malditos.</li></ul><p>Estas historias se reflejan unas a otras: cada una afirma que la raza es antigua, fija y cósmica. El registro histórico muestra lo contrario: la raza es reciente, la hicieron personas y se puede deshacer.</p>"
+    }
+   ],
+   "timeline": [
+    "Dum Diversas autoriza a Portugal a esclavizar a “sarracenos y paganos”",
+    "Inter caetera: la Doctrina del Descubrimiento",
+    "Llegan a la Virginia inglesa los primeros africanos esclavizados registrados",
+    "Virginia: la condición del hijo sigue a la de la madre",
+    "La Rebelión de Bacon une a sirvientes y esclavizados",
+    "El Code Noir de Francia",
+    "Códigos de esclavos de Virginia",
+    "Notas sobre el estado de Virginia de Jefferson",
+    "Haití se convierte en la primera república negra libre",
+    "Se imprime la “Biblia del esclavo”",
+    "Johnson v. M'Intosh introduce la doctrina del Descubrimiento en la ley de EE. UU.",
+    "Francia obliga a Haití a pagar una “deuda de independencia”",
+    "Rebelión de Nat Turner; se endurecen las prohibiciones de lectura",
+    "El golpe de Wilmington derroca a un gobierno birracial electo",
+    "The Passing of the Great Race",
+    "La Ley de Inmigración fija cuotas raciales",
+    "El Vaticano repudia la Doctrina del Descubrimiento"
+   ],
+   "quiz": [
+    {
+     "q": "En Génesis 9, ¿a quién maldice Noé?",
+     "options": [
+      "A Cam",
+      "A Canaán",
+      "A Sem",
+      "A todos los descendientes de Cam con piel oscura"
+     ],
+     "why": "Génesis 9:25 nombra a Canaán. Nunca menciona el color de la piel."
+    },
+    {
+     "q": "¿Qué decidió la ley de Virginia de 1662?",
+     "options": [
+      "Que el bautismo libera a un esclavo",
+      "Que la condición del hijo sigue a la de la madre",
+      "Que los sirvientes por contrato debían ser liberados a los 7 años",
+      "Que la esclavitud era ilegal"
+     ],
+     "why": "Partus sequitur ventrem hizo esclavos de por vida a los hijos de mujeres esclavizadas."
+    },
+    {
+     "q": "¿Qué caso de la Corte Suprema de EE. UU. adoptó la Doctrina del Descubrimiento?",
+     "options": [
+      "Dred Scott v. Sandford",
+      "Plessy v. Ferguson",
+      "Johnson v. M'Intosh",
+      "Buck v. Bell"
+     ],
+     "why": "Johnson v. M'Intosh (1823)."
+    },
+    {
+     "q": "¿Qué dice el Libro de Enoc sobre la raza?",
+     "options": [
+      "Que los negros están malditos",
+      "Que un científico creó a los blancos",
+      "Nada; no tiene enseñanza sobre la raza",
+      "Que los Vigilantes engendraron las razas"
+     ],
+     "why": "1 Enoc trata de los Vigilantes y los gigantes; los mitos raciales construidos sobre él son modernos."
+    },
+    {
+     "q": "¿Qué eliminó la “Biblia del esclavo” de 1807?",
+     "options": [
+      "Los Evangelios",
+      "El relato del Éxodo y la liberación de la esclavitud",
+      "Los Diez Mandamientos",
+      "Nada; era una Biblia completa"
+     ],
+     "why": "Sus editores quitaron pasajes que pudieran inspirar esperanza de libertad."
+    }
+   ]
+  },
+  "columbus": {
+   "title": "Colón: lo que dicen sus propios registros",
+   "short": "Lo que Colón escribió sobre los taínos, la esclavitud y el tributo en La Española, su arresto encadenado, los registros sobre africanos que navegaban al oeste antes que él y los mitos de todos los lados."
+  },
+  "colonizers": {
+   "title": "Los colonizadores: Portugal, España, Gran Bretaña y el sistema imperial",
+   "short": "Cómo Portugal abrió la trata atlántica, España debatió si los indígenas eran plenamente humanos, Gran Bretaña escribió el código de plantación que heredó EE. UU., y Estados Unidos se convirtió en imperio."
+  },
+  "conquest": {
+   "title": "Descubrimiento y conquista",
+   "short": "Cómo la Doctrina del Descubrimiento se volvió ley en EE. UU. y lo que hizo a las naciones indígenas: guerra, expulsión, parcelación e internados, y la lucha actual por la soberanía."
+  },
+  "slavery-law": {
+   "title": "La esclavitud convierte la raza en ley",
+   "short": "La trata atlántica, la economía nacional que construyó, las leyes que hicieron la esclavitud permanente y hereditaria, y quienes resistieron."
+  },
+  "reconstruction": {
+   "title": "La Reconstrucción derrocada",
+   "short": "Libertad, ciudadanía y poder político negro tras la Guerra Civil, y el terror, los fallos judiciales y las leyes que los arrebataron."
+  },
+  "black-towns": {
+   "title": "Lo que construimos: pueblos, instituciones y autodeterminación negros",
+   "short": "Pueblos totalmente negros, bancos, aseguradoras, periódicos, iglesias y universidades construidos tras la esclavitud, a menudo los mismos lugares que luego fueron atacados."
+  },
+  "faith": {
+   "title": "La fe: usada para oprimir, usada para liberar",
+   "short": "Cómo las escrituras justificaron la esclavitud y cómo la iglesia negra, los abolicionistas y personas de muchas fes las convirtieron en una fuerza de libertad."
+  },
+  "veterans": {
+   "title": "Veteranos negros: luchar por un país que los combatió",
+   "short": "De la Revolución a Vietnam: soldados negros que lucharon fuera y fueron atacados en casa, y cómo la ceguera de un veterano ayudó a desegregar el ejército."
+  },
+  "science": {
+   "title": "La ciencia como arma: medicina, eugenesia y control reproductivo",
+   "short": "El racismo científico, los experimentos médicos y la esterilización forzada de decenas de miles de personas, y lo que la evidencia muestra y no muestra sobre Planned Parenthood."
+  },
+  "health": {
+   "title": "Salud: atención segregada y creencias falsas sobre los cuerpos",
+   "short": "Hospitales segregados, mitos sobre el dolor y la piel, “correcciones” raciales en fórmulas médicas, la COVID y el desgaste de vivir con racismo."
+  },
+  "borders": {
+   "title": "Fronteras: quién puede ser estadounidense",
+   "short": "“Personas blancas libres”, la Exclusión China, las cuotas raciales, las deportaciones masivas de mexicoamericanos, el encarcelamiento de japoneses-estadounidenses y la aplicación actual."
+  },
+  "place": {
+   "title": "El lugar: quién puede vivir dónde",
+   "short": "Zonificación racial, cláusulas restrictivas, redlining, pueblos “sundown”, especulación por pánico y la Ley de Vivienda Justa, y por qué los barrios siguen divididos."
+  },
+  "destroyed": {
+   "title": "Quemadas, inundadas y arrebatadas: las comunidades que Estados Unidos destruyó",
+   "short": "Black Wall Street en Tulsa y decenas de comunidades negras, morenas e inmigrantes quemadas, expulsadas, inundadas, confiscadas o arrasadas, y cómo la gentrificación continúa el patrón."
+  },
+  "schools": {
+   "title": "Escuelas: separadas, desiguales y todavía divididas",
+   "short": "Leyes contra la lectura, las escuelas Rosenwald, Brown y la resistencia, 38,000 educadores negros despedidos, los límites del transporte escolar y la financiación desigual de hoy."
+  },
+  "wealth": {
+   "title": "Riqueza: construida, bloqueada y arrebatada",
+   "short": "Por qué la familia blanca típica tiene unas seis veces la riqueza de la familia negra típica: cuarenta acres prometidas y retiradas, un banco quebrado, exclusiones del New Deal y la Ley GI, redlining, préstamos abusivos y cómo reconstruir."
+  },
+  "banking": {
+   "title": "Bancos, seguros e impuestos",
+   "short": "Cómo las hipotecas, las tasaciones, los seguros, los impuestos a la propiedad y el acceso a bancos siguen costando más a las familias negras y latinas."
+  },
+  "environment": {
+   "title": "Racismo ambiental: quién respira el aire sucio",
+   "short": "Desechos tóxicos, el Callejón del Cáncer, Flint, las autopistas y el calor: por qué las instalaciones contaminantes se concentran cerca de comunidades negras, latinas e indígenas, y el movimiento que se resistió."
+  },
+  "voting": {
+   "title": "La lucha por el voto",
+   "short": "Cómo los estadounidenses negros ganaron el voto, lo perdieron por impuestos, pruebas y terror, lo recuperaron en 1965 y lo defienden de nuevo desde que la Corte Suprema debilitó la Ley de Derecho al Voto en 2013."
+  },
+  "incarceration": {
+   "title": "Encarcelamiento masivo y la guerra contra las drogas",
+   "short": "Cómo EE. UU. llegó a encarcelar a más personas que cualquier otro país, por qué los negros son encarcelados a unas cinco veces la tasa de los blancos, y qué empieza a cambiar."
+  },
+  "policing": {
+   "title": "La policía y la llamada al 911",
+   "short": "De las patrullas de esclavos y las leyes de vagancia a la llamada al 911 usada como arma, y lo que muestran los datos sobre a quién detienen y lastiman.",
+   "intro": "La Ley CAREN trata de un daño específico: llamar a la policía contra alguien por su raza. Este módulo muestra de dónde viene ese daño y por qué una llamada puede ser peligrosa.",
+   "sections": [
+    {
+     "h": "Patrullas de esclavos",
+     "body": "<p>Desde la ley de Carolina del Sur de 1704, las colonias y estados del Sur organizaron patrullas de esclavos: hombres blancos que recorrían de noche, detenían a personas negras, exigían pases, registraban las viviendas de los esclavizados y azotaban a quienes encontraban sin permiso. Se esperaba que toda persona blanca ayudara a vigilar a los esclavizados.</p>"
+    },
+    {
+     "h": "De las patrullas a la policía",
+     "body": "<p>Tras la emancipación, muchas funciones de las patrullas del Sur pasaron a la nueva policía municipal y a los alguaciles. Qué tan directa es la línea entre las patrullas y la policía moderna se debate: los departamentos del Norte (Boston 1838, Nueva York 1845) surgieron sobre todo del modelo de Londres y del control de inmigrantes y trabajadores. Los historiadores coinciden en que en el Sur la tarea de controlar el movimiento de las personas negras continuó.</p>"
+    },
+    {
+     "h": "Códigos Negros, leyes de vagancia y arrendamiento de presos",
+     "body": "<p>La Decimotercera Enmienda (1865) abolió la esclavitud “excepto como castigo por un delito”. Los estados del Sur aprobaron de inmediato Códigos Negros que convertían en delito que las personas negras estuvieran desempleadas, caminaran de noche o “merodearan”. Los arrestados eran arrendados a plantaciones, minas y ferrocarriles, y a menudo morían a tasas más altas que bajo la esclavitud. El arrendamiento de presos duró en Alabama hasta 1928.</p>"
+    },
+    {
+     "h": "Una acusación podía ser una sentencia de muerte",
+     "body": "<p>Muchos linchamientos empezaron con una acusación de una persona blanca. En 1955, el relato de Carolyn Bryant sobre un encuentro en una tienda de Misisipi llevó al asesinato de Emmett Till, de 14 años. (En un libro de 2017, el historiador Timothy Tyson informó que ella admitió después que partes de su relato no eran ciertas; su familia lo niega. Ese detalle está <b>debatido</b>.) La lección en la que se basa la Ley CAREN es más antigua que cualquier caso: cuando la persona denunciada es negra, la respuesta policial puede ser mortal.</p>"
+    },
+    {
+     "h": "La llamada al 911 usada como arma hoy",
+     "body": "<p>En 2018 y 2020, videos mostraron a personas blancas llamando a la policía contra personas negras que hacían una barbacoa (Oakland), esperaban en un Starbucks (Filadelfia, donde arrestaron a dos hombres), vendían agua (San Francisco) y observaban aves (Central Park). San Francisco aprobó la Ley CAREN en 2020, después de la ley de Oregón de 2019 y la AB 1775 de California.</p><p>Los datos respaldan los videos. En San Francisco, solo alrededor del 1% de las llamadas por “persona sospechosa” del último año terminó en arresto, multa o informe. La Encuesta federal de Contacto entre la Policía y el Público (2020) halló que las personas negras que tuvieron contacto con la policía tenían casi tres veces más probabilidades que las blancas de sufrir amenazas o uso de la fuerza.</p>"
+    },
+    {
+     "h": "Lo que funciona",
+     "body": "<p>Las ciudades están enviando equipos capacitados en lugar de policías armados a muchas llamadas. El programa CAHOOTS de Eugene, Oregón, lo hace desde 1989. Un estudio de 2022 en <em>Science Advances</em> halló que el programa STAR de Denver redujo las denuncias de los delitos menores que atendía. Una Ley CAREN federal añade la otra mitad: una consecuencia por usar a la policía como arma.</p>"
+    }
+   ],
+   "timeline": [
+    "Carolina del Sur organiza patrullas de esclavos",
+    "Decimotercera Enmienda, con su excepción de “castigo por un delito”; Códigos Negros",
+    "Alabama pone fin al arrendamiento de presos",
+    "Asesinan a Emmett Till tras la acusación de una mujer blanca",
+    "Llamadas virales: barbacoa en Oakland, Starbucks en Filadelfia",
+    "Oregón aprueba la primera ley estatal contra llamadas a la policía con prejuicio racial",
+    "Llamada en Central Park; San Francisco aprueba la Ley CAREN; AB 1775 de California",
+    "Un estudio halla que el programa STAR de Denver reduce las denuncias de delitos menores"
+   ],
+   "quiz": [
+    {
+     "q": "¿Qué excepción contiene la Decimotercera Enmienda?",
+     "options": [
+      "Para tiempos de guerra",
+      "Para el “castigo por un delito”",
+      "Para los sirvientes por contrato",
+      "Ninguna"
+     ],
+     "why": "Esa excepción legalizó el arrendamiento de presos."
+    },
+    {
+     "q": "¿Qué proporción aproximada de las llamadas por “persona sospechosa” en San Francisco terminó en arresto, multa o informe?",
+     "options": [
+      "Alrededor del 1%",
+      "Alrededor del 25%",
+      "Alrededor del 50%",
+      "Alrededor del 90%"
+     ],
+     "why": "0.9% en el último año (datos de la ciudad en el mapa de este sitio)."
+    },
+    {
+     "q": "¿Qué estado aprobó la primera ley contra llamadas a la policía con prejuicio racial?",
+     "options": [
+      "California",
+      "Nueva York",
+      "Oregón",
+      "Alabama"
+     ],
+     "why": "Oregón, en 2019, después de que llamaran a la policía contra la representante Janelle Bynum mientras hacía campaña."
+    },
+    {
+     "q": "¿Qué hacían las patrullas de esclavos?",
+     "options": [
+      "Apagaban incendios",
+      "Detenían a personas negras, exigían pases y registraban viviendas",
+      "Protegían a los esclavizados",
+      "Cobraban impuestos"
+     ],
+     "why": "Las patrullas imponían la esclavitud de noche."
+    }
+   ],
+   "map": {
+    "0": "Llamadas al 911 por “persona sospechosa” en San Francisco",
+    "1": "Muertes a manos de la policía y crímenes de odio"
+   }
+  },
+  "courts": {
+   "title": "Tribunales: jurados, condenas y pena de muerte",
+   "short": "Quién integra los jurados, cómo la raza influye en los cargos y las condenas, el caso de pena de muerte donde las estadísticas no bastaron, y el costo de no poder pagar fianza ni abogado."
+  },
+  "surveillance": {
+   "title": "Vigilados: la vigilancia de comunidades negras y morenas",
+   "short": "La guerra de COINTELPRO contra el Dr. King y las Panteras Negras, el asesinato de Fred Hampton, la vigilancia de barrios musulmanes, los errores del reconocimiento facial y la app del vecindario."
+  },
+  "media": {
+   "title": "Medios y fabricación de imágenes",
+   "short": "De los espectáculos de juglares y El nacimiento de una nación a los “superdepredadores” y las noticias de crímenes, y las cámaras que cambiaron la historia."
+  },
+  "many-targets": {
+   "title": "Muchos blancos: comunidades latinas, asiáticas, indígenas e inmigrantes",
+   "short": "Linchamientos de mexicoamericanos, la expulsión china y el encarcelamiento japonés, la violencia antiasiática, las mujeres indígenas desaparecidas y asesinadas, y los momentos en que estas comunidades se unieron."
+  },
+  "women": {
+   "title": "Las mujeres que organizaron el movimiento",
+   "short": "Ida B. Wells, Mary Church Terrell, Claudette Colvin, Ella Baker, Septima Clark, Diane Nash, Fannie Lou Hamer y las mujeres que fundaron Black Lives Matter."
+  },
+  "lgbtq": {
+   "title": "Historia LGBTQ negra",
+   "short": "Bayard Rustin, organizador de la Marcha sobre Washington, el Renacimiento de Harlem, Stonewall, James Baldwin, Audre Lorde y Pauli Murray, y la violencia que enfrentan hoy las mujeres trans negras."
+  },
+  "systemic": {
+   "title": "Racismo sistémico: cómo lo transmiten las instituciones",
+   "short": "Qué significan el racismo sistémico e institucional, cómo reglas de apariencia neutral transmiten la discriminación pasada, por qué la ley suele exigir prueba de intención, y el debate honesto sobre las disparidades."
+  },
+  "evidence": {
+   "title": "¿Se acabó el racismo? Lo que muestra la evidencia hoy",
+   "short": "Experimentos controlados y grandes estudios de datos de los últimos 15 años en vivienda, préstamos, policía, tribunales, medicina, protección infantil y vida cotidiana, y cómo hablar con alguien que cree que el racismo terminó.",
+   "intro": "Ha habido avances reales: las leyes que nombraban la raza desaparecieron y las actitudes han cambiado. Pero cuando los investigadores comprueban si todavía se trata distinto a las personas por su raza, manteniendo todo lo demás igual, la respuesta sigue siendo sí.",
+   "discuss": [
+    "¿Qué hallazgo te sorprendió más?",
+    "¿Alguien aquí ha vivido una de estas situaciones?",
+    "¿Cómo compartirías uno de estos hallazgos con alguien que no está de acuerdo, sin empezar una pelea?"
+   ],
+   "sections": [
+    {
+     "h": "Vivienda",
+     "body": "<p>En un estudio nacional de 2012 para el HUD, evaluadores capacitados que solo se diferenciaban por su raza contactaron a arrendadores y agentes; a los compradores negros se les informó y mostró aproximadamente un 17–18% menos viviendas que a compradores blancos igual de calificados. Una investigación encubierta de Newsday en 2019 en Long Island halló que los evaluadores negros recibieron trato desigual en el 49% de las pruebas.</p>"
+    },
+    {
+     "h": "Préstamos y tasaciones",
+     "body": "<p>Un estudio de millones de hipotecas (Bartlett y otros, 2022) halló que los prestatarios negros y latinos pagaban tasas de interés más altas que prestatarios blancos comparables, incluso con prestamistas algorítmicos. Las viviendas en barrios mayoritariamente negros se valoran unos $48,000 menos que viviendas similares en otras zonas (Brookings, 2018). En 2020, una pareja negra de Marin City, California, consiguió una tasación unos $500,000 más alta después de quitar las fotos familiares y pedir a un amigo blanco que se hiciera pasar por el dueño; su demanda se resolvió en 2023.</p>"
+    },
+    {
+     "h": "Policía y tribunales",
+     "body": "<p>El Stanford Open Policing Project analizó casi 100 millones de paradas de tráfico (2020): a los conductores negros los detenían con más frecuencia, la proporción de conductores negros detenidos bajaba de noche, cuando es más difícil ver la raza, y a los conductores negros e hispanos los registraban con menos evidencia. La Comisión de Sentencias de EE. UU. halló en 2017 que los hombres negros recibían condenas federales un 19% más largas que hombres blancos en situación similar. En <em>Flowers v. Mississippi</em> (2019), la Corte Suprema anuló una condena después de que un fiscal excluyera a 41 de 42 posibles jurados negros a lo largo de seis juicios.</p>"
+    },
+    {
+     "h": "Medicina y algoritmos",
+     "body": "<p>Un estudio de 2019 en <em>Science</em> halló que un algoritmo muy usado para decidir qué pacientes reciben atención adicional subestimaba lo enfermos que estaban los pacientes negros, porque usaba el gasto médico pasado como sustituto de la necesidad. Corregirlo duplicaría con creces el número de pacientes negros señalados para recibir ayuda. (Ver también “Salud” sobre el dolor y los oxímetros de pulso.)</p>"
+    },
+    {
+     "h": "Niños y familias",
+     "body": "<p>Un estudio de 2017 estimó que más de la mitad de los niños negros (53%) pasan por una investigación de los servicios de protección infantil antes de los 18 años, frente al 37% de todos los niños. Los estudiantes negros son suspendidos a tasas mucho más altas que los blancos por conductas similares, según los datos federales de derechos civiles.</p>"
+    },
+    {
+     "h": "La vida cotidiana",
+     "body": "<p>En Airbnb, los huéspedes con nombres claramente negros tenían alrededor de un 16% menos de probabilidades de ser aceptados que huéspedes idénticos con nombres que suenan blancos (2017). El prejuicio antinegro es el motivo más común de los crímenes de odio reportados al FBI cada año. Y los propios datos de este sitio muestran qué rara vez las llamadas al 911 por “persona sospechosa” encuentran un delito.</p>"
+    },
+    {
+     "h": "Cómo hablar con alguien que cree que el racismo terminó",
+     "body": "<ol><li><b>Pónganse de acuerdo en lo que es cierto.</b> Mucho ha cambiado; dilo. La pregunta no es si las cosas están mejor, sino si todavía se trata distinto a las personas.</li><li><b>Empieza con experimentos, no con anécdotas.</b> Los estudios de auditoría cambian solo la raza. Pregunta: “Si los currículums eran idénticos, ¿qué explica la diferencia?”</li><li><b>Invita a comprobarlo.</b> Cada afirmación aquí está etiquetada y tiene fuente. El escepticismo está bien; aplícalo a la evidencia.</li><li><b>Comparte una historia, con permiso.</b> Una persona que conocen importa más que una estadística.</li><li><b>No avergüences.</b> La gente se defiende cuando se siente acusada. Habla de sistemas, no de su carácter.</li><li><b>Dales algo que hacer.</b> Una acción pequeña, como leer un módulo, mantiene la puerta abierta.</li></ol>"
+    }
+   ],
+   "timeline": [
+    "Estudio del HUD sobre discriminación en la vivienda",
+    "Estudio de Airbnb; informe de la Comisión de Sentencias; estudio sobre investigaciones de protección infantil",
+    "Estudio del algoritmo de salud; investigación de Newsday; Flowers v. Mississippi",
+    "Estudio de paradas de tráfico de Stanford; tasación en Marin City",
+    "Estudio sobre el precio de las hipotecas"
+   ],
+   "quiz": [
+    {
+     "q": "¿Qué pasó con la proporción de conductores negros detenidos de noche?",
+     "options": [
+      "Aumentó",
+      "Bajó, cuando es más difícil ver la raza",
+      "No cambió",
+      "Se acabaron las paradas"
+     ],
+     "why": "La prueba del “velo de la oscuridad”."
+    },
+    {
+     "q": "¿Por qué el algoritmo de salud subestimaba las necesidades de los pacientes negros?",
+     "options": [
+      "Usaba la raza directamente",
+      "Usaba el gasto pasado como sustituto de la necesidad",
+      "Era aleatorio",
+      "No las subestimaba"
+     ],
+     "why": "Se gastaba menos en pacientes negros con las mismas necesidades."
+    },
+    {
+     "q": "¿Cuál es el primer paso recomendado con alguien escéptico?",
+     "options": [
+      "Decirle que es racista",
+      "Ponerse de acuerdo en lo que es cierto, incluido el progreso real",
+      "Evitar el tema",
+      "Recitar estadísticas en voz alta"
+     ],
+     "why": "Luego muestra lo que todavía falta."
+    }
+   ],
+   "map": {
+    "0": "Llamadas al 911 por “persona sospechosa”"
+   }
+  },
+  "performance": {
+   "title": "Igual o mejor: lo que muestra la evidencia",
+   "short": "Currículums idénticos, llamadas desiguales. Más desempleo en cada nivel educativo. Y un largo historial de logros frente a cada barrera, lo contrario de lo que predice el mito de la inferioridad."
+  },
+  "world": {
+   "title": "Un sistema mundial",
+   "short": "Gran Bretaña pagando a los esclavistas, el reparto de África, el genocidio en el Congo y Namibia, abogados nazis estudiando la ley racial estadounidense, el apartheid y cómo otros países enfrentan su pasado."
+  },
+  "movements": {
+   "title": "Cómo ganaron los movimientos, y la estrategia para este",
+   "short": "El boicot de autobuses, la estrategia legal detrás de Brown, las sentadas, Birmingham, Selma y la propia Ley CAREN: qué los hizo funcionar, convertido en un plan paso a paso."
+  },
+  "path-forward": {
+   "title": "El camino a seguir",
+   "short": "Lo que de verdad ha funcionado, y cuál es tu lugar.",
+   "intro": "Nada de esta historia era inevitable, y nada es permanente. Cada uno de estos remedios tiene un historial, y en cada uno hay un papel para ti.",
+   "sections": [
+    {
+     "h": "Leyes que hacen costoso el acoso",
+     "body": "<p>La Ley CAREN de San Francisco, la ley de Oregón de 2019 y la AB 1775 de California dan un remedio a las personas afectadas. Una versión federal lo extendería a todo el país. <a href=\"bill.html\">Lee y mejora el proyecto</a>, y luego <a href=\"act.html\">pide a tus legisladores que lo presenten</a>.</p>"
+    },
+    {
+     "h": "Otros equipos de respuesta",
+     "body": "<p>Programas como CAHOOTS (Eugene) y STAR (Denver) envían paramédicos y consejeros a llamadas que no necesitan policía. Pregunta a tu concejo municipal si tu ciudad tiene uno.</p>"
+    },
+    {
+     "h": "Decir la verdad en público",
+     "body": "<p>Las comisiones de la verdad (Sudáfrica 1996, Greensboro 2004–2006, Canadá 2008–2015) y memoriales como el National Memorial for Peace and Justice de EJI en Montgomery ponen el registro donde todos pueden verlo. Enseñar estos módulos es parte de ese trabajo.</p>"
+    },
+    {
+     "h": "Reparar",
+     "body": "<p>La Ley de Libertades Civiles de 1988 pidió perdón y pagó $20,000 a cada japonés-estadounidense sobreviviente que había sido encarcelado. Carolina del Norte y Virginia han compensado a sobrevivientes de esterilizaciones. Evanston, Illinois, comenzó reparaciones de vivienda en 2021, el Grupo de Trabajo sobre Reparaciones de California publicó su informe final en 2023 y el proyecto H.R. 40 crearía una comisión federal. Si hacer más, y cómo, se debate; los precedentes están documentados.</p>"
+    },
+    {
+     "h": "Limpiar los códigos",
+     "body": "<p>Todavía hay lenguaje de la era de la segregación en algunos códigos y escrituras. Los voluntarios pueden <a href=\"laws.html\">verificar leyes antiguas</a> y entregar solicitudes de derogación, y muchos estados ya permiten a los dueños eliminar las cláusulas de sus escrituras.</p>"
+    },
+    {
+     "h": "Presencia local",
+     "body": "<p>Los fiscales de distrito, alguaciles y concejos municipales deciden cómo se usa a la policía, y a menudo se eligen por unos pocos miles de votos. <a href=\"act.html\">Regístrate, verifica tu registro y vota en las elecciones locales.</a></p>"
+    }
+   ],
+   "map": {
+    "0": "Dónde organizarse"
+   }
+  }
+ }
+}

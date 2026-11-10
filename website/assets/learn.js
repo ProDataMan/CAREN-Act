@@ -21,8 +21,39 @@
     return id;
   }
 
+  // Lesson content: English hub (data/learn.json) plus an optional spoke per language (data/learn.<lang>.json)
+  // that overlays translated text by id or position. Missing pieces stay in English.
+  function overlay(cat, o) {
+    var pick = function (dst, src, keys) { keys.forEach(function (k) { if (src && src[k] != null) dst[k] = src[k]; }); };
+    Object.keys(o.labels || {}).forEach(function (k) { if (cat.labels[k]) pick(cat.labels[k], o.labels[k], ['name', 'desc']); });
+    (o.levels || []).forEach(function (n, i) { if (cat.levels[i] && n) cat.levels[i].name = n; });
+    cat.quests.forEach(function (q) { pick(q, (o.quests || {})[q.id], ['title', 'desc']); });
+    cat.badges.forEach(function (b) { pick(b, (o.badges || {})[b.id], ['name', 'desc']); });
+    (cat.questCategories || []).forEach(function (c) { pick(c, (o.questCategories || {})[c.id], ['name', 'desc']); });
+    (o.threeThings || []).forEach(function (t, i) { if (cat.threeThings[i]) pick(cat.threeThings[i], t, ['h', 'p']); });
+    (o.detective || []).forEach(function (t, i) { if (cat.detective[i]) pick(cat.detective[i], t, ['q', 'why']); });
+    (cat.readingList || []).forEach(function (b, i) { pick(b, (o.readingList || {})[i], ['why']); });
+    if (o.review) cat.review = o.review;
+    cat.modules.forEach(function (m) {
+      var t = (o.modules || {})[m.id]; if (!t) return;
+      m.translated = !!(t.sections && t.sections.length);
+      pick(m, t, ['title', 'short', 'intro', 'discuss', 'topics']);
+      (t.sections || []).forEach(function (s, i) { if (m.sections && m.sections[i]) pick(m.sections[i], s, ['h', 'body']); });
+      (t.timeline || []).forEach(function (x, i) { if (m.timeline && m.timeline[i] && x) m.timeline[i].t = x; });
+      (t.quiz || []).forEach(function (x, i) { if (m.quiz && m.quiz[i]) pick(m.quiz[i], x, ['q', 'options', 'why']); });
+      Object.keys(t.map || {}).forEach(function (i) { if (m.map && m.map[i]) m.map[i].t = t.map[i]; });
+    });
+    return cat;
+  }
   function catalog() {
-    if (!catalogP) catalogP = fetch('data/learn.json').then(function (r) { return r.json(); });
+    if (!catalogP) {
+      var lang = (window.CarenI18n && window.CarenI18n.lang) || 'en';
+      catalogP = fetch('data/learn.json').then(function (r) { return r.json(); }).then(function (cat) {
+        if (lang === 'en') return cat;
+        return fetch('data/learn.' + lang + '.json').then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (o) { return o ? overlay(cat, o) : cat; }).catch(function () { return cat; });
+      });
+    }
     return catalogP;
   }
 

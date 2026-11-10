@@ -120,7 +120,7 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Replace Wikipedia links with primary sources, and add URLs to sources cited only by title.
     - Add the full list of 408 boarding schools (from the Interior report's appendix) and a sterilizations-by-state layer (needs a reliable per-state source, such as Kaelber's site, with permission).
     - Automatic quests for accepted bill edits (gold star) and verified law reports. That needs a link between GitHub identity and Learn profiles.
-    - Spanish translations of act.html, the letters, and the top Learn modules, reviewed by a volunteer.
+    - Spanish: translate the full text of the remaining Learn modules into `learn.es.json`, and have a fluent volunteer review everything.
     - Fundraising: a fiscal sponsor or nonprofit first, then a Support page.
 
 ## History (condensed)
@@ -167,6 +167,11 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **The six outlines are now full modules:** conquest, slavery-law, reconstruction, borders, place, world. New quests: `whose-land` and `check-deed`.
   - **More modules:** columbus, colonizers, systemic, evidence, banking, courts.
     - **The Columbus module** presents his journal ("none of them black"), the 1498 Guinea-canoes passage, Peter Martyr, al-ʿUmarī and Van Sertima. Pre-Columbian African contact is labeled *debated*; "African villages already there" is labeled *belief or myth*.
+  - **Spanish (hub and spoke):**
+    - **Engine:** in `site.js`. It picks the language from `?lang=`, then `localStorage` `caren-lang`, then the browser locale, and shows a selector in the header. It translates text and attributes through a MutationObserver. Writes only happen when the text changes, to avoid an observer loop.
+    - **Header:** collapses to the menu when the links don't fit (`.site-header.compact`).
+    - **Files:** `i18n/es.json` (about 1,100 strings plus patterns), `data/learn.es.json` (interface, quests and badges; titles and summaries for all modules; full text for before-race, evidence, policing and path-forward), and `scripts/i18n_extract.py`.
+    - **Kept in English:** the bill text, letters and repeal drafts.
   - **Map:** `history` layer, and a year slider (`?year=`) that filters any layer whose markers carry a `year` option (mwt, destroyed, history).
   - **Automatic quests:** `quest:volunteer` on a successful sign-up and `quest:suggest-bill-edit` on a successful website comment (`learn.js` is loaded on `volunteer.html` and `bill.html`).
   - **New topic modules:** environment, surveillance, media, veterans, schools, health, women, lgbtq and faith, plus the reading list.

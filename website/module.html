@@ -53,6 +53,7 @@
         h += '<p class="lede">' + esc(m.short) + '</p><h2>What this module will cover</h2><ul>' + m.topics.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>' +
           '<div class="callout info">This module is being written. Know this history well, or have sources to add? <a href="volunteer.html#reviewer">Join as a researcher or history reviewer</a>, or <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=' + encodeURIComponent('[Learn] Module ' + m.num + ': ') + '" target="_blank" rel="noopener">suggest a source</a>.</div>';
       } else {
+        if (window.CarenI18n && CarenI18n.lang !== 'en' && !m.translated) h += '<div class="callout" translate="no">Este módulo aún no está traducido al español; se muestra en inglés. <a href="volunteer.html">¿Puedes ayudar a traducirlo?</a></div>';
         h += '<p class="lede">' + esc(m.intro) + '</p>';
         h += m.sections.map((s, n) => '<section class="s" id="s' + (n + 1) + '"><h2>' + esc(s.h) + ' ' + ui.chip(cat, s.label) + '</h2>' + s.body +
           ((s.sources || []).length ? '<div class="refs">Sources: ' + s.sources.map(k => '<a href="#src-' + k + '">[' + refNum(k) + ']</a>').join('') + '</div>' : '') + '</section>').join('');
