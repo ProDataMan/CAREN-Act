@@ -115,13 +115,13 @@ A public repository and advocacy site supporting a federal version of San Franci
    - Open States key for legislator names and a weekly state bill watcher with hearing alerts;
    - Congress.gov key.
 9. Optional: Spanish translations of `act.html` and the letters, reviewed by a volunteer.
-10. **Learn, next steps** (as of 2026-11-10, every module is written): (plan in `docs/education-plan.md`):
-    - Recruit a history reviewer, and have them review modules 1, 5, 8 and 10 before promoting them from `draft`.
-    - Replace Wikipedia links with primary sources.
-    - Write modules 2, 3, 4, 6, 7 and 9.
-    - Add history map layers with a year slider: boarding schools, incarceration camps, massacres, sterilizations by state.
-    - Verify quest completion automatically where possible (volunteer sign-up, accepted bill edits, verified law reports).
-    - Build a teach-in kit.
+10. **Learn, next steps** (plan in `docs/education-plan.md`). As of 2026-11-10, all 27 modules are written, and the teach-in kits, the year slider and the camp/school layer are built. Remaining:
+    - **Most important:** recruit a history reviewer, have them review each module, and change its `status` to `reviewed`.
+    - Replace Wikipedia links with primary sources, and add URLs to sources cited only by title.
+    - Add the full list of 408 boarding schools (from the Interior report's appendix) and a sterilizations-by-state layer (needs a reliable per-state source, such as Kaelber's site, with permission).
+    - Automatic quests for accepted bill edits (gold star) and verified law reports. That needs a link between GitHub identity and Learn profiles.
+    - Spanish translations of act.html, the letters, and the top Learn modules, reviewed by a volunteer.
+    - Fundraising: a fiscal sponsor or nonprofit first, then a Support page.
 
 ## History (condensed)
 
