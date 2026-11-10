@@ -82,6 +82,7 @@
         <label><input type="checkbox" data-layer="calls"> <span class="sw" style="background:#0570b0"></span> “Suspicious person” calls: SF, Seattle, New Orleans</label>
         <h4>Population &amp; history</h4>
         <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census)</label>
+        <label><input type="checkbox" data-layer="destroyed"> <span class="sw" style="background:#b35806"></span> Communities burned, flooded or taken</label>
         <label><input type="checkbox" data-layer="redlining"> <span class="sw" style="background:#d9534f"></span> HOLC redlining maps</label>
         <label><input type="checkbox" data-layer="covenants"> <span class="sw" style="background:#54278f"></span> Racial covenants on deeds (Mapping Prejudice)</label>
         <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> Segregated schools by law (pre-1954)</label>
@@ -122,6 +123,7 @@
       <li><a href="?layers=priority,lynch,mwt&amp;at=32.6,-88.3,7"><b>History of racial terror in the Deep South</b></a>: EJI counties (dark red circles, sized by number of victims) next to Monroe Work Today's individual cases (dots colored by victim race). Click a dot to read who was killed and why.</li>
       <li><a href="?layers=redlining,covenants&amp;at=44.96,-93.27,12"><b>Housing exclusion in Minneapolis</b></a>: 1930s redlining grades (red = “hazardous”) and the racial covenants written into property deeds. The purple dots show where people of color were barred from buying homes. Notice how they fill the green and blue “desirable” neighborhoods: covenants kept those areas white, and redlining starved the red ones of loans.</li>
       <li><a href="?layers=calls,minority&amp;at=37.76,-122.44,12"><b>911 “suspicious person” calls in San Francisco</b></a>: each blue circle is a ~500 m area, sized by number of calls in the past year. Click one to see how few calls citywide led to an arrest, citation or report.</li>
+      <li><a href="?layers=destroyed,redlining&amp;at=36.16,-95.99,13"><b>Greenwood, Tulsa (“Black Wall Street”)</b></a>: the district burned in 1921, with the 1930s redlining map on top. Then <a href="?layers=destroyed">zoom out to see every community burned, flooded, seized or bulldozed</a>, colored by what happened. Click any dot for the story and the source.</li>
       <li><a href="?layers=heat,allies,residual"><b>Where to organize</b></a>: hot spots, members of Congress on the Judiciary Committees (who would hear the bill), and old segregation laws still on the books.</li>
     </ul>
 
@@ -217,6 +219,7 @@
         '<a href="county.html?f=' + esc(r[0]) + '">County page &amp; share card →</a>';
     }
 
+    const DESTROYED_COLOR = { massacre: '#b30000', expulsion: '#e6550d', flood: '#2171b5', seized: '#8c510a', renewal: '#636363', gentrification: '#01665e' };
     const builders = {
       heat: () => counties().then(d => L.heatLayer(
         d.rows.filter(r => r[13] > 0.15).map(r => [r[3], r[4], Math.pow(r[13], 2)]),
@@ -315,6 +318,14 @@
             c.sources.map(s => '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">source</a>').join(' · ')).addTo(g));
         return g;
       }),
+      destroyed: () => getJSON('data/destroyed_communities.json').then(d => {
+        const g = L.layerGroup();
+        d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { radius: 8, color: '#fff', weight: 2, fillColor: DESTROYED_COLOR[e.type] || '#b35806', fillOpacity: 0.95 })
+          .bindPopup('<b>' + esc(e.name) + '</b><br>' + esc(e.place) + ', ' + esc(e.state) + ' · ' + esc(e.year) + ' · <i>' + esc(d.types[e.type] || e.type) + '</i><br>' + esc(e.summary) +
+            '<br>' + (e.source.url ? '<a href="' + esc(e.source.url) + '" target="_blank" rel="noopener">' + esc(e.source.t) + '</a>' : 'Source: ' + esc(e.source.t)) +
+            ' · <a href="module.html?m=destroyed">Learn module</a>').addTo(g));
+        return g;
+      }),
       residual: () => getJSON('data/residual_ordinances.json').then(d => {
         const g = L.layerGroup();
         d.entries.forEach(e => L.circleMarker([e.lat, e.lon], { radius: 8, color: '#000', weight: 2, fillColor: 'gold', fillOpacity: 1 })
@@ -387,6 +398,7 @@
         '<b>Redlining (HOLC)</b><i style="background:#76a865"></i>A <i style="background:#7cb5bd"></i>B <i style="background:#ffff00"></i>C <i style="background:#d9533c"></i>D' +
         '<b>Allies</b><i style="background:#1a1a1a"></i>Chair / ranking<br><i style="background:#5a5a5a"></i>Committee member<br><i style="background:#1b7837"></i>Champion<br><i style="background:#888"></i>Local<b>Contested deaths</b><i style="background:#000;border-radius:50%"></i>Disputed hanging death' +
         '<b>Lynchings, all races (MWT)</b>' + [['B', 'Black'], ['H', 'Latino / Mexican'], ['N', 'Native American'], ['A', 'Asian'], ['W', 'White']].map(k => '<i style="background:' + RACE_COLOR[k[0]] + '"></i>' + k[1]).join('<br>') +
+        '<b>Communities burned, flooded or taken</b>' + [['massacre', 'Burned or attacked'], ['expulsion', 'Driven out'], ['flood', 'Flooded'], ['seized', 'Seized'], ['renewal', 'Bulldozed'], ['gentrification', 'Gentrification']].map(k => '<i style="background:' + DESTROYED_COLOR[k[0]] + ';border-radius:50%"></i>' + k[1]).join('<br>') +
         '<b>Other layers</b><i style="background:#0570b0;border-radius:50%"></i>“Suspicious person” 911 calls<br><i style="background:#54278f;border-radius:50%"></i>Racial covenants</div>';
       d.querySelector('.legend-toggle').addEventListener('click', () => d.classList.toggle('open'));
       L.DomEvent.disableScrollPropagation(d);

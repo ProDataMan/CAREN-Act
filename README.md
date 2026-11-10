@@ -15,7 +15,8 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 
 **Learn**
 - **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
-- **First modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
+- **Written modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Burned, flooded and taken (Black Wall Street and more)](https://prodataman.github.io/CAREN-Act/website/module.html?m=destroyed), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
+- **Map of communities burned, flooded or taken:** https://prodataman.github.io/CAREN-Act/website/?layers=destroyed (Greenwood, Tulsa: [?layers=destroyed,redlining&at=36.16,-95.99,13](https://prodataman.github.io/CAREN-Act/website/?layers=destroyed,redlining&at=36.16,-95.99,13))
 
 **Map and data**
 - **Priority heat map:** https://prodataman.github.io/CAREN-Act/website/
@@ -45,7 +46,7 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
-| Learn section | ✅ Live: 4 modules drafted (1, 5, 8, 10), 6 outlined. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
+| Learn section | ✅ Live: 5 of 11 modules written (before race, science, burned/flooded/taken, policing, path forward); the other 6 are outlines. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 
@@ -128,6 +129,7 @@ Member names and contact details update on their own from `congress-legislators`
 | Approve a bill comment | [Issues labeled `bill-comment`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment) | Add the `accepted` label. The edit is merged into the bill on both copies of the site and the commenter gets a ⭐. Add `hidden` for spam. |
 | Verify an old-law report | [Issues labeled `residual-law`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Aresidual-law) | Confirm the citation in the current official code, then swap `needs-verification` for `verified`. Move it along `repeal-requested` → `repeal-introduced` → `repealed`, or label it `not-residual`. |
 | Welcome a volunteer | `/website/admin.html` (private sign-ups) or [issues labeled `volunteer`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Avolunteer) | Set status **active** on the admin page, or add `volunteer-active`, then assign them to reports in their state. |
+| Add a destroyed community | [Issues labeled `local-history`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Alocal-history) (from the "Uncover local history" quest) | Check the source, then add an entry to `website/data/destroyed_communities.json` and mention it in the "Burned, flooded and taken" module in `learn.json`. |
 | Add a contested-death case | [Issues labeled `contested-death`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Acontested-death) | Verify the sources, then add an entry to `website/data/contested_deaths.json` and push. |
 | Add CDC WONDER exports | [Issues labeled `cdc-wonder`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Acdc-wonder) | Save the `.txt` files to `website/data/cdc_wonder/`, run `python3 scripts/build_data.py wonder`, and push. |
 | **New law or history source found** | `website/data/learn.json`, then README and `context.md` | **Standing rule:** add it to the right module's section, timeline and `sourcesList`, with an evidence label (`documented`, `debated` or `belief`). Then update this README and `context.md`. |
@@ -236,7 +238,7 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 [learn.html](https://prodataman.github.io/CAREN-Act/website/learn.html) is the hub, and `module.html?m=<id>` renders each module. All the content lives in **`website/data/learn.json`**: modules (sections, timelines, quizzes, sources), the Source detective quiz, quests, XP values, levels and badges. To add or fix content you edit only that file. The plan and the build phases are in [docs/education-plan.md](docs/education-plan.md).
 
 - **Evidence labels:** every section is labeled *Documented*, *Debated* or *Belief or myth*.
-- **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–400 for quests, depending on how much the task matters. Quests are on the honor system for now.
+- **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–400 for quests (13 of them), depending on how much the task matters. Quests are on the honor system for now.
 - **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.
 - **Badges:** 9.
 - **Saving progress:** without an account, progress lives in the browser under a random device ID and is backed up to Azure SQL (`learn_events`). Signing in with Google moves it onto a profile that works on any device and adds a downloadable badge card.
@@ -274,6 +276,8 @@ Repeal is a legislative act, so the tracker never files legal motions or sends a
 | CDC/NCHS injury deaths by race and intent; suicide rates by race | `cdc_deaths.json` |
 | CDC WONDER state exports (by hand; the site blocks automated access) | `cdc_wonder_states.json` |
 | Contested deaths (curated from reputable reporting) | `contested_deaths.json` |
+| Communities burned, flooded, seized, bulldozed or gentrified (curated, cited; 34 places) | `destroyed_communities.json` |
+| Learn content: modules, quizzes, quests, XP, badges (hand-edited) | `learn.json` |
 | Residual ordinances (curated, cited; the only hand-edited data file besides contested deaths) | `residual_ordinances.json` |
 
 **Not added yet** (see the status column on [data.html](https://prodataman.github.io/CAREN-Act/website/data.html)):

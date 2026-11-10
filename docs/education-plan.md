@@ -83,6 +83,35 @@ This is the topic that prompted the plan, so it gets the most careful treatment.
 - Research (Guttmacher Institute, CDC) links the gap to higher unintended pregnancy rates, which follow from unequal access to contraception and health care, from poverty, and from distrust of medicine.
 - The page will show the CDC figures together with those causes, so the numbers aren't read as proof of a plot. We also show Black maternal mortality, which is about three times the white rate (CDC). That is the same unequal health system at work.
 
+## Added 2026-11-10
+
+Module 8, **Burned, flooded and taken**, covers Greenwood/Black Wall Street, other massacres, expulsions and seizures, floods, urban renewal and highways, and gentrification. It comes with the map layer `destroyed` (`data/destroyed_communities.json`). The modules after it were renumbered.
+
+## Proposed additional modules (waiting for the owner's choice)
+
+Ranked by how directly they support the campaign:
+
+1. **The evidence of equal or better performance:**
+   - résumé audit studies (identical résumés with "Black-sounding" names get fewer callbacks; Bertrand & Mullainathan 2004 and later field experiments);
+   - Black women as the most educated group by enrollment;
+   - HBCUs.
+
+   This answers "we perform as well or better" with data.
+2. **Voting rights and disenfranchisement:** poll taxes and literacy tests, the Voting Rights Act, *Shelby County v. Holder* (2013), felony disenfranchisement, and redistricting.
+3. **Mass incarceration and the war on drugs:** the 100:1 crack-to-powder sentencing gap (18:1 since 2010), and the 13th Amendment exception today.
+4. **Wealth was built and blocked:**
+   - New Deal exclusions (Social Security first left out farm and domestic workers);
+   - the GI Bill in practice;
+   - redlining to subprime lending;
+   - the racial wealth gap.
+5. **Environmental racism:** Cancer Alley in Louisiana, Flint, freeways and pollution, and heat islands in formerly redlined areas.
+6. **Black towns and self-determination:** Eatonville, Allensworth, Nicodemus, Mound Bayou, Greenwood before 1921, Durham's Parrish Street. These are the stories of what was built, not only what was destroyed.
+7. **How movements won:** the Montgomery bus boycott, the Civil Rights Act and Voting Rights Act campaigns, and the organizing, litigation and lobbying behind them. These are tactics for passing the CAREN Act.
+8. **Surveillance and repression:** COINTELPRO and the targeting of King and the Black Panthers, and modern surveillance of protests.
+9. **Violence against Latino, Asian and Native communities:** lynchings of Mexican Americans (about 547 from 1848 to 1928, Carrigan & Webb), Vincent Chin (1982), anti-Asian hate in 2020, and missing and murdered Indigenous women.
+10. **Media and image-making:** *The Birth of a Nation* (1915) and the revived Klan, minstrelsy, and crime-news framing.
+11. **Black veterans:** Isaac Woodard (1946), and veterans lynched in uniform after World War I. Tulsa's defenders were veterans.
+
 ## New data for the map
 
 | Dataset | Source | Notes |

@@ -25,7 +25,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | Google sign-in | Connected (2026-11-09). Not tested end to end yet |
 | Facebook sign-in | Not started |
 | Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
-| Learn | Live. Hub `learn.html`, renderer `module.html`, content `data/learn.json`. Modules 1, 5, 8 and 10 drafted; 2, 3, 4, 6, 7 and 9 outlined. Not reviewed by a historian yet; recruiting through the volunteer role `history-reviewer` |
+| Learn | Live. Hub `learn.html`, renderer `module.html`, content `data/learn.json`. 11 modules: 1 before-race, 5 science, 8 destroyed, 9 policing and 11 path-forward are written; 2, 3, 4, 6, 7 and 10 are outlines. Use module `id`s; `num`s change when modules are inserted. Not reviewed by a historian yet; recruiting through the volunteer role `history-reviewer` |
 | Outreach | Letters to JULIAN and LDF drafted (kept out of the repo), not sent |
 
 ## Architecture
@@ -69,6 +69,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | bjs_contacts.json | PPCS 2020 tables 3 and 6. Threat or use of force: Black 4.3%, Hispanic 2.4%, White 1.5%, Asian 1.0%. Street stops ending in search or arrest: Black 14.2%, White 3.0% |
 | police_killings.json, hate_crimes.json, redlining.json, zip_districts.json, cdc_deaths.json, cdc_wonder_states.json | As named. CDC WONDER exports are made by hand |
 | contested_deaths.json, residual_ordinances.json | Curated and cited. Hand-edited |
+| destroyed_communities.json | Curated, 34 places (Tulsa/Greenwood, Colfax, Wilmington, Elaine, Ocoee, Rosewood, Seneca Village, Bruce's Beach, Vanport, Katrina, urban renewal and highways, Chinese expulsions, gentrification). Map layer `destroyed`, colored by type: massacre, expulsion, flood, seized, renewal, gentrification. Hand-edited |
 | learn.json | Learn content: modules, the Source detective quiz, quests and XP, levels and badges. Hand-edited. Section labels: `documented` / `debated` / `belief` |
 
 ## Decisions (and why)
@@ -149,4 +150,15 @@ A public repository and advocacy site supporting a federal version of San Franci
     - the Source detective quiz, 12 quests, 6 levels and 9 badges;
     - progress saved by device ID with an optional profile, plus state teams;
     - the history-reviewer volunteer role, History page links, and privacy policy updates.
+- **2026-11-10:**
+  - **New module "Burned, flooded and taken":**
+    - Greenwood/Black Wall Street in detail (2001 commission, 2024 grave identification and dismissed lawsuit, 2025 DOJ report);
+    - other massacres;
+    - expulsions and seizures (Forsyth, Seneca Village, Bruce's Beach, Chavez Ravine, Black farmland);
+    - floods (Oscarville/Lake Lanier, 1927, Vanport, Katrina);
+    - urban renewal and highways;
+    - gentrification, labeled debated.
+  - **Data:** `destroyed_communities.json`, with its map layer and a Tulsa example view.
+  - **Quests:** "Uncover local history" (60 XP, crowdsources new places).
+  - **Proposed modules** added to `docs/education-plan.md`.
   - **The owner's test comment:** it was never posted and lives only in their browser as Pending. Discard removes it.

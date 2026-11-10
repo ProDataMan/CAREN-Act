@@ -1,56 +1,297 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "review": "No module has been reviewed by a historian yet. We are recruiting reviewers: volunteer.html#reviewer",
   "labels": {
-    "documented": { "name": "Documented", "desc": "Primary sources or official records show this happened." },
-    "debated": { "name": "Debated", "desc": "The facts are documented, but historians disagree about what they mean or how far they go." },
-    "belief": { "name": "Belief or myth", "desc": "A religious, folk or conspiracy story. We explain it and who holds it, but it is not supported as history." }
+    "documented": {
+      "name": "Documented",
+      "desc": "Primary sources or official records show this happened."
+    },
+    "debated": {
+      "name": "Debated",
+      "desc": "The facts are documented, but historians disagree about what they mean or how far they go."
+    },
+    "belief": {
+      "name": "Belief or myth",
+      "desc": "A religious, folk or conspiracy story. We explain it and who holds it, but it is not supported as history."
+    }
   },
-  "xp": { "read": 20, "quiz": 30, "quizPass": 0.8 },
+  "xp": {
+    "read": 20,
+    "quiz": 30,
+    "quizPass": 0.8
+  },
   "levels": [
-    { "xp": 0, "name": "Listener" },
-    { "xp": 100, "name": "Learner" },
-    { "xp": 250, "name": "Witness" },
-    { "xp": 500, "name": "Ally" },
-    { "xp": 1000, "name": "Organizer" },
-    { "xp": 2000, "name": "Changemaker" }
+    {
+      "xp": 0,
+      "name": "Listener"
+    },
+    {
+      "xp": 100,
+      "name": "Learner"
+    },
+    {
+      "xp": 250,
+      "name": "Witness"
+    },
+    {
+      "xp": 500,
+      "name": "Ally"
+    },
+    {
+      "xp": 1000,
+      "name": "Organizer"
+    },
+    {
+      "xp": 2000,
+      "name": "Changemaker"
+    }
   ],
   "quests": [
-    { "id": "source-detective", "title": "Source detective", "xp": 30, "kind": "quiz", "desc": "Sort 10 claims into documented, debated, or belief or myth. Score 8 or better.", "href": "learn.html#detective" },
-    { "id": "share-county", "title": "Share your county's numbers", "xp": 15, "desc": "Make and share your county's image.", "href": "county.html" },
-    { "id": "write-lawmakers", "title": "Write your lawmakers", "xp": 30, "desc": "Send the letter (in your own words) to at least one lawmaker.", "href": "act.html#contact" },
-    { "id": "call-lawmakers", "title": "Call your lawmakers", "xp": 50, "desc": "Call your U.S. Representative or a Senator about the CAREN Act.", "href": "act.html#contact" },
-    { "id": "suggest-bill-edit", "title": "Improve the bill", "xp": 40, "desc": "Post a comment or suggested edit on the draft bill.", "href": "bill.html" },
-    { "id": "volunteer", "title": "Join as a state ally", "xp": 60, "desc": "Sign up to volunteer in your state.", "href": "volunteer.html" },
-    { "id": "cdc-export", "title": "Export CDC data", "xp": 100, "desc": "Run the two CDC WONDER exports for your state and send them in.", "href": "deaths.html#export" },
-    { "id": "verify-old-law", "title": "Verify an old law", "xp": 120, "desc": "Check a reported segregation-era law against the current official code and report what you found.", "href": "laws.html" },
-    { "id": "recruit-reviewer", "title": "Recruit a history reviewer", "xp": 150, "desc": "Get a historian, librarian or archivist to sign up as a Learn reviewer.", "href": "volunteer.html#reviewer" },
-    { "id": "bill-edit-accepted", "title": "Get an edit accepted", "xp": 150, "desc": "One of your suggested bill edits was accepted (you earned a gold star).", "href": "bill.html" },
-    { "id": "teach-in", "title": "Host a teach-in", "xp": 200, "desc": "Teach one of these modules to a group: a class, church, club or chapter.", "href": "learn.html" },
-    { "id": "council-resolution", "title": "Win a local resolution", "xp": 400, "desc": "Get your city council, county board or state lawmaker to formally support a CAREN-style law or a repeal.", "href": "act.html" }
+    {
+      "id": "source-detective",
+      "title": "Source detective",
+      "xp": 30,
+      "kind": "quiz",
+      "desc": "Sort 10 claims into documented, debated, or belief or myth. Score 8 or better.",
+      "href": "learn.html#detective"
+    },
+    {
+      "id": "share-county",
+      "title": "Share your county's numbers",
+      "xp": 15,
+      "desc": "Make and share your county's image.",
+      "href": "county.html"
+    },
+    {
+      "id": "write-lawmakers",
+      "title": "Write your lawmakers",
+      "xp": 30,
+      "desc": "Send the letter (in your own words) to at least one lawmaker.",
+      "href": "act.html#contact"
+    },
+    {
+      "id": "call-lawmakers",
+      "title": "Call your lawmakers",
+      "xp": 50,
+      "desc": "Call your U.S. Representative or a Senator about the CAREN Act.",
+      "href": "act.html#contact"
+    },
+    {
+      "id": "suggest-bill-edit",
+      "title": "Improve the bill",
+      "xp": 40,
+      "desc": "Post a comment or suggested edit on the draft bill.",
+      "href": "bill.html"
+    },
+    {
+      "id": "volunteer",
+      "title": "Join as a state ally",
+      "xp": 60,
+      "desc": "Sign up to volunteer in your state.",
+      "href": "volunteer.html"
+    },
+    {
+      "id": "local-history",
+      "title": "Uncover local history",
+      "xp": 60,
+      "desc": "Find a Black, Brown, Native or immigrant community near you that was burned, driven out, flooded, seized or bulldozed. Send us its story with a source, and we'll add it to the map.",
+      "href": "https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BLocal%20history%5D%20&labels=local-history"
+    },
+    {
+      "id": "cdc-export",
+      "title": "Export CDC data",
+      "xp": 100,
+      "desc": "Run the two CDC WONDER exports for your state and send them in.",
+      "href": "deaths.html#export"
+    },
+    {
+      "id": "verify-old-law",
+      "title": "Verify an old law",
+      "xp": 120,
+      "desc": "Check a reported segregation-era law against the current official code and report what you found.",
+      "href": "laws.html"
+    },
+    {
+      "id": "recruit-reviewer",
+      "title": "Recruit a history reviewer",
+      "xp": 150,
+      "desc": "Get a historian, librarian or archivist to sign up as a Learn reviewer.",
+      "href": "volunteer.html#reviewer"
+    },
+    {
+      "id": "bill-edit-accepted",
+      "title": "Get an edit accepted",
+      "xp": 150,
+      "desc": "One of your suggested bill edits was accepted (you earned a gold star).",
+      "href": "bill.html"
+    },
+    {
+      "id": "teach-in",
+      "title": "Host a teach-in",
+      "xp": 200,
+      "desc": "Teach one of these modules to a group: a class, church, club or chapter.",
+      "href": "learn.html"
+    },
+    {
+      "id": "council-resolution",
+      "title": "Win a local resolution",
+      "xp": 400,
+      "desc": "Get your city council, county board or state lawmaker to formally support a CAREN-style law or a repeal.",
+      "href": "act.html"
+    }
   ],
   "badges": [
-    { "id": "first-lesson", "icon": "📖", "name": "First lesson", "desc": "Finished your first module.", "rule": { "prefix": "read:", "n": 1 } },
-    { "id": "scholar", "icon": "🎓", "name": "Scholar", "desc": "Finished three modules.", "rule": { "prefix": "read:", "n": 3 } },
-    { "id": "sharp-eye", "icon": "🔍", "name": "Source detective", "desc": "Can tell evidence from myth.", "rule": { "any": ["quest:source-detective"] } },
-    { "id": "quiz-ace", "icon": "✅", "name": "Quiz ace", "desc": "Passed three module quizzes.", "rule": { "prefix": "quiz:", "n": 3 } },
-    { "id": "voice", "icon": "📣", "name": "Raised your voice", "desc": "Called or wrote your lawmakers.", "rule": { "any": ["quest:call-lawmakers", "quest:write-lawmakers"] } },
-    { "id": "truth-keeper", "icon": "🗂️", "name": "Truth keeper", "desc": "Verified a law or exported public data.", "rule": { "any": ["quest:verify-old-law", "quest:cdc-export"] } },
-    { "id": "recruiter", "icon": "🤝", "name": "Recruiter", "desc": "Brought in a history reviewer.", "rule": { "any": ["quest:recruit-reviewer"] } },
-    { "id": "organizer", "icon": "🏛️", "name": "Organizer", "desc": "Hosted a teach-in or won a local resolution.", "rule": { "any": ["quest:teach-in", "quest:council-resolution"] } },
-    { "id": "gold-star", "icon": "⭐", "name": "Bill author", "desc": "An edit you suggested is now in the bill.", "rule": { "any": ["quest:bill-edit-accepted"] } }
+    {
+      "id": "first-lesson",
+      "icon": "📖",
+      "name": "First lesson",
+      "desc": "Finished your first module.",
+      "rule": {
+        "prefix": "read:",
+        "n": 1
+      }
+    },
+    {
+      "id": "scholar",
+      "icon": "🎓",
+      "name": "Scholar",
+      "desc": "Finished three modules.",
+      "rule": {
+        "prefix": "read:",
+        "n": 3
+      }
+    },
+    {
+      "id": "sharp-eye",
+      "icon": "🔍",
+      "name": "Source detective",
+      "desc": "Can tell evidence from myth.",
+      "rule": {
+        "any": [
+          "quest:source-detective"
+        ]
+      }
+    },
+    {
+      "id": "quiz-ace",
+      "icon": "✅",
+      "name": "Quiz ace",
+      "desc": "Passed three module quizzes.",
+      "rule": {
+        "prefix": "quiz:",
+        "n": 3
+      }
+    },
+    {
+      "id": "voice",
+      "icon": "📣",
+      "name": "Raised your voice",
+      "desc": "Called or wrote your lawmakers.",
+      "rule": {
+        "any": [
+          "quest:call-lawmakers",
+          "quest:write-lawmakers"
+        ]
+      }
+    },
+    {
+      "id": "truth-keeper",
+      "icon": "🗂️",
+      "name": "Truth keeper",
+      "desc": "Verified a law or exported public data.",
+      "rule": {
+        "any": [
+          "quest:verify-old-law",
+          "quest:cdc-export"
+        ]
+      }
+    },
+    {
+      "id": "recruiter",
+      "icon": "🤝",
+      "name": "Recruiter",
+      "desc": "Brought in a history reviewer.",
+      "rule": {
+        "any": [
+          "quest:recruit-reviewer"
+        ]
+      }
+    },
+    {
+      "id": "organizer",
+      "icon": "🏛️",
+      "name": "Organizer",
+      "desc": "Hosted a teach-in or won a local resolution.",
+      "rule": {
+        "any": [
+          "quest:teach-in",
+          "quest:council-resolution"
+        ]
+      }
+    },
+    {
+      "id": "gold-star",
+      "icon": "⭐",
+      "name": "Bill author",
+      "desc": "An edit you suggested is now in the bill.",
+      "rule": {
+        "any": [
+          "quest:bill-edit-accepted"
+        ]
+      }
+    }
   ],
   "detective": [
-    { "q": "Genesis 9 curses Ham and his descendants with dark skin.", "a": "belief", "why": "Genesis 9:25 curses Canaan, Ham's son, and says nothing about skin color. The racial reading was added many centuries later." },
-    { "q": "In 1662 Virginia made a child enslaved or free according to the mother's status.", "a": "documented", "why": "Virginia's 1662 act (partus sequitur ventrem) is in the colony's statutes. It meant children of enslaved women, including those fathered by enslavers, were born enslaved." },
-    { "q": "Margaret Sanger, founder of the group that became Planned Parenthood, supported eugenics.", "a": "documented", "why": "Her writings and speeches show it, and Planned Parenthood itself acknowledged it in 2020." },
-    { "q": "Planned Parenthood was founded to exterminate Black Americans.", "a": "belief", "why": "The record does not support it. Sanger opposed abortion in her lifetime, and Planned Parenthood did not provide abortions until about 1970. The real, documented abuses are forced sterilizations by states and federal programs." },
-    { "q": "After Bacon's Rebellion (1676), Virginia's leaders deliberately used race to divide poor white and Black workers.", "a": "debated", "why": "The laws that followed are documented. How deliberate the strategy was is debated by historians (see Edmund Morgan and his critics)." },
-    { "q": "The U.S. Public Health Service watched hundreds of Black men go untreated for syphilis for 40 years.", "a": "documented", "why": "The Tuskegee study ran from 1932 to 1972. A federal panel reviewed it, and President Clinton apologized in 1997." },
-    { "q": "Modern American policing grew directly out of slave patrols.", "a": "debated", "why": "Slave patrols are well documented and shaped Southern policing. Northern departments also grew from other models, such as the London police, so how direct the line is remains debated." },
-    { "q": "The Book of Enoch explains where the different races came from.", "a": "belief", "why": "1 Enoch tells of fallen angels (the Watchers) and their giant children. It has no teaching about race. Some modern groups have built race myths on it." },
-    { "q": "The Vatican formally repudiated the “Doctrine of Discovery” in 2023.", "a": "documented", "why": "Two Vatican departments issued a joint statement on March 30, 2023, rejecting the doctrine." },
-    { "q": "Racism was a consequence of slavery, not its original cause.", "a": "debated", "why": "This was Eric Williams's argument in Capitalism and Slavery (1944). Many historians agree; others stress older prejudices that existed before Atlantic slavery." }
+    {
+      "q": "Genesis 9 curses Ham and his descendants with dark skin.",
+      "a": "belief",
+      "why": "Genesis 9:25 curses Canaan, Ham's son, and says nothing about skin color. The racial reading was added many centuries later."
+    },
+    {
+      "q": "In 1662 Virginia made a child enslaved or free according to the mother's status.",
+      "a": "documented",
+      "why": "Virginia's 1662 act (partus sequitur ventrem) is in the colony's statutes. It meant children of enslaved women, including those fathered by enslavers, were born enslaved."
+    },
+    {
+      "q": "Margaret Sanger, founder of the group that became Planned Parenthood, supported eugenics.",
+      "a": "documented",
+      "why": "Her writings and speeches show it, and Planned Parenthood itself acknowledged it in 2020."
+    },
+    {
+      "q": "Planned Parenthood was founded to exterminate Black Americans.",
+      "a": "belief",
+      "why": "The record does not support it. Sanger opposed abortion in her lifetime, and Planned Parenthood did not provide abortions until about 1970. The real, documented abuses are forced sterilizations by states and federal programs."
+    },
+    {
+      "q": "After Bacon's Rebellion (1676), Virginia's leaders deliberately used race to divide poor white and Black workers.",
+      "a": "debated",
+      "why": "The laws that followed are documented. How deliberate the strategy was is debated by historians (see Edmund Morgan and his critics)."
+    },
+    {
+      "q": "The U.S. Public Health Service watched hundreds of Black men go untreated for syphilis for 40 years.",
+      "a": "documented",
+      "why": "The Tuskegee study ran from 1932 to 1972. A federal panel reviewed it, and President Clinton apologized in 1997."
+    },
+    {
+      "q": "Modern American policing grew directly out of slave patrols.",
+      "a": "debated",
+      "why": "Slave patrols are well documented and shaped Southern policing. Northern departments also grew from other models, such as the London police, so how direct the line is remains debated."
+    },
+    {
+      "q": "The Book of Enoch explains where the different races came from.",
+      "a": "belief",
+      "why": "1 Enoch tells of fallen angels (the Watchers) and their giant children. It has no teaching about race. Some modern groups have built race myths on it."
+    },
+    {
+      "q": "The Vatican formally repudiated the “Doctrine of Discovery” in 2023.",
+      "a": "documented",
+      "why": "Two Vatican departments issued a joint statement on March 30, 2023, rejecting the doctrine."
+    },
+    {
+      "q": "Racism was a consequence of slavery, not its original cause.",
+      "a": "debated",
+      "why": "This was Eric Williams's argument in Capitalism and Slavery (1944). Many historians agree; others stress older prejudices that existed before Atlantic slavery."
+    }
   ],
   "modules": [
     {
@@ -66,99 +307,316 @@
           "h": "The ancient world sorted people differently",
           "label": "documented",
           "body": "<p>Slavery is ancient, but for most of history it was not based on skin color. Greeks, Romans, Egyptians, Africans, Arabs and Europeans enslaved people taken in war, sold for debt, or born to enslaved mothers, and enslaved people came from every region. The English word <em>slave</em> itself comes from <em>Slav</em>, because so many Eastern Europeans were enslaved in the Middle Ages.</p><p>Historian Frank Snowden showed that Greek and Roman writers described Africans with curiosity and sometimes admiration, without the idea of a fixed racial ranking.</p>",
-          "sources": ["snowden", "slav"]
+          "sources": [
+            "snowden",
+            "slav"
+          ]
         },
         {
           "h": "Race was written into law (1452–1705)",
           "label": "documented",
           "body": "<p>The idea that some people are naturally meant to be owned was spelled out step by step:</p><ul><li><b>1452–1455:</b> Pope Nicholas V's bulls <em>Dum Diversas</em> and <em>Romanus Pontifex</em> authorized Portugal's king to conquer “Saracens and pagans” and reduce them to perpetual slavery. Portugal's African slave trade grew under them.</li><li><b>1493:</b> <em>Inter caetera</em> gave Spain lands “discovered” in the Americas. These bulls became the <b>Doctrine of Discovery</b>, which the U.S. Supreme Court adopted in <em>Johnson v. M'Intosh</em> (1823) to deny Native nations full ownership of their land. The Vatican repudiated the doctrine in 2023. The Supreme Court has not.</li><li><b>1662:</b> Virginia ruled that a child follows the condition of the mother, so children of enslaved women, including children of their enslavers, were born enslaved.</li><li><b>1667–1705:</b> Virginia declared that baptism does not free a slave (1667), that killing an enslaved person during “correction” was not a felony (1669), banned interracial marriage (1691), and gathered everything into the 1705 slave codes. France's <em>Code Noir</em> (1685) did the same for its colonies.</li></ul>",
-          "sources": ["dumdiversas", "intercaetera", "johnson", "vatican", "partus", "codenoir"]
+          "sources": [
+            "dumdiversas",
+            "intercaetera",
+            "johnson",
+            "vatican",
+            "partus",
+            "codenoir"
+          ]
         },
         {
           "h": "Dividing people who might unite",
           "label": "debated",
           "body": "<p>In 1676, Bacon's Rebellion brought white indentured servants and enslaved Africans together in an armed revolt against Virginia's government. In the decades that followed, Virginia's laws gave poor white people small privileges (freedom dues, the right to bear arms, the right to strike a Black person) while taking rights away from all Black people, free or enslaved.</p><p>That the laws changed is documented. Historian Edmund Morgan argued that the elite used race on purpose to keep poor white and Black people from uniting again. Others think the shift had more to do with the falling cost of enslaved Africans compared with English servants. Most agree the effect was the same.</p>",
-          "sources": ["bacon", "morgan"]
+          "sources": [
+            "bacon",
+            "morgan"
+          ]
         },
         {
           "h": "The practice came first, the ideas followed",
           "label": "debated",
           "body": "<p>In 1944 the Trinidadian historian Eric Williams wrote that “slavery was not born of racism: rather, racism was the consequence of slavery.” Ibram X. Kendi's <em>Stamped from the Beginning</em> (2016) traces the same pattern over five centuries: racist ideas were developed to defend policies that were already profitable.</p><p>Thomas Jefferson, who enslaved more than 600 people over his life, offered Black inferiority “as a suspicion only” in his <em>Notes on the State of Virginia</em> (1785). Within decades, “scientists” were measuring skulls to prove it (see module 5).</p>",
-          "sources": ["williams", "kendi", "jefferson"]
+          "sources": [
+            "williams",
+            "kendi",
+            "jefferson"
+          ]
         },
         {
           "h": "What the fear was really about",
           "label": "documented",
           "body": "<p>The fear was real. It was fear of revolt, of revenge, and of losing power at the ballot box:</p><ul><li><b>Haiti, 1791–1804:</b> enslaved people overthrew French rule and founded the first free Black republic. France later forced Haiti to pay 150 million francs (reduced to 90 million) for its own freedom, a debt Haiti paid off over about 120 years.</li><li><b>Nat Turner's rebellion, 1831:</b> afterward, Virginia and other states tightened bans on teaching Black people to read and on Black preachers and gatherings.</li><li><b>Reconstruction, 1867–1877:</b> Black men voted and held office, and South Carolina's lower house had a Black majority. White-supremacist violence ended it, including the 1898 coup in Wilmington, North Carolina, where an elected biracial government was overthrown by force.</li><li><b>“Replacement”:</b> Madison Grant's <em>The Passing of the Great Race</em> (1916) warned that white Americans were being outbred. It helped pass the 1924 immigration quotas. The same fear, renamed the “Great Replacement,” was cited by the killers in El Paso (2019) and Buffalo (2022).</li></ul>",
-          "sources": ["haiti", "turner", "wilmington", "grant", "replacement"]
+          "sources": [
+            "haiti",
+            "turner",
+            "wilmington",
+            "grant",
+            "replacement"
+          ]
         },
         {
           "h": "How scripture was used, and misused",
           "label": "documented",
           "body": "<p><b>The “Curse of Ham.”</b> In Genesis 9:20–27, Noah curses <em>Canaan</em>, Ham's son, to be a servant. The text says nothing about skin color or Africa. Linking the curse to dark skin came much later and was spread by interpreters across several traditions. By the 1800s it was a standard pro-slavery argument in American pulpits.</p><p><b>The “Slave Bible.”</b> In 1807 a British missionary society printed <em>Select Parts of the Holy Bible, for the Use of the Negro Slaves</em>. It cut most of the Old Testament, including the Exodus story of freedom from slavery, and kept passages like “Servants, be obedient to them that are your masters.”</p><p>Scripture was also the strongest weapon <em>against</em> slavery: enslaved people sang of Moses and Exodus, and abolitionists from Frederick Douglass to the Black church built their case on it.</p>",
-          "sources": ["genesis", "ham", "goldenberg", "slavebible"]
+          "sources": [
+            "genesis",
+            "ham",
+            "goldenberg",
+            "slavebible"
+          ]
         },
         {
           "h": "The Book of Enoch and modern race myths",
           "label": "belief",
           "body": "<p><b>1 Enoch</b> is an ancient Jewish book that is part of the Bible of the Ethiopian Orthodox Church; fragments were found among the Dead Sea Scrolls, and the Letter of Jude (verses 14–15) quotes it. It tells how angels called the Watchers came to earth, taught forbidden knowledge, and fathered giants (the Nephilim of Genesis 6). <b>It contains no teaching about race.</b></p><p>Modern movements have still built race stories on Genesis and Enoch. We describe them so you can recognize them, not because they are true:</p><ul><li><b>Christian Identity “two-seedline” theology</b>, a white-supremacist doctrine claiming Jews and people of color descend from the serpent or from “pre-Adamic” races.</li><li><b>The Nation of Islam's story of Yakub</b>, which teaches that a scientist named Yakub created white people thousands of years ago.</li><li>Some Hebrew Israelite groups teach that Black, Hispanic and Native Americans are the true Israelites and that others are cursed.</li></ul><p>These stories mirror each other: each claims race is ancient, fixed and cosmic. The historical record shows the opposite: race is recent, made by people, and can be unmade.</p>",
-          "sources": ["enoch", "identity", "yakub"]
+          "sources": [
+            "enoch",
+            "identity",
+            "yakub"
+          ]
         }
       ],
       "timeline": [
-        { "y": 1452, "t": "Dum Diversas authorizes Portugal to enslave “Saracens and pagans”", "label": "documented" },
-        { "y": 1493, "t": "Inter caetera: the Doctrine of Discovery", "label": "documented" },
-        { "y": 1619, "t": "First recorded enslaved Africans arrive in English Virginia", "label": "documented" },
-        { "y": 1662, "t": "Virginia: a child's status follows the mother", "label": "documented" },
-        { "y": 1676, "t": "Bacon's Rebellion unites servants and enslaved people", "label": "documented" },
-        { "y": 1685, "t": "France's Code Noir", "label": "documented" },
-        { "y": 1705, "t": "Virginia slave codes", "label": "documented" },
-        { "y": 1785, "t": "Jefferson's Notes on the State of Virginia", "label": "documented" },
-        { "y": 1804, "t": "Haiti becomes the first free Black republic", "label": "documented" },
-        { "y": 1807, "t": "The “Slave Bible” is printed", "label": "documented" },
-        { "y": 1823, "t": "Johnson v. M'Intosh puts the Discovery doctrine in U.S. law", "label": "documented" },
-        { "y": 1825, "t": "France forces Haiti to pay an “independence debt”", "label": "documented" },
-        { "y": 1831, "t": "Nat Turner's rebellion; reading bans tighten", "label": "documented" },
-        { "y": 1898, "t": "Wilmington coup overthrows an elected biracial government", "label": "documented" },
-        { "y": 1916, "t": "The Passing of the Great Race", "label": "documented" },
-        { "y": 1924, "t": "Immigration Act sets racial quotas", "label": "documented" },
-        { "y": 2023, "t": "The Vatican repudiates the Doctrine of Discovery", "label": "documented" }
+        {
+          "y": 1452,
+          "t": "Dum Diversas authorizes Portugal to enslave “Saracens and pagans”",
+          "label": "documented"
+        },
+        {
+          "y": 1493,
+          "t": "Inter caetera: the Doctrine of Discovery",
+          "label": "documented"
+        },
+        {
+          "y": 1619,
+          "t": "First recorded enslaved Africans arrive in English Virginia",
+          "label": "documented"
+        },
+        {
+          "y": 1662,
+          "t": "Virginia: a child's status follows the mother",
+          "label": "documented"
+        },
+        {
+          "y": 1676,
+          "t": "Bacon's Rebellion unites servants and enslaved people",
+          "label": "documented"
+        },
+        {
+          "y": 1685,
+          "t": "France's Code Noir",
+          "label": "documented"
+        },
+        {
+          "y": 1705,
+          "t": "Virginia slave codes",
+          "label": "documented"
+        },
+        {
+          "y": 1785,
+          "t": "Jefferson's Notes on the State of Virginia",
+          "label": "documented"
+        },
+        {
+          "y": 1804,
+          "t": "Haiti becomes the first free Black republic",
+          "label": "documented"
+        },
+        {
+          "y": 1807,
+          "t": "The “Slave Bible” is printed",
+          "label": "documented"
+        },
+        {
+          "y": 1823,
+          "t": "Johnson v. M'Intosh puts the Discovery doctrine in U.S. law",
+          "label": "documented"
+        },
+        {
+          "y": 1825,
+          "t": "France forces Haiti to pay an “independence debt”",
+          "label": "documented"
+        },
+        {
+          "y": 1831,
+          "t": "Nat Turner's rebellion; reading bans tighten",
+          "label": "documented"
+        },
+        {
+          "y": 1898,
+          "t": "Wilmington coup overthrows an elected biracial government",
+          "label": "documented"
+        },
+        {
+          "y": 1916,
+          "t": "The Passing of the Great Race",
+          "label": "documented"
+        },
+        {
+          "y": 1924,
+          "t": "Immigration Act sets racial quotas",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "The Vatican repudiates the Doctrine of Discovery",
+          "label": "documented"
+        }
       ],
       "quiz": [
-        { "q": "In Genesis 9, who does Noah curse?", "options": ["Ham", "Canaan", "Shem", "All of Ham's descendants with dark skin"], "a": 1, "why": "Genesis 9:25 names Canaan. Skin color is never mentioned." },
-        { "q": "What did Virginia's 1662 law decide?", "options": ["That baptism frees a slave", "That a child's status follows the mother", "That indentured servants must be freed after 7 years", "That slavery was illegal"], "a": 1, "why": "Partus sequitur ventrem made children of enslaved women enslaved for life." },
-        { "q": "Which U.S. Supreme Court case adopted the Doctrine of Discovery?", "options": ["Dred Scott v. Sandford", "Plessy v. Ferguson", "Johnson v. M'Intosh", "Buck v. Bell"], "a": 2, "why": "Johnson v. M'Intosh (1823)." },
-        { "q": "What does the Book of Enoch say about race?", "options": ["Black people are cursed", "White people were created by a scientist", "Nothing; it has no teaching about race", "The Watchers fathered the races"], "a": 2, "why": "1 Enoch is about the Watchers and the giants; race myths built on it are modern." },
-        { "q": "What did the 1807 “Slave Bible” leave out?", "options": ["The Gospels", "The Exodus story of freedom from slavery", "The Ten Commandments", "Nothing; it was a full Bible"], "a": 1, "why": "Its editors cut passages that could inspire hope of freedom." }
+        {
+          "q": "In Genesis 9, who does Noah curse?",
+          "options": [
+            "Ham",
+            "Canaan",
+            "Shem",
+            "All of Ham's descendants with dark skin"
+          ],
+          "a": 1,
+          "why": "Genesis 9:25 names Canaan. Skin color is never mentioned."
+        },
+        {
+          "q": "What did Virginia's 1662 law decide?",
+          "options": [
+            "That baptism frees a slave",
+            "That a child's status follows the mother",
+            "That indentured servants must be freed after 7 years",
+            "That slavery was illegal"
+          ],
+          "a": 1,
+          "why": "Partus sequitur ventrem made children of enslaved women enslaved for life."
+        },
+        {
+          "q": "Which U.S. Supreme Court case adopted the Doctrine of Discovery?",
+          "options": [
+            "Dred Scott v. Sandford",
+            "Plessy v. Ferguson",
+            "Johnson v. M'Intosh",
+            "Buck v. Bell"
+          ],
+          "a": 2,
+          "why": "Johnson v. M'Intosh (1823)."
+        },
+        {
+          "q": "What does the Book of Enoch say about race?",
+          "options": [
+            "Black people are cursed",
+            "White people were created by a scientist",
+            "Nothing; it has no teaching about race",
+            "The Watchers fathered the races"
+          ],
+          "a": 2,
+          "why": "1 Enoch is about the Watchers and the giants; race myths built on it are modern."
+        },
+        {
+          "q": "What did the 1807 “Slave Bible” leave out?",
+          "options": [
+            "The Gospels",
+            "The Exodus story of freedom from slavery",
+            "The Ten Commandments",
+            "Nothing; it was a full Bible"
+          ],
+          "a": 1,
+          "why": "Its editors cut passages that could inspire hope of freedom."
+        }
       ],
       "quest": "source-detective",
       "map": [],
       "sourcesList": {
-        "snowden": { "t": "Frank M. Snowden Jr., Before Color Prejudice: The Ancient View of Blacks (Harvard University Press, 1983)" },
-        "slav": { "t": "Online Etymology Dictionary: “slave”", "url": "https://www.etymonline.com/word/slave" },
-        "dumdiversas": { "t": "Dum Diversas (1452) and Romanus Pontifex (1455)", "url": "https://en.wikipedia.org/wiki/Dum_Diversas" },
-        "intercaetera": { "t": "Inter caetera (1493)", "url": "https://en.wikipedia.org/wiki/Inter_caetera" },
-        "johnson": { "t": "Johnson v. M'Intosh, 21 U.S. 543 (1823)", "url": "https://supreme.justia.com/cases/federal/us/21/543/" },
-        "vatican": { "t": "Joint Statement of the Dicasteries for Culture and Education and for Promoting Integral Human Development on the “Doctrine of Discovery”, Holy See Press Office, March 30, 2023" },
-        "partus": { "t": "Partus sequitur ventrem (Virginia, 1662)", "url": "https://en.wikipedia.org/wiki/Partus_sequitur_ventrem" },
-        "codenoir": { "t": "Code Noir (1685)", "url": "https://en.wikipedia.org/wiki/Code_Noir" },
-        "bacon": { "t": "Bacon's Rebellion", "url": "https://en.wikipedia.org/wiki/Bacon%27s_Rebellion" },
-        "morgan": { "t": "Edmund S. Morgan, American Slavery, American Freedom (1975)" },
-        "williams": { "t": "Eric Williams, Capitalism and Slavery (1944)", "url": "https://en.wikipedia.org/wiki/Capitalism_and_Slavery" },
-        "kendi": { "t": "Ibram X. Kendi, Stamped from the Beginning (2016)", "url": "https://en.wikipedia.org/wiki/Stamped_from_the_Beginning" },
-        "jefferson": { "t": "Thomas Jefferson, Notes on the State of Virginia (1785), Query XIV" },
-        "haiti": { "t": "Haitian Revolution; the 1825 indemnity", "url": "https://en.wikipedia.org/wiki/Haitian_Revolution" },
-        "turner": { "t": "Nat Turner's Rebellion", "url": "https://en.wikipedia.org/wiki/Nat_Turner%27s_slave_rebellion" },
-        "wilmington": { "t": "1898 Wilmington Race Riot Commission, Final Report (North Carolina, 2006)" },
-        "grant": { "t": "Madison Grant, The Passing of the Great Race (1916)", "url": "https://en.wikipedia.org/wiki/The_Passing_of_the_Great_Race" },
-        "replacement": { "t": "Great Replacement conspiracy theory", "url": "https://en.wikipedia.org/wiki/Great_Replacement_conspiracy_theory" },
-        "genesis": { "t": "Genesis 9:18–27 (any translation)" },
-        "ham": { "t": "Curse of Ham", "url": "https://en.wikipedia.org/wiki/Curse_of_Ham" },
-        "goldenberg": { "t": "David M. Goldenberg, The Curse of Ham: Race and Slavery in Early Judaism, Christianity, and Islam (Princeton, 2003)" },
-        "slavebible": { "t": "Select Parts of the Holy Bible, for the Use of the Negro Slaves (1807); Museum of the Bible exhibit, 2018–2019" },
-        "enoch": { "t": "Book of Enoch", "url": "https://en.wikipedia.org/wiki/Book_of_Enoch" },
-        "identity": { "t": "Christian Identity", "url": "https://en.wikipedia.org/wiki/Christian_Identity" },
-        "yakub": { "t": "Yakub (Nation of Islam)", "url": "https://en.wikipedia.org/wiki/Yakub_(Nation_of_Islam)" }
+        "snowden": {
+          "t": "Frank M. Snowden Jr., Before Color Prejudice: The Ancient View of Blacks (Harvard University Press, 1983)"
+        },
+        "slav": {
+          "t": "Online Etymology Dictionary: “slave”",
+          "url": "https://www.etymonline.com/word/slave"
+        },
+        "dumdiversas": {
+          "t": "Dum Diversas (1452) and Romanus Pontifex (1455)",
+          "url": "https://en.wikipedia.org/wiki/Dum_Diversas"
+        },
+        "intercaetera": {
+          "t": "Inter caetera (1493)",
+          "url": "https://en.wikipedia.org/wiki/Inter_caetera"
+        },
+        "johnson": {
+          "t": "Johnson v. M'Intosh, 21 U.S. 543 (1823)",
+          "url": "https://supreme.justia.com/cases/federal/us/21/543/"
+        },
+        "vatican": {
+          "t": "Joint Statement of the Dicasteries for Culture and Education and for Promoting Integral Human Development on the “Doctrine of Discovery”, Holy See Press Office, March 30, 2023"
+        },
+        "partus": {
+          "t": "Partus sequitur ventrem (Virginia, 1662)",
+          "url": "https://en.wikipedia.org/wiki/Partus_sequitur_ventrem"
+        },
+        "codenoir": {
+          "t": "Code Noir (1685)",
+          "url": "https://en.wikipedia.org/wiki/Code_Noir"
+        },
+        "bacon": {
+          "t": "Bacon's Rebellion",
+          "url": "https://en.wikipedia.org/wiki/Bacon%27s_Rebellion"
+        },
+        "morgan": {
+          "t": "Edmund S. Morgan, American Slavery, American Freedom (1975)"
+        },
+        "williams": {
+          "t": "Eric Williams, Capitalism and Slavery (1944)",
+          "url": "https://en.wikipedia.org/wiki/Capitalism_and_Slavery"
+        },
+        "kendi": {
+          "t": "Ibram X. Kendi, Stamped from the Beginning (2016)",
+          "url": "https://en.wikipedia.org/wiki/Stamped_from_the_Beginning"
+        },
+        "jefferson": {
+          "t": "Thomas Jefferson, Notes on the State of Virginia (1785), Query XIV"
+        },
+        "haiti": {
+          "t": "Haitian Revolution; the 1825 indemnity",
+          "url": "https://en.wikipedia.org/wiki/Haitian_Revolution"
+        },
+        "turner": {
+          "t": "Nat Turner's Rebellion",
+          "url": "https://en.wikipedia.org/wiki/Nat_Turner%27s_slave_rebellion"
+        },
+        "wilmington": {
+          "t": "1898 Wilmington Race Riot Commission, Final Report (North Carolina, 2006)"
+        },
+        "grant": {
+          "t": "Madison Grant, The Passing of the Great Race (1916)",
+          "url": "https://en.wikipedia.org/wiki/The_Passing_of_the_Great_Race"
+        },
+        "replacement": {
+          "t": "Great Replacement conspiracy theory",
+          "url": "https://en.wikipedia.org/wiki/Great_Replacement_conspiracy_theory"
+        },
+        "genesis": {
+          "t": "Genesis 9:18–27 (any translation)"
+        },
+        "ham": {
+          "t": "Curse of Ham",
+          "url": "https://en.wikipedia.org/wiki/Curse_of_Ham"
+        },
+        "goldenberg": {
+          "t": "David M. Goldenberg, The Curse of Ham: Race and Slavery in Early Judaism, Christianity, and Islam (Princeton, 2003)"
+        },
+        "slavebible": {
+          "t": "Select Parts of the Holy Bible, for the Use of the Negro Slaves (1807); Museum of the Bible exhibit, 2018–2019"
+        },
+        "enoch": {
+          "t": "Book of Enoch",
+          "url": "https://en.wikipedia.org/wiki/Book_of_Enoch"
+        },
+        "identity": {
+          "t": "Christian Identity",
+          "url": "https://en.wikipedia.org/wiki/Christian_Identity"
+        },
+        "yakub": {
+          "t": "Yakub (Nation of Islam)",
+          "url": "https://en.wikipedia.org/wiki/Yakub_(Nation_of_Islam)"
+        }
       }
     },
     {
@@ -167,9 +625,18 @@
       "title": "Discovery and conquest",
       "short": "How the Doctrine of Discovery became U.S. law, and what it did to Native nations: removal, broken treaties and boarding schools.",
       "status": "outline",
-      "topics": ["The Doctrine of Discovery in U.S. law (Johnson v. M'Intosh, 1823)", "The Indian Removal Act (1830) and the Trail of Tears", "Land cessions and broken treaties", "Federal Indian boarding schools: 408 schools, and at least 973 documented deaths (Interior Department reports, 2022 and 2024)", "Native resistance and sovereignty today"],
+      "topics": [
+        "The Doctrine of Discovery in U.S. law (Johnson v. M'Intosh, 1823)",
+        "The Indian Removal Act (1830) and the Trail of Tears",
+        "Land cessions and broken treaties",
+        "Federal Indian boarding schools: 408 schools, and at least 973 documented deaths (Interior Department reports, 2022 and 2024)",
+        "Native resistance and sovereignty today"
+      ],
       "sourcesList": {
-        "boarding": { "t": "U.S. Department of the Interior, Federal Indian Boarding School Initiative Investigative Report (vol. 1, 2022; vol. 2, 2024)", "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative" }
+        "boarding": {
+          "t": "U.S. Department of the Interior, Federal Indian Boarding School Initiative Investigative Report (vol. 1, 2022; vol. 2, 2024)",
+          "url": "https://www.bia.gov/service/federal-indian-boarding-school-initiative"
+        }
       }
     },
     {
@@ -178,9 +645,18 @@
       "title": "Slavery makes race law",
       "short": "The Atlantic slave trade, the economy it built, and the laws that made slavery permanent and hereditary.",
       "status": "outline",
-      "topics": ["About 12.5 million people forced aboard slave ships, 1514–1866 (SlaveVoyages.org)", "Slave codes, state by state", "Cotton, banks and the national economy", "The Fugitive Slave Acts and Dred Scott (1857)", "Resistance: revolts, escape, the Underground Railroad"],
+      "topics": [
+        "About 12.5 million people forced aboard slave ships, 1514–1866 (SlaveVoyages.org)",
+        "Slave codes, state by state",
+        "Cotton, banks and the national economy",
+        "The Fugitive Slave Acts and Dred Scott (1857)",
+        "Resistance: revolts, escape, the Underground Railroad"
+      ],
       "sourcesList": {
-        "voyages": { "t": "SlaveVoyages.org: Trans-Atlantic Slave Trade Database", "url": "https://www.slavevoyages.org/" }
+        "voyages": {
+          "t": "SlaveVoyages.org: Trans-Atlantic Slave Trade Database",
+          "url": "https://www.slavevoyages.org/"
+        }
       }
     },
     {
@@ -189,10 +665,28 @@
       "title": "Reconstruction overthrown",
       "short": "Freedom, Black political power, and the terror and laws that took both away.",
       "status": "outline",
-      "topics": ["The 13th, 14th and 15th Amendments, and the 13th's “punishment for crime” exception", "Black Codes and convict leasing", "Lynching: more than 4,400 documented victims, 1877–1950 (EJI)", "Massacres: Colfax 1873, Wilmington 1898, Elaine 1919, Tulsa 1921, Rosewood 1923", "Jim Crow laws and their remnants (see the old laws tracker)"],
-      "map": [{ "t": "Lynchings in the Deep South", "href": "index.html?layers=priority,lynch,mwt&at=32.6,-88.3,7" }, { "t": "Old segregation laws still on the books", "href": "index.html?layers=segregation,residual" }],
+      "topics": [
+        "The 13th, 14th and 15th Amendments, and the 13th's “punishment for crime” exception",
+        "Black Codes and convict leasing",
+        "Lynching: more than 4,400 documented victims, 1877–1950 (EJI)",
+        "Massacres: Colfax 1873, Wilmington 1898, Elaine 1919, Tulsa 1921, Rosewood 1923 (told in full in module 8)",
+        "Jim Crow laws and their remnants (see the old laws tracker)"
+      ],
+      "map": [
+        {
+          "t": "Lynchings in the Deep South",
+          "href": "index.html?layers=priority,lynch,mwt&at=32.6,-88.3,7"
+        },
+        {
+          "t": "Old segregation laws still on the books",
+          "href": "index.html?layers=segregation,residual"
+        }
+      ],
       "sourcesList": {
-        "eji": { "t": "Equal Justice Initiative, Lynching in America", "url": "https://eji.org/reports/lynching-in-america/" }
+        "eji": {
+          "t": "Equal Justice Initiative, Lynching in America",
+          "url": "https://eji.org/reports/lynching-in-america/"
+        }
       }
     },
     {
@@ -208,83 +702,263 @@
           "h": "Ranking humans",
           "label": "documented",
           "body": "<p>In 1758 Carl Linnaeus divided humans into varieties and gave each a temperament: Europeans “governed by laws,” Africans “governed by caprice.” In the 1830s–40s Samuel Morton measured skull sizes to rank races, and in 1854 Josiah Nott and George Gliddon's <em>Types of Mankind</em> argued the races were separate species, a book widely used to defend slavery. None of it holds up: modern genetics finds more variation <em>within</em> any so-called race than between them.</p>",
-          "sources": ["types", "aapa"]
+          "sources": [
+            "types",
+            "aapa"
+          ]
         },
         {
           "h": "Experiments without consent",
           "label": "documented",
           "body": "<ul><li><b>J. Marion Sims, 1845–1849:</b> the “father of modern gynecology” developed his surgery by operating repeatedly, without anesthesia, on enslaved women including Anarcha, Betsey and Lucy. New York City removed his Central Park statue in 2018.</li><li><b>Tuskegee, 1932–1972:</b> the U.S. Public Health Service followed about 600 Black men in Alabama, 399 of them with syphilis, without telling them their diagnosis and without treating them, even after penicillin became the standard cure in the 1940s. It ended only when a whistleblower went to the press. President Clinton apologized in 1997.</li><li><b>Henrietta Lacks, 1951:</b> cells taken from her cancer without her knowledge became the HeLa line used in labs worldwide. Her family reached a settlement with one company in 2023.</li></ul>",
-          "sources": ["sims", "tuskegee", "lacks"]
+          "sources": [
+            "sims",
+            "tuskegee",
+            "lacks"
+          ]
         },
         {
           "h": "Eugenics and forced sterilization",
           "label": "documented",
           "body": "<p>In <em>Buck v. Bell</em> (1927) the Supreme Court upheld forced sterilization (“Three generations of imbeciles are enough”). It has never been overruled. More than 60,000 people were sterilized under laws in 32 states. Early victims were mostly poor white people labeled “feebleminded”; after the 1950s, in the South especially, they were increasingly Black women.</p><ul><li><b>North Carolina</b>'s Eugenics Board sterilized about 7,600 people from 1929 to 1974. In 2013 it became the first state to pay survivors.</li><li><b>Fannie Lou Hamer</b> was sterilized without consent in 1961 while having a tumor removed. She called it a “Mississippi appendectomy,” a common experience among Black women in the South.</li><li><b>The Relf sisters</b>, ages 12 and 14, were sterilized at a federally funded clinic in Montgomery, Alabama, in 1973. Their lawsuit led to federal consent rules.</li><li><b>Native women:</b> a 1976 federal audit (GAO) found 3,406 sterilizations by the Indian Health Service in just four of its twelve areas from 1973 to 1976, many with inadequate consent.</li><li><b>Puerto Rico:</b> by 1965 about a third of mothers had been sterilized, under programs encouraged by U.S. and island officials.</li><li><b>California</b> sterilized about 20,000 people from 1909 to 1979, and nearly 150 women in state prisons from 2006 to 2010; a 2014 state audit found consent rules were broken.</li><li><b>Immigration detention:</b> a 2022 bipartisan U.S. Senate investigation found that women at the Irwin County center in Georgia underwent excessive and often unnecessary gynecological procedures.</li></ul>",
-          "sources": ["buck", "kaelber", "hamer", "relf", "gao", "senate"]
+          "sources": [
+            "buck",
+            "kaelber",
+            "hamer",
+            "relf",
+            "gao",
+            "senate"
+          ]
         },
         {
           "h": "Margaret Sanger and the “Negro Project”",
           "label": "debated",
           "body": "<p>Margaret Sanger founded the American Birth Control League in 1921, which became Planned Parenthood in 1942. She supported eugenics, as many Progressive-era reformers did, and spoke to a women's auxiliary of the Ku Klux Klan in 1926. In 2020 Planned Parenthood of Greater New York removed her name from its Manhattan clinic over her eugenics ties.</p><p>In 1939 her federation started the “Negro Project” to bring birth control to the rural South. W.E.B. Du Bois and Mary McLeod Bethune supported it. In a letter about it, Sanger wrote: “We do not want word to go out that we want to exterminate the Negro population, and the minister is the man who can straighten out that idea if it ever occurs to any of their more rebellious members.” Historians disagree about that sentence. Most read it as worry that rumors would sink the project, not as a secret plan; critics read it as revealing.</p>",
-          "sources": ["sangerpapers", "negroproject", "ppny"]
+          "sources": [
+            "sangerpapers",
+            "negroproject",
+            "ppny"
+          ]
         },
         {
           "h": "“Planned Parenthood was founded to exterminate Black Americans”",
           "label": "belief",
           "body": "<p>This claim, common in political campaigns, goes beyond the record. Sanger opposed abortion in her lifetime; she promoted contraception. Planned Parenthood did not provide abortions until about 1970. The documented coercion against Black, Native and Latina women came mainly from state eugenics boards and government-funded programs, not from a hidden plan inside one organization.</p><p>This site takes no position on abortion. It documents coercion: anyone, on any side, who wants to end it should know where it actually happened.</p>",
-          "sources": ["negroproject"]
+          "sources": [
+            "negroproject"
+          ]
         },
         {
           "h": "What the numbers show today",
           "label": "documented",
           "body": "<p>CDC abortion surveillance reports show the abortion rate among Black women is roughly four times the rate among white women. Research from the CDC and the Guttmacher Institute links this to higher rates of <em>unintended</em> pregnancy, which in turn follow from unequal access to contraception and health care, from poverty, and from well-earned distrust of the medical system.</p><p>The same unequal system shows up elsewhere: Black women die from pregnancy-related causes at about two and a half to three times the rate of white women (CDC), a gap that holds even for college-educated women.</p>",
-          "sources": ["cdcabortion", "guttmacher", "cdcmaternal"]
+          "sources": [
+            "cdcabortion",
+            "guttmacher",
+            "cdcmaternal"
+          ]
         }
       ],
       "timeline": [
-        { "y": 1758, "t": "Linnaeus ranks human “varieties”", "label": "documented" },
-        { "y": 1845, "t": "J. Marion Sims begins experiments on enslaved women", "label": "documented" },
-        { "y": 1854, "t": "Types of Mankind", "label": "documented" },
-        { "y": 1907, "t": "Indiana passes the first sterilization law", "label": "documented" },
-        { "y": 1927, "t": "Buck v. Bell upholds forced sterilization", "label": "documented" },
-        { "y": 1932, "t": "Tuskegee syphilis study begins", "label": "documented" },
-        { "y": 1939, "t": "The “Negro Project”", "label": "debated" },
-        { "y": 1951, "t": "Henrietta Lacks's cells taken", "label": "documented" },
-        { "y": 1961, "t": "Fannie Lou Hamer sterilized without consent", "label": "documented" },
-        { "y": 1972, "t": "Tuskegee exposed and ended", "label": "documented" },
-        { "y": 1973, "t": "The Relf sisters sterilized", "label": "documented" },
-        { "y": 1976, "t": "GAO audit of Indian Health Service sterilizations", "label": "documented" },
-        { "y": 1997, "t": "Presidential apology for Tuskegee", "label": "documented" },
-        { "y": 2013, "t": "North Carolina votes to compensate survivors", "label": "documented" },
-        { "y": 2022, "t": "Senate report on Irwin County detention center", "label": "documented" }
+        {
+          "y": 1758,
+          "t": "Linnaeus ranks human “varieties”",
+          "label": "documented"
+        },
+        {
+          "y": 1845,
+          "t": "J. Marion Sims begins experiments on enslaved women",
+          "label": "documented"
+        },
+        {
+          "y": 1854,
+          "t": "Types of Mankind",
+          "label": "documented"
+        },
+        {
+          "y": 1907,
+          "t": "Indiana passes the first sterilization law",
+          "label": "documented"
+        },
+        {
+          "y": 1927,
+          "t": "Buck v. Bell upholds forced sterilization",
+          "label": "documented"
+        },
+        {
+          "y": 1932,
+          "t": "Tuskegee syphilis study begins",
+          "label": "documented"
+        },
+        {
+          "y": 1939,
+          "t": "The “Negro Project”",
+          "label": "debated"
+        },
+        {
+          "y": 1951,
+          "t": "Henrietta Lacks's cells taken",
+          "label": "documented"
+        },
+        {
+          "y": 1961,
+          "t": "Fannie Lou Hamer sterilized without consent",
+          "label": "documented"
+        },
+        {
+          "y": 1972,
+          "t": "Tuskegee exposed and ended",
+          "label": "documented"
+        },
+        {
+          "y": 1973,
+          "t": "The Relf sisters sterilized",
+          "label": "documented"
+        },
+        {
+          "y": 1976,
+          "t": "GAO audit of Indian Health Service sterilizations",
+          "label": "documented"
+        },
+        {
+          "y": 1997,
+          "t": "Presidential apology for Tuskegee",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "North Carolina votes to compensate survivors",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Senate report on Irwin County detention center",
+          "label": "documented"
+        }
       ],
       "quiz": [
-        { "q": "How long did the Tuskegee syphilis study run?", "options": ["2 years", "10 years", "40 years", "It never happened"], "a": 2, "why": "1932 to 1972." },
-        { "q": "Which Supreme Court case upheld forced sterilization, and has never been overruled?", "options": ["Roe v. Wade", "Buck v. Bell", "Brown v. Board", "Loving v. Virginia"], "a": 1, "why": "Buck v. Bell (1927)." },
-        { "q": "What did Fannie Lou Hamer call sterilizations done without consent?", "options": ["A Mississippi appendectomy", "The Negro Project", "La operación", "Twilight sleep"], "a": 0, "why": "Hamer was sterilized without consent in 1961." },
-        { "q": "When did Planned Parenthood begin providing abortions?", "options": ["At its founding in 1921", "In 1942", "Around 1970", "Never"], "a": 2, "why": "Around 1970, decades after Sanger's work on contraception." },
-        { "q": "What does research most strongly link to the higher abortion rate among Black women?", "options": ["A secret plan", "Higher unintended pregnancy rates tied to unequal access to care and contraception", "Genetics", "Nothing; there is no difference"], "a": 1, "why": "CDC and Guttmacher research." }
+        {
+          "q": "How long did the Tuskegee syphilis study run?",
+          "options": [
+            "2 years",
+            "10 years",
+            "40 years",
+            "It never happened"
+          ],
+          "a": 2,
+          "why": "1932 to 1972."
+        },
+        {
+          "q": "Which Supreme Court case upheld forced sterilization, and has never been overruled?",
+          "options": [
+            "Roe v. Wade",
+            "Buck v. Bell",
+            "Brown v. Board",
+            "Loving v. Virginia"
+          ],
+          "a": 1,
+          "why": "Buck v. Bell (1927)."
+        },
+        {
+          "q": "What did Fannie Lou Hamer call sterilizations done without consent?",
+          "options": [
+            "A Mississippi appendectomy",
+            "The Negro Project",
+            "La operación",
+            "Twilight sleep"
+          ],
+          "a": 0,
+          "why": "Hamer was sterilized without consent in 1961."
+        },
+        {
+          "q": "When did Planned Parenthood begin providing abortions?",
+          "options": [
+            "At its founding in 1921",
+            "In 1942",
+            "Around 1970",
+            "Never"
+          ],
+          "a": 2,
+          "why": "Around 1970, decades after Sanger's work on contraception."
+        },
+        {
+          "q": "What does research most strongly link to the higher abortion rate among Black women?",
+          "options": [
+            "A secret plan",
+            "Higher unintended pregnancy rates tied to unequal access to care and contraception",
+            "Genetics",
+            "Nothing; there is no difference"
+          ],
+          "a": 1,
+          "why": "CDC and Guttmacher research."
+        }
       ],
       "quest": "cdc-export",
       "map": [],
       "sourcesList": {
-        "types": { "t": "Scientific racism", "url": "https://en.wikipedia.org/wiki/Scientific_racism" },
-        "aapa": { "t": "American Association of Biological Anthropologists, Statement on Race and Racism (2019)" },
-        "sims": { "t": "J. Marion Sims", "url": "https://en.wikipedia.org/wiki/J._Marion_Sims" },
-        "tuskegee": { "t": "CDC: The U.S. Public Health Service Untreated Syphilis Study at Tuskegee", "url": "https://www.cdc.gov/tuskegee/index.html" },
-        "lacks": { "t": "Johns Hopkins Medicine: Henrietta Lacks", "url": "https://www.hopkinsmedicine.org/henrietta-lacks" },
-        "buck": { "t": "Buck v. Bell, 274 U.S. 200 (1927)", "url": "https://supreme.justia.com/cases/federal/us/274/200/" },
-        "kaelber": { "t": "Lutz Kaelber (University of Vermont), Eugenics: Compulsory Sterilization in 50 American States", "url": "https://www.uvm.edu/~lkaelber/eugenics/" },
-        "hamer": { "t": "Fannie Lou Hamer", "url": "https://en.wikipedia.org/wiki/Fannie_Lou_Hamer" },
-        "relf": { "t": "Relf v. Weinberger (1974)", "url": "https://en.wikipedia.org/wiki/Relf_v._Weinberger" },
-        "gao": { "t": "U.S. GAO, Investigation of Allegations Concerning Indian Health Service, HRD-77-3 (1976)", "url": "https://www.gao.gov/products/hrd-77-3" },
-        "senate": { "t": "U.S. Senate Permanent Subcommittee on Investigations, Medical Mistreatment of Women in ICE Detention (November 2022)" },
-        "sangerpapers": { "t": "Margaret Sanger Papers Project, New York University", "url": "https://sanger.hosting.nyu.edu/" },
-        "negroproject": { "t": "Negro Project", "url": "https://en.wikipedia.org/wiki/Negro_Project" },
-        "ppny": { "t": "Planned Parenthood of Greater New York statement removing Sanger's name (July 2020)" },
-        "cdcabortion": { "t": "CDC, Abortion Surveillance — United States (annual MMWR report)" },
-        "guttmacher": { "t": "Guttmacher Institute, research on unintended pregnancy in the United States", "url": "https://www.guttmacher.org/" },
-        "cdcmaternal": { "t": "CDC National Center for Health Statistics, Maternal Mortality Rates in the United States (annual)" }
+        "types": {
+          "t": "Scientific racism",
+          "url": "https://en.wikipedia.org/wiki/Scientific_racism"
+        },
+        "aapa": {
+          "t": "American Association of Biological Anthropologists, Statement on Race and Racism (2019)"
+        },
+        "sims": {
+          "t": "J. Marion Sims",
+          "url": "https://en.wikipedia.org/wiki/J._Marion_Sims"
+        },
+        "tuskegee": {
+          "t": "CDC: The U.S. Public Health Service Untreated Syphilis Study at Tuskegee",
+          "url": "https://www.cdc.gov/tuskegee/index.html"
+        },
+        "lacks": {
+          "t": "Johns Hopkins Medicine: Henrietta Lacks",
+          "url": "https://www.hopkinsmedicine.org/henrietta-lacks"
+        },
+        "buck": {
+          "t": "Buck v. Bell, 274 U.S. 200 (1927)",
+          "url": "https://supreme.justia.com/cases/federal/us/274/200/"
+        },
+        "kaelber": {
+          "t": "Lutz Kaelber (University of Vermont), Eugenics: Compulsory Sterilization in 50 American States",
+          "url": "https://www.uvm.edu/~lkaelber/eugenics/"
+        },
+        "hamer": {
+          "t": "Fannie Lou Hamer",
+          "url": "https://en.wikipedia.org/wiki/Fannie_Lou_Hamer"
+        },
+        "relf": {
+          "t": "Relf v. Weinberger (1974)",
+          "url": "https://en.wikipedia.org/wiki/Relf_v._Weinberger"
+        },
+        "gao": {
+          "t": "U.S. GAO, Investigation of Allegations Concerning Indian Health Service, HRD-77-3 (1976)",
+          "url": "https://www.gao.gov/products/hrd-77-3"
+        },
+        "senate": {
+          "t": "U.S. Senate Permanent Subcommittee on Investigations, Medical Mistreatment of Women in ICE Detention (November 2022)"
+        },
+        "sangerpapers": {
+          "t": "Margaret Sanger Papers Project, New York University",
+          "url": "https://sanger.hosting.nyu.edu/"
+        },
+        "negroproject": {
+          "t": "Negro Project",
+          "url": "https://en.wikipedia.org/wiki/Negro_Project"
+        },
+        "ppny": {
+          "t": "Planned Parenthood of Greater New York statement removing Sanger's name (July 2020)"
+        },
+        "cdcabortion": {
+          "t": "CDC, Abortion Surveillance — United States (annual MMWR report)"
+        },
+        "guttmacher": {
+          "t": "Guttmacher Institute, research on unintended pregnancy in the United States",
+          "url": "https://www.guttmacher.org/"
+        },
+        "cdcmaternal": {
+          "t": "CDC National Center for Health Statistics, Maternal Mortality Rates in the United States (annual)"
+        }
       }
     },
     {
@@ -293,7 +967,14 @@
       "title": "Borders: who gets to be American",
       "short": "Chinese Exclusion, racial quotas, mass deportations of Mexican Americans, Japanese American incarceration, and today's enforcement.",
       "status": "outline",
-      "topics": ["The Naturalization Act of 1790 (“free white persons”)", "The Chinese Exclusion Act (1882)", "The 1924 Immigration Act's national-origin quotas", "Mexican Repatriation (1929–1936), which removed many U.S. citizens", "Executive Order 9066 and the incarceration of about 120,000 Japanese Americans; the 1988 apology and payments", "“Operation Wetback” (1954) and today's deportations"],
+      "topics": [
+        "The Naturalization Act of 1790 (“free white persons”)",
+        "The Chinese Exclusion Act (1882)",
+        "The 1924 Immigration Act's national-origin quotas",
+        "Mexican Repatriation (1929–1936), which removed many U.S. citizens",
+        "Executive Order 9066 and the incarceration of about 120,000 Japanese Americans; the 1988 apology and payments",
+        "“Operation Wetback” (1954) and today's deportations"
+      ],
       "sourcesList": {}
     },
     {
@@ -302,13 +983,405 @@
       "title": "Place: who gets to live where",
       "short": "Redlining, racial covenants, sundown towns, urban renewal and highways, and the wealth gap they left.",
       "status": "outline",
-      "topics": ["HOLC redlining maps (1930s)", "Racial covenants in property deeds", "Sundown towns", "Urban renewal and highway building through Black neighborhoods", "The wealth gap today"],
-      "map": [{ "t": "Redlining and covenants in Minneapolis", "href": "index.html?layers=redlining,covenants&at=44.96,-93.27,12" }],
+      "topics": [
+        "HOLC redlining maps (1930s)",
+        "Racial covenants in property deeds",
+        "Sundown towns",
+        "Exclusion from New Deal and GI Bill housing benefits",
+        "The wealth gap today (for burned, flooded and bulldozed communities, see module 8)"
+      ],
+      "map": [
+        {
+          "t": "Redlining and covenants in Minneapolis",
+          "href": "index.html?layers=redlining,covenants&at=44.96,-93.27,12"
+        }
+      ],
       "sourcesList": {}
     },
     {
-      "id": "policing",
+      "id": "destroyed",
       "num": 8,
+      "title": "Burned, flooded and taken: the communities America destroyed",
+      "short": "Black Wall Street in Tulsa and dozens of other Black, Brown and immigrant communities that were burned, driven out, flooded, seized or bulldozed, plus how gentrification continues the pattern.",
+      "status": "draft",
+      "minutes": 10,
+      "intro": "Again and again, when Black communities built wealth, voted or simply grew, they were attacked: burned by mobs, driven off their land, flooded for dams, seized for parks and beaches, or bulldozed for highways. Each loss wiped out homes and businesses that would have passed wealth down to the next generation. This module tells those stories, and they are all on the map.",
+      "sections": [
+        {
+          "h": "Greenwood, Tulsa: “Black Wall Street”",
+          "label": "documented",
+          "body": "<p>In the early 1900s, Greenwood was home to about 10,000 Black residents. Its main street had hotels, theaters, groceries, doctors' and lawyers' offices, churches, two newspapers and a hospital. Oklahoma's segregation laws kept Black dollars inside the district, and they circulated there. Booker T. Washington is credited with calling it the “Negro Wall Street.” O.W. Gurley, J.B. Stradford and other Black entrepreneurs built it on land they owned.</p><p><b>May 31–June 1, 1921.</b> A Black teenager, Dick Rowland, was arrested after a white elevator operator accused him of assault. A newspaper story inflamed the city. Black World War I veterans went to the courthouse to stop a lynching, and a white mob, many of them deputized by officials, invaded Greenwood. Over about 18 hours they burned 35 city blocks, including about 1,256 homes. The 2001 Oklahoma commission found that airplanes were used in the attack and estimated that 100 to 300 people were killed. About 6,000 Black residents were held in internment camps.</p><p><b>Afterward.</b> Insurance companies denied claims under “riot” clauses, and the city tried to rezone the burned district so it couldn't be rebuilt. No one was ever prosecuted. Residents rebuilt anyway. Then, in the 1960s and 1970s, urban renewal and Interstate 244 cut through Greenwood again.</p><p><b>Still unresolved.</b> The 2001 state commission recommended reparations; none have been paid by the state. Searches for mass graves at Oaklawn Cemetery began in 2020, and in 2024 one set of remains was identified as C.L. Daniel, a World War I veteran. Also in 2024, the Oklahoma Supreme Court dismissed the last survivors' lawsuit. In January 2025 the U.S. Justice Department called the massacre a civil rights crime of unparalleled magnitude, but said no one left alive could be prosecuted.</p>",
+          "sources": [
+            "tulsa",
+            "commission",
+            "doj"
+          ]
+        },
+        {
+          "h": "Burned: a pattern, not an accident",
+          "label": "documented",
+          "body": "<p>Tulsa was one of many. The death tolls below are estimates, and many are disputed because officials undercounted. The pattern is clear: a mob, often set off by an accusation against a Black man or by Black voting, organizing or success, followed by fire.</p><ul><li><b>Colfax, Louisiana, 1873:</b> an estimated 62–153 Black men killed defending a courthouse after an election. The Supreme Court then let the killers go (<em>U.S. v. Cruikshank</em>, 1876).</li><li><b>Wilmington, North Carolina, 1898:</b> the only successful coup on U.S. soil. The Black newspaper was burned and at least 60 people were killed.</li><li><b>Atlanta 1906, Springfield 1908, Slocum 1910:</b> each sparked by rumors or accusations. Springfield led directly to the founding of the NAACP.</li><li><b>East St. Louis, 1917:</b> about 6,000 people left homeless after white workers attacked Black workers.</li><li><b>Red Summer, 1919:</b> violence in more than two dozen cities. In Elaine, Arkansas, Black sharecroppers trying to form a union were massacred, with estimates from about 100 to several hundred dead.</li><li><b>Ocoee, Florida, 1920:</b> Black residents tried to vote. The entire Black community was burned out.</li><li><b>Rosewood, Florida, 1923:</b> a white woman's accusation led to a whole town being burned. In 1994 Florida became the first state to pay reparations for racial violence.</li><li><b>Philadelphia, 1985:</b> police dropped a bomb on the MOVE house; 11 people died, including 5 children, and 61 homes in a Black neighborhood burned.</li></ul><p>Chinese immigrants were attacked the same way: in Los Angeles in 1871, in Rock Springs, Wyoming, in 1885, and in Tacoma, Washington, which expelled its entire Chinese population that year.</p><p>The link to today is direct. Many of these attacks started with one false accusation to the authorities, which is the harm the CAREN Act targets.</p>",
+          "sources": [
+            "colfax",
+            "wilmington",
+            "springfield",
+            "elaine",
+            "ocoee",
+            "rosewood",
+            "move",
+            "chinese"
+          ]
+        },
+        {
+          "h": "Driven out and taken",
+          "label": "documented",
+          "body": "<ul><li><b>Forsyth County, Georgia, 1912:</b> after a lynching, night riders drove out about 1,100 Black residents. White neighbors took over their farms. The county stayed almost entirely white for 75 years.</li><li><b>Sundown towns:</b> historian James Loewen documented hundreds, possibly thousands, of towns that kept Black people out by violence or law, often after driving out those already there (see the <a href=\"laws.html\">old laws tracker</a>).</li><li><b>Seneca Village, New York, 1857:</b> the city's largest community of Black property owners was taken by eminent domain and razed to build Central Park.</li><li><b>Bruce's Beach, California, 1924:</b> a Black-owned beach resort was seized by the city of Manhattan Beach. In 2022 Los Angeles County returned it to the Bruce family's descendants, an early example of returning stolen land.</li><li><b>Chavez Ravine, Los Angeles, 1950s:</b> Mexican American neighborhoods were cleared for public housing that was never built; the land became Dodger Stadium.</li><li><b>Black farmland:</b> around 1910, Black farmers owned roughly 15 million acres. Most of it is gone. It was lost to violence, to the U.S. Department of Agriculture's discrimination in loans (settled in <em>Pigford v. Glickman</em>, 1999), and to forced sales of “heirs' property” passed down without a will.</li></ul>",
+          "sources": [
+            "forsyth",
+            "loewen",
+            "seneca",
+            "bruce",
+            "chavez",
+            "pigford"
+          ]
+        },
+        {
+          "h": "Flooded",
+          "label": "documented",
+          "body": "<ul><li><b>Oscarville, Georgia:</b> its Black residents were driven out in 1912. The land was later flooded to create Lake Lanier (Buford Dam, 1956).</li><li><b>The Great Mississippi Flood, 1927:</b> Black residents were held in levee camps under armed guard and forced to work on the levees, while white residents were evacuated.</li><li><b>Vanport, Oregon, 1948:</b> Oregon's largest Black community, built for wartime shipyard workers, was destroyed when a dike broke. Survivors were pushed into Portland's Albina neighborhood, which was later cut up by a freeway and then gentrified.</li><li><b>The Lower Ninth Ward, New Orleans, 2005:</b> levee failures during Hurricane Katrina flooded this mostly Black neighborhood. The Road Home rebuilding program based grants on pre-storm home values, so Black homeowners in undervalued neighborhoods got less; the state and HUD settled a lawsuit in 2011. Much of the neighborhood was never rebuilt.</li></ul>",
+          "sources": [
+            "lanier",
+            "flood1927",
+            "vanport",
+            "road"
+          ]
+        },
+        {
+          "h": "Bulldozed: urban renewal and highways",
+          "label": "documented",
+          "body": "<p>The Housing Act of 1949 and the Federal-Aid Highway Act of 1956 sent billions of federal dollars to clear “blight,” a label usually given to the same neighborhoods the redlining maps had marked red. Hundreds of thousands of families were displaced, people of color far out of proportion to their numbers. James Baldwin called it “Negro removal.”</p><p>The list of Black business districts and neighborhoods cut apart is long: Rondo in St. Paul (I-94), Overtown in Miami (I-95), Tremé in New Orleans (I-10 over Claiborne Avenue), Hayti in Durham, Black Bottom and Paradise Valley in Detroit (I-375), Sweet Auburn in Atlanta, the Hill District in Pittsburgh, the Fillmore in San Francisco, Albina in Portland, and Greenwood in Tulsa a second time.</p><p>Some of this is now being undone. The 2021 infrastructure law created a Reconnecting Communities program, Detroit is replacing I-375 with a boulevard, and Minnesota's transportation department apologized for Rondo in 2015.</p>",
+          "sources": [
+            "renewing",
+            "baldwin",
+            "reconnect"
+          ]
+        },
+        {
+          "h": "Gentrification: displacement by the market",
+          "label": "debated",
+          "body": "<p>Gentrification is when higher-income, usually whiter residents and investment move into a lower-income neighborhood, raising rents and property values. That it happens, and that many historically Black neighborhoods have changed rapidly, is documented. A 2019 study by the National Community Reinvestment Coalition estimated that gentrification displaced more than 135,000 Black and Hispanic residents from 2000 to 2013, concentrated in cities like Washington, Portland and Seattle.</p><p><b>What's debated</b> is how much gentrification itself pushes people out, as opposed to normal moving. Some economists find that longtime residents of gentrifying areas are not much more likely to move than residents elsewhere. Others find that those who do leave are pushed to poorer neighborhoods, and that rising taxes, evictions and the loss of churches and businesses damage the community even for those who stay.</p><p><b>The link to the CAREN Act</b> is well documented: as neighborhoods change, longtime residents are reported for doing what they've always done. In 2018 a white woman called police on a Black family barbecuing at Oakland's Lake Merritt. In 2019 a new resident's complaint about go-go music in Washington's Shaw neighborhood sparked #DontMuteDC, and the city made go-go its official music.</p><p><b>What helps:</b> community land trusts that keep homes affordable for good, property-tax relief for longtime owners, tenant protections, and “right to return” policies like Portland's N/NE Preference Policy (2015), which gives families pushed out of Albina priority for new affordable housing.</p>",
+          "sources": [
+            "ncrc",
+            "dontmute",
+            "history"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1857,
+          "t": "Seneca Village razed for Central Park",
+          "label": "documented"
+        },
+        {
+          "y": 1873,
+          "t": "Colfax massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1885,
+          "t": "Rock Springs massacre; Tacoma expels its Chinese residents",
+          "label": "documented"
+        },
+        {
+          "y": 1898,
+          "t": "Wilmington coup",
+          "label": "documented"
+        },
+        {
+          "y": 1908,
+          "t": "Springfield massacre; the NAACP is founded the next year",
+          "label": "documented"
+        },
+        {
+          "y": 1912,
+          "t": "Forsyth County expels about 1,100 Black residents",
+          "label": "documented"
+        },
+        {
+          "y": 1917,
+          "t": "East St. Louis massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1919,
+          "t": "Red Summer; Elaine massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1920,
+          "t": "Ocoee Election Day massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1921,
+          "t": "Greenwood (“Black Wall Street”) burned in Tulsa",
+          "label": "documented"
+        },
+        {
+          "y": 1923,
+          "t": "Rosewood burned",
+          "label": "documented"
+        },
+        {
+          "y": 1924,
+          "t": "Bruce's Beach seized",
+          "label": "documented"
+        },
+        {
+          "y": 1927,
+          "t": "Great Mississippi Flood labor camps",
+          "label": "documented"
+        },
+        {
+          "y": 1948,
+          "t": "Vanport flood",
+          "label": "documented"
+        },
+        {
+          "y": 1949,
+          "t": "Housing Act launches urban renewal",
+          "label": "documented"
+        },
+        {
+          "y": 1956,
+          "t": "Interstate highway act; Lake Lanier floods Oscarville",
+          "label": "documented"
+        },
+        {
+          "y": 1959,
+          "t": "Last families evicted from Chavez Ravine",
+          "label": "documented"
+        },
+        {
+          "y": 1985,
+          "t": "MOVE bombing in Philadelphia",
+          "label": "documented"
+        },
+        {
+          "y": 1994,
+          "t": "Florida compensates Rosewood survivors",
+          "label": "documented"
+        },
+        {
+          "y": 1999,
+          "t": "Pigford v. Glickman settlement for Black farmers",
+          "label": "documented"
+        },
+        {
+          "y": 2001,
+          "t": "Oklahoma commission report on the Tulsa massacre",
+          "label": "documented"
+        },
+        {
+          "y": 2005,
+          "t": "Hurricane Katrina floods the Lower Ninth Ward",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "Portland's right-to-return policy; MnDOT apologizes for Rondo",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Bruce's Beach returned to the Bruce family",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "Tulsa grave remains identified; survivors' lawsuit dismissed",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About how many homes were burned in Greenwood in 1921?",
+          "options": [
+            "About 25",
+            "About 125",
+            "About 1,250",
+            "None; only businesses burned"
+          ],
+          "a": 2,
+          "why": "About 1,256 homes across 35 city blocks."
+        },
+        {
+          "q": "How were Greenwood residents compensated for their losses?",
+          "options": [
+            "Insurance paid in full",
+            "The state paid reparations in 2001",
+            "Claims were denied, and no state reparations have been paid",
+            "The federal government rebuilt it"
+          ],
+          "a": 2,
+          "why": "Insurers denied claims; the 2001 commission's reparations recommendation was never funded."
+        },
+        {
+          "q": "What happened to Seneca Village?",
+          "options": [
+            "It flooded",
+            "It was taken by eminent domain for Central Park",
+            "It was burned by a mob",
+            "It still exists"
+          ],
+          "a": 1,
+          "why": "About 225 residents were displaced in 1857."
+        },
+        {
+          "q": "Which was the first state to pay reparations for racial violence?",
+          "options": [
+            "Oklahoma, for Tulsa",
+            "Florida, for Rosewood",
+            "Georgia, for Forsyth County",
+            "Illinois, for Springfield"
+          ],
+          "a": 1,
+          "why": "Florida, in 1994."
+        },
+        {
+          "q": "What part of the gentrification debate is most disputed?",
+          "options": [
+            "Whether neighborhoods change",
+            "Whether rents rise",
+            "How much it directly pushes longtime residents out",
+            "Whether it happens in Black neighborhoods"
+          ],
+          "a": 2,
+          "why": "The change is documented. How much it directly displaces people is what researchers argue about."
+        }
+      ],
+      "quest": "local-history",
+      "map": [
+        {
+          "t": "Greenwood, Tulsa, with the redlining map",
+          "href": "index.html?layers=destroyed,redlining&at=36.16,-95.99,13"
+        },
+        {
+          "t": "Every community on the list",
+          "href": "index.html?layers=destroyed"
+        }
+      ],
+      "sourcesList": {
+        "tulsa": {
+          "t": "Tulsa race massacre",
+          "url": "https://en.wikipedia.org/wiki/Tulsa_race_massacre"
+        },
+        "commission": {
+          "t": "Oklahoma Commission to Study the Tulsa Race Riot of 1921, Final Report (2001)"
+        },
+        "doj": {
+          "t": "U.S. Department of Justice, Civil Rights Division, report on the Tulsa Race Massacre under the Emmett Till Act (January 2025)"
+        },
+        "colfax": {
+          "t": "Colfax massacre",
+          "url": "https://en.wikipedia.org/wiki/Colfax_massacre"
+        },
+        "wilmington": {
+          "t": "1898 Wilmington Race Riot Commission, Final Report (2006)",
+          "url": "https://en.wikipedia.org/wiki/Wilmington_insurrection_of_1898"
+        },
+        "springfield": {
+          "t": "Springfield race riot of 1908",
+          "url": "https://en.wikipedia.org/wiki/Springfield_race_riot_of_1908"
+        },
+        "elaine": {
+          "t": "Elaine massacre",
+          "url": "https://en.wikipedia.org/wiki/Elaine_massacre"
+        },
+        "ocoee": {
+          "t": "Ocoee massacre",
+          "url": "https://en.wikipedia.org/wiki/Ocoee_massacre"
+        },
+        "rosewood": {
+          "t": "Rosewood massacre",
+          "url": "https://en.wikipedia.org/wiki/Rosewood_massacre"
+        },
+        "move": {
+          "t": "1985 MOVE bombing",
+          "url": "https://en.wikipedia.org/wiki/1985_MOVE_bombing"
+        },
+        "chinese": {
+          "t": "Chinese massacre of 1871; Rock Springs massacre (1885)",
+          "url": "https://en.wikipedia.org/wiki/Chinese_massacre_of_1871"
+        },
+        "forsyth": {
+          "t": "Patrick Phillips, Blood at the Root: A Racial Cleansing in America (2016)",
+          "url": "https://en.wikipedia.org/wiki/1912_racial_conflict_in_Forsyth_County,_Georgia"
+        },
+        "loewen": {
+          "t": "James W. Loewen, Sundown Towns (2005)"
+        },
+        "seneca": {
+          "t": "Seneca Village",
+          "url": "https://en.wikipedia.org/wiki/Seneca_Village"
+        },
+        "bruce": {
+          "t": "Bruce's Beach",
+          "url": "https://en.wikipedia.org/wiki/Bruce%27s_Beach"
+        },
+        "chavez": {
+          "t": "Chavez Ravine",
+          "url": "https://en.wikipedia.org/wiki/Chavez_Ravine"
+        },
+        "pigford": {
+          "t": "Pigford v. Glickman (1999)",
+          "url": "https://en.wikipedia.org/wiki/Pigford_v._Glickman"
+        },
+        "lanier": {
+          "t": "Lake Lanier",
+          "url": "https://en.wikipedia.org/wiki/Lake_Lanier"
+        },
+        "flood1927": {
+          "t": "Great Mississippi Flood of 1927",
+          "url": "https://en.wikipedia.org/wiki/Great_Mississippi_Flood_of_1927"
+        },
+        "vanport": {
+          "t": "Vanport, Oregon",
+          "url": "https://en.wikipedia.org/wiki/Vanport,_Oregon"
+        },
+        "road": {
+          "t": "Lower Ninth Ward; Greater New Orleans Fair Housing Action Center v. HUD (Road Home settlement, 2011)",
+          "url": "https://en.wikipedia.org/wiki/Lower_Ninth_Ward"
+        },
+        "renewing": {
+          "t": "University of Richmond Digital Scholarship Lab, Renewing Inequality: Urban Renewal, Family Displacements, and Race",
+          "url": "https://dsl.richmond.edu/panorama/renewal/"
+        },
+        "baldwin": {
+          "t": "James Baldwin, interview with Kenneth Clark (1963)"
+        },
+        "reconnect": {
+          "t": "U.S. Department of Transportation, Reconnecting Communities Pilot Program",
+          "url": "https://www.transportation.gov/reconnecting"
+        },
+        "ncrc": {
+          "t": "National Community Reinvestment Coalition, Shifting Neighborhoods: Gentrification and Cultural Displacement in American Cities (2019)",
+          "url": "https://ncrc.org/gentrification/"
+        },
+        "dontmute": {
+          "t": "Go-go and #DontMuteDC",
+          "url": "https://en.wikipedia.org/wiki/Go-go"
+        },
+        "history": {
+          "t": "This site: how the San Francisco CAREN Act came about",
+          "url": "history.html"
+        }
+      }
+    },
+    {
+      "id": "policing",
+      "num": 9,
       "title": "Policing and the 911 call",
       "short": "From slave patrols and vagrancy laws to the weaponized 911 call, and what the data shows about who gets stopped and hurt.",
       "status": "draft",
@@ -319,82 +1392,213 @@
           "h": "Slave patrols",
           "label": "documented",
           "body": "<p>From South Carolina's 1704 law onward, Southern colonies and states organized slave patrols: white men who rode at night, stopped Black people, demanded passes, searched slave quarters and whipped people found without permission. Every white person was expected to help police enslaved people.</p>",
-          "sources": ["patrol", "hadden"]
+          "sources": [
+            "patrol",
+            "hadden"
+          ]
         },
         {
           "h": "From patrols to police",
           "label": "debated",
           "body": "<p>After emancipation, many Southern patrol duties passed to new city police and sheriffs. How direct the line is from patrols to modern policing is debated: Northern departments (Boston 1838, New York 1845) grew mostly from London's model and from controlling immigrants and labor. Historians agree that in the South, the job of controlling Black movement carried over.</p>",
-          "sources": ["hadden"]
+          "sources": [
+            "hadden"
+          ]
         },
         {
           "h": "Black Codes, vagrancy laws and convict leasing",
           "label": "documented",
           "body": "<p>The 13th Amendment (1865) abolished slavery “except as a punishment for crime.” Southern states immediately passed Black Codes making it a crime for Black people to be unemployed, to walk at night, or to “loiter.” Those arrested were leased to plantations, mines and railroads, often dying at higher rates than under slavery. Convict leasing lasted in Alabama until 1928.</p>",
-          "sources": ["blackcodes", "blackmon"]
+          "sources": [
+            "blackcodes",
+            "blackmon"
+          ]
         },
         {
           "h": "An accusation could be a death sentence",
           "label": "documented",
           "body": "<p>Many lynchings began with an accusation from a white person. In 1955 Carolyn Bryant's account of an encounter in a Mississippi store led to the murder of 14-year-old Emmett Till. (In a 2017 book, historian Timothy Tyson reported that she later admitted parts of her account were untrue; her family disputes this. That detail is <b>debated</b>.) The lesson the CAREN Act builds on is older than any single case: when the person called about is Black, the police response can be deadly.</p>",
-          "sources": ["till", "eji"]
+          "sources": [
+            "till",
+            "eji"
+          ]
         },
         {
           "h": "The weaponized 911 call today",
           "label": "documented",
           "body": "<p>In 2018 and 2020, videos showed white callers phoning police about Black people barbecuing (Oakland), waiting in a Starbucks (Philadelphia, where two men were arrested), selling water (San Francisco) and birdwatching (Central Park). San Francisco passed the CAREN Act in 2020, following Oregon's 2019 law and California's AB 1775.</p><p>The data backs up the videos. In San Francisco, only about 1% of “suspicious person” calls in the past year led to an arrest, citation or report. The federal Police-Public Contact Survey (2020) found that Black people who had contact with police were nearly three times as likely as white people to experience threats or use of force.</p>",
-          "sources": ["history", "calls", "bjs"]
+          "sources": [
+            "history",
+            "calls",
+            "bjs"
+          ]
         },
         {
           "h": "What works",
           "label": "documented",
           "body": "<p>Cities are sending trained responders instead of armed police to many calls. Eugene, Oregon's CAHOOTS program has done so since 1989. A 2022 study in <em>Science Advances</em> found that Denver's STAR program reduced reports of the low-level crimes it targeted. A federal CAREN Act adds the other half: a consequence for using the police as a weapon.</p>",
-          "sources": ["star"]
+          "sources": [
+            "star"
+          ]
         }
       ],
       "timeline": [
-        { "y": 1704, "t": "South Carolina organizes slave patrols", "label": "documented" },
-        { "y": 1865, "t": "13th Amendment, with its “punishment for crime” exception; Black Codes", "label": "documented" },
-        { "y": 1928, "t": "Alabama ends convict leasing", "label": "documented" },
-        { "y": 1955, "t": "Emmett Till murdered after a white woman's accusation", "label": "documented" },
-        { "y": 2018, "t": "Viral calls: Oakland barbecue, Philadelphia Starbucks", "label": "documented" },
-        { "y": 2019, "t": "Oregon passes the first state law against racially biased police calls", "label": "documented" },
-        { "y": 2020, "t": "Central Park call; San Francisco passes the CAREN Act; California AB 1775", "label": "documented" },
-        { "y": 2022, "t": "Study finds Denver's STAR program reduces low-level crime reports", "label": "documented" }
+        {
+          "y": 1704,
+          "t": "South Carolina organizes slave patrols",
+          "label": "documented"
+        },
+        {
+          "y": 1865,
+          "t": "13th Amendment, with its “punishment for crime” exception; Black Codes",
+          "label": "documented"
+        },
+        {
+          "y": 1928,
+          "t": "Alabama ends convict leasing",
+          "label": "documented"
+        },
+        {
+          "y": 1955,
+          "t": "Emmett Till murdered after a white woman's accusation",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Viral calls: Oakland barbecue, Philadelphia Starbucks",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Oregon passes the first state law against racially biased police calls",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Central Park call; San Francisco passes the CAREN Act; California AB 1775",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Study finds Denver's STAR program reduces low-level crime reports",
+          "label": "documented"
+        }
       ],
       "quiz": [
-        { "q": "What exception does the 13th Amendment contain?", "options": ["For wartime", "For “punishment for crime”", "For indentured servants", "None"], "a": 1, "why": "That exception made convict leasing legal." },
-        { "q": "About what share of San Francisco's “suspicious person” calls led to an arrest, citation or report?", "options": ["About 1%", "About 25%", "About 50%", "About 90%"], "a": 0, "why": "0.9% in the past year (city data on this site's map)." },
-        { "q": "Which state passed the first law against racially biased police calls?", "options": ["California", "New York", "Oregon", "Alabama"], "a": 2, "why": "Oregon, in 2019, after Rep. Janelle Bynum had police called on her while canvassing." },
-        { "q": "What did slave patrols do?", "options": ["Fought fires", "Stopped Black people, demanded passes and searched quarters", "Protected enslaved people", "Collected taxes"], "a": 1, "why": "Patrols enforced slavery at night." }
+        {
+          "q": "What exception does the 13th Amendment contain?",
+          "options": [
+            "For wartime",
+            "For “punishment for crime”",
+            "For indentured servants",
+            "None"
+          ],
+          "a": 1,
+          "why": "That exception made convict leasing legal."
+        },
+        {
+          "q": "About what share of San Francisco's “suspicious person” calls led to an arrest, citation or report?",
+          "options": [
+            "About 1%",
+            "About 25%",
+            "About 50%",
+            "About 90%"
+          ],
+          "a": 0,
+          "why": "0.9% in the past year (city data on this site's map)."
+        },
+        {
+          "q": "Which state passed the first law against racially biased police calls?",
+          "options": [
+            "California",
+            "New York",
+            "Oregon",
+            "Alabama"
+          ],
+          "a": 2,
+          "why": "Oregon, in 2019, after Rep. Janelle Bynum had police called on her while canvassing."
+        },
+        {
+          "q": "What did slave patrols do?",
+          "options": [
+            "Fought fires",
+            "Stopped Black people, demanded passes and searched quarters",
+            "Protected enslaved people",
+            "Collected taxes"
+          ],
+          "a": 1,
+          "why": "Patrols enforced slavery at night."
+        }
       ],
       "quest": "call-lawmakers",
-      "map": [{ "t": "911 “suspicious person” calls in San Francisco", "href": "index.html?layers=calls,minority&at=37.76,-122.44,12" }, { "t": "Police killings and hate crimes", "href": "index.html?layers=heat,police,hate" }],
+      "map": [
+        {
+          "t": "911 “suspicious person” calls in San Francisco",
+          "href": "index.html?layers=calls,minority&at=37.76,-122.44,12"
+        },
+        {
+          "t": "Police killings and hate crimes",
+          "href": "index.html?layers=heat,police,hate"
+        }
+      ],
       "sourcesList": {
-        "patrol": { "t": "Slave patrol", "url": "https://en.wikipedia.org/wiki/Slave_patrol" },
-        "hadden": { "t": "Sally E. Hadden, Slave Patrols: Law and Violence in Virginia and the Carolinas (Harvard, 2001)" },
-        "blackcodes": { "t": "Black Codes (United States)", "url": "https://en.wikipedia.org/wiki/Black_Codes_(United_States)" },
-        "blackmon": { "t": "Douglas A. Blackmon, Slavery by Another Name (2008)" },
-        "till": { "t": "Emmett Till", "url": "https://en.wikipedia.org/wiki/Emmett_Till" },
-        "eji": { "t": "Equal Justice Initiative, Lynching in America", "url": "https://eji.org/reports/lynching-in-america/" },
-        "history": { "t": "This site: how the San Francisco CAREN Act came about", "url": "history.html" },
-        "calls": { "t": "This site: city 911 call outcomes", "url": "data.html#calls" },
-        "bjs": { "t": "Bureau of Justice Statistics, Contacts Between Police and the Public, 2020 (NCJ 304527)", "url": "https://bjs.ojp.gov/library/publications/contacts-between-police-and-public-2020" },
-        "star": { "t": "Dee & Pyne, “A community response approach to mental health and substance abuse crises reduced crime,” Science Advances (2022)" }
+        "patrol": {
+          "t": "Slave patrol",
+          "url": "https://en.wikipedia.org/wiki/Slave_patrol"
+        },
+        "hadden": {
+          "t": "Sally E. Hadden, Slave Patrols: Law and Violence in Virginia and the Carolinas (Harvard, 2001)"
+        },
+        "blackcodes": {
+          "t": "Black Codes (United States)",
+          "url": "https://en.wikipedia.org/wiki/Black_Codes_(United_States)"
+        },
+        "blackmon": {
+          "t": "Douglas A. Blackmon, Slavery by Another Name (2008)"
+        },
+        "till": {
+          "t": "Emmett Till",
+          "url": "https://en.wikipedia.org/wiki/Emmett_Till"
+        },
+        "eji": {
+          "t": "Equal Justice Initiative, Lynching in America",
+          "url": "https://eji.org/reports/lynching-in-america/"
+        },
+        "history": {
+          "t": "This site: how the San Francisco CAREN Act came about",
+          "url": "history.html"
+        },
+        "calls": {
+          "t": "This site: city 911 call outcomes",
+          "url": "data.html#calls"
+        },
+        "bjs": {
+          "t": "Bureau of Justice Statistics, Contacts Between Police and the Public, 2020 (NCJ 304527)",
+          "url": "https://bjs.ojp.gov/library/publications/contacts-between-police-and-public-2020"
+        },
+        "star": {
+          "t": "Dee & Pyne, “A community response approach to mental health and substance abuse crises reduced crime,” Science Advances (2022)"
+        }
       }
     },
     {
       "id": "world",
-      "num": 9,
+      "num": 10,
       "title": "A world system",
       "short": "How empires divided Africa, how apartheid and Nazi lawyers studied American race law, and how other countries are reckoning with their past.",
       "status": "outline",
-      "topics": ["The Berlin Conference (1884–85) and the partition of Africa", "Belgian King Leopold II's Congo", "Hitler's American Model: Nazi lawyers studied U.S. race law (James Q. Whitman, 2017)", "Apartheid South Africa and its Truth and Reconciliation Commission", "White Australia, the Stolen Generations, and Canada's residential schools"],
+      "topics": [
+        "The Berlin Conference (1884–85) and the partition of Africa",
+        "Belgian King Leopold II's Congo",
+        "Hitler's American Model: Nazi lawyers studied U.S. race law (James Q. Whitman, 2017)",
+        "Apartheid South Africa and its Truth and Reconciliation Commission",
+        "White Australia, the Stolen Generations, and Canada's residential schools"
+      ],
       "sourcesList": {}
     },
     {
       "id": "path-forward",
-      "num": 10,
+      "num": 11,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",
@@ -435,7 +1639,12 @@
       "timeline": [],
       "quiz": [],
       "quest": "teach-in",
-      "map": [{ "t": "Where to organize", "href": "index.html?layers=heat,allies,residual" }],
+      "map": [
+        {
+          "t": "Where to organize",
+          "href": "index.html?layers=heat,allies,residual"
+        }
+      ],
       "sourcesList": {}
     }
   ]

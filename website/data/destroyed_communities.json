@@ -1,0 +1,488 @@
+{
+ "updated": "2026-11-10",
+ "note": "Curated list of Black, Brown and immigrant communities that were burned, driven out, flooded, seized, bulldozed or displaced. Coordinates are approximate (neighborhood or town level). Death tolls for many massacres are estimates and disputed; each summary gives the range found in official commissions or standard histories. Add places through the 'local history' quest on learn.html; an editor checks sources first.",
+ "types": {
+  "massacre": "Burned or attacked",
+  "expulsion": "Driven out",
+  "flood": "Flooded",
+  "seized": "Seized",
+  "renewal": "Bulldozed (urban renewal or highway)",
+  "gentrification": "Displaced by gentrification"
+ },
+ "entries": [
+  {
+   "name": "Greenwood (“Black Wall Street”)",
+   "place": "Tulsa",
+   "state": "OK",
+   "lat": 36.159,
+   "lon": -95.987,
+   "year": "1921",
+   "type": "massacre",
+   "summary": "A white mob burned 35 blocks of the wealthiest Black district in America, including about 1,256 homes. A 2001 state commission estimated 100–300 people were killed. Insurance claims were denied and no one was prosecuted. Residents rebuilt, then urban renewal and Interstate 244 cut through Greenwood in the 1960s–70s.",
+   "source": {
+    "t": "Tulsa race massacre",
+    "url": "https://en.wikipedia.org/wiki/Tulsa_race_massacre"
+   }
+  },
+  {
+   "name": "Colfax",
+   "place": "Colfax",
+   "state": "LA",
+   "lat": 31.519,
+   "lon": -92.706,
+   "year": "1873",
+   "type": "massacre",
+   "summary": "White paramilitaries killed an estimated 62 to 153 Black men defending the parish courthouse after a disputed election. The Supreme Court's ruling in U.S. v. Cruikshank (1876) let the killers go free and weakened federal protection for decades.",
+   "source": {
+    "t": "Colfax massacre",
+    "url": "https://en.wikipedia.org/wiki/Colfax_massacre"
+   }
+  },
+  {
+   "name": "Wilmington coup",
+   "place": "Wilmington",
+   "state": "NC",
+   "lat": 34.236,
+   "lon": -77.946,
+   "year": "1898",
+   "type": "massacre",
+   "summary": "An armed white mob overthrew the elected biracial city government, burned the Black-owned Daily Record, and killed at least 60 Black residents. Hundreds fled. It is the only successful coup on U.S. soil.",
+   "source": {
+    "t": "1898 Wilmington Race Riot Commission report (2006)",
+    "url": "https://en.wikipedia.org/wiki/Wilmington_insurrection_of_1898"
+   }
+  },
+  {
+   "name": "Atlanta",
+   "place": "Atlanta",
+   "state": "GA",
+   "lat": 33.755,
+   "lon": -84.39,
+   "year": "1906",
+   "type": "massacre",
+   "summary": "After newspapers printed unverified reports of assaults on white women, white mobs killed at least 25 Black people and attacked Black businesses.",
+   "source": {
+    "t": "1906 Atlanta race massacre",
+    "url": "https://en.wikipedia.org/wiki/1906_Atlanta_race_massacre"
+   }
+  },
+  {
+   "name": "Springfield",
+   "place": "Springfield",
+   "state": "IL",
+   "lat": 39.8,
+   "lon": -89.65,
+   "year": "1908",
+   "type": "massacre",
+   "summary": "A white mob burned Black homes and businesses and lynched two Black men after a false accusation. The violence in Lincoln's hometown led to the founding of the NAACP in 1909. The site became a national monument in 2024.",
+   "source": {
+    "t": "Springfield race riot of 1908",
+    "url": "https://en.wikipedia.org/wiki/Springfield_race_riot_of_1908"
+   }
+  },
+  {
+   "name": "Slocum",
+   "place": "Slocum",
+   "state": "TX",
+   "lat": 31.636,
+   "lon": -95.462,
+   "year": "1910",
+   "type": "massacre",
+   "summary": "White mobs hunted down and killed Black residents. Officially 8 people died; residents believed many more. Texas placed a historical marker in 2015.",
+   "source": {
+    "t": "Slocum massacre",
+    "url": "https://en.wikipedia.org/wiki/Slocum_massacre"
+   }
+  },
+  {
+   "name": "Forsyth County expulsion",
+   "place": "Cumming",
+   "state": "GA",
+   "lat": 34.207,
+   "lon": -84.14,
+   "year": "1912",
+   "type": "expulsion",
+   "summary": "After a lynching and a false accusation, night riders drove out about 1,100 Black residents. White neighbors took over their farms and land. The county stayed nearly all-white for decades.",
+   "source": {
+    "t": "1912 racial conflict in Forsyth County, Georgia",
+    "url": "https://en.wikipedia.org/wiki/1912_racial_conflict_in_Forsyth_County,_Georgia"
+   }
+  },
+  {
+   "name": "East St. Louis",
+   "place": "East St. Louis",
+   "state": "IL",
+   "lat": 38.624,
+   "lon": -90.151,
+   "year": "1917",
+   "type": "massacre",
+   "summary": "White mobs, angry that Black workers had been hired, killed at least 39 Black people (estimates run far higher) and burned homes, leaving about 6,000 people homeless.",
+   "source": {
+    "t": "East St. Louis massacre",
+    "url": "https://en.wikipedia.org/wiki/East_St._Louis_massacre"
+   }
+  },
+  {
+   "name": "Elaine",
+   "place": "Elaine",
+   "state": "AR",
+   "lat": 34.309,
+   "lon": -90.852,
+   "year": "1919",
+   "type": "massacre",
+   "summary": "Black sharecroppers met to form a union. White mobs and federal troops killed an estimated 100 to several hundred Black people. Twelve Black men were sentenced to death; the Supreme Court overturned their convictions in Moore v. Dempsey (1923).",
+   "source": {
+    "t": "Elaine massacre",
+    "url": "https://en.wikipedia.org/wiki/Elaine_massacre"
+   }
+  },
+  {
+   "name": "Chicago, Red Summer",
+   "place": "Chicago",
+   "state": "IL",
+   "lat": 41.83,
+   "lon": -87.62,
+   "year": "1919",
+   "type": "massacre",
+   "summary": "After a Black teenager drifted toward a “white” beach and drowned, a week of violence killed 38 people (23 Black, 15 white) and burned the homes of about 1,000 families, mostly Black.",
+   "source": {
+    "t": "Chicago race riot of 1919",
+    "url": "https://en.wikipedia.org/wiki/Chicago_race_riot_of_1919"
+   }
+  },
+  {
+   "name": "Ocoee",
+   "place": "Ocoee",
+   "state": "FL",
+   "lat": 28.569,
+   "lon": -81.544,
+   "year": "1920",
+   "type": "massacre",
+   "summary": "On Election Day, Black residents tried to vote. A white mob lynched July Perry, burned the Black community and drove every Black resident out. Estimates of the dead range from a few to dozens. Ocoee stayed all-white for decades.",
+   "source": {
+    "t": "Ocoee massacre",
+    "url": "https://en.wikipedia.org/wiki/Ocoee_massacre"
+   }
+  },
+  {
+   "name": "Rosewood",
+   "place": "Rosewood",
+   "state": "FL",
+   "lat": 29.237,
+   "lon": -82.932,
+   "year": "1923",
+   "type": "massacre",
+   "summary": "After a white woman's accusation, a white mob burned the Black town to the ground. Officially 6 Black and 2 white people died; survivors described more. In 1994 Florida paid compensation to survivors, the first state reparations for racial violence.",
+   "source": {
+    "t": "Rosewood massacre",
+    "url": "https://en.wikipedia.org/wiki/Rosewood_massacre"
+   }
+  },
+  {
+   "name": "Bruce's Beach",
+   "place": "Manhattan Beach",
+   "state": "CA",
+   "lat": 33.883,
+   "lon": -118.411,
+   "year": "1924",
+   "type": "seized",
+   "summary": "The city seized a Black-owned beach resort by eminent domain. Los Angeles County returned the land to the Bruce family's descendants in 2022, and they sold it back to the county in 2023 for about $20 million.",
+   "source": {
+    "t": "Bruce's Beach",
+    "url": "https://en.wikipedia.org/wiki/Bruce%27s_Beach"
+   }
+  },
+  {
+   "name": "Seneca Village",
+   "place": "Manhattan, New York",
+   "state": "NY",
+   "lat": 40.783,
+   "lon": -73.969,
+   "year": "1857",
+   "type": "seized",
+   "summary": "The largest community of Black property owners in pre-Civil War New York, about 225 residents with churches and a school, was taken by eminent domain and razed to build Central Park.",
+   "source": {
+    "t": "Seneca Village",
+    "url": "https://en.wikipedia.org/wiki/Seneca_Village"
+   }
+  },
+  {
+   "name": "Oscarville (Lake Lanier)",
+   "place": "Forsyth County",
+   "state": "GA",
+   "lat": 34.245,
+   "lon": -84.05,
+   "year": "1912 / 1956",
+   "type": "flood",
+   "summary": "Black residents of Oscarville were driven out in the 1912 Forsyth expulsion. Decades later, the area was flooded to create Lake Lanier when Buford Dam was completed in 1956.",
+   "source": {
+    "t": "Lake Lanier",
+    "url": "https://en.wikipedia.org/wiki/Lake_Lanier"
+   }
+  },
+  {
+   "name": "1927 Mississippi flood camps",
+   "place": "Greenville",
+   "state": "MS",
+   "lat": 33.41,
+   "lon": -91.06,
+   "year": "1927",
+   "type": "flood",
+   "summary": "In the Great Flood, Black residents were held in levee camps under National Guard guard and forced to work on the levees, often at gunpoint, while white residents were evacuated.",
+   "source": {
+    "t": "Great Mississippi Flood of 1927",
+    "url": "https://en.wikipedia.org/wiki/Great_Mississippi_Flood_of_1927"
+   }
+  },
+  {
+   "name": "Vanport",
+   "place": "Portland",
+   "state": "OR",
+   "lat": 45.6,
+   "lon": -122.68,
+   "year": "1948",
+   "type": "flood",
+   "summary": "Built for World War II shipyard workers, Vanport was home to the largest Black community in Oregon. A Columbia River flood destroyed it on May 30, 1948, killing at least 15 and displacing about 18,000 people. Black families were then steered into Albina.",
+   "source": {
+    "t": "Vanport, Oregon",
+    "url": "https://en.wikipedia.org/wiki/Vanport,_Oregon"
+   }
+  },
+  {
+   "name": "Lower Ninth Ward (Hurricane Katrina)",
+   "place": "New Orleans",
+   "state": "LA",
+   "lat": 29.967,
+   "lon": -90.01,
+   "year": "2005",
+   "type": "flood",
+   "summary": "Levee failures flooded this mostly Black neighborhood. The Road Home rebuilding program based grants on pre-storm home values, which gave Black homeowners less; the state and HUD settled a lawsuit over it in 2011. Much of the neighborhood was never rebuilt.",
+   "source": {
+    "t": "Lower Ninth Ward",
+    "url": "https://en.wikipedia.org/wiki/Lower_Ninth_Ward"
+   }
+  },
+  {
+   "name": "Albina",
+   "place": "Portland",
+   "state": "OR",
+   "lat": 45.545,
+   "lon": -122.67,
+   "year": "1950s–2000s",
+   "type": "renewal",
+   "summary": "After Vanport, most Black Portlanders lived in Albina. Interstate 5, Memorial Coliseum and a hospital expansion demolished hundreds of homes, and gentrification followed. In 2015 Portland began giving displaced families priority for new affordable housing (the N/NE Preference Policy).",
+   "source": {
+    "t": "Portland Bureau of Planning, The History of Portland's African American Community (1993)"
+   }
+  },
+  {
+   "name": "Chavez Ravine",
+   "place": "Los Angeles",
+   "state": "CA",
+   "lat": 34.074,
+   "lon": -118.24,
+   "year": "1950s",
+   "type": "seized",
+   "summary": "Three Mexican American neighborhoods were cleared for a public housing project that was then cancelled. The land went to Dodger Stadium. The last families were forcibly evicted in 1959.",
+   "source": {
+    "t": "Chavez Ravine",
+    "url": "https://en.wikipedia.org/wiki/Chavez_Ravine"
+   }
+  },
+  {
+   "name": "Fillmore (“Harlem of the West”)",
+   "place": "San Francisco",
+   "state": "CA",
+   "lat": 37.781,
+   "lon": -122.432,
+   "year": "1950s–70s",
+   "type": "renewal",
+   "summary": "Emptied of Japanese American families by the 1942 incarceration, the Fillmore became the center of Black San Francisco and its jazz scene. The Redevelopment Agency then cleared much of it, displacing thousands of Black residents.",
+   "source": {
+    "t": "Fillmore District, San Francisco",
+    "url": "https://en.wikipedia.org/wiki/Fillmore_District,_San_Francisco"
+   }
+  },
+  {
+   "name": "Lower Hill District",
+   "place": "Pittsburgh",
+   "state": "PA",
+   "lat": 40.444,
+   "lon": -79.985,
+   "year": "1950s",
+   "type": "renewal",
+   "summary": "About 8,000 people, mostly Black, were displaced to build the Civic Arena.",
+   "source": {
+    "t": "Hill District (Pittsburgh)",
+    "url": "https://en.wikipedia.org/wiki/Hill_District_(Pittsburgh)"
+   }
+  },
+  {
+   "name": "Black Bottom and Paradise Valley",
+   "place": "Detroit",
+   "state": "MI",
+   "lat": 42.341,
+   "lon": -83.04,
+   "year": "1950s–60s",
+   "type": "renewal",
+   "summary": "Detroit's Black neighborhood and business and entertainment district were razed for Interstate 375 and Lafayette Park. With federal funds, I-375 is now being replaced with a boulevard.",
+   "source": {
+    "t": "Black Bottom, Detroit",
+    "url": "https://en.wikipedia.org/wiki/Black_Bottom,_Detroit"
+   }
+  },
+  {
+   "name": "Rondo",
+   "place": "St. Paul",
+   "state": "MN",
+   "lat": 44.948,
+   "lon": -93.13,
+   "year": "1956–1968",
+   "type": "renewal",
+   "summary": "Interstate 94 was built through St. Paul's Black community, destroying hundreds of homes and businesses. Minnesota's transportation department apologized in 2015.",
+   "source": {
+    "t": "Reconnect Rondo; MnDOT apology (2015)"
+   }
+  },
+  {
+   "name": "Overtown",
+   "place": "Miami",
+   "state": "FL",
+   "lat": 25.787,
+   "lon": -80.199,
+   "year": "1960s",
+   "type": "renewal",
+   "summary": "Once called the “Harlem of the South,” Overtown lost most of its residents to urban renewal and to Interstate 95 and I-395, which were built through it.",
+   "source": {
+    "t": "Overtown, Miami",
+    "url": "https://en.wikipedia.org/wiki/Overtown,_Miami"
+   }
+  },
+  {
+   "name": "Tremé and Claiborne Avenue",
+   "place": "New Orleans",
+   "state": "LA",
+   "lat": 29.964,
+   "lon": -90.07,
+   "year": "1960s",
+   "type": "renewal",
+   "summary": "The I-10 overpass replaced the oak-lined Claiborne Avenue, the business heart of one of America's oldest Black neighborhoods.",
+   "source": {
+    "t": "Tremé",
+    "url": "https://en.wikipedia.org/wiki/Tr%C3%A9m%C3%A9"
+   }
+  },
+  {
+   "name": "Hayti",
+   "place": "Durham",
+   "state": "NC",
+   "lat": 35.988,
+   "lon": -78.898,
+   "year": "1960s–70s",
+   "type": "renewal",
+   "summary": "Hayti was Durham's thriving Black community, next to the Parrish Street business district also known as “Black Wall Street.” Urban renewal and the Durham Freeway demolished most of it.",
+   "source": {
+    "t": "Hayti, Durham, North Carolina",
+    "url": "https://en.wikipedia.org/wiki/Hayti,_Durham,_North_Carolina"
+   }
+  },
+  {
+   "name": "Sweet Auburn",
+   "place": "Atlanta",
+   "state": "GA",
+   "lat": 33.755,
+   "lon": -84.375,
+   "year": "1960s",
+   "type": "renewal",
+   "summary": "Auburn Avenue, celebrated as one of the richest Black streets in America and Martin Luther King Jr.'s birthplace, was split by the Downtown Connector interstate.",
+   "source": {
+    "t": "Sweet Auburn",
+    "url": "https://en.wikipedia.org/wiki/Sweet_Auburn"
+   }
+  },
+  {
+   "name": "MOVE bombing, Osage Avenue",
+   "place": "Philadelphia",
+   "state": "PA",
+   "lat": 39.956,
+   "lon": -75.218,
+   "year": "1985",
+   "type": "massacre",
+   "summary": "Police dropped a bomb on the MOVE house and let the fire burn. It killed 11 people, including 5 children, and destroyed 61 homes in a Black neighborhood. The city apologized in 2020.",
+   "source": {
+    "t": "1985 MOVE bombing",
+    "url": "https://en.wikipedia.org/wiki/1985_MOVE_bombing"
+   }
+  },
+  {
+   "name": "Chinatown massacre",
+   "place": "Los Angeles",
+   "state": "CA",
+   "lat": 34.056,
+   "lon": -118.238,
+   "year": "1871",
+   "type": "massacre",
+   "summary": "A mob of about 500 killed roughly 18 Chinese residents, one of the largest mass lynchings in U.S. history.",
+   "source": {
+    "t": "Chinese massacre of 1871",
+    "url": "https://en.wikipedia.org/wiki/Chinese_massacre_of_1871"
+   }
+  },
+  {
+   "name": "Rock Springs",
+   "place": "Rock Springs",
+   "state": "WY",
+   "lat": 41.587,
+   "lon": -109.203,
+   "year": "1885",
+   "type": "massacre",
+   "summary": "White miners killed at least 28 Chinese miners and burned Chinatown.",
+   "source": {
+    "t": "Rock Springs massacre",
+    "url": "https://en.wikipedia.org/wiki/Rock_Springs_massacre"
+   }
+  },
+  {
+   "name": "Tacoma expulsion",
+   "place": "Tacoma",
+   "state": "WA",
+   "lat": 47.25,
+   "lon": -122.44,
+   "year": "1885",
+   "type": "expulsion",
+   "summary": "City leaders and a mob forced out the entire Chinese population and burned their homes. Tacoma's city council apologized in 1993.",
+   "source": {
+    "t": "Tacoma riot of 1885",
+    "url": "https://en.wikipedia.org/wiki/Tacoma_riot_of_1885"
+   }
+  },
+  {
+   "name": "Gullah Geechee land loss",
+   "place": "Hilton Head Island",
+   "state": "SC",
+   "lat": 32.216,
+   "lon": -80.752,
+   "year": "1950s–today",
+   "type": "gentrification",
+   "summary": "Gullah Geechee families, descendants of enslaved people who held the Sea Islands for generations, lost land to resort development, rising property taxes and forced sales of “heirs' property.”",
+   "source": {
+    "t": "Gullah",
+    "url": "https://en.wikipedia.org/wiki/Gullah"
+   }
+  },
+  {
+   "name": "Shaw and U Street",
+   "place": "Washington",
+   "state": "DC",
+   "lat": 38.912,
+   "lon": -77.022,
+   "year": "2000s–today",
+   "type": "gentrification",
+   "summary": "A historic Black neighborhood transformed by rapid gentrification. In 2019 a new resident's complaint about go-go music outside a store sparked #DontMuteDC, and in 2020 DC made go-go its official music.",
+   "source": {
+    "t": "Go-go",
+    "url": "https://en.wikipedia.org/wiki/Go-go"
+   }
+  }
+ ]
+}
