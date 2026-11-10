@@ -13,6 +13,10 @@
     "belief": {
       "name": "Belief or myth",
       "desc": "A religious, folk or conspiracy story. We explain it and who holds it, but it is not supported as history."
+    },
+    "plan": {
+      "name": "Our recommendation",
+      "desc": "What this campaign suggests, based on the history. A plan, not a historical claim."
     }
   },
   "xp": {
@@ -140,8 +144,8 @@
       "id": "teach-in",
       "title": "Host a teach-in",
       "xp": 200,
-      "desc": "Teach one of these modules to a group: a class, church, club or chapter.",
-      "href": "learn.html",
+      "desc": "Teach one of these modules to a group (a class, church, club or chapter) using a free teach-in kit: slides, handout and facilitator guide.",
+      "href": "teach.html",
       "cat": "learn"
     },
     {
@@ -359,6 +363,14 @@
       "cat": "build",
       "desc": "Put money to work where it builds ownership: invest in a community business or co-op, a community land trust, or a CDFI that lends in your old neighborhood.",
       "href": "module.html?m=wealth"
+    },
+    {
+      "id": "power-map",
+      "cat": "advocate",
+      "xp": 60,
+      "title": "Map who decides",
+      "desc": "List the people who decide on a CAREN-style law where you live: your two Senators, your Representative, your state lawmakers, your council member and your DA. Note whether each one sits on a Judiciary or public safety committee, and who on their staff handles it.",
+      "href": "act.html#contact"
     }
   ],
   "badges": [
@@ -3203,8 +3215,262 @@
       "sourcesList": {}
     },
     {
+      "id": "movements",
+      "title": "How movements won, and the playbook for this one",
+      "short": "The bus boycott, the legal campaign behind Brown, the sit-ins, Birmingham, Selma and the CAREN Act itself: what actually made them work, turned into a step-by-step plan.",
+      "status": "draft",
+      "minutes": 10,
+      "intro": "The civil rights movement is often remembered as a few great speeches. The record shows something more useful: years of preparation, training, local organizing, lawsuits, lobbying and economic pressure, carried out by thousands of ordinary people. Every one of those methods can be used to pass a federal CAREN Act.",
+      "discuss": [
+        "Which of these tactics could work in our city right now?",
+        "Who in our community already has relationships with our lawmakers?",
+        "What would a “Birmingham moment” look like for weaponized 911 calls, and how do we prepare for it?"
+      ],
+      "sections": [
+        {
+          "h": "Montgomery: preparation, then pressure",
+          "label": "documented",
+          "body": "<p>Rosa Parks was not simply tired when she refused to give up her seat on December 1, 1955. She was the secretary of the local NAACP and had trained in organizing at the Highlander Folk School that summer. Jo Ann Robinson and the Women's Political Council had planned a boycott for months; they printed tens of thousands of leaflets overnight. The boycott lasted 381 days, sustained by a carpool system that moved thousands of people a day.</p><p>What finally ended bus segregation was a lawsuit, <em>Browder v. Gayle</em>, which the Supreme Court upheld in November 1956. The boycott kept the pressure on and the community united while the case moved through the courts.</p>",
+          "sources": [
+            "montgomery",
+            "browder"
+          ]
+        },
+        {
+          "h": "Brown v. Board: a 20-year legal strategy",
+          "label": "documented",
+          "body": "<p>The NAACP's lawyers didn't start with elementary schools. Charles Hamilton Houston and his student Thurgood Marshall first targeted segregated graduate and law schools, where the inequality was easiest to prove: <em>Murray v. Pearson</em> (1936), <em>Gaines</em> (1938), <em>Sweatt v. Painter</em> (1950). Each win built precedent until, in 1954, <em>Brown v. Board of Education</em> struck down “separate but equal.”</p>",
+          "sources": [
+            "houston",
+            "brown"
+          ]
+        },
+        {
+          "h": "The sit-ins: training and discipline",
+          "label": "documented",
+          "body": "<p>On February 1, 1960, four students from North Carolina A&T sat at a whites-only Woolworth's lunch counter in Greensboro. Within weeks, sit-ins spread to dozens of cities. In Nashville, students trained for months in James Lawson's nonviolence workshops, role-playing how to absorb insults and blows without striking back. Combined with a downtown boycott, they won desegregated lunch counters by May. That April, Ella Baker helped the students found the Student Nonviolent Coordinating Committee (SNCC). Her principle: “Strong people don't need strong leaders.”</p>",
+          "sources": [
+            "sitins",
+            "baker"
+          ]
+        },
+        {
+          "h": "Birmingham to the Civil Rights Act: crisis, coalition, lobbying",
+          "label": "documented",
+          "body": "<p>In spring 1963, Birmingham organizers combined marches, a boycott of downtown stores, and the Children's Crusade. Televised images of police dogs and fire hoses turned on children forced a national reckoning. On June 11, President Kennedy proposed a civil rights bill. The March on Washington that August drew about 250,000 people.</p><p>The bill still had to get through Congress. The Leadership Conference on Civil Rights coordinated churches, unions and civic groups to lobby every senator, and NAACP lobbyist Clarence Mitchell was so constant a presence he was called “the 101st senator.” The Senate broke a filibuster on June 10, 1964, and President Johnson signed the Civil Rights Act on July 2.</p>",
+          "sources": [
+            "birmingham",
+            "cra"
+          ]
+        },
+        {
+          "h": "Selma: years of local organizing first",
+          "label": "documented",
+          "body": "<p>Bloody Sunday in 1965 looked sudden. It wasn't. SNCC organizers had been working in Selma since 1963, running voter registration drives and building trust family by family. Freedom Summer in 1964 brought about 1,000 volunteers, most of them white college students, to Mississippi, and Fannie Lou Hamer's Mississippi Freedom Democratic Party challenged the all-white delegation at the 1964 Democratic convention on national television. (See the module on the vote.)</p>",
+          "sources": [
+            "freedomsummer",
+            "hamer"
+          ]
+        },
+        {
+          "h": "Does disruption help or hurt?",
+          "label": "debated",
+          "body": "<p>Historians and political scientists still argue about which tactics moved public opinion. A 2020 study by Omar Wasow found that nonviolent protests in the 1960s increased support for civil rights, while protests that turned violent pushed some white voters toward “law and order” candidates in 1968. Others argue that the threat of more militant groups and armed self-defense (such as the Deacons for Defense) made officials more willing to deal with nonviolent leaders. Most agree that discipline, clear demands and broad public sympathy were essential.</p>",
+          "sources": [
+            "wasow",
+            "deacons"
+          ]
+        },
+        {
+          "h": "Recent wins this campaign can copy",
+          "label": "documented",
+          "body": "<p>San Francisco's CAREN Act went from introduction to a unanimous vote in about three months in 2020. Oregon's law passed in 2019 because a state lawmaker, Janelle Bynum, had police called on her while canvassing and told her story. “Ban the box” spread city by city before states adopted it. In 2018, Florida voters restored voting rights to more than a million people through a citizen ballot initiative that won 64.6% of the vote. The pattern: start local, tell real stories, then go statewide and national.</p>",
+          "sources": [
+            "history",
+            "fl4"
+          ]
+        },
+        {
+          "h": "The playbook for a federal CAREN Act",
+          "label": "plan",
+          "body": "<ol><li><b>Map the power.</b> Who decides? The House and Senate Judiciary Committees hear the bill; your own members vote on it. The map's allies layer shows them. (Quest: <em>Map who decides</em>.)</li><li><b>Win locally first.</b> City council resolutions and state bills create precedent and show Congress a wave. (Quest: <em>Win a local resolution</em>.)</li><li><b>Build an unlikely coalition.</b> Churches, unions, civil rights groups, Asian American, Latino and Native groups, and businesses that don't want their customers harassed. (Quest: <em>Build a coalition</em>.)</li><li><b>Tell stories, backed by data.</b> Personal stories move lawmakers; the 911-outcome and BJS data protect the stories from being dismissed.</li><li><b>Go inside and outside at once.</b> Meetings with staff and testimony at hearings, plus public pressure: calls, op-eds, events.</li><li><b>Train people and keep going.</b> Teach-ins turn learners into organizers. Most wins take years, not weeks.</li></ol>",
+          "sources": [
+            "history"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1936,
+          "t": "Murray v. Pearson opens Maryland's law school",
+          "label": "documented"
+        },
+        {
+          "y": 1954,
+          "t": "Brown v. Board of Education",
+          "label": "documented"
+        },
+        {
+          "y": 1955,
+          "t": "Montgomery bus boycott begins",
+          "label": "documented"
+        },
+        {
+          "y": 1956,
+          "t": "Browder v. Gayle ends bus segregation",
+          "label": "documented"
+        },
+        {
+          "y": 1960,
+          "t": "Greensboro sit-ins; SNCC founded",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "Birmingham campaign; March on Washington",
+          "label": "documented"
+        },
+        {
+          "y": 1964,
+          "t": "Freedom Summer; Civil Rights Act",
+          "label": "documented"
+        },
+        {
+          "y": 1965,
+          "t": "Selma; Voting Rights Act",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Florida's Amendment 4 restores voting rights",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Oregon's law on racially biased police calls",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "San Francisco's CAREN Act passes unanimously",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What legally ended bus segregation in Montgomery?",
+          "options": [
+            "The boycott alone",
+            "The lawsuit Browder v. Gayle",
+            "A city vote",
+            "A presidential order"
+          ],
+          "a": 1,
+          "why": "The boycott kept up pressure while the case was decided."
+        },
+        {
+          "q": "Where did the NAACP's legal strategy start before Brown?",
+          "options": [
+            "Elementary schools",
+            "Graduate and law schools",
+            "Buses",
+            "Hospitals"
+          ],
+          "a": 1,
+          "why": "Inequality was easiest to prove there."
+        },
+        {
+          "q": "Who was called “the 101st senator”?",
+          "options": [
+            "Thurgood Marshall",
+            "Clarence Mitchell, NAACP lobbyist",
+            "Martin Luther King Jr.",
+            "John Lewis"
+          ],
+          "a": 1,
+          "why": "Lobbying was essential to the Civil Rights Act."
+        },
+        {
+          "q": "How long did San Francisco's CAREN Act take from introduction to passage?",
+          "options": [
+            "About 3 months",
+            "About 3 years",
+            "About 10 years",
+            "It hasn't passed"
+          ],
+          "a": 0,
+          "why": "July to October 2020."
+        }
+      ],
+      "quest": "power-map",
+      "map": [
+        {
+          "t": "Members of Congress who would hear the bill",
+          "href": "index.html?layers=heat,allies,residual"
+        }
+      ],
+      "sourcesList": {
+        "montgomery": {
+          "t": "Montgomery bus boycott",
+          "url": "https://en.wikipedia.org/wiki/Montgomery_bus_boycott"
+        },
+        "browder": {
+          "t": "Browder v. Gayle (1956)",
+          "url": "https://en.wikipedia.org/wiki/Browder_v._Gayle"
+        },
+        "houston": {
+          "t": "Charles Hamilton Houston",
+          "url": "https://en.wikipedia.org/wiki/Charles_Hamilton_Houston"
+        },
+        "brown": {
+          "t": "Brown v. Board of Education (1954)",
+          "url": "https://supreme.justia.com/cases/federal/us/347/483/"
+        },
+        "sitins": {
+          "t": "Greensboro sit-ins; Nashville sit-ins",
+          "url": "https://en.wikipedia.org/wiki/Greensboro_sit-ins"
+        },
+        "baker": {
+          "t": "Ella Baker",
+          "url": "https://en.wikipedia.org/wiki/Ella_Baker"
+        },
+        "birmingham": {
+          "t": "Birmingham campaign",
+          "url": "https://en.wikipedia.org/wiki/Birmingham_campaign"
+        },
+        "cra": {
+          "t": "Civil Rights Act of 1964",
+          "url": "https://en.wikipedia.org/wiki/Civil_Rights_Act_of_1964"
+        },
+        "freedomsummer": {
+          "t": "Freedom Summer",
+          "url": "https://en.wikipedia.org/wiki/Freedom_Summer"
+        },
+        "hamer": {
+          "t": "Mississippi Freedom Democratic Party",
+          "url": "https://en.wikipedia.org/wiki/Mississippi_Freedom_Democratic_Party"
+        },
+        "wasow": {
+          "t": "Omar Wasow, “Agenda Seeding: How 1960s Black Protests Moved Elites, Public Opinion and Voting,” American Political Science Review (2020)"
+        },
+        "deacons": {
+          "t": "Deacons for Defense and Justice",
+          "url": "https://en.wikipedia.org/wiki/Deacons_for_Defense_and_Justice"
+        },
+        "history": {
+          "t": "This site: how the San Francisco CAREN Act came about",
+          "url": "history.html"
+        },
+        "fl4": {
+          "t": "2018 Florida Amendment 4",
+          "url": "https://en.wikipedia.org/wiki/2018_Florida_Amendment_4"
+        }
+      },
+      "num": 17
+    },
+    {
       "id": "path-forward",
-      "num": 17,
+      "num": 18,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",

@@ -47,6 +47,7 @@
         '<h1>' + esc(m.title) + '</h1>' +
         '<div class="meta">' + (m.minutes ? '<span>' + m.minutes + ' min read</span>·' : '') +
         '<span>' + (m.status === 'outline' ? 'Outline: being written' : 'Draft, awaiting historian review') + '</span>·' +
+        (m.status !== 'outline' ? '<a href="teach.html?m=' + m.id + '">🎓 Teach this</a>·' : '') +
         Object.keys(cat.labels).map(k => ui.chip(cat, k)).join(' ') + '</div>';
       if (m.status === 'outline') {
         h += '<p class="lede">' + esc(m.short) + '</p><h2>What this module will cover</h2><ul>' + m.topics.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>' +

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teach-In Kit</title>
+  <meta name="description" content="Free teach-in kits for every Learn module: slides, a printable handout and a facilitator guide.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .kits { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin: 12px 0; }
+    .kit { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+    .kit h3 { margin: 0 0 6px; font-size: 1rem; }
+    .kit .row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .tabs a { padding: 7px 12px; border: 1px solid var(--accent); border-radius: 6px; text-decoration: none; }
+    .tabs a[aria-current] { background: var(--accent); color: #fff; }
+    /* Slides */
+    .deck { position: fixed; inset: 0; z-index: 4000; background: #0e2a47; color: #fff; display: flex; flex-direction: column; }
+    .deck .slide { flex: 1; overflow: auto; padding: clamp(20px, 5vw, 64px) clamp(20px, 8vw, 120px); display: flex; flex-direction: column; justify-content: center; }
+    .deck h1 { font-size: clamp(1.6rem, 4.5vw, 3rem); line-height: 1.15; margin: 0 0 16px; }
+    .deck h2 { font-size: clamp(1.3rem, 3.4vw, 2.3rem); margin: 0 0 16px; color: #f2c14e; }
+    .deck p, .deck li { font-size: clamp(1rem, 2.2vw, 1.5rem); line-height: 1.45; color: #e8eef6; }
+    .deck li { margin: 8px 0; }
+    .deck a { color: #f2c14e; }
+    .deck .ev { font-size: clamp(.75rem, 1.4vw, 1rem); }
+    .deck .bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: rgba(0,0,0,.25); font-size: .9rem; gap: 8px; }
+    .deck .bar button { font: inherit; background: #f2c14e; color: #0e2a47; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-weight: 700; }
+    .deck .bar button.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.4); }
+    .deck .tl-s li { font-size: clamp(.95rem, 1.9vw, 1.3rem); }
+    .deck .ans { color: #9fd8a8; display: none; }
+    .deck .ans.show { display: block; }
+    /* Handout */
+    .handout h1 { font-size: 1.5rem; margin-bottom: 4px; }
+    .handout h2 { font-size: 1.05rem; margin: 16px 0 4px; }
+    .handout p, .handout li { font-size: .95rem; }
+    .handout .box { border: 2px solid #0e2a47; border-radius: 8px; padding: 10px 12px; margin: 14px 0; }
+    .handout .lines { border-bottom: 1px solid #999; height: 26px; }
+    @media print {
+      .site-header, .site-footer, .tabs, .noprint { display: none !important; }
+      .page { max-width: none; padding: 0; }
+      .handout { font-size: 11pt; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page" id="main"><p>Loading…</p></main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
+  <script>
+  (function () {
+    const L = CarenLearn, ui = L.ui, esc = ui.esc, main = document.getElementById('main');
+    const qs = new URLSearchParams(location.search), id = qs.get('m'), view = qs.get('view') || 'guide';
+    const SITE = 'https://prodataman.github.io/CAREN-Act/website/';
+    const GENERIC = ['What surprised you most? What did you already know?', 'Which of these histories touched your family or our town?', 'Which claim would you want to check for yourself, and how would you check it?', 'What is one thing each of us can do in the next two weeks?'];
+    const text = h => { const d = document.createElement('div'); d.innerHTML = h; return d.textContent.replace(/\s+/g, ' ').trim(); };
+    const sentences = (t, n) => (t.match(/[^.!?]+[.!?]+(["”’)]*)/g) || [t]).slice(0, n).join(' ').trim();
+    // Short summary points for a section: list items if it has them, otherwise the first sentences of each paragraph.
+    function points(s, max) {
+      const d = document.createElement('div'); d.innerHTML = s.body;
+      const li = [...d.querySelectorAll('li')];
+      if (li.length) return li.slice(0, max).map(x => { const b = x.querySelector('b'); const t = text(x.innerHTML); return t.length > 170 ? (b ? text(b.innerHTML) + ' ' : '') + sentences(t.replace(b ? text(b.innerHTML) : '', ''), 1) : t; });
+      return [...d.querySelectorAll('p')].map(p => sentences(text(p.innerHTML), 2)).filter(Boolean).slice(0, max);
+    }
+
+    L.catalog().then(cat => {
+      const mods = cat.modules.filter(m => m.status !== 'outline');
+      if (!id) {
+        document.title = 'Teach-In Kits';
+        main.innerHTML = '<h1>Teach-in kits</h1><p class="lede">Teach any Learn module to a class, church, club, union, book group or chapter. Each kit has slides to present, a one-page handout to print, and a facilitator guide with a 60-minute agenda. Everything is free to use and share.</p>' +
+          '<div class="callout info"><b>Hosting one counts.</b> A teach-in is a 200 XP quest. Mark it on the <a href="learn.html#quests">quest board</a> afterward, and tell us how it went.</div>' +
+          '<div class="kits">' + mods.map(m => '<div class="kit"><h3>' + m.num + '. ' + esc(m.title) + '</h3><div class="row"><a class="btn" href="?m=' + m.id + '&view=slides">Slides</a><a class="btn secondary" href="?m=' + m.id + '&view=handout">Handout</a><a class="btn secondary" href="?m=' + m.id + '">Guide</a></div></div>').join('') + '</div>';
+        return;
+      }
+      const m = cat.modules.find(x => x.id === id);
+      if (!m || m.status === 'outline') { main.innerHTML = '<h1>Kit not available</h1><p>This module is still an outline. <a href="teach.html">See all kits</a>.</p>'; return; }
+      document.title = 'Teach-In: ' + m.title.split(':')[0];
+      const url = SITE + 'module.html?m=' + m.id;
+      const discuss = (m.discuss && m.discuss.length ? m.discuss : []).concat(GENERIC).slice(0, 5);
+      const quest = cat.quests.find(q => q.id === m.quest);
+      const tabs = '<p class="crumbs" style="margin-top:14px"><a href="teach.html">Teach-in kits</a> › ' + esc(m.title) + '</p><div class="tabs">' +
+        [['guide', 'Facilitator guide'], ['slides', 'Present slides'], ['handout', 'Printable handout']].map(t => '<a href="?m=' + m.id + '&view=' + t[0] + '"' + (view === t[0] ? ' aria-current="page"' : '') + '>' + t[1] + '</a>').join('') + '</div>';
+
+      if (view === 'handout') {
+        main.innerHTML = tabs + '<div class="handout"><p class="note noprint"><button class="btn" onclick="print()">Print or save as PDF</button></p>' +
+          '<h1>' + esc(m.title) + '</h1><p class="note">Federal CAREN Act campaign · Learn module ' + m.num + ' · ' + url + '</p><p>' + esc(m.intro) + '</p>' +
+          m.sections.map(s => '<h2>' + esc(s.h) + ' ' + ui.chip(cat, s.label) + '</h2><ul>' + points(s, 3).map(p => '<li>' + esc(p) + '</li>').join('') + '</ul>').join('') +
+          (m.timeline && m.timeline.length ? '<h2>Key dates</h2><p>' + m.timeline.map(t => '<b>' + t.y + '</b> ' + esc(t.t)).join(' · ') + '</p>' : '') +
+          '<div class="box"><b>Talk about it</b><ol>' + discuss.slice(0, 3).map(q => '<li>' + esc(q) + '</li>').join('') + '</ol></div>' +
+          (quest ? '<div class="box"><b>Do something this week: ' + esc(quest.title) + '</b><br>' + esc(quest.desc) + '</div>' : '') +
+          '<p class="note"><b>Labels:</b> ' + Object.keys(cat.labels).map(k => esc(cat.labels[k].name) + ' = ' + esc(cat.labels[k].desc)).join(' ') + '</p>' +
+          '<p class="note">Full lesson with sources: ' + url + ' · Take action: ' + SITE + 'act.html</p></div>';
+        return;
+      }
+
+      if (view === 'slides') {
+        const slides = [];
+        slides.push('<p class="note" style="color:#f2c14e">Federal CAREN Act · Learn module ' + m.num + '</p><h1>' + esc(m.title) + '</h1><p>' + esc(m.short) + '</p>');
+        slides.push('<h2>How to read what follows</h2><ul>' + Object.keys(cat.labels).map(k => '<li>' + ui.chip(cat, k) + ' ' + esc(cat.labels[k].desc) + '</li>').join('') + '</ul>');
+        slides.push('<h2>Why this matters</h2><p>' + esc(m.intro) + '</p>');
+        m.sections.forEach(s => slides.push('<h2>' + esc(s.h) + '</h2><p>' + ui.chip(cat, s.label) + '</p><ul>' + points(s, 4).map(p => '<li>' + esc(p) + '</li>').join('') + '</ul>'));
+        if (m.timeline && m.timeline.length) {
+          const tl = m.timeline.length > 10 ? m.timeline.filter((_, i) => i % Math.ceil(m.timeline.length / 10) === 0) : m.timeline;
+          slides.push('<h2>Timeline</h2><ul class="tl-s">' + tl.map(t => '<li><b>' + t.y + '</b> ' + esc(t.t) + '</li>').join('') + '</ul>');
+        }
+        if (m.quiz && m.quiz.length) m.quiz.forEach((q, i) => slides.push('<h2>Quick check ' + (i + 1) + '</h2><p><b>' + esc(q.q) + '</b></p><ul>' + q.options.map(o => '<li>' + esc(o) + '</li>').join('') + '</ul><p class="ans">Answer: ' + esc(q.options[q.a]) + '. ' + esc(q.why) + '</p><p class="note" style="color:#c8d6e6">Press A to show the answer.</p>'));
+        slides.push('<h2>Let\'s talk</h2><ol>' + discuss.map(q => '<li>' + esc(q) + '</li>').join('') + '</ol>');
+        if (quest) slides.push('<h2>Do something this week</h2><p><b>' + esc(quest.title) + '</b> (' + quest.xp + ' XP)</p><p>' + esc(quest.desc) + '</p><p>Start at <a href="' + SITE + 'act.html">' + SITE.replace('https://', '') + 'act.html</a></p>');
+        slides.push('<h2>Keep going</h2><ul><li>Full lesson and sources: ' + esc(url.replace('https://', '')) + '</li><li>All lessons, quests and badges: ' + esc((SITE + 'learn.html').replace('https://', '')) + '</li><li>Volunteer: ' + esc((SITE + 'volunteer.html').replace('https://', '')) + '</li></ul>');
+        let i = 0;
+        const deck = document.createElement('div'); deck.className = 'deck'; deck.setAttribute('role', 'region'); deck.setAttribute('aria-label', 'Slides');
+        deck.innerHTML = '<div class="slide" aria-live="polite"></div><div class="bar"><button class="ghost" type="button" data-a="exit">Exit</button><span id="pos"></span><span><button class="ghost" type="button" data-a="prev">← Back</button> <button type="button" data-a="next">Next →</button></span></div>';
+        document.body.appendChild(deck);
+        const show = () => { deck.querySelector('.slide').innerHTML = slides[i]; deck.querySelector('#pos').textContent = (i + 1) + ' / ' + slides.length; };
+        const go = d => { i = Math.max(0, Math.min(slides.length - 1, i + d)); show(); };
+        deck.addEventListener('click', e => { const a = e.target.closest('button') && e.target.closest('button').dataset.a; if (a === 'next') go(1); if (a === 'prev') go(-1); if (a === 'exit') location.href = '?m=' + m.id; });
+        document.addEventListener('keydown', e => {
+          if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(1); }
+          if (['ArrowLeft', 'PageUp'].includes(e.key)) go(-1);
+          if (e.key === 'a' || e.key === 'A') { const a = deck.querySelector('.ans'); if (a) a.classList.toggle('show'); }
+          if (e.key === 'f' || e.key === 'F') { (document.fullscreenElement ? document.exitFullscreen() : deck.requestFullscreen()).catch(() => {}); }
+          if (e.key === 'Escape' && !document.fullscreenElement) location.href = '?m=' + m.id;
+        });
+        show();
+        main.innerHTML = tabs;
+        return;
+      }
+
+      // Facilitator guide
+      main.innerHTML = tabs + '<h1>Facilitator guide: ' + esc(m.title) + '</h1>' +
+        '<p class="lede">A 60-minute teach-in for 5 to 50 people. You don\'t need to be an expert: the slides carry the content, and your job is to keep time, invite people in, and end with action.</p>' +
+        '<h2>Before</h2><ul><li>Read the <a href="module.html?m=' + m.id + '">full module</a> and its sources once.</li><li>Test the <a href="?m=' + m.id + '&view=slides">slides</a> on the screen you\'ll use. Arrow keys move, F goes full screen, A reveals quiz answers.</li><li>Print one <a href="?m=' + m.id + '&view=handout">handout</a> per person.</li><li>Invite a co-host from a different background or organization. It doubles your reach.</li></ul>' +
+        '<h2>Agenda (60 minutes)</h2><div class="table-wrap"><table class="data"><tr><th>Time</th><th>What</th></tr>' +
+        '<tr><td>0–5</td><td>Welcome, introductions, and ground rules: listen to understand, speak from your own experience, and ask “how do we know?” of any claim, including ours.</td></tr>' +
+        '<tr><td>5–10</td><td>Explain the three evidence labels. Ask: what do people already know about this topic?</td></tr>' +
+        '<tr><td>10–35</td><td>Present the slides (about 2 minutes per section). Pause after the sections that land hardest.</td></tr>' +
+        '<tr><td>35–40</td><td>Quick-check questions, answered by show of hands.</td></tr>' +
+        '<tr><td>40–52</td><td>Discussion in pairs or small groups (questions below), then share back.</td></tr>' +
+        '<tr><td>52–60</td><td>Action: everyone picks one quest for the next two weeks. ' + (quest ? 'Suggested: <b>' + esc(quest.title) + '</b>. ' : '') + 'Offer the volunteer page for people who want more.</td></tr></table></div>' +
+        '<h2>Discussion questions</h2><ol>' + discuss.map(q => '<li>' + esc(q) + '</li>').join('') + '</ol>' +
+        '<h2>If someone pushes back</h2><ul><li><b>“That\'s exaggerated.”</b> Point to the label and the source. Documented claims cite records; invite them to check.</li><li><b>“That was a long time ago.”</b> Use the timeline: most of these events are within living memory, and the module shows what continues today.</li><li><b>“Why are you making it about race?”</b> The laws named race. Undoing them means naming it too.</li><li><b>Someone shares a claim the module labels a myth.</b> Thank them, and show why it\'s labeled that way. The documented record is strong enough on its own.</li><li>Stay calm and curious. The goal is to bring people in, not to win an argument.</li></ul>' +
+        '<h2>After</h2><ul><li>Mark the <a href="learn.html#quests">“Host a teach-in” quest</a> (200 XP).</li><li>Tell us what worked and what didn\'t, or report errors, by <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=' + encodeURIComponent('[Teach-in] ' + m.title.split(':')[0]) + '" target="_blank" rel="noopener">opening an issue</a>. Please don\'t include attendees\' personal details.</li><li>Follow up within a week with the people who picked a quest.</li></ul>' +
+        '<p><a class="btn" href="?m=' + m.id + '&view=slides">Present slides</a> <a class="btn secondary" href="?m=' + m.id + '&view=handout">Print handout</a></p>';
+    });
+  })();
+  </script>
+</body>
+</html>

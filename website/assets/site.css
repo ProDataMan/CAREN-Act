@@ -123,3 +123,5 @@ table.data th { background: var(--surface-2); }
 .quiz .opts button.wrong { background: #fde8e8; border-color: #b42318; }
 .quiz .why { font-size: .86rem; color: #333; margin-top: 6px; }
 .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: #0e2a47; color: #fff; padding: 10px 16px; border-radius: 8px; z-index: 3000; box-shadow: 0 4px 16px rgba(0,0,0,.25); font-weight: 600; }
+.ev.plan { background: #e3eefb; color: #0b4a8c; }
+.ev.plan::before { content: "➜"; }

@@ -15,6 +15,8 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 
 **Learn**
 - **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
+- **Teach-in kits (slides, printable handout, facilitator guide for every written module):** https://prodataman.github.io/CAREN-Act/website/teach.html
+- **How movements won, and the playbook for this one:** https://prodataman.github.io/CAREN-Act/website/module.html?m=movements
 - **Start here, three things everyone should know:** https://prodataman.github.io/CAREN-Act/website/learn.html#three
 - **New modules (Nov 10):** [What we built: Black towns](https://prodataman.github.io/CAREN-Act/website/module.html?m=black-towns), [Wealth: built, blocked and taken](https://prodataman.github.io/CAREN-Act/website/module.html?m=wealth), [The fight for the vote](https://prodataman.github.io/CAREN-Act/website/module.html?m=voting), [Mass incarceration](https://prodataman.github.io/CAREN-Act/website/module.html?m=incarceration), [Many targets: Latino, Asian, Native](https://prodataman.github.io/CAREN-Act/website/module.html?m=many-targets), [Equal or better: what the evidence shows](https://prodataman.github.io/CAREN-Act/website/module.html?m=performance)
 - **Earlier modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Burned, flooded and taken (Black Wall Street and more)](https://prodataman.github.io/CAREN-Act/website/module.html?m=destroyed), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
@@ -242,6 +244,8 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 - **Evidence labels:** every section is labeled *Documented*, *Debated* or *Belief or myth*.
 - **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–500 for quests, depending on how much the task matters.
 - **Quests:** 39, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
+- **Teach-in kits:** `teach.html` lists them, and `teach.html?m=<id>&view=guide|slides|handout` builds each one from `learn.json`. Slides use the arrow keys, F for full screen and A to reveal quiz answers. Discussion questions come from the module's optional `discuss` list plus generic prompts.
+- **Fourth label:** `plan` ("Our recommendation") marks campaign advice, as opposed to historical claims.
 - **"Three things everyone should know":** set in `threeThings` in `learn.json` and shown at the top of the hub. Quests are on the honor system for now.
 - **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.
 - **Badges:** 13.
@@ -293,7 +297,7 @@ Repeal is a legislative act, so the tracker never files legal motions or sends a
 ## Contents
 
 - `website/`: the site.
-  - **Pages:** `index.html` (map), `act.html`, `county.html`, `embed.html`, `bill.html` + `bill.json`, `deaths.html`, `laws.html`, `history.html`, `learn.html` + `module.html` (content in `data/learn.json`), `data.html`, `volunteer.html`, `admin.html`, `privacy.html`.
+  - **Pages:** `index.html` (map), `act.html`, `county.html`, `embed.html`, `bill.html` + `bill.json`, `deaths.html`, `laws.html`, `history.html`, `learn.html` + `module.html` + `teach.html` (content in `data/learn.json`), `data.html`, `volunteer.html`, `admin.html`, `privacy.html`.
   - **`assets/`:** `site.css`, `site.js` (header, menu, footer, race breakdown), `api.js` (Azure API client), `reps.js` (lawmaker lookup), `learn.js` (Learn progress, XP, badges, quizzes).
   - **`data/`:** generated datasets.
 - `server/`: Node.js API and static server for Azure, with `Dockerfile` and `sql/grant-app-identity.sql`.
