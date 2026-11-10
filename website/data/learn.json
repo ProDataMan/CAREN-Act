@@ -927,6 +927,555 @@
       }
     },
     {
+      "id": "columbus",
+      "title": "Columbus: what his own records say",
+      "short": "What Columbus wrote about the Taíno, enslavement and tribute on Hispaniola, his arrest in chains, the records about Africans sailing west before him, and the myths on all sides.",
+      "status": "draft",
+      "minutes": 11,
+      "intro": "Columbus is usually taught as a discoverer. His own journal and letters, and the reports of the Spaniards who investigated him, tell a different story. They also contain intriguing passages about Africans and the Atlantic, which have been both ignored and exaggerated. Here is what the records actually say.",
+      "discuss": [
+        "Why do you think Columbus was taught as a hero for so long?",
+        "What does it mean that the African-contact records exist but don't prove contact?",
+        "How should a town decide what to celebrate on the second Monday in October?"
+      ],
+      "sections": [
+        {
+          "h": "Who he was, and what he already knew",
+          "label": "documented",
+          "body": "<p>Columbus was a Genoese sailor who sailed for the Crown of Castile in 1492 under a contract, the Capitulations of Santa Fe, that promised him a tenth of the wealth he found and the titles of admiral and governor. He was looking for a western route to Asia. Before that, he had sailed with the Portuguese to their fortress at São Jorge da Mina (Elmina) on the coast of present-day Ghana, the center of Portugal's trade in gold and enslaved Africans. He knew that trade firsthand.</p><p>His journal of the first voyage survives only as a summary made decades later by the friar Bartolomé de las Casas, partly quoting him and partly paraphrasing.</p>",
+          "sources": [
+            "capitulations",
+            "journal"
+          ]
+        },
+        {
+          "h": "What he wrote about the people he met",
+          "label": "documented",
+          "body": "<p>On October 13, 1492, the journal describes the Lucayan (Taíno) people as “none of them black, but the color of the Canary Islanders.” On October 14 it says: “with fifty men they could all be subjugated and made to do whatever one might wish.” From the first days, he wrote about them as future servants and converts.</p>",
+          "sources": [
+            "journal"
+          ]
+        },
+        {
+          "h": "Enslavement and tribute on Hispaniola",
+          "label": "documented",
+          "body": "<p>In 1495 Columbus's men captured about 1,500 Taíno; around 500 were shipped to Spain to be sold, and about 200 died on the voyage (Michele da Cuneo's eyewitness account). He imposed a tribute: every Taíno over 14 had to deliver a set amount of gold every three months. Las Casas, who lived on the island, wrote that those who failed were brutally punished, including having their hands cut off. In 2006 historians published the report of Francisco de Bobadilla, sent by the Crown in 1500 to investigate; witnesses described Columbus and his brothers ordering mutilations, whippings and executions. Bobadilla sent Columbus back to Spain in chains. He was released but never again allowed to govern.</p>",
+          "sources": [
+            "cuneo",
+            "bobadilla",
+            "lascasas"
+          ]
+        },
+        {
+          "h": "How many died?",
+          "label": "debated",
+          "body": "<p>Estimates of Hispaniola's population in 1492 range from about 100,000 to several million, and historians disagree sharply. A Spanish count in 1514 found only about 26,000 Taíno under forced labor; smallpox arrived in 1518. The collapse from violence, forced labor, famine and disease is documented; the starting number is debated. The Taíno did not vanish: genetic studies find substantial Taíno ancestry in Puerto Ricans and others today, and Taíno communities are reviving their culture.</p>",
+          "sources": [
+            "taino"
+          ]
+        },
+        {
+          "h": "Africans sailing west: what the records actually say",
+          "label": "debated",
+          "body": "<p>Several real documents raise the question of whether Africans crossed the Atlantic before 1492:</p><ul><li><b>Columbus, third voyage (1498):</b> in Las Casas's summary, Columbus says he sailed southwest partly to test King João II of Portugal's belief that there was land to the southwest, and that “canoes had been found which set out from the coast of Guinea [West Africa] and sailed to the west with merchandise.”</li><li><b>Reports of “black people” and <em>guanín</em>:</b> the same accounts report that people on Hispaniola spoke of Black traders who had come from the south and southeast with spear points of <em>guanín</em>, a gold-copper alloy; <em>guanín</em> was also a Taíno word and material.</li><li><b>Panama, 1513:</b> chronicler Peter Martyr wrote that Balboa's expedition met Black people at Quarequá, whom he guessed had come by sea from “Ethiopia.”</li><li><b>Mali, about 1311:</b> the scholar al-ʿUmarī recorded Mansa Musa saying that his predecessor (usually called Abu Bakr II) sent fleets into the Atlantic and then sailed himself, never to return.</li></ul><p>Historian Ivan Van Sertima's <em>They Came Before Columbus</em> (1976) built on these to argue Africans reached the Americas. Most archaeologists and historians conclude the case is unproven: no African settlement, artifact or pre-1492 African ancestry has been found in the Americas, and claims that the Olmec stone heads show Africans are rejected by Mesoamerican specialists and many Indigenous scholars, who see them as taking credit from Native peoples. The documents are real; what they prove is debated.</p>",
+          "sources": [
+            "thirdvoyage",
+            "martyr",
+            "umari",
+            "vansertima",
+            "critique"
+          ]
+        },
+        {
+          "h": "“African villages were already here when Columbus arrived”",
+          "label": "belief",
+          "body": "<p>Columbus's journal and letters don't describe African villages. They describe the Taíno, whom he said were “none of them black.” The first Africans documented in the Americas came with the Spanish: free Africans such as the conquistador Juan Garrido, and enslaved Africans, whom the Crown allowed to be shipped to Hispaniola from 1501. Enslaved Africans led one of the first revolts in the Americas there in 1521.</p><p>The idea that Africans came first grew partly as a response to centuries of racist claims that Africa had no history (the philosopher Hegel wrote in the 1830s that Africa was “no historical part of the world”). The documented record answers those claims on its own: the Mali Empire and Timbuktu's manuscripts, Great Zimbabwe (which colonial authorities falsely claimed others had built), and the Benin bronzes looted by British troops in 1897, some of which have now been returned.</p>",
+          "sources": [
+            "garrido",
+            "revolt1521",
+            "mali",
+            "zimbabwe",
+            "benin"
+          ]
+        },
+        {
+          "h": "Columbus Day and Indigenous Peoples' Day",
+          "label": "documented",
+          "body": "<p>President Benjamin Harrison proclaimed a one-time Columbus celebration in 1892, months after a mob in New Orleans lynched 11 Italian Americans; for Italian Americans facing discrimination, Columbus became a symbol of belonging. It became a federal holiday in 1937. South Dakota renamed the day Native American Day in 1990, Berkeley adopted Indigenous Peoples' Day in 1992, and many states and cities have followed. Presidential proclamations have changed with administrations.</p>",
+          "sources": [
+            "columbusday",
+            "ipd"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1311,
+          "t": "Mali's ruler reportedly sends fleets into the Atlantic (al-ʿUmarī)",
+          "label": "debated"
+        },
+        {
+          "y": 1482,
+          "t": "Portugal builds São Jorge da Mina (Elmina)",
+          "label": "documented"
+        },
+        {
+          "y": 1492,
+          "t": "First voyage; journal describes the Taíno as “none of them black”",
+          "label": "documented"
+        },
+        {
+          "y": 1495,
+          "t": "About 500 Taíno shipped to Spain as slaves",
+          "label": "documented"
+        },
+        {
+          "y": 1498,
+          "t": "Third voyage: Columbus reports canoes sailing west from Guinea",
+          "label": "documented"
+        },
+        {
+          "y": 1500,
+          "t": "Bobadilla sends Columbus home in chains",
+          "label": "documented"
+        },
+        {
+          "y": 1501,
+          "t": "Crown allows enslaved Africans to be shipped to Hispaniola",
+          "label": "documented"
+        },
+        {
+          "y": 1513,
+          "t": "Peter Martyr reports Black people met in Panama",
+          "label": "documented"
+        },
+        {
+          "y": 1514,
+          "t": "Spanish count finds about 26,000 Taíno",
+          "label": "documented"
+        },
+        {
+          "y": 1521,
+          "t": "Revolt of enslaved Africans on Hispaniola",
+          "label": "documented"
+        },
+        {
+          "y": 1892,
+          "t": "First national Columbus celebration",
+          "label": "documented"
+        },
+        {
+          "y": 1937,
+          "t": "Columbus Day becomes a federal holiday",
+          "label": "documented"
+        },
+        {
+          "y": 1992,
+          "t": "Berkeley adopts Indigenous Peoples' Day",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "How did Columbus's journal describe the people he met in 1492?",
+          "options": [
+            "As Africans",
+            "“None of them black,” the color of Canary Islanders",
+            "As Europeans",
+            "It doesn't describe them"
+          ],
+          "a": 1,
+          "why": "October 13, 1492."
+        },
+        {
+          "q": "What happened to Columbus in 1500?",
+          "options": [
+            "He was knighted",
+            "He was sent back to Spain in chains after an investigation",
+            "He died",
+            "He discovered Asia"
+          ],
+          "a": 1,
+          "why": "Bobadilla's investigation."
+        },
+        {
+          "q": "What did Columbus write about Guinea in 1498?",
+          "options": [
+            "Nothing",
+            "That canoes had been found sailing west from Guinea with merchandise",
+            "That he founded a colony there",
+            "That Africans lived on Hispaniola"
+          ],
+          "a": 1,
+          "why": "Recorded in Las Casas's summary of the third voyage."
+        },
+        {
+          "q": "Why is pre-Columbian African contact labeled debated rather than documented?",
+          "options": [
+            "The records are fake",
+            "The records exist, but no settlements, artifacts or ancestry confirm contact",
+            "Historians ignore it",
+            "It's been proven"
+          ],
+          "a": 1,
+          "why": "The documents are real; what they prove is debated."
+        }
+      ],
+      "quest": "source-detective",
+      "map": [],
+      "sourcesList": {
+        "capitulations": {
+          "t": "Capitulations of Santa Fe (1492)",
+          "url": "https://en.wikipedia.org/wiki/Capitulations_of_Santa_Fe"
+        },
+        "journal": {
+          "t": "The Diario of Christopher Columbus's First Voyage to America, 1492–1493, abstracted by Bartolomé de las Casas (trans. Dunn & Kelley, 1989)"
+        },
+        "cuneo": {
+          "t": "Michele da Cuneo, letter of 1495, in Samuel Eliot Morison, Journals and Other Documents on the Life and Voyages of Christopher Columbus (1963)"
+        },
+        "bobadilla": {
+          "t": "Consuelo Varela, La caída de Cristóbal Colón: el juicio de Bobadilla (2006)"
+        },
+        "lascasas": {
+          "t": "Bartolomé de las Casas, A Short Account of the Destruction of the Indies (1552); History of the Indies"
+        },
+        "taino": {
+          "t": "Taíno",
+          "url": "https://en.wikipedia.org/wiki/Ta%C3%ADno"
+        },
+        "thirdvoyage": {
+          "t": "Las Casas's abstract of Columbus's third voyage (1498), in Cecil Jane, ed., Select Documents Illustrating the Four Voyages of Columbus (Hakluyt Society)"
+        },
+        "martyr": {
+          "t": "Peter Martyr d'Anghiera, De Orbe Novo (Decades of the New World)"
+        },
+        "umari": {
+          "t": "Al-ʿUmarī, Masālik al-abṣār; Abu Bakr II",
+          "url": "https://en.wikipedia.org/wiki/Abu_Bakr_II"
+        },
+        "vansertima": {
+          "t": "Ivan Van Sertima, They Came Before Columbus (1976)"
+        },
+        "critique": {
+          "t": "Ortiz de Montellano, Haslip-Viera & Barbour, “They Were NOT Here before Us: Afrocentric Claims about the Olmec,” Current Anthropology (1997)"
+        },
+        "garrido": {
+          "t": "Juan Garrido",
+          "url": "https://en.wikipedia.org/wiki/Juan_Garrido"
+        },
+        "revolt1521": {
+          "t": "1521 enslaved Africans' revolt on Hispaniola (Diego Colón's sugar mill)"
+        },
+        "mali": {
+          "t": "Timbuktu manuscripts",
+          "url": "https://en.wikipedia.org/wiki/Timbuktu_manuscripts"
+        },
+        "zimbabwe": {
+          "t": "Great Zimbabwe",
+          "url": "https://en.wikipedia.org/wiki/Great_Zimbabwe"
+        },
+        "benin": {
+          "t": "Benin Bronzes",
+          "url": "https://en.wikipedia.org/wiki/Benin_Bronzes"
+        },
+        "columbusday": {
+          "t": "Columbus Day; 1891 New Orleans lynchings",
+          "url": "https://en.wikipedia.org/wiki/Columbus_Day"
+        },
+        "ipd": {
+          "t": "Indigenous Peoples' Day",
+          "url": "https://en.wikipedia.org/wiki/Indigenous_Peoples%27_Day"
+        }
+      },
+      "num": 2
+    },
+    {
+      "id": "colonizers",
+      "title": "The colonizers: Portugal, Spain, Britain and the empire system",
+      "short": "How Portugal opened the Atlantic slave trade, Spain debated whether Native people were human, Britain built the plantation law the U.S. inherited, and the United States became an empire itself.",
+      "status": "draft",
+      "minutes": 11,
+      "intro": "Columbus was one person in a system that ran for four centuries. Each empire added a piece of the machinery: the trade, the legal theory, the plantation code, the racial categories. Together they built the world the CAREN Act is still responding to.",
+      "sections": [
+        {
+          "h": "Portugal opens the Atlantic trade",
+          "label": "documented",
+          "body": "<p>In 1444, at Lagos in Portugal, about 235 captive Africans were divided and sold in a public square, an event the royal chronicler Gomes Eanes de Zurara described in detail. Portugal built Elmina castle in 1482 and traded along the African coast. In 1526, King Afonso I of Kongo, himself a Christian ally of Portugal, wrote to Portugal's king protesting that traders were kidnapping his people, “even noblemen and the sons of noblemen.” Portuguese and Brazilian ships carried about 5.8 million Africans across the Atlantic, more than any other nation. Brazil was the largest destination and the last country in the Americas to abolish slavery, in 1888.</p>",
+          "sources": [
+            "zurara",
+            "afonso",
+            "voyages"
+          ]
+        },
+        {
+          "h": "Spain asks whether Native people are fully human",
+          "label": "documented",
+          "body": "<p>From 1513, Spanish conquistadors read the <em>Requerimiento</em> aloud, in Spanish, to people who couldn't understand it, demanding submission to the Crown and the Church, and declaring that any resulting deaths were their own fault. Native people were assigned to Spaniards as forced laborers under the <em>encomienda</em>. Bartolomé de las Casas, a former encomendero turned friar, spent fifty years denouncing it; the New Laws of 1542 limited it. At the Valladolid debate (1550–51), Las Casas argued against Juan Ginés de Sepúlveda, who claimed, citing Aristotle, that Native people were “natural slaves.” Spain's colonies later sorted people into dozens of mixed-ancestry <em>castas</em>, recorded in official paintings.</p>",
+          "sources": [
+            "requerimiento",
+            "valladolid",
+            "casta"
+          ]
+        },
+        {
+          "h": "Where did “race” begin?",
+          "label": "debated",
+          "body": "<p>Some historians trace modern race to Spain's <em>limpieza de sangre</em> (“purity of blood”) statutes, which from the 1400s barred people with Jewish or Muslim ancestors from offices even after conversion, making ancestry, not belief, the test. Others see race emerging mainly from Atlantic slavery and English colonial law. Most agree it formed between about 1450 and 1700, which is the argument of the module “Before race.”</p>",
+          "sources": [
+            "limpieza"
+          ]
+        },
+        {
+          "h": "Britain writes the plantation code",
+          "label": "documented",
+          "body": "<p>John Hawkins led England's first slaving voyages in the 1560s, later with Queen Elizabeth I's backing. The Royal African Company, chartered under the future James II, shipped more enslaved Africans than any other single company; many were branded with “DY” for the Duke of York. Barbados's 1661 slave code became the model for Jamaica's and South Carolina's. British ships carried about 3.2 million Africans in all. In 1781 the crew of the slave ship <em>Zong</em> threw about 130 captives overboard, and the owners sued their insurers for the loss as “cargo.” The first Africans in English Virginia arrived in 1619 aboard the <em>White Lion</em>, an English privateer that had seized them from a Portuguese ship carrying captives from Angola.</p>",
+          "sources": [
+            "hawkins",
+            "rac",
+            "barbados",
+            "zong",
+            "1619"
+          ]
+        },
+        {
+          "h": "France and the Netherlands",
+          "label": "documented",
+          "body": "<p>The Dutch West India Company traded enslaved Africans to the Americas and used enslaved labor in New Amsterdam (New York). France's <em>Code Noir</em> (1685) governed its colonies; Saint-Domingue, today's Haiti, became the most profitable colony in the world on the labor of enslaved Africans, until they overthrew the French (see “Before race” and “A world system”).</p>",
+          "sources": [
+            "codenoir"
+          ]
+        },
+        {
+          "h": "The United States becomes an empire",
+          "label": "documented",
+          "body": "<p>In 1893, American businessmen backed by U.S. Marines overthrew Hawaii's Queen Liliʻuokalani; Congress formally apologized in 1993. After 1898 the U.S. took Puerto Rico, Guam and the Philippines. Rudyard Kipling's poem “The White Man's Burden” (1899) urged Americans to rule the Philippines, where a war against independence fighters killed hundreds of thousands of Filipinos by most estimates. In the Insular Cases (1901) the Supreme Court called Puerto Rico “foreign … in a domestic sense”; its residents are U.S. citizens who still can't vote for president.</p>",
+          "sources": [
+            "hawaii",
+            "philippines",
+            "insular"
+          ]
+        },
+        {
+          "h": "The common pattern",
+          "label": "documented",
+          "body": "<p>Across five centuries and every empire, the same tools appear: claim the land (discovery), classify people by ancestry or color, take their labor, write it into law, justify it with religion and then science, and divide the colonized from one another. Resistance appears everywhere too, from Kongo's king to Haiti's revolutionaries to Hawaii's queen. The rest of the Learn modules follow these tools into American institutions.</p>",
+          "sources": []
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1444,
+          "t": "Captive Africans sold at Lagos, Portugal",
+          "label": "documented"
+        },
+        {
+          "y": 1452,
+          "t": "Dum Diversas",
+          "label": "documented"
+        },
+        {
+          "y": 1482,
+          "t": "Elmina castle built",
+          "label": "documented"
+        },
+        {
+          "y": 1494,
+          "t": "Treaty of Tordesillas divides the world between Portugal and Spain",
+          "label": "documented"
+        },
+        {
+          "y": 1513,
+          "t": "Requerimiento",
+          "label": "documented"
+        },
+        {
+          "y": 1526,
+          "t": "King Afonso I of Kongo protests the slave trade",
+          "label": "documented"
+        },
+        {
+          "y": 1542,
+          "t": "Spain's New Laws",
+          "label": "documented"
+        },
+        {
+          "y": 1550,
+          "t": "Valladolid debate",
+          "label": "documented"
+        },
+        {
+          "y": 1562,
+          "t": "John Hawkins's first slaving voyage",
+          "label": "documented"
+        },
+        {
+          "y": 1619,
+          "t": "White Lion brings captive Angolans to Virginia",
+          "label": "documented"
+        },
+        {
+          "y": 1661,
+          "t": "Barbados slave code",
+          "label": "documented"
+        },
+        {
+          "y": 1672,
+          "t": "Royal African Company rechartered",
+          "label": "documented"
+        },
+        {
+          "y": 1685,
+          "t": "Code Noir",
+          "label": "documented"
+        },
+        {
+          "y": 1781,
+          "t": "Zong massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1888,
+          "t": "Brazil abolishes slavery",
+          "label": "documented"
+        },
+        {
+          "y": 1893,
+          "t": "Overthrow of Hawaii's queen",
+          "label": "documented"
+        },
+        {
+          "y": 1899,
+          "t": "Philippine-American War; “The White Man's Burden”",
+          "label": "documented"
+        },
+        {
+          "y": 1901,
+          "t": "Insular Cases",
+          "label": "documented"
+        },
+        {
+          "y": 1993,
+          "t": "U.S. apology to Native Hawaiians",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which nation's ships carried the most Africans across the Atlantic?",
+          "options": [
+            "Britain",
+            "Portugal (with Brazil)",
+            "Spain",
+            "France"
+          ],
+          "a": 1,
+          "why": "About 5.8 million."
+        },
+        {
+          "q": "What did Sepúlveda argue at Valladolid?",
+          "options": [
+            "Native people were natural slaves",
+            "Slavery should end",
+            "Spain should leave",
+            "Nothing"
+          ],
+          "a": 0,
+          "why": "Las Casas argued against him."
+        },
+        {
+          "q": "What did the Zong's owners do after captives were thrown overboard?",
+          "options": [
+            "Were prosecuted for murder",
+            "Sued their insurers for lost “cargo”",
+            "Apologized",
+            "Freed the survivors"
+          ],
+          "a": 1,
+          "why": "1781."
+        },
+        {
+          "q": "What did Congress do in 1993 about Hawaii?",
+          "options": [
+            "Made it a state",
+            "Apologized for the 1893 overthrow",
+            "Nothing",
+            "Returned it"
+          ],
+          "a": 1,
+          "why": "The Apology Resolution."
+        }
+      ],
+      "quest": "read-book",
+      "map": [],
+      "sourcesList": {
+        "zurara": {
+          "t": "Gomes Eanes de Zurara, Chronicle of the Discovery and Conquest of Guinea (1453)"
+        },
+        "afonso": {
+          "t": "Afonso I of Kongo, letters to João III (1526)",
+          "url": "https://en.wikipedia.org/wiki/Afonso_I_of_Kongo"
+        },
+        "voyages": {
+          "t": "SlaveVoyages.org, estimates by flag",
+          "url": "https://www.slavevoyages.org/"
+        },
+        "requerimiento": {
+          "t": "Requerimiento",
+          "url": "https://en.wikipedia.org/wiki/Requerimiento"
+        },
+        "valladolid": {
+          "t": "Valladolid debate",
+          "url": "https://en.wikipedia.org/wiki/Valladolid_debate"
+        },
+        "casta": {
+          "t": "Casta",
+          "url": "https://en.wikipedia.org/wiki/Casta"
+        },
+        "limpieza": {
+          "t": "Limpieza de sangre",
+          "url": "https://en.wikipedia.org/wiki/Limpieza_de_sangre"
+        },
+        "hawkins": {
+          "t": "John Hawkins",
+          "url": "https://en.wikipedia.org/wiki/John_Hawkins_(naval_commander)"
+        },
+        "rac": {
+          "t": "Royal African Company",
+          "url": "https://en.wikipedia.org/wiki/Royal_African_Company"
+        },
+        "barbados": {
+          "t": "Barbados Slave Code (1661)",
+          "url": "https://en.wikipedia.org/wiki/Barbados_Slave_Code"
+        },
+        "zong": {
+          "t": "Zong massacre",
+          "url": "https://en.wikipedia.org/wiki/Zong_massacre"
+        },
+        "1619": {
+          "t": "White Lion (1619)",
+          "url": "https://en.wikipedia.org/wiki/White_Lion_(ship)"
+        },
+        "codenoir": {
+          "t": "Code Noir",
+          "url": "https://en.wikipedia.org/wiki/Code_Noir"
+        },
+        "hawaii": {
+          "t": "Overthrow of the Hawaiian Kingdom; Apology Resolution (1993)",
+          "url": "https://en.wikipedia.org/wiki/Overthrow_of_the_Hawaiian_Kingdom"
+        },
+        "philippines": {
+          "t": "Philippine–American War",
+          "url": "https://en.wikipedia.org/wiki/Philippine%E2%80%93American_War"
+        },
+        "insular": {
+          "t": "Insular Cases",
+          "url": "https://en.wikipedia.org/wiki/Insular_Cases"
+        }
+      },
+      "num": 3
+    },
+    {
       "id": "conquest",
       "title": "Discovery and conquest",
       "short": "How the Doctrine of Discovery became U.S. law, and what it did to Native nations: war, removal, allotment and boarding schools, and the fight for sovereignty today.",
@@ -1156,7 +1705,7 @@
           "url": "https://en.wikipedia.org/wiki/Dakota_Access_Pipeline_protests"
         }
       },
-      "num": 2
+      "num": 4
     },
     {
       "id": "slavery-law",
@@ -1348,7 +1897,7 @@
           "url": "https://en.wikipedia.org/wiki/Juneteenth"
         }
       },
-      "num": 3
+      "num": 5
     },
     {
       "id": "reconstruction",
@@ -1587,7 +2136,7 @@
           "t": "Southern Poverty Law Center, Whose Heritage? Public Symbols of the Confederacy"
         }
       },
-      "num": 4
+      "num": 6
     },
     {
       "id": "black-towns",
@@ -1814,7 +2363,7 @@
           "url": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
         }
       },
-      "num": 5
+      "num": 7
     },
     {
       "id": "faith",
@@ -1984,7 +2533,7 @@
           "url": "https://www.poorpeoplescampaign.org/"
         }
       },
-      "num": 6
+      "num": 8
     },
     {
       "id": "veterans",
@@ -2171,11 +2720,11 @@
           "url": "https://en.wikipedia.org/wiki/Vernon_Baker"
         }
       },
-      "num": 7
+      "num": 9
     },
     {
       "id": "science",
-      "num": 8,
+      "num": 10,
       "title": "Science as a weapon: medicine, eugenics and reproductive control",
       "short": "Scientific racism, medical experiments, and the forced sterilization of tens of thousands of Americans, plus what the evidence does and doesn't show about Planned Parenthood.",
       "status": "draft",
@@ -2599,7 +3148,7 @@
           "t": "Greenwood et al., PNAS (2020); Borjas & VerBruggen reanalysis, PNAS (2024)"
         }
       },
-      "num": 9
+      "num": 11
     },
     {
       "id": "borders",
@@ -2807,7 +3356,7 @@
           "t": "Noem v. Vasquez Perdomo (U.S. Supreme Court order, September 2025)"
         }
       },
-      "num": 10
+      "num": 12
     },
     {
       "id": "place",
@@ -2987,11 +3536,11 @@
           "url": "https://en.wikipedia.org/wiki/Exclusionary_zoning"
         }
       },
-      "num": 11
+      "num": 13
     },
     {
       "id": "destroyed",
-      "num": 12,
+      "num": 14,
       "title": "Burned, flooded and taken: the communities America destroyed",
       "short": "Black Wall Street in Tulsa and dozens of other Black, Brown and immigrant communities that were burned, driven out, flooded, seized or bulldozed, plus how gentrification continues the pattern.",
       "status": "draft",
@@ -3542,7 +4091,7 @@
           "t": "EdBuild, $23 Billion (2019)"
         }
       },
-      "num": 13
+      "num": 15
     },
     {
       "id": "wealth",
@@ -3752,7 +4301,150 @@
           "t": "City of Evanston, Local Reparations program"
         }
       },
-      "num": 14
+      "num": 16
+    },
+    {
+      "id": "banking",
+      "title": "Banking, insurance and taxes",
+      "short": "How mortgages, appraisals, insurance, property taxes and access to banks still cost Black and Latino families more today.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "The history of wealth is covered in its own module. This one is about today: the ordinary financial systems where race still changes the price.",
+      "sections": [
+        {
+          "h": "Who gets a bank",
+          "label": "documented",
+          "body": "<p>In the FDIC's 2021 survey, about 11% of Black households had no bank account, compared with about 2% of white households. Without one, families pay more for check cashing and short-term loans. Black-owned banks and community development credit unions serve many of these neighborhoods; only about 20 Black-owned banks remain.</p>",
+          "sources": [
+            "fdic",
+            "mdi"
+          ]
+        },
+        {
+          "h": "Mortgages",
+          "label": "documented",
+          "body": "<p>Black and Latino borrowers pay higher mortgage rates than comparable white borrowers (Bartlett et al., 2022). Lenders have paid large settlements over steering minority borrowers into costlier loans, including Countrywide (2011) and Wells Fargo (2012).</p>",
+          "sources": [
+            "bartlett",
+            "settlements"
+          ]
+        },
+        {
+          "h": "Are approval algorithms biased?",
+          "label": "debated",
+          "body": "<p>A 2021 analysis by The Markup of public mortgage data found lenders were about 80% more likely to deny Black applicants than similar white applicants. The lending industry disputed it, noting the public data lacks credit scores. Regulators and researchers continue to debate how much of the gap comes from bias in models versus differences in credit histories that themselves reflect past discrimination.</p>",
+          "sources": [
+            "markup"
+          ]
+        },
+        {
+          "h": "Appraisals, insurance and property taxes",
+          "label": "documented",
+          "body": "<p>Homes in Black neighborhoods are appraised lower (see “Is racism over?”). A 2017 investigation by ProPublica and Consumer Reports found some insurers charged car insurance premiums as much as 30% higher in minority neighborhoods than in white neighborhoods with similar accident risk. And a 2022 study found Black and Hispanic homeowners pay about 10–13% more in property taxes than white homeowners with the same tax rate, because assessors overvalue cheaper homes relative to their sale prices.</p>",
+          "sources": [
+            "propublica",
+            "assessment"
+          ]
+        },
+        {
+          "h": "What helps",
+          "label": "documented",
+          "body": "<p>Bank with Black-owned banks and community lenders, challenge low appraisals with comparable sales, appeal property assessments (free help is often available), and support enforcement of fair lending laws. The quests “Bank with the community” and “Teach a money workshop” put this into practice.</p>",
+          "sources": [
+            "mdi"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 2011,
+          "t": "Countrywide settlement",
+          "label": "documented"
+        },
+        {
+          "y": 2012,
+          "t": "Wells Fargo settlement",
+          "label": "documented"
+        },
+        {
+          "y": 2017,
+          "t": "ProPublica/Consumer Reports insurance investigation",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "FDIC unbanked survey; The Markup mortgage analysis",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Mortgage pricing and property-tax assessment studies",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About what share of Black households had no bank account in 2021?",
+          "options": [
+            "About 1%",
+            "About 11%",
+            "About 50%",
+            "None"
+          ],
+          "a": 1,
+          "why": "FDIC survey."
+        },
+        {
+          "q": "Why do Black and Hispanic homeowners pay more property tax, per the 2022 study?",
+          "options": [
+            "Higher tax rates by law",
+            "Assessments that overvalue cheaper homes",
+            "They own more property",
+            "They don't"
+          ],
+          "a": 1,
+          "why": "The “assessment gap.”"
+        },
+        {
+          "q": "Why is The Markup's finding labeled debated?",
+          "options": [
+            "It wasn't published",
+            "Public data lacks credit scores, and the industry disputes it",
+            "It's fake",
+            "It isn't"
+          ],
+          "a": 1,
+          "why": "The debate is over the cause of the gap."
+        }
+      ],
+      "quest": "bank-black",
+      "map": [],
+      "sourcesList": {
+        "fdic": {
+          "t": "FDIC National Survey of Unbanked and Underbanked Households (2021)",
+          "url": "https://www.fdic.gov/analysis/household-survey"
+        },
+        "mdi": {
+          "t": "FDIC Minority Depository Institutions list",
+          "url": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
+        },
+        "bartlett": {
+          "t": "Bartlett et al., Journal of Financial Economics (2022)"
+        },
+        "settlements": {
+          "t": "U.S. DOJ fair lending settlements with Countrywide (2011) and Wells Fargo (2012)"
+        },
+        "markup": {
+          "t": "The Markup, “The Secret Bias Hidden in Mortgage-Approval Algorithms” (2021)"
+        },
+        "propublica": {
+          "t": "ProPublica & Consumer Reports, “Minority Neighborhoods Pay Higher Car Insurance Premiums Than White Areas With the Same Risk” (2017)"
+        },
+        "assessment": {
+          "t": "Avenancio-León & Howard, “The Assessment Gap: Racial Inequalities in Property Taxation,” Quarterly Journal of Economics (2022)"
+        }
+      },
+      "num": 17
     },
     {
       "id": "environment",
@@ -3914,7 +4606,7 @@
           "t": "Vicki Been, “Locally Undesirable Land Uses in Minority Neighborhoods: Disproportionate Siting or Market Dynamics?” Yale Law Journal (1994)"
         }
       },
-      "num": 15
+      "num": 18
     },
     {
       "id": "voting",
@@ -4152,7 +4844,7 @@
           "url": "https://en.wikipedia.org/wiki/Rucho_v._Common_Cause"
         }
       },
-      "num": 16
+      "num": 19
     },
     {
       "id": "incarceration",
@@ -4344,11 +5036,11 @@
           "url": "https://www.cleanslateinitiative.org/"
         }
       },
-      "num": 17
+      "num": 20
     },
     {
       "id": "policing",
-      "num": 18,
+      "num": 21,
       "title": "Policing and the 911 call",
       "short": "From slave patrols and vagrancy laws to the weaponized 911 call, and what the data shows about who gets stopped and hurt.",
       "status": "draft",
@@ -4549,6 +5241,188 @@
       }
     },
     {
+      "id": "courts",
+      "title": "Courts: juries, sentences and the death penalty",
+      "short": "Who sits on juries, how race shapes charges and sentences, the death penalty case where statistics weren't enough, and the cost of not affording bail or a lawyer.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "After a 911 call and an arrest comes the courtroom. Each step, from the charge to the jury to the sentence, is a place where discretion can carry bias.",
+      "sections": [
+        {
+          "h": "Who sits on the jury",
+          "label": "documented",
+          "body": "<p>The Supreme Court struck down laws barring Black jurors in 1880 (<em>Strauder v. West Virginia</em>), but prosecutors kept removing Black jurors with “peremptory” strikes. <em>Batson v. Kentucky</em> (1986) banned race-based strikes, yet they continued: in <em>Flowers v. Mississippi</em> (2019) one prosecutor had struck 41 of 42 Black prospective jurors over six trials of the same man. A 2012 study found that juries drawn from all-white pools convicted Black defendants significantly more often than white defendants; the gap disappeared when the pool included even one Black member.</p>",
+          "sources": [
+            "batson",
+            "flowers",
+            "anwar"
+          ]
+        },
+        {
+          "h": "Charges and sentences",
+          "label": "documented",
+          "body": "<p>Prosecutors decide what to charge, and that choice often sets the sentence. A 2014 study of federal cases found that Black men were more likely than similar white men to be charged with offenses carrying mandatory minimums, which explained much of the sentence gap. The U.S. Sentencing Commission found Black men received sentences about 19% longer than similar white men (2017).</p>",
+          "sources": [
+            "rehavi",
+            "ussc"
+          ]
+        },
+        {
+          "h": "The death penalty",
+          "label": "documented",
+          "body": "<p>The Supreme Court halted executions in 1972 (<em>Furman v. Georgia</em>), partly over arbitrary and racially skewed sentencing, then allowed them to resume in 1976. In <em>McCleskey v. Kemp</em> (1987) it accepted a study showing that Georgia defendants who killed white victims were far more likely to be sentenced to death than those who killed Black victims, but upheld the sentence because no intent was proven in McCleskey's case. Justice Powell, who wrote the decision, later said it was the one vote he would change.</p>",
+          "sources": [
+            "furman",
+            "mccleskey"
+          ]
+        },
+        {
+          "h": "Bail and lawyers",
+          "label": "documented",
+          "body": "<p><em>Gideon v. Wainwright</em> (1963) guaranteed a lawyer to anyone charged with a felony who can't afford one, but public defenders often carry far more cases than professional standards recommend (National Public Defense Workload Study, 2023). People who can't pay bail stay in jail before trial, which can cost them jobs and homes, and pressures them to plead guilty. Kalief Browder was held at Rikers Island for about three years without trial, much of it in solitary confinement, after being accused at 16 of stealing a backpack; the charges were dropped, and he died by suicide in 2015.</p>",
+          "sources": [
+            "gideon",
+            "workload",
+            "browder"
+          ]
+        },
+        {
+          "h": "What helps",
+          "label": "documented",
+          "body": "<p>Jury-selection reforms (Washington State's 2018 rule against implicit bias in strikes), fully funded public defense, pretrial release instead of cash bail for low-risk people, and court watching. Lawyers can take pro bono cases; anyone can join a court-watch program.</p>",
+          "sources": [
+            "wa"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1880,
+          "t": "Strauder v. West Virginia",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "Gideon v. Wainwright",
+          "label": "documented"
+        },
+        {
+          "y": 1972,
+          "t": "Furman v. Georgia",
+          "label": "documented"
+        },
+        {
+          "y": 1986,
+          "t": "Batson v. Kentucky",
+          "label": "documented"
+        },
+        {
+          "y": 1987,
+          "t": "McCleskey v. Kemp",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "Kalief Browder dies",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Washington State's jury-selection rule",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Flowers v. Mississippi",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "National Public Defense Workload Study",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "How many Black prospective jurors did the prosecutor strike in the Flowers trials?",
+          "options": [
+            "2",
+            "12",
+            "41 of 42",
+            "None"
+          ],
+          "a": 2,
+          "why": "Over six trials."
+        },
+        {
+          "q": "What did the 2012 jury study find?",
+          "options": [
+            "No effect",
+            "All-white pools convicted Black defendants more often; the gap vanished with one Black member",
+            "Juries are random",
+            "Only judges matter"
+          ],
+          "a": 1,
+          "why": "Anwar, Bayer & Hjalmarsson."
+        },
+        {
+          "q": "What was Kalief Browder accused of?",
+          "options": [
+            "Murder",
+            "Stealing a backpack",
+            "Fraud",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Held about three years without trial."
+        }
+      ],
+      "quest": "court-watch",
+      "map": [],
+      "sourcesList": {
+        "batson": {
+          "t": "Batson v. Kentucky (1986)",
+          "url": "https://supreme.justia.com/cases/federal/us/476/79/"
+        },
+        "flowers": {
+          "t": "Flowers v. Mississippi (2019)",
+          "url": "https://en.wikipedia.org/wiki/Flowers_v._Mississippi"
+        },
+        "anwar": {
+          "t": "Anwar, Bayer & Hjalmarsson, “The Impact of Jury Race in Criminal Trials,” Quarterly Journal of Economics (2012)"
+        },
+        "rehavi": {
+          "t": "Rehavi & Starr, “Racial Disparity in Federal Criminal Sentences,” Journal of Political Economy (2014)"
+        },
+        "ussc": {
+          "t": "U.S. Sentencing Commission, Demographic Differences in Sentencing (2017)"
+        },
+        "furman": {
+          "t": "Furman v. Georgia (1972)",
+          "url": "https://en.wikipedia.org/wiki/Furman_v._Georgia"
+        },
+        "mccleskey": {
+          "t": "McCleskey v. Kemp (1987)",
+          "url": "https://supreme.justia.com/cases/federal/us/481/279/"
+        },
+        "gideon": {
+          "t": "Gideon v. Wainwright (1963)",
+          "url": "https://en.wikipedia.org/wiki/Gideon_v._Wainwright"
+        },
+        "workload": {
+          "t": "RAND, ABA & NCSC, National Public Defense Workload Study (2023)"
+        },
+        "browder": {
+          "t": "Kalief Browder",
+          "url": "https://en.wikipedia.org/wiki/Kalief_Browder"
+        },
+        "wa": {
+          "t": "Washington Supreme Court General Rule 37 (2018)"
+        }
+      },
+      "num": 22
+    },
+    {
       "id": "surveillance",
       "title": "Watched: surveillance of Black and Brown communities",
       "short": "COINTELPRO's war on Dr. King and the Black Panthers, the killing of Fred Hampton, surveillance of Muslim neighborhoods, facial recognition errors, and the neighborhood app.",
@@ -4713,7 +5587,7 @@
           "t": "Nextdoor's 2016 changes to reduce racial profiling (news coverage, e.g. NPR)"
         }
       },
-      "num": 19
+      "num": 23
     },
     {
       "id": "media",
@@ -4889,7 +5763,7 @@
           "url": "https://en.wikipedia.org/wiki/Darnella_Frazier"
         }
       },
-      "num": 20
+      "num": 24
     },
     {
       "id": "many-targets",
@@ -5149,7 +6023,7 @@
           "url": "https://en.wikipedia.org/wiki/Yuri_Kochiyama"
         }
       },
-      "num": 21
+      "num": 25
     },
     {
       "id": "women",
@@ -5330,7 +6204,7 @@
           "url": "https://www.aapf.org/sayhername"
         }
       },
-      "num": 22
+      "num": 26
     },
     {
       "id": "lgbtq",
@@ -5482,7 +6356,378 @@
           "url": "https://www.hrc.org/"
         }
       },
-      "num": 23
+      "num": 27
+    },
+    {
+      "id": "systemic",
+      "title": "Systemic racism: how institutions carry it",
+      "short": "What “systemic” and “institutional” racism mean, how neutral-sounding rules carry old discrimination forward, why the law usually demands proof of intent, and the honest debate about disparities.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "Many people believe racism ended when the laws that named race were repealed, and that what's left is a few bad individuals. Systemic racism means something different: rules and institutions that keep producing unequal results even when no one in them intends to discriminate.",
+      "discuss": [
+        "Can a rule be racist if no one who follows it is?",
+        "Which “neutral” rules in our town might carry old discrimination forward?",
+        "What evidence would convince a skeptic?"
+      ],
+      "sections": [
+        {
+          "h": "Individual and institutional",
+          "label": "documented",
+          "body": "<p>In 1967 Stokely Carmichael (later Kwame Ture) and political scientist Charles V. Hamilton introduced the term “institutional racism” in <em>Black Power</em>. Their example: when white terrorists bomb a Black church, everyone sees it. When hundreds of Black babies in Birmingham die each year from lack of food, shelter and medical care, that is racism too, but it works through the ordinary operation of institutions, and few people see it.</p>",
+          "sources": [
+            "carmichael"
+          ]
+        },
+        {
+          "h": "How neutral rules carry history forward",
+          "label": "documented",
+          "body": "<ul><li><b>Schools funded by local property taxes</b> inherit the value gaps that redlining created (see “Place” and “Schools”).</li><li><b>Credit scores</b> reward a history of borrowing from mainstream banks, which Black families were long denied (see “Banking”).</li><li><b>Legacy admissions</b> favor children of alumni at colleges that excluded Black students for generations.</li><li><b>Felony disenfranchisement</b> applies to everyone, but falls on communities policed most heavily (see “The vote”).</li><li><b>Zoning</b> for large lots and single-family homes keeps out people who couldn't build wealth.</li></ul><p>None of these rules mentions race. Each was shaped by, and keeps passing along, decisions that did.</p>",
+          "sources": [
+            "rothstein",
+            "legacy"
+          ]
+        },
+        {
+          "h": "Intent versus impact in the law",
+          "label": "documented",
+          "body": "<p>In <em>Griggs v. Duke Power</em> (1971) the Supreme Court held that job requirements with a discriminatory effect violate the Civil Rights Act unless they're truly needed for the job (“disparate impact”). But in <em>Washington v. Davis</em> (1976) it held that the Constitution forbids only intentional discrimination. In <em>McCleskey v. Kemp</em> (1987) the Court accepted a study showing that killers of white victims in Georgia were far more likely to be sentenced to death, and upheld the sentence anyway, because McCleskey couldn't prove intent in his own case. <em>Alexander v. Sandoval</em> (2001) barred private lawsuits over disparate impact under Title VI. The Court did uphold disparate-impact claims under the Fair Housing Act in 2015, and a 2025 executive order directed federal agencies to stop using disparate-impact liability. Because intent is hard to prove, much systemic discrimination is legal.</p>",
+          "sources": [
+            "griggs",
+            "davis",
+            "mccleskey",
+            "sandoval",
+            "inclusive",
+            "eo2025"
+          ]
+        },
+        {
+          "h": "Do disparities prove discrimination?",
+          "label": "debated",
+          "body": "<p>Economists such as Thomas Sowell and Glenn Loury argue that group differences can come from many causes, such as age, region, family structure, culture and education, and that disparities alone don't prove present-day discrimination. Others answer that many of those “other causes” are themselves results of past discrimination. Both sides can agree on one test: experiments that hold everything else equal and change only race. Those audit studies, in hiring, housing, lending, medicine and more, keep finding discrimination (see “Is racism over?”).</p>",
+          "sources": [
+            "sowell",
+            "loury"
+          ]
+        },
+        {
+          "h": "Where to look",
+          "label": "documented",
+          "body": "<p>The other modules trace systemic racism through each institution: government and law (Reconstruction, the vote), police and courts (“Policing,” “Courts,” “Incarceration”), banking (“Banking,” “Wealth”), medicine (“Science,” “Health”), schools, housing (“Place”), the environment, the media and the military. The CAREN Act targets one link in the chain, the moment a private person uses the police as a weapon, but it sits inside all of them.</p>",
+          "sources": []
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1967,
+          "t": "“Institutional racism” coined in Black Power",
+          "label": "documented"
+        },
+        {
+          "y": 1971,
+          "t": "Griggs v. Duke Power: disparate impact",
+          "label": "documented"
+        },
+        {
+          "y": 1976,
+          "t": "Washington v. Davis: Constitution requires intent",
+          "label": "documented"
+        },
+        {
+          "y": 1987,
+          "t": "McCleskey v. Kemp",
+          "label": "documented"
+        },
+        {
+          "y": 2001,
+          "t": "Alexander v. Sandoval",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "Fair Housing Act disparate impact upheld",
+          "label": "documented"
+        },
+        {
+          "y": 2025,
+          "t": "Executive order against disparate-impact liability",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Who coined “institutional racism”?",
+          "options": [
+            "Martin Luther King Jr.",
+            "Stokely Carmichael and Charles Hamilton",
+            "Ibram X. Kendi",
+            "Thomas Jefferson"
+          ],
+          "a": 1,
+          "why": "In Black Power (1967)."
+        },
+        {
+          "q": "What did McCleskey v. Kemp decide?",
+          "options": [
+            "Statistics proved discrimination",
+            "The death sentence stood despite statistical evidence, because intent wasn't proven",
+            "The death penalty is illegal",
+            "Juries must be integrated"
+          ],
+          "a": 1,
+          "why": "Intent is the legal barrier."
+        },
+        {
+          "q": "What kind of study best tests whether discrimination still happens?",
+          "options": [
+            "Opinion polls",
+            "Audit studies that change only race",
+            "Crime statistics",
+            "None"
+          ],
+          "a": 1,
+          "why": "They hold everything else equal."
+        }
+      ],
+      "quest": "source-detective",
+      "map": [],
+      "sourcesList": {
+        "carmichael": {
+          "t": "Stokely Carmichael & Charles V. Hamilton, Black Power: The Politics of Liberation (1967)"
+        },
+        "rothstein": {
+          "t": "Richard Rothstein, The Color of Law (2017)"
+        },
+        "legacy": {
+          "t": "Legacy preferences",
+          "url": "https://en.wikipedia.org/wiki/Legacy_preference"
+        },
+        "griggs": {
+          "t": "Griggs v. Duke Power Co. (1971)",
+          "url": "https://supreme.justia.com/cases/federal/us/401/424/"
+        },
+        "davis": {
+          "t": "Washington v. Davis (1976)",
+          "url": "https://supreme.justia.com/cases/federal/us/426/229/"
+        },
+        "mccleskey": {
+          "t": "McCleskey v. Kemp (1987)",
+          "url": "https://supreme.justia.com/cases/federal/us/481/279/"
+        },
+        "sandoval": {
+          "t": "Alexander v. Sandoval (2001)",
+          "url": "https://en.wikipedia.org/wiki/Alexander_v._Sandoval"
+        },
+        "inclusive": {
+          "t": "Texas Dept. of Housing v. Inclusive Communities Project (2015)",
+          "url": "https://en.wikipedia.org/wiki/Texas_Department_of_Housing_and_Community_Affairs_v._Inclusive_Communities_Project,_Inc."
+        },
+        "eo2025": {
+          "t": "Executive Order “Restoring Equality of Opportunity and Meritocracy” (April 2025)"
+        },
+        "sowell": {
+          "t": "Thomas Sowell, Discrimination and Disparities (2018)"
+        },
+        "loury": {
+          "t": "Glenn C. Loury, The Anatomy of Racial Inequality (2002)"
+        }
+      },
+      "num": 28
+    },
+    {
+      "id": "evidence",
+      "title": "Is racism over? What the evidence shows today",
+      "short": "Controlled experiments and large data studies from the last 15 years in housing, lending, policing, courts, medicine, child welfare and everyday life, and how to talk with someone who thinks racism is over.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "Real progress has been made: the laws that named race are gone, and attitudes have changed. But when researchers test whether people are still treated differently because of race, holding everything else equal, the answer keeps coming back yes.",
+      "discuss": [
+        "Which finding surprised you most?",
+        "Has anyone here experienced one of these situations?",
+        "How would you share one of these findings with someone who disagrees, without starting a fight?"
+      ],
+      "sections": [
+        {
+          "h": "Housing",
+          "label": "documented",
+          "body": "<p>In a 2012 national study for HUD, trained testers who differed only by race contacted landlords and agents; Black homebuyers were told about and shown roughly 17–18% fewer homes than equally qualified white buyers. A 2019 Newsday undercover investigation on Long Island found Black testers were treated unequally in 49% of tests.</p>",
+          "sources": [
+            "hud2012",
+            "newsday"
+          ]
+        },
+        {
+          "h": "Lending and appraisals",
+          "label": "documented",
+          "body": "<p>A study of millions of mortgages (Bartlett et al., 2022) found Black and Latino borrowers paid higher interest rates than comparable white borrowers, including with algorithmic lenders. Homes in majority-Black neighborhoods are valued about $48,000 less than similar homes elsewhere (Brookings, 2018). In 2020 a Black couple in Marin City, California, had their home appraised about $500,000 higher after removing family photos and having a white friend pose as the owner; their lawsuit settled in 2023.</p>",
+          "sources": [
+            "bartlett",
+            "brookings",
+            "austin"
+          ]
+        },
+        {
+          "h": "Policing and courts",
+          "label": "documented",
+          "body": "<p>The Stanford Open Policing Project analyzed nearly 100 million traffic stops (2020): Black drivers were stopped more often, the share of Black drivers stopped fell after dark when race is harder to see, and Black and Hispanic drivers were searched on less evidence. The U.S. Sentencing Commission found in 2017 that Black men received federal sentences about 19% longer than similar white men. In <em>Flowers v. Mississippi</em> (2019) the Supreme Court overturned a conviction after a prosecutor struck 41 of 42 Black prospective jurors over six trials.</p>",
+          "sources": [
+            "pierson",
+            "ussc",
+            "flowers"
+          ]
+        },
+        {
+          "h": "Medicine and algorithms",
+          "label": "documented",
+          "body": "<p>A 2019 study in <em>Science</em> found that a widely used algorithm for deciding which patients get extra care underestimated how sick Black patients were, because it used past health spending as a stand-in for need. Fixing it would more than double the number of Black patients flagged for help. (See also “Health” on pain and pulse oximeters.)</p>",
+          "sources": [
+            "obermeyer"
+          ]
+        },
+        {
+          "h": "Children and families",
+          "label": "documented",
+          "body": "<p>A 2017 study estimated that more than half of Black children (53%) experience a child-protective-services investigation by age 18, compared with 37% of all children. Black students are suspended at much higher rates than white students for similar behavior, according to federal civil rights data.</p>",
+          "sources": [
+            "kim",
+            "crdc"
+          ]
+        },
+        {
+          "h": "Everyday life",
+          "label": "documented",
+          "body": "<p>On Airbnb, guests with distinctively Black names were about 16% less likely to be accepted than identical guests with white-sounding names (2017). Anti-Black bias is the most common motive in hate crimes reported to the FBI every year. And this site's own data shows how rarely “suspicious person” 911 calls find a crime.</p>",
+          "sources": [
+            "airbnb",
+            "fbi",
+            "calls"
+          ]
+        },
+        {
+          "h": "Talking with someone who thinks racism is over",
+          "label": "plan",
+          "body": "<ol><li><b>Agree on what's true.</b> Much has changed; say so. The question isn't whether things are better, but whether people are still treated differently.</li><li><b>Lead with experiments, not anecdotes.</b> Audit studies change only race. Ask: “If the résumés were identical, what explains the difference?”</li><li><b>Invite them to check.</b> Every claim here is labeled and sourced. Skepticism is fine; apply it to the evidence.</li><li><b>Share a story, with permission.</b> One person they know matters more than a statistic.</li><li><b>Don't shame.</b> People defend themselves when they feel accused. Talk about systems, not their character.</li><li><b>Give them something to do.</b> A small action, like reading one module, keeps the door open.</li></ol>",
+          "sources": []
+        }
+      ],
+      "timeline": [
+        {
+          "y": 2012,
+          "t": "HUD housing discrimination study",
+          "label": "documented"
+        },
+        {
+          "y": 2017,
+          "t": "Airbnb study; Sentencing Commission report; child-welfare investigation study",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Health algorithm study; Newsday investigation; Flowers v. Mississippi",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Stanford traffic stop study; Marin City appraisal",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Mortgage pricing study",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What happened to the share of Black drivers stopped after dark?",
+          "options": [
+            "It rose",
+            "It fell, when race is harder to see",
+            "No change",
+            "Stops ended"
+          ],
+          "a": 1,
+          "why": "The “veil of darkness” test."
+        },
+        {
+          "q": "Why did the health algorithm underestimate Black patients' needs?",
+          "options": [
+            "It used race directly",
+            "It used past spending as a stand-in for need",
+            "It was random",
+            "It didn't"
+          ],
+          "a": 1,
+          "why": "Less was spent on Black patients with the same needs."
+        },
+        {
+          "q": "What's the recommended first step with a skeptic?",
+          "options": [
+            "Tell them they're racist",
+            "Agree on what's true, including real progress",
+            "Avoid the topic",
+            "Quote statistics loudly"
+          ],
+          "a": 1,
+          "why": "Then show what remains."
+        }
+      ],
+      "quest": "teach-in",
+      "map": [
+        {
+          "t": "911 “suspicious person” calls",
+          "href": "index.html?layers=calls,minority&at=37.76,-122.44,12"
+        }
+      ],
+      "sourcesList": {
+        "hud2012": {
+          "t": "U.S. HUD, Housing Discrimination Against Racial and Ethnic Minorities 2012 (Urban Institute, 2013)"
+        },
+        "newsday": {
+          "t": "Newsday, “Long Island Divided” (2019)"
+        },
+        "bartlett": {
+          "t": "Bartlett, Morse, Stanton & Wallace, “Consumer-lending discrimination in the FinTech Era,” Journal of Financial Economics (2022)"
+        },
+        "brookings": {
+          "t": "Perry, Rothwell & Harshbarger, The Devaluation of Assets in Black Neighborhoods (Brookings, 2018)"
+        },
+        "austin": {
+          "t": "Austin v. Miller (N.D. Cal.), settled 2023; news coverage of the Marin City appraisal case"
+        },
+        "pierson": {
+          "t": "Pierson et al., “A large-scale analysis of racial disparities in police stops across the United States,” Nature Human Behaviour (2020)",
+          "url": "https://openpolicing.stanford.edu/"
+        },
+        "ussc": {
+          "t": "U.S. Sentencing Commission, Demographic Differences in Sentencing (2017)"
+        },
+        "flowers": {
+          "t": "Flowers v. Mississippi (2019)",
+          "url": "https://en.wikipedia.org/wiki/Flowers_v._Mississippi"
+        },
+        "obermeyer": {
+          "t": "Obermeyer et al., “Dissecting racial bias in an algorithm used to manage the health of populations,” Science (2019)"
+        },
+        "kim": {
+          "t": "Kim et al., “Lifetime Prevalence of Investigating Child Maltreatment Among US Children,” American Journal of Public Health (2017)"
+        },
+        "crdc": {
+          "t": "U.S. Department of Education, Civil Rights Data Collection",
+          "url": "https://ocrdata.ed.gov/"
+        },
+        "airbnb": {
+          "t": "Edelman, Luca & Svirsky, “Racial Discrimination in the Sharing Economy,” American Economic Journal: Applied Economics (2017)"
+        },
+        "fbi": {
+          "t": "FBI, Hate Crime Statistics (annual)"
+        },
+        "calls": {
+          "t": "This site: city 911 call outcomes",
+          "url": "data.html#calls"
+        }
+      },
+      "num": 29
     },
     {
       "id": "performance",
@@ -5682,7 +6927,7 @@
           "t": "National Assessment of Educational Progress, Long-Term Trend results"
         }
       },
-      "num": 24
+      "num": 30
     },
     {
       "id": "world",
@@ -5894,7 +7139,7 @@
           "t": "CARICOM Reparations Commission, Ten Point Plan (2013)"
         }
       },
-      "num": 25
+      "num": 31
     },
     {
       "id": "movements",
@@ -6148,11 +7393,11 @@
           "url": "https://en.wikipedia.org/wiki/2018_Florida_Amendment_4"
         }
       },
-      "num": 26
+      "num": 32
     },
     {
       "id": "path-forward",
-      "num": 27,
+      "num": 33,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",
@@ -6243,7 +7488,7 @@
     {
       "h": "The gaps are an inheritance of policy, not a measure of people.",
       "p": "Wealth was taken (Tulsa, forty acres, the GI Bill), votes were blocked, and identical résumés still get fewer callbacks with Black names. Black Americans built towns, banks and businesses anyway, and many were destroyed for succeeding.",
-      "href": "module.html?m=performance"
+      "href": "module.html?m=evidence"
     },
     {
       "h": "Ordinary people enforced it, and ordinary people end it.",
@@ -6377,6 +7622,20 @@
       "y": 2014,
       "why": "The Atlantic's landmark essay",
       "module": "wealth"
+    },
+    {
+      "t": "A Short Account of the Destruction of the Indies",
+      "a": "Bartolomé de las Casas",
+      "y": 1552,
+      "why": "An eyewitness account of Spanish conquest",
+      "module": "columbus"
+    },
+    {
+      "t": "They Came Before Columbus",
+      "a": "Ivan Van Sertima",
+      "y": 1976,
+      "why": "The case for pre-Columbian African contact (read alongside its critics)",
+      "module": "columbus"
     }
   ]
 }

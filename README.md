@@ -15,6 +15,7 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 
 **Learn**
 - **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
+- **New (Nov 10): Columbus, the colonizers, and systemic racism:** [Columbus: what his own records say](https://prodataman.github.io/CAREN-Act/website/module.html?m=columbus), [The colonizers](https://prodataman.github.io/CAREN-Act/website/module.html?m=colonizers), [Systemic racism](https://prodataman.github.io/CAREN-Act/website/module.html?m=systemic), [Is racism over? The evidence today](https://prodataman.github.io/CAREN-Act/website/module.html?m=evidence), [Banking, insurance and taxes](https://prodataman.github.io/CAREN-Act/website/module.html?m=banking), [Courts](https://prodataman.github.io/CAREN-Act/website/module.html?m=courts)
 - **Teach-in kits (slides, printable handout, facilitator guide for every written module):** https://prodataman.github.io/CAREN-Act/website/teach.html
 - **How movements won, and the playbook for this one:** https://prodataman.github.io/CAREN-Act/website/module.html?m=movements
 - **Start here, three things everyone should know:** https://prodataman.github.io/CAREN-Act/website/learn.html#three
@@ -51,7 +52,7 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
-| Learn section | ✅ Live: 27 modules, all written, each with a teach-in kit. 42 quests in 6 categories, plus a reading list of 18 books. ⚠️ Not yet reviewed by a historian | Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
+| Learn section | ✅ Live: 33 modules, all written, each with a teach-in kit. 42 quests in 6 categories, plus a reading list of 18 books. ⚠️ Not yet reviewed by a historian | Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 

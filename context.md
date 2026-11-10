@@ -25,7 +25,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | Google sign-in | Connected (2026-11-09). Not tested end to end yet |
 | Facebook sign-in | Not started |
 | Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
-| Learn | Live. Hub `learn.html`, renderer `module.html`, teach-in kits `teach.html`, content `data/learn.json`. 27 modules, all written (status `draft` until reviewed). Order: before-race, conquest, slavery-law, reconstruction, black-towns, faith, veterans, science, health, borders, place, destroyed, schools, wealth, environment, voting, incarceration, policing, surveillance, media, many-targets, women, lgbtq, performance, world, movements, path-forward. 42 quests, 13 badges, `threeThings`, `readingList`. Labels: documented, debated, belief, plan. Not reviewed by a historian yet; recruiting through `history-reviewer` |
+| Learn | Live. Hub `learn.html`, renderer `module.html`, teach-in kits `teach.html`, content `data/learn.json`. 33 modules, all written (status `draft` until reviewed). Order: before-race, columbus, colonizers, conquest, slavery-law, reconstruction, black-towns, faith, veterans, science, health, borders, place, destroyed, schools, wealth, banking, environment, voting, incarceration, policing, courts, surveillance, media, many-targets, women, lgbtq, systemic, evidence, performance, world, movements, path-forward. 42 quests, 13 badges, `threeThings`, `readingList`. Labels: documented, debated, belief, plan. Not reviewed by a historian yet; recruiting through `history-reviewer` |
 | Outreach | Letters to JULIAN and LDF drafted (kept out of the repo), not sent |
 
 ## Architecture
@@ -165,6 +165,8 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **Six more modules:** black-towns, wealth, voting, incarceration, many-targets (Latino, Asian, Native) and performance (audit studies, achievement, the inferiority myth). Modules were reordered roughly by time.
   - **Quests and badges:** 26 new quests in community, pro bono and build-wealth categories, plus advocacy (register voters, poll worker, op-ed, fair hiring, run for office); 4 new badges; "three things everyone should know".
   - **The six outlines are now full modules:** conquest, slavery-law, reconstruction, borders, place, world. New quests: `whose-land` and `check-deed`.
+  - **More modules:** columbus, colonizers, systemic, evidence, banking, courts.
+    - **The Columbus module** presents his journal ("none of them black"), the 1498 Guinea-canoes passage, Peter Martyr, al-ʿUmarī and Van Sertima. Pre-Columbian African contact is labeled *debated*; "African villages already there" is labeled *belief or myth*.
   - **Map:** `history` layer, and a year slider (`?year=`) that filters any layer whose markers carry a `year` option (mwt, destroyed, history).
   - **Automatic quests:** `quest:volunteer` on a successful sign-up and `quest:suggest-bill-edit` on a successful website comment (`learn.js` is loaded on `volunteer.html` and `bill.html`).
   - **New topic modules:** environment, surveillance, media, veterans, schools, health, women, lgbtq and faith, plus the reading list.
