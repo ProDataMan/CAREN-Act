@@ -25,7 +25,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | Google sign-in | Connected (2026-11-09). Not tested end to end yet |
 | Facebook sign-in | Not started |
 | Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
-| Learn | Live. Hub `learn.html`, renderer `module.html`, content `data/learn.json`. 11 modules: 1 before-race, 5 science, 8 destroyed, 9 policing and 11 path-forward are written; 2, 3, 4, 6, 7 and 10 are outlines. Use module `id`s; `num`s change when modules are inserted. Not reviewed by a historian yet; recruiting through the volunteer role `history-reviewer` |
+| Learn | Live. Hub `learn.html`, renderer `module.html`, content `data/learn.json`. 17 modules. Written: before-race, black-towns, science, destroyed, wealth, voting, incarceration, policing, many-targets, performance, path-forward. Outlines: conquest, slavery-law, reconstruction, borders, place, world. 39 quests in 6 categories (`questCategories`), 13 badges, and `threeThings` on the hub. Use module `id`s; `num`s change when modules are inserted. Not reviewed by a historian yet; recruiting through the volunteer role `history-reviewer` |
 | Outreach | Letters to JULIAN and LDF drafted (kept out of the repo), not sent |
 
 ## Architecture
@@ -161,4 +161,7 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **Data:** `destroyed_communities.json`, with its map layer and a Tulsa example view.
   - **Quests:** "Uncover local history" (60 XP, crowdsources new places).
   - **Proposed modules** added to `docs/education-plan.md`.
+  - **Six more modules:** black-towns, wealth, voting, incarceration, many-targets (Latino, Asian, Native) and performance (audit studies, achievement, the inferiority myth). Modules were reordered roughly by time.
+  - **Quests and badges:** 26 new quests in community, pro bono and build-wealth categories, plus advocacy (register voters, poll worker, op-ed, fair hiring, run for office); 4 new badges; "three things everyone should know".
+  - **Fundraising:** discussed with the owner, not built. The recommendation is a fiscal sponsor or nonprofit structure before collecting money (see the plan).
   - **The owner's test comment:** it was never posted and lives only in their browser as Pending. Discard removes it.

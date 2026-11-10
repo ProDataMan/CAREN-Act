@@ -87,7 +87,23 @@ This is the topic that prompted the plan, so it gets the most careful treatment.
 
 Module 8, **Burned, flooded and taken**, covers Greenwood/Black Wall Street, other massacres, expulsions and seizures, floods, urban renewal and highways, and gentrification. It comes with the map layer `destroyed` (`data/destroyed_communities.json`). The modules after it were renumbered.
 
-## Proposed additional modules (waiting for the owner's choice)
+## Built 2026-11-10 (owner's picks)
+
+- Proposals 1, 2, 3, 4, 6 and 9 below are now modules: `performance`, `voting`, `incarceration`, `wealth`, `black-towns` and `many-targets`.
+- 26 new quests, in three new categories: Show up for your community, Give your professional skills, and Build wealth back home.
+- The "three things everyone should know" box at the top of the Learn page.
+
+**Still proposed:** 5 (environmental racism), 7 (how movements won), 8 (surveillance), 10 (media) and 11 (veterans). New candidates: education and school segregation, health beyond reproduction, Black women organizers, Black LGBTQ history (Bayard Rustin), religion as a force for liberation, and a reading list.
+
+**Fundraising (owner question):** don't collect money through a personal GoFundMe. First:
+1. Set up a fiscal sponsor or a nonprofit. Note that lobbying for a bill is limited for 501(c)(3)s and unlimited for 501(c)(4)s.
+2. Open a separate bank account, with two signers.
+3. Publish a budget.
+4. Send individuals who need legal help to LDF, the ACLU and legal aid, rather than raising money for their cases.
+
+Get a nonprofit attorney's advice; that could itself be a pro bono quest.
+
+## Proposed additional modules
 
 Ranked by how directly they support the campaign:
 

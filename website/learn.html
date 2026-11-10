@@ -30,6 +30,14 @@
     .mod .st { font-size: .76rem; font-weight: 700; }
     .mod.outline { background: var(--surface-2); }
     .quests { display: grid; gap: 8px; margin: 10px 0; }
+    .qcat { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
+    .qcat summary { cursor: pointer; }
+    .three { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0; counter-reset: t; }
+    .three a { counter-increment: t; display: block; text-decoration: none; color: var(--ink); border-radius: 12px; padding: 14px 16px; background: #0e2a47; color: #fff; }
+    .three a::before { content: counter(t); float: left; margin-right: 10px; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #f2c14e; color: #0e2a47; font-weight: 800; margin-bottom: 6px; }
+    .three h3 { margin: 4px 0 6px; font-size: 1.02rem; color: #fff; }
+    .three p { margin: 0 0 6px; font-size: .9rem; color: #dbe6f3; }
+    .three span { font-size: .85rem; color: #f2c14e; font-weight: 700; }
     .quest { display: grid; grid-template-columns: 64px 1fr auto; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
     .quest .xp { font-weight: 800; color: var(--accent); text-align: center; }
     .quest h3 { margin: 0; font-size: .98rem; }
@@ -52,6 +60,9 @@
         <p class="lede">Why are Black, Brown and Native people still harassed, policed, deported and pushed to the margins, even while they meet or beat every standard set for them? These short lessons trace it back to where it started, using laws, court records and data, and every one ends with something you can do about it.</p>
         <p>There is no forgotten ancient secret. The record shows something more useful: race was <b>built</b>, by people, through laws we can name, for reasons we can name. What was built can be taken apart. <a href="module.html?m=before-race">Start with module 1 →</a></p>
         <div class="callout info" id="reviewNote"></div>
+        <h2 id="three">Start here: three things everyone should know</h2>
+        <p>If you share only one thing from this site, share these. They turn bystanders into allies, and allies into champions.</p>
+        <div class="three" id="three-list"></div>
       </div>
       <aside class="panel" id="me" aria-label="Your progress">
         <h2>Your progress</h2>
@@ -79,7 +90,7 @@
     <div id="detQuiz"></div>
 
     <h2 id="quests">Quest board</h2>
-    <p>Learning counts; acting counts more. Bigger tasks earn more XP. Quests are on the honor system for now: when you've done one, mark it.</p>
+    <p>Learning counts; acting counts more. Bigger tasks earn more XP. The quests run from the campaign itself to showing up for your neighbors, giving your professional skills, and (for anyone who has done well) helping the community you came from build ownership, not just receive donations. Quests are on the honor system for now: when you've done one, mark it.</p>
     <div class="quests" id="questList"></div>
 
     <h2 id="teams">State teams</h2>
@@ -107,6 +118,7 @@
 
     L.catalog().then(cat => {
       $('reviewNote').innerHTML = '<b>Drafts under review.</b> ' + ui.esc(cat.review.split(':')[0]) + '. <a href="volunteer.html#reviewer">Help review them</a>.';
+      $('three-list').innerHTML = (cat.threeThings || []).map(t => '<a href="' + t.href + '"><h3>' + ui.esc(t.h) + '</h3><p>' + ui.esc(t.p) + '</p><span>Learn more →</span></a>').join('');
       $('labels').innerHTML = Object.keys(cat.labels).map(k => '<div>' + ui.chip(cat, k) + '<br>' + ui.esc(cat.labels[k].desc) + '</div>').join('');
 
       function render(s) {
@@ -122,12 +134,18 @@
             : '<span class="st" style="color:' + (read ? '#1b7837' : 'var(--accent)') + '">' + (read ? '✓ Read' : m.minutes + ' min read') + (quiz ? ' · ✓ Quiz' : '') + '</span>';
           return '<a class="mod' + (m.status === 'outline' ? ' outline' : '') + '" href="module.html?m=' + m.id + '"><span class="n"><span>Module ' + m.num + '</span>' + (m.status === 'draft' ? '<span>Draft</span>' : '') + '</span><h3>' + ui.esc(m.title) + '</h3><p>' + ui.esc(m.short) + '</p>' + st + '</a>';
         }).join('');
-        $('questList').innerHTML = cat.quests.map(q => {
+        const questHtml = q => {
           const done = s.events['quest:' + q.id];
           const act = q.kind === 'quiz' ? '<a class="btn secondary" href="#detective">Take the quiz</a>'
             : done ? '<span class="note">Done</span>'
             : '<a class="btn secondary" href="' + q.href + '">Go</a> <button class="btn secondary" type="button" data-q="' + q.id + '">I did this</button>';
           return '<div class="quest' + (done ? ' done' : '') + '"><div class="xp">' + q.xp + ' XP</div><div><h3>' + ui.esc(q.title) + '</h3><p>' + ui.esc(q.desc) + '</p></div><div class="act">' + act + '</div></div>';
+        };
+        $('questList').innerHTML = (cat.questCategories || [{ id: null, name: '' }]).map(c => {
+          const qs = cat.quests.filter(q => !c.id || q.cat === c.id).sort((a, b) => a.xp - b.xp);
+          if (!qs.length) return '';
+          const done = qs.filter(q => s.events['quest:' + q.id]).length;
+          return '<details class="qcat" id="q-' + c.id + '"' + (c.id === 'advocate' || c.id === 'build' ? ' open' : '') + '><summary><b>' + ui.esc(c.name) + '</b> <span class="note">' + qs.length + ' quests · ' + done + ' done</span><br><span class="note">' + ui.esc(c.desc) + '</span></summary><div class="quests">' + qs.map(questHtml).join('') + '</div></details>';
         }).join('');
         const p = s.profile;
         if (p) {

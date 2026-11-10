@@ -53,91 +53,312 @@
       "xp": 30,
       "kind": "quiz",
       "desc": "Sort 10 claims into documented, debated, or belief or myth. Score 8 or better.",
-      "href": "learn.html#detective"
+      "href": "learn.html#detective",
+      "cat": "learn"
     },
     {
       "id": "share-county",
       "title": "Share your county's numbers",
       "xp": 15,
       "desc": "Make and share your county's image.",
-      "href": "county.html"
+      "href": "county.html",
+      "cat": "learn"
     },
     {
       "id": "write-lawmakers",
       "title": "Write your lawmakers",
       "xp": 30,
       "desc": "Send the letter (in your own words) to at least one lawmaker.",
-      "href": "act.html#contact"
+      "href": "act.html#contact",
+      "cat": "advocate"
     },
     {
       "id": "call-lawmakers",
       "title": "Call your lawmakers",
       "xp": 50,
       "desc": "Call your U.S. Representative or a Senator about the CAREN Act.",
-      "href": "act.html#contact"
+      "href": "act.html#contact",
+      "cat": "advocate"
     },
     {
       "id": "suggest-bill-edit",
       "title": "Improve the bill",
       "xp": 40,
       "desc": "Post a comment or suggested edit on the draft bill.",
-      "href": "bill.html"
+      "href": "bill.html",
+      "cat": "advocate"
     },
     {
       "id": "volunteer",
       "title": "Join as a state ally",
       "xp": 60,
       "desc": "Sign up to volunteer in your state.",
-      "href": "volunteer.html"
+      "href": "volunteer.html",
+      "cat": "advocate"
     },
     {
       "id": "local-history",
       "title": "Uncover local history",
       "xp": 60,
       "desc": "Find a Black, Brown, Native or immigrant community near you that was burned, driven out, flooded, seized or bulldozed. Send us its story with a source, and we'll add it to the map.",
-      "href": "https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BLocal%20history%5D%20&labels=local-history"
+      "href": "https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BLocal%20history%5D%20&labels=local-history",
+      "cat": "verify"
     },
     {
       "id": "cdc-export",
       "title": "Export CDC data",
       "xp": 100,
       "desc": "Run the two CDC WONDER exports for your state and send them in.",
-      "href": "deaths.html#export"
+      "href": "deaths.html#export",
+      "cat": "verify"
     },
     {
       "id": "verify-old-law",
       "title": "Verify an old law",
       "xp": 120,
       "desc": "Check a reported segregation-era law against the current official code and report what you found.",
-      "href": "laws.html"
+      "href": "laws.html",
+      "cat": "verify"
     },
     {
       "id": "recruit-reviewer",
       "title": "Recruit a history reviewer",
       "xp": 150,
       "desc": "Get a historian, librarian or archivist to sign up as a Learn reviewer.",
-      "href": "volunteer.html#reviewer"
+      "href": "volunteer.html#reviewer",
+      "cat": "verify"
     },
     {
       "id": "bill-edit-accepted",
       "title": "Get an edit accepted",
       "xp": 150,
       "desc": "One of your suggested bill edits was accepted (you earned a gold star).",
-      "href": "bill.html"
+      "href": "bill.html",
+      "cat": "advocate"
     },
     {
       "id": "teach-in",
       "title": "Host a teach-in",
       "xp": 200,
       "desc": "Teach one of these modules to a group: a class, church, club or chapter.",
-      "href": "learn.html"
+      "href": "learn.html",
+      "cat": "learn"
     },
     {
       "id": "council-resolution",
       "title": "Win a local resolution",
       "xp": 400,
       "desc": "Get your city council, county board or state lawmaker to formally support a CAREN-style law or a repeal.",
+      "href": "act.html",
+      "cat": "advocate"
+    },
+    {
+      "id": "read-book",
+      "title": "Read and discuss a book",
+      "xp": 40,
+      "cat": "learn",
+      "desc": "Read one book from the module sources (for example The Color of Law, The Warmth of Other Suns, or Stamped from the Beginning) and discuss it with at least one other person.",
+      "href": "learn.html#help"
+    },
+    {
+      "id": "oral-history",
+      "title": "Record an elder's story",
+      "xp": 80,
+      "cat": "learn",
+      "desc": "Record an older relative or neighbor talking about what they lived through: segregation, the Great Migration, a neighborhood that's gone. Keep it for your family, and share it with us if they agree.",
+      "href": "learn.html#help"
+    },
+    {
+      "id": "register-voters",
+      "title": "Register voters",
+      "xp": 80,
+      "cat": "advocate",
+      "desc": "Help register voters with a nonpartisan group (League of Women Voters, your county's election office, a campus or church drive).",
+      "href": "https://www.vote.org/"
+    },
+    {
+      "id": "poll-worker",
+      "title": "Work the polls",
+      "xp": 100,
+      "cat": "advocate",
+      "desc": "Serve as a poll worker on Election Day. Many counties are short of them, and they're paid.",
+      "href": "https://www.eac.gov/help-america-vote"
+    },
+    {
+      "id": "op-ed",
+      "title": "Get published",
+      "xp": 100,
+      "cat": "advocate",
+      "desc": "Publish a letter to the editor or an op-ed about the CAREN Act or a local history from these modules.",
       "href": "act.html"
+    },
+    {
+      "id": "speak-council",
+      "title": "Speak at a public meeting",
+      "xp": 120,
+      "cat": "advocate",
+      "desc": "Speak during public comment at your city council, county board or school board about a CAREN-style law or a local history issue.",
+      "href": "act.html"
+    },
+    {
+      "id": "fair-hiring",
+      "title": "Make hiring fairer at work",
+      "xp": 200,
+      "cat": "advocate",
+      "desc": "Get your employer to adopt one fairer hiring practice: blind résumé review, structured interviews, or a fair-chance policy on criminal records.",
+      "href": "module.html?m=performance"
+    },
+    {
+      "id": "coalition",
+      "title": "Build a coalition",
+      "xp": 150,
+      "cat": "advocate",
+      "desc": "Bring two organizations from different communities (for example a Black church and an Asian American, Latino or Native group) together on one shared issue.",
+      "href": "module.html?m=many-targets"
+    },
+    {
+      "id": "run-for-office",
+      "title": "Run for local office",
+      "xp": 500,
+      "cat": "advocate",
+      "desc": "Run for school board, city council, or another local office, or manage the campaign of someone who shares these goals.",
+      "href": "act.html"
+    },
+    {
+      "id": "feed-neighbors",
+      "title": "Feed your neighbors",
+      "xp": 40,
+      "cat": "community",
+      "desc": "Volunteer a shift at a food bank, community fridge, soup kitchen or meal delivery program.",
+      "href": "https://www.feedingamerica.org/find-your-local-foodbank"
+    },
+    {
+      "id": "tutor",
+      "title": "Tutor or read with kids",
+      "xp": 60,
+      "cat": "community",
+      "desc": "Tutor or read with students at a local school, library or after-school program.",
+      "href": "learn.html#quests"
+    },
+    {
+      "id": "court-watch",
+      "title": "Watch a courtroom",
+      "xp": 60,
+      "cat": "community",
+      "desc": "Join a court-watching program, or sit in on bail hearings and report what you see. Courts behave differently when the public is watching.",
+      "href": "learn.html#quests"
+    },
+    {
+      "id": "know-rights-training",
+      "title": "Host a know-your-rights session",
+      "xp": 80,
+      "cat": "community",
+      "desc": "Host or co-host a know-your-rights session using the free ACLU and ILRC materials on the Take action page.",
+      "href": "act.html"
+    },
+    {
+      "id": "mentor-youth",
+      "title": "Mentor a young person",
+      "xp": 150,
+      "cat": "community",
+      "desc": "Mentor a young person for at least a school semester (Big Brothers Big Sisters, a school program, a church or a sports league).",
+      "href": "https://www.bbbs.org/"
+    },
+    {
+      "id": "clean-slate",
+      "title": "Help someone clear a record",
+      "xp": 120,
+      "cat": "probono",
+      "desc": "Help someone apply to seal or expunge an old record, at a legal clinic or by walking them through your state's process.",
+      "href": "module.html?m=incarceration"
+    },
+    {
+      "id": "tax-prep",
+      "title": "Prepare taxes for free",
+      "xp": 100,
+      "cat": "probono",
+      "desc": "Volunteer with the IRS's free VITA program to help low-income families file and claim credits they're owed.",
+      "href": "https://www.irs.gov/individuals/irs-tax-volunteers"
+    },
+    {
+      "id": "pro-bono-skills",
+      "title": "Donate your professional skills",
+      "xp": 150,
+      "cat": "probono",
+      "desc": "Give at least 10 hours of professional work (accounting, design, IT, marketing, medical screening, grant writing) to a community organization or Black-owned small business.",
+      "href": "learn.html#quests"
+    },
+    {
+      "id": "heirs-property",
+      "title": "Protect family land",
+      "xp": 150,
+      "cat": "probono",
+      "desc": "Help a family write a will or resolve heirs' property so their land stays in the family. Lawyers can lead; anyone can connect a family with help.",
+      "href": "module.html?m=destroyed"
+    },
+    {
+      "id": "pro-bono-legal",
+      "title": "Take a pro bono case",
+      "xp": 250,
+      "cat": "probono",
+      "desc": "Attorneys: take a pro bono case or staff a legal clinic (expungement, eviction defense, discrimination, or a CAREN-type claim where one exists).",
+      "href": "volunteer.html"
+    },
+    {
+      "id": "buy-black",
+      "title": "Shift your spending",
+      "xp": 30,
+      "cat": "build",
+      "desc": "For one month, move regular spending (groceries, services, gifts) to Black-owned and local businesses in your area.",
+      "href": "module.html?m=black-towns"
+    },
+    {
+      "id": "bank-black",
+      "title": "Bank with the community",
+      "xp": 80,
+      "cat": "build",
+      "desc": "Open an account or move deposits to a Black-owned bank, minority depository institution or community development credit union.",
+      "href": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
+    },
+    {
+      "id": "money-workshop",
+      "title": "Teach a money workshop",
+      "xp": 150,
+      "cat": "build",
+      "desc": "Teach a free workshop on homebuying, credit, investing or starting a business at a church, school or community center.",
+      "href": "module.html?m=wealth"
+    },
+    {
+      "id": "mentor-founder",
+      "title": "Mentor a founder",
+      "xp": 200,
+      "cat": "build",
+      "desc": "Mentor an entrepreneur from your home community for at least three months (SCORE, an accelerator, or informally).",
+      "href": "https://www.score.org/"
+    },
+    {
+      "id": "hire-local",
+      "title": "Hire from home",
+      "xp": 250,
+      "cat": "build",
+      "desc": "Hire, contract with, or create paid internships for people and businesses from the community you came from.",
+      "href": "module.html?m=performance"
+    },
+    {
+      "id": "board-seat",
+      "title": "Take a seat at the table",
+      "xp": 300,
+      "cat": "build",
+      "desc": "Join the board of a local nonprofit, school, community development corporation, credit union or land trust.",
+      "href": "learn.html#quests"
+    },
+    {
+      "id": "invest-local",
+      "title": "Invest, don't just donate",
+      "xp": 300,
+      "cat": "build",
+      "desc": "Put money to work where it builds ownership: invest in a community business or co-op, a community land trust, or a CDFI that lends in your old neighborhood.",
+      "href": "module.html?m=wealth"
     }
   ],
   "badges": [
@@ -239,6 +460,64 @@
           "quest:bill-edit-accepted"
         ]
       }
+    },
+    {
+      "id": "neighbor",
+      "icon": "🍲",
+      "name": "Good neighbor",
+      "desc": "Showed up for your community.",
+      "rule": {
+        "any": [
+          "quest:feed-neighbors",
+          "quest:tutor",
+          "quest:court-watch",
+          "quest:know-rights-training",
+          "quest:mentor-youth"
+        ]
+      }
+    },
+    {
+      "id": "pro-bono",
+      "icon": "⚖️",
+      "name": "Pro bono",
+      "desc": "Gave your professional skills.",
+      "rule": {
+        "any": [
+          "quest:clean-slate",
+          "quest:tax-prep",
+          "quest:pro-bono-skills",
+          "quest:heirs-property",
+          "quest:pro-bono-legal"
+        ]
+      }
+    },
+    {
+      "id": "builder",
+      "icon": "🏗️",
+      "name": "Builder",
+      "desc": "Helped build wealth in a community.",
+      "rule": {
+        "any": [
+          "quest:bank-black",
+          "quest:money-workshop",
+          "quest:mentor-founder",
+          "quest:hire-local",
+          "quest:board-seat",
+          "quest:invest-local"
+        ]
+      }
+    },
+    {
+      "id": "ballot",
+      "icon": "🗳️",
+      "name": "Democracy keeper",
+      "desc": "Registered voters or worked the polls.",
+      "rule": {
+        "any": [
+          "quest:register-voters",
+          "quest:poll-worker"
+        ]
+      }
     }
   ],
   "detective": [
@@ -337,7 +616,7 @@
         {
           "h": "The practice came first, the ideas followed",
           "label": "debated",
-          "body": "<p>In 1944 the Trinidadian historian Eric Williams wrote that “slavery was not born of racism: rather, racism was the consequence of slavery.” Ibram X. Kendi's <em>Stamped from the Beginning</em> (2016) traces the same pattern over five centuries: racist ideas were developed to defend policies that were already profitable.</p><p>Thomas Jefferson, who enslaved more than 600 people over his life, offered Black inferiority “as a suspicion only” in his <em>Notes on the State of Virginia</em> (1785). Within decades, “scientists” were measuring skulls to prove it (see module 5).</p>",
+          "body": "<p>In 1944 the Trinidadian historian Eric Williams wrote that “slavery was not born of racism: rather, racism was the consequence of slavery.” Ibram X. Kendi's <em>Stamped from the Beginning</em> (2016) traces the same pattern over five centuries: racist ideas were developed to defend policies that were already profitable.</p><p>Thomas Jefferson, who enslaved more than 600 people over his life, offered Black inferiority “as a suspicion only” in his <em>Notes on the State of Virginia</em> (1785). Within decades, “scientists” were measuring skulls to prove it (see the module on science).</p>",
           "sources": [
             "williams",
             "kendi",
@@ -669,7 +948,7 @@
         "The 13th, 14th and 15th Amendments, and the 13th's “punishment for crime” exception",
         "Black Codes and convict leasing",
         "Lynching: more than 4,400 documented victims, 1877–1950 (EJI)",
-        "Massacres: Colfax 1873, Wilmington 1898, Elaine 1919, Tulsa 1921, Rosewood 1923 (told in full in module 8)",
+        "Massacres: Colfax 1873, Wilmington 1898, Elaine 1919, Tulsa 1921, Rosewood 1923 (told in full in “Burned, flooded and taken”)",
         "Jim Crow laws and their remnants (see the old laws tracker)"
       ],
       "map": [
@@ -690,8 +969,235 @@
       }
     },
     {
+      "id": "black-towns",
+      "title": "What we built: Black towns, institutions and self-determination",
+      "short": "All-Black towns, banks, insurance companies, newspapers, churches and colleges built after slavery, often the very places that were later attacked.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "This history is not only about what was done to Black Americans. Within a generation of slavery, Black communities built towns, banks, schools and businesses from almost nothing. Knowing what was built explains what was lost, and shows the model for rebuilding.",
+      "sections": [
+        {
+          "h": "All-Black towns",
+          "label": "documented",
+          "body": "<p>After Reconstruction, Black families founded their own towns where they could own land, vote and govern themselves. Oklahoma alone had more than 50, the most of any state, including Boley (founded 1903). Others include Nicodemus, Kansas (1877, now a National Historic Site); Eatonville, Florida (1887, one of the first incorporated Black towns and Zora Neale Hurston's hometown); Mound Bayou, Mississippi (1887, founded by Isaiah Montgomery, who had been enslaved); and Allensworth, California (1908, founded by Colonel Allen Allensworth, now a state historic park).</p>",
+          "sources": [
+            "nicodemus",
+            "eatonville",
+            "moundbayou",
+            "allensworth",
+            "boley"
+          ]
+        },
+        {
+          "h": "Black Wall Streets",
+          "label": "documented",
+          "body": "<p>Greenwood in Tulsa was the most famous, but not the only one. Durham's Parrish Street was home to North Carolina Mutual Life Insurance (1898), for decades the largest Black-owned business in America. In Richmond's Jackson Ward, Maggie L. Walker founded the St. Luke Penny Savings Bank in 1903, the first bank chartered by a woman in the United States. Atlanta's Auburn Avenue had Atlanta Life Insurance, founded by Alonzo Herndon, who was born enslaved. (See the module on communities destroyed.)</p>",
+          "sources": [
+            "ncmutual",
+            "walker"
+          ]
+        },
+        {
+          "h": "Institutions that lasted",
+          "label": "documented",
+          "body": "<p>Free Black Philadelphians formed the Free African Society, a mutual-aid group, in 1787, and Richard Allen founded the African Methodist Episcopal Church in 1816. The first Black newspaper, <em>Freedom's Journal</em>, began in 1827; the <em>Chicago Defender</em> later helped drive the Great Migration. Cheyney University (1837) is the oldest HBCU. <em>The Negro Motorist Green Book</em> (1936–1966) guided Black travelers to safe hotels, restaurants and gas stations in a country full of sundown towns.</p>",
+          "sources": [
+            "fas",
+            "fj",
+            "greenbook"
+          ]
+        },
+        {
+          "h": "Organizing for themselves",
+          "label": "documented",
+          "body": "<p>Ida B. Wells documented lynching and urged Black families to leave Memphis and buy guns for self-defense. Fannie Lou Hamer founded the Freedom Farm Cooperative in 1969 so Black families in Mississippi could grow their own food and own land. The Black Panther Party's Free Breakfast for Children program (1969) fed thousands of children every day and is often credited with pushing the federal government to expand school breakfasts.</p>",
+          "sources": [
+            "wells",
+            "hamer",
+            "panthers"
+          ]
+        },
+        {
+          "h": "Why it matters now",
+          "label": "documented",
+          "body": "<p>Many of these places were attacked precisely because they succeeded (see the modules on communities destroyed and on evidence of performance, where economist Lisa Cook shows how violence suppressed Black invention). The model they used still works: own land, bank together, build institutions, and teach the next generation. Black Americans founded more than 130 banks between 1888 and 1934; only about 20 remain today. Supporting them is one of the quests.</p>",
+          "sources": [
+            "cook",
+            "fdic"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1787,
+          "t": "Free African Society founded",
+          "label": "documented"
+        },
+        {
+          "y": 1816,
+          "t": "AME Church founded",
+          "label": "documented"
+        },
+        {
+          "y": 1827,
+          "t": "Freedom's Journal, the first Black newspaper",
+          "label": "documented"
+        },
+        {
+          "y": 1837,
+          "t": "Cheyney University, the oldest HBCU",
+          "label": "documented"
+        },
+        {
+          "y": 1877,
+          "t": "Nicodemus, Kansas founded",
+          "label": "documented"
+        },
+        {
+          "y": 1887,
+          "t": "Eatonville and Mound Bayou founded",
+          "label": "documented"
+        },
+        {
+          "y": 1898,
+          "t": "North Carolina Mutual Life Insurance founded",
+          "label": "documented"
+        },
+        {
+          "y": 1903,
+          "t": "Maggie L. Walker founds St. Luke Penny Savings Bank; Boley, Oklahoma founded",
+          "label": "documented"
+        },
+        {
+          "y": 1908,
+          "t": "Allensworth, California founded",
+          "label": "documented"
+        },
+        {
+          "y": 1936,
+          "t": "First Green Book",
+          "label": "documented"
+        },
+        {
+          "y": 1969,
+          "t": "Freedom Farm Cooperative; Free Breakfast for Children",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which state had more than 50 all-Black towns?",
+          "options": [
+            "Mississippi",
+            "Oklahoma",
+            "California",
+            "New York"
+          ],
+          "a": 1,
+          "why": "Oklahoma, including Boley."
+        },
+        {
+          "q": "Who was the first woman to charter a bank in the United States?",
+          "options": [
+            "Madam C.J. Walker",
+            "Maggie L. Walker",
+            "Ida B. Wells",
+            "Fannie Lou Hamer"
+          ],
+          "a": 1,
+          "why": "Maggie L. Walker, in Richmond, 1903."
+        },
+        {
+          "q": "What was the Green Book?",
+          "options": [
+            "A tax form",
+            "A guide to safe places for Black travelers",
+            "A school textbook",
+            "A bank ledger"
+          ],
+          "a": 1,
+          "why": "Published from 1936 to 1966."
+        },
+        {
+          "q": "What did Fannie Lou Hamer found in 1969?",
+          "options": [
+            "A bank",
+            "A newspaper",
+            "The Freedom Farm Cooperative",
+            "A college"
+          ],
+          "a": 2,
+          "why": "So Black families could grow food and own land."
+        }
+      ],
+      "quest": "buy-black",
+      "map": [],
+      "sourcesList": {
+        "nicodemus": {
+          "t": "Nicodemus National Historic Site",
+          "url": "https://en.wikipedia.org/wiki/Nicodemus_National_Historic_Site"
+        },
+        "eatonville": {
+          "t": "Eatonville, Florida",
+          "url": "https://en.wikipedia.org/wiki/Eatonville,_Florida"
+        },
+        "moundbayou": {
+          "t": "Mound Bayou, Mississippi",
+          "url": "https://en.wikipedia.org/wiki/Mound_Bayou,_Mississippi"
+        },
+        "allensworth": {
+          "t": "Allensworth, California",
+          "url": "https://en.wikipedia.org/wiki/Allensworth,_California"
+        },
+        "boley": {
+          "t": "Boley, Oklahoma; Oklahoma Historical Society, All-Black Towns",
+          "url": "https://en.wikipedia.org/wiki/Boley,_Oklahoma"
+        },
+        "ncmutual": {
+          "t": "North Carolina Mutual Life Insurance Company",
+          "url": "https://en.wikipedia.org/wiki/North_Carolina_Mutual_Life_Insurance_Company"
+        },
+        "walker": {
+          "t": "Maggie L. Walker",
+          "url": "https://en.wikipedia.org/wiki/Maggie_L._Walker"
+        },
+        "fas": {
+          "t": "Free African Society",
+          "url": "https://en.wikipedia.org/wiki/Free_African_Society"
+        },
+        "fj": {
+          "t": "Freedom's Journal",
+          "url": "https://en.wikipedia.org/wiki/Freedom%27s_Journal"
+        },
+        "greenbook": {
+          "t": "The Negro Motorist Green Book",
+          "url": "https://en.wikipedia.org/wiki/The_Negro_Motorist_Green_Book"
+        },
+        "wells": {
+          "t": "Ida B. Wells",
+          "url": "https://en.wikipedia.org/wiki/Ida_B._Wells"
+        },
+        "hamer": {
+          "t": "Fannie Lou Hamer",
+          "url": "https://en.wikipedia.org/wiki/Fannie_Lou_Hamer"
+        },
+        "panthers": {
+          "t": "Black Panther Party",
+          "url": "https://en.wikipedia.org/wiki/Black_Panther_Party"
+        },
+        "cook": {
+          "t": "Lisa D. Cook, “Violence and economic activity: evidence from African American patents, 1870–1940” (2014)"
+        },
+        "fdic": {
+          "t": "FDIC, Minority Depository Institutions list",
+          "url": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
+        }
+      },
+      "num": 5
+    },
+    {
       "id": "science",
-      "num": 5,
+      "num": 6,
       "title": "Science as a weapon: medicine, eugenics and reproductive control",
       "short": "Scientific racism, medical experiments, and the forced sterilization of tens of thousands of Americans, plus what the evidence does and doesn't show about Planned Parenthood.",
       "status": "draft",
@@ -963,7 +1469,7 @@
     },
     {
       "id": "borders",
-      "num": 6,
+      "num": 7,
       "title": "Borders: who gets to be American",
       "short": "Chinese Exclusion, racial quotas, mass deportations of Mexican Americans, Japanese American incarceration, and today's enforcement.",
       "status": "outline",
@@ -979,7 +1485,7 @@
     },
     {
       "id": "place",
-      "num": 7,
+      "num": 8,
       "title": "Place: who gets to live where",
       "short": "Redlining, racial covenants, sundown towns, urban renewal and highways, and the wealth gap they left.",
       "status": "outline",
@@ -988,7 +1494,7 @@
         "Racial covenants in property deeds",
         "Sundown towns",
         "Exclusion from New Deal and GI Bill housing benefits",
-        "The wealth gap today (for burned, flooded and bulldozed communities, see module 8)"
+        "The wealth gap today (for burned, flooded and bulldozed communities, see “Burned, flooded and taken”)"
       ],
       "map": [
         {
@@ -1000,7 +1506,7 @@
     },
     {
       "id": "destroyed",
-      "num": 8,
+      "num": 9,
       "title": "Burned, flooded and taken: the communities America destroyed",
       "short": "Black Wall Street in Tulsa and dozens of other Black, Brown and immigrant communities that were burned, driven out, flooded, seized or bulldozed, plus how gentrification continues the pattern.",
       "status": "draft",
@@ -1380,8 +1886,648 @@
       }
     },
     {
+      "id": "wealth",
+      "title": "Wealth: built, blocked and taken",
+      "short": "Why the typical white family has about six times the wealth of the typical Black family: forty acres promised and taken back, a failed bank, New Deal and GI Bill exclusions, redlining, subprime lending, and how to rebuild.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "Income is what you earn; wealth is what you own and pass down. Wealth pays for college, starts businesses, survives emergencies and posts bail. The racial wealth gap isn't mainly about what people earn today. It's the inheritance of policy.",
+      "sections": [
+        {
+          "h": "The gap",
+          "label": "documented",
+          "body": "<p>In the Federal Reserve's 2022 Survey of Consumer Finances, the median white household had about $285,000 in wealth, the median Black household about $45,000, and the median Hispanic household about $62,000. Wealth gaps are far larger than income gaps because wealth builds over generations, and so does its absence.</p>",
+          "sources": [
+            "scf"
+          ]
+        },
+        {
+          "h": "Forty acres, promised and taken back",
+          "label": "documented",
+          "body": "<p>In January 1865, General Sherman's Special Field Order No. 15 set aside coastal land from South Carolina to Florida for freed families, in plots of up to 40 acres. That fall, President Andrew Johnson ordered most of it returned to former Confederates. The Freedman's Savings Bank, chartered by Congress in 1865, collected the savings of more than 60,000 Black depositors. Mismanaged by its white trustees, it collapsed in 1874, and many depositors lost most of their money.</p>",
+          "sources": [
+            "fortyacres",
+            "freedmans"
+          ]
+        },
+        {
+          "h": "The New Deal left most Black workers out",
+          "label": "debated",
+          "body": "<p><b>Documented:</b> the Social Security Act (1935) and the Fair Labor Standards Act (1938) excluded agricultural and domestic workers, the jobs most Black workers in the South held at the time. Most Black workers were left out of old-age insurance and minimum-wage protection for years; the exclusions were narrowed in the 1950s.</p><p><b>Debated:</b> why. Historian Ira Katznelson and others argue Southern Democrats in Congress insisted on the exclusions to protect the racial order. Other scholars argue administrative difficulty was the main reason. The effect on Black families is not in dispute.</p>",
+          "sources": [
+            "ssa",
+            "katznelson"
+          ]
+        },
+        {
+          "h": "The GI Bill and the suburbs",
+          "label": "documented",
+          "body": "<p>After World War II, the GI Bill paid for college and guaranteed home loans for 16 million veterans. Benefits were run by local officials and banks, who largely shut Black veterans out. A 1947 survey of 13 Mississippi cities found that of 3,229 VA-guaranteed home loans, two went to Black veterans. The Federal Housing Administration's underwriting manual recommended racial covenants, and new suburbs such as Levittown refused to sell to Black families. White families built wealth through rising home values; most Black families were shut out of the biggest wealth-building program in U.S. history.</p>",
+          "sources": [
+            "gibill",
+            "katznelson",
+            "rothstein"
+          ]
+        },
+        {
+          "h": "From redlining to subprime",
+          "label": "documented",
+          "body": "<p>Redlined neighborhoods were starved of ordinary loans for decades (see the module on place). When credit finally came, much of it was predatory. Before 2008, Black and Latino borrowers were steered into subprime loans even when they qualified for better ones; Countrywide (2011, $335 million) and Wells Fargo (2012, $175 million) settled federal charges over it. Black and Latino families lost a larger share of their wealth in the foreclosure crisis.</p><p>The gap continues through appraisals: a 2018 Brookings study found that homes in majority-Black neighborhoods are valued about $48,000 less than similar homes in neighborhoods with few Black residents.</p>",
+          "sources": [
+            "countrywide",
+            "brookings"
+          ]
+        },
+        {
+          "h": "Rebuilding",
+          "label": "documented",
+          "body": "<p>What builds wealth is ownership: homes, businesses, land and savings that compound. Tools with a record include down-payment assistance, Black-owned banks and community development financial institutions (CDFIs), community land trusts, help resolving “heirs' property” so families keep their land, and “baby bonds” (Connecticut created the first state program in 2021). Evanston, Illinois, began paying housing reparations in 2021. The Learn quests include ways people who have built wealth can help others build it, beyond donating.</p>",
+          "sources": [
+            "babybonds",
+            "evanston"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1865,
+          "t": "Field Order No. 15 (40 acres), reversed months later; Freedman's Savings Bank chartered",
+          "label": "documented"
+        },
+        {
+          "y": 1874,
+          "t": "Freedman's Savings Bank collapses",
+          "label": "documented"
+        },
+        {
+          "y": 1935,
+          "t": "Social Security Act excludes farm and domestic workers",
+          "label": "documented"
+        },
+        {
+          "y": 1938,
+          "t": "FHA manual recommends racial covenants",
+          "label": "documented"
+        },
+        {
+          "y": 1944,
+          "t": "GI Bill",
+          "label": "documented"
+        },
+        {
+          "y": 1947,
+          "t": "Mississippi survey: 2 of 3,229 VA home loans went to Black veterans",
+          "label": "documented"
+        },
+        {
+          "y": 1968,
+          "t": "Fair Housing Act",
+          "label": "documented"
+        },
+        {
+          "y": 2008,
+          "t": "Foreclosure crisis",
+          "label": "documented"
+        },
+        {
+          "y": 2012,
+          "t": "Wells Fargo settles lending discrimination charges",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Evanston reparations; Connecticut baby bonds",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About how many times the wealth of the median Black household does the median white household have?",
+          "options": [
+            "The same",
+            "About 2 times",
+            "About 6 times",
+            "About 50 times"
+          ],
+          "a": 2,
+          "why": "About $285,000 vs. about $45,000 (Federal Reserve, 2022)."
+        },
+        {
+          "q": "Which workers did the 1935 Social Security Act exclude?",
+          "options": [
+            "Factory workers",
+            "Agricultural and domestic workers",
+            "Teachers",
+            "Veterans"
+          ],
+          "a": 1,
+          "why": "The jobs most Black Southern workers held."
+        },
+        {
+          "q": "In a 1947 Mississippi survey, how many of 3,229 VA home loans went to Black veterans?",
+          "options": [
+            "2",
+            "200",
+            "1,000",
+            "Half"
+          ],
+          "a": 0,
+          "why": "Two."
+        },
+        {
+          "q": "What happened to the Freedman's Savings Bank?",
+          "options": [
+            "It became a major bank",
+            "It collapsed in 1874 and depositors lost their savings",
+            "It paid reparations",
+            "It never opened"
+          ],
+          "a": 1,
+          "why": "It was mismanaged by white trustees and collapsed in 1874."
+        }
+      ],
+      "quest": "bank-black",
+      "map": [
+        {
+          "t": "Redlining and covenants in Minneapolis",
+          "href": "index.html?layers=redlining,covenants&at=44.96,-93.27,12"
+        }
+      ],
+      "sourcesList": {
+        "scf": {
+          "t": "Federal Reserve, Survey of Consumer Finances (2022)",
+          "url": "https://www.federalreserve.gov/econres/scfindex.htm"
+        },
+        "fortyacres": {
+          "t": "Forty acres and a mule",
+          "url": "https://en.wikipedia.org/wiki/Forty_acres_and_a_mule"
+        },
+        "freedmans": {
+          "t": "Freedman's Savings Bank",
+          "url": "https://en.wikipedia.org/wiki/Freedman%27s_Savings_Bank"
+        },
+        "ssa": {
+          "t": "Social Security Act of 1935",
+          "url": "https://en.wikipedia.org/wiki/Social_Security_Act"
+        },
+        "katznelson": {
+          "t": "Ira Katznelson, When Affirmative Action Was White (2005)"
+        },
+        "gibill": {
+          "t": "G.I. Bill",
+          "url": "https://en.wikipedia.org/wiki/G.I._Bill"
+        },
+        "rothstein": {
+          "t": "Richard Rothstein, The Color of Law (2017)"
+        },
+        "countrywide": {
+          "t": "U.S. Department of Justice settlements with Countrywide (2011) and Wells Fargo (2012) over lending discrimination"
+        },
+        "brookings": {
+          "t": "Perry, Rothwell & Harshbarger, The Devaluation of Assets in Black Neighborhoods (Brookings, 2018)"
+        },
+        "babybonds": {
+          "t": "Connecticut baby bonds program (2021)"
+        },
+        "evanston": {
+          "t": "City of Evanston, Local Reparations program"
+        }
+      },
+      "num": 10
+    },
+    {
+      "id": "voting",
+      "title": "The fight for the vote",
+      "short": "How Black Americans won the vote, lost it to poll taxes, tests and terror, won it back in 1965, and are fighting for it again since the Supreme Court weakened the Voting Rights Act in 2013.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "The people who decide whether discriminatory 911 calls stay legal are elected. That is why the vote has been fought over so fiercely for 150 years, and why it is the most powerful tool for passing the CAREN Act.",
+      "sections": [
+        {
+          "h": "Won: Reconstruction",
+          "label": "documented",
+          "body": "<p>The 15th Amendment (1870) barred denying the vote because of race. Within a few years, Black voters elected about 2,000 Black officeholders across the South, from sheriffs to state legislators. Hiram Revels of Mississippi became the first Black U.S. Senator in 1870. (See the module on Reconstruction.)</p>",
+          "sources": [
+            "fifteenth",
+            "foner"
+          ]
+        },
+        {
+          "h": "Taken: poll taxes, tests and terror",
+          "label": "documented",
+          "body": "<p>When Reconstruction ended, Southern states rewrote their constitutions to get around the 15th Amendment without naming race. Mississippi led in 1890 with poll taxes, literacy tests and an “understanding clause” that let white registrars pass whom they chose. Other tools were “grandfather clauses” (struck down in 1915) and all-white primaries (struck down in 1944). Violence enforced the rest: in Ocoee, Florida, in 1920, Black residents who tried to vote were massacred.</p><p>The results were stark. In Louisiana, registered Black voters fell from about 130,000 in 1896 to about 1,300 by 1904. At Alabama's 1901 constitutional convention, the convention president said its purpose was to “establish white supremacy in this State.”</p>",
+          "sources": [
+            "disenfranchise",
+            "guinn",
+            "allwright",
+            "alabama1901"
+          ]
+        },
+        {
+          "h": "Won again: Selma and the Voting Rights Act",
+          "label": "documented",
+          "body": "<p>Organizers registered voters at the risk of their lives. Medgar Evers was murdered in 1963, and three Freedom Summer workers, James Chaney, Andrew Goodman and Michael Schwerner, in 1964. On March 7, 1965 (“Bloody Sunday”), state troopers beat marchers, including John Lewis, on the Edmund Pettus Bridge in Selma. Five months later Congress passed the Voting Rights Act. Its Section 5 required states and counties with a history of discrimination to get federal approval before changing voting rules (“preclearance”). The 24th Amendment (1964) and a 1966 Supreme Court ruling ended poll taxes. In Mississippi, Black voter registration rose from about 7% in 1964 to about 60% by 1967.</p>",
+          "sources": [
+            "selma",
+            "vra"
+          ]
+        },
+        {
+          "h": "Weakened: Shelby County v. Holder (2013)",
+          "label": "documented",
+          "body": "<p>In 2013 the Supreme Court struck down the formula that decided which places needed preclearance, which ended preclearance in practice. Texas announced its voter ID law the same day. In 2016 a federal appeals court struck down a 2013 North Carolina law, finding that it targeted Black voters “with almost surgical precision.” A 2019 civil rights report counted about 1,700 polling places closed in formerly covered areas between 2012 and 2018. In 2023, in <em>Allen v. Milligan</em>, the Court did uphold Section 2 of the act and required Alabama to draw a second district where Black voters could elect their choice.</p>",
+          "sources": [
+            "shelby",
+            "mccrory",
+            "milligan"
+          ]
+        },
+        {
+          "h": "Locked out: felony disenfranchisement",
+          "label": "documented",
+          "body": "<p>About 4 million Americans can't vote because of a felony conviction, and Black Americans are disenfranchised at more than three times the rate of others (Sentencing Project). Many of these laws were written after Reconstruction to target crimes officials thought Black people were likelier to commit. In 1985 the Supreme Court struck down part of Alabama's law for that reason (<em>Hunter v. Underwood</em>). In 2018 Florida voters restored voting rights to most people who had finished their sentences; the legislature then required them to pay all fines and fees first.</p>",
+          "sources": [
+            "sentencing",
+            "hunter"
+          ]
+        },
+        {
+          "h": "Drawn out: redistricting",
+          "label": "documented",
+          "body": "<p>District lines can “pack” voters of color into a few districts or “crack” them across many so their votes count for less. The Supreme Court ruled in 2019 that federal courts won't police partisan gerrymanders, but racial gerrymanders can still be challenged under the Voting Rights Act. Local offices matter as much as Congress: district attorneys, sheriffs and city councils decide how police calls are handled.</p>",
+          "sources": [
+            "rucho",
+            "milligan"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1870,
+          "t": "15th Amendment; Hiram Revels seated in the Senate",
+          "label": "documented"
+        },
+        {
+          "y": 1890,
+          "t": "Mississippi's constitution introduces poll taxes and literacy tests",
+          "label": "documented"
+        },
+        {
+          "y": 1901,
+          "t": "Alabama convention: “establish white supremacy”",
+          "label": "documented"
+        },
+        {
+          "y": 1915,
+          "t": "Grandfather clauses struck down",
+          "label": "documented"
+        },
+        {
+          "y": 1920,
+          "t": "Ocoee Election Day massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1944,
+          "t": "White primaries struck down",
+          "label": "documented"
+        },
+        {
+          "y": 1964,
+          "t": "24th Amendment; Freedom Summer murders",
+          "label": "documented"
+        },
+        {
+          "y": 1965,
+          "t": "Bloody Sunday in Selma; Voting Rights Act",
+          "label": "documented"
+        },
+        {
+          "y": 1985,
+          "t": "Hunter v. Underwood strikes part of Alabama's disenfranchisement law",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Shelby County v. Holder ends preclearance",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "North Carolina law struck down for targeting Black voters",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Florida voters pass Amendment 4",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "Allen v. Milligan upholds Section 2",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which amendment barred denying the vote because of race?",
+          "options": [
+            "13th",
+            "14th",
+            "15th",
+            "19th"
+          ],
+          "a": 2,
+          "why": "The 15th, in 1870."
+        },
+        {
+          "q": "What did Section 5 of the Voting Rights Act require?",
+          "options": [
+            "Voter ID",
+            "Federal approval for voting changes in places with a history of discrimination",
+            "Mail voting",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Preclearance."
+        },
+        {
+          "q": "What did Shelby County v. Holder (2013) do?",
+          "options": [
+            "Expanded voting rights",
+            "Struck down the preclearance coverage formula",
+            "Ended poll taxes",
+            "Created voter ID"
+          ],
+          "a": 1,
+          "why": "It ended preclearance in practice."
+        },
+        {
+          "q": "About how many Americans can't vote because of a felony conviction?",
+          "options": [
+            "About 40,000",
+            "About 400,000",
+            "About 4 million",
+            "None"
+          ],
+          "a": 2,
+          "why": "About 4 million (Sentencing Project)."
+        }
+      ],
+      "quest": "register-voters",
+      "map": [],
+      "sourcesList": {
+        "fifteenth": {
+          "t": "Fifteenth Amendment to the U.S. Constitution",
+          "url": "https://en.wikipedia.org/wiki/Fifteenth_Amendment_to_the_United_States_Constitution"
+        },
+        "foner": {
+          "t": "Eric Foner, Freedom's Lawmakers: A Directory of Black Officeholders During Reconstruction (1993)"
+        },
+        "disenfranchise": {
+          "t": "Disenfranchisement after the Reconstruction era",
+          "url": "https://en.wikipedia.org/wiki/Disenfranchisement_after_the_Reconstruction_era"
+        },
+        "guinn": {
+          "t": "Guinn v. United States (1915)",
+          "url": "https://en.wikipedia.org/wiki/Guinn_v._United_States"
+        },
+        "allwright": {
+          "t": "Smith v. Allwright (1944)",
+          "url": "https://en.wikipedia.org/wiki/Smith_v._Allwright"
+        },
+        "alabama1901": {
+          "t": "Official Proceedings of the Constitutional Convention of the State of Alabama (1901), opening address of John B. Knox"
+        },
+        "selma": {
+          "t": "Selma to Montgomery marches",
+          "url": "https://en.wikipedia.org/wiki/Selma_to_Montgomery_marches"
+        },
+        "vra": {
+          "t": "Voting Rights Act of 1965",
+          "url": "https://en.wikipedia.org/wiki/Voting_Rights_Act_of_1965"
+        },
+        "shelby": {
+          "t": "Shelby County v. Holder, 570 U.S. 529 (2013)",
+          "url": "https://supreme.justia.com/cases/federal/us/570/529/"
+        },
+        "mccrory": {
+          "t": "North Carolina State Conference of the NAACP v. McCrory (4th Cir. 2016)"
+        },
+        "milligan": {
+          "t": "Allen v. Milligan (2023)",
+          "url": "https://en.wikipedia.org/wiki/Allen_v._Milligan"
+        },
+        "sentencing": {
+          "t": "The Sentencing Project, reports on felony disenfranchisement",
+          "url": "https://www.sentencingproject.org/"
+        },
+        "hunter": {
+          "t": "Hunter v. Underwood, 471 U.S. 222 (1985)",
+          "url": "https://supreme.justia.com/cases/federal/us/471/222/"
+        },
+        "rucho": {
+          "t": "Rucho v. Common Cause (2019)",
+          "url": "https://en.wikipedia.org/wiki/Rucho_v._Common_Cause"
+        }
+      },
+      "num": 11
+    },
+    {
+      "id": "incarceration",
+      "title": "Mass incarceration and the war on drugs",
+      "short": "How the U.S. came to lock up more people than any other nation, why Black Americans are imprisoned at about five times the rate of white Americans, and what is starting to change.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "A 911 call can be the first step into the criminal legal system. This module shows how big that system became, who it falls on, and the laws behind it.",
+      "sections": [
+        {
+          "h": "The numbers",
+          "label": "documented",
+          "body": "<p>About 1.9 million people are held in U.S. prisons, jails and detention centers (Prison Policy Initiative), up from about 300,000 in the early 1970s. No country locks up a larger share of its people. Black Americans are imprisoned in state prisons at nearly five times the rate of white Americans (Sentencing Project, 2021). In 2010, Pew found that about 1 in 9 Black children had a parent behind bars.</p>",
+          "sources": [
+            "ppi",
+            "color",
+            "pew"
+          ]
+        },
+        {
+          "h": "“Except as a punishment for crime”",
+          "label": "documented",
+          "body": "<p>The 13th Amendment's exception, which made convict leasing legal after slavery (see the module on policing), still allows forced labor in prisons. Starting with Colorado in 2018, several states have removed similar exceptions from their own constitutions; others have voted to keep them.</p>",
+          "sources": [
+            "thirteenth"
+          ]
+        },
+        {
+          "h": "The war on drugs",
+          "label": "documented",
+          "body": "<p>President Nixon called drug abuse “public enemy number one” in 1971. The Anti-Drug Abuse Act of 1986 set the same mandatory minimum sentence for 5 grams of crack as for 500 grams of powder cocaine, a 100-to-1 ratio that fell overwhelmingly on Black defendants. Congress cut the ratio to 18-to-1 in 2010 (Fair Sentencing Act) and made that retroactive in 2018 (First Step Act).</p><p>Black and white Americans use marijuana at similar rates, but in 2018 Black people were 3.6 times more likely to be arrested for possessing it (ACLU, 2020).</p>",
+          "sources": [
+            "drugwar",
+            "adaa",
+            "fsa",
+            "aclu"
+          ]
+        },
+        {
+          "h": "Did the war on drugs aim at Black communities?",
+          "label": "debated",
+          "body": "<p>In a 2016 Harper's article, writer Dan Baum quoted Nixon aide John Ehrlichman as saying, in a 1994 interview, that the administration linked Black people with heroin in order to disrupt their communities. Ehrlichman's family disputes the quote, and he can't confirm it (he died in 1999). Historians agree the drug war's effects fell hardest on Black communities. Whether that was the goal from the start is debated.</p><p>The 1994 Crime Bill is debated too. It funded police and prisons and encouraged “three strikes” and truth-in-sentencing laws. Some Black leaders and mayors supported it at the time because of real violence in their communities. Researchers still argue over how much it drove incarceration, since most prisoners are held under state laws.</p>",
+          "sources": [
+            "baum",
+            "crimebill"
+          ]
+        },
+        {
+          "h": "Punishment after the sentence",
+          "label": "documented",
+          "body": "<p>A record can follow someone for life: it can bar them from jobs, housing, student aid and, in many states, voting (see the module on the vote). “Ban the box” rules, first adopted by Hawaii in 1998, now delay criminal-history questions in many public and private hiring processes. Since Pennsylvania in 2018, a growing number of states have passed “Clean Slate” laws that automatically seal eligible old records.</p>",
+          "sources": [
+            "cleanslate"
+          ]
+        },
+        {
+          "h": "What helps",
+          "label": "documented",
+          "body": "<p>Expungement clinics, Clean Slate laws, reentry programs, and alternatives to police for crisis calls (see the module on policing) all reduce the harm. Lawyers and paralegals can make a direct difference: many people eligible to clear a record never do because they don't know how. The quest for this module asks you to help someone do it.</p>",
+          "sources": [
+            "cleanslate"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1865,
+          "t": "13th Amendment's “punishment for crime” exception",
+          "label": "documented"
+        },
+        {
+          "y": 1971,
+          "t": "Nixon calls drug abuse “public enemy number one”",
+          "label": "documented"
+        },
+        {
+          "y": 1986,
+          "t": "Anti-Drug Abuse Act: 100-to-1 crack penalties",
+          "label": "documented"
+        },
+        {
+          "y": 1994,
+          "t": "Crime Bill",
+          "label": "debated"
+        },
+        {
+          "y": 2008,
+          "t": "U.S. prison and jail population near its peak of about 2.3 million",
+          "label": "documented"
+        },
+        {
+          "y": 2010,
+          "t": "Fair Sentencing Act cuts the ratio to 18-to-1",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "First Step Act; Colorado removes its slavery exception; Pennsylvania's Clean Slate law",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What sentencing ratio did the 1986 law set between crack and powder cocaine?",
+          "options": [
+            "1 to 1",
+            "10 to 1",
+            "100 to 1",
+            "1,000 to 1"
+          ],
+          "a": 2,
+          "why": "100 to 1, cut to 18 to 1 in 2010."
+        },
+        {
+          "q": "About how much more likely were Black people to be arrested for marijuana possession in 2018?",
+          "options": [
+            "Equally likely",
+            "1.2 times",
+            "3.6 times",
+            "10 times"
+          ],
+          "a": 2,
+          "why": "Despite similar use rates."
+        },
+        {
+          "q": "The Ehrlichman quote about the drug war is labeled:",
+          "options": [
+            "Documented",
+            "Debated",
+            "Belief or myth"
+          ],
+          "a": 1,
+          "why": "It was published in 2016 but is disputed by his family and can't be verified."
+        },
+        {
+          "q": "What do Clean Slate laws do?",
+          "options": [
+            "Raise sentences",
+            "Automatically seal eligible old records",
+            "Ban voting",
+            "Fund prisons"
+          ],
+          "a": 1,
+          "why": "They clear eligible records without the person having to apply."
+        }
+      ],
+      "quest": "clean-slate",
+      "map": [],
+      "sourcesList": {
+        "ppi": {
+          "t": "Prison Policy Initiative, Mass Incarceration: The Whole Pie",
+          "url": "https://www.prisonpolicy.org/"
+        },
+        "color": {
+          "t": "The Sentencing Project, The Color of Justice: Racial and Ethnic Disparity in State Prisons (2021)",
+          "url": "https://www.sentencingproject.org/"
+        },
+        "pew": {
+          "t": "Pew Charitable Trusts, Collateral Costs: Incarceration's Effect on Economic Mobility (2010)"
+        },
+        "thirteenth": {
+          "t": "Thirteenth Amendment to the U.S. Constitution",
+          "url": "https://en.wikipedia.org/wiki/Thirteenth_Amendment_to_the_United_States_Constitution"
+        },
+        "drugwar": {
+          "t": "War on drugs",
+          "url": "https://en.wikipedia.org/wiki/War_on_drugs"
+        },
+        "adaa": {
+          "t": "Anti-Drug Abuse Act of 1986",
+          "url": "https://en.wikipedia.org/wiki/Anti-Drug_Abuse_Act_of_1986"
+        },
+        "fsa": {
+          "t": "Fair Sentencing Act (2010); First Step Act (2018)",
+          "url": "https://en.wikipedia.org/wiki/Fair_Sentencing_Act"
+        },
+        "aclu": {
+          "t": "ACLU, A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform (2020)"
+        },
+        "baum": {
+          "t": "Dan Baum, “Legalize It All,” Harper's Magazine (April 2016)"
+        },
+        "crimebill": {
+          "t": "Violent Crime Control and Law Enforcement Act (1994)",
+          "url": "https://en.wikipedia.org/wiki/Violent_Crime_Control_and_Law_Enforcement_Act"
+        },
+        "cleanslate": {
+          "t": "Clean Slate Initiative (state Clean Slate laws)",
+          "url": "https://www.cleanslateinitiative.org/"
+        }
+      },
+      "num": 12
+    },
+    {
       "id": "policing",
-      "num": 9,
+      "num": 13,
       "title": "Policing and the 911 call",
       "short": "From slave patrols and vagrancy laws to the weaponized 911 call, and what the data shows about who gets stopped and hurt.",
       "status": "draft",
@@ -1582,8 +2728,468 @@
       }
     },
     {
+      "id": "many-targets",
+      "title": "Many targets: Latino, Asian, Native and immigrant communities",
+      "short": "Lynchings of Mexican Americans, Chinese expulsions and Japanese incarceration, anti-Asian violence, missing and murdered Indigenous women, and the moments these communities stood together.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "The same machinery of law, mobs and false accusations has been turned on many communities. Seeing the whole picture builds coalitions, and coalitions pass laws.",
+      "sections": [
+        {
+          "h": "Mexican Americans",
+          "label": "documented",
+          "body": "<p>Historians William Carrigan and Clive Webb documented at least 547 Mexicans lynched in the United States from 1848 to 1928. In January 1918, Texas Rangers, soldiers and local ranchers killed 15 Mexican men and boys at Porvenir, Texas. In <em>Mendez v. Westminster</em> (1947), Mexican American families won a case against school segregation in California, seven years before <em>Brown v. Board</em>. In 1943, servicemen attacked young Mexican Americans in Los Angeles in the “Zoot Suit Riots,” and police arrested the victims. In 2019 a gunman who had posted about a “Hispanic invasion” killed 23 people at an El Paso Walmart. (See also the module on borders.)</p>",
+          "sources": [
+            "carrigan",
+            "porvenir",
+            "mendez",
+            "zoot",
+            "elpaso"
+          ]
+        },
+        {
+          "h": "Asian Americans",
+          "label": "documented",
+          "body": "<p>Chinese immigrants were massacred in Los Angeles (1871) and Rock Springs (1885) and expelled from Tacoma (1885). The Chinese Exclusion Act (1882) was the first U.S. law to bar a group by nationality. About 120,000 Japanese Americans, most of them citizens, were incarcerated during World War II. In 1982, Vincent Chin was beaten to death in Detroit by two white autoworkers who blamed Japan for lost jobs; they were sentenced to probation and a $3,000 fine, which sparked a national Asian American civil rights movement. After 9/11, Sikh and South Asian Americans were attacked, starting with the murder of Balbir Singh Sodhi in Arizona days later. From 2020 to 2021, Stop AAPI Hate received more than 10,000 reports of anti-Asian hate incidents, and in March 2021 a gunman killed eight people, six of them Asian women, at Atlanta-area spas.</p>",
+          "sources": [
+            "exclusion",
+            "chin",
+            "sodhi",
+            "stopaapi",
+            "atlanta"
+          ]
+        },
+        {
+          "h": "Native Americans",
+          "label": "documented",
+          "body": "<p>Native people were not all granted U.S. citizenship until 1924, and Arizona and New Mexico barred Native people from voting until 1948. The federal boarding schools are covered in the module on conquest. Today, American Indian and Alaska Native women face very high rates of violence. A 2018 Urban Indian Health Institute report noted that of 5,712 cases of missing Native women and girls reported to the FBI's crime database in 2016, only 116 were logged in the federal missing persons database. Congress passed Savanna's Act and the Not Invisible Act in 2020 to improve how these cases are tracked and investigated.</p>",
+          "sources": [
+            "citizenship",
+            "mmiw",
+            "savanna"
+          ]
+        },
+        {
+          "h": "Police violence across groups",
+          "label": "debated",
+          "body": "<p>Some analyses of police killings, adjusted for population, put Native Americans at or near the top of any group, followed by Black Americans; others rank them differently. The numbers are uncertain because race is often misrecorded for Native and Latino victims. The map's police-killings layer (Mapping Police Violence) colors each case by the victim's race so you can see the pattern yourself.</p>",
+          "sources": [
+            "mpv"
+          ]
+        },
+        {
+          "h": "Standing together",
+          "label": "documented",
+          "body": "<p>Frederick Douglass spoke against Chinese exclusion in his 1869 “Composite Nation” speech. In 1965, Filipino farmworkers led by Larry Itliong began the Delano grape strike and asked Cesar Chavez's Mexican American union to join; together they won the first major farmworker contracts. Japanese American activist Yuri Kochiyama worked alongside Malcolm X and was with him when he was killed. Black, Latino, Asian and Native organizers worked together in the 1960s and 1970s, and the CAREN Act protects all of them.</p>",
+          "sources": [
+            "delano",
+            "kochiyama"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1848,
+          "t": "Start of the period of at least 547 documented lynchings of Mexicans (to 1928)",
+          "label": "documented"
+        },
+        {
+          "y": 1871,
+          "t": "Chinese massacre in Los Angeles",
+          "label": "documented"
+        },
+        {
+          "y": 1882,
+          "t": "Chinese Exclusion Act",
+          "label": "documented"
+        },
+        {
+          "y": 1918,
+          "t": "Porvenir massacre",
+          "label": "documented"
+        },
+        {
+          "y": 1924,
+          "t": "Indian Citizenship Act",
+          "label": "documented"
+        },
+        {
+          "y": 1942,
+          "t": "Japanese American incarceration begins",
+          "label": "documented"
+        },
+        {
+          "y": 1943,
+          "t": "Zoot Suit Riots",
+          "label": "documented"
+        },
+        {
+          "y": 1947,
+          "t": "Mendez v. Westminster",
+          "label": "documented"
+        },
+        {
+          "y": 1948,
+          "t": "Arizona and New Mexico Native voting bans end",
+          "label": "documented"
+        },
+        {
+          "y": 1965,
+          "t": "Delano grape strike",
+          "label": "documented"
+        },
+        {
+          "y": 1982,
+          "t": "Vincent Chin killed",
+          "label": "documented"
+        },
+        {
+          "y": 2001,
+          "t": "Balbir Singh Sodhi killed",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "El Paso Walmart shooting",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Savanna's Act and Not Invisible Act",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Atlanta spa shootings",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About how many lynchings of Mexicans did Carrigan and Webb document (1848–1928)?",
+          "options": [
+            "About 5",
+            "About 50",
+            "At least 547",
+            "None"
+          ],
+          "a": 2,
+          "why": "At least 547."
+        },
+        {
+          "q": "What did Mendez v. Westminster (1947) do?",
+          "options": [
+            "Allowed segregation",
+            "Struck down segregation of Mexican American students in California",
+            "Ended the Bracero program",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Seven years before Brown v. Board."
+        },
+        {
+          "q": "What sentence did Vincent Chin's killers receive?",
+          "options": [
+            "Life in prison",
+            "Probation and a $3,000 fine",
+            "10 years",
+            "Death"
+          ],
+          "a": 1,
+          "why": "That sentence sparked a national movement."
+        },
+        {
+          "q": "Who began the 1965 Delano grape strike?",
+          "options": [
+            "Filipino farmworkers led by Larry Itliong",
+            "Railroad workers",
+            "Auto workers",
+            "Teachers"
+          ],
+          "a": 0,
+          "why": "Cesar Chavez's union then joined."
+        }
+      ],
+      "quest": "coalition",
+      "map": [
+        {
+          "t": "Police killings by victim race",
+          "href": "index.html?layers=police"
+        },
+        {
+          "t": "Lynchings of all races (Monroe Work Today)",
+          "href": "index.html?layers=mwt"
+        }
+      ],
+      "sourcesList": {
+        "carrigan": {
+          "t": "William D. Carrigan & Clive Webb, Forgotten Dead: Mob Violence against Mexicans in the United States, 1848–1928 (2013)"
+        },
+        "porvenir": {
+          "t": "Porvenir massacre",
+          "url": "https://en.wikipedia.org/wiki/Porvenir_massacre"
+        },
+        "mendez": {
+          "t": "Mendez v. Westminster (1947)",
+          "url": "https://en.wikipedia.org/wiki/Mendez_v._Westminster"
+        },
+        "zoot": {
+          "t": "Zoot Suit Riots",
+          "url": "https://en.wikipedia.org/wiki/Zoot_Suit_Riots"
+        },
+        "elpaso": {
+          "t": "2019 El Paso Walmart shooting",
+          "url": "https://en.wikipedia.org/wiki/2019_El_Paso_Walmart_shooting"
+        },
+        "exclusion": {
+          "t": "Chinese Exclusion Act",
+          "url": "https://en.wikipedia.org/wiki/Chinese_Exclusion_Act"
+        },
+        "chin": {
+          "t": "Killing of Vincent Chin",
+          "url": "https://en.wikipedia.org/wiki/Killing_of_Vincent_Chin"
+        },
+        "sodhi": {
+          "t": "Balbir Singh Sodhi",
+          "url": "https://en.wikipedia.org/wiki/Balbir_Singh_Sodhi"
+        },
+        "stopaapi": {
+          "t": "Stop AAPI Hate, national reports",
+          "url": "https://stopaapihate.org/"
+        },
+        "atlanta": {
+          "t": "2021 Atlanta spa shootings",
+          "url": "https://en.wikipedia.org/wiki/2021_Atlanta_spa_shootings"
+        },
+        "citizenship": {
+          "t": "Indian Citizenship Act (1924)",
+          "url": "https://en.wikipedia.org/wiki/Indian_Citizenship_Act"
+        },
+        "mmiw": {
+          "t": "Urban Indian Health Institute, Missing and Murdered Indigenous Women & Girls (2018); Missing and murdered Indigenous women",
+          "url": "https://en.wikipedia.org/wiki/Missing_and_murdered_Indigenous_women"
+        },
+        "savanna": {
+          "t": "Savanna's Act and Not Invisible Act (2020)"
+        },
+        "mpv": {
+          "t": "Mapping Police Violence",
+          "url": "https://mappingpoliceviolence.org/"
+        },
+        "delano": {
+          "t": "Delano grape strike",
+          "url": "https://en.wikipedia.org/wiki/Delano_grape_strike"
+        },
+        "kochiyama": {
+          "t": "Yuri Kochiyama",
+          "url": "https://en.wikipedia.org/wiki/Yuri_Kochiyama"
+        }
+      },
+      "num": 14
+    },
+    {
+      "id": "performance",
+      "title": "Equal or better: what the evidence shows",
+      "short": "Identical résumés, unequal callbacks. Higher unemployment at every education level. And a long record of achievement against every barrier, which is the opposite of what the inferiority myth predicts.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "A common defense of today's gaps is that they reflect differences in effort or ability. Researchers have tested that directly, by sending out identical applications and changing only the name or race. This module shows what they found, and what Black Americans achieved while those barriers were in place.",
+      "sections": [
+        {
+          "h": "Same résumé, different callbacks",
+          "label": "documented",
+          "body": "<p>In a famous 2004 experiment, economists Marianne Bertrand and Sendhil Mullainathan answered job ads in Boston and Chicago with fake résumés. Identical résumés with white-sounding names (like Emily or Greg) got about 50% more callbacks than those with Black-sounding names (like Lakisha or Jamal). A white-sounding name was worth about as much as eight extra years of experience.</p><p>It wasn't a one-off. A 2017 analysis of every field experiment of this kind since 1989 found that white applicants received on average about 36% more callbacks than equally qualified Black applicants, with no decline over 25 years. A 2021–2022 study that sent about 83,000 applications to large U.S. companies found the same bias, concentrated in a minority of firms.</p><p>Sociologist Devah Pager went further in 2003: she sent real testers to apply for jobs in Milwaukee. White applicants who said they had a criminal record got called back about as often as Black applicants with <em>no</em> record.</p>",
+          "sources": [
+            "bertrand",
+            "quillian",
+            "kline",
+            "pager"
+          ]
+        },
+        {
+          "h": "Twice as good, still behind",
+          "label": "documented",
+          "body": "<p>Many Black parents tell their children they must be “twice as good to get half as much.” The data backs them up: at every level of education, Black workers have higher unemployment than white workers, and Black college graduates earn less than white college graduates. The gaps persist even when researchers compare people with the same degree, the same field and the same experience.</p>",
+          "sources": [
+            "epi"
+          ]
+        },
+        {
+          "h": "Education: the record and a popular claim",
+          "label": "debated",
+          "body": "<p><b>Documented:</b> Black women enroll in college at high rates, and Historically Black Colleges and Universities (HBCUs), about 3% of U.S. colleges, produce a large share of Black graduates, doctors, lawyers and engineers, according to UNCF. Their alumni include Thurgood Marshall, Martin Luther King Jr., Toni Morrison and Kamala Harris.</p><p><b>Debated:</b> you may see the claim that Black women are “the most educated group in America.” It comes from college <em>enrollment</em> figures. By degrees completed, other groups are higher. The accurate version is still powerful: Black women pursue higher education at very high rates while facing some of the largest pay gaps.</p>",
+          "sources": [
+            "uncf",
+            "nces"
+          ]
+        },
+        {
+          "h": "Achievement against every barrier",
+          "label": "documented",
+          "body": "<p>In 1858 the U.S. Attorney General ruled that enslaved inventors could not hold patents. Free Black inventors patented anyway. Economist Lisa Cook (now a Federal Reserve governor) showed in 2014 that Black patenting rose after the Civil War and then fell sharply as lynchings, riots and segregation laws spread, with a steep drop after the Tulsa massacre. The innovation was there. Violence suppressed it.</p><p>A few of the people who succeeded anyway: Garrett Morgan (an improved traffic signal and a safety hood), Madam C.J. Walker (one of the first American women to become a self-made millionaire), Dr. Charles Drew (large-scale blood banks), and Katherine Johnson (orbital calculations for NASA).</p>",
+          "sources": [
+            "cook",
+            "morgan",
+            "drew",
+            "johnson"
+          ]
+        },
+        {
+          "h": "The myth of innate inferiority",
+          "label": "belief",
+          "body": "<p>The claim that racial gaps reflect inborn differences in ability is old. It was the core of the scientific racism in the module on science. In 1996 the American Psychological Association's task force on intelligence found no direct evidence supporting a genetic explanation for the Black-white difference in test scores. The gap on the National Assessment of Educational Progress narrowed considerably from the 1970s to the late 1980s, far too fast for genes, as schools desegregated and resources reached Black students. Average test scores in every group have risen over generations, which shows how much environment matters.</p>",
+          "sources": [
+            "apa",
+            "naep"
+          ]
+        },
+        {
+          "h": "What allies can do with this",
+          "label": "documented",
+          "body": "<p>Hiring bias is one of the few forms of discrimination that ordinary employees can fix from inside. Blind résumé review, structured interviews with the same questions for every candidate, “fair chance” policies that delay questions about criminal records, and regular audits of who gets interviewed all reduce it. The quest for this module asks you to propose one at your workplace.</p>",
+          "sources": [
+            "kline"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1858,
+          "t": "Attorney General rules enslaved inventors cannot hold patents",
+          "label": "documented"
+        },
+        {
+          "y": 1921,
+          "t": "Black patenting falls sharply after the Tulsa massacre (Cook, 2014)",
+          "label": "documented"
+        },
+        {
+          "y": 1996,
+          "t": "APA intelligence report finds no evidence for a genetic explanation of the gap",
+          "label": "documented"
+        },
+        {
+          "y": 2003,
+          "t": "Pager: a white applicant with a record does as well as a Black applicant without one",
+          "label": "documented"
+        },
+        {
+          "y": 2004,
+          "t": "“Emily and Greg” résumé experiment",
+          "label": "documented"
+        },
+        {
+          "y": 2017,
+          "t": "Meta-analysis: no decline in hiring discrimination since 1989",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Study of about 83,000 applications to large U.S. employers",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "In the 2004 résumé experiment, how many more callbacks did white-sounding names get?",
+          "options": [
+            "About 5% more",
+            "About 50% more",
+            "About the same",
+            "Fewer"
+          ],
+          "a": 1,
+          "why": "About 50% more, for identical résumés."
+        },
+        {
+          "q": "What did Devah Pager's 2003 study find?",
+          "options": [
+            "Criminal records don't matter",
+            "White applicants with a record did about as well as Black applicants without one",
+            "Black applicants were preferred",
+            "Employers ignore race"
+          ],
+          "a": 1,
+          "why": "A white applicant with a record was treated about like a Black applicant with a clean record."
+        },
+        {
+          "q": "What did Lisa Cook find about Black patents?",
+          "options": [
+            "They never existed",
+            "They rose steadily",
+            "They fell sharply when racial violence spread",
+            "They were all stolen"
+          ],
+          "a": 2,
+          "why": "Violence, including Tulsa, suppressed Black invention."
+        },
+        {
+          "q": "The claim that Black women are “the most educated group” is based on:",
+          "options": [
+            "Degrees completed",
+            "College enrollment rates",
+            "Test scores",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Enrollment, not degrees completed, so it's labeled debated."
+        }
+      ],
+      "quest": "fair-hiring",
+      "map": [],
+      "sourcesList": {
+        "bertrand": {
+          "t": "Bertrand & Mullainathan, “Are Emily and Greg More Employable than Lakisha and Jamal?” (NBER, 2003; American Economic Review, 2004)",
+          "url": "https://www.nber.org/papers/w9873"
+        },
+        "quillian": {
+          "t": "Quillian et al., “Meta-analysis of field experiments shows no change in racial discrimination in hiring over time,” PNAS (2017)",
+          "url": "https://www.pnas.org/doi/10.1073/pnas.1706255114"
+        },
+        "kline": {
+          "t": "Kline, Rose & Walters, “Systemic Discrimination Among Large U.S. Employers,” Quarterly Journal of Economics (2022)"
+        },
+        "pager": {
+          "t": "Devah Pager, “The Mark of a Criminal Record,” American Journal of Sociology (2003)"
+        },
+        "epi": {
+          "t": "Economic Policy Institute, analyses of Black-white unemployment and wage gaps by education"
+        },
+        "uncf": {
+          "t": "UNCF (United Negro College Fund), facts about HBCUs",
+          "url": "https://uncf.org/"
+        },
+        "nces": {
+          "t": "National Center for Education Statistics, Digest of Education Statistics (enrollment and degree attainment by race and sex)"
+        },
+        "cook": {
+          "t": "Lisa D. Cook, “Violence and economic activity: evidence from African American patents, 1870–1940,” Journal of Economic Growth (2014)"
+        },
+        "morgan": {
+          "t": "Garrett Morgan",
+          "url": "https://en.wikipedia.org/wiki/Garrett_Morgan"
+        },
+        "drew": {
+          "t": "Charles R. Drew",
+          "url": "https://en.wikipedia.org/wiki/Charles_R._Drew"
+        },
+        "johnson": {
+          "t": "Katherine Johnson",
+          "url": "https://en.wikipedia.org/wiki/Katherine_Johnson"
+        },
+        "apa": {
+          "t": "American Psychological Association task force, “Intelligence: Knowns and Unknowns” (1996)",
+          "url": "https://en.wikipedia.org/wiki/Intelligence:_Knowns_and_Unknowns"
+        },
+        "naep": {
+          "t": "National Assessment of Educational Progress, Long-Term Trend results"
+        }
+      },
+      "num": 15
+    },
+    {
       "id": "world",
-      "num": 10,
+      "num": 16,
       "title": "A world system",
       "short": "How empires divided Africa, how apartheid and Nazi lawyers studied American race law, and how other countries are reckoning with their past.",
       "status": "outline",
@@ -1598,7 +3204,7 @@
     },
     {
       "id": "path-forward",
-      "num": 11,
+      "num": 17,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",
@@ -1646,6 +3252,55 @@
         }
       ],
       "sourcesList": {}
+    }
+  ],
+  "questCategories": [
+    {
+      "id": "learn",
+      "name": "Learn and share",
+      "desc": "Build your own understanding, then spread it."
+    },
+    {
+      "id": "advocate",
+      "name": "Advocate",
+      "desc": "Change the laws and the people who make them."
+    },
+    {
+      "id": "verify",
+      "name": "Research and verify",
+      "desc": "Help keep this campaign's facts airtight."
+    },
+    {
+      "id": "community",
+      "name": "Show up for your community",
+      "desc": "Direct, hands-on help, the way Black communities have always taken care of each other."
+    },
+    {
+      "id": "probono",
+      "name": "Give your professional skills",
+      "desc": "Lawyers, accountants, doctors, teachers, designers, engineers: your skills are worth more than a check."
+    },
+    {
+      "id": "build",
+      "name": "Build wealth back home",
+      "desc": "For anyone who has done well: ways to help the community you came from own, earn and grow, not just receive."
+    }
+  ],
+  "threeThings": [
+    {
+      "h": "Race was made by law, recently, and law can unmake it.",
+      "p": "Modern race was written into law between 1450 and 1700 to justify taking land and labor. Segregation, redlining and Tuskegee ended within the lifetimes of people alive today. None of it is natural or ancient, so none of it is permanent.",
+      "href": "module.html?m=before-race"
+    },
+    {
+      "h": "The gaps are an inheritance of policy, not a measure of people.",
+      "p": "Wealth was taken (Tulsa, forty acres, the GI Bill), votes were blocked, and identical résumés still get fewer callbacks with Black names. Black Americans built towns, banks and businesses anyway, and many were destroyed for succeeding.",
+      "href": "module.html?m=performance"
+    },
+    {
+      "h": "Ordinary people enforced it, and ordinary people end it.",
+      "p": "Mobs, false accusations and weaponized 911 calls were carried out by everyday people. Everyday people also registered voters in Mississippi, crossed the bridge in Selma, and passed San Francisco's CAREN Act. Each of us decides which side of that history we're on.",
+      "href": "module.html?m=policing"
     }
   ]
 }

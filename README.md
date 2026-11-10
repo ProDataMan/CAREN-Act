@@ -15,7 +15,9 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 
 **Learn**
 - **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
-- **Written modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Burned, flooded and taken (Black Wall Street and more)](https://prodataman.github.io/CAREN-Act/website/module.html?m=destroyed), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
+- **Start here, three things everyone should know:** https://prodataman.github.io/CAREN-Act/website/learn.html#three
+- **New modules (Nov 10):** [What we built: Black towns](https://prodataman.github.io/CAREN-Act/website/module.html?m=black-towns), [Wealth: built, blocked and taken](https://prodataman.github.io/CAREN-Act/website/module.html?m=wealth), [The fight for the vote](https://prodataman.github.io/CAREN-Act/website/module.html?m=voting), [Mass incarceration](https://prodataman.github.io/CAREN-Act/website/module.html?m=incarceration), [Many targets: Latino, Asian, Native](https://prodataman.github.io/CAREN-Act/website/module.html?m=many-targets), [Equal or better: what the evidence shows](https://prodataman.github.io/CAREN-Act/website/module.html?m=performance)
+- **Earlier modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Burned, flooded and taken (Black Wall Street and more)](https://prodataman.github.io/CAREN-Act/website/module.html?m=destroyed), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
 - **Map of communities burned, flooded or taken:** https://prodataman.github.io/CAREN-Act/website/?layers=destroyed (Greenwood, Tulsa: [?layers=destroyed,redlining&at=36.16,-95.99,13](https://prodataman.github.io/CAREN-Act/website/?layers=destroyed,redlining&at=36.16,-95.99,13))
 
 **Map and data**
@@ -46,7 +48,7 @@ Map links can preselect layers and a location, for example `?layers=redlining,co
 | Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
-| Learn section | ✅ Live: 5 of 11 modules written (before race, science, burned/flooded/taken, policing, path forward); the other 6 are outlines. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
+| Learn section | ✅ Live: 11 of 17 modules written; the other 6 (conquest, slavery law, Reconstruction, borders, place, world) are outlines. 39 quests in 6 categories. Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 
@@ -238,9 +240,11 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 [learn.html](https://prodataman.github.io/CAREN-Act/website/learn.html) is the hub, and `module.html?m=<id>` renders each module. All the content lives in **`website/data/learn.json`**: modules (sections, timelines, quizzes, sources), the Source detective quiz, quests, XP values, levels and badges. To add or fix content you edit only that file. The plan and the build phases are in [docs/education-plan.md](docs/education-plan.md).
 
 - **Evidence labels:** every section is labeled *Documented*, *Debated* or *Belief or myth*.
-- **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–400 for quests (13 of them), depending on how much the task matters. Quests are on the honor system for now.
+- **XP:** 20 for reading a module, 30 for passing its quiz (80%), and 15–500 for quests, depending on how much the task matters.
+- **Quests:** 39, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
+- **"Three things everyone should know":** set in `threeThings` in `learn.json` and shown at the top of the hub. Quests are on the honor system for now.
 - **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.
-- **Badges:** 9.
+- **Badges:** 13.
 - **Saving progress:** without an account, progress lives in the browser under a random device ID and is backed up to Azure SQL (`learn_events`). Signing in with Google moves it onto a profile that works on any device and adds a downloadable badge card.
 - **State teams:** pick a state and your XP counts toward its total on the leaderboard.
 - **Recruiting reviewers:** the volunteer page has a new *History reviewer* role ([volunteer.html#reviewer](https://prodataman.github.io/CAREN-Act/website/volunteer.html#reviewer)).
