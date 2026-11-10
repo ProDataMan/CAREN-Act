@@ -52,7 +52,7 @@ The site uses a **hub and spoke** model: English is the hub, and each other lang
 - **Status (Nov 10):**
   - all page text is translated except proper names;
   - all Learn interface text, quests, badges and the three things are translated, and every module's title and summary;
-  - five full modules are translated (before race, evidence, policing, path forward);
+  - four full modules are translated (before race, evidence, policing, path forward);
   - the other modules still need their full text translated.
 - **Kept in English on purpose:** the bill text, letters to lawmakers and repeal drafts, because officials receive them in English.
 - Translations are drafts and need review by a fluent volunteer.
