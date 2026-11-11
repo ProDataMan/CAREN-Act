@@ -16,6 +16,7 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 **Learn**
 - **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
 - **New (Nov 10): Columbus, the colonizers, and systemic racism:** [Columbus: what his own records say](https://prodataman.github.io/CAREN-Act/website/module.html?m=columbus), [The colonizers](https://prodataman.github.io/CAREN-Act/website/module.html?m=colonizers), [Systemic racism](https://prodataman.github.io/CAREN-Act/website/module.html?m=systemic), [Is racism over? The evidence today](https://prodataman.github.io/CAREN-Act/website/module.html?m=evidence), [Banking, insurance and taxes](https://prodataman.github.io/CAREN-Act/website/module.html?m=banking), [Courts](https://prodataman.github.io/CAREN-Act/website/module.html?m=courts)
+- **New (Nov 10, later):** [The African diaspora in Latin America and the Caribbean](https://prodataman.github.io/CAREN-Act/website/module.html?m=afro-latino), [Christian nationalism and race](https://prodataman.github.io/CAREN-Act/website/module.html?m=christian-nationalism), [Technology and AI](https://prodataman.github.io/CAREN-Act/website/module.html?m=technology), [The 2020s](https://prodataman.github.io/CAREN-Act/website/module.html?m=twenty-twenties), [Labor](https://prodataman.github.io/CAREN-Act/website/module.html?m=labor), [Sports, music and culture](https://prodataman.github.io/CAREN-Act/website/module.html?m=culture)
 - **Teach-in kits (slides, printable handout, facilitator guide for every written module):** https://prodataman.github.io/CAREN-Act/website/teach.html
 - **How movements won, and the playbook for this one:** https://prodataman.github.io/CAREN-Act/website/module.html?m=movements
 - **Start here, three things everyone should know:** https://prodataman.github.io/CAREN-Act/website/learn.html#three
@@ -23,6 +24,9 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 - **Earlier modules:** [Before race: where the fear came from](https://prodataman.github.io/CAREN-Act/website/module.html?m=before-race), [Science as a weapon](https://prodataman.github.io/CAREN-Act/website/module.html?m=science), [Burned, flooded and taken (Black Wall Street and more)](https://prodataman.github.io/CAREN-Act/website/module.html?m=destroyed), [Policing and the 911 call](https://prodataman.github.io/CAREN-Act/website/module.html?m=policing), [The path forward](https://prodataman.github.io/CAREN-Act/website/module.html?m=path-forward)
 - **Map through time:** the **Time** slider in the layers panel filters lynchings, destroyed communities, boarding schools and camps by year. For example, [America in 1921](https://prodataman.github.io/CAREN-Act/website/?layers=mwt,destroyed,history&year=1921) (`?year=` sets it).
 - **Map of communities burned, flooded or taken:** https://prodataman.github.io/CAREN-Act/website/?layers=destroyed (Greenwood, Tulsa: [?layers=destroyed,redlining&at=36.16,-95.99,13](https://prodataman.github.io/CAREN-Act/website/?layers=destroyed,redlining&at=36.16,-95.99,13))
+
+**Organize locally**
+- **Local action toolkit:** the plan, a city council resolution, a model ordinance, public comment testimony, a public records request for 911 data, a meeting checklist, a coalition letter and a letter to the editor: https://prodataman.github.io/CAREN-Act/website/toolkit.html
 
 **Stories**
 - **In our own words:** first-person stories and recorded elders' stories, reviewed by an editor before publishing, plus a guide to recording an elder and links to oral-history archives: https://prodataman.github.io/CAREN-Act/website/stories.html
@@ -71,7 +75,7 @@ The site uses a **hub and spoke** model: English is the hub, and each other lang
 | Google sign-in | ✅ Switched on (Nov 9). Test it on the admin page and the Learn page |
 | Facebook sign-in | ⬜ Not started (see [Step C](#c-facebook-sign-in-optional)) |
 | Weekly data refresh | ✅ Runs Mondays 09:17 UTC. Tested by hand on Nov 9. It now also redeploys the Azure copy |
-| Learn section | ✅ Live: 33 modules, all written, each with a teach-in kit. 42 quests in 6 categories, plus a reading list of 18 books. ⚠️ Not yet reviewed by a historian | Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
+| Learn section | ✅ Live: 39 modules, all written, each with a teach-in kit. 42 quests in 6 categories, plus a reading list of 18 books. ⚠️ Not yet reviewed by a historian | Progress saves by device ID; sign-in adds a profile and badge card. ⚠️ No historian has reviewed the modules yet |
 | GitHub issues | None yet: no comments, old-law reports, volunteers or cases filed |
 | Outreach to JULIAN and LDF | ⬜ Letters drafted, not yet sent |
 

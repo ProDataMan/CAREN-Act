@@ -153,7 +153,7 @@
       "title": "Win a local resolution",
       "xp": 400,
       "desc": "Get your city council, county board or state lawmaker to formally support a CAREN-style law or a repeal.",
-      "href": "act.html",
+      "href": "toolkit.html#resolution",
       "cat": "advocate"
     },
     {
@@ -194,7 +194,7 @@
       "xp": 100,
       "cat": "advocate",
       "desc": "Publish a letter to the editor or an op-ed about the CAREN Act or a local history from these modules.",
-      "href": "act.html"
+      "href": "toolkit.html#lte"
     },
     {
       "id": "speak-council",
@@ -202,7 +202,7 @@
       "xp": 120,
       "cat": "advocate",
       "desc": "Speak during public comment at your city council, county board or school board about a CAREN-style law or a local history issue.",
-      "href": "act.html"
+      "href": "toolkit.html#testimony"
     },
     {
       "id": "fair-hiring",
@@ -218,7 +218,7 @@
       "xp": 150,
       "cat": "advocate",
       "desc": "Bring two organizations from different communities (for example a Black church and an Asian American, Latino or Native group) together on one shared issue.",
-      "href": "module.html?m=many-targets"
+      "href": "toolkit.html#signon"
     },
     {
       "id": "run-for-office",
@@ -1484,6 +1484,218 @@
       "num": 3
     },
     {
+      "id": "afro-latino",
+      "title": "The African diaspora in Latin America and the Caribbean",
+      "short": "Most enslaved Africans were taken to the Caribbean and Latin America, not the U.S. Their story runs from Haiti and the 1937 Parsley massacre to Cuba, Mexico, Brazil's “racial democracy” and the 6 million Afro-Latinos in the U.S. today.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "The U.S. received only a small share of the Africans carried across the Atlantic. Most went to Brazil and the Caribbean, and their descendants live across the Americas, including millions of Afro-Latinos in the United States. Racism there took different forms, but it was no less real.",
+      "sections": [
+        {
+          "h": "Where the ships went",
+          "label": "documented",
+          "body": "<p>Of the roughly 10.7 million Africans who survived the Middle Passage, about 388,000 were brought directly to mainland North America. About 4.9 million were taken to Brazil, and most of the rest to the Caribbean and Spanish America (SlaveVoyages.org).</p>",
+          "sources": [
+            "voyages"
+          ]
+        },
+        {
+          "h": "Haiti and the Dominican Republic",
+          "label": "documented",
+          "body": "<p>Haiti won its independence in 1804 and was punished for it (see “Before race”). In October 1937, Dominican dictator Rafael Trujillo ordered soldiers to kill Haitians and Dominicans of Haitian descent in the border region; estimates of the dead range from about 12,000 to 30,000. It is remembered as the Parsley massacre. In 2013 the Dominican Constitutional Court ruled that children born in the country to undocumented foreign parents since 1929 were not citizens, leaving tens of thousands of Dominicans of Haitian descent without nationality.</p>",
+          "sources": [
+            "parsley",
+            "tc168"
+          ]
+        },
+        {
+          "h": "Cuba and Puerto Rico",
+          "label": "documented",
+          "body": "<p>Afro-Cuban veterans of the independence war founded the Partido Independiente de Color in 1908. Cuba banned parties organized by race in 1910, and in 1912 the army crushed the party's protest, killing an estimated 2,000 to 6,000 Afro-Cubans. Puerto Rico abolished slavery in 1873. Puerto Rican-born Arturo Schomburg spent his life collecting books and documents of Black history; his collection became the core of the New York Public Library's Schomburg Center for Research in Black Culture.</p>",
+          "sources": [
+            "pic",
+            "schomburg"
+          ]
+        },
+        {
+          "h": "Mexico and Central America",
+          "label": "documented",
+          "body": "<p>In the early 1600s, Gaspar Yanga led a community of people who had escaped slavery near Veracruz and fought Spanish troops to a standstill; Spain agreed to recognize a free town, today called Yanga. Vicente Guerrero, a president of African and Indigenous descent, abolished slavery in Mexico in 1829, and thousands of people enslaved in Texas and the U.S. South escaped south to freedom. Mexico counted its Afro-Mexican population for the first time in 2015 (about 1.4 million people) and recognized it in the constitution in 2019. The Garifuna, descendants of Africans and Indigenous Caribbeans, live along the coasts of Honduras, Belize, Guatemala and Nicaragua.</p>",
+          "sources": [
+            "yanga",
+            "guerrero",
+            "baumgartner",
+            "afromex"
+          ]
+        },
+        {
+          "h": "Brazil and the myth of “racial democracy”",
+          "label": "belief",
+          "body": "<p>In the 1930s, sociologist Gilberto Freyre popularized the idea that Brazil, unlike the U.S., was a “racial democracy” where mixing had erased racism. The record contradicts it. Brazil was the last country in the Americas to abolish slavery (1888), and afterward the government subsidized European immigration in a deliberate effort to “whiten” the population. Today most Brazilians identify as Black or brown, yet they remain far poorer and are far more likely to be killed by police. Brazil adopted racial quotas for federal universities in 2012.</p>",
+          "sources": [
+            "freyre",
+            "brazil"
+          ]
+        },
+        {
+          "h": "Afro-Latinos in the United States",
+          "label": "documented",
+          "body": "<p>A 2022 Pew Research Center survey found about 12% of Latino adults in the U.S., roughly 6 million people, identify as Afro-Latino. Many report discrimination both as Black people and as Latinos, including from other Latinos. Colorism, the preference for lighter skin within a community, is part of this history across the Americas. The CAREN Act protects anyone reported to police because of race, color, ancestry or national origin.</p>",
+          "sources": [
+            "pew"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1609,
+          "t": "Yanga's maroon community resists Spanish troops",
+          "label": "documented"
+        },
+        {
+          "y": 1804,
+          "t": "Haitian independence",
+          "label": "documented"
+        },
+        {
+          "y": 1829,
+          "t": "Vicente Guerrero abolishes slavery in Mexico",
+          "label": "documented"
+        },
+        {
+          "y": 1873,
+          "t": "Puerto Rico abolishes slavery",
+          "label": "documented"
+        },
+        {
+          "y": 1888,
+          "t": "Brazil abolishes slavery, the last in the Americas",
+          "label": "documented"
+        },
+        {
+          "y": 1912,
+          "t": "Massacre of the Partido Independiente de Color in Cuba",
+          "label": "documented"
+        },
+        {
+          "y": 1926,
+          "t": "Schomburg's collection goes to the New York Public Library",
+          "label": "documented"
+        },
+        {
+          "y": 1937,
+          "t": "Parsley massacre",
+          "label": "documented"
+        },
+        {
+          "y": 2012,
+          "t": "Brazil adopts university racial quotas",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Dominican court strips citizenship from Dominicans of Haitian descent",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Mexico recognizes Afro-Mexicans in its constitution",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Pew: about 6 million Afro-Latino adults in the U.S.",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Where were most enslaved Africans taken?",
+          "options": [
+            "Mainland North America",
+            "Brazil and the Caribbean",
+            "Europe",
+            "Africa"
+          ],
+          "a": 1,
+          "why": "Only about 388,000 went directly to mainland North America."
+        },
+        {
+          "q": "Who abolished slavery in Mexico in 1829?",
+          "options": [
+            "Benito Juárez",
+            "Vicente Guerrero",
+            "Gaspar Yanga",
+            "Porfirio Díaz"
+          ],
+          "a": 1,
+          "why": "A president of African and Indigenous descent."
+        },
+        {
+          "q": "The idea that Brazil was a “racial democracy” is labeled:",
+          "options": [
+            "Documented",
+            "Debated",
+            "Belief or myth"
+          ],
+          "a": 2,
+          "why": "The record of whitening policy and inequality contradicts it."
+        }
+      ],
+      "quest": "coalition",
+      "map": [],
+      "sourcesList": {
+        "voyages": {
+          "t": "SlaveVoyages.org, estimates by region of arrival",
+          "url": "https://www.slavevoyages.org/"
+        },
+        "parsley": {
+          "t": "Parsley massacre",
+          "url": "https://en.wikipedia.org/wiki/Parsley_massacre"
+        },
+        "tc168": {
+          "t": "Dominican Constitutional Court ruling TC/0168/13 (2013)",
+          "url": "https://en.wikipedia.org/wiki/Dominican_Republic%E2%80%93Haiti_relations"
+        },
+        "pic": {
+          "t": "Partido Independiente de Color",
+          "url": "https://en.wikipedia.org/wiki/Partido_Independiente_de_Color"
+        },
+        "schomburg": {
+          "t": "Arturo Alfonso Schomburg",
+          "url": "https://en.wikipedia.org/wiki/Arturo_Alfonso_Schomburg"
+        },
+        "yanga": {
+          "t": "Gaspar Yanga",
+          "url": "https://en.wikipedia.org/wiki/Gaspar_Yanga"
+        },
+        "guerrero": {
+          "t": "Vicente Guerrero",
+          "url": "https://en.wikipedia.org/wiki/Vicente_Guerrero"
+        },
+        "baumgartner": {
+          "t": "Alice L. Baumgartner, South to Freedom: Runaway Slaves to Mexico and the Road to the Civil War (2020)"
+        },
+        "afromex": {
+          "t": "Afro-Mexicans",
+          "url": "https://en.wikipedia.org/wiki/Afro-Mexicans"
+        },
+        "freyre": {
+          "t": "Racial democracy",
+          "url": "https://en.wikipedia.org/wiki/Racial_democracy"
+        },
+        "brazil": {
+          "t": "Afro-Brazilians",
+          "url": "https://en.wikipedia.org/wiki/Afro-Brazilians"
+        },
+        "pew": {
+          "t": "Pew Research Center, “About 6 million U.S. adults identify as Afro-Latino” (2022)",
+          "url": "https://www.pewresearch.org/"
+        }
+      },
+      "num": 4
+    },
+    {
       "id": "conquest",
       "title": "Discovery and conquest",
       "short": "How the Doctrine of Discovery became U.S. law, and what it did to Native nations: war, removal, allotment and boarding schools, and the fight for sovereignty today.",
@@ -1713,7 +1925,7 @@
           "url": "https://en.wikipedia.org/wiki/Dakota_Access_Pipeline_protests"
         }
       },
-      "num": 4
+      "num": 5
     },
     {
       "id": "slavery-law",
@@ -1905,7 +2117,7 @@
           "url": "https://en.wikipedia.org/wiki/Juneteenth"
         }
       },
-      "num": 5
+      "num": 6
     },
     {
       "id": "reconstruction",
@@ -2144,7 +2356,7 @@
           "t": "Southern Poverty Law Center, Whose Heritage? Public Symbols of the Confederacy"
         }
       },
-      "num": 6
+      "num": 7
     },
     {
       "id": "black-towns",
@@ -2371,7 +2583,7 @@
           "url": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
         }
       },
-      "num": 7
+      "num": 8
     },
     {
       "id": "faith",
@@ -2541,7 +2753,191 @@
           "url": "https://www.poorpeoplescampaign.org/"
         }
       },
-      "num": 8
+      "num": 9
+    },
+    {
+      "id": "christian-nationalism",
+      "title": "Christian nationalism and race",
+      "short": "What researchers mean by Christian nationalism, its history from the 1920s Klan to segregation academies, the debate over its link to racial attitudes, and the many Christians who oppose it.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "This module is not about Christianity, which has been on every side of this history (see “Faith”). It is about a specific political idea: that the United States is, and should be, a Christian nation, with laws and power that favor one group. Researchers measure it with surveys, and they disagree about some of what it means.",
+      "discuss": [
+        "How is Christian nationalism different from being a Christian?",
+        "Why might faith communities be the most effective voices against it?",
+        "How can we talk about this without attacking anyone's faith?"
+      ],
+      "sections": [
+        {
+          "h": "What researchers mean",
+          "label": "documented",
+          "body": "<p>Sociologists Andrew Whitehead and Samuel Perry define Christian nationalism as a belief that America is and should be a Christian nation, measured by agreement with statements such as “the federal government should declare the United States a Christian nation.” In a 2023 national survey by PRRI, about 10% of Americans qualified as adherents and another 19% as sympathizers, so most Americans, and most Christians, are neither.</p>",
+          "sources": [
+            "whitehead",
+            "prri"
+          ]
+        },
+        {
+          "h": "A long history",
+          "label": "documented",
+          "body": "<p>The Ku Klux Klan of the 1920s, with millions of members, presented itself as the defender of white Protestant America against Black people, Catholics, Jews and immigrants, and burned crosses as a religious symbol. During the civil rights era, some prominent preachers taught that segregation was God's will; Bob Jones Sr. preached a 1960 Easter sermon titled “Is Segregation Scriptural?” and answered yes. The white-supremacist Christian Identity movement is covered in “Before race.”</p>",
+          "sources": [
+            "klan1920s",
+            "bobjones"
+          ]
+        },
+        {
+          "h": "How did the religious right begin?",
+          "label": "debated",
+          "body": "<p>Historian Randall Balmer argues that conservative evangelicals first organized politically in the 1970s not over abortion but to defend the tax exemptions of private Christian schools that excluded Black students, many founded as “segregation academies.” The Supreme Court upheld revoking Bob Jones University's exemption over its ban on interracial dating in 1983. Other historians stress abortion, school prayer and changing family norms. Both sides agree the school fight was one of the movement's early causes.</p>",
+          "sources": [
+            "balmer",
+            "bjusa"
+          ]
+        },
+        {
+          "h": "Is it linked to racial attitudes?",
+          "label": "debated",
+          "body": "<p>Whitehead and Perry report that people who score high on Christian nationalism are more likely to say police treat Black and white Americans equally and to oppose measures to address racial inequality, even after accounting for party and religiosity. Critics question how the concept is measured and whether surveys can separate it from political conservatism. The pattern appears in several data sets; how to interpret it is debated.</p>",
+          "sources": [
+            "whitehead",
+            "critique"
+          ]
+        },
+        {
+          "h": "Recent events",
+          "label": "documented",
+          "body": "<p>During the January 6, 2021 attack on the Capitol, some participants carried crosses, “Jesus Saves” signs and Christian flags alongside Confederate flags, and a group prayed on the Senate floor. A 2022 report by the Baptist Joint Committee and the Freedom From Religion Foundation documented these symbols and the groups behind them.</p>",
+          "sources": [
+            "bjcreport"
+          ]
+        },
+        {
+          "h": "Christians who oppose it",
+          "label": "documented",
+          "body": "<p>Tens of thousands of Christians, including many clergy, have signed the “Christians Against Christian Nationalism” statement launched by the Baptist Joint Committee for Religious Liberty in 2019, which says it “distorts both the Christian faith and America's constitutional democracy.” The Black church, the Poor People's Campaign and many denominations have long argued that faith requires equal protection for everyone. Faith communities are often the most credible voices on this subject.</p>",
+          "sources": [
+            "cacn",
+            "ppc"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1915,
+          "t": "Second Ku Klux Klan founded",
+          "label": "documented"
+        },
+        {
+          "y": 1960,
+          "t": "“Is Segregation Scriptural?” sermon",
+          "label": "documented"
+        },
+        {
+          "y": 1971,
+          "t": "Court rules segregated private schools can lose tax exemptions (Green v. Connally)",
+          "label": "documented"
+        },
+        {
+          "y": 1983,
+          "t": "Bob Jones University v. United States",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "“Christians Against Christian Nationalism” statement",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "January 6 attack on the Capitol",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Report on Christian nationalism and January 6",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "PRRI national survey on Christian nationalism",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "About what share of Americans were Christian nationalism adherents or sympathizers in PRRI's 2023 survey?",
+          "options": [
+            "Almost all",
+            "About 3 in 10",
+            "About half",
+            "None"
+          ],
+          "a": 1,
+          "why": "About 10% adherents and 19% sympathizers."
+        },
+        {
+          "q": "What issue does Randall Balmer say first mobilized the religious right?",
+          "options": [
+            "Abortion",
+            "Tax exemptions for segregated Christian schools",
+            "School prayer",
+            "Taxes in general"
+          ],
+          "a": 1,
+          "why": "This is labeled debated."
+        },
+        {
+          "q": "Who launched the “Christians Against Christian Nationalism” statement?",
+          "options": [
+            "A political party",
+            "The Baptist Joint Committee for Religious Liberty",
+            "The FBI",
+            "A university"
+          ],
+          "a": 1,
+          "why": "In 2019."
+        }
+      ],
+      "quest": "coalition",
+      "map": [],
+      "sourcesList": {
+        "whitehead": {
+          "t": "Andrew L. Whitehead & Samuel L. Perry, Taking America Back for God: Christian Nationalism in the United States (2020)"
+        },
+        "prri": {
+          "t": "PRRI, A Christian Nation? Understanding the Threat of Christian Nationalism to American Democracy and Culture (2023)",
+          "url": "https://www.prri.org/"
+        },
+        "klan1920s": {
+          "t": "Linda Gordon, The Second Coming of the KKK (2017)"
+        },
+        "bobjones": {
+          "t": "Bob Jones Sr., “Is Segregation Scriptural?” (1960 radio sermon)"
+        },
+        "balmer": {
+          "t": "Randall Balmer, Bad Faith: Race and the Rise of the Religious Right (2021)"
+        },
+        "bjusa": {
+          "t": "Bob Jones University v. United States (1983)",
+          "url": "https://en.wikipedia.org/wiki/Bob_Jones_University_v._United_States"
+        },
+        "critique": {
+          "t": "Debates over measuring Christian nationalism (e.g., responses in Sociology of Religion and other journals, 2021–2024)"
+        },
+        "bjcreport": {
+          "t": "BJC & FFRF, Christian Nationalism and the January 6, 2021 Insurrection (2022)"
+        },
+        "cacn": {
+          "t": "Christians Against Christian Nationalism",
+          "url": "https://www.christiansagainstchristiannationalism.org/"
+        },
+        "ppc": {
+          "t": "Poor People's Campaign",
+          "url": "https://www.poorpeoplescampaign.org/"
+        }
+      },
+      "num": 10
     },
     {
       "id": "veterans",
@@ -2728,11 +3124,11 @@
           "url": "https://en.wikipedia.org/wiki/Vernon_Baker"
         }
       },
-      "num": 9
+      "num": 11
     },
     {
       "id": "science",
-      "num": 10,
+      "num": 12,
       "title": "Science as a weapon: medicine, eugenics and reproductive control",
       "short": "Scientific racism, medical experiments, and the forced sterilization of tens of thousands of Americans, plus what the evidence does and doesn't show about Planned Parenthood.",
       "status": "draft",
@@ -3156,7 +3552,7 @@
           "t": "Greenwood et al., PNAS (2020); Borjas & VerBruggen reanalysis, PNAS (2024)"
         }
       },
-      "num": 11
+      "num": 13
     },
     {
       "id": "borders",
@@ -3364,7 +3760,7 @@
           "t": "Noem v. Vasquez Perdomo (U.S. Supreme Court order, September 2025)"
         }
       },
-      "num": 12
+      "num": 14
     },
     {
       "id": "place",
@@ -3544,11 +3940,11 @@
           "url": "https://en.wikipedia.org/wiki/Exclusionary_zoning"
         }
       },
-      "num": 13
+      "num": 15
     },
     {
       "id": "destroyed",
-      "num": 14,
+      "num": 16,
       "title": "Burned, flooded and taken: the communities America destroyed",
       "short": "Black Wall Street in Tulsa and dozens of other Black, Brown and immigrant communities that were burned, driven out, flooded, seized or bulldozed, plus how gentrification continues the pattern.",
       "status": "draft",
@@ -4099,7 +4495,7 @@
           "t": "EdBuild, $23 Billion (2019)"
         }
       },
-      "num": 15
+      "num": 17
     },
     {
       "id": "wealth",
@@ -4309,7 +4705,200 @@
           "t": "City of Evanston, Local Reparations program"
         }
       },
-      "num": 16
+      "num": 18
+    },
+    {
+      "id": "labor",
+      "title": "Labor: work, unions and the fight for fair pay",
+      "short": "Sharecropping and debt peonage, unions that shut Black workers out and the ones that organized them, the Pullman porters, the 1941 march threat, the Memphis sanitation strike, and work today.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Slavery was a labor system, and much of what followed was about controlling Black labor. The fight for fair work has also been one of the movement's strongest engines.",
+      "sections": [
+        {
+          "h": "Sharecropping and debt peonage",
+          "label": "documented",
+          "body": "<p>After emancipation, most Black families in the South farmed land they didn't own, paying with a share of the crop and buying on credit from the landowner's store. Many fell into debts they could never repay. Congress outlawed debt peonage in 1867, and the Supreme Court struck down an Alabama law that criminalized quitting while in debt in <em>Bailey v. Alabama</em> (1911), but forced labor through debt persisted for decades.</p>",
+          "sources": [
+            "peonage",
+            "bailey"
+          ]
+        },
+        {
+          "h": "Unions: shut out, then organized",
+          "label": "documented",
+          "body": "<p>Many early craft unions in the American Federation of Labor excluded Black workers, and employers then used excluded Black workers as strikebreakers, deepening division. In the 1930s the Congress of Industrial Organizations organized whole industries across racial lines. In Arkansas, the Southern Tenant Farmers Union (1934) organized Black and white sharecroppers together, 15 years after the Elaine massacre had punished Black farmers for trying (see “Burned, flooded and taken”).</p>",
+          "sources": [
+            "cio",
+            "stfu"
+          ]
+        },
+        {
+          "h": "The Pullman porters",
+          "label": "documented",
+          "body": "<p>A. Philip Randolph founded the Brotherhood of Sleeping Car Porters in 1925. After 12 years, it won a contract with the Pullman Company in 1937, the first major contract between a Black-led union and a large U.S. corporation. In 1941 Randolph threatened a march on Washington of 100,000 Black workers; to prevent it, President Roosevelt issued Executive Order 8802, banning discrimination in the defense industries. Randolph led the 1963 March on Washington for Jobs and Freedom.</p>",
+          "sources": [
+            "randolph",
+            "eo8802"
+          ]
+        },
+        {
+          "h": "“I AM A MAN”: Memphis, 1968",
+          "label": "documented",
+          "body": "<p>On February 1, 1968, Memphis sanitation workers Echol Cole and Robert Walker were crushed to death by a faulty garbage truck. About 1,300 Black sanitation workers went on strike for safety, pay and union recognition, carrying signs that read “I AM A MAN.” Dr. King came to support them and was assassinated there on April 4. The city settled with the union on April 16.</p>",
+          "sources": [
+            "memphis"
+          ]
+        },
+        {
+          "h": "Left out of the law",
+          "label": "documented",
+          "body": "<p>New Deal labor protections excluded farm and domestic workers, jobs most Black Southern workers held (see “Wealth”). Domestic workers organized anyway: Dorothy Bolden founded the National Domestic Workers Union in Atlanta in 1968, and New York passed the first Domestic Workers' Bill of Rights in 2010.</p>",
+          "sources": [
+            "bolden"
+          ]
+        },
+        {
+          "h": "Work today",
+          "label": "documented",
+          "body": "<p>Black workers have the highest union membership rate of any racial group (Bureau of Labor Statistics), and the wage boost from union membership is larger for Black workers than for white workers (Economic Policy Institute). Farmworkers in Immokalee, Florida, most of them Latino, Haitian and Guatemalan, won the Fair Food Program in 2011, which buyers such as major fast-food chains and grocers have joined to guarantee better pay and protections. Fair hiring is covered in “Equal or better.”</p>",
+          "sources": [
+            "bls",
+            "ciw"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1867,
+          "t": "Peonage Act",
+          "label": "documented"
+        },
+        {
+          "y": 1911,
+          "t": "Bailey v. Alabama",
+          "label": "documented"
+        },
+        {
+          "y": 1925,
+          "t": "Brotherhood of Sleeping Car Porters founded",
+          "label": "documented"
+        },
+        {
+          "y": 1934,
+          "t": "Southern Tenant Farmers Union",
+          "label": "documented"
+        },
+        {
+          "y": 1937,
+          "t": "Porters win their Pullman contract",
+          "label": "documented"
+        },
+        {
+          "y": 1941,
+          "t": "Executive Order 8802",
+          "label": "documented"
+        },
+        {
+          "y": 1963,
+          "t": "March on Washington for Jobs and Freedom",
+          "label": "documented"
+        },
+        {
+          "y": 1968,
+          "t": "Memphis sanitation strike; National Domestic Workers Union",
+          "label": "documented"
+        },
+        {
+          "y": 2010,
+          "t": "New York Domestic Workers' Bill of Rights",
+          "label": "documented"
+        },
+        {
+          "y": 2011,
+          "t": "Fair Food Program",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What did A. Philip Randolph's 1941 march threat win?",
+          "options": [
+            "The Civil Rights Act",
+            "Executive Order 8802 banning discrimination in defense industries",
+            "The minimum wage",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Roosevelt issued it to prevent the march."
+        },
+        {
+          "q": "What did the Memphis sanitation workers' signs say?",
+          "options": [
+            "We shall overcome",
+            "I AM A MAN",
+            "Equal pay now",
+            "Union yes"
+          ],
+          "a": 1,
+          "why": "1968."
+        },
+        {
+          "q": "Which group has the highest union membership rate?",
+          "options": [
+            "White workers",
+            "Black workers",
+            "Asian workers",
+            "Hispanic workers"
+          ],
+          "a": 1,
+          "why": "According to the Bureau of Labor Statistics."
+        }
+      ],
+      "quest": "hire-local",
+      "map": [],
+      "sourcesList": {
+        "peonage": {
+          "t": "Peonage Act of 1867; Douglas A. Blackmon, Slavery by Another Name (2008)",
+          "url": "https://en.wikipedia.org/wiki/Peonage_Act_of_1867"
+        },
+        "bailey": {
+          "t": "Bailey v. Alabama (1911)",
+          "url": "https://en.wikipedia.org/wiki/Bailey_v._Alabama"
+        },
+        "cio": {
+          "t": "Congress of Industrial Organizations",
+          "url": "https://en.wikipedia.org/wiki/Congress_of_Industrial_Organizations"
+        },
+        "stfu": {
+          "t": "Southern Tenant Farmers Union",
+          "url": "https://en.wikipedia.org/wiki/Southern_Tenant_Farmers_Union"
+        },
+        "randolph": {
+          "t": "Brotherhood of Sleeping Car Porters",
+          "url": "https://en.wikipedia.org/wiki/Brotherhood_of_Sleeping_Car_Porters"
+        },
+        "eo8802": {
+          "t": "Executive Order 8802",
+          "url": "https://en.wikipedia.org/wiki/Executive_Order_8802"
+        },
+        "memphis": {
+          "t": "Memphis sanitation strike",
+          "url": "https://en.wikipedia.org/wiki/Memphis_sanitation_strike"
+        },
+        "bolden": {
+          "t": "Dorothy Bolden",
+          "url": "https://en.wikipedia.org/wiki/Dorothy_Bolden"
+        },
+        "bls": {
+          "t": "Bureau of Labor Statistics, Union Members (annual); Economic Policy Institute, union wage premium research"
+        },
+        "ciw": {
+          "t": "Coalition of Immokalee Workers, Fair Food Program",
+          "url": "https://ciw-online.org/"
+        }
+      },
+      "num": 19
     },
     {
       "id": "banking",
@@ -4452,7 +5041,7 @@
           "t": "Avenancio-León & Howard, “The Assessment Gap: Racial Inequalities in Property Taxation,” Quarterly Journal of Economics (2022)"
         }
       },
-      "num": 17
+      "num": 20
     },
     {
       "id": "environment",
@@ -4614,7 +5203,7 @@
           "t": "Vicki Been, “Locally Undesirable Land Uses in Minority Neighborhoods: Disproportionate Siting or Market Dynamics?” Yale Law Journal (1994)"
         }
       },
-      "num": 18
+      "num": 21
     },
     {
       "id": "voting",
@@ -4852,7 +5441,7 @@
           "url": "https://en.wikipedia.org/wiki/Rucho_v._Common_Cause"
         }
       },
-      "num": 19
+      "num": 22
     },
     {
       "id": "incarceration",
@@ -5044,11 +5633,11 @@
           "url": "https://www.cleanslateinitiative.org/"
         }
       },
-      "num": 20
+      "num": 23
     },
     {
       "id": "policing",
-      "num": 21,
+      "num": 24,
       "title": "Policing and the 911 call",
       "short": "From slave patrols and vagrancy laws to the weaponized 911 call, and what the data shows about who gets stopped and hurt.",
       "status": "draft",
@@ -5428,7 +6017,7 @@
           "t": "Washington Supreme Court General Rule 37 (2018)"
         }
       },
-      "num": 22
+      "num": 25
     },
     {
       "id": "surveillance",
@@ -5595,7 +6184,175 @@
           "t": "Nextdoor's 2016 changes to reduce racial profiling (news coverage, e.g. NPR)"
         }
       },
-      "num": 23
+      "num": 26
+    },
+    {
+      "id": "technology",
+      "title": "Technology and AI: old bias in new code",
+      "short": "Risk scores in courtrooms, ads that skip Black users, gunshot sensors, hiring and health algorithms, and AI image generators: how technology can repeat discrimination, and how to make it accountable.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Algorithms learn from data, and the data carry history. A system trained on past arrests learns where police patrolled; one trained on past spending learns who got care. Technology can also expose bias, if people insist on testing it.",
+      "sections": [
+        {
+          "h": "Risk scores in the courtroom",
+          "label": "debated",
+          "body": "<p>Many courts use software to predict whether a defendant will reoffend. In 2016 ProPublica analyzed one tool, COMPAS, in Broward County, Florida, and found that Black defendants who did not reoffend were nearly twice as likely as white defendants to have been labeled high risk. The company answered that its scores were equally accurate for both groups. Computer scientists then proved that when two groups have different arrest rates, a tool can't satisfy both definitions of fairness at once. Which definition should win is still debated.</p>",
+          "sources": [
+            "propublica",
+            "kleinberg"
+          ]
+        },
+        {
+          "h": "Ads and search",
+          "label": "documented",
+          "body": "<p>In 2013, Harvard professor Latanya Sweeney found that searching for names more common among Black Americans was more likely to bring up ads suggesting an arrest record. In 2022, Meta settled a Justice Department lawsuit alleging its ad-delivery system steered housing ads by race and other protected traits, and agreed to change it.</p>",
+          "sources": [
+            "sweeney",
+            "meta"
+          ]
+        },
+        {
+          "h": "Hiring and health",
+          "label": "documented",
+          "body": "<p>Amazon scrapped an experimental hiring tool in 2018 after finding it penalized résumés that included the word “women's,” because it had learned from a decade of mostly male hires. The same mechanism can encode race. A health algorithm used on millions of patients underestimated Black patients' needs (see “Is racism over?”). New York City has required bias audits of automated hiring tools since 2023.</p>",
+          "sources": [
+            "amazon",
+            "ll144"
+          ]
+        },
+        {
+          "h": "Sensors and predictions",
+          "label": "documented",
+          "body": "<p>Chicago's inspector general found in 2021 that few ShotSpotter gunshot alerts led police to evidence of a gun crime, while the sensors were concentrated in Black and Latino neighborhoods, sending officers into those streets on high alert. Chicago ended its contract in 2024. Predictive policing tools face similar criticism (see “Surveillance”).</p>",
+          "sources": [
+            "shotspotter"
+          ]
+        },
+        {
+          "h": "AI image generators",
+          "label": "documented",
+          "body": "<p>A 2023 Bloomberg analysis of thousands of images made by the Stable Diffusion generator found that prompts for high-paying jobs mostly produced lighter-skinned men, while prompts like “inmate” mostly produced people with darker skin, exaggerating real-world disparities. As AI images spread, they can reinforce the same stereotypes that make someone look “suspicious.”</p>",
+          "sources": [
+            "bloomberg"
+          ]
+        },
+        {
+          "h": "Making technology accountable",
+          "label": "plan",
+          "body": "<ul><li><b>Test before trusting:</b> require independent bias audits and publish the results, as New York City now does for hiring tools.</li><li><b>A human decides:</b> no arrest, sentence, loan or benefit decision by algorithm alone, and a right to appeal to a person.</li><li><b>Transparency:</b> people should be told when an automated system scored them.</li><li><b>Local control:</b> require city council approval before police buy surveillance technology, as some cities' “Community Control Over Police Surveillance” ordinances do.</li></ul>",
+          "sources": [
+            "ll144"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 2013,
+          "t": "Search ad study (Sweeney)",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "ProPublica's COMPAS analysis",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Amazon scraps its hiring tool",
+          "label": "documented"
+        },
+        {
+          "y": 2019,
+          "t": "Health algorithm study; NIST face recognition study",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Chicago inspector general report on ShotSpotter",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Meta settles housing-ad discrimination case",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "NYC bias-audit law takes effect; Bloomberg AI image study",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "Chicago ends ShotSpotter contract",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Why is the COMPAS debate labeled debated?",
+          "options": [
+            "The data was fake",
+            "Two definitions of fairness can't both be met when base rates differ",
+            "No one studied it",
+            "It isn't"
+          ],
+          "a": 1,
+          "why": "Proven mathematically in 2016–17."
+        },
+        {
+          "q": "What did Amazon's hiring tool learn?",
+          "options": [
+            "To favor diverse candidates",
+            "To penalize résumés mentioning “women's”",
+            "Nothing",
+            "To hire faster"
+          ],
+          "a": 1,
+          "why": "It learned from past hires."
+        },
+        {
+          "q": "What did Chicago do with ShotSpotter in 2024?",
+          "options": [
+            "Expanded it",
+            "Ended its contract",
+            "Made it free",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "After a critical inspector general report."
+        }
+      ],
+      "quest": "speak-council",
+      "map": [],
+      "sourcesList": {
+        "propublica": {
+          "t": "Angwin et al., “Machine Bias,” ProPublica (2016)",
+          "url": "https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing"
+        },
+        "kleinberg": {
+          "t": "Kleinberg, Mullainathan & Raghavan, “Inherent Trade-Offs in the Fair Determination of Risk Scores” (2016); Chouldechova (2017)"
+        },
+        "sweeney": {
+          "t": "Latanya Sweeney, “Discrimination in Online Ad Delivery,” Communications of the ACM (2013)"
+        },
+        "meta": {
+          "t": "U.S. Department of Justice, settlement with Meta over discriminatory housing advertising (2022)"
+        },
+        "amazon": {
+          "t": "Reuters, “Amazon scraps secret AI recruiting tool that showed bias against women” (2018)"
+        },
+        "ll144": {
+          "t": "New York City Local Law 144 (automated employment decision tools)"
+        },
+        "shotspotter": {
+          "t": "City of Chicago Office of Inspector General, report on ShotSpotter (2021)"
+        },
+        "bloomberg": {
+          "t": "Bloomberg, “Humans Are Biased. Generative AI Is Even Worse” (2023)"
+        }
+      },
+      "num": 27
     },
     {
       "id": "media",
@@ -5771,7 +6528,7 @@
           "url": "https://en.wikipedia.org/wiki/Darnella_Frazier"
         }
       },
-      "num": 24
+      "num": 28
     },
     {
       "id": "many-targets",
@@ -6031,7 +6788,7 @@
           "url": "https://en.wikipedia.org/wiki/Yuri_Kochiyama"
         }
       },
-      "num": 25
+      "num": 29
     },
     {
       "id": "women",
@@ -6212,7 +6969,194 @@
           "url": "https://www.aapf.org/sayhername"
         }
       },
-      "num": 26
+      "num": 30
+    },
+    {
+      "id": "culture",
+      "title": "Sports, music and culture",
+      "short": "Jack Johnson, Jackie Robinson and the Negro Leagues, athletes who protested, the Black roots of American music, and the debate over who profits from Black culture.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "Sports and music are where many Americans first meet Black excellence, and where the color line was most visible, challenged and crossed.",
+      "sections": [
+        {
+          "h": "Jack Johnson",
+          "label": "documented",
+          "body": "<p>Jack Johnson became the first Black world heavyweight boxing champion in 1908. When he beat the white former champion James Jeffries in 1910, white mobs attacked Black Americans in cities across the country. In 1913 he was convicted under the Mann Act, widely seen as a racially motivated prosecution, and he was pardoned posthumously in 2018.</p>",
+          "sources": [
+            "johnson"
+          ]
+        },
+        {
+          "h": "Breaking the color line",
+          "label": "documented",
+          "body": "<p>Jesse Owens won four gold medals at the 1936 Berlin Olympics. Jackie Robinson broke Major League Baseball's color line in 1947, enduring threats and abuse. Before him, Black players starred in the Negro Leagues; in 2020 MLB recognized those leagues as major leagues, and in 2024 it added their statistics to the official records, making Josh Gibson the career batting-average leader.</p>",
+          "sources": [
+            "robinson",
+            "negroleagues"
+          ]
+        },
+        {
+          "h": "Athletes who protested",
+          "label": "documented",
+          "body": "<p>Muhammad Ali refused to be drafted in 1967, was stripped of his title and convicted, and won his case at the Supreme Court in 1971. At the 1968 Olympics, Tommie Smith and John Carlos raised gloved fists on the medal stand; Australian silver medalist Peter Norman wore a human rights badge in solidarity. In 2016 quarterback Colin Kaepernick knelt during the national anthem to protest police violence; he has not played in the NFL since 2017 and settled a grievance with the league in 2019. In 2020, WNBA players helped elect a challenger to their own team's co-owner after she criticized the league's racial justice stance.</p>",
+          "sources": [
+            "ali",
+            "smith",
+            "kaepernick"
+          ]
+        },
+        {
+          "h": "The Black roots of American music",
+          "label": "documented",
+          "body": "<p>Spirituals, the blues, jazz, gospel, rhythm and blues, rock and roll (Sister Rosetta Tharpe was an early pioneer), funk and hip-hop, born at a party in the Bronx in 1973, all came out of Black communities. Billie Holiday's 1939 recording of “Strange Fruit” brought the horror of lynching to a national audience. Many Black musicians of the early record industry were paid flat fees and lost their royalties and rights.</p>",
+          "sources": [
+            "strangefruit",
+            "hiphop"
+          ]
+        },
+        {
+          "h": "Appreciation or appropriation?",
+          "label": "debated",
+          "body": "<p>Big Mama Thornton's 1953 recording of “Hound Dog” was a hit on the rhythm-and-blues charts; Elvis Presley's 1956 version sold millions and made him a star, while she earned little. Some see stories like this as theft that left Black artists poor while others profited; others see cultural exchange that spread Black art. Most agree that credit and pay should follow the art.</p>",
+          "sources": [
+            "thornton"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1908,
+          "t": "Jack Johnson becomes heavyweight champion",
+          "label": "documented"
+        },
+        {
+          "y": 1936,
+          "t": "Jesse Owens in Berlin",
+          "label": "documented"
+        },
+        {
+          "y": 1939,
+          "t": "Billie Holiday records “Strange Fruit”",
+          "label": "documented"
+        },
+        {
+          "y": 1947,
+          "t": "Jackie Robinson breaks the color line",
+          "label": "documented"
+        },
+        {
+          "y": 1953,
+          "t": "Big Mama Thornton's “Hound Dog”",
+          "label": "documented"
+        },
+        {
+          "y": 1967,
+          "t": "Muhammad Ali refuses the draft",
+          "label": "documented"
+        },
+        {
+          "y": 1968,
+          "t": "Smith and Carlos protest at the Olympics",
+          "label": "documented"
+        },
+        {
+          "y": 1973,
+          "t": "Hip-hop is born in the Bronx",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "Kaepernick kneels",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "Jack Johnson pardoned",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "Negro Leagues statistics enter MLB records",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What happened after Jack Johnson beat James Jeffries in 1910?",
+          "options": [
+            "A parade",
+            "White mobs attacked Black Americans in many cities",
+            "Nothing",
+            "He retired"
+          ],
+          "a": 1,
+          "why": "One of many violent responses to Black success."
+        },
+        {
+          "q": "Who recorded “Strange Fruit” in 1939?",
+          "options": [
+            "Bessie Smith",
+            "Billie Holiday",
+            "Ella Fitzgerald",
+            "Nina Simone"
+          ],
+          "a": 1,
+          "why": "A song about lynching."
+        },
+        {
+          "q": "When did MLB add Negro Leagues statistics to its records?",
+          "options": [
+            "1947",
+            "1990",
+            "2024",
+            "Never"
+          ],
+          "a": 2,
+          "why": "Josh Gibson became the career batting-average leader."
+        }
+      ],
+      "quest": "oral-history",
+      "map": [],
+      "sourcesList": {
+        "johnson": {
+          "t": "Jack Johnson (boxer)",
+          "url": "https://en.wikipedia.org/wiki/Jack_Johnson_(boxer)"
+        },
+        "robinson": {
+          "t": "Jackie Robinson",
+          "url": "https://en.wikipedia.org/wiki/Jackie_Robinson"
+        },
+        "negroleagues": {
+          "t": "Negro league baseball",
+          "url": "https://en.wikipedia.org/wiki/Negro_league_baseball"
+        },
+        "ali": {
+          "t": "Clay v. United States (1971)",
+          "url": "https://en.wikipedia.org/wiki/Clay_v._United_States"
+        },
+        "smith": {
+          "t": "1968 Olympics Black Power salute",
+          "url": "https://en.wikipedia.org/wiki/1968_Olympics_Black_Power_salute"
+        },
+        "kaepernick": {
+          "t": "U.S. national anthem protests (2016–present)",
+          "url": "https://en.wikipedia.org/wiki/U.S._national_anthem_protests_(2016%E2%80%93present)"
+        },
+        "strangefruit": {
+          "t": "Strange Fruit",
+          "url": "https://en.wikipedia.org/wiki/Strange_Fruit"
+        },
+        "hiphop": {
+          "t": "Hip-hop",
+          "url": "https://en.wikipedia.org/wiki/Hip-hop"
+        },
+        "thornton": {
+          "t": "Hound Dog (song)",
+          "url": "https://en.wikipedia.org/wiki/Hound_Dog_(song)"
+        }
+      },
+      "num": 31
     },
     {
       "id": "lgbtq",
@@ -6364,7 +7308,7 @@
           "url": "https://www.hrc.org/"
         }
       },
-      "num": 27
+      "num": 32
     },
     {
       "id": "systemic",
@@ -6540,7 +7484,7 @@
           "t": "Glenn C. Loury, The Anatomy of Racial Inequality (2002)"
         }
       },
-      "num": 28
+      "num": 33
     },
     {
       "id": "evidence",
@@ -6735,7 +7679,211 @@
           "url": "data.html#calls"
         }
       },
-      "num": 29
+      "num": 34
+    },
+    {
+      "id": "twenty-twenties",
+      "title": "The 2020s: reckoning and backlash",
+      "short": "Ahmaud Arbery, Breonna Taylor and George Floyd, the largest protests in U.S. history, the reforms that passed and the ones that didn't, and the backlash against teaching and addressing race.",
+      "status": "draft",
+      "minutes": 9,
+      "intro": "Many people believe the racial history in these modules is over. The 2020s show both how much it still shapes daily life and how quickly public attention can turn. Several of these cases began with a call to police or a neighbor's suspicion.",
+      "sections": [
+        {
+          "h": "2020",
+          "label": "documented",
+          "body": "<p><b>Ahmaud Arbery</b> was jogging in Brunswick, Georgia, in February 2020 when three white men decided he looked suspicious, chased him in pickup trucks and shot him. Local prosecutors declined to charge them until a video surfaced. All three were convicted of murder in 2021 and of federal hate crimes in 2022, and Georgia repealed its Civil War-era citizen's arrest law. In March, Louisville police serving a no-knock warrant shot and killed <b>Breonna Taylor</b> in her apartment; the city then banned no-knock warrants. On May 25, a store clerk called 911 about a suspected counterfeit $20 bill, and Minneapolis officer Derek Chauvin knelt on <b>George Floyd</b>'s neck for more than nine minutes. Chauvin was convicted of murder in 2021.</p>",
+          "sources": [
+            "arbery",
+            "taylor",
+            "floyd"
+          ]
+        },
+        {
+          "h": "The largest protests in U.S. history",
+          "label": "documented",
+          "body": "<p>Surveys estimated that 15 million to 26 million Americans took part in protests in the weeks after Floyd's murder, in small towns as well as cities. The House of Representatives passed the George Floyd Justice in Policing Act in 2020 and 2021; it never passed the Senate. A 2022 executive order set policing standards for federal agencies; it was revoked in 2025. New York repealed a law that had kept police disciplinary records secret and made it a civil rights violation to call police on someone falsely because of their race.</p>",
+          "sources": [
+            "protests",
+            "jpa",
+            "ny"
+          ]
+        },
+        {
+          "h": "Did the changes work?",
+          "label": "debated",
+          "body": "<p>Mapping Police Violence recorded more police killings in 2023 than in any year since it began tracking in 2013. Murders rose about 30% in 2020, the largest one-year increase on record, then fell sharply by 2024. Researchers still debate how much the pandemic, gun sales, changes in policing and the protests themselves contributed. Debates over “defunding” or reforming police split cities, some of which cut police budgets and then restored them.</p>",
+          "sources": [
+            "mpv",
+            "fbi"
+          ]
+        },
+        {
+          "h": "Calls and suspicion that still turn deadly",
+          "label": "documented",
+          "body": "<p>In January 2023, Memphis officers from a special unit beat <b>Tyre Nichols</b> after a traffic stop; he died three days later, and the unit was disbanded. In April 2023, 16-year-old <b>Ralph Yarl</b> was shot in Kansas City after ringing the wrong doorbell to pick up his brothers; he survived. In June 2023, <b>Ajike Owens</b> was shot through a neighbor's door in Florida after a dispute over children playing; the neighbor was convicted of manslaughter. In July 2024, <b>Sonya Massey</b> called 911 for help about a possible prowler, and an Illinois deputy who responded shot her in her own kitchen; he was convicted of second-degree murder in 2025. The <a href=\"deaths.html\">contested deaths page</a> tracks disputed hanging deaths that continue today.</p>",
+          "sources": [
+            "nichols",
+            "yarl",
+            "owens",
+            "massey"
+          ]
+        },
+        {
+          "h": "The backlash",
+          "label": "documented",
+          "body": "<p>Since 2021, more than a dozen states have passed laws or policies restricting how teachers can discuss race and racism. Florida rejected a pilot AP African American Studies course in 2023. That June, the Supreme Court ended race-conscious college admissions in <em>Students for Fair Admissions v. Harvard</em>. In January 2025, executive orders ended federal diversity, equity and inclusion programs, and many companies scaled back their own. Supporters call these changes a return to colorblind rules; opponents say they erase history and remove tools for addressing discrimination that still exists.</p>",
+          "sources": [
+            "edweek",
+            "sffa",
+            "dei"
+          ]
+        },
+        {
+          "h": "What's moving now",
+          "label": "documented",
+          "body": "<p>The CROWN Act, which bans discrimination based on natural hair texture and protective styles such as braids and locs, has passed in more than 20 states since California's in 2019; the House passed a federal version in 2022. Cities from Evanston to Tulsa are experimenting with repair. And CAREN-style laws are exactly the kind of local and state win this campaign is built to spread.</p>",
+          "sources": [
+            "crown"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 2020,
+          "t": "Ahmaud Arbery, Breonna Taylor and George Floyd killed; protests nationwide",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Chauvin convicted; Arbery's killers convicted; Georgia repeals its citizen's arrest law",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Federal policing executive order; House passes CROWN Act",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "Tyre Nichols; Ralph Yarl; Ajike Owens; SFFA v. Harvard; record police killings",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "Sonya Massey killed after calling 911",
+          "label": "documented"
+        },
+        {
+          "y": 2025,
+          "t": "Executive orders end federal DEI programs; policing order revoked",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What started the police encounter with George Floyd?",
+          "options": [
+            "A traffic stop",
+            "A 911 call about a suspected counterfeit $20 bill",
+            "A protest",
+            "A warrant"
+          ],
+          "a": 1,
+          "why": "A store clerk called 911."
+        },
+        {
+          "q": "What did Georgia repeal after Ahmaud Arbery's murder?",
+          "options": [
+            "Its death penalty",
+            "Its Civil War-era citizen's arrest law",
+            "Its gun laws",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "In 2021."
+        },
+        {
+          "q": "What does the CROWN Act ban?",
+          "options": [
+            "Hats at work",
+            "Discrimination based on natural hair and protective styles",
+            "Police chokeholds",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Passed in more than 20 states."
+        }
+      ],
+      "quest": "call-lawmakers",
+      "map": [
+        {
+          "t": "Police killings by victim race",
+          "href": "index.html?layers=police"
+        }
+      ],
+      "sourcesList": {
+        "arbery": {
+          "t": "Murder of Ahmaud Arbery",
+          "url": "https://en.wikipedia.org/wiki/Murder_of_Ahmaud_Arbery"
+        },
+        "taylor": {
+          "t": "Killing of Breonna Taylor",
+          "url": "https://en.wikipedia.org/wiki/Killing_of_Breonna_Taylor"
+        },
+        "floyd": {
+          "t": "Murder of George Floyd",
+          "url": "https://en.wikipedia.org/wiki/Murder_of_George_Floyd"
+        },
+        "protests": {
+          "t": "New York Times, “Black Lives Matter May Be the Largest Movement in U.S. History” (July 2020)"
+        },
+        "jpa": {
+          "t": "George Floyd Justice in Policing Act",
+          "url": "https://en.wikipedia.org/wiki/George_Floyd_Justice_in_Policing_Act"
+        },
+        "ny": {
+          "t": "New York Civil Rights Law §79-n amendment and repeal of Civil Rights Law §50-a (June 2020)"
+        },
+        "mpv": {
+          "t": "Mapping Police Violence",
+          "url": "https://mappingpoliceviolence.org/"
+        },
+        "fbi": {
+          "t": "FBI Uniform Crime Reporting, murder trends 2019–2024"
+        },
+        "nichols": {
+          "t": "Killing of Tyre Nichols",
+          "url": "https://en.wikipedia.org/wiki/Killing_of_Tyre_Nichols"
+        },
+        "yarl": {
+          "t": "Shooting of Ralph Yarl",
+          "url": "https://en.wikipedia.org/wiki/Shooting_of_Ralph_Yarl"
+        },
+        "owens": {
+          "t": "Killing of Ajike Owens",
+          "url": "https://en.wikipedia.org/wiki/Killing_of_Ajike_Owens"
+        },
+        "massey": {
+          "t": "Killing of Sonya Massey",
+          "url": "https://en.wikipedia.org/wiki/Killing_of_Sonya_Massey"
+        },
+        "edweek": {
+          "t": "Education Week, map of states restricting teaching about race (2021–)"
+        },
+        "sffa": {
+          "t": "Students for Fair Admissions v. Harvard (2023)",
+          "url": "https://en.wikipedia.org/wiki/Students_for_Fair_Admissions_v._Harvard"
+        },
+        "dei": {
+          "t": "Executive Order 14151 and related orders (January 2025)"
+        },
+        "crown": {
+          "t": "CROWN Act",
+          "url": "https://en.wikipedia.org/wiki/CROWN_Act"
+        }
+      },
+      "num": 35
     },
     {
       "id": "performance",
@@ -6935,7 +8083,7 @@
           "t": "National Assessment of Educational Progress, Long-Term Trend results"
         }
       },
-      "num": 30
+      "num": 36
     },
     {
       "id": "world",
@@ -7147,7 +8295,7 @@
           "t": "CARICOM Reparations Commission, Ten Point Plan (2013)"
         }
       },
-      "num": 31
+      "num": 37
     },
     {
       "id": "movements",
@@ -7401,11 +8549,11 @@
           "url": "https://en.wikipedia.org/wiki/2018_Florida_Amendment_4"
         }
       },
-      "num": 32
+      "num": 38
     },
     {
       "id": "path-forward",
-      "num": 33,
+      "num": 39,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",

@@ -761,6 +761,30 @@
    "map": {
     "0": "Dónde organizarse"
    }
+  },
+  "afro-latino": {
+   "title": "La diáspora africana en América Latina y el Caribe",
+   "short": "La mayoría de los africanos esclavizados fueron llevados al Caribe y América Latina, no a EE. UU. Su historia va de Haití y la masacre del Perejil de 1937 a Cuba, México, la “democracia racial” de Brasil y los 6 millones de afrolatinos que viven hoy en EE. UU."
+  },
+  "christian-nationalism": {
+   "title": "Nacionalismo cristiano y raza",
+   "short": "Qué entienden los investigadores por nacionalismo cristiano, su historia desde el Klan de los años 20 hasta las academias de la segregación, el debate sobre su vínculo con las actitudes raciales, y los muchos cristianos que se oponen."
+  },
+  "technology": {
+   "title": "Tecnología e IA: viejos prejuicios en código nuevo",
+   "short": "Puntuaciones de riesgo en los tribunales, anuncios que esquivan a usuarios negros, sensores de disparos, algoritmos de contratación y salud, y generadores de imágenes con IA: cómo la tecnología puede repetir la discriminación y cómo hacer que rinda cuentas."
+  },
+  "twenty-twenties": {
+   "title": "Los años 2020: ajuste de cuentas y reacción",
+   "short": "Ahmaud Arbery, Breonna Taylor y George Floyd, las mayores protestas de la historia de EE. UU., las reformas que se aprobaron y las que no, y la reacción contra la enseñanza del tema racial."
+  },
+  "labor": {
+   "title": "El trabajo: sindicatos y la lucha por un salario justo",
+   "short": "La aparcería y el peonaje por deudas, los sindicatos que excluyeron a los trabajadores negros y los que los organizaron, los maleteros de Pullman, la amenaza de marcha de 1941, la huelga de saneamiento de Memphis y el trabajo hoy."
+  },
+  "culture": {
+   "title": "Deporte, música y cultura",
+   "short": "Jack Johnson, Jackie Robinson y las Ligas Negras, los atletas que protestaron, las raíces negras de la música estadounidense y el debate sobre quién se beneficia de la cultura negra."
   }
  }
 }

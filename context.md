@@ -25,7 +25,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 | Google sign-in | Connected (2026-11-09). Not tested end to end yet |
 | Facebook sign-in | Not started |
 | Content | 0 GitHub issues: no comments, old-law reports, volunteers or cases yet. 0 volunteer sign-ups in SQL |
-| Learn | Live. Hub `learn.html`, renderer `module.html`, teach-in kits `teach.html`, content `data/learn.json`. 33 modules, all written (status `draft` until reviewed). Order: before-race, columbus, colonizers, conquest, slavery-law, reconstruction, black-towns, faith, veterans, science, health, borders, place, destroyed, schools, wealth, banking, environment, voting, incarceration, policing, courts, surveillance, media, many-targets, women, lgbtq, systemic, evidence, performance, world, movements, path-forward. 42 quests, 13 badges, `threeThings`, `readingList`. Labels: documented, debated, belief, plan. Not reviewed by a historian yet; recruiting through `history-reviewer` |
+| Learn | Live. Hub `learn.html`, renderer `module.html`, teach-in kits `teach.html`, content `data/learn.json`. 39 modules, all written (status `draft` until reviewed). Order: before-race, columbus, colonizers, afro-latino, conquest, slavery-law, reconstruction, black-towns, faith, christian-nationalism, veterans, science, health, borders, place, destroyed, schools, wealth, labor, banking, environment, voting, incarceration, policing, courts, surveillance, technology, media, many-targets, women, culture, lgbtq, systemic, evidence, twenty-twenties, performance, world, movements, path-forward. 42 quests, 13 badges, `threeThings`, `readingList`. Labels: documented, debated, belief, plan. Not reviewed by a historian yet; recruiting through `history-reviewer` |
 | Outreach | Letters to JULIAN and LDF drafted (kept out of the repo), not sent |
 
 ## Architecture
@@ -176,6 +176,8 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
     - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
+  - **New modules:** afro-latino, christian-nationalism, technology, twenty-twenties, labor, culture. Spanish titles and summaries are in `learn.es.json`.
+  - **Local action toolkit** (`toolkit.html`): copy-ready templates. Linked from act.html, and the council-resolution, speak-council, op-ed and coalition quests point to it.
   - **Spanish (hub and spoke):**
     - **Engine:** in `site.js`. It picks the language from `?lang=`, then `localStorage` `caren-lang`, then the browser locale, and shows a selector in the header. It translates text and attributes through a MutationObserver. Writes only happen when the text changes, to avoid an observer loop.
     - **Header:** collapses to the menu when the links don't fit (`.site-header.compact`).
