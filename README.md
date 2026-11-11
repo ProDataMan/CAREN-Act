@@ -275,7 +275,7 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 - **Quests:** 42, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
 - **Teach-in kits:** `teach.html` lists them, and `teach.html?m=<id>&view=guide|slides|handout` builds each one from `learn.json`. Slides use the arrow keys, F for full screen and A to reveal quiz answers. Discussion questions come from the module's optional `discuss` list plus generic prompts.
 - **Fourth label:** `plan` ("Our recommendation") marks campaign advice, as opposed to historical claims.
-- **Narration (pilot: module 1):** a **Listen** bar on the lesson page.
+- **Narration (all 39 English lessons; Spanish for lesson 1):** a **Listen** bar on every lesson page.
   - **Highlighting:** each word is highlighted as it is read, with its sentence shaded.
   - **Controls:** play, seek, speed, and a choice of a **female or male voice**, which is remembered.
   - **Clicking a sentence** during playback jumps there. Hearing a lesson to the end counts as reading it.
@@ -292,6 +292,7 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
   - **Setup:** `python3 -m venv .venv && .venv/bin/pip install piper-tts lameenc`, then download voices from huggingface.co/rhasspy/piper-voices.
   - **Run:** `.venv/bin/python scripts/narrate.py before-race --voice female=en_US-kristin-medium.onnx --voice male=en_US-john-medium.onnx --label "female=Female voice" --label "male=Male voice"`. A LibriTTS-R reader is chosen with `path.onnx:<speaker>`.
   - **After editing a lesson,** re-run it so the audio matches the text.
+  - **Encoding:** English lessons are 32 kbps mono MP3, about 76 MB for all 78 files (39 lessons in 2 voices). To regenerate everything: `narrate.py --all --kbps 32 --voice female=... --voice male=...`.
 - **Reading list:** `readingList` in `learn.json`, shown at `learn.html#reading`.
 - **"Three things everyone should know":** set in `threeThings` in `learn.json` and shown at the top of the hub. Quests are on the honor system for now.
 - **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.
