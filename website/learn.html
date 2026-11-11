@@ -38,6 +38,11 @@
     .path li.done a { color: #1b7837; }
     .path li.done::marker { content: "✓ "; color: #1b7837; }
     .path .go { margin-top: 8px; }
+    .podcasts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin: 10px 0; }
+    .pod { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; }
+    .pod img { width: 56px; height: 56px; border-radius: 8px; }
+    .pod b { display: block; font-size: .92rem; }
+    .pod .row { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
     .qcat { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
     .qcat summary { cursor: pointer; }
     .three { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0; counter-reset: t; }
@@ -82,6 +87,7 @@
         <p style="margin:8px 0 0;font-size:.88rem"><label for="state">Your state, for team scores:</label> <select id="state"><option value="">Choose…</option></select></p>
         <p class="note" id="syncNote">Your progress is saved on this device.</p>
         <p class="note" style="margin:0"><a href="#" id="resetLink">Reset progress on this device</a></p>
+        <p class="note" style="margin:6px 0 0" id="classNote"><a href="class.html">Using this with a class? Join or create one</a></p>
       </aside>
     </div>
 
@@ -113,6 +119,11 @@
     <div class="filters" id="tlFilters" role="group" aria-label="Filter the timeline by module"></div>
     <div id="tl"></div>
 
+    <h2 id="podcast">Listen as a podcast</h2>
+    <p>Every lesson is narrated. Subscribe in your podcast app to listen on a commute or a walk; the full text, sources and quizzes are linked from each episode.</p>
+    <div class="podcasts" id="podList"></div>
+    <p class="note">In Apple Podcasts: Library › ⋯ › Follow a Show by URL, then paste the link. In Pocket Casts, Overcast, AntennaPod and most other apps: Add podcast by URL.</p>
+
     <h2 id="stories-link">In our own words</h2>
     <p>History is also the people who lived it. Read first-person stories, share yours, or record an elder's on the <a href="stories.html">Stories page</a>.</p>
 
@@ -133,6 +144,7 @@
     const STATES = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' ');
     STATES.forEach(s => $('state').insertAdjacentHTML('beforeend', '<option>' + s + '</option>'));
     $('state').addEventListener('change', e => L.setState(e.target.value));
+    try { const c = JSON.parse(localStorage.getItem('caren-class')); if (c) $('classNote').innerHTML = 'Class: <b>' + CarenLearn.ui.esc(c.name) + '</b> (' + CarenLearn.ui.esc(c.nickname) + ') · <a href="class.html">Class page</a>'; } catch (e) { /* ignore */ }
     $('resetLink').addEventListener('click', e => { e.preventDefault(); if (confirm('Clear all Learn progress on this device? Progress saved to a signed-in profile is kept.')) { L.reset(); location.reload(); } });
 
     L.catalog().then(cat => {
@@ -220,6 +232,14 @@
       $('tlFilters').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { filter = b.dataset.f || null; drawTl(); } });
       drawTl();
     });
+
+    fetch('podcast/feeds.json').then(r => r.json()).then(feeds => {
+      const SITE = 'https://prodataman.github.io/CAREN-Act/website/';
+      const lang = (window.CarenI18n && CarenI18n.lang) || 'en';
+      feeds.sort((a, b) => (a.lang === lang ? -1 : 1) - (b.lang === lang ? -1 : 1));
+      document.getElementById('podList').innerHTML = feeds.map(f => '<div class="pod"><img src="podcast/cover.png" alt=""><div><b>' + CarenLearn.ui.esc(f.title) + '</b><span class="note">' + f.episodes + ' episodes</span><div class="row"><a class="btn secondary" href="' + f.file + '">RSS</a><button class="btn secondary" type="button" data-feed="' + SITE + f.file + '">Copy link</button></div></div></div>').join('');
+      document.getElementById('podList').addEventListener('click', e => { const b = e.target.closest('[data-feed]'); if (b) navigator.clipboard.writeText(b.dataset.feed).then(() => { b.textContent = '✓'; }); });
+    }).catch(() => {});
 
     CarenAPI.get('/api/learn/teams').then(t => {
       const rows = Object.entries(t.states || {}).sort((a, b) => b[1].xp - a[1].xp);

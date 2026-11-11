@@ -179,6 +179,11 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **2026-11-11:**
     - **Lessons:** 7 more (rights, lawmaking, sovereignty, housing-today, enforcement, reparations, global-freedom), all narrated in both English voices. Spanish narration added for evidence, policing and path-forward.
     - **Learning paths:** `paths` in `learn.json`, the "all" badge rule, `?path=` navigation, and Spanish names in `learn.es.json`.
+    - **Podcast:** `scripts/podcast.py` writes `website/podcast/<lang>-<voice>.xml` plus `feeds.json`, with a 3000×3000 `cover.png` and stable pubDates in lesson order.
+    - **Classroom mode:** `class.html`, migration `004_classes` (classes, class_members), and the `/api/classes*` endpoints.
+      - Students are identified only by nickname and Learn device ID; their progress is read from `learn_events` by `device_id`.
+      - A learn.html note shows the student's class.
+    - **Share card:** on every lesson, in `module.html` `shareCard()`.
     - **Tooling:** the scratch folder was wiped between sessions, so the tools now live in git-ignored `.venv/` (piper-tts, lameenc, pillow), `.voices/` (Piper voice models) and `.tools/` (Node and `cdp.js` for headless checks).
   - **New modules:** afro-latino, christian-nationalism, technology, twenty-twenties, labor, culture. Spanish titles and summaries are in `learn.es.json`.
   - **Local action toolkit** (`toolkit.html`): copy-ready templates. Linked from act.html, and the council-resolution, speak-council, op-ed and coalition quests point to it.

@@ -38,6 +38,7 @@
     get: function (p) { return api(p); },
     post: function (p, body) { return api(p, { method: 'POST', json: body }); },
     patch: function (p, body) { return api(p, { method: 'PATCH', json: body }); },
+    del: function (p) { return api(p, { method: 'DELETE' }); },
     signInUrl: function (provider) { return BASE + '/auth/' + provider + '?next=' + encodeURIComponent(sameOrigin ? location.pathname : location.origin + location.pathname); },
     signOut: function () {
       return api('/auth/logout', { method: 'POST' }).catch(function () {}).then(function () { try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } });

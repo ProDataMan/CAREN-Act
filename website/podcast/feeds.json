@@ -1,0 +1,30 @@
+[
+ {
+  "lang": "en",
+  "voice": "female",
+  "file": "podcast/en-female.xml",
+  "title": "How We Got Here: Lessons on Systemic Racism (female voice)",
+  "episodes": 46
+ },
+ {
+  "lang": "en",
+  "voice": "male",
+  "file": "podcast/en-male.xml",
+  "title": "How We Got Here: Lessons on Systemic Racism (male voice)",
+  "episodes": 46
+ },
+ {
+  "lang": "es",
+  "voice": "female",
+  "file": "podcast/es-female.xml",
+  "title": "Cómo llegamos aquí: lecciones sobre el racismo sistémico (voz femenina)",
+  "episodes": 4
+ },
+ {
+  "lang": "es",
+  "voice": "male",
+  "file": "podcast/es-male.xml",
+  "title": "Cómo llegamos aquí: lecciones sobre el racismo sistémico (voz masculina)",
+  "episodes": 4
+ }
+]

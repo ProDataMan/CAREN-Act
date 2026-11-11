@@ -1282,7 +1282,47 @@
   "Start →": "Empezar →",
   "Continue →": "Continuar →",
   "✓ Path complete": "✓ Ruta completada",
-  "✓ Back to the path": "✓ Volver a la ruta"
+  "✓ Back to the path": "✓ Volver a la ruta",
+  "Listen as a podcast": "Escúchalo como pódcast",
+  "Every lesson is narrated. Subscribe in your podcast app to listen on a commute or a walk; the full text, sources and quizzes are linked from each episode.": "Cada lección está narrada. Suscríbete en tu app de pódcast para escuchar de camino al trabajo o en una caminata; el texto completo, las fuentes y los cuestionarios están enlazados en cada episodio.",
+  "In Apple Podcasts: Library › ⋯ › Follow a Show by URL, then paste the link. In Pocket Casts, Overcast, AntennaPod and most other apps: Add podcast by URL.": "En Apple Podcasts: Biblioteca › ⋯ › Seguir un programa por URL, y pega el enlace. En Pocket Casts, Overcast, AntennaPod y la mayoría de las apps: Añadir pódcast por URL.",
+  "Classroom": "Aula",
+  "Use the Learn lessons with a class: teachers create a class code, students join with a nickname, and the teacher sees progress.": "Usa las lecciones de Aprende con una clase: el docente crea un código, los estudiantes se unen con un apodo y el docente ve su progreso.",
+  "Use the Learn lessons with a class, youth group or study circle. Teachers create a class code; students join with a nickname, without an account or email; the teacher sees who has read each lesson and passed its quiz.": "Usa las lecciones de Aprende con una clase, grupo juvenil o círculo de estudio. El docente crea un código de clase; los estudiantes se unen con un apodo, sin cuenta ni correo; el docente ve quién leyó cada lección y aprobó su cuestionario.",
+  "Join a class": "Únete a una clase",
+  "Class code": "Código de clase",
+  "Nickname": "Apodo",
+  "First name and last initial is fine": "Basta con el nombre y la inicial del apellido",
+  "Your teacher sees only this nickname and your progress on the Learn lessons. Don't use your full name.": "Tu docente solo ve este apodo y tu progreso en las lecciones. No uses tu nombre completo.",
+  "Join": "Unirme",
+  "For teachers": "Para docentes",
+  "Class name": "Nombre de la clase",
+  "e.g. 3rd period U.S. History": "p. ej. Historia de EE. UU., 3.er período",
+  "Assign a learning path (optional)": "Asigna una ruta de aprendizaje (opcional)",
+  "None: students choose": "Ninguna: los estudiantes eligen",
+  "Create class": "Crear clase",
+  "Each lesson has a free": "Cada lección tiene un",
+  "with slides and a printable handout.": "con diapositivas y un folleto imprimible.",
+  "Refresh": "Actualizar",
+  "You’re in": "Estás en",
+  "Go to the lessons": "Ir a las lecciones",
+  "Joined!": "¡Te uniste!",
+  "View progress": "Ver progreso",
+  "Copy join link": "Copiar enlace para unirse",
+  "Reopen": "Reabrir",
+  "Archive": "Archivar",
+  "No classes yet.": "Aún no hay clases.",
+  "Sign in to create a class and see your students’ progress.": "Inicia sesión para crear una clase y ver el progreso de tus estudiantes.",
+  "Sign-in is not available right now.": "El inicio de sesión no está disponible ahora.",
+  "The class server is unavailable right now. Please try again in a minute.": "El servidor de clases no está disponible ahora. Inténtalo en un minuto.",
+  "Class code:": "Código de clase:",
+  "Student": "Estudiante",
+  "Remove this student from the class?": "¿Quitar a este estudiante de la clase?",
+  "Remove": "Quitar",
+  "No students yet. Share the join link or code.": "Aún no hay estudiantes. Comparte el enlace o el código.",
+  "Using this with a class? Join or create one": "¿Lo usas con una clase? Únete o crea una",
+  "Class page": "Página de la clase",
+  "Share this lesson": "Comparte esta lección"
  },
  "patterns": [
   [
@@ -1376,6 +1416,18 @@
   [
    "^(\\d+) neighborhoods graded D, “hazardous” \\(redlined\\), (\\d+) graded C, (\\d+) graded A or B\\.$",
    "$1 barrios con calificación D, “peligroso” (redlining), $2 con C, $3 con A o B."
+  ],
+  [
+   "^(\\d+) episodes$",
+   "$1 episodios"
+  ],
+  [
+   "^(\\d+) students\\. ✓ = read, ★ = quiz passed\\.(.*)$",
+   "$1 estudiantes. ✓ = leída, ★ = cuestionario aprobado.$2"
+  ],
+  [
+   "^(\\d+) students$",
+   "$1 estudiantes"
   ]
  ]
 }

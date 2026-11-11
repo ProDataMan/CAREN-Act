@@ -148,3 +148,4 @@ html.i18n-pending body { visibility: hidden; }
 ::highlight(narration-sentence) { background-color: #fef3c7; }
 ::highlight(narration) { background-color: #f59e0b; color: #111; }
 .narr-active { background: #fef3c7; border-radius: 4px; }
+.share-lesson { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; padding: 12px 14px; border: 1px dashed var(--line); border-radius: 10px; }

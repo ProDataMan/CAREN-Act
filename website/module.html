@@ -69,6 +69,7 @@
       if ((m.map || []).length) h += '<h2>See it on the map</h2><p class="maplinks">' + m.map.map(x => '<a class="btn secondary" href="' + x.href + '">🗺 ' + esc(x.t) + '</a>').join('') + '</p>';
       if (m.status !== 'outline') {
         h += '<div class="finish" id="finish"></div>';
+        h += '<div class="share-lesson" id="shareBox"><b>Share this lesson</b> <button class="btn secondary" type="button" id="shImg">Share image</button> <button class="btn secondary" type="button" id="shCopy">Copy link</button> <a class="btn secondary" id="shFb" target="_blank" rel="noopener">Facebook</a> <a class="btn secondary" id="shX" target="_blank" rel="noopener">X / Twitter</a></div>';
         if ((m.quiz || []).length) h += '<h2 id="quiz">Check what you learned</h2><p>Get ' + Math.ceil(m.quiz.length * cat.xp.quizPass) + ' of ' + m.quiz.length + ' right for ' + cat.xp.quiz + ' XP.</p><div id="quizBox"></div>';
         const q = cat.quests.find(x => x.id === m.quest);
         if (q) h += '<div class="quest-card"><b>Quest: ' + esc(q.title) + ' (' + q.xp + ' XP)</b><p style="margin:6px 0">' + esc(q.desc) + '</p><a class="btn" href="' + q.href + '">Go</a> <a class="btn secondary" href="learn.html#quests">All quests</a></div>';
@@ -100,7 +101,49 @@
       if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
       L.sync();
       narrator(m);
+      shareCard(m);
     });
+
+    // ---- Share card: a 1080×1080 image with the lesson's title and key point, for social media.
+    function shareCard(m) {
+      if (!document.getElementById('shImg')) return;
+      const lang = (window.CarenI18n && CarenI18n.lang) || 'en';
+      const url = 'https://prodataman.github.io/CAREN-Act/website/module.html?m=' + m.id + (lang !== 'en' ? '&lang=' + lang : '');
+      const text = m.title + ': ' + m.short;
+      document.getElementById('shFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+      document.getElementById('shX').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(m.title) + '&url=' + encodeURIComponent(url);
+      document.getElementById('shCopy').addEventListener('click', e => navigator.clipboard.writeText(text + ' ' + url).then(() => { e.target.textContent = '✓'; }));
+      function wrap(g, t, x, y, maxW, lh, maxLines) {
+        const words = t.split(' '); let line = '', n = 0;
+        for (let i = 0; i < words.length; i++) {
+          const test = line ? line + ' ' + words[i] : words[i];
+          if (g.measureText(test).width > maxW && line) {
+            if (++n === maxLines) { g.fillText(line.replace(/[,.;:]?$/, '…'), x, y); return y + lh; }
+            g.fillText(line, x, y); y += lh; line = words[i];
+          } else line = test;
+        }
+        g.fillText(line, x, y); return y + lh;
+      }
+      document.getElementById('shImg').addEventListener('click', () => {
+        const c = document.createElement('canvas'); c.width = 1080; c.height = 1080;
+        const g = c.getContext('2d'), F = 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+        g.fillStyle = '#0e2a47'; g.fillRect(0, 0, 1080, 1080);
+        g.fillStyle = '#f2c14e'; g.fillRect(0, 0, 1080, 14);
+        g.font = '700 30px ' + F; g.fillText((lang === 'es' ? 'APRENDE · MÓDULO ' : 'LEARN · MODULE ') + m.num, 80, 110);
+        g.fillStyle = '#ffffff'; g.font = '800 66px ' + F;
+        let y = wrap(g, m.title, 80, 220, 920, 78, 4);
+        g.fillStyle = '#dbe6f3'; g.font = '400 38px ' + F;
+        wrap(g, m.short, 80, y + 40, 920, 54, 7);
+        g.fillStyle = '#f2c14e'; g.font = '700 34px ' + F;
+        g.fillText(lang === 'es' ? 'Aprende la historia. Aprueba la Ley CAREN.' : 'Learn the history. Pass the CAREN Act.', 80, 960);
+        g.fillStyle = '#dbe6f3'; g.font = '400 28px ' + F; g.fillText('prodataman.github.io/CAREN-Act', 80, 1010);
+        c.toBlob(blob => {
+          const file = new File([blob], 'caren-lesson-' + m.id + '.png', { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: m.title, text: url }).catch(() => {});
+          else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file.name; a.click(); }
+        });
+      });
+    }
 
     // ---- Narration: audio/<lang>/<module>.<voice>.mp3 with sentence and word timings.
     // The current word is highlighted (and its sentence shaded) as it is read.
