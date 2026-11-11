@@ -30,6 +30,7 @@
     cat.quests.forEach(function (q) { pick(q, (o.quests || {})[q.id], ['title', 'desc']); });
     cat.badges.forEach(function (b) { pick(b, (o.badges || {})[b.id], ['name', 'desc']); });
     (cat.questCategories || []).forEach(function (c) { pick(c, (o.questCategories || {})[c.id], ['name', 'desc']); });
+    (cat.paths || []).forEach(function (p) { pick(p, (o.paths || {})[p.id], ['title', 'desc']); });
     (o.threeThings || []).forEach(function (t, i) { if (cat.threeThings[i]) pick(cat.threeThings[i], t, ['h', 'p']); });
     (o.detective || []).forEach(function (t, i) { if (cat.detective[i]) pick(cat.detective[i], t, ['q', 'why']); });
     (cat.readingList || []).forEach(function (b, i) { pick(b, (o.readingList || {})[i], ['why']); });
@@ -77,6 +78,7 @@
       var r = b.rule, got = false;
       if (r.any) got = r.any.some(function (k) { return keys.indexOf(k) !== -1; });
       if (r.prefix) got = keys.filter(function (k) { return k.indexOf(r.prefix) === 0; }).length >= r.n;
+      if (r.all) got = r.all.every(function (k) { return keys.indexOf(k) !== -1; });
       return Object.assign({ earned: got }, b);
     });
   }

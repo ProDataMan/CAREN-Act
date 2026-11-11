@@ -554,6 +554,133 @@
           "quest:poll-worker"
         ]
       }
+    },
+    {
+      "id": "path-start",
+      "icon": "🧭",
+      "name": "Started right",
+      "desc": "Finished the “Start here: one hour” path.",
+      "rule": {
+        "all": [
+          "read:before-race",
+          "read:evidence",
+          "read:policing",
+          "read:movements",
+          "read:path-forward"
+        ]
+      }
+    },
+    {
+      "id": "path-skeptics",
+      "icon": "🔬",
+      "name": "For skeptics",
+      "desc": "Finished the “For skeptics” path.",
+      "rule": {
+        "all": [
+          "read:evidence",
+          "read:performance",
+          "read:systemic",
+          "read:wealth",
+          "read:courts",
+          "read:twenty-twenties"
+        ]
+      }
+    },
+    {
+      "id": "path-black-history",
+      "icon": "✊🏾",
+      "name": "Black history, start to now",
+      "desc": "Finished the “Black history, start to now” path.",
+      "rule": {
+        "all": [
+          "read:before-race",
+          "read:slavery-law",
+          "read:reconstruction",
+          "read:black-towns",
+          "read:destroyed",
+          "read:wealth",
+          "read:movements",
+          "read:twenty-twenties"
+        ]
+      }
+    },
+    {
+      "id": "path-teachers",
+      "icon": "🍎",
+      "name": "For teachers",
+      "desc": "Finished the “For teachers” path.",
+      "rule": {
+        "all": [
+          "read:before-race",
+          "read:columbus",
+          "read:reconstruction",
+          "read:schools",
+          "read:women",
+          "read:movements"
+        ]
+      }
+    },
+    {
+      "id": "path-lawmakers",
+      "icon": "🏛️",
+      "name": "For lawmakers and their staff",
+      "desc": "Finished the “For lawmakers and their staff” path.",
+      "rule": {
+        "all": [
+          "read:policing",
+          "read:rights",
+          "read:evidence",
+          "read:systemic",
+          "read:lawmaking",
+          "read:path-forward"
+        ]
+      }
+    },
+    {
+      "id": "path-organizers",
+      "icon": "📣",
+      "name": "For organizers",
+      "desc": "Finished the “For organizers” path.",
+      "rule": {
+        "all": [
+          "read:movements",
+          "read:lawmaking",
+          "read:rights",
+          "read:women",
+          "read:labor",
+          "read:path-forward"
+        ]
+      }
+    },
+    {
+      "id": "path-latino",
+      "icon": "🌎",
+      "name": "Latino and immigrant history",
+      "desc": "Finished the “Latino and immigrant history” path.",
+      "rule": {
+        "all": [
+          "read:colonizers",
+          "read:afro-latino",
+          "read:borders",
+          "read:enforcement",
+          "read:many-targets"
+        ]
+      }
+    },
+    {
+      "id": "path-native",
+      "icon": "🪶",
+      "name": "Native nations",
+      "desc": "Finished the “Native nations” path.",
+      "rule": {
+        "all": [
+          "read:colonizers",
+          "read:conquest",
+          "read:sovereignty",
+          "read:many-targets",
+          "read:environment"
+        ]
+      }
     }
   ],
   "detective": [
@@ -1928,6 +2055,177 @@
       "num": 5
     },
     {
+      "id": "sovereignty",
+      "title": "Native nations today: sovereignty, land and justice",
+      "short": "More than 570 federally recognized tribal nations, treaties as “supreme law,” who can prosecute crimes on tribal land, child welfare, water, voting, and the return of land.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Native nations are not only history. They are governments today, with their own laws, courts and police, and their rights rest on treaties the Constitution calls “the supreme law of the land.”",
+      "sections": [
+        {
+          "h": "Nations, not minorities",
+          "label": "documented",
+          "body": "<p>The U.S. recognizes more than 570 tribal nations, each with its own government. Their relationship with the federal government is government-to-government, grounded in treaties and in a federal “trust responsibility.” Article VI of the Constitution makes treaties part of the supreme law of the land.</p>",
+          "sources": [
+            "bia"
+          ]
+        },
+        {
+          "h": "Who can prosecute crimes",
+          "label": "documented",
+          "body": "<p>In <em>Oliphant</em> (1978) the Supreme Court held that tribes can't prosecute non-Native people, even for crimes on tribal land, leaving many crimes against Native women unprosecuted. Congress restored limited tribal jurisdiction over domestic violence in 2013 and expanded it in 2022. After <em>McGirt</em> (2020) recognized eastern Oklahoma's reservations, the Court held in <em>Castro-Huerta</em> (2022) that states can also prosecute non-Natives for crimes against Native people there.</p>",
+          "sources": [
+            "oliphant",
+            "vawa",
+            "castro"
+          ]
+        },
+        {
+          "h": "Children and families",
+          "label": "documented",
+          "body": "<p>By the 1970s, about a quarter to a third of Native children had been taken from their families, mostly into non-Native homes. The Indian Child Welfare Act (1978) gave tribes a role in these cases. In 2023, in <em>Haaland v. Brackeen</em>, the Supreme Court rejected a challenge to the law.</p>",
+          "sources": [
+            "icwa",
+            "brackeen"
+          ]
+        },
+        {
+          "h": "Water and land",
+          "label": "documented",
+          "body": "<p>In 2023 the Court ruled in <em>Arizona v. Navajo Nation</em> that the Navajo's 1868 treaty doesn't require the U.S. to take steps to secure water for the nation, where many homes still lack running water. Some land is being returned: Congress restored the National Bison Range to the Confederated Salish and Kootenai Tribes in 2020, and the transfer was completed in 2022. The “Land Back” movement seeks more.</p>",
+          "sources": [
+            "navajo",
+            "bison"
+          ]
+        },
+        {
+          "h": "Voting",
+          "label": "documented",
+          "body": "<p>Many reservation homes don't have standard street addresses. In 2018 North Dakota began requiring voter IDs with a residential street address, which tribal members challenged; the state settled with tribes in 2020. Long distances to polling places and post offices remain barriers to voting.</p>",
+          "sources": [
+            "ndvote"
+          ]
+        },
+        {
+          "h": "How to be a good ally",
+          "label": "plan",
+          "body": "<ul><li>Learn whose land you're on, and the nation's own history and current government.</li><li>Support Native-led organizations rather than speaking for them.</li><li>Back tribal sovereignty in policy debates, including over policing and courts on tribal land.</li><li>Take the quest “Learn whose land you're on.”</li></ul>",
+          "sources": []
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1978,
+          "t": "Oliphant v. Suquamish; Indian Child Welfare Act",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Violence Against Women Act restores some tribal jurisdiction",
+          "label": "documented"
+        },
+        {
+          "y": 2018,
+          "t": "North Dakota voter ID street-address requirement",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "McGirt v. Oklahoma; North Dakota settlement; Bison Range law",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Castro-Huerta; VAWA expands tribal jurisdiction; Bison Range returned",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "Haaland v. Brackeen; Arizona v. Navajo Nation",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "How many tribal nations does the U.S. recognize?",
+          "options": [
+            "About 50",
+            "About 200",
+            "More than 570",
+            "Over 2,000"
+          ],
+          "a": 2,
+          "why": "Each with its own government."
+        },
+        {
+          "q": "What did Oliphant (1978) decide?",
+          "options": [
+            "Tribes can prosecute anyone",
+            "Tribes can't prosecute non-Native people",
+            "Tribes have no courts",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Congress partly restored jurisdiction in 2013 and 2022."
+        },
+        {
+          "q": "What did Haaland v. Brackeen (2023) do?",
+          "options": [
+            "Struck down ICWA",
+            "Rejected a challenge to ICWA",
+            "Ended tribal courts",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "The Indian Child Welfare Act stands."
+        }
+      ],
+      "quest": "whose-land",
+      "map": [
+        {
+          "t": "Boarding schools on the map",
+          "href": "index.html?layers=history"
+        }
+      ],
+      "sourcesList": {
+        "bia": {
+          "t": "U.S. Bureau of Indian Affairs, federally recognized tribes",
+          "url": "https://www.bia.gov/"
+        },
+        "oliphant": {
+          "t": "Oliphant v. Suquamish Indian Tribe (1978)",
+          "url": "https://en.wikipedia.org/wiki/Oliphant_v._Suquamish_Indian_Tribe"
+        },
+        "vawa": {
+          "t": "Violence Against Women Reauthorization Acts of 2013 and 2022"
+        },
+        "castro": {
+          "t": "Oklahoma v. Castro-Huerta (2022)",
+          "url": "https://en.wikipedia.org/wiki/Oklahoma_v._Castro-Huerta"
+        },
+        "icwa": {
+          "t": "Indian Child Welfare Act",
+          "url": "https://en.wikipedia.org/wiki/Indian_Child_Welfare_Act"
+        },
+        "brackeen": {
+          "t": "Haaland v. Brackeen (2023)",
+          "url": "https://en.wikipedia.org/wiki/Haaland_v._Brackeen"
+        },
+        "navajo": {
+          "t": "Arizona v. Navajo Nation (2023)",
+          "url": "https://en.wikipedia.org/wiki/Arizona_v._Navajo_Nation"
+        },
+        "bison": {
+          "t": "National Bison Range restoration to the Confederated Salish and Kootenai Tribes",
+          "url": "https://en.wikipedia.org/wiki/National_Bison_Range"
+        },
+        "ndvote": {
+          "t": "Spirit Lake Tribe v. Jaeger; North Dakota voter ID settlement (2020)"
+        }
+      },
+      "num": 6
+    },
+    {
       "id": "slavery-law",
       "title": "Slavery makes race law",
       "short": "The Atlantic slave trade, the national economy it built, the laws that made slavery permanent and hereditary, and the people who resisted.",
@@ -2117,7 +2415,7 @@
           "url": "https://en.wikipedia.org/wiki/Juneteenth"
         }
       },
-      "num": 6
+      "num": 7
     },
     {
       "id": "reconstruction",
@@ -2356,7 +2654,7 @@
           "t": "Southern Poverty Law Center, Whose Heritage? Public Symbols of the Confederacy"
         }
       },
-      "num": 7
+      "num": 8
     },
     {
       "id": "black-towns",
@@ -2583,7 +2881,7 @@
           "url": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
         }
       },
-      "num": 8
+      "num": 9
     },
     {
       "id": "faith",
@@ -2753,7 +3051,7 @@
           "url": "https://www.poorpeoplescampaign.org/"
         }
       },
-      "num": 9
+      "num": 10
     },
     {
       "id": "christian-nationalism",
@@ -2937,7 +3235,7 @@
           "url": "https://www.poorpeoplescampaign.org/"
         }
       },
-      "num": 10
+      "num": 11
     },
     {
       "id": "veterans",
@@ -3124,11 +3422,11 @@
           "url": "https://en.wikipedia.org/wiki/Vernon_Baker"
         }
       },
-      "num": 11
+      "num": 12
     },
     {
       "id": "science",
-      "num": 12,
+      "num": 13,
       "title": "Science as a weapon: medicine, eugenics and reproductive control",
       "short": "Scientific racism, medical experiments, and the forced sterilization of tens of thousands of Americans, plus what the evidence does and doesn't show about Planned Parenthood.",
       "status": "draft",
@@ -3552,7 +3850,7 @@
           "t": "Greenwood et al., PNAS (2020); Borjas & VerBruggen reanalysis, PNAS (2024)"
         }
       },
-      "num": 13
+      "num": 14
     },
     {
       "id": "borders",
@@ -3760,7 +4058,153 @@
           "t": "Noem v. Vasquez Perdomo (U.S. Supreme Court order, September 2025)"
         }
       },
-      "num": 14
+      "num": 15
+    },
+    {
+      "id": "enforcement",
+      "title": "Immigration enforcement now",
+      "short": "Local police acting as immigration agents, detention, racial profiling, sanctuary policies and the evidence about them, and what families can do.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "Immigration enforcement increasingly runs through local police and 911-style reports. This lesson covers how that works and what the evidence shows. The history is in “Borders.”",
+      "sections": [
+        {
+          "h": "Local police as immigration agents",
+          "label": "documented",
+          "body": "<p>Section 287(g) of federal immigration law lets ICE deputize local police and sheriffs to carry out some immigration enforcement. The number of 287(g) agreements expanded sharply in 2025. From 2008 to 2014 the Secure Communities program checked the fingerprints of everyone booked into local jails against immigration databases; a 2014 study found it did not measurably reduce crime.</p>",
+          "sources": [
+            "287g",
+            "miles"
+          ]
+        },
+        {
+          "h": "Racial profiling",
+          "label": "documented",
+          "body": "<p>In <em>Melendres v. Arpaio</em> (2013), a federal court found that Maricopa County, Arizona, deputies under Sheriff Joe Arpaio had racially profiled Latino drivers during immigration sweeps. Arpaio was later convicted of contempt for defying the court's orders, and was pardoned in 2017. In September 2025 the Supreme Court allowed immigration stops in the Los Angeles area to resume while a challenge to their reliance on factors including apparent ethnicity continues (see “Borders”).</p>",
+          "sources": [
+            "melendres"
+          ]
+        },
+        {
+          "h": "Detention",
+          "label": "documented",
+          "body": "<p>Immigration detention reached record numbers in 2025. Detention centers are often run by private companies or county jails under contract. News investigations in 2025 found that U.S. citizens were among the people stopped and detained by immigration agents.</p>",
+          "sources": [
+            "detention"
+          ]
+        },
+        {
+          "h": "Do sanctuary policies affect crime?",
+          "label": "debated",
+          "body": "<p>“Sanctuary” policies limit how much local police help with federal immigration enforcement, for example by declining to hold people on ICE detainer requests without a judicial warrant. Supporters say they keep immigrants willing to report crimes and serve as witnesses; opponents say they release people who should be deported. Most studies find no increase in crime from sanctuary policies, but the debate continues and federal and state laws on the question keep changing.</p>",
+          "sources": [
+            "sanctuary"
+          ]
+        },
+        {
+          "h": "What families can do",
+          "label": "plan",
+          "body": "<ul><li>Know your rights at home and on the street (see “Your rights with police”).</li><li>Make a family preparedness plan: who picks up the children, where documents are, and a lawyer's number memorized.</li><li>Carry a “red card” stating your rights.</li><li>Connect with local rapid-response networks and legal services.</li><li>Report false reports to police or immigration authorities that target people because of their ethnicity; that is exactly what CAREN-style laws address.</li></ul>",
+          "sources": [
+            "ilrc"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1996,
+          "t": "287(g) added to federal immigration law",
+          "label": "documented"
+        },
+        {
+          "y": 2008,
+          "t": "Secure Communities begins",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Melendres v. Arpaio",
+          "label": "documented"
+        },
+        {
+          "y": 2014,
+          "t": "Secure Communities ended (later restarted)",
+          "label": "documented"
+        },
+        {
+          "y": 2017,
+          "t": "Arpaio pardoned",
+          "label": "documented"
+        },
+        {
+          "y": 2025,
+          "t": "287(g) expansion; record detention; Supreme Court allows Los Angeles stops",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What does a 287(g) agreement do?",
+          "options": [
+            "Bans immigration",
+            "Lets ICE deputize local police for some immigration enforcement",
+            "Creates visas",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Agreements expanded sharply in 2025."
+        },
+        {
+          "q": "What did the court find in Melendres v. Arpaio?",
+          "options": [
+            "No problem",
+            "Deputies racially profiled Latino drivers",
+            "The sheriff was right",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "2013."
+        },
+        {
+          "q": "Why is the sanctuary-policy section labeled debated?",
+          "options": [
+            "It's settled",
+            "Studies mostly find no crime increase, but the public debate continues",
+            "Policies don't exist",
+            "It isn't"
+          ],
+          "a": 1,
+          "why": "Evidence and politics diverge."
+        }
+      ],
+      "quest": "know-rights-training",
+      "map": [],
+      "sourcesList": {
+        "287g": {
+          "t": "U.S. ICE, Delegation of Immigration Authority Section 287(g)",
+          "url": "https://www.ice.gov/identify-and-arrest/287g"
+        },
+        "miles": {
+          "t": "Miles & Cox, “Does Immigration Enforcement Reduce Crime? Evidence from Secure Communities,” Journal of Law and Economics (2014)"
+        },
+        "melendres": {
+          "t": "Melendres v. Arpaio",
+          "url": "https://en.wikipedia.org/wiki/Melendres_v._Arpaio"
+        },
+        "detention": {
+          "t": "TRAC Immigration, detention statistics (Syracuse University)",
+          "url": "https://tracreports.org/immigration/"
+        },
+        "sanctuary": {
+          "t": "Sanctuary city",
+          "url": "https://en.wikipedia.org/wiki/Sanctuary_city"
+        },
+        "ilrc": {
+          "t": "Immigrant Legal Resource Center, red cards and family preparedness",
+          "url": "https://www.ilrc.org/"
+        }
+      },
+      "num": 16
     },
     {
       "id": "place",
@@ -3940,11 +4384,157 @@
           "url": "https://en.wikipedia.org/wiki/Exclusionary_zoning"
         }
       },
-      "num": 15
+      "num": 17
+    },
+    {
+      "id": "housing-today",
+      "title": "Housing today: evictions, screening and keeping homes",
+      "short": "Who gets evicted, tenant-screening algorithms, laws that punish tenants for calling 911, the homeownership gap, and tools that keep families housed.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "Redlining and urban renewal are history (see “Place” and “Burned, flooded and taken”). This lesson is about what keeps families from stable homes now.",
+      "sections": [
+        {
+          "h": "Evictions",
+          "label": "documented",
+          "body": "<p>Princeton's Eviction Lab has found that Black renters, especially Black women, face eviction filings far out of proportion to their share of renters. An eviction record makes it harder to rent again. In 2017 New York City became the first city to guarantee tenants facing eviction a lawyer; several cities and states, including San Francisco, Washington, Maryland and Connecticut, have followed.</p>",
+          "sources": [
+            "evictionlab",
+            "rtc"
+          ]
+        },
+        {
+          "h": "Laws that punish calling 911",
+          "label": "documented",
+          "body": "<p>Many cities adopted “nuisance” or “crime-free housing” ordinances that penalize landlords, and push them to evict tenants, after a certain number of police calls to a property. In Norristown, Pennsylvania, Lakisha Briggs was threatened with eviction after police were called during domestic violence attacks against her; she sued, the city repealed its ordinance and settled in 2014. HUD warned in 2016 that such ordinances can violate fair housing law. They are the mirror image of the CAREN problem: some people are punished for calling police, while others call police as a weapon.</p>",
+          "sources": [
+            "briggs",
+            "hud2016"
+          ]
+        },
+        {
+          "h": "Screening by algorithm",
+          "label": "documented",
+          "body": "<p>Landlords increasingly rely on tenant-screening scores. In 2024 SafeRent Solutions agreed to pay about $2.3 million to settle a Massachusetts lawsuit alleging its scores unfairly rejected Black and Hispanic applicants who used housing vouchers. Many states and cities now ban rejecting applicants just because they use a voucher.</p>",
+          "sources": [
+            "saferent"
+          ]
+        },
+        {
+          "h": "The ownership gap",
+          "label": "documented",
+          "body": "<p>About 45% of Black households own their homes, compared with about 73% of non-Hispanic white households (Census Bureau). Lower appraisals (see “Banking”), higher mortgage costs and less family wealth for down payments keep the gap wide. In 2022 a federal task force (PAVE) issued an action plan on appraisal bias.</p>",
+          "sources": [
+            "census",
+            "pave"
+          ]
+        },
+        {
+          "h": "Keeping families housed",
+          "label": "plan",
+          "body": "<ul><li><b>Right to counsel</b> in eviction court.</li><li><b>Repeal crime-free and nuisance ordinances</b> that punish calls for help.</li><li><b>Source-of-income protections</b> for voucher holders.</li><li><b>Down-payment help and community land trusts</b> that keep homes affordable for good.</li><li><b>Heirs' property help</b> so families keep inherited homes and land (a pro bono quest).</li></ul>",
+          "sources": []
+        }
+      ],
+      "timeline": [
+        {
+          "y": 2013,
+          "t": "Norristown threatens Lakisha Briggs with eviction",
+          "label": "documented"
+        },
+        {
+          "y": 2014,
+          "t": "Norristown settles and repeals its ordinance",
+          "label": "documented"
+        },
+        {
+          "y": 2016,
+          "t": "HUD guidance on nuisance ordinances",
+          "label": "documented"
+        },
+        {
+          "y": 2017,
+          "t": "New York City guarantees counsel in eviction cases",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Federal action plan on appraisal bias",
+          "label": "documented"
+        },
+        {
+          "y": 2024,
+          "t": "SafeRent screening settlement",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What did New York City do first in 2017?",
+          "options": [
+            "Banned evictions",
+            "Guaranteed tenants facing eviction a lawyer",
+            "Ended rent",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Others followed."
+        },
+        {
+          "q": "What do crime-free or nuisance ordinances often do?",
+          "options": [
+            "Protect tenants",
+            "Penalize properties after repeated police calls, pushing evictions",
+            "Lower rent",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Lakisha Briggs's case."
+        },
+        {
+          "q": "About what share of Black households own their homes?",
+          "options": [
+            "About 25%",
+            "About 45%",
+            "About 73%",
+            "About 90%"
+          ],
+          "a": 1,
+          "why": "Compared with about 73% of white households."
+        }
+      ],
+      "quest": "heirs-property",
+      "map": [],
+      "sourcesList": {
+        "evictionlab": {
+          "t": "Princeton University Eviction Lab",
+          "url": "https://evictionlab.org/"
+        },
+        "rtc": {
+          "t": "National Coalition for a Civil Right to Counsel, eviction right-to-counsel laws",
+          "url": "https://civilrighttocounsel.org/"
+        },
+        "briggs": {
+          "t": "ACLU, Briggs v. Borough of Norristown (settled 2014)"
+        },
+        "hud2016": {
+          "t": "HUD Office of General Counsel guidance on nuisance and crime-free ordinances (2016)"
+        },
+        "saferent": {
+          "t": "Louis v. SafeRent Solutions (D. Mass.), settled 2024"
+        },
+        "census": {
+          "t": "U.S. Census Bureau, Housing Vacancies and Homeownership (CPS/HVS)"
+        },
+        "pave": {
+          "t": "Interagency Task Force on Property Appraisal and Valuation Equity (PAVE), Action Plan (2022)"
+        }
+      },
+      "num": 18
     },
     {
       "id": "destroyed",
-      "num": 16,
+      "num": 19,
       "title": "Burned, flooded and taken: the communities America destroyed",
       "short": "Black Wall Street in Tulsa and dozens of other Black, Brown and immigrant communities that were burned, driven out, flooded, seized or bulldozed, plus how gentrification continues the pattern.",
       "status": "draft",
@@ -4495,7 +5085,7 @@
           "t": "EdBuild, $23 Billion (2019)"
         }
       },
-      "num": 17
+      "num": 20
     },
     {
       "id": "wealth",
@@ -4705,7 +5295,7 @@
           "t": "City of Evanston, Local Reparations program"
         }
       },
-      "num": 18
+      "num": 21
     },
     {
       "id": "labor",
@@ -4898,7 +5488,7 @@
           "url": "https://ciw-online.org/"
         }
       },
-      "num": 19
+      "num": 22
     },
     {
       "id": "banking",
@@ -5041,7 +5631,7 @@
           "t": "Avenancio-León & Howard, “The Assessment Gap: Racial Inequalities in Property Taxation,” Quarterly Journal of Economics (2022)"
         }
       },
-      "num": 20
+      "num": 23
     },
     {
       "id": "environment",
@@ -5203,7 +5793,7 @@
           "t": "Vicki Been, “Locally Undesirable Land Uses in Minority Neighborhoods: Disproportionate Siting or Market Dynamics?” Yale Law Journal (1994)"
         }
       },
-      "num": 21
+      "num": 24
     },
     {
       "id": "voting",
@@ -5441,7 +6031,7 @@
           "url": "https://en.wikipedia.org/wiki/Rucho_v._Common_Cause"
         }
       },
-      "num": 22
+      "num": 25
     },
     {
       "id": "incarceration",
@@ -5633,11 +6223,11 @@
           "url": "https://www.cleanslateinitiative.org/"
         }
       },
-      "num": 23
+      "num": 26
     },
     {
       "id": "policing",
-      "num": 24,
+      "num": 27,
       "title": "Policing and the 911 call",
       "short": "From slave patrols and vagrancy laws to the weaponized 911 call, and what the data shows about who gets stopped and hurt.",
       "status": "draft",
@@ -5838,6 +6428,159 @@
       }
     },
     {
+      "id": "rights",
+      "title": "Your rights with police, and after a weaponized call",
+      "short": "What the law says you can and can't do when police stop you or come to your door, how to stay as safe as possible, and what to do afterward if someone called the police on you because of who you are.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "This is general information about U.S. law, not legal advice, and laws differ by state. The goal of every encounter is to get home safely; you can challenge what happened later. Free, detailed guides from the ACLU and others are linked on the Take action page.",
+      "sections": [
+        {
+          "h": "If police stop you on the street",
+          "label": "documented",
+          "body": "<p>Police may briefly stop you if they have “reasonable suspicion” that you're involved in a crime, and may pat down your outer clothing if they believe you're armed (<em>Terry v. Ohio</em>, 1968). You can ask, “Am I free to go?” If yes, you may calmly leave. You have the right to remain silent, but the Supreme Court has said you must <em>say</em> you are using it (<em>Salinas v. Texas</em>, 2013): “I'm going to remain silent.” About half the states have “stop and identify” laws that require you to give your name when lawfully stopped (<em>Hiibel</em>, 2004).</p>",
+          "sources": [
+            "terry",
+            "salinas",
+            "hiibel"
+          ]
+        },
+        {
+          "h": "Searches, cars and your home",
+          "label": "documented",
+          "body": "<p>You can say, “I don't consent to a search.” Saying it doesn't stop an officer who has other legal grounds, but it preserves your rights for court. In a traffic stop, the driver must show a license, registration and proof of insurance when asked. At home, you don't have to open the door unless officers have a warrant signed by a judge; ask them to slide it under the door or hold it to a window. An immigration (ICE) administrative warrant signed by an officer, not a judge, does not by itself allow entry into a home.</p>",
+          "sources": [
+            "aclu",
+            "ilrc"
+          ]
+        },
+        {
+          "h": "Recording the police",
+          "label": "documented",
+          "body": "<p>Several federal appeals courts have recognized a First Amendment right to record police doing their jobs in public, starting with <em>Glik v. Cunniffe</em> (2011). Keep a safe distance, don't interfere, and say out loud that you're recording if asked. Many weaponized 911 calls became public only because someone recorded them.</p>",
+          "sources": [
+            "glik"
+          ]
+        },
+        {
+          "h": "Staying as safe as possible",
+          "label": "plan",
+          "body": "<ul><li>Keep your hands visible, and don't run, argue or physically resist, even if you believe the stop is wrong.</li><li>Tell officers before you reach for anything: “My license is in my back pocket.”</li><li>Don't lie or give false documents.</li><li>Teach children what to do, and agree on a family plan for who to call.</li><li>Remember officer names, badge and car numbers, and witnesses' names.</li></ul>",
+          "sources": [
+            "aclu"
+          ]
+        },
+        {
+          "h": "If someone called the police on you because of who you are",
+          "label": "plan",
+          "body": "<ol><li><b>Write it all down</b> as soon as you can: date, time, place, what the caller said, what officers did, names and badge numbers, and witnesses.</li><li><b>Save evidence:</b> your video and anyone else's, photos, and texts.</li><li><b>Request the records:</b> the 911 recording and the call log are usually public records; use the request template in the <a href=\"toolkit.html#records\">toolkit</a>.</li><li><b>File a complaint</b> about officer conduct with the department's internal affairs office or your city's civilian oversight board.</li><li><b>Get legal advice:</b> in San Francisco, Oregon and New York, laws let you bring a civil claim against the caller; elsewhere other claims may apply. Legal aid, the ACLU or the NAACP can help you find a lawyer.</li><li><b>Tell your story,</b> if you want to, on the <a href=\"stories.html\">Stories page</a> and to your lawmakers. Stories pass laws.</li></ol>",
+          "sources": [
+            "history"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1966,
+          "t": "Miranda v. Arizona: warnings before custodial questioning",
+          "label": "documented"
+        },
+        {
+          "y": 1968,
+          "t": "Terry v. Ohio: stop and frisk on reasonable suspicion",
+          "label": "documented"
+        },
+        {
+          "y": 2004,
+          "t": "Hiibel: states may require your name during a lawful stop",
+          "label": "documented"
+        },
+        {
+          "y": 2011,
+          "t": "Glik v. Cunniffe: right to record police in public",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "Salinas v. Texas: say you are remaining silent",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "San Francisco CAREN Act; New York's false-report law",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "According to the Supreme Court, how do you use your right to remain silent?",
+          "options": [
+            "Just stay quiet",
+            "Say clearly that you are remaining silent",
+            "Run away",
+            "Write it down"
+          ],
+          "a": 1,
+          "why": "Salinas v. Texas (2013)."
+        },
+        {
+          "q": "What usually lets officers enter your home?",
+          "options": [
+            "Any paper they show",
+            "A warrant signed by a judge",
+            "An ICE administrative form alone",
+            "Knocking loudly"
+          ],
+          "a": 1,
+          "why": "An administrative ICE warrant alone doesn't."
+        },
+        {
+          "q": "What's the first thing to do after a weaponized call?",
+          "options": [
+            "Post the caller's address online",
+            "Write down everything while it's fresh",
+            "Call the caller",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "Then save evidence and request records."
+        }
+      ],
+      "quest": "know-rights-training",
+      "map": [],
+      "sourcesList": {
+        "terry": {
+          "t": "Terry v. Ohio (1968)",
+          "url": "https://supreme.justia.com/cases/federal/us/392/1/"
+        },
+        "salinas": {
+          "t": "Salinas v. Texas (2013)",
+          "url": "https://en.wikipedia.org/wiki/Salinas_v._Texas"
+        },
+        "hiibel": {
+          "t": "Hiibel v. Sixth Judicial District Court of Nevada (2004)",
+          "url": "https://en.wikipedia.org/wiki/Hiibel_v._Sixth_Judicial_District_Court_of_Nevada"
+        },
+        "aclu": {
+          "t": "ACLU, Know Your Rights: Stopped by Police",
+          "url": "https://www.aclu.org/know-your-rights/stopped-by-police"
+        },
+        "ilrc": {
+          "t": "Immigrant Legal Resource Center, Red cards and warrant guidance",
+          "url": "https://www.ilrc.org/red-cards"
+        },
+        "glik": {
+          "t": "Glik v. Cunniffe (1st Cir. 2011)",
+          "url": "https://en.wikipedia.org/wiki/Glik_v._Cunniffe"
+        },
+        "history": {
+          "t": "This site: the San Francisco CAREN Act",
+          "url": "history.html"
+        }
+      },
+      "num": 28
+    },
+    {
       "id": "courts",
       "title": "Courts: juries, sentences and the death penalty",
       "short": "Who sits on juries, how race shapes charges and sentences, the death penalty case where statistics weren't enough, and the cost of not affording bail or a lawyer.",
@@ -6017,7 +6760,7 @@
           "t": "Washington Supreme Court General Rule 37 (2018)"
         }
       },
-      "num": 25
+      "num": 29
     },
     {
       "id": "surveillance",
@@ -6184,7 +6927,7 @@
           "t": "Nextdoor's 2016 changes to reduce racial profiling (news coverage, e.g. NPR)"
         }
       },
-      "num": 26
+      "num": 30
     },
     {
       "id": "technology",
@@ -6352,7 +7095,7 @@
           "t": "Bloomberg, “Humans Are Biased. Generative AI Is Even Worse” (2023)"
         }
       },
-      "num": 27
+      "num": 31
     },
     {
       "id": "media",
@@ -6528,7 +7271,7 @@
           "url": "https://en.wikipedia.org/wiki/Darnella_Frazier"
         }
       },
-      "num": 28
+      "num": 32
     },
     {
       "id": "many-targets",
@@ -6788,7 +7531,7 @@
           "url": "https://en.wikipedia.org/wiki/Yuri_Kochiyama"
         }
       },
-      "num": 29
+      "num": 33
     },
     {
       "id": "women",
@@ -6969,7 +7712,7 @@
           "url": "https://www.aapf.org/sayhername"
         }
       },
-      "num": 30
+      "num": 34
     },
     {
       "id": "culture",
@@ -7156,7 +7899,7 @@
           "url": "https://en.wikipedia.org/wiki/Hound_Dog_(song)"
         }
       },
-      "num": 31
+      "num": 35
     },
     {
       "id": "lgbtq",
@@ -7308,7 +8051,7 @@
           "url": "https://www.hrc.org/"
         }
       },
-      "num": 32
+      "num": 36
     },
     {
       "id": "systemic",
@@ -7484,7 +8227,7 @@
           "t": "Glenn C. Loury, The Anatomy of Racial Inequality (2002)"
         }
       },
-      "num": 33
+      "num": 37
     },
     {
       "id": "evidence",
@@ -7679,7 +8422,7 @@
           "url": "data.html#calls"
         }
       },
-      "num": 34
+      "num": 38
     },
     {
       "id": "twenty-twenties",
@@ -7883,7 +8626,7 @@
           "url": "https://en.wikipedia.org/wiki/CROWN_Act"
         }
       },
-      "num": 35
+      "num": 39
     },
     {
       "id": "performance",
@@ -8083,7 +8826,7 @@
           "t": "National Assessment of Educational Progress, Long-Term Trend results"
         }
       },
-      "num": 36
+      "num": 40
     },
     {
       "id": "world",
@@ -8295,7 +9038,193 @@
           "t": "CARICOM Reparations Commission, Ten Point Plan (2013)"
         }
       },
-      "num": 37
+      "num": 41
+    },
+    {
+      "id": "global-freedom",
+      "title": "The global Black freedom struggle",
+      "short": "From the Haitian Revolution to Pan-Africanism, Garvey, Négritude, African independence, the petition charging the U.S. with genocide, the anti-apartheid movement, and 2020's worldwide protests.",
+      "status": "draft",
+      "minutes": 7,
+      "intro": "Black Americans' fight for freedom has always been part of a worldwide movement. Ideas, people and solidarity crossed the Atlantic in both directions.",
+      "sections": [
+        {
+          "h": "Pan-Africanism",
+          "label": "documented",
+          "body": "<p>The first Pan-African Conference met in London in 1900; W.E.B. Du Bois, who attended, organized Pan-African Congresses beginning in Paris in 1919. Marcus Garvey's Universal Negro Improvement Association, founded in Jamaica in 1914 and based in Harlem, became the largest Black mass movement of its time, with chapters around the world. In the 1930s, writers Aimé Césaire and Léopold Sédar Senghor launched the Négritude movement, celebrating African identity against French colonial culture.</p>",
+          "sources": [
+            "pan",
+            "garvey",
+            "negritude"
+          ]
+        },
+        {
+          "h": "Independence",
+          "label": "documented",
+          "body": "<p>Ghana became one of the first sub-Saharan African colonies to win independence, and the first in West Africa, in 1957, led by Kwame Nkrumah; Dr. King attended the celebrations. Dozens of African nations won independence in the following decade, and their leaders and diplomats at the United Nations pressed the U.S. on segregation during the Cold War.</p>",
+          "sources": [
+            "ghana"
+          ]
+        },
+        {
+          "h": "Taking America's racism to the world",
+          "label": "documented",
+          "body": "<p>In 1951 the Civil Rights Congress, led by William Patterson and Paul Robeson, petitioned the United Nations with <em>We Charge Genocide</em>, documenting lynchings and police killings of Black Americans. In 1964 Malcolm X founded the Organization of Afro-American Unity and sought to bring the U.S. before the UN over human rights. The U.S. government's concern about its image abroad helped push civil rights reforms, historians such as Mary Dudziak have shown.</p>",
+          "sources": [
+            "wcg",
+            "dudziak"
+          ]
+        },
+        {
+          "h": "Against apartheid",
+          "label": "documented",
+          "body": "<p>American students, churches, unions and the Congressional Black Caucus built a divestment movement against South African apartheid in the 1970s and 1980s, leading to sanctions passed over a presidential veto in 1986 (see “A world system”). Nelson Mandela thanked them when he visited the U.S. in 1990.</p>",
+          "sources": [
+            "caaa"
+          ]
+        },
+        {
+          "h": "2020 and after",
+          "label": "documented",
+          "body": "<p>After George Floyd's murder, protests spread to cities around the world. In Bristol, England, protesters toppled the statue of slave trader Edward Colston into the harbor. The United Nations declared an International Decade for People of African Descent (2015–2024), held the first session of its Permanent Forum on People of African Descent in 2022, and proclaimed a second decade in 2024.</p>",
+          "sources": [
+            "colston",
+            "undecade"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1900,
+          "t": "First Pan-African Conference, London",
+          "label": "documented"
+        },
+        {
+          "y": 1914,
+          "t": "Garvey founds the UNIA",
+          "label": "documented"
+        },
+        {
+          "y": 1919,
+          "t": "Pan-African Congress in Paris",
+          "label": "documented"
+        },
+        {
+          "y": 1951,
+          "t": "We Charge Genocide petition to the UN",
+          "label": "documented"
+        },
+        {
+          "y": 1957,
+          "t": "Ghana's independence",
+          "label": "documented"
+        },
+        {
+          "y": 1964,
+          "t": "Organization of Afro-American Unity",
+          "label": "documented"
+        },
+        {
+          "y": 1986,
+          "t": "U.S. sanctions on apartheid South Africa",
+          "label": "documented"
+        },
+        {
+          "y": 1990,
+          "t": "Mandela visits the U.S.",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "UN International Decade for People of African Descent",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "Worldwide protests; Colston statue toppled",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "UN Permanent Forum on People of African Descent",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What was We Charge Genocide (1951)?",
+          "options": [
+            "A novel",
+            "A petition to the UN documenting violence against Black Americans",
+            "A law",
+            "A film"
+          ],
+          "a": 1,
+          "why": "Led by William Patterson and Paul Robeson."
+        },
+        {
+          "q": "Which was the first West African colony to win independence, in 1957?",
+          "options": [
+            "Nigeria",
+            "Ghana",
+            "Kenya",
+            "Senegal"
+          ],
+          "a": 1,
+          "why": "1957, under Kwame Nkrumah."
+        },
+        {
+          "q": "Whose statue did Bristol protesters topple in 2020?",
+          "options": [
+            "Christopher Columbus",
+            "Edward Colston",
+            "Cecil Rhodes",
+            "King Leopold II"
+          ],
+          "a": 1,
+          "why": "A slave trader."
+        }
+      ],
+      "quest": "read-book",
+      "map": [],
+      "sourcesList": {
+        "pan": {
+          "t": "Pan-Africanism",
+          "url": "https://en.wikipedia.org/wiki/Pan-Africanism"
+        },
+        "garvey": {
+          "t": "Universal Negro Improvement Association",
+          "url": "https://en.wikipedia.org/wiki/Universal_Negro_Improvement_Association_and_African_Communities_League"
+        },
+        "negritude": {
+          "t": "Négritude",
+          "url": "https://en.wikipedia.org/wiki/N%C3%A9gritude"
+        },
+        "ghana": {
+          "t": "Kwame Nkrumah",
+          "url": "https://en.wikipedia.org/wiki/Kwame_Nkrumah"
+        },
+        "wcg": {
+          "t": "We Charge Genocide (1951)",
+          "url": "https://en.wikipedia.org/wiki/We_Charge_Genocide"
+        },
+        "dudziak": {
+          "t": "Mary L. Dudziak, Cold War Civil Rights (2000)"
+        },
+        "caaa": {
+          "t": "Comprehensive Anti-Apartheid Act (1986)",
+          "url": "https://en.wikipedia.org/wiki/Comprehensive_Anti-Apartheid_Act"
+        },
+        "colston": {
+          "t": "Statue of Edward Colston",
+          "url": "https://en.wikipedia.org/wiki/Statue_of_Edward_Colston"
+        },
+        "undecade": {
+          "t": "United Nations, International Decade for People of African Descent",
+          "url": "https://www.un.org/en/observances/decade-people-african-descent"
+        }
+      },
+      "num": 42
     },
     {
       "id": "movements",
@@ -8549,11 +9478,318 @@
           "url": "https://en.wikipedia.org/wiki/2018_Florida_Amendment_4"
         }
       },
-      "num": 38
+      "num": 43
+    },
+    {
+      "id": "lawmaking",
+      "title": "How a bill becomes law, and how this one could",
+      "short": "Introduction, committees, hearings, markup, the filibuster, the other chamber and the president, why most bills die, and a realistic path for a federal CAREN Act in the 120th Congress.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Most people have never watched a bill move. Knowing the steps tells you exactly where your call, letter or visit can make a difference.",
+      "sections": [
+        {
+          "h": "The steps",
+          "label": "documented",
+          "body": "<p>A member of the House or Senate introduces a bill, often with cosponsors, and it is referred to a committee: a CAREN Act would go to the House and Senate Judiciary Committees. The committee chair decides whether to hold a hearing and a “markup,” where members debate and amend it. If the committee approves it, leaders decide whether it gets a floor vote. In the Senate, most bills need 60 votes to end debate (the filibuster). Both chambers must pass identical text, and the president signs it or vetoes it; Congress can override a veto with two-thirds of each chamber.</p>",
+          "sources": [
+            "congressgov"
+          ]
+        },
+        {
+          "h": "Why most bills die",
+          "label": "documented",
+          "body": "<p>In recent Congresses, only a few percent of bills introduced became law (GovTrack). Most never get a hearing. Every bill that hasn't passed dies when a Congress ends and must be reintroduced; the 120th Congress begins on January 3, 2027. The bills that move usually have a committee champion, cosponsors from both parties, outside endorsements, and constituents in key districts asking for them.</p>",
+          "sources": [
+            "govtrack"
+          ]
+        },
+        {
+          "h": "Other ways a bill moves",
+          "label": "documented",
+          "body": "<p>Small bills often pass by being folded into larger ones, such as a broader policing or civil rights package, or attached as an amendment. A “companion” bill introduced in the other chamber lets both move at once. Hearings can also be requested on an issue, which builds a record even before a vote.</p>",
+          "sources": [
+            "congressgov"
+          ]
+        },
+        {
+          "h": "States move first",
+          "label": "documented",
+          "body": "<p>Federal laws often follow state ones. Oregon passed its law against racially biased police calls in 2019 after a lawmaker shared her own experience; California, New York and the city of San Francisco followed in 2020. Each state law shows Congress the idea works and gives members a model.</p>",
+          "sources": [
+            "history"
+          ]
+        },
+        {
+          "h": "A path for a federal CAREN Act",
+          "label": "plan",
+          "body": "<ol><li><b>Find a House sponsor</b> on the Judiciary Committee, and a Senate sponsor for a companion bill. The map's allies layer shows committee members.</li><li><b>Gather cosponsors</b> from both parties. Ask your own members directly.</li><li><b>Line up endorsements</b> from civil rights, faith, law enforcement reform and business groups.</li><li><b>Build the record:</b> stories, 911 outcome data and city and state resolutions (<a href=\"toolkit.html\">toolkit</a>).</li><li><b>Ask for a hearing,</b> or for the bill to be included in a larger package.</li><li><b>Keep going in the states</b> so the pressure grows from below.</li></ol>",
+          "sources": [
+            "history"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "y": 2019,
+          "t": "Oregon passes its law against racially biased police calls",
+          "label": "documented"
+        },
+        {
+          "y": 2020,
+          "t": "San Francisco CAREN Act; New York and California laws",
+          "label": "documented"
+        },
+        {
+          "y": 2027,
+          "t": "The 120th Congress begins on January 3",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which committees would hear a federal CAREN Act?",
+          "options": [
+            "Armed Services",
+            "Judiciary",
+            "Agriculture",
+            "Budget"
+          ],
+          "a": 1,
+          "why": "House and Senate Judiciary."
+        },
+        {
+          "q": "What happens to bills that haven't passed when a Congress ends?",
+          "options": [
+            "They pass automatically",
+            "They die and must be reintroduced",
+            "They go to the courts",
+            "They become state law"
+          ],
+          "a": 1,
+          "why": "The 120th Congress begins January 3, 2027."
+        },
+        {
+          "q": "How many Senate votes do most bills need to end debate?",
+          "options": [
+            "51",
+            "60",
+            "67",
+            "100"
+          ],
+          "a": 1,
+          "why": "The filibuster."
+        }
+      ],
+      "quest": "power-map",
+      "map": [
+        {
+          "t": "Judiciary Committee members on the map",
+          "href": "index.html?layers=heat,allies"
+        }
+      ],
+      "sourcesList": {
+        "congressgov": {
+          "t": "Congress.gov, The Legislative Process",
+          "url": "https://www.congress.gov/legislative-process"
+        },
+        "govtrack": {
+          "t": "GovTrack, statistics on bills and resolutions by Congress",
+          "url": "https://www.govtrack.us/congress/bills/statistics"
+        },
+        "history": {
+          "t": "This site: the SF CAREN Act and parallel state laws",
+          "url": "history.html"
+        }
+      },
+      "num": 44
+    },
+    {
+      "id": "reparations",
+      "title": "Repair and reparations",
+      "short": "What reparations means under international law, the precedents in the U.S. and abroad, Evanston, California and Tulsa, H.R. 40, and the honest arguments for and against.",
+      "status": "draft",
+      "minutes": 8,
+      "intro": "Reparations is one of the most debated ideas in American politics. This lesson lays out what the term means, what has actually been done, and the main arguments on each side, so you can decide for yourself.",
+      "sections": [
+        {
+          "h": "What “repair” can mean",
+          "label": "documented",
+          "body": "<p>The United Nations' 2005 principles on remedies for serious human rights violations list five forms of reparation: restitution (restoring what was lost), compensation, rehabilitation (such as health care), satisfaction (including apologies, truth-telling and memorials), and guarantees that it won't happen again. Cash payments are only one of them.</p>",
+          "sources": [
+            "un2005"
+          ]
+        },
+        {
+          "h": "Precedents",
+          "label": "documented",
+          "body": "<ul><li>West Germany's 1952 agreement to pay Israel and Holocaust survivors.</li><li>The Civil Liberties Act of 1988: an apology and $20,000 for each surviving Japanese American incarcerated during World War II.</li><li>Florida's 1994 compensation for Rosewood survivors.</li><li>North Carolina (2013) and Virginia (2015) compensating survivors of forced sterilization.</li><li>Chicago's 2015 reparations for people tortured by police commander Jon Burge's officers, including payments, counseling and a public memorial.</li></ul>",
+          "sources": [
+            "germany",
+            "cla",
+            "rosewood",
+            "burge"
+          ]
+        },
+        {
+          "h": "Recent efforts",
+          "label": "documented",
+          "body": "<p>Evanston, Illinois, began a housing reparations program in 2021, funded by a cannabis tax. California's Reparations Task Force issued a final report in 2023 with more than 100 recommendations; the legislature has acted on a few. In 2025, Tulsa's first Black mayor proposed a privately funded Greenwood Trust to invest in the district destroyed in 1921. H.R. 40, a bill to create a federal commission to study reparations, was first introduced by Representative John Conyers in 1989 and has been reintroduced in every Congress since.</p>",
+          "sources": [
+            "evanston",
+            "catf",
+            "hr40"
+          ]
+        },
+        {
+          "h": "The arguments",
+          "label": "debated",
+          "body": "<p><b>For:</b> the harms were done by governments through documented policies (slavery's protection in law, Jim Crow, redlining, exclusion from the GI Bill), their effects on wealth are measurable today, and the U.S. has paid reparations to other groups it harmed.</p><p><b>Against or skeptical:</b> difficulty deciding who is eligible and who pays, the cost, the argument that today's taxpayers didn't commit the wrongs, and a preference for programs based on income or place rather than race. Some supporters of repair favor place-based or class-based approaches for that reason.</p><p>Public opinion is divided: in a 2021 Pew survey, about 3 in 10 U.S. adults supported reparations, including about 77% of Black adults.</p>",
+          "sources": [
+            "pew",
+            "coates"
+          ]
+        },
+        {
+          "h": "What anyone can support",
+          "label": "plan",
+          "body": "<p>Even people who disagree about cash payments often support parts of repair: formal apologies, truth commissions, memorials, returning seized land (as with Bruce's Beach), clearing old laws and covenants, funding HBCUs, and investing in neighborhoods that were redlined or bulldozed. Start where your community can agree.</p>",
+          "sources": []
+        }
+      ],
+      "timeline": [
+        {
+          "y": 1952,
+          "t": "German reparations agreement",
+          "label": "documented"
+        },
+        {
+          "y": 1988,
+          "t": "Civil Liberties Act",
+          "label": "documented"
+        },
+        {
+          "y": 1989,
+          "t": "H.R. 40 first introduced",
+          "label": "documented"
+        },
+        {
+          "y": 1994,
+          "t": "Rosewood compensation",
+          "label": "documented"
+        },
+        {
+          "y": 2013,
+          "t": "North Carolina sterilization compensation",
+          "label": "documented"
+        },
+        {
+          "y": 2015,
+          "t": "Chicago Burge reparations",
+          "label": "documented"
+        },
+        {
+          "y": 2021,
+          "t": "Evanston housing reparations; Pew survey",
+          "label": "documented"
+        },
+        {
+          "y": 2022,
+          "t": "Bruce's Beach returned",
+          "label": "documented"
+        },
+        {
+          "y": 2023,
+          "t": "California Reparations Task Force final report",
+          "label": "documented"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "How many forms of reparation do the UN's 2005 principles list?",
+          "options": [
+            "One: cash",
+            "Five",
+            "Ten",
+            "None"
+          ],
+          "a": 1,
+          "why": "Restitution, compensation, rehabilitation, satisfaction and guarantees of non-repetition."
+        },
+        {
+          "q": "What does H.R. 40 propose?",
+          "options": [
+            "Immediate payments",
+            "A federal commission to study reparations",
+            "Ending taxes",
+            "Nothing"
+          ],
+          "a": 1,
+          "why": "First introduced in 1989."
+        },
+        {
+          "q": "Why is the arguments section labeled debated?",
+          "options": [
+            "Facts are disputed",
+            "Reasonable people disagree on whether and how to repair",
+            "It isn't",
+            "No one cares"
+          ],
+          "a": 1,
+          "why": "The precedents themselves are documented."
+        }
+      ],
+      "quest": "teach-in",
+      "map": [
+        {
+          "t": "Communities burned, flooded or taken",
+          "href": "index.html?layers=destroyed"
+        }
+      ],
+      "sourcesList": {
+        "un2005": {
+          "t": "UN General Assembly, Basic Principles and Guidelines on the Right to a Remedy and Reparation (2005)"
+        },
+        "germany": {
+          "t": "Reparations Agreement between Israel and West Germany (1952)",
+          "url": "https://en.wikipedia.org/wiki/Reparations_Agreement_between_Israel_and_the_Federal_Republic_of_Germany"
+        },
+        "cla": {
+          "t": "Civil Liberties Act of 1988",
+          "url": "https://en.wikipedia.org/wiki/Civil_Liberties_Act_of_1988"
+        },
+        "rosewood": {
+          "t": "Rosewood massacre",
+          "url": "https://en.wikipedia.org/wiki/Rosewood_massacre"
+        },
+        "burge": {
+          "t": "Chicago Police Torture Reparations Ordinance (2015)",
+          "url": "https://en.wikipedia.org/wiki/Jon_Burge"
+        },
+        "evanston": {
+          "t": "City of Evanston, Local Reparations"
+        },
+        "catf": {
+          "t": "California Task Force to Study and Develop Reparation Proposals, Final Report (2023)",
+          "url": "https://oag.ca.gov/ab3121"
+        },
+        "hr40": {
+          "t": "H.R. 40, Commission to Study and Develop Reparation Proposals for African Americans Act",
+          "url": "https://www.congress.gov/"
+        },
+        "pew": {
+          "t": "Pew Research Center, “Black and White Americans are far apart in their views of reparations for slavery” (2022)",
+          "url": "https://www.pewresearch.org/"
+        },
+        "coates": {
+          "t": "Ta-Nehisi Coates, “The Case for Reparations,” The Atlantic (2014)"
+        }
+      },
+      "num": 45
     },
     {
       "id": "path-forward",
-      "num": 39,
+      "num": 46,
       "title": "The path forward",
       "short": "What has actually worked, and where you fit in.",
       "status": "draft",
@@ -8792,6 +10028,119 @@
       "y": 1976,
       "why": "The case for pre-Columbian African contact (read alongside its critics)",
       "module": "columbus"
+    }
+  ],
+  "paths": [
+    {
+      "id": "start",
+      "title": "Start here: one hour",
+      "desc": "The five lessons that explain the whole picture, from how race was invented to what we can do about it.",
+      "modules": [
+        "before-race",
+        "evidence",
+        "policing",
+        "movements",
+        "path-forward"
+      ],
+      "icon": "🧭"
+    },
+    {
+      "id": "skeptics",
+      "title": "For skeptics",
+      "desc": "For anyone who thinks racism is mostly in the past. Controlled experiments and data, not opinions.",
+      "modules": [
+        "evidence",
+        "performance",
+        "systemic",
+        "wealth",
+        "courts",
+        "twenty-twenties"
+      ],
+      "icon": "🔬"
+    },
+    {
+      "id": "black-history",
+      "title": "Black history, start to now",
+      "desc": "From the first slave laws to the 2020s, including what Black communities built.",
+      "modules": [
+        "before-race",
+        "slavery-law",
+        "reconstruction",
+        "black-towns",
+        "destroyed",
+        "wealth",
+        "movements",
+        "twenty-twenties"
+      ],
+      "icon": "✊🏾"
+    },
+    {
+      "id": "teachers",
+      "title": "For teachers",
+      "desc": "Lessons that fit a semester, each with a ready-made teach-in kit.",
+      "modules": [
+        "before-race",
+        "columbus",
+        "reconstruction",
+        "schools",
+        "women",
+        "movements"
+      ],
+      "icon": "🍎"
+    },
+    {
+      "id": "lawmakers",
+      "title": "For lawmakers and their staff",
+      "desc": "The case for a federal CAREN Act, the evidence behind it, and how it could pass.",
+      "modules": [
+        "policing",
+        "rights",
+        "evidence",
+        "systemic",
+        "lawmaking",
+        "path-forward"
+      ],
+      "icon": "🏛️"
+    },
+    {
+      "id": "organizers",
+      "title": "For organizers",
+      "desc": "How movements won, and the tools to win locally.",
+      "modules": [
+        "movements",
+        "lawmaking",
+        "rights",
+        "women",
+        "labor",
+        "path-forward"
+      ],
+      "icon": "📣"
+    },
+    {
+      "id": "latino",
+      "title": "Latino and immigrant history",
+      "desc": "Colonization, borders, the African diaspora in Latin America, and enforcement today.",
+      "modules": [
+        "colonizers",
+        "afro-latino",
+        "borders",
+        "enforcement",
+        "many-targets"
+      ],
+      "icon": "🌎"
+    },
+    {
+      "id": "native",
+      "title": "Native nations",
+      "desc": "Conquest, survival and sovereignty today.",
+      "modules": [
+        "colonizers",
+        "conquest",
+        "sovereignty",
+        "many-targets",
+        "environment"
+      ],
+      "icon": "🪶"
     }
   ]
 }

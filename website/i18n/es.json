@@ -1276,7 +1276,13 @@
   "Lesson heard": "Lección escuchada",
   "Female voice": "Voz femenina",
   "Male voice": "Voz masculina",
-  "Narration voices": "Voces de narración"
+  "Narration voices": "Voces de narración",
+  "Learning paths": "Rutas de aprendizaje",
+  "Not sure where to start? Follow a path. Finish every lesson in one to earn its badge.": "¿No sabes por dónde empezar? Sigue una ruta. Termina todas sus lecciones para ganar su insignia.",
+  "Start →": "Empezar →",
+  "Continue →": "Continuar →",
+  "✓ Path complete": "✓ Ruta completada",
+  "✓ Back to the path": "✓ Volver a la ruta"
  },
  "patterns": [
   [

@@ -55,7 +55,7 @@ function cors(req, res, next) {
   if (o && CORS_ORIGINS.includes(o)) {
     res.set('Access-Control-Allow-Origin', o);
     res.set('Vary', 'Origin');
-    res.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.set('Access-Control-Max-Age', '600');
   }
@@ -331,6 +331,111 @@ app.post('/api/learn/sync', rateLimit(120, 3600e3), async (req, res, next) => {
       signedIn: !!user, name: user ? user.name : null, picture: user ? user.picture : null,
       events: r.recordset, xp: r.recordset.reduce((a, e) => a + e.xp, 0)
     });
+  } catch (e) { next(e); }
+});
+
+// ---------- Classroom mode ----------
+// Codes avoid look-alike characters (0/O, 1/I/L).
+const CODE_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const newCode = () => Array.from(crypto.randomBytes(6), b => CODE_CHARS[b % CODE_CHARS.length]).join('');
+const cleanCode = v => str(v, 6).toUpperCase().replace(/[^A-Z0-9]/g, '');
+function requireUser(req, res, next) {
+  currentUser(req).then(u => { if (!u) return res.status(401).json({ error: 'Sign in required' }); req.user = u; next(); }).catch(next);
+}
+async function ownClass(req, res) {
+  const pool = await getPool();
+  const r = await pool.request().input('c', sql.Char(6), cleanCode(req.params.code)).input('u', sql.Int, req.user.id)
+    .query('SELECT * FROM dbo.classes WHERE code = @c AND teacher_user_id = @u');
+  if (!r.recordset[0]) { res.status(404).json({ error: 'Class not found' }); return null; }
+  return r.recordset[0];
+}
+
+app.post('/api/classes', rateLimit(20, 3600e3), requireUser, async (req, res, next) => {
+  try {
+    const b = req.body || {}, name = str(b.name, 100), cat = learnCatalog();
+    const path = cat && (cat.paths || []).some(p => p.id === b.path) ? b.path : null;
+    if (!name) return res.status(400).json({ error: 'Give the class a name.' });
+    const pool = await getPool();
+    for (let tries = 0; tries < 5; tries++) {
+      const code = newCode();
+      try {
+        await pool.request().input('c', sql.Char(6), code).input('n', sql.NVarChar(100), name).input('u', sql.Int, req.user.id).input('p', sql.NVarChar(40), path)
+          .query('INSERT INTO dbo.classes (code, name, teacher_user_id, path_id) VALUES (@c, @n, @u, @p)');
+        return res.status(201).json({ code, name, path });
+      } catch (e) { if (!/uq_classes_code|duplicate/i.test(e.message)) throw e; }
+    }
+    res.status(500).json({ error: 'Could not create a class code. Please try again.' });
+  } catch (e) { next(e); }
+});
+
+app.get('/api/classes', requireUser, async (req, res, next) => {
+  try {
+    const pool = await getPool();
+    const r = await pool.request().input('u', sql.Int, req.user.id)
+      .query(`SELECT c.code, c.name, c.path_id AS path, c.created_at, c.archived, (SELECT COUNT(*) FROM dbo.class_members m WHERE m.class_id = c.id) AS students
+              FROM dbo.classes c WHERE c.teacher_user_id = @u ORDER BY c.archived, c.created_at DESC`);
+    res.json(r.recordset);
+  } catch (e) { next(e); }
+});
+
+app.get('/api/classes/:code/progress', requireUser, async (req, res, next) => {
+  try {
+    const c = await ownClass(req, res); if (!c) return;
+    const pool = await getPool();
+    const m = await pool.request().input('id', sql.Int, c.id).query('SELECT id, device_id, nickname, joined_at FROM dbo.class_members WHERE class_id = @id ORDER BY nickname');
+    const ev = await pool.request().input('id', sql.Int, c.id)
+      .query(`SELECT e.device_id, e.event_key, e.xp FROM dbo.learn_events e JOIN dbo.class_members m ON m.device_id = e.device_id WHERE m.class_id = @id`);
+    const by = {};
+    ev.recordset.forEach(e => { const x = by[e.device_id] = by[e.device_id] || { keys: {}, xp: 0 }; if (!x.keys[e.event_key]) { x.keys[e.event_key] = 1; x.xp += e.xp; } });
+    res.json({ code: c.code, name: c.name, path: c.path_id, archived: c.archived,
+      students: m.recordset.map(s => ({ id: s.id, nickname: s.nickname, joined_at: s.joined_at, xp: (by[s.device_id] || {}).xp || 0, keys: Object.keys((by[s.device_id] || {}).keys || {}) })) });
+  } catch (e) { next(e); }
+});
+
+app.patch('/api/classes/:code', requireUser, async (req, res, next) => {
+  try {
+    const c = await ownClass(req, res); if (!c) return;
+    const b = req.body || {}, cat = learnCatalog();
+    const path = b.path === null || b.path === '' ? null : (cat && (cat.paths || []).some(p => p.id === b.path) ? b.path : c.path_id);
+    const pool = await getPool();
+    await pool.request().input('id', sql.Int, c.id).input('n', sql.NVarChar(100), str(b.name, 100) || c.name).input('p', sql.NVarChar(40), path).input('a', sql.Bit, b.archived === undefined ? c.archived : !!b.archived)
+      .query('UPDATE dbo.classes SET name = @n, path_id = @p, archived = @a WHERE id = @id');
+    res.json({ ok: true });
+  } catch (e) { next(e); }
+});
+
+app.delete('/api/classes/:code/members/:id', requireUser, async (req, res, next) => {
+  try {
+    const c = await ownClass(req, res); if (!c) return;
+    const pool = await getPool();
+    await pool.request().input('id', sql.Int, parseInt(req.params.id, 10)).input('c', sql.Int, c.id).query('DELETE FROM dbo.class_members WHERE id = @id AND class_id = @c');
+    res.json({ ok: true });
+  } catch (e) { next(e); }
+});
+
+// Students: look up a class by code, and join it with a nickname (no account needed).
+app.get('/api/classes/:code/public', rateLimit(60, 3600e3), async (req, res, next) => {
+  try {
+    const pool = await getPool();
+    const r = await pool.request().input('c', sql.Char(6), cleanCode(req.params.code)).query('SELECT name, path_id AS path FROM dbo.classes WHERE code = @c AND archived = 0');
+    if (!r.recordset[0]) return res.status(404).json({ error: 'No open class has that code.' });
+    res.json(r.recordset[0]);
+  } catch (e) { next(e); }
+});
+
+app.post('/api/classes/join', rateLimit(30, 3600e3), async (req, res, next) => {
+  try {
+    const b = req.body || {}, code = cleanCode(b.code), device = /^[a-f0-9]{32}$/.test(b.device || '') ? b.device : null;
+    const nick = str(b.nickname, 40).replace(/[<>@]/g, '');
+    if (!device) return res.status(400).json({ error: 'Missing device ID.' });
+    if (!nick) return res.status(400).json({ error: 'Choose a nickname (a first name and last initial is fine).' });
+    const pool = await getPool();
+    const c = (await pool.request().input('c', sql.Char(6), code).query('SELECT id, name, path_id FROM dbo.classes WHERE code = @c AND archived = 0')).recordset[0];
+    if (!c) return res.status(404).json({ error: 'No open class has that code.' });
+    await pool.request().input('cid', sql.Int, c.id).input('d', sql.Char(32), device).input('n', sql.NVarChar(40), nick)
+      .query(`MERGE dbo.class_members WITH (HOLDLOCK) AS t USING (SELECT @cid AS class_id, @d AS device_id) AS s ON t.class_id = s.class_id AND t.device_id = s.device_id
+              WHEN MATCHED THEN UPDATE SET nickname = @n WHEN NOT MATCHED THEN INSERT (class_id, device_id, nickname) VALUES (@cid, @d, @n);`);
+    res.json({ ok: true, code, name: c.name, path: c.path_id });
   } catch (e) { next(e); }
 });
 

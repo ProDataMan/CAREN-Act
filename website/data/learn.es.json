@@ -278,6 +278,38 @@
   "ballot": {
    "name": "Guardián de la democracia",
    "desc": "Registraste votantes o trabajaste en las urnas."
+  },
+  "path-start": {
+   "name": "Empezaste bien",
+   "desc": "Terminaste la ruta “Empieza aquí: una hora”."
+  },
+  "path-skeptics": {
+   "name": "Para escépticos",
+   "desc": "Terminaste la ruta “Para escépticos”."
+  },
+  "path-black-history": {
+   "name": "Historia negra, del principio a hoy",
+   "desc": "Terminaste la ruta “Historia negra, del principio a hoy”."
+  },
+  "path-teachers": {
+   "name": "Para docentes",
+   "desc": "Terminaste la ruta “Para docentes”."
+  },
+  "path-lawmakers": {
+   "name": "Para legisladores y su personal",
+   "desc": "Terminaste la ruta “Para legisladores y su personal”."
+  },
+  "path-organizers": {
+   "name": "Para organizadores",
+   "desc": "Terminaste la ruta “Para organizadores”."
+  },
+  "path-latino": {
+   "name": "Historia latina e inmigrante",
+   "desc": "Terminaste la ruta “Historia latina e inmigrante”."
+  },
+  "path-native": {
+   "name": "Naciones indígenas",
+   "desc": "Terminaste la ruta “Naciones indígenas”."
   }
  },
  "threeThings": [
@@ -785,6 +817,68 @@
   "culture": {
    "title": "Deporte, música y cultura",
    "short": "Jack Johnson, Jackie Robinson y las Ligas Negras, los atletas que protestaron, las raíces negras de la música estadounidense y el debate sobre quién se beneficia de la cultura negra."
+  },
+  "rights": {
+   "title": "Tus derechos ante la policía, y después de una llamada usada como arma",
+   "short": "Lo que dice la ley sobre lo que puedes y no puedes hacer cuando la policía te detiene o llega a tu puerta, cómo protegerte lo más posible, y qué hacer después si alguien llamó a la policía contra ti por quién eres."
+  },
+  "lawmaking": {
+   "title": "Cómo un proyecto se convierte en ley, y cómo podría lograrlo este",
+   "short": "Presentación, comités, audiencias, enmiendas, el filibusterismo, la otra cámara y el presidente, por qué mueren la mayoría de los proyectos, y un camino realista para una Ley CAREN federal en el 120.º Congreso."
+  },
+  "sovereignty": {
+   "title": "Las naciones indígenas hoy: soberanía, tierra y justicia",
+   "short": "más de 570 naciones tribales reconocidas, los tratados como “ley suprema”, quién puede procesar delitos en tierras tribales, el bienestar infantil, el agua, el voto y la devolución de tierras."
+  },
+  "housing-today": {
+   "title": "La vivienda hoy: desalojos, evaluación de inquilinos y conservar el hogar",
+   "short": "Quién es desalojado, los algoritmos de evaluación de inquilinos, las leyes que castigan a inquilinos por llamar al 911, la brecha de propiedad y las herramientas que mantienen a las familias en sus hogares."
+  },
+  "enforcement": {
+   "title": "La aplicación de las leyes migratorias hoy",
+   "short": "Policías locales como agentes de inmigración, la detención, el perfilamiento racial, las políticas santuario y la evidencia sobre ellas, y qué pueden hacer las familias."
+  },
+  "reparations": {
+   "title": "Reparar y las reparaciones",
+   "short": "Qué significa la reparación en el derecho internacional, los precedentes en EE. UU. y otros países, Evanston, California y Tulsa, el proyecto H.R. 40, y los argumentos honestos a favor y en contra."
+  },
+  "global-freedom": {
+   "title": "La lucha negra mundial por la libertad",
+   "short": "De la Revolución haitiana al panafricanismo, Garvey, la Negritud, la independencia africana, la petición que acusó a EE. UU. de genocidio, el movimiento contra el apartheid y las protestas mundiales de 2020."
+  }
+ },
+ "paths": {
+  "start": {
+   "title": "Empieza aquí: una hora",
+   "desc": "Las cinco lecciones que explican el panorama completo, desde cómo se inventó la raza hasta qué podemos hacer."
+  },
+  "skeptics": {
+   "title": "Para escépticos",
+   "desc": "Para quien cree que el racismo es cosa del pasado. Experimentos controlados y datos, no opiniones."
+  },
+  "black-history": {
+   "title": "Historia negra, del principio a hoy",
+   "desc": "De las primeras leyes de esclavitud a los años 2020, incluido lo que construyeron las comunidades negras."
+  },
+  "teachers": {
+   "title": "Para docentes",
+   "desc": "Lecciones para un semestre, cada una con un kit de taller listo."
+  },
+  "lawmakers": {
+   "title": "Para legisladores y su personal",
+   "desc": "Los argumentos a favor de una Ley CAREN federal, la evidencia y cómo podría aprobarse."
+  },
+  "organizers": {
+   "title": "Para organizadores",
+   "desc": "Cómo ganaron los movimientos, y las herramientas para ganar en tu localidad."
+  },
+  "latino": {
+   "title": "Historia latina e inmigrante",
+   "desc": "La colonización, las fronteras, la diáspora africana en América Latina y la aplicación de las leyes migratorias hoy."
+  },
+  "native": {
+   "title": "Naciones indígenas",
+   "desc": "Conquista, supervivencia y soberanía hoy."
   }
  }
 }

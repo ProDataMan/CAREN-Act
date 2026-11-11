@@ -30,6 +30,14 @@
     .mod .st { font-size: .76rem; font-weight: 700; }
     .mod.outline { background: var(--surface-2); }
     .quests { display: grid; gap: 8px; margin: 10px 0; }
+    .paths { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 12px 0; }
+    .path { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: #fff; }
+    .path h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .path p { margin: 0 0 8px; font-size: .88rem; color: #333; }
+    .path ol { margin: 6px 0 0; padding-left: 20px; font-size: .88rem; }
+    .path li.done a { color: #1b7837; }
+    .path li.done::marker { content: "✓ "; color: #1b7837; }
+    .path .go { margin-top: 8px; }
     .qcat { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
     .qcat summary { cursor: pointer; }
     .three { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0; counter-reset: t; }
@@ -80,6 +88,10 @@
     <h2>How to read these lessons</h2>
     <p>Every claim carries one of three labels, so you always know how solid the ground is. Lawmakers, reporters and opponents check sources, and one weak claim can discredit a hundred strong ones.</p>
     <div class="labels" id="labels"></div>
+
+    <h2 id="paths">Learning paths</h2>
+    <p>Not sure where to start? Follow a path. Finish every lesson in one to earn its badge.</p>
+    <div class="paths" id="pathList"></div>
 
     <h2>Modules</h2>
     <p>Each one is a 5–10 minute read with a timeline, primary sources, map links, a short quiz and a quest. Want to teach one? Every written module has a free <a href="teach.html">teach-in kit</a> with slides, a handout and a facilitator guide.</p>
@@ -152,6 +164,14 @@
             : '<a class="btn secondary" href="' + q.href + '">Go</a> <button class="btn secondary" type="button" data-q="' + q.id + '">I did this</button>';
           return '<div class="quest' + (done ? ' done' : '') + '"><div class="xp">' + q.xp + ' XP</div><div><h3>' + ui.esc(q.title) + '</h3><p>' + ui.esc(q.desc) + '</p></div><div class="act">' + act + '</div></div>';
         };
+        $('pathList').innerHTML = (cat.paths || []).map(p => {
+          const mods = p.modules.map(id => cat.modules.find(m => m.id === id)).filter(Boolean);
+          const done = mods.filter(m => s.events['read:' + m.id]).length, next = mods.find(m => !s.events['read:' + m.id]);
+          return '<div class="path" id="path-' + p.id + '"><h3>' + p.icon + ' ' + ui.esc(p.title) + '</h3><p>' + ui.esc(p.desc) + '</p>' +
+            '<div class="xpbar" aria-hidden="true"><i style="width:' + Math.round(100 * done / mods.length) + '%"></i></div><span class="note">' + done + ' / ' + mods.length + '</span>' +
+            '<ol>' + mods.map(m => '<li' + (s.events['read:' + m.id] ? ' class="done"' : '') + '><a href="module.html?m=' + m.id + '&path=' + p.id + '">' + ui.esc(m.title.split(':')[0]) + '</a></li>').join('') + '</ol>' +
+            (next ? '<p class="go"><a class="btn secondary" href="module.html?m=' + next.id + '&path=' + p.id + '">' + (done ? 'Continue' : 'Start') + ' →</a></p>' : '<p class="go note">✓ Path complete</p>') + '</div>';
+        }).join('');
         $('questList').innerHTML = (cat.questCategories || [{ id: null, name: '' }]).map(c => {
           const qs = cat.quests.filter(q => !c.id || q.cat === c.id).sort((a, b) => a.xp - b.xp);
           if (!qs.length) return '';

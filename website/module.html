@@ -39,11 +39,17 @@
     L.catalog().then(cat => {
       const i = cat.modules.findIndex(m => m.id === id);
       if (i < 0) { main.innerHTML = '<h1>Module not found</h1><p><a href="learn.html">See all modules</a></p>'; return; }
-      const m = cat.modules[i], prev = cat.modules[i - 1], next = cat.modules[i + 1];
+      const m = cat.modules[i];
+      // Inside a learning path (?path=id), previous/next follow the path instead of the module order.
+      const path = (cat.paths || []).find(p => p.id === new URLSearchParams(location.search).get('path') && p.modules.indexOf(m.id) >= 0);
+      const pi = path ? path.modules.indexOf(m.id) : -1, byId = id => cat.modules.find(x => x.id === id);
+      const prev = path ? (pi > 0 ? byId(path.modules[pi - 1]) : null) : cat.modules[i - 1];
+      const next = path ? (pi < path.modules.length - 1 ? byId(path.modules[pi + 1]) : null) : cat.modules[i + 1];
+      const pq = path ? '&path=' + path.id : '';
       document.title = 'Module ' + m.num + ': ' + m.title.split(':')[0];
       const srcIds = Object.keys(m.sourcesList || {});
       const refNum = k => srcIds.indexOf(k) + 1;
-      let h = '<p class="crumbs"><a href="learn.html">Learn</a> › Module ' + m.num + '</p>' +
+      let h = '<p class="crumbs"><a href="learn.html">Learn</a> › ' + (path ? '<a href="learn.html#path-' + path.id + '">' + path.icon + ' ' + esc(path.title) + '</a> › ' + (pi + 1) + ' / ' + path.modules.length : 'Module ' + m.num) + '</p>' +
         '<h1 data-narr="title">' + esc(m.title) + '</h1>' +
         '<div class="meta">' + (m.minutes ? '<span>' + m.minutes + ' min read</span>·' : '') +
         '<span>' + (m.status === 'outline' ? 'Outline: being written' : 'Draft, awaiting historian review') + '</span>·' +
@@ -71,15 +77,15 @@
         const s = m.sourcesList[k];
         return '<li id="src-' + k + '">' + (s.url ? '<a href="' + esc(s.url) + '"' + (/^https?:/.test(s.url) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(s.t) + '</a>' : esc(s.t)) + '</li>';
       }).join('') + '</ol><p class="note">Some links go to encyclopedia overviews that cite the primary documents; reviewers are replacing them with the originals.</p>';
-      h += '<div class="pager">' + (prev ? '<a href="module.html?m=' + prev.id + '">← Module ' + prev.num + ': ' + esc(prev.title.split(':')[0]) + '</a>' : '<span></span>') +
-        (next ? '<a href="module.html?m=' + next.id + '">Module ' + next.num + ': ' + esc(next.title.split(':')[0]) + ' →</a>' : '<a href="learn.html#quests">Quest board →</a>') + '</div>';
+      h += '<div class="pager">' + (prev ? '<a href="module.html?m=' + prev.id + pq + '">← Module ' + prev.num + ': ' + esc(prev.title.split(':')[0]) + '</a>' : '<span></span>') +
+        (next ? '<a href="module.html?m=' + next.id + pq + '">Module ' + next.num + ': ' + esc(next.title.split(':')[0]) + ' →</a>' : (path ? '<a href="learn.html#path-' + path.id + '">✓ Back to the path</a>' : '<a href="learn.html#quests">Quest board →</a>')) + '</div>';
       main.innerHTML = h;
 
       const finish = document.getElementById('finish');
       function drawFinish() {
         if (!finish) return;
         finish.innerHTML = L.has('read:' + m.id)
-          ? '✓ <b>You finished this module.</b> ' + (next ? '<a href="module.html?m=' + next.id + '">Next: ' + esc(next.title.split(':')[0]) + ' →</a>' : '')
+          ? '✓ <b>You finished this module.</b> ' + (next ? '<a href="module.html?m=' + next.id + pq + '">Next: ' + esc(next.title.split(':')[0]) + ' →</a>' : '')
           : '<b>Finished reading?</b> <button class="btn" type="button" id="markRead">Mark as read (+' + cat.xp.read + ' XP)</button>';
         const b = document.getElementById('markRead');
         if (b) b.addEventListener('click', () => ui.award('read:' + m.id, 'Module ' + m.num).then(drawFinish));
