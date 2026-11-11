@@ -275,13 +275,19 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 - **Quests:** 42, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
 - **Teach-in kits:** `teach.html` lists them, and `teach.html?m=<id>&view=guide|slides|handout` builds each one from `learn.json`. Slides use the arrow keys, F for full screen and A to reveal quiz answers. Discussion questions come from the module's optional `discuss` list plus generic prompts.
 - **Fourth label:** `plan` ("Our recommendation") marks campaign advice, as opposed to historical claims.
-- **Narration (pilot: module 1):** a **Listen** bar on the lesson page plays `website/audio/<lang>/<module>.mp3` and highlights each sentence as it is read. Clicking a sentence during playback jumps there, and hearing a lesson to the end counts as reading it.
-  - **How it's made:** `scripts/narrate.py` with Piper, an offline text-to-speech engine, so no text goes to an outside service. The voice is LJSpeech, which is public domain.
-  - **Timing file:** a `.json` beside each MP3 holds sentence timings. Each entry names the page element (`data-narr`) that contains the sentence.
-  - **Setup:** `python3 -m venv .venv && .venv/bin/pip install piper-tts lameenc`, then download `en_US-ljspeech-high.onnx` and its `.json` from huggingface.co/rhasspy/piper-voices.
-  - **Run:** `.venv/bin/python scripts/narrate.py --voice en_US-ljspeech-high.onnx before-race`, or `--all`.
+- **Narration (pilot: module 1):** a **Listen** bar on the lesson page.
+  - **Highlighting:** each word is highlighted as it is read, with its sentence shaded.
+  - **Controls:** play, seek, speed, and a choice of a **female or male voice**, which is remembered.
+  - **Clicking a sentence** during playback jumps there. Hearing a lesson to the end counts as reading it.
+  - **Files:** `website/audio/<lang>/<module>.<voice>.mp3` plus a `.json` of sentence and word timings, and `audio/<lang>/index.json` listing the voices per module.
+  - **How it's made:** `scripts/narrate.py` uses Piper, an offline text-to-speech engine; no text goes to an outside service.
+  - **Word timings** are estimated within each sentence's measured speech, in proportion to each word's phoneme count, because Piper's stock voices don't report timings.
+  - **Years** are read as people say them: 1492 is "fourteen ninety-two," 1905 is "nineteen oh five," 2023 is "twenty twenty-three," and the 1830s are "eighteen thirties."
+  - **Voices:** female, Kristin (public domain, LibriVox); male, John (public domain, LibriVox).
+  - **Other free voices** can be compared at [voices.html](https://prodataman.github.io/CAREN-Act/website/voices.html): Joe and Reza Ibrahim (CC0), Norman (public domain), and LibriTTS-R readers. LibriTTS-R is CC BY 4.0, by Koizumi et al., from LibriTTS/LibriSpeech.
+  - **Setup:** `python3 -m venv .venv && .venv/bin/pip install piper-tts lameenc`, then download voices from huggingface.co/rhasspy/piper-voices.
+  - **Run:** `.venv/bin/python scripts/narrate.py before-race --voice female=en_US-kristin-medium.onnx --voice male=en_US-john-medium.onnx --label "female=Female voice" --label "male=Male voice"`. A LibriTTS-R reader is chosen with `path.onnx:<speaker>`.
   - **After editing a lesson,** re-run it so the audio matches the text.
-  - **Size:** about 3 MB and 8 minutes per lesson.
 - **Reading list:** `readingList` in `learn.json`, shown at `learn.html#reading`.
 - **"Three things everyone should know":** set in `threeThings` in `learn.json` and shown at the top of the hub. Quests are on the honor system for now.
 - **Levels:** Listener, Learner, Witness, Ally, Organizer, Changemaker.

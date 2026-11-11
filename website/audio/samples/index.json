@@ -1,0 +1,161 @@
+{
+ "text": "In 1662, Virginia ruled that a child follows the condition of the mother. The fear was real. It was fear of revolt, of revenge, and of losing power at the ballot box. What was built can be taken apart.",
+ "voices": [
+  {
+   "id": "kristin",
+   "label": "Kristin (female, public domain)",
+   "model": "en_US-kristin-medium",
+   "speaker": null
+  },
+  {
+   "id": "ljspeech",
+   "label": "LJ (female, public domain; the current voice)",
+   "model": "en_US-ljspeech-high",
+   "speaker": null
+  },
+  {
+   "id": "joe",
+   "label": "Joe (male, CC0)",
+   "model": "en_US-joe-medium",
+   "speaker": null
+  },
+  {
+   "id": "john",
+   "label": "John (male, public domain)",
+   "model": "en_US-john-medium",
+   "speaker": null
+  },
+  {
+   "id": "norman",
+   "label": "Norman (male, public domain)",
+   "model": "en_US-norman-medium",
+   "speaker": null
+  },
+  {
+   "id": "reza",
+   "label": "Reza Ibrahim (male, CC0)",
+   "model": "en_US-reza_ibrahim-medium",
+   "speaker": null
+  },
+  {
+   "id": "libritts-3",
+   "label": "LibriTTS-R reader #3 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 3
+  },
+  {
+   "id": "libritts-12",
+   "label": "LibriTTS-R reader #12 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 12
+  },
+  {
+   "id": "libritts-27",
+   "label": "LibriTTS-R reader #27 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 27
+  },
+  {
+   "id": "libritts-45",
+   "label": "LibriTTS-R reader #45 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 45
+  },
+  {
+   "id": "libritts-60",
+   "label": "LibriTTS-R reader #60 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 60
+  },
+  {
+   "id": "libritts-78",
+   "label": "LibriTTS-R reader #78 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 78
+  },
+  {
+   "id": "libritts-96",
+   "label": "LibriTTS-R reader #96 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 96
+  },
+  {
+   "id": "libritts-120",
+   "label": "LibriTTS-R reader #120 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 120
+  },
+  {
+   "id": "libritts-150",
+   "label": "LibriTTS-R reader #150 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 150
+  },
+  {
+   "id": "libritts-180",
+   "label": "LibriTTS-R reader #180 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 180
+  },
+  {
+   "id": "libritts-210",
+   "label": "LibriTTS-R reader #210 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 210
+  },
+  {
+   "id": "libritts-240",
+   "label": "LibriTTS-R reader #240 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 240
+  },
+  {
+   "id": "libritts-300",
+   "label": "LibriTTS-R reader #300 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 300
+  },
+  {
+   "id": "libritts-360",
+   "label": "LibriTTS-R reader #360 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 360
+  },
+  {
+   "id": "libritts-420",
+   "label": "LibriTTS-R reader #420 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 420
+  },
+  {
+   "id": "libritts-480",
+   "label": "LibriTTS-R reader #480 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 480
+  },
+  {
+   "id": "libritts-540",
+   "label": "LibriTTS-R reader #540 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 540
+  },
+  {
+   "id": "libritts-600",
+   "label": "LibriTTS-R reader #600 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 600
+  },
+  {
+   "id": "libritts-700",
+   "label": "LibriTTS-R reader #700 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 700
+  },
+  {
+   "id": "libritts-800",
+   "label": "LibriTTS-R reader #800 (CC BY 4.0)",
+   "model": "en_US-libritts_r-medium",
+   "speaker": 800
+  }
+ ]
+}

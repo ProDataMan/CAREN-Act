@@ -145,5 +145,6 @@ html.i18n-pending body { visibility: hidden; }
 .narr { position: sticky; top: calc(var(--header-h) + 6px); z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; margin: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
 .narr input[type=range] { flex: 1 1 160px; min-width: 120px; }
 .narr select { font: inherit; padding: 4px; border-radius: 6px; border: 1px solid #bbb; }
-::highlight(narration) { background-color: #fde68a; color: #1f2328; }
+::highlight(narration-sentence) { background-color: #fef3c7; }
+::highlight(narration) { background-color: #f59e0b; color: #111; }
 .narr-active { background: #fef3c7; border-radius: 4px; }

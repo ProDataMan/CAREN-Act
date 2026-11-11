@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Narration Voices</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin: 12px 0; }
+    .v { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+    .v b { display: block; margin-bottom: 4px; }
+    .v code { font-size: .8rem; color: var(--muted); }
+    .v audio { width: 100%; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page-wide">
+    <h1>Narration voices</h1>
+    <p class="lede">Every voice below reads the same passage. All are free to use: public domain, CC0, or CC BY (credit given in the README). Pick the ones you like and tell us their codes (for example <code>libritts-96</code>); the lessons will be narrated in them.</p>
+    <p class="note">Computer voices are made from recordings of real readers, and the voice libraries don't record readers' backgrounds, so the most authentic option is a real narrator. A volunteer who records the lessons can replace any of these voices.</p>
+    <p id="text" class="callout info"></p>
+    <div class="vgrid" id="list"></div>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script>
+    fetch('audio/samples/index.json').then(r => r.json()).then(d => {
+      document.getElementById('text').textContent = '“' + d.text + '”';
+      document.getElementById('list').innerHTML = d.voices.map(v => '<div class="v"><b>' + v.label + '</b><code>' + v.id + '</code><audio controls preload="none" src="audio/samples/' + v.id + '.mp3"></audio></div>').join('');
+      document.querySelectorAll('audio').forEach(a => a.addEventListener('play', () => document.querySelectorAll('audio').forEach(b => { if (b !== a) b.pause(); })));
+    });
+  </script>
+</body>
+</html>

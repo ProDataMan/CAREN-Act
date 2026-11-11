@@ -96,72 +96,110 @@
       narrator(m);
     });
 
-    // ---- Narration: audio/<lang>/<module>.mp3 with per-sentence timings; highlights the sentence being read.
+    // ---- Narration: audio/<lang>/<module>.<voice>.mp3 with sentence and word timings.
+    // The current word is highlighted (and its sentence shaded) as it is read.
     function narrator(m) {
       const box = document.getElementById('narr'); if (!box) return;
       const lang = (window.CarenI18n && CarenI18n.lang) || 'en';
-      const base = 'audio/' + lang + '/' + m.id;
-      fetch(base + '.json').then(r => r.ok ? r.json() : null).catch(() => null).then(meta => {
-        if (!meta || !meta.segments) return;
+      const dir = 'audio/' + lang + '/';
+      fetch(dir + 'index.json').then(r => r.ok ? r.json() : null).catch(() => null).then(idx => {
+        const voices = idx && idx.modules && idx.modules[m.id];
+        if (!voices || !voices.length) return;
+        let pref = null; try { pref = localStorage.getItem('caren-voice'); } catch (e) { /* ignore */ }
+        let voice = voices.indexOf(pref) >= 0 ? pref : voices[0];
         const fmt = t => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+        const $ = id => document.getElementById(id);
         box.hidden = false;
-        box.innerHTML = '<button type="button" class="btn" id="nPlay" aria-label="Listen to this lesson">▶ Listen</button>' +
-          '<input type="range" id="nSeek" min="0" max="' + meta.duration + '" step="0.1" value="0" aria-label="Position">' +
-          '<span class="note" id="nTime">0:00 / ' + fmt(meta.duration) + '</span>' +
+        box.innerHTML = '<button type="button" class="btn" id="nPlay">▶ Listen</button>' +
+          '<input type="range" id="nSeek" min="0" max="1" step="0.1" value="0" aria-label="Position">' +
+          '<span class="note" id="nTime">0:00</span>' +
+          (voices.length > 1 ? '<select id="nVoice" aria-label="Voice">' + voices.map(v => '<option value="' + v + '"' + (v === voice ? ' selected' : '') + '>' + esc((idx.voices[v] || {}).label || v) + '</option>').join('') + '</select>' : '') +
           '<select id="nRate" aria-label="Speed"><option value="0.85">0.85×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select>' +
           '<label class="note"><input type="checkbox" id="nFollow" checked> Follow along</label>';
-        const audio = new Audio(); audio.preload = 'none'; audio.src = base + '.mp3';
-        const $ = id => document.getElementById(id);
-        // Map each segment to a DOM Range by finding its text (ignoring whitespace) inside its element, in order.
-        const cursors = {};
-        function locate(seg) {
-          const el = document.querySelector('[data-narr="' + seg.el + '"]'); if (!el) return null;
-          const nodes = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n;
-          let flat = '', map = [];
-          while ((n = w.nextNode())) { for (let i = 0; i < n.nodeValue.length; i++) { const c = n.nodeValue[i]; if (!/\s/.test(c)) { flat += c; map.push([n, i]); } } }
-          const want = seg.text.replace(/\s+/g, '');
-          let at = flat.indexOf(want, cursors[seg.el] || 0);
-          if (at < 0) at = flat.indexOf(want);
-          if (at < 0) return { el };
-          cursors[seg.el] = at + want.length;
-          const rg = document.createRange(), a = map[at], b = map[at + want.length - 1];
-          rg.setStart(a[0], a[1]); rg.setEnd(b[0], b[1] + 1);
-          return { el, range: rg };
+        const audio = new Audio(); audio.preload = 'none';
+        const hlWord = (window.CSS && CSS.highlights && window.Highlight) ? new Highlight() : null;
+        const hlSent = hlWord ? new Highlight() : null;
+        if (hlWord) { CSS.highlights.set('narration-sentence', hlSent); CSS.highlights.set('narration', hlWord); }
+        let meta = null, located = [], cur = -1, curW = -1, raf = 0;
+
+        // Find each sentence inside its data-narr element (ignoring whitespace), in order, and keep the
+        // character map so individual words can be turned into Ranges.
+        const flatCache = {};
+        function flat(el) {
+          const key = el.getAttribute('data-narr');
+          if (flatCache[key]) return flatCache[key];
+          let s = '', map = []; const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n;
+          while ((n = w.nextNode())) for (let i = 0; i < n.nodeValue.length; i++) if (!/\s/.test(n.nodeValue[i])) { s += n.nodeValue[i]; map.push([n, i]); }
+          return (flatCache[key] = { s, map });
         }
-        const located = meta.segments.map(locate);
-        window.CarenNarration = { audio: audio, segments: meta.segments, located: located };
-        const hl = (window.CSS && CSS.highlights && window.Highlight) ? new Highlight() : null;
-        if (hl) CSS.highlights.set('narration', hl);
-        let cur = -1;
-        function mark(i) {
-          if (i === cur) return; cur = i;
-          document.querySelectorAll('.narr-active').forEach(e => e.classList.remove('narr-active'));
-          if (hl) hl.clear();
-          const L2 = located[i]; if (!L2) return;
-          if (L2.range && hl) hl.add(L2.range); else L2.el.classList.add('narr-active');
-          if ($('nFollow').checked && !audio.paused) {
-            const rect = (L2.range || L2.el).getBoundingClientRect();
-            if (rect.top < 80 || rect.bottom > innerHeight - 60) window.scrollTo({ top: scrollY + rect.top - innerHeight / 3, behavior: 'smooth' });
+        function rangeOf(f, a, len) { const r = document.createRange(), x = f.map[a], y = f.map[a + len - 1]; r.setStart(x[0], x[1]); r.setEnd(y[0], y[1] + 1); return r; }
+        function locateAll() {
+          const cursors = {};
+          located = meta.segments.map(seg => {
+            const el = document.querySelector('[data-narr="' + seg.el + '"]'); if (!el) return null;
+            const f = flat(el), want = seg.text.replace(/\s+/g, '');
+            let at = f.s.indexOf(want, cursors[seg.el] || 0); if (at < 0) at = f.s.indexOf(want);
+            if (at < 0) return { el };
+            cursors[seg.el] = at + want.length;
+            const words = []; let off = at;
+            seg.text.split(/\s+/).filter(Boolean).forEach(t => { words.push([off, t.length]); off += t.length; });
+            return { el, f, range: rangeOf(f, at, want.length), words };
+          });
+          window.CarenNarration = { audio, meta, located };
+        }
+        function find(t) { const s = meta.segments; for (let i = s.length - 1; i >= 0; i--) if (t >= s[i].start - 0.05) return t <= s[i].end + 0.5 ? i : -1; return -1; }
+        function paint() {
+          const t = audio.currentTime, i = find(t);
+          if (i !== cur) {
+            cur = i; curW = -1;
+            document.querySelectorAll('.narr-active').forEach(e => e.classList.remove('narr-active'));
+            if (hlSent) { hlSent.clear(); hlWord.clear(); }
+            const Lx = located[i];
+            if (Lx) {
+              if (Lx.range && hlSent) hlSent.add(Lx.range); else Lx.el.classList.add('narr-active');
+              if ($('nFollow').checked && !audio.paused) {
+                const rect = (Lx.range || Lx.el).getBoundingClientRect();
+                if (rect.top < 110 || rect.bottom > innerHeight - 60) window.scrollTo({ top: scrollY + rect.top - innerHeight / 3, behavior: 'smooth' });
+              }
+            }
           }
+          const Lx = located[cur], seg = meta.segments[cur];
+          if (hlWord && Lx && Lx.words && seg && seg.words) {
+            let w = -1; for (let k = 0; k < seg.words.length; k++) { if (t >= seg.words[k][0] - 0.02) w = k; else break; }
+            if (w !== curW && w >= 0 && Lx.words[w]) { curW = w; hlWord.clear(); hlWord.add(rangeOf(Lx.f, Lx.words[w][0], Lx.words[w][1])); }
+          }
+          $('nSeek').value = t; $('nTime').textContent = fmt(t) + ' / ' + fmt(meta.duration);
+          if (!audio.paused) raf = requestAnimationFrame(paint);
         }
-        function at(t) { const s = meta.segments; for (let i = s.length - 1; i >= 0; i--) if (t >= s[i].start - 0.05) return t <= s[i].end + 0.4 ? i : -1; return -1; }
-        audio.addEventListener('timeupdate', () => { $('nSeek').value = audio.currentTime; $('nTime').textContent = fmt(audio.currentTime) + ' / ' + fmt(meta.duration); const i = at(audio.currentTime); if (i >= 0) mark(i); });
-        audio.addEventListener('play', () => { $('nPlay').textContent = '❚❚ Pause'; });
-        audio.addEventListener('pause', () => { $('nPlay').textContent = '▶ Listen'; });
-        audio.addEventListener('ended', () => { mark(-2); $('nPlay').textContent = '↺ Replay'; if (!L.has('read:' + m.id)) ui.award('read:' + m.id, 'Lesson heard'); });
+        function load(v, keepTime) {
+          const t = keepTime ? audio.currentTime : 0, playing = !audio.paused;
+          voice = v; try { localStorage.setItem('caren-voice', v); } catch (e) { /* ignore */ }
+          return fetch(dir + m.id + '.' + v + '.json').then(r => r.json()).then(j => {
+            meta = j; locateAll(); cur = -1;
+            $('nSeek').max = meta.duration; $('nTime').textContent = fmt(0) + ' / ' + fmt(meta.duration);
+            audio.src = dir + m.id + '.' + v + '.mp3';
+            if (t) audio.addEventListener('loadedmetadata', () => { audio.currentTime = Math.min(t, meta.duration - 1); }, { once: true });
+            if (playing) audio.play();
+          });
+        }
+        load(voice);
+        audio.addEventListener('play', () => { $('nPlay').textContent = '❚❚ Pause'; box.dataset.started = '1'; cancelAnimationFrame(raf); raf = requestAnimationFrame(paint); });
+        audio.addEventListener('pause', () => { $('nPlay').textContent = '▶ Listen'; cancelAnimationFrame(raf); paint(); });
+        audio.addEventListener('seeked', paint);
+        audio.addEventListener('ended', () => { $('nPlay').textContent = '↺ Replay'; if (hlWord) { hlWord.clear(); hlSent.clear(); } if (!L.has('read:' + m.id)) ui.award('read:' + m.id, 'Lesson heard'); });
         $('nPlay').addEventListener('click', () => { audio.playbackRate = +$('nRate').value; audio.paused ? audio.play() : audio.pause(); });
         $('nSeek').addEventListener('input', () => { audio.currentTime = +$('nSeek').value; });
         $('nRate').addEventListener('change', () => { audio.playbackRate = +$('nRate').value; });
-        // Click any narrated sentence to play from there.
+        if ($('nVoice')) $('nVoice').addEventListener('change', e => { load(e.target.value, true).then(() => { audio.playbackRate = +$('nRate').value; }); });
+        // During playback, click any narrated sentence to jump to it.
         document.querySelectorAll('[data-narr]').forEach(el => el.addEventListener('click', e => {
-          if (e.target.closest('a')) return;
+          if (e.target.closest('a') || !box.dataset.started) return;
           const pos = document.caretPositionFromPoint ? document.caretPositionFromPoint(e.clientX, e.clientY) : (document.caretRangeFromPoint && document.caretRangeFromPoint(e.clientX, e.clientY));
-          if (!pos || audio.paused && !e.altKey && !box.dataset.started) return;
+          if (!pos) return;
           const node = pos.offsetNode || pos.startContainer, off = pos.offset != null ? pos.offset : pos.startOffset;
           const i = located.findIndex(x => x && x.range && x.range.isPointInRange(node, off));
           if (i >= 0) { audio.currentTime = meta.segments[i].start; if (audio.paused) audio.play(); }
         }));
-        audio.addEventListener('play', () => { box.dataset.started = '1'; }, { once: true });
       });
     }
   })();

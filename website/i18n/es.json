@@ -1273,7 +1273,10 @@
   "❚❚ Pause": "❚❚ Pausa",
   "↺ Replay": "↺ Repetir",
   "Follow along": "Seguir la lectura",
-  "Lesson heard": "Lección escuchada"
+  "Lesson heard": "Lección escuchada",
+  "Female voice": "Voz femenina",
+  "Male voice": "Voz masculina",
+  "Narration voices": "Voces de narración"
  },
  "patterns": [
   [
