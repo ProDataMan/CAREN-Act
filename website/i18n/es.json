@@ -1268,7 +1268,12 @@
   "After:": "Después:",
   "send a thank-you within a day that repeats the ask and any promised follow-up. Record what they said for the coalition.": "envía un agradecimiento en menos de un día que repita la petición y cualquier seguimiento prometido. Anota lo que dijeron para la coalición.",
   "Coalition sign-on letter": "Carta de adhesión de la coalición",
-  "Letter to the editor (under 200 words)": "Carta al editor (menos de 200 palabras)"
+  "Letter to the editor (under 200 words)": "Carta al editor (menos de 200 palabras)",
+  "▶ Listen": "▶ Escuchar",
+  "❚❚ Pause": "❚❚ Pausa",
+  "↺ Replay": "↺ Repetir",
+  "Follow along": "Seguir la lectura",
+  "Lesson heard": "Lección escuchada"
  },
  "patterns": [
   [

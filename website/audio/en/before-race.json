@@ -1,0 +1,387 @@
+{
+"module": "before-race",
+"lang": "en",
+"voice": "en_US-ljspeech-high",
+"license": "Voice: LJSpeech (public domain) via Piper TTS",
+"duration": 493.4,
+"segments": [
+{
+"el": "title",
+"text": "Before race: where the fear came from",
+"start": 0.0,
+"end": 2.68
+},
+{
+"el": "intro",
+"text": "People often ask why the targeting of Black, Brown and Native people has lasted so long, and whether some forgotten origin explains it.",
+"start": 3.48,
+"end": 12.18
+},
+{
+"el": "intro",
+"text": "The record gives a clearer answer: modern race is recent, it was written into law on purpose, and it has been defended by whatever argument was handy, including scripture and science.",
+"start": 12.53,
+"end": 24.29
+},
+{
+"el": "h0",
+"text": "The ancient world sorted people differently",
+"start": 24.64,
+"end": 27.13
+},
+{
+"el": "s0",
+"text": "Slavery is ancient, but for most of history it was not based on skin color.",
+"start": 27.83,
+"end": 32.63
+},
+{
+"el": "s0",
+"text": "Greeks, Romans, Egyptians, Africans, Arabs and Europeans enslaved people taken in war, sold for debt, or born to enslaved mothers, and enslaved people came from every region.",
+"start": 32.98,
+"end": 44.33
+},
+{
+"el": "s0",
+"text": "The English word slave itself comes from Slav, because so many Eastern Europeans were enslaved in the Middle Ages.",
+"start": 44.68,
+"end": 51.77
+},
+{
+"el": "s0",
+"text": "Historian Frank Snowden showed that Greek and Roman writers described Africans with curiosity and sometimes admiration, without the idea of a fixed racial ranking.",
+"start": 52.12,
+"end": 62.98
+},
+{
+"el": "h1",
+"text": "Race was written into law (1452–1705)",
+"start": 63.88,
+"end": 70.15
+},
+{
+"el": "s1",
+"text": "The idea that some people are naturally meant to be owned was spelled out step by step:",
+"start": 70.85,
+"end": 76.45
+},
+{
+"el": "s1",
+"text": "1452–1455: Pope Nicholas V's bulls Dum Diversas and Romanus Pontifex authorized Portugal's king to conquer “Saracens and pagans” and reduce them to perpetual slavery.",
+"start": 76.8,
+"end": 91.72
+},
+{
+"el": "s1",
+"text": "Portugal's African slave trade grew under them.",
+"start": 92.07,
+"end": 94.99
+},
+{
+"el": "s1",
+"text": "1493: Inter caetera gave Spain lands “discovered” in the Americas.",
+"start": 95.34,
+"end": 102.48
+},
+{
+"el": "s1",
+"text": "These bulls became the Doctrine of Discovery, which the U.S. Supreme Court adopted in Johnson v. M'Intosh (1823) to deny Native nations full ownership of their land.",
+"start": 102.83,
+"end": 115.79
+},
+{
+"el": "s1",
+"text": "The Vatican repudiated the doctrine in 2023.",
+"start": 116.14,
+"end": 120.17
+},
+{
+"el": "s1",
+"text": "The Supreme Court has not.",
+"start": 120.52,
+"end": 122.35
+},
+{
+"el": "s1",
+"text": "1662: Virginia ruled that a child follows the condition of the mother, so children of enslaved women, including children of their enslavers, were born enslaved.",
+"start": 122.7,
+"end": 134.7
+},
+{
+"el": "s1",
+"text": "1667–1705: Virginia declared that baptism does not free a slave (1667), that killing an enslaved person during “correction” was not a felony (1669), banned interracial marriage (1691), and gathered everything into the 1705 slave codes.",
+"start": 135.05,
+"end": 160.95
+},
+{
+"el": "s1",
+"text": "France's Code Noir (1685) did the same for its colonies.",
+"start": 161.3,
+"end": 166.56
+},
+{
+"el": "h2",
+"text": "Dividing people who might unite",
+"start": 167.46,
+"end": 169.33
+},
+{
+"el": "s2",
+"text": "In 1676, Bacon's Rebellion brought white indentured servants and enslaved Africans together in an armed revolt against Virginia's government.",
+"start": 170.03,
+"end": 180.7
+},
+{
+"el": "s2",
+"text": "In the decades that followed, Virginia's laws gave poor white people small privileges (freedom dues, the right to bear arms, the right to strike a Black person) while taking rights away from all Black people, free or enslaved.",
+"start": 181.05,
+"end": 194.62
+},
+{
+"el": "s2",
+"text": "That the laws changed is documented.",
+"start": 194.97,
+"end": 197.23
+},
+{
+"el": "s2",
+"text": "Historian Edmund Morgan argued that the elite used race on purpose to keep poor white and Black people from uniting again.",
+"start": 197.58,
+"end": 205.85
+},
+{
+"el": "s2",
+"text": "Others think the shift had more to do with the falling cost of enslaved Africans compared with English servants.",
+"start": 206.2,
+"end": 212.29
+},
+{
+"el": "s2",
+"text": "Most agree the effect was the same.",
+"start": 212.64,
+"end": 214.72
+},
+{
+"el": "h3",
+"text": "The practice came first, the ideas followed",
+"start": 215.62,
+"end": 218.66
+},
+{
+"el": "s3",
+"text": "In 1944 the Trinidadian historian Eric Williams wrote that “slavery was not born of racism: rather, racism was the consequence of slavery.”",
+"start": 219.36,
+"end": 230.0
+},
+{
+"el": "s3",
+"text": "Ibram X. Kendi's Stamped from the Beginning (2016) traces the same pattern over five centuries: racist ideas were developed to defend policies that were already profitable.",
+"start": 230.35,
+"end": 242.26
+},
+{
+"el": "s3",
+"text": "Thomas Jefferson, who enslaved more than 600 people over his life, offered Black inferiority “as a suspicion only” in his Notes on the State of Virginia (1785).",
+"start": 242.61,
+"end": 255.15
+},
+{
+"el": "s3",
+"text": "Within decades, “scientists” were measuring skulls to prove it (see the module on science).",
+"start": 255.5,
+"end": 261.2
+},
+{
+"el": "h4",
+"text": "What the fear was really about",
+"start": 262.1,
+"end": 264.02
+},
+{
+"el": "s4",
+"text": "The fear was real.",
+"start": 264.72,
+"end": 265.83
+},
+{
+"el": "s4",
+"text": "It was fear of revolt, of revenge, and of losing power at the ballot box:",
+"start": 266.18,
+"end": 270.91
+},
+{
+"el": "s4",
+"text": "Haiti, 1791–1804: enslaved people overthrew French rule and founded the first free Black republic.",
+"start": 271.26,
+"end": 282.62
+},
+{
+"el": "s4",
+"text": "France later forced Haiti to pay 150 million francs (reduced to 90 million) for its own freedom, a debt Haiti paid off over about 120 years.",
+"start": 282.97,
+"end": 293.72
+},
+{
+"el": "s4",
+"text": "Nat Turner's rebellion, 1831: afterward, Virginia and other states tightened bans on teaching Black people to read and on Black preachers and gatherings.",
+"start": 294.07,
+"end": 305.76
+},
+{
+"el": "s4",
+"text": "Reconstruction, 1867–1877: Black men voted and held office, and South Carolina's lower house had a Black majority.",
+"start": 306.11,
+"end": 318.09
+},
+{
+"el": "s4",
+"text": "White-supremacist violence ended it, including the 1898 coup in Wilmington, North Carolina, where an elected biracial government was overthrown by force.",
+"start": 318.44,
+"end": 331.2
+},
+{
+"el": "s4",
+"text": "“Replacement”: Madison Grant's The Passing of the Great Race (1916) warned that white Americans were being outbred.",
+"start": 331.55,
+"end": 339.51
+},
+{
+"el": "s4",
+"text": "It helped pass the 1924 immigration quotas.",
+"start": 339.86,
+"end": 343.87
+},
+{
+"el": "s4",
+"text": "The same fear, renamed the “Great Replacement,” was cited by the killers in El Paso (2019) and Buffalo (2022).",
+"start": 344.22,
+"end": 353.09
+},
+{
+"el": "h5",
+"text": "How scripture was used, and misused",
+"start": 353.99,
+"end": 356.51
+},
+{
+"el": "s5",
+"text": "The “Curse of Ham.”",
+"start": 357.21,
+"end": 358.25
+},
+{
+"el": "s5",
+"text": "In Genesis 9:20–27, Noah curses Canaan, Ham's son, to be a servant.",
+"start": 358.6,
+"end": 365.28
+},
+{
+"el": "s5",
+"text": "The text says nothing about skin color or Africa.",
+"start": 365.63,
+"end": 368.72
+},
+{
+"el": "s5",
+"text": "Linking the curse to dark skin came much later and was spread by interpreters across several traditions.",
+"start": 369.07,
+"end": 375.71
+},
+{
+"el": "s5",
+"text": "By the 1800s it was a standard pro-slavery argument in American pulpits.",
+"start": 376.06,
+"end": 381.55
+},
+{
+"el": "s5",
+"text": "The “Slave Bible.”",
+"start": 381.9,
+"end": 382.95
+},
+{
+"el": "s5",
+"text": "In 1807 a British missionary society printed Select Parts of the Holy Bible, for the Use of the Negro Slaves.",
+"start": 383.3,
+"end": 392.54
+},
+{
+"el": "s5",
+"text": "It cut most of the Old Testament, including the Exodus story of freedom from slavery, and kept passages like “Servants, be obedient to them that are your masters.”",
+"start": 392.89,
+"end": 403.15
+},
+{
+"el": "s5",
+"text": "Scripture was also the strongest weapon against slavery: enslaved people sang of Moses and Exodus, and abolitionists from Frederick Douglass to the Black church built their case on it.",
+"start": 403.5,
+"end": 414.93
+},
+{
+"el": "h6",
+"text": "The Book of Enoch and modern race myths",
+"start": 415.83,
+"end": 418.46
+},
+{
+"el": "s6",
+"text": "1 Enoch is an ancient Jewish book that is part of the Bible of the Ethiopian Orthodox Church; fragments were found among the Dead Sea Scrolls, and the Letter of Jude (verses 14–15) quotes it.",
+"start": 419.16,
+"end": 432.16
+},
+{
+"el": "s6",
+"text": "It tells how angels called the Watchers came to earth, taught forbidden knowledge, and fathered giants (the Nephilim of Genesis 6).",
+"start": 432.51,
+"end": 440.34
+},
+{
+"el": "s6",
+"text": "It contains no teaching about race.",
+"start": 440.69,
+"end": 443.07
+},
+{
+"el": "s6",
+"text": "Modern movements have still built race stories on Genesis and Enoch.",
+"start": 443.42,
+"end": 447.82
+},
+{
+"el": "s6",
+"text": "We describe them so you can recognize them, not because they are true:",
+"start": 448.17,
+"end": 452.07
+},
+{
+"el": "s6",
+"text": "Christian Identity “two-seedline” theology, a white-supremacist doctrine claiming Jews and people of color descend from the serpent or from “pre-Adamic” races.",
+"start": 452.42,
+"end": 462.66
+},
+{
+"el": "s6",
+"text": "The Nation of Islam's story of Yakub, which teaches that a scientist named Yakub created white people thousands of years ago.",
+"start": 463.01,
+"end": 471.15
+},
+{
+"el": "s6",
+"text": "Some Hebrew Israelite groups teach that Black, Hispanic and Native Americans are the true Israelites and that others are cursed.",
+"start": 471.5,
+"end": 479.56
+},
+{
+"el": "s6",
+"text": "These stories mirror each other: each claims race is ancient, fixed and cosmic.",
+"start": 479.91,
+"end": 485.56
+},
+{
+"el": "s6",
+"text": "The historical record shows the opposite: race is recent, made by people, and can be unmade.",
+"start": 485.91,
+"end": 492.47
+}
+]
+}

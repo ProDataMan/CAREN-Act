@@ -44,7 +44,7 @@
       const srcIds = Object.keys(m.sourcesList || {});
       const refNum = k => srcIds.indexOf(k) + 1;
       let h = '<p class="crumbs"><a href="learn.html">Learn</a> › Module ' + m.num + '</p>' +
-        '<h1>' + esc(m.title) + '</h1>' +
+        '<h1 data-narr="title">' + esc(m.title) + '</h1>' +
         '<div class="meta">' + (m.minutes ? '<span>' + m.minutes + ' min read</span>·' : '') +
         '<span>' + (m.status === 'outline' ? 'Outline: being written' : 'Draft, awaiting historian review') + '</span>·' +
         (m.status !== 'outline' ? '<a href="teach.html?m=' + m.id + '">🎓 Teach this</a>·' : '') +
@@ -54,8 +54,9 @@
           '<div class="callout info">This module is being written. Know this history well, or have sources to add? <a href="volunteer.html#reviewer">Join as a researcher or history reviewer</a>, or <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=' + encodeURIComponent('[Learn] Module ' + m.num + ': ') + '" target="_blank" rel="noopener">suggest a source</a>.</div>';
       } else {
         if (window.CarenI18n && CarenI18n.lang !== 'en' && !m.translated) h += '<div class="callout" translate="no">Este módulo aún no está traducido al español; se muestra en inglés. <a href="volunteer.html">¿Puedes ayudar a traducirlo?</a></div>';
-        h += '<p class="lede">' + esc(m.intro) + '</p>';
-        h += m.sections.map((s, n) => '<section class="s" id="s' + (n + 1) + '"><h2>' + esc(s.h) + ' ' + ui.chip(cat, s.label) + '</h2>' + s.body +
+        h += '<div id="narr" class="narr" hidden></div>';
+        h += '<p class="lede" data-narr="intro">' + esc(m.intro) + '</p>';
+        h += m.sections.map((s, n) => '<section class="s" id="s' + (n + 1) + '"><h2><span data-narr="h' + n + '">' + esc(s.h) + '</span> ' + ui.chip(cat, s.label) + '</h2><div data-narr="s' + n + '">' + s.body + '</div>' +
           ((s.sources || []).length ? '<div class="refs">Sources: ' + s.sources.map(k => '<a href="#src-' + k + '">[' + refNum(k) + ']</a>').join('') + '</div>' : '') + '</section>').join('');
         if ((m.timeline || []).length) h += '<h2>Timeline</h2>' + ui.timeline(cat, m.timeline, false);
       }
@@ -92,7 +93,77 @@
       }
       if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
       L.sync();
+      narrator(m);
     });
+
+    // ---- Narration: audio/<lang>/<module>.mp3 with per-sentence timings; highlights the sentence being read.
+    function narrator(m) {
+      const box = document.getElementById('narr'); if (!box) return;
+      const lang = (window.CarenI18n && CarenI18n.lang) || 'en';
+      const base = 'audio/' + lang + '/' + m.id;
+      fetch(base + '.json').then(r => r.ok ? r.json() : null).catch(() => null).then(meta => {
+        if (!meta || !meta.segments) return;
+        const fmt = t => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+        box.hidden = false;
+        box.innerHTML = '<button type="button" class="btn" id="nPlay" aria-label="Listen to this lesson">▶ Listen</button>' +
+          '<input type="range" id="nSeek" min="0" max="' + meta.duration + '" step="0.1" value="0" aria-label="Position">' +
+          '<span class="note" id="nTime">0:00 / ' + fmt(meta.duration) + '</span>' +
+          '<select id="nRate" aria-label="Speed"><option value="0.85">0.85×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select>' +
+          '<label class="note"><input type="checkbox" id="nFollow" checked> Follow along</label>';
+        const audio = new Audio(); audio.preload = 'none'; audio.src = base + '.mp3';
+        const $ = id => document.getElementById(id);
+        // Map each segment to a DOM Range by finding its text (ignoring whitespace) inside its element, in order.
+        const cursors = {};
+        function locate(seg) {
+          const el = document.querySelector('[data-narr="' + seg.el + '"]'); if (!el) return null;
+          const nodes = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n;
+          let flat = '', map = [];
+          while ((n = w.nextNode())) { for (let i = 0; i < n.nodeValue.length; i++) { const c = n.nodeValue[i]; if (!/\s/.test(c)) { flat += c; map.push([n, i]); } } }
+          const want = seg.text.replace(/\s+/g, '');
+          let at = flat.indexOf(want, cursors[seg.el] || 0);
+          if (at < 0) at = flat.indexOf(want);
+          if (at < 0) return { el };
+          cursors[seg.el] = at + want.length;
+          const rg = document.createRange(), a = map[at], b = map[at + want.length - 1];
+          rg.setStart(a[0], a[1]); rg.setEnd(b[0], b[1] + 1);
+          return { el, range: rg };
+        }
+        const located = meta.segments.map(locate);
+        window.CarenNarration = { audio: audio, segments: meta.segments, located: located };
+        const hl = (window.CSS && CSS.highlights && window.Highlight) ? new Highlight() : null;
+        if (hl) CSS.highlights.set('narration', hl);
+        let cur = -1;
+        function mark(i) {
+          if (i === cur) return; cur = i;
+          document.querySelectorAll('.narr-active').forEach(e => e.classList.remove('narr-active'));
+          if (hl) hl.clear();
+          const L2 = located[i]; if (!L2) return;
+          if (L2.range && hl) hl.add(L2.range); else L2.el.classList.add('narr-active');
+          if ($('nFollow').checked && !audio.paused) {
+            const rect = (L2.range || L2.el).getBoundingClientRect();
+            if (rect.top < 80 || rect.bottom > innerHeight - 60) window.scrollTo({ top: scrollY + rect.top - innerHeight / 3, behavior: 'smooth' });
+          }
+        }
+        function at(t) { const s = meta.segments; for (let i = s.length - 1; i >= 0; i--) if (t >= s[i].start - 0.05) return t <= s[i].end + 0.4 ? i : -1; return -1; }
+        audio.addEventListener('timeupdate', () => { $('nSeek').value = audio.currentTime; $('nTime').textContent = fmt(audio.currentTime) + ' / ' + fmt(meta.duration); const i = at(audio.currentTime); if (i >= 0) mark(i); });
+        audio.addEventListener('play', () => { $('nPlay').textContent = '❚❚ Pause'; });
+        audio.addEventListener('pause', () => { $('nPlay').textContent = '▶ Listen'; });
+        audio.addEventListener('ended', () => { mark(-2); $('nPlay').textContent = '↺ Replay'; if (!L.has('read:' + m.id)) ui.award('read:' + m.id, 'Lesson heard'); });
+        $('nPlay').addEventListener('click', () => { audio.playbackRate = +$('nRate').value; audio.paused ? audio.play() : audio.pause(); });
+        $('nSeek').addEventListener('input', () => { audio.currentTime = +$('nSeek').value; });
+        $('nRate').addEventListener('change', () => { audio.playbackRate = +$('nRate').value; });
+        // Click any narrated sentence to play from there.
+        document.querySelectorAll('[data-narr]').forEach(el => el.addEventListener('click', e => {
+          if (e.target.closest('a')) return;
+          const pos = document.caretPositionFromPoint ? document.caretPositionFromPoint(e.clientX, e.clientY) : (document.caretRangeFromPoint && document.caretRangeFromPoint(e.clientX, e.clientY));
+          if (!pos || audio.paused && !e.altKey && !box.dataset.started) return;
+          const node = pos.offsetNode || pos.startContainer, off = pos.offset != null ? pos.offset : pos.startOffset;
+          const i = located.findIndex(x => x && x.range && x.range.isPointInRange(node, off));
+          if (i >= 0) { audio.currentTime = meta.segments[i].start; if (audio.paused) audio.play(); }
+        }));
+        audio.addEventListener('play', () => { box.dataset.started = '1'; }, { once: true });
+      });
+    }
   })();
   </script>
 </body>

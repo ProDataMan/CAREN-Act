@@ -178,6 +178,10 @@ A public repository and advocacy site supporting a federal version of San Franci
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
   - **New modules:** afro-latino, christian-nationalism, technology, twenty-twenties, labor, culture. Spanish titles and summaries are in `learn.es.json`.
   - **Local action toolkit** (`toolkit.html`): copy-ready templates. Linked from act.html, and the council-resolution, speak-council, op-ed and coalition quests point to it.
+  - **Narration pilot (2026-11-10):** `audio/en/before-race.mp3` plus a `.json` of sentence timings (8:13, 63 sentences, 2.9 MB).
+    - **Generation:** `scripts/narrate.py` with Piper (offline) and the LJSpeech public-domain voice.
+    - **Player:** `module.html` finds each sentence's text inside its `data-narr` element (whitespace-insensitive) and highlights it with the CSS Custom Highlight API, falling back to highlighting the whole element.
+    - **Waiting on:** the owner's feedback before narrating the other modules. Spanish narration needs a Spanish voice and the `learn.es` overlay in `narrate.py`.
   - **Spanish (hub and spoke):**
     - **Engine:** in `site.js`. It picks the language from `?lang=`, then `localStorage` `caren-lang`, then the browser locale, and shows a selector in the header. It translates text and attributes through a MutationObserver. Writes only happen when the text changes, to avoid an observer loop.
     - **Header:** collapses to the menu when the links don't fit (`.site-header.compact`).
