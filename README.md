@@ -285,6 +285,10 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
   - **Years** are read as people say them: 1492 is "fourteen ninety-two," 1905 is "nineteen oh five," 2023 is "twenty twenty-three," and the 1830s are "eighteen thirties."
   - **Voices:** female, Kristin (public domain, LibriVox); male, John (public domain, LibriVox).
   - **Other free voices** can be compared at [voices.html](https://prodataman.github.io/CAREN-Act/website/voices.html): Joe and Reza Ibrahim (CC0), Norman (public domain), and LibriTTS-R readers. LibriTTS-R is CC BY 4.0, by Koizumi et al., from LibriTTS/LibriSpeech.
+  - **Spanish** (`--lang es`, module 1 so far): female, Claude (`es_MX-claude-high`, Apache 2.0); male, Ald (`es_MX-ald-medium`, Unlicense / public domain). Both are Mexican Spanish.
+    - The text comes from `learn.es.json`; only fully translated modules can be narrated.
+    - Years are read as Spanish speakers say them ("mil cuatrocientos noventa y dos"), and "EE. UU." is read as "Estados Unidos."
+    - Spanish pages load `audio/es/`.
   - **Setup:** `python3 -m venv .venv && .venv/bin/pip install piper-tts lameenc`, then download voices from huggingface.co/rhasspy/piper-voices.
   - **Run:** `.venv/bin/python scripts/narrate.py before-race --voice female=en_US-kristin-medium.onnx --voice male=en_US-john-medium.onnx --label "female=Female voice" --label "male=Male voice"`. A LibriTTS-R reader is chosen with `path.onnx:<speaker>`.
   - **After editing a lesson,** re-run it so the audio matches the text.

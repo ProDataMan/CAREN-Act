@@ -184,6 +184,7 @@ A public repository and advocacy site supporting a federal version of San Franci
     - **Years** are read in pairs.
     - **Sampler:** `voices.html` and `audio/samples/` hold 26 candidate voices, all public domain, CC0 or CC BY. The owner wanted "a more ethnic sounding voice"; the voice libraries don't record readers' backgrounds, so the owner picks by ear, or a volunteer narrator records the lessons.
     - **Other lessons** wait until the voices are chosen.
+    - **Spanish lesson 1** (`audio/es/`): female es_MX-claude-high (Apache 2.0, about 190 Hz) and male es_MX-ald-medium (Unlicense, about 137 Hz), both Mexican Spanish. `narrate.py --lang es` overlays `learn.es.json`.
   - **Spanish (hub and spoke):**
     - **Engine:** in `site.js`. It picks the language from `?lang=`, then `localStorage` `caren-lang`, then the browser locale, and shows a selector in the header. It translates text and attributes through a MutationObserver. Writes only happen when the text changes, to avoid an observer loop.
     - **Header:** collapses to the menu when the links don't fit (`.site-header.compact`).
