@@ -141,15 +141,18 @@ To add admins: `az containerapp update -n caren-act-server -g CARENAct --set-env
 
 Send the letters to JULIAN (Jill Collen Jefferson) and the NAACP Legal Defense Fund through their website contact forms. They were shared with you privately and aren't stored in this public repo. Point new volunteers to the volunteer page.
 
-### E. January 3, 2027: switch to the 120th Congress
+### E. January 3, 2027: switch to the 120th Congress (mostly automatic)
 
-Several states redrew their districts. When the new Congress is seated:
+The 120th Congress takes office January 3, 2027, and several states redrew their districts. The site switches over by itself:
+- **Members:** names, photos and contact details load live from `@unitedstates/congress-legislators`, which is updated on January 3.
+- **Address lookup** (`reps.js`): from January 3 at noon Eastern, it uses the Census geocoder's `Current_Current` vintage and the newest "Congressional Districts" layer. If the Census Bureau hasn't published the 120th lines yet, it falls back to the 119th lines and tells the visitor to double-check at house.gov.
+- **ZIP lookup:** the weekly refresh tries the Census 120th-Congress ZCTA file (`tab20_cd12020_zcta520_natl.txt`) first and uses it as soon as it exists. `zip_districts.json` records the Congress in `_congress`.
+- **District demographics:** labeled "(2023–2026 district lines)" until the Census publishes ACS data for the new districts. Then change `"congress": 119` in `build_acs` (`scripts/build_data.py`).
 
-1. In `scripts/build_data.py`, change `zcta_cd` to the Census 120th-Congress ZCTA file once it's published, and run the full build.
-2. In `website/assets/reps.js`, change the geocoder match to `/120th Congressional/` and the vintage to `Current_Current`.
-3. Re-run the data build so `districts.json` uses the new districts once the Census bulk file includes them.
-
-Member names and contact details update on their own from `congress-legislators`.
+**Owner checklist for the first week of January 2027:**
+1. Try the lookup with an address in Texas, California and North Carolina, three states that redrew.
+2. Check the Actions log for the "ZCTA -> CD120" line.
+3. Update the bill page and letters if a sponsor emerges.
 
 ### F. Later, when you have the keys (optional)
 

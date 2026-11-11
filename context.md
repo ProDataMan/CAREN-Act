@@ -101,7 +101,7 @@ A public repository and advocacy site supporting a federal version of San Franci
 
 1. **Owner:** test a website comment, the admin sign-in and the Learn profile sign-in. The env vars were connected on 2026-11-09.
 2. **Owner:** Facebook sign-in (optional, README Step C). Send the outreach letters (Step D).
-3. **2027-01-03:** switch the ZIP file, geocoder vintage and districts to the 120th Congress (README Step E).
+3. **2027-01-03:** the switch to the 120th Congress is now automatic (README Step E). The owner should spot-check lookups in states that redrew.
 4. Seed the old laws tracker: check UNC "On the Books" (NC) and the South Carolina project findings against current codes, and recruit verifiers in each state.
 5. Add the signers of the Sept 2026 congressional letter asking DOJ to investigate the hanging deaths as allies on the map.
 6. Consider citing the 911-outcome and BJS figures in the bill's findings section.
@@ -183,6 +183,10 @@ A public repository and advocacy site supporting a federal version of San Franci
     - **Classroom mode:** `class.html`, migration `004_classes` (classes, class_members), and the `/api/classes*` endpoints.
       - Students are identified only by nickname and Learn device ID; their progress is read from `learn_events` by `device_id`.
       - A learn.html note shows the student's class.
+    - **120th Congress switch automated:**
+      - `reps.js` uses NEW_CONGRESS from 2027-01-03, the newest geocoder layer, and a stale-lines note.
+      - `build_zip_districts` tries CD120 first.
+      - `_congress` is recorded in `zip_districts.json` and `congress` in `districts.json`.
     - **Share card:** on every lesson, in `module.html` `shareCard()`.
     - **Tooling:** the scratch folder was wiped between sessions, so the tools now live in git-ignored `.venv/` (piper-tts, lameenc, pillow), `.voices/` (Piper voice models) and `.tools/` (Node and `cdp.js` for headless checks).
   - **New modules:** afro-latino, christian-nationalism, technology, twenty-twenties, labor, culture. Spanish titles and summaries are in `learn.es.json`.

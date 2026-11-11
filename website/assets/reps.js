@@ -43,23 +43,33 @@
   }
 
   function first(g, re) { var k = Object.keys(g).find(function (x) { return re.test(x); }); return k && g[k][0]; }
+  // The 120th Congress takes office January 3, 2027, and several states redrew their districts.
+  // Before then use the 119th districts; from then on use the newest district layer the Census geocoder has.
+  var SWITCH = new Date('2027-01-03T17:00:00Z'), NEW_CONGRESS = new Date() >= SWITCH;
+  function congressLayer(g) {
+    var keys = Object.keys(g).filter(function (k) { return /\d+(st|nd|rd|th) Congressional Districts/.test(k); });
+    var num = function (k) { return parseInt(k, 10); };
+    keys.sort(function (a, b) { return num(b) - num(a); });
+    var k = NEW_CONGRESS ? keys[0] : (keys.find(function (x) { return num(x) === 119; }) || keys[keys.length - 1]);
+    return k ? { d: g[k][0], congress: num(k) } : null;
+  }
 
   // Returns { exact, matched, list:[{state, district}], upper, lower, county, place }
   async function findDistricts(street, city, state, zip) {
     if (street) {
       var addr = [street, city, state, zip].filter(Boolean).join(', ');
-      var url = 'https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?benchmark=Public_AR_Current&vintage=ACS2025_Current&layers=all&address=' + encodeURIComponent(addr);
+      var url = 'https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?benchmark=Public_AR_Current&vintage=' + (NEW_CONGRESS ? 'Current_Current' : 'ACS2025_Current') + '&layers=all&address=' + encodeURIComponent(addr);
       try {
         var d = await jsonp(url);
         var m = d.result && d.result.addressMatches && d.result.addressMatches[0];
         if (m) {
           var g = m.geographies;
-          var cd = first(g, /119th Congressional/) || first(g, /Congressional/);
+          var lay = congressLayer(g), cd = lay && lay.d;
           if (cd) {
             var up = first(g, /State Legislative Districts - Upper/), lo = first(g, /State Legislative Districts - Lower/);
             var co = first(g, /^Counties$/), pl = first(g, /Incorporated Places/);
             return {
-              exact: true, matched: m.matchedAddress,
+              exact: true, matched: m.matchedAddress, congress: lay.congress, stale: NEW_CONGRESS && lay.congress < 120,
               list: [{ state: STATE_FIPS[cd.STATE], district: (parseInt(cd.GEOID.slice(2), 10) % 98), geoid: cd.GEOID }],
               upper: up && up.NAME, lower: lo && lo.NAME, upperId: up && up.GEOID, lowerId: lo && lo.GEOID,
               county: co && co.NAME, countyFips: co && co.GEOID, place: pl && pl.BASENAME, placeId: pl && pl.GEOID
@@ -69,8 +79,8 @@
       } catch (e) { console.warn(e); }
     }
     var zips = await once('zips', function () { return getJSON(BASE + 'data/zip_districts.json'); });
-    var list = (zips[zip] || []).map(function (g) { return { state: STATE_FIPS[g.slice(0, 2)], district: parseInt(g.slice(2), 10), geoid: g }; });
-    return { exact: false, list: list };
+    var list = (Array.isArray(zips[zip]) ? zips[zip] : []).map(function (g) { return { state: STATE_FIPS[g.slice(0, 2)], district: parseInt(g.slice(2), 10), geoid: g }; });
+    return { exact: false, list: list, congress: zips._congress || 119, stale: NEW_CONGRESS && (zips._congress || 119) < 120 };
   }
 
   // District demographics (ACS 5-year, built by scripts/build_data.py). Optional: cards work without it.
@@ -160,6 +170,7 @@
   function card(p, me, note, dist) {
     var t = p.terms[p.terms.length - 1];
     var dline = t.type === 'rep' ? demo(dist && dist.cd && dist.cd[p._geoid]) : '';
+    if (dline && NEW_CONGRESS && dist && (dist.congress || 119) < 120) dline += ' (2023–2026 district lines)';
     var id = p.id.bioguide;
     var title = t.type === 'sen' ? 'U.S. Senator, ' + t.state + (t.state_rank ? ' (' + t.state_rank + ')' : '') : 'U.S. Representative, ' + t.state + (t.district === 0 ? ' at-large' : '-' + t.district);
     var div = document.createElement('div');
@@ -267,6 +278,7 @@
       var msg = res.exact ? 'Matched address: ' + res.matched + '. ' : '';
       if (!res.exact && res.list.length > 1) msg += 'ZIP ' + me.zip + ' spans ' + res.list.length + ' congressional districts. All possible representatives are shown; add your street address to narrow it to one. ';
       else if (!res.exact) msg += 'Based on ZIP ' + me.zip + '. ';
+      if (res.stale) msg += 'Several states redrew their districts for the Congress that took office on January 3, 2027. Until the Census Bureau updates its lookup, districts are based on the previous lines, so please double-check your representative at house.gov. ';
       if (!reps.length) msg += 'No voting U.S. Representative was found for this location (the seat may be vacant or a non-voting delegate). ';
       repStatus.textContent = msg + 'A phone call counts most; a personal letter is next. Edit anything before sending.';
       senators.concat(reps).forEach(function (p) { repsDiv.appendChild(card(p, me, !res.exact && res.list.length > 1 && cur(p).type === 'rep' ? 'Possible representative for your ZIP' : '', dd)); });

@@ -113,7 +113,7 @@
         ['Hate crimes', 'FBI UCR / Crime Data Explorer', n(D.hate_crimes.incidents) + ' incidents ' + D.hate_crimes.years + '; ' + n(D.hate_crimes.agencies) + ' agencies located', 'Agency circles; priority score', D.hate_crimes.source],
         ['Race & ethnicity', 'U.S. Census Bureau, ' + D.acs.vintage, n(D.acs.records) + ' counties', 'Choropleth; priority score', D.acs.source],
         ['Redlining', 'Mapping Inequality (Univ. of Richmond)', n(D.redlining.features) + ' HOLC areas, 1935–40', 'Polygons by grade', D.redlining.source],
-        ['ZIP → district', 'U.S. Census Bureau', n(D.zip_districts.zips) + ' ZIP codes, 119th Congress', 'Representative lookup without a street address', D.zip_districts.source],
+        ['ZIP → district', 'U.S. Census Bureau', n(D.zip_districts.zips) + ' ZIP codes, ' + (D.zip_districts.congress || 119) + 'th Congress', 'Representative lookup without a street address', D.zip_districts.source],
         ['Hanging & unnatural deaths by race', 'CDC National Center for Health Statistics', 'Injury deaths ' + (D.cdc_deaths ? D.cdc_deaths.injury.match(/\((.*)\)/)[1] : '') + '; suicide rates through ' + (D.cdc_deaths ? D.cdc_deaths.latest_suicide_year : ''), 'Charts on the contested-deaths page', 'https://data.cdc.gov/'],
         ['Contested hanging deaths', 'Curated from reputable reporting (Capital B News, Mississippi Today, Mississippi Free Press)', 'Verified cases only', 'Map layer; contested-deaths page', 'deaths.html'],
         ['Communities burned, flooded or taken', 'Curated and cited (state commissions, standard histories)', '34 places, 1857–today: massacres, expulsions, floods, seizures, urban renewal and highways, gentrification', 'Map layer; Learn module 8', 'learn.html'],

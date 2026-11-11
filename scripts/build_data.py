@@ -218,7 +218,7 @@ def build_acs():
             "pacific": round(100 * nhpi / tot, 1),
             "other": round(100 * oth / tot, 1),
         }
-    write_json("districts.json", {"fields": ["pop", "pct_minority", "pct_black", "pct_hispanic", "pct_asian", "pct_native", "pct_pacific", "pct_other_or_multiracial"], "vintage": f"ACS 5-year {y - 4}-{y}", **districts})
+    write_json("districts.json", {"fields": ["pop", "pct_minority", "pct_black", "pct_hispanic", "pct_asian", "pct_native", "pct_pacific", "pct_other_or_multiracial"], "vintage": f"ACS 5-year {y - 4}-{y}", "congress": 119, **districts})
     manifest["datasets"]["districts"] = {"source": url, "publisher": "U.S. Census Bureau", "vintage": f"ACS 5-year {y - 4}-{y}",
                                          "congressional": len(districts["cd"]), "state_senate": len(districts["sldu"]),
                                          "state_house": len(districts["sldl"])}
@@ -469,13 +469,25 @@ def build_redlining():
     }
 
 
-# ---------------------------------------------------------------- ZIP -> congressional district (119th)
+# ---------------------------------------------------------------- ZIP -> congressional district
+# Uses the newest Congress the Census Bureau has published a ZCTA relationship file for (120th from
+# January 2027, once available; 119th until then), so the weekly refresh switches over by itself.
 def build_zip_districts():
-    log("ZCTA -> CD119")
-    text = fetch(SOURCES["zcta_cd"], binary=False, timeout=300).lstrip("﻿")
+    text, congress, src = None, None, None
+    for n in (120, 119):
+        url = SOURCES["zcta_cd"].replace("cd119", "cd%d" % n)
+        try:
+            text = fetch(url, binary=False, timeout=300).lstrip("\ufeff"); congress, src = n, url
+            break
+        except Exception as e:  # not published yet
+            log("  CD%d ZCTA file not available (%s)" % (n, e))
+    if text is None:
+        raise RuntimeError("no ZCTA-to-district relationship file available")
+    log("ZCTA -> CD%d" % congress)
+    col = "GEOID_CD%d_20" % congress
     z = defaultdict(dict)
     for row in csv.DictReader(io.StringIO(text), delimiter="|"):
-        zc, cd = row["GEOID_ZCTA5_20"], row["GEOID_CD119_20"]
+        zc, cd = row["GEOID_ZCTA5_20"], row.get(col)
         if not zc or not cd:
             continue
         z[zc][cd] = z[zc].get(cd, 0) + int(row["AREALAND_PART"] or 0)
@@ -484,9 +496,10 @@ def build_zip_districts():
         tot = sum(cds.values()) or 1
         # keep districts covering >=1% of the ZCTA land area, largest first
         out[zc] = [cd for cd, a in sorted(cds.items(), key=lambda kv: -kv[1]) if a / tot >= 0.01 or len(cds) == 1]
+    out["_congress"] = congress
     write_json("zip_districts.json", out)
-    manifest["datasets"]["zip_districts"] = {"source": SOURCES["zcta_cd"], "publisher": "U.S. Census Bureau",
-                                             "description": "2020 ZCTA to 119th Congress district relationship", "zips": len(out)}
+    manifest["datasets"]["zip_districts"] = {"source": src, "publisher": "U.S. Census Bureau", "congress": congress,
+                                             "description": "2020 ZCTA to %dth Congress district relationship" % congress, "zips": len(out) - 1}
 
 
 # ---------------------------------------------------------------- CDC national injury deaths by race
