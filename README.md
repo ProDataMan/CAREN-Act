@@ -24,6 +24,9 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 - **Map through time:** the **Time** slider in the layers panel filters lynchings, destroyed communities, boarding schools and camps by year. For example, [America in 1921](https://prodataman.github.io/CAREN-Act/website/?layers=mwt,destroyed,history&year=1921) (`?year=` sets it).
 - **Map of communities burned, flooded or taken:** https://prodataman.github.io/CAREN-Act/website/?layers=destroyed (Greenwood, Tulsa: [?layers=destroyed,redlining&at=36.16,-95.99,13](https://prodataman.github.io/CAREN-Act/website/?layers=destroyed,redlining&at=36.16,-95.99,13))
 
+**Stories**
+- **In our own words:** first-person stories and recorded elders' stories, reviewed by an editor before publishing, plus a guide to recording an elder and links to oral-history archives: https://prodataman.github.io/CAREN-Act/website/stories.html
+
 **Map and data**
 - **Priority heat map:** https://prodataman.github.io/CAREN-Act/website/
 - **How to read the map, with one-click example views:** https://prodataman.github.io/CAREN-Act/website/#how-to-read
@@ -150,6 +153,7 @@ Member names and contact details update on their own from `congress-legislators`
 |---|---|---|
 | Approve a bill comment | [Issues labeled `bill-comment`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment) | Add the `accepted` label. The edit is merged into the bill on both copies of the site and the commenter gets a ⭐. Add `hidden` for spam. |
 | Verify an old-law report | [Issues labeled `residual-law`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Aresidual-law) | Confirm the citation in the current official code, then swap `needs-verification` for `verified`. Move it along `repeal-requested` → `repeal-introduced` → `repealed`, or label it `not-residual`. |
+| Review stories | `/website/admin.html#stories` | Approve first-person accounts that don't name private people or make unverifiable accusations. Contact emails are never shown publicly. |
 | Welcome a volunteer | `/website/admin.html` (private sign-ups) or [issues labeled `volunteer`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Avolunteer) | Set status **active** on the admin page, or add `volunteer-active`, then assign them to reports in their state. |
 | Add a destroyed community | [Issues labeled `local-history`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Alocal-history) (from the "Uncover local history" quest) | Check the source, then add an entry to `website/data/destroyed_communities.json` and mention it in the "Burned, flooded and taken" module in `learn.json`. |
 | Add a contested-death case | [Issues labeled `contested-death`](https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Acontested-death) | Verify the sources, then add an entry to `website/data/contested_deaths.json` and push. |
@@ -207,6 +211,8 @@ Node.js 22 + Express + `mssql`. It serves `website/` and `docs/`, and creates it
 | `POST /api/comments` | Posts a bill comment as a labeled GitHub issue (needs `GITHUB_TOKEN`). Validates the comment format, allows 10 per hour per IP, and disables @mentions |
 | `GET /api/me` | Current sign-in |
 | `POST /api/learn/sync` | Learn progress. Takes the browser's random device ID and its event keys (`read:<module>`, `quiz:<module>`, `quest:<id>`). Returns the saved events. XP comes from `learn.json` on the server, never from the browser. When signed in, it moves the device's progress onto the profile. 120 calls per hour per IP |
+| `POST /api/stories`, `GET /api/stories` | Story submission (rate-limited, honeypot, consent required) and the public list of approved stories |
+| `GET /api/admin/stories`, `PATCH /api/admin/stories/:id` | Admin review: new, approved or rejected (on `admin.html`) |
 | `GET /api/learn/teams` | XP and learner counts by state (public totals only) |
 | `GET /api/admin/volunteers`, `PATCH /api/admin/volunteers/:id` | Admin only |
 | `/auth/google`, `/auth/facebook`, `/auth/logout` | Sign-in. After sign-in, GitHub Pages gets its session token in the URL fragment, and only origins in `CORS_ORIGINS` can receive it |

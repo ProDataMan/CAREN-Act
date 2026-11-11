@@ -167,6 +167,11 @@ A public repository and advocacy site supporting a federal version of San Franci
   - **The six outlines are now full modules:** conquest, slavery-law, reconstruction, borders, place, world. New quests: `whose-land` and `check-deed`.
   - **More modules:** columbus, colonizers, systemic, evidence, banking, courts.
     - **The Columbus module** presents his journal ("none of them black"), the 1498 Guinea-canoes passage, Peter Martyr, al-ʿUmarī and Van Sertima. Pre-Columbian African contact is labeled *debated*; "African villages already there" is labeled *belief or myth*.
+  - **Stories** (`stories.html`): submission with consent, an elder interview guide, and links to archives.
+    - **Database:** migration `003_stories`.
+    - **API:** `/api/stories`; admin review on `admin.html`.
+    - **Quests:** `share-story`, and `oral-history` now links here. Both are awarded on submission.
+    - "Stories" added to the nav.
   - **Spanish (hub and spoke):**
     - **Engine:** in `site.js`. It picks the language from `?lang=`, then `localStorage` `caren-lang`, then the browser locale, and shows a selector in the header. It translates text and attributes through a MutationObserver. Writes only happen when the text changes, to avoid an observer loop.
     - **Header:** collapses to the menu when the links don't fit (`.site-header.compact`).

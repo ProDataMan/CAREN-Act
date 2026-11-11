@@ -25,6 +25,9 @@
       <button class="btn secondary" type="button" id="csv">Download CSV</button>
     </div>
     <div class="table-wrap"><table class="data" id="tbl"></table></div>
+    <h2 id="stories">Stories waiting for review</h2>
+    <p class="note">Approve only first-person accounts that name no private individuals without consent and make no accusations against identifiable people that you can't verify. Contact emails are never published.</p>
+    <div id="storyList"><p class="note">Sign in as an admin to see submitted stories.</p></div>
   </main>
   <script src="assets/site.js"></script>
   <script src="assets/api.js"></script>
@@ -60,8 +63,17 @@
         document.getElementById('toolbar').hidden = false;
         ['fState', 'fStatus', 'fText'].forEach(id => document.getElementById(id).addEventListener('input', draw));
         draw();
+        return A.get('/api/admin/stories').then(drawStories);
       });
     }).catch(e => { status.textContent = e.message; });
+    function drawStories(list) {
+      const el = document.getElementById('storyList');
+      if (!list.length) { el.innerHTML = '<p class="note">No stories yet.</p>'; return; }
+      el.innerHTML = list.map(s => '<div style="border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0"><b>' + esc(s.title) + '</b> <span class="note">' + esc(s.display_name) + ' · ' + esc(s.place || '') + ' ' + esc(s.state || '') + ' · ' + esc(s.topic) + ' · told by ' + esc(s.told_by) + ' · ' + esc(String(s.created_at).slice(0, 10)) + (s.contact_email ? ' · <a href="mailto:' + esc(s.contact_email) + '">' + esc(s.contact_email) + '</a>' : '') + '</span>' +
+        '<p style="white-space:pre-wrap">' + esc(s.body) + '</p>' + (s.media_url ? '<p><a href="' + esc(s.media_url) + '" target="_blank" rel="noopener">Recording link</a></p>' : '') +
+        '<label>Status <select data-story="' + s.id + '">' + ['new', 'approved', 'rejected'].map(x => '<option' + (x === s.status ? ' selected' : '') + '>' + x + '</option>').join('') + '</select></label></div>').join('');
+      el.querySelectorAll('select[data-story]').forEach(sel => sel.addEventListener('change', () => A.patch('/api/admin/stories/' + sel.dataset.story, { status: sel.value }).catch(() => alert('Could not update status'))));
+    }
     document.getElementById('csv').addEventListener('click', () => {
       const cols = ['created_at', 'name', 'email', 'phone', 'state', 'area', 'roles', 'background', 'hours', 'experience', 'status'];
       const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => { let v = String(r[c] == null ? '' : r[c]); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }).join(','))).join('\n');

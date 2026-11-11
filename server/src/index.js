@@ -344,6 +344,69 @@ app.get('/api/learn/teams', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// ---------- Stories: first-person accounts and oral histories (published after editor approval) ----------
+const STORY_TOPICS = new Set(['police-call', 'segregation', 'migration', 'neighborhood', 'school', 'work', 'military', 'health', 'immigration', 'other']);
+const TOLD_BY = new Set(['self', 'elder', 'family']);
+app.post('/api/stories', rateLimit(5, 3600e3), async (req, res, next) => {
+  try {
+    const b = req.body || {};
+    if (b.website) return res.json({ ok: true }); // honeypot
+    const user = await currentUser(req).catch(() => null);
+    const v = {
+      name: str(b.display_name, 80), state: STATES.has(str(b.state, 2).toUpperCase()) ? str(b.state, 2).toUpperCase() : null,
+      place: str(b.place, 120) || null, topic: STORY_TOPICS.has(b.topic) ? b.topic : 'other', title: str(b.title, 160),
+      body: typeof b.body === 'string' ? b.body.trim().slice(0, 12000) : '', told_by: TOLD_BY.has(b.told_by) ? b.told_by : 'self',
+      media: /^https:\/\/[^\s<>"]{4,490}$/.test(str(b.media_url, 500)) ? str(b.media_url, 500) : null,
+      lang: b.lang === 'es' ? 'es' : 'en', email: str(b.contact_email, 320).toLowerCase() || null
+    };
+    const errors = [];
+    if (!v.name) errors.push('Add a name to show (a first name or initials is fine).');
+    if (v.title.length < 3) errors.push('Add a short title.');
+    if (v.body.length < 80) errors.push('Please tell the story in at least a few sentences.');
+    if (v.email && !isEmail(v.email)) errors.push('That email address doesn’t look right.');
+    if (b.consent !== true) errors.push('Please confirm consent to publish.');
+    if (v.told_by !== 'self' && b.consent_teller !== true) errors.push('Please confirm the person whose story this is agreed to share it.');
+    if (errors.length) return res.status(400).json({ error: errors.join(' ') });
+    const pool = await getPool();
+    await pool.request().input('uid', sql.Int, user ? user.id : null).input('n', sql.NVarChar(80), v.name).input('st', sql.Char(2), v.state)
+      .input('pl', sql.NVarChar(120), v.place).input('tp', sql.NVarChar(40), v.topic).input('ti', sql.NVarChar(160), v.title)
+      .input('bd', sql.NVarChar(sql.MAX), v.body).input('tb', sql.NVarChar(20), v.told_by).input('mu', sql.NVarChar(500), v.media)
+      .input('lg', sql.Char(2), v.lang).input('em', sql.NVarChar(320), v.email)
+      .query(`INSERT INTO dbo.stories (user_id, display_name, state, place, topic, title, body, told_by, media_url, lang, contact_email)
+              VALUES (@uid, @n, @st, @pl, @tp, @ti, @bd, @tb, @mu, @lg, @em)`);
+    res.status(201).json({ ok: true });
+  } catch (e) { next(e); }
+});
+
+app.get('/api/stories', async (req, res, next) => {
+  try {
+    const pool = await getPool();
+    const r = await pool.request().query(`SELECT TOP 500 id, approved_at, display_name, state, place, topic, title, body, told_by, media_url, lang
+      FROM dbo.stories WHERE status = 'approved' ORDER BY approved_at DESC`);
+    res.set('Cache-Control', 'public, max-age=120');
+    res.json(r.recordset);
+  } catch (e) { next(e); }
+});
+
+app.get('/api/admin/stories', requireAdmin, async (req, res, next) => {
+  try {
+    const pool = await getPool();
+    const r = await pool.request().query('SELECT TOP 1000 * FROM dbo.stories ORDER BY created_at DESC');
+    res.json(r.recordset);
+  } catch (e) { next(e); }
+});
+
+app.patch('/api/admin/stories/:id', requireAdmin, async (req, res, next) => {
+  try {
+    const status = str((req.body || {}).status, 20);
+    if (!['new', 'approved', 'rejected'].includes(status)) return res.status(400).json({ error: 'Invalid status' });
+    const pool = await getPool();
+    await pool.request().input('id', sql.Int, parseInt(req.params.id, 10)).input('s', sql.NVarChar(20), status)
+      .query("UPDATE dbo.stories SET status = @s, approved_at = CASE WHEN @s = 'approved' THEN COALESCE(approved_at, SYSUTCDATETIME()) ELSE NULL END WHERE id = @id");
+    res.json({ ok: true });
+  } catch (e) { next(e); }
+});
+
 app.get('/api/admin/volunteers', requireAdmin, async (req, res, next) => {
   try {
     const pool = await getPool();

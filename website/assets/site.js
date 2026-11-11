@@ -10,6 +10,7 @@
     { href: 'laws.html', label: 'Old laws tracker' },
     { href: 'history.html', label: 'History' },
     { href: 'learn.html', label: 'Learn' },
+    { href: 'stories.html', label: 'Stories' },
     { href: 'data.html', label: 'Data' },
     { href: 'volunteer.html', label: 'Volunteer' },
     { href: 'act.html', label: 'Take action', cta: true }

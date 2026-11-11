@@ -170,7 +170,7 @@
       "xp": 80,
       "cat": "learn",
       "desc": "Record an older relative or neighbor talking about what they lived through: segregation, the Great Migration, a neighborhood that's gone. Keep it for your family, and share it with us if they agree.",
-      "href": "learn.html#help"
+      "href": "stories.html#record"
     },
     {
       "id": "register-voters",
@@ -387,6 +387,14 @@
       "title": "Check your deed",
       "desc": "Look up your home's deed (or your family's) for a racial covenant. If you find one and your state allows it, have it formally struck, and tell us so we can add it to the map.",
       "href": "https://mappingprejudice.umn.edu/"
+    },
+    {
+      "id": "share-story",
+      "cat": "learn",
+      "xp": 40,
+      "title": "Share your story",
+      "desc": "Share your own experience, of a police call, segregation, a lost neighborhood or anything else this history touched, on the Stories page.",
+      "href": "stories.html#share"
     }
   ],
   "badges": [

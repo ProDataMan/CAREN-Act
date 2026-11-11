@@ -220,6 +220,10 @@
   "check-deed": {
    "title": "Revisa tu escritura",
    "desc": "Busca en la escritura de tu casa (o la de tu familia) una cláusula racial. Si la encuentras y tu estado lo permite, haz que se elimine formalmente, y avísanos para añadirla al mapa."
+  },
+  "share-story": {
+   "title": "Comparte tu historia",
+   "desc": "Comparte tu propia experiencia, de una llamada a la policía, la segregación, un barrio perdido o cualquier otra cosa que esta historia haya tocado, en la página de Historias."
   }
  },
  "badges": {
