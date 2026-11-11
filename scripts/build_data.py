@@ -422,6 +422,27 @@ def build_hate_crimes(by_name):
 
 
 # ---------------------------------------------------------------- HOLC redlining
+def write_redlining_cities(feats):
+    """Small per-city summary of the HOLC maps (grade counts and a center point) for the county pages."""
+    cities = {}
+    def pts(c):
+        if isinstance(c[0], (int, float)):
+            yield c
+        else:
+            for x in c:
+                yield from pts(x)
+    for f in feats:
+        p = f["properties"]
+        key = (p.get("c") or "", p.get("s") or "")
+        e = cities.setdefault(key, {"A": 0, "B": 0, "C": 0, "D": 0, "lat": 0.0, "lon": 0.0, "n": 0})
+        e[p["g"]] += 1
+        for lon, lat in pts(f["geometry"]["coordinates"]):
+            e["lat"] += lat; e["lon"] += lon; e["n"] += 1
+    rows = [[c, s, round(e["lat"] / e["n"], 3), round(e["lon"] / e["n"], 3), e["A"], e["B"], e["C"], e["D"]]
+            for (c, s), e in sorted(cities.items()) if e["n"]]
+    write_json("redlining_cities.json", {"fields": ["city", "state", "lat", "lon", "A", "B", "C", "D"], "rows": rows})
+
+
 def build_redlining():
     log("Mapping Inequality HOLC")
     d = json.loads(fetch(SOURCES["holc"], timeout=300))
@@ -440,6 +461,7 @@ def build_redlining():
         feats.append({"type": "Feature", "properties": {"g": g, "c": p.get("city"), "s": p.get("state"), "l": p.get("label")},
                       "geometry": {"type": f["geometry"]["type"], "coordinates": rnd(f["geometry"]["coordinates"])}})
     write_json("redlining.json", {"type": "FeatureCollection", "features": feats})
+    write_redlining_cities(feats)
     manifest["datasets"]["redlining"] = {
         "source": "https://dsl.richmond.edu/panorama/redlining/", "publisher": "Mapping Inequality (University of Richmond)",
         "description": "HOLC residential security maps, 1935-1940", "features": len(feats),

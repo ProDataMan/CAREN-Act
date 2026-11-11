@@ -8,7 +8,7 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 
 **Take action**
 - **Take action hub:** call and write your members of Congress, state lawmakers and city council, register to vote, know your rights: https://prodataman.github.io/CAREN-Act/website/act.html
-- **Your county's numbers, with a share image and "Use my location":** https://prodataman.github.io/CAREN-Act/website/county.html (e.g. [Hinds County, MS](https://prodataman.github.io/CAREN-Act/website/county.html?f=28049))
+- **Your county's numbers and story** (lynchings by name, destroyed communities, redlining, covenants, old laws, boarding schools and camps, and 911 call outcomes nearby), with a share image and "Use my location": https://prodataman.github.io/CAREN-Act/website/county.html (e.g. [Hinds County, MS](https://prodataman.github.io/CAREN-Act/website/county.html?f=28049))
 - **Draft federal bill (click a paragraph to comment or suggest an edit):** https://prodataman.github.io/CAREN-Act/website/bill.html
 - **Volunteer as a state ally:** https://prodataman.github.io/CAREN-Act/website/volunteer.html
 - **Embeddable lawmaker lookup for partner sites:** https://prodataman.github.io/CAREN-Act/website/embed.html (embed code on the Take action page)

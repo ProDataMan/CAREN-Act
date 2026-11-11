@@ -10,6 +10,12 @@
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="assets/site.css">
   <style>
+    .tcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin: 10px 0; }
+    .tcard { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: #fff; }
+    .tcard h3 { margin: 0 0 6px; font-size: 1rem; }
+    .tcard ul { margin: 6px 0; padding-left: 18px; font-size: .9rem; }
+    .tcard li { margin: 4px 0; }
+    .tcard .more { font-size: .85rem; }
     .picker { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
     .picker input { flex: 1 1 260px; padding: 10px; font: inherit; border: 1px solid #bbb; border-radius: 6px; }
     .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 18px 0; }
@@ -37,6 +43,11 @@
     <div id="out" hidden>
       <p class="rank" id="rank"></p>
       <div class="tiles" id="tiles"></div>
+      <section id="town" aria-labelledby="townH">
+        <h2 id="townH">Your county's story</h2>
+        <p class="note">What the historical record shows in and around this county, from the datasets on the map. Places marked “nearby” are within about 40 miles.</p>
+        <div id="townBody"><p class="note">Loading local history…</p></div>
+      </section>
       <h2>Share it</h2>
       <p>Post the image to Instagram, Facebook or a group chat, or share the link. Numbers travel further when people see their own county.</p>
       <div class="share">
@@ -150,9 +161,68 @@
       $('x').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
       $('copyLink').onclick = e => { navigator.clipboard.writeText(text + ' ' + url).then(() => { e.target.textContent = 'Copied ✓'; setTimeout(() => e.target.textContent = 'Copy link', 2000); }); };
       draw(r);
+      town(r);
       $('out').hidden = false;
     }
 
+    // ---- Your county's story: local entries from every historical dataset
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const km = (a, b, c, d) => { const R = 6371, p = Math.PI / 180, x = (d - b) * p * Math.cos((a + c) / 2 * p), y = (c - a) * p; return R * Math.sqrt(x * x + y * y); };
+    let townData = null;
+    const get = f => fetch('data/' + f).then(x => x.json()).catch(() => null);
+    function town(r) {
+      $('townBody').innerHTML = '<p class="note">Loading local history…</p>';
+      townData = townData || Promise.all(['lynchings_all_races.json', 'destroyed_communities.json', 'history_sites.json', 'residual_ordinances.json', 'contested_deaths.json', 'redlining_cities.json', 'covenants.json', 'city_calls.json'].map(get));
+      townData.then(([mwt, des, his, res, cd, red, cov, calls]) => {
+        const lat = r[3], lon = r[4], cname = r[1] + ', ' + r[2], near = (a, b, lim) => km(lat, lon, a, b) <= lim;
+        const at = '&at=' + lat.toFixed(3) + ',' + lon.toFixed(3) + ',9';
+        const cards = [];
+        if (mwt) {
+          const L = mwt.rows.filter(x => x[5] && x[5].indexOf(cname) !== -1).sort((a, b) => (a[2] || 0) - (b[2] || 0));
+          if (L.length) {
+            const by = {}; L.forEach(x => by[x[3]] = (by[x[3]] || 0) + 1);
+            cards.push('<div class="tcard"><h3>Lynchings recorded here</h3><p>' + L.length + ' ' + (L.length === 1 ? 'person' : 'people') + ' (' + Object.keys(by).map(k => by[k] + ' ' + esc(mwt.groups[k])).join(', ') + '), ' + (L[0][2] === L[L.length - 1][2] ? (L[0][2] || '') : (L[0][2] || '?') + '–' + (L[L.length - 1][2] || '?')) + ', from Monroe Work Today.</p><ul>' +
+              L.slice(0, 8).map(x => '<li><b>' + esc(x[4] || 'Name unknown') + '</b>' + (x[2] ? ', ' + x[2] : '') + (x[6] ? ': ' + esc(x[6]) : '') + '</li>').join('') + '</ul>' +
+              (L.length > 8 ? '<p class="more">and ' + (L.length - 8) + ' more on the <a href="index.html?layers=mwt' + at + '">map</a>.</p>' : '<p class="more"><a href="index.html?layers=mwt' + at + '">See them on the map</a></p>') + '</div>');
+          }
+        }
+        if (cd) {
+          const C = cd.cases.filter(x => x.state === r[2] && (r[1].indexOf(x.county) === 0 || near(x.lat, x.lon, 30)));
+          if (C.length) cards.push('<div class="tcard"><h3>Contested deaths</h3><ul>' + C.map(x => '<li><b>' + esc(x.name) + '</b>, ' + esc(x.date_text) + ': ' + esc(x.dispute) + '</li>').join('') + '</ul><p class="more"><a href="deaths.html">All contested cases</a></p></div>');
+        }
+        if (des) {
+          const D = des.entries.filter(x => near(x.lat, x.lon, 65));
+          if (D.length) cards.push('<div class="tcard"><h3>Communities burned, flooded or taken</h3><ul>' + D.map(x => '<li><b>' + esc(x.name) + '</b> (' + esc(x.year) + '): ' + esc(x.summary) + '</li>').join('') + '</ul><p class="more"><a href="module.html?m=destroyed">Learn module</a> · <a href="index.html?layers=destroyed' + at + '">Map</a></p></div>');
+        }
+        if (his) {
+          const H = his.entries.filter(x => near(x.lat, x.lon, 80));
+          if (H.length) cards.push('<div class="tcard"><h3>Boarding schools and incarceration camps nearby</h3><ul>' + H.map(x => '<li><b>' + esc(x.name) + '</b> (' + x.year + (x.end ? '–' + x.end : '') + '): ' + esc(x.summary) + '</li>').join('') + '</ul></div>');
+        }
+        if (red) {
+          const R = red.rows.filter(x => near(x[2], x[3], 40));
+          if (R.length) cards.push('<div class="tcard"><h3>Redlining (1935–1940)</h3><ul>' + R.map(x => '<li><b>' + esc(x[0]) + ', ' + esc(x[1]) + '</b>: ' + x[7] + ' neighborhoods graded D, “hazardous” (redlined), ' + x[6] + ' graded C, ' + (x[4] + x[5]) + ' graded A or B.</li>').join('') + '</ul><p class="more"><a href="module.html?m=place">Why it matters</a> · <a href="index.html?layers=redlining' + at.replace(',9', ',11') + '">See the maps</a></p></div>');
+        }
+        if (cov) {
+          const V = cov.rows.filter(x => x[7] === r[2] && (x[6] === r[1] || x[6] === r[1].replace(/ County$/, '')));
+          if (V.length) {
+            const n = V.reduce((a, x) => a + x[2], 0), y0 = Math.min.apply(null, V.map(x => x[3]).filter(Boolean)), y1 = Math.max.apply(null, V.map(x => x[4]).filter(Boolean));
+            cards.push('<div class="tcard"><h3>Racial covenants in deeds</h3><p>' + n.toLocaleString() + ' racially restrictive covenants found in property records here, written between ' + y0 + ' and ' + y1 + ' (Mapping Prejudice and partners). Many are still in the deeds.</p><p class="more"><a href="index.html?layers=covenants' + at.replace(',9', ',11') + '">See them on the map</a> · Quest: check your deed</p></div>');
+          }
+        }
+        if (res) {
+          const O = res.entries.filter(x => near(x.lat, x.lon, 65));
+          if (O.length) cards.push('<div class="tcard"><h3>Segregation-era laws</h3><ul>' + O.map(x => '<li><b>' + esc(x.place) + '</b> (' + esc(x.status) + (x.repealed ? ' ' + esc(x.repealed) : '') + '): ' + esc(x.summary) + '</li>').join('') + '</ul><p class="more"><a href="laws.html">Old laws tracker</a></p></div>');
+        }
+        if (calls) {
+          calls.cities.forEach(c => {
+            const p = c.points, cl = p.reduce((a, x) => a + x[0], 0) / p.length, co = p.reduce((a, x) => a + x[1], 0) / p.length;
+            if (near(cl, co, 40)) cards.push('<div class="tcard"><h3>“Suspicious person” 911 calls</h3><p>' + esc(c.city) + ': ' + c.calls.toLocaleString() + ' resident-initiated calls since ' + esc(c.since) + '. Only ' + (100 * c.enforcement / c.calls).toFixed(1) + '% led to an arrest, citation or report.</p><p class="more"><a href="data.html#calls">How these are counted</a> · <a href="index.html?layers=calls' + at.replace(',9', ',11') + '">Map</a></p></div>');
+          });
+        }
+        cards.push('<div class="tcard"><h3>What’s missing?</h3><p>Every county has history that isn’t in these datasets yet: a neighborhood that was cleared, a church that was burned, a family that was driven out. Help us find it.</p><ul><li><a href="stories.html">Share a story from here, or record an elder’s</a></li><li><a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BLocal%20history%5D%20' + encodeURIComponent(cname) + '">Report local history with a source</a></li><li><a href="laws.html">Report an old law still on the books</a></li></ul></div>');
+        $('townBody').innerHTML = '<div class="tcards">' + cards.join('') + '</div>';
+      });
+    }
     function wrap(ctx, text, x, y, maxW, lh) {
       const words = text.split(' '); let line = '';
       words.forEach(w => { const t = line ? line + ' ' + w : w; if (ctx.measureText(t).width > maxW && line) { ctx.fillText(line, x, y); y += lh; line = w; } else line = t; });

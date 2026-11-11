@@ -172,6 +172,10 @@ A public repository and advocacy site supporting a federal version of San Franci
     - **API:** `/api/stories`; admin review on `admin.html`.
     - **Quests:** `share-story`, and `oral-history` now links here. Both are awarded on submission.
     - "Stories" added to the nav.
+  - **County story** (`county.html#town`): builds a county's local history from all the datasets.
+    - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
+    - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
+    - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
   - **Spanish (hub and spoke):**
     - **Engine:** in `site.js`. It picks the language from `?lang=`, then `localStorage` `caren-lang`, then the browser locale, and shows a selector in the header. It translates text and attributes through a MutationObserver. Writes only happen when the text changes, to avoid an observer loop.
     - **Header:** collapses to the menu when the links don't fit (`.site-header.compact`).

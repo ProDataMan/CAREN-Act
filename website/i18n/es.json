@@ -1192,7 +1192,21 @@
   "Thank you. Your story was sent for review.": "Gracias. Tu historia se envió para revisión.",
   "Shared your story": "Compartiste tu historia",
   "Recorded an elder's story": "Grabaste la historia de una persona mayor",
-  "🎧 Listen to the recording": "🎧 Escuchar la grabación"
+  "🎧 Listen to the recording": "🎧 Escuchar la grabación",
+  "Your county's story": "La historia de tu condado",
+  "What the historical record shows in and around this county, from the datasets on the map. Places marked “nearby” are within about 40 miles.": "Lo que muestra el registro histórico en este condado y sus alrededores, con los datos del mapa. Los lugares “cercanos” están a unos 65 km o menos.",
+  "Loading local history…": "Cargando la historia local…",
+  "Lynchings recorded here": "Linchamientos registrados aquí",
+  "Boarding schools and incarceration camps nearby": "Internados y campos de reclusión cercanos",
+  "Redlining (1935–1940)": "Redlining (1935–1940)",
+  "Racial covenants in deeds": "Cláusulas raciales en escrituras",
+  "Segregation-era laws": "Leyes de la era de la segregación",
+  "What’s missing?": "¿Qué falta?",
+  "Every county has history that isn’t in these datasets yet: a neighborhood that was cleared, a church that was burned, a family that was driven out. Help us find it.": "Cada condado tiene historia que aún no está en estos datos: un barrio arrasado, una iglesia quemada, una familia expulsada. Ayúdanos a encontrarla.",
+  "Share a story from here, or record an elder’s": "Comparte una historia de aquí, o graba la de una persona mayor",
+  "Report local history with a source": "Reporta historia local con una fuente",
+  "Report an old law still on the books": "Reporta una ley antigua que sigue vigente",
+  "See the maps": "Ver los mapas"
  },
  "patterns": [
   [
@@ -1278,6 +1292,14 @@
   [
    "^(\\d+) on$",
    "$1 activas"
+  ],
+  [
+   "^and (\\d+) more on the$",
+   "y $1 más en el"
+  ],
+  [
+   "^(\\d+) neighborhoods graded D, “hazardous” \\(redlined\\), (\\d+) graded C, (\\d+) graded A or B\\.$",
+   "$1 barrios con calificación D, “peligroso” (redlining), $2 con C, $3 con A o B."
   ]
  ]
 }
