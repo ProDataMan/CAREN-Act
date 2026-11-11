@@ -395,6 +395,14 @@
       "title": "Share your story",
       "desc": "Share your own experience, of a police call, segregation, a lost neighborhood or anything else this history touched, on the Stories page.",
       "href": "stories.html#share"
+    },
+    {
+      "id": "narrate-lesson",
+      "cat": "probono",
+      "xp": 150,
+      "title": "Lend your voice",
+      "desc": "Record one of the lessons in your own voice so listeners hear a real person instead of a computer. We credit you by name.",
+      "href": "record.html"
     }
   ],
   "badges": [

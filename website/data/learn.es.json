@@ -224,6 +224,10 @@
   "share-story": {
    "title": "Comparte tu historia",
    "desc": "Comparte tu propia experiencia, de una llamada a la policía, la segregación, un barrio perdido o cualquier otra cosa que esta historia haya tocado, en la página de Historias."
+  },
+  "narrate-lesson": {
+   "title": "Presta tu voz",
+   "desc": "Graba una de las lecciones con tu propia voz para que se escuche a una persona real en lugar de una computadora. Te damos el crédito por tu nombre."
   }
  },
  "badges": {

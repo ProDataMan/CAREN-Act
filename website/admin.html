@@ -28,6 +28,9 @@
     <h2 id="stories">Stories waiting for review</h2>
     <p class="note">Approve only first-person accounts that name no private individuals without consent and make no accusations against identifiable people that you can't verify. Contact emails are never published.</p>
     <div id="storyList"><p class="note">Sign in as an admin to see submitted stories.</p></div>
+    <h2 id="narrations">Volunteer narrations</h2>
+    <p class="note">Download the recording, listen to it, then run <code>.venv/bin/python scripts/align_narration.py &lt;lesson&gt; &lt;file&gt; --name &lt;key&gt; --label "Narrated by &lt;name&gt;" [--lang es]</code>, check the match percentage, commit the files in <code>website/audio/</code>, and mark it published.</p>
+    <div id="narrList"></div>
   </main>
   <script src="assets/site.js"></script>
   <script src="assets/api.js"></script>
@@ -63,9 +66,15 @@
         document.getElementById('toolbar').hidden = false;
         ['fState', 'fStatus', 'fText'].forEach(id => document.getElementById(id).addEventListener('input', draw));
         draw();
-        return A.get('/api/admin/stories').then(drawStories);
+        return A.get('/api/admin/stories').then(drawStories).then(() => A.get('/api/admin/narrations')).then(drawNarr);
       });
     }).catch(e => { status.textContent = e.message; });
+    function drawNarr(list) {
+      const el = document.getElementById('narrList');
+      el.innerHTML = list.length ? '<div class="table-wrap"><table class="data"><tr><th>Date</th><th>Lesson</th><th>Lang</th><th>Credit</th><th>Email</th><th>Recording</th><th>License</th><th>Status</th></tr>' +
+        list.map(n => '<tr><td>' + esc(String(n.created_at).slice(0, 10)) + '</td><td>' + esc(n.module_id) + '</td><td>' + esc(n.lang) + '</td><td>' + esc(n.credit_name) + '</td><td>' + esc(n.contact_email || '') + '</td><td><a href="' + esc(n.file_url) + '" target="_blank" rel="noopener">link</a></td><td>' + esc(n.license) + '</td><td><select data-narr="' + n.id + '">' + ['new', 'published', 'rejected'].map(x => '<option' + (x === n.status ? ' selected' : '') + '>' + x + '</option>').join('') + '</select></td></tr>').join('') + '</table></div>' : '<p class="note">No narrations submitted yet.</p>';
+      el.querySelectorAll('select[data-narr]').forEach(sel => sel.addEventListener('change', () => A.patch('/api/admin/narrations/' + sel.dataset.narr, { status: sel.value }).catch(() => alert('Could not update status'))));
+    }
     function drawStories(list) {
       const el = document.getElementById('storyList');
       if (!list.length) { el.innerHTML = '<p class="note">No stories yet.</p>'; return; }

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Narrate a Lesson</title>
+  <meta name="description" content="Lend your voice: record a Learn lesson so listeners hear a real person instead of a computer voice.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .rec { position: sticky; top: calc(var(--header-h) + 6px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+    .rec .dot { width: 12px; height: 12px; border-radius: 50%; background: #bbb; }
+    .rec.on .dot { background: #d92d20; animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: .3; } }
+    .rec audio { flex: 1 1 240px; min-width: 200px; }
+    .script { font-size: 1.15rem; line-height: 1.8; max-width: 760px; }
+    .script h2 { margin-top: 28px; }
+    .script .lede { font-size: 1.15rem; }
+    .tips li { margin: 4px 0; }
+    .form-grid input, .form-grid select { padding: 8px; }
+    .msg.ok { color: #155f2b; font-weight: 600; } .msg.err { color: #b42318; font-weight: 600; }
+    .hp { position: absolute; left: -9999px; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1>Lend your voice</h1>
+    <p class="lede">Every lesson is narrated by a computer voice. A real person's voice, especially from the communities these lessons are about, means more. Record a lesson here; we'll line your recording up with the text so the words highlight as you speak, and credit you by name.</p>
+    <div class="callout info">
+      <b>How it works:</b>
+      <ol class="tips">
+        <li>Pick a lesson and read the script below aloud while recording. Mistakes are fine: pause, and re-read the sentence.</li>
+        <li>Download your recording and upload it to Google Drive, Dropbox or iCloud with a share link (or record in any app you like).</li>
+        <li>Send us the link with the form at the bottom. An editor listens, aligns it, and publishes it, usually within a week.</li>
+      </ol>
+      <b>Tips:</b> a quiet room with soft furnishings (a closet full of clothes works well), the phone or mic about a hand's width from your mouth, a glass of water, and a natural, unhurried pace. Read the text as written so the highlighting lines up.
+    </div>
+    <p><label for="lesson">Lesson</label> <select id="lesson" style="padding:8px;font:inherit;max-width:100%"></select></p>
+
+    <div class="rec" id="rec">
+      <span class="dot" aria-hidden="true"></span>
+      <button class="btn" type="button" id="rStart">● Record</button>
+      <button class="btn secondary" type="button" id="rPause" disabled>Pause</button>
+      <button class="btn secondary" type="button" id="rStop" disabled>Stop</button>
+      <span class="note" id="rTime">0:00</span>
+      <audio id="rPlay" controls hidden></audio>
+      <a class="btn secondary" id="rDl" hidden>Download</a>
+      <span class="note" id="rMsg" role="status"></span>
+    </div>
+
+    <article class="script" id="script"><p class="note">Loading…</p></article>
+
+    <h2 id="send">Send your recording</h2>
+    <div class="form-section">
+      <form id="nForm">
+        <div class="form-grid">
+          <div><label for="nName">Name to credit</label><input id="nName" maxlength="80" required placeholder="As you'd like it shown, e.g. Maya J."></div>
+          <div><label for="nEmail">Email (optional, never published)</label><input id="nEmail" type="email" maxlength="320"></div>
+          <div class="wide"><label for="nUrl">Link to the recording</label><input id="nUrl" type="url" maxlength="500" required placeholder="https://drive.google.com/…  (anyone with the link can view)"></div>
+          <div class="wide"><label for="nLic">License</label><select id="nLic"><option value="cc-by">Creative Commons Attribution (CC BY 4.0): we credit you by name</option><option value="cc0">Public domain (CC0): no credit required</option></select></div>
+        </div>
+        <label class="check" style="display:flex;gap:8px;margin:10px 0"><input type="checkbox" id="nConsent"> This is my own voice, I recorded it myself, and I agree to let the Federal CAREN Act campaign publish it on its website and podcast under the license above.</label>
+        <input class="hp" type="text" id="nWebsite" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn" type="submit">Send</button> <span class="msg" id="nMsg" role="status"></span>
+      </form>
+    </div>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
+  <script>
+  (function () {
+    const $ = id => document.getElementById(id), L = CarenLearn, esc = L.ui.esc;
+    const lang = (window.CarenI18n && CarenI18n.lang) || 'en';
+    L.catalog().then(cat => {
+      const mods = cat.modules.filter(m => m.status !== 'outline' && (lang === 'en' || m.translated));
+      $('lesson').innerHTML = mods.map(m => '<option value="' + m.id + '">' + m.num + '. ' + esc(m.title) + '</option>').join('');
+      const q = new URLSearchParams(location.search).get('m');
+      if (q && mods.some(m => m.id === q)) $('lesson').value = q;
+      function show() {
+        const m = mods.find(x => x.id === $('lesson').value);
+        $('script').innerHTML = '<h2>' + esc(m.title) + '</h2><p class="lede">' + esc(m.intro || '') + '</p>' +
+          (m.sections || []).map(s => '<h2>' + esc(s.h) + '</h2>' + s.body).join('');
+        $('script').querySelectorAll('a').forEach(a => a.replaceWith(document.createTextNode(a.textContent)));
+      }
+      $('lesson').addEventListener('change', show); show();
+    });
+
+    // Recorder (MediaRecorder; stays in the browser until the volunteer downloads it)
+    let rec = null, chunks = [], t0 = 0, acc = 0, timer = 0, stream = null;
+    const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    const tick = () => { $('rTime').textContent = fmt((acc + (rec && rec.state === 'recording' ? Date.now() - t0 : 0)) / 1000); };
+    $('rStart').addEventListener('click', async () => {
+      if (!navigator.mediaDevices || !window.MediaRecorder) { $('rMsg').textContent = 'This browser can’t record. Use your phone’s voice recorder app instead, then send the link below.'; return; }
+      if (chunks.length && !confirm('Start over? The current recording will be discarded unless you downloaded it.')) return;
+      try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: true, autoGainControl: true } }); }
+      catch (e) { $('rMsg').textContent = 'Microphone permission was denied.'; return; }
+      chunks = []; acc = 0;
+      const type = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg'].find(t => MediaRecorder.isTypeSupported(t)) || '';
+      rec = new MediaRecorder(stream, type ? { mimeType: type, audioBitsPerSecond: 96000 } : undefined);
+      rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+      rec.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(chunks, { type: rec.mimeType }), url = URL.createObjectURL(blob);
+        const ext = /mp4/.test(rec.mimeType) ? 'm4a' : /ogg/.test(rec.mimeType) ? 'ogg' : 'webm';
+        $('rPlay').src = url; $('rPlay').hidden = false;
+        $('rDl').href = url; $('rDl').download = 'caren-' + $('lesson').value + '-' + lang + '.' + ext; $('rDl').hidden = false;
+        $('rMsg').textContent = 'Listen back, then download and share the file with the form below.';
+        $('rec').classList.remove('on'); clearInterval(timer);
+      };
+      rec.start(1000); t0 = Date.now(); timer = setInterval(tick, 500);
+      $('rec').classList.add('on'); $('rPause').disabled = false; $('rStop').disabled = false; $('rStart').textContent = '● Start over';
+      $('rPlay').hidden = true; $('rDl').hidden = true; $('rMsg').textContent = 'Recording…';
+    });
+    $('rPause').addEventListener('click', () => {
+      if (!rec) return;
+      if (rec.state === 'recording') { rec.pause(); acc += Date.now() - t0; $('rPause').textContent = 'Resume'; $('rec').classList.remove('on'); $('rMsg').textContent = 'Paused'; }
+      else if (rec.state === 'paused') { rec.resume(); t0 = Date.now(); $('rPause').textContent = 'Pause'; $('rec').classList.add('on'); $('rMsg').textContent = 'Recording…'; }
+    });
+    $('rStop').addEventListener('click', () => { if (rec && rec.state !== 'inactive') { if (rec.state === 'recording') acc += Date.now() - t0; rec.stop(); $('rPause').disabled = true; $('rStop').disabled = true; $('rPause').textContent = 'Pause'; } });
+
+    $('nForm').addEventListener('submit', e => {
+      e.preventDefault(); const msg = $('nMsg'); msg.className = 'msg'; msg.textContent = 'Sending…';
+      CarenAPI.post('/api/narrations', { module: $('lesson').value, lang, credit_name: $('nName').value, contact_email: $('nEmail').value, file_url: $('nUrl').value, license: $('nLic').value, consent: $('nConsent').checked, website: $('nWebsite').value })
+        .then(() => { msg.className = 'msg ok'; msg.textContent = 'Thank you! An editor will listen and publish it soon.'; e.target.reset(); L.ui.award('quest:narrate-lesson', 'Lent your voice'); })
+        .catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
+    });
+  })();
+  </script>
+</body>
+</html>

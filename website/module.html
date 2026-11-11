@@ -164,7 +164,8 @@
           '<span class="note" id="nTime">0:00</span>' +
           (voices.length > 1 ? '<select id="nVoice" aria-label="Voice">' + voices.map(v => '<option value="' + v + '"' + (v === voice ? ' selected' : '') + '>' + esc((idx.voices[v] || {}).label || v) + '</option>').join('') + '</select>' : '') +
           '<select id="nRate" aria-label="Speed"><option value="0.85">0.85×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select>' +
-          '<label class="note"><input type="checkbox" id="nFollow" checked> Follow along</label>';
+          '<label class="note"><input type="checkbox" id="nFollow" checked> Follow along</label>' +
+          '<a class="note" href="record.html?m=' + m.id + '">🎙 Record this lesson in your voice</a>';
         const audio = new Audio(); audio.preload = 'none';
         const hlWord = (window.CSS && CSS.highlights && window.Highlight) ? new Highlight() : null;
         const hlSent = hlWord ? new Highlight() : null;

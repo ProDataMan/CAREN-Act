@@ -512,6 +512,44 @@ app.patch('/api/admin/stories/:id', requireAdmin, async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// ---------- Volunteer narrations (link to a recording; an editor aligns it with scripts/align_narration.py) ----------
+app.post('/api/narrations', rateLimit(10, 3600e3), async (req, res, next) => {
+  try {
+    const b = req.body || {}, cat = learnCatalog();
+    if (b.website) return res.json({ ok: true }); // honeypot
+    const v = { module: str(b.module, 40), lang: b.lang === 'es' ? 'es' : 'en', name: str(b.credit_name, 80),
+      email: str(b.contact_email, 320).toLowerCase() || null, url: str(b.file_url, 500), license: ['cc-by', 'cc0'].includes(b.license) ? b.license : '' };
+    const errors = [];
+    if (!cat || !cat.modules.some(m => m.id === v.module)) errors.push('Choose a lesson.');
+    if (!v.name) errors.push('Add the name to credit.');
+    if (!/^https:\/\/[^\s<>"]{6,490}$/.test(v.url)) errors.push('Paste a link (https://…) to the recording.');
+    if (v.email && !isEmail(v.email)) errors.push('That email address doesn’t look right.');
+    if (!v.license) errors.push('Choose a license.');
+    if (b.consent !== true) errors.push('Please confirm you recorded this yourself and agree to the license.');
+    if (errors.length) return res.status(400).json({ error: errors.join(' ') });
+    const pool = await getPool();
+    await pool.request().input('m', sql.NVarChar(40), v.module).input('l', sql.Char(2), v.lang).input('n', sql.NVarChar(80), v.name)
+      .input('e', sql.NVarChar(320), v.email).input('u', sql.NVarChar(500), v.url).input('li', sql.NVarChar(20), v.license)
+      .query('INSERT INTO dbo.narrations (module_id, lang, credit_name, contact_email, file_url, license) VALUES (@m, @l, @n, @e, @u, @li)');
+    res.status(201).json({ ok: true });
+  } catch (e) { next(e); }
+});
+app.get('/api/admin/narrations', requireAdmin, async (req, res, next) => {
+  try {
+    const pool = await getPool();
+    res.json((await pool.request().query('SELECT TOP 500 * FROM dbo.narrations ORDER BY created_at DESC')).recordset);
+  } catch (e) { next(e); }
+});
+app.patch('/api/admin/narrations/:id', requireAdmin, async (req, res, next) => {
+  try {
+    const status = str((req.body || {}).status, 20);
+    if (!['new', 'published', 'rejected'].includes(status)) return res.status(400).json({ error: 'Invalid status' });
+    const pool = await getPool();
+    await pool.request().input('id', sql.Int, parseInt(req.params.id, 10)).input('s', sql.NVarChar(20), status).query('UPDATE dbo.narrations SET status = @s WHERE id = @id');
+    res.json({ ok: true });
+  } catch (e) { next(e); }
+});
+
 app.get('/api/admin/volunteers', requireAdmin, async (req, res, next) => {
   try {
     const pool = await getPool();

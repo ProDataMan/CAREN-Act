@@ -187,6 +187,10 @@ A public repository and advocacy site supporting a federal version of San Franci
       - `reps.js` uses NEW_CONGRESS from 2027-01-03, the newest geocoder layer, and a stale-lines note.
       - `build_zip_districts` tries CD120 first.
       - `_congress` is recorded in `zip_districts.json` and `congress` in `districts.json`.
+    - **Human narrator workflow (built last, as the owner asked):**
+      - `record.html` (in-browser recorder plus submission form), migration `005_narrations`, `/api/narrations` and the admin list.
+      - `scripts/align_narration.py` uses faster-whisper word timestamps plus difflib alignment to the narrate.py segments.
+      - Human voices go first in `audio/<lang>/index.json`.
     - **Share card:** on every lesson, in `module.html` `shareCard()`.
     - **Tooling:** the scratch folder was wiped between sessions, so the tools now live in git-ignored `.venv/` (piper-tts, lameenc, pillow), `.voices/` (Piper voice models) and `.tools/` (Node and `cdp.js` for headless checks).
   - **New modules:** afro-latino, christian-nationalism, technology, twenty-twenties, labor, culture. Spanish titles and summaries are in `learn.es.json`.
