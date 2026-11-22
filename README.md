@@ -34,7 +34,12 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 - **Accessibility (reviewed 2026-11-22):** axe-core 4.10 (WCAG 2.0, 2.1 and 2.2 A/AA, plus best practices) reports **0 violations** on all 24 pages, the Spanish Learn page and a phone-width lesson.
   - **Fixed:** missing main landmarks (map, bill title, embed), heading order (map layer groups, Take action steps, teach-in kits), low-contrast text (locked badges, chart footnotes), unlabeled template text areas, small tap targets in link lists, a scrollable legend that couldn't be reached by keyboard, and the closed comment panel (now `inert`).
   - **Added:** a "Skip to main content" link on every page and respect for reduced-motion settings (animations off, narration scrolls without animation). Keyboard navigation was tested with real Tab and Enter key presses.
-  - **Known limits:** individual map markers can't be reached by keyboard. Their content is available as text on county pages and in search. Audio is computer-narrated, and the full text is always on the page.
+  - **Map keyboard access (fixed 2026-11-22):** markers are drawn on a canvas, so they can't take focus. The **List places in view** button in the layers panel opens a list of every point in the active layers within the current view (up to 150, nearest the center first).
+    - Each entry is a button that opens that place's pop-up and moves focus into it. Escape returns to the same entry.
+    - The list follows panning and zooming.
+    - The map container has an accessible description of its keyboard controls (arrows pan, plus and minus zoom).
+    - Tested with real Tab, Enter and Escape key presses.
+  - **Known limits:** audio is computer-narrated, and the full text is always on the page.
   - **Re-test:** `.tools/axe.js URL WIDTH` (headless Chrome plus axe-core).
 - **Volunteer narrators:** https://prodataman.github.io/CAREN-Act/website/record.html (linked from every lesson's Listen bar, and the "Lend your voice" quest is worth 150 XP).
   - **The volunteer** picks a lesson, reads the script while the page records it in the browser, downloads the file, shares it by link (Drive, Dropbox or iCloud), and submits the link with a credit name and a license (CC BY 4.0 or CC0).

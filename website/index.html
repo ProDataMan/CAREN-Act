@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="assets/site.css">
   <style>
+    .inview { max-width: 1200px; margin: 0 auto; padding: 8px 16px 16px; border-bottom: 1px solid var(--line); }
+    .inview h2 { margin: 8px 0 4px; font-size: 1.1rem; }
+    .inview ol { list-style: none; padding: 0; margin: 8px 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px; }
+    .inview li button { width: 100%; text-align: left; font: inherit; font-size: .9rem; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: pointer; }
+    .inview li button:hover { border-color: var(--accent); }
+    .inview li .lyr { display: block; font-size: .75rem; color: var(--muted); }
     .hero { background: linear-gradient(180deg, #0e2a47 0%, #173e66 100%); color: #fff; }
     .hero .in { max-width: 1200px; margin: 0 auto; padding: 18px 16px 20px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 24px; }
     .hero h1 { margin: 0; font-size: clamp(1.35rem, 4.2vw, 2rem); line-height: 1.2; }
@@ -96,10 +102,16 @@
         <input type="range" id="yearRange" min="1800" max="2026" step="1" value="2026" style="width:100%" aria-describedby="yearHelp">
         <span id="yearHelp" style="display:block;font-size:.75rem;color:var(--muted)">Slide back in time. Applies to lynchings of all races, communities burned or taken, and boarding schools and camps.</span>
       </div>
+      <button class="btn secondary" type="button" id="listBtn" aria-controls="inView" aria-expanded="false" style="margin:4px 14px 8px">☰ List places in view</button>
       <span class="status" id="loadStatus">Loading data…</span>
     </details>
     <div id="map"></div>
   </div>
+  <section id="inView" class="inview" aria-labelledby="inViewH" hidden>
+    <h2 id="inViewH">Places in view</h2>
+    <p class="note" id="inViewNote" aria-live="polite"></p>
+    <ol id="inViewList"></ol>
+  </section>
 
   <div class="info">
     <div class="priority"><strong>Prioritization without filtering:</strong> The heat map and the purple “high-overlap” rings mark counties where several factors coincide: a history of racial terror lynching, high rates of police killings, race-motivated hate crimes, and large minority populations. Every other data point stays on the map and every layer can be toggled. <a href="#how-to-read">How to read the map</a> · <a href="data.html#score">how the score is computed</a>.</div>
@@ -442,6 +454,75 @@
       return d;
     };
     legend.addTo(map);
+
+    // ---- Keyboard and screen-reader access. Markers are drawn on a canvas, so they can't take focus;
+    // "List places in view" lists every point in the active layers within the current view as buttons.
+    const mapEl = document.getElementById('map');
+    mapEl.setAttribute('aria-label', 'Interactive map. Arrow keys pan and the plus and minus keys zoom. Use “List places in view” in the layers panel for a text list of everything shown.');
+    const inView = document.getElementById('inView'), listBtn = document.getElementById('listBtn');
+    const layerName = {}; boxes.forEach(cb => { layerName[cb.dataset.layer] = cb.parentElement.textContent.trim(); });
+    let items = [], holdList = false, returnTo = null;
+    const tmp = document.createElement('div');
+    function labelOf(layer) {
+      const p = layer.getPopup && layer.getPopup(); if (!p) return null;
+      const c = p.getContent(); if (typeof c !== 'string') return null;
+      tmp.innerHTML = c.replace(/<br\s*\/?>/gi, ' · ');
+      const b = tmp.querySelector('b'), head = (b ? b.textContent : tmp.textContent).trim();
+      const rest = tmp.textContent.replace(head, '').replace(/\s+/g, ' ').replace(/^[\s·,]+/, '').trim();
+      return { head: head.slice(0, 90) || 'Location', sub: rest.slice(0, 110) };
+    }
+    function collect() {
+      const bounds = map.getBounds(), c = map.getCenter(), out = [];
+      Object.keys(layers).forEach(name => {
+        const g = layers[name]; if (!g || !map.hasLayer(g) || !g.eachLayer) return;
+        (function walk(l) {
+          if (l.eachLayer && !l.getLatLng) { l.eachLayer(walk); return; }
+          if (!l.getLatLng) return;
+          const ll = l.getLatLng(); if (!bounds.contains(ll)) return;
+          const lab = labelOf(l); if (!lab) return;
+          out.push({ l, ll, name, lab, d: c.distanceTo(ll) });
+        })(g);
+      });
+      return out.sort((a, b) => a.d - b.d);
+    }
+    function renderList() {
+      if (inView.hidden || holdList) return;
+      const fb = document.activeElement && document.activeElement.closest && document.activeElement.closest('#inViewList button[data-i]');
+      const keep = fb && items[+fb.dataset.i] ? items[+fb.dataset.i].l : null;
+      const all = collect(); items = all.slice(0, 150);
+      document.getElementById('inViewNote').textContent = all.length
+        ? (all.length > items.length ? 'Showing the ' + items.length + ' places nearest the center of ' + all.length + ' in view. Zoom in or pan to see others.' : all.length + ' places in view, nearest the center first.') + ' Choose one to open its details on the map.'
+        : 'No places from the active layers are in view. Turn on a layer, or zoom out. (The heat map and shaded areas are summarized in each county’s pop-up and on county pages.)';
+      requestAnimationFrame(() => { if (!keep) return; const k = items.findIndex(it => it.l === keep); const b = document.querySelector('#inViewList button[data-i="' + (k >= 0 ? k : 0) + '"]'); if (b) b.focus(); });
+      document.getElementById('inViewList').innerHTML = items.map((x, i) => '<li><button type="button" data-i="' + i + '">' + esc(x.lab.head) + '<span class="lyr">' + esc(layerName[x.name] || x.name) + (x.lab.sub ? ' · ' + esc(x.lab.sub) : '') + '</span></button></li>').join('');
+    }
+    listBtn.addEventListener('click', () => {
+      inView.hidden = !inView.hidden; listBtn.setAttribute('aria-expanded', String(!inView.hidden));
+      listBtn.textContent = inView.hidden ? '☰ List places in view' : '☰ Hide the list';
+      if (!inView.hidden) { renderList(); inView.scrollIntoView({ block: 'nearest' }); document.getElementById('inViewH').setAttribute('tabindex', '-1'); document.getElementById('inViewH').focus(); }
+    });
+    map.on('moveend', renderList);
+    map.on('layeradd layerremove', e => { if (e.layer instanceof L.Popup || e.layer instanceof L.Tooltip) return; clearTimeout(renderList.t); renderList.t = setTimeout(renderList, 300); });
+    document.getElementById('inViewList').addEventListener('click', e => {
+      const b = e.target.closest('button[data-i]'); if (!b) return;
+      const x = items[+b.dataset.i]; if (!x) return;
+      holdList = true; returnTo = x;
+      map.once('popupopen', ev => {
+        const el = ev.popup.getElement(), cn = el && el.querySelector('.leaflet-popup-content');
+        if (cn) { cn.setAttribute('tabindex', '-1'); cn.setAttribute('role', 'dialog'); cn.setAttribute('aria-label', x.lab.head); cn.focus(); }
+        if (el) el.addEventListener('keydown', k => { if (k.key === 'Escape') { k.stopPropagation(); map.closePopup(); } });
+      });
+      map.setView(x.ll, Math.max(map.getZoom(), 8), { animate: false });
+      x.l.openPopup();
+    });
+    map.on('popupclose', () => {
+      if (!holdList) return;
+      holdList = false; const target = returnTo; returnTo = null;
+      renderList();
+      const i = items.findIndex(it => it.l === (target && target.l));
+      const btn = document.querySelector('#inViewList button[data-i="' + (i >= 0 ? i : 0) + '"]');
+      if (btn) btn.focus();
+    });
 
     // ---------------------------------------------------------------- Sources table
     getJSON('data/manifest.json').then(m => {

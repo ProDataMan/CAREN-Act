@@ -1361,7 +1361,11 @@
   "Books and quests": "Libros y misiones",
   "No results. Try a different word.": "Sin resultados. Prueba otra palabra.",
   "Skip to main content": "Saltar al contenido principal",
-  "Map legend": "Leyenda del mapa"
+  "Map legend": "Leyenda del mapa",
+  "☰ List places in view": "☰ Lista de lugares visibles",
+  "☰ Hide the list": "☰ Ocultar la lista",
+  "Places in view": "Lugares visibles",
+  "No places from the active layers are in view. Turn on a layer, or zoom out. (The heat map and shaded areas are summarized in each county’s pop-up and on county pages.)": "No hay lugares de las capas activas en esta vista. Activa una capa o aleja el mapa. (El mapa de calor y las zonas sombreadas se resumen en la ventana de cada condado y en las páginas de condado.)"
  },
  "patterns": [
   [
@@ -1475,6 +1479,14 @@
   [
    "^(\\d+) of (\\d+) results$",
    "$1 de $2 resultados"
+  ],
+  [
+   "^Showing the (\\d+) places nearest the center of (\\d+) in view\\. Zoom in or pan to see others\\. Choose one to open its details on the map\\.$",
+   "Se muestran los $1 lugares más cercanos al centro de $2 visibles. Acércate o desplázate para ver otros. Elige uno para abrir sus detalles en el mapa."
+  ],
+  [
+   "^(\\d+) places in view, nearest the center first\\. Choose one to open its details on the map\\.$",
+   "$1 lugares visibles, primero los más cercanos al centro. Elige uno para abrir sus detalles en el mapa."
   ]
  ]
 }

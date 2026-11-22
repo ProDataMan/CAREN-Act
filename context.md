@@ -185,6 +185,7 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Contrast fixes on the deaths page (`--text-muted`) and locked badges.
     - Toolkit and press textareas given `aria-label`.
     - Map legend made focusable as a region.
+    - **Map keyboard fix:** a "List places in view" panel (`#inView`) built from the active layer groups' markers and popups. Focus moves into the popup and is restored on close; popup add and remove don't trigger a rebuild. Test with `.tools/maptest.js`.
   - **2026-11-22:**
     - **Lawmaker brief** (`brief.html`): one letter-size page, verified by printing to PDF, plus a live Judiciary member table.
     - **Press kit** (`press.html`, `website/press/` logos). The media contact is a placeholder (the `PRESS` constant).
