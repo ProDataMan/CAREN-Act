@@ -134,7 +134,7 @@ table.data th { background: var(--surface-2); }
 .ev.plan::before { content: "➜"; }
 
 /* ---------- Language selector and translation ---------- */
-.lang-select { margin-left: auto; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 6px; height: 34px; padding: 0 6px; font: inherit; font-size: .85rem; cursor: pointer; }
+.lang-select { margin-left: 8px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 6px; height: 34px; padding: 0 6px; font: inherit; font-size: .85rem; cursor: pointer; }
 .lang-select option { color: #1f2328; }
 .site-nav { margin-left: 8px; }
 @media (max-width: 1240px) { .nav-toggle { margin-left: 8px; } }
@@ -149,3 +149,5 @@ html.i18n-pending body { visibility: hidden; }
 ::highlight(narration) { background-color: #f59e0b; color: #111; }
 .narr-active { background: #fef3c7; border-radius: 4px; }
 .share-lesson { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; padding: 12px 14px; border: 1px dashed var(--line); border-radius: 10px; }
+.site-search { margin-left: auto; color: #fff; display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 6px; border: 1px solid rgba(255,255,255,.35); }
+.site-search:hover, .site-search:focus-visible { background: rgba(255,255,255,.12); }

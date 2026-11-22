@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brief for Lawmakers</title>
+  <meta name="description" content="A one-page case for a federal CAREN Act: the problem, the evidence, the precedents and the ask, plus the members of Congress who would hear the bill.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .brief { max-width: 8.5in; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: .55in .6in; font-size: 10.5pt; line-height: 1.38; color: #111; }
+    .brief header.bh { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #0e2a47; padding-bottom: 6px; margin-bottom: 8px; }
+    .brief h1 { font-size: 17pt; margin: 0; line-height: 1.15; color: #0e2a47; }
+    .brief .kicker { font-size: 8.5pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #8a6400; }
+    .brief h2 { font-size: 11pt; margin: 10px 0 3px; color: #0e2a47; text-transform: uppercase; letter-spacing: .04em; }
+    .brief p { margin: 3px 0 5px; }
+    .brief ul { margin: 2px 0 4px; padding-left: 18px; }
+    .brief li { margin: 2px 0; }
+    .brief .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; }
+    .brief .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 6px 0; }
+    .brief .stat { border: 1px solid #c9d3de; border-radius: 6px; padding: 6px 8px; }
+    .brief .stat b { display: block; font-size: 17pt; color: #0e2a47; line-height: 1.1; }
+    .brief .stat span { font-size: 8.5pt; }
+    .brief .ask { background: #fff7e0; border-left: 4px solid #f2c14e; padding: 6px 10px; margin: 8px 0; }
+    .brief .src { font-size: 7.5pt; color: #444; border-top: 1px solid #ccc; margin-top: 8px; padding-top: 4px; }
+    .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    #members table td, #members table th { font-size: .85rem; }
+    @media (max-width: 700px) { .brief { padding: 18px; } .brief .cols, .brief .stats { grid-template-columns: 1fr; } }
+    @media print {
+      @page { size: letter; margin: 0; }
+      .site-header, .site-footer, .no-print { display: none !important; }
+      body { background: #fff; }
+      .page-wide { padding: 0; max-width: none; }
+      .brief { border: 0; border-radius: 0; max-width: none; padding: .5in .55in; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page-wide">
+    <div class="no-print">
+      <h1>Brief for lawmakers</h1>
+      <p class="lede">A one-page case for a federal CAREN Act to leave with a member of Congress, a state legislator or their staff. The numbers update from this site's data. Print it, or save it as a PDF.</p>
+      <div class="tools"><button class="btn" type="button" onclick="print()">Print or save as PDF</button><a class="btn secondary" href="#members">Who would hear the bill</a><a class="btn secondary" href="press.html">Press kit</a><a class="btn secondary" href="toolkit.html#meeting">Meeting checklist</a></div>
+    </div>
+
+    <article class="brief" id="brief">
+      <header class="bh">
+        <div><div class="kicker">Policy brief · Federal CAREN Act</div><h1>Make it illegal to use the police as a weapon of discrimination</h1></div>
+        <div class="kicker" id="bDate"></div>
+      </header>
+
+      <p><b>The problem.</b> Across the country, people have called the police on Black, Latino, Asian, Native and other neighbors for barbecuing, birdwatching, selling water, waiting in a coffee shop, or canvassing their own district. These calls send armed officers to confront people who are doing nothing wrong. They put lives at risk, humiliate and endanger the people targeted, and waste emergency resources. In most of the country, the person targeted has no remedy against the caller.</p>
+
+      <div class="stats" id="stats">
+        <div class="stat"><b id="sfPct">~1%</b><span>of resident-initiated “suspicious person” calls in San Francisco led to an arrest, citation or police report (past 12 months)</span></div>
+        <div class="stat"><b id="bjsX">~3×</b><span>Black residents who had police contact were about this many times as likely as white residents to face threats or force (BJS, 2020)</span></div>
+        <div class="stat"><b>11–0</b><span>San Francisco's Board of Supervisors passed the CAREN Act unanimously in 2020</span></div>
+      </div>
+
+      <div class="cols">
+        <div>
+          <h2>Precedents</h2>
+          <ul>
+            <li><b>San Francisco</b> (2020): CAREN Act, Police Code §637. Civil remedy of at least $1,000.</li>
+            <li><b>Oregon</b> (2019): civil action against a person who calls police with racial bias. Authored by then-state Rep. <b>Janelle Bynum</b>, now a U.S. Representative.</li>
+            <li><b>New York</b> (2020): civil action for false reports to police based on race or other protected traits.</li>
+            <li><b>California</b> AB 1775 (2020): stronger penalties for false, bias-based reports.</li>
+          </ul>
+          <h2>What the bill does</h2>
+          <ul>
+            <li>Makes it unlawful to <b>knowingly</b> cause officers to contact someone with the <b>specific intent to discriminate</b> on the basis of race or another protected trait, or to harass or expel them.</li>
+            <li>Gives the person harmed a civil action: at least <b>$1,000</b> ($500 from the caller, $500 from the responding agency), attorneys' fees, and punitive damages for malicious or reckless violations.</li>
+            <li>Asks the Attorney General to study national data on bias-motivated emergency calls.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>What it does not do</h2>
+          <ul>
+            <li>It <b>protects good-faith calls</b>: an explicit defense for anyone reporting an actual or reasonably suspected crime, emergency or threat.</li>
+            <li>It creates <b>no new crime</b> and no new police powers.</li>
+            <li>It <b>does not preempt</b> stronger state and local laws.</li>
+          </ul>
+          <h2>Why federal action</h2>
+          <p>Local and state laws protect only people who happen to live there. A federal floor gives every person in the country the same remedy and sends a national message: calling 911 is for emergencies, not for enforcing prejudice.</p>
+          <div class="ask"><b>The ask:</b> introduce or cosponsor a federal CAREN Act; request a Judiciary Committee hearing on bias-motivated police calls; or include these protections in a broader civil rights or policing bill.</div>
+          <p style="font-size:9pt"><b>Read the draft and public comments:</b> prodataman.github.io/CAREN-Act/website/bill.html</p>
+        </div>
+      </div>
+      <div class="src">Sources: San Francisco open data (calls for service, past 12 months); Bureau of Justice Statistics, <i>Contacts Between Police and the Public, 2020</i> (NCJ 304527); San Francisco Ord. 219-20; Oregon HB 3216 (2019); N.Y. Civ. Rights Law §79-n; Cal. AB 1775 (2020). Prepared by the Federal CAREN Act campaign, a volunteer effort. Full sources and data: prodataman.github.io/CAREN-Act/website/data.html</div>
+    </article>
+
+    <section class="no-print" id="members">
+      <h2>Who would hear the bill</h2>
+      <p>A federal CAREN Act would go to the House and Senate Judiciary Committees. These are the current members, loaded live from the public <a href="https://github.com/unitedstates/congress-legislators">congress-legislators</a> data. Start with your own members (find them on <a href="act.html#contact">Take action</a>), then committee leaders, then members from states that already have similar laws.</p>
+      <div class="callout info"><b>Most natural sponsor:</b> Rep. Janelle Bynum (Oregon) wrote Oregon's 2019 law as a state legislator after police were called on her while she was canvassing her own district.</div>
+      <div class="filters" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0"><label>Chamber <select id="fCh"><option value="">Both</option><option value="HSJU">House</option><option value="SSJU">Senate</option></select></label><label>Party <select id="fPa"><option value="">All</option><option>Democrat</option><option>Republican</option><option>Independent</option></select></label></div>
+      <div class="table-wrap"><table class="data" id="mTable"><tr><td>Loading…</td></tr></table></div>
+      <p class="note">Help us add each member's record on civil rights and policing bills: <a href="volunteer.html">volunteer as a researcher</a>.</p>
+    </section>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    $('bDate').textContent = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    fetch('data/city_calls.json').then(r => r.json()).then(c => {
+      const sf = c.cities.find(x => /San Francisco/.test(x.city));
+      if (sf) $('sfPct').textContent = (100 * sf.enforcement / sf.calls).toFixed(1) + '%';
+    }).catch(() => {});
+    fetch('data/bjs_contacts.json').then(r => r.json()).then(b => {
+      const f = b.force_pct_of_contacts; if (f && f.Black && f.White) $('bjsX').textContent = (f.Black / f.White).toFixed(1) + '×';
+    }).catch(() => {});
+    const CHAMPIONS = { B001326: 'Wrote Oregon’s 2019 law against racially biased police calls' };
+    Promise.all([
+      fetch('https://unitedstates.github.io/congress-legislators/legislators-current.json').then(r => r.json()),
+      fetch('https://unitedstates.github.io/congress-legislators/committee-membership-current.json').then(r => r.json())
+    ]).then(([leg, com]) => {
+      const by = {}; leg.forEach(p => by[p.id.bioguide] = p);
+      const rows = [];
+      ['HSJU', 'SSJU'].forEach(code => (com[code] || []).forEach(mm => {
+        const p = by[mm.bioguide]; if (!p) return;
+        const t = p.terms[p.terms.length - 1];
+        rows.push({ code, p, t, title: mm.title || '', rank: mm.rank || 99, champ: CHAMPIONS[mm.bioguide] || '' });
+      }));
+      // Champions who aren't on the committees still belong on the list
+      Object.keys(CHAMPIONS).forEach(id => { if (!rows.some(r => r.p.id.bioguide === id) && by[id]) { const p = by[id], t = p.terms[p.terms.length - 1]; rows.push({ code: t.type === 'sen' ? 'SSJU' : 'HSJU', p, t, title: 'Not on Judiciary', rank: 0, champ: CHAMPIONS[id] }); } });
+      rows.sort((a, b) => (a.champ ? -1 : 0) - (b.champ ? -1 : 0) || (a.code > b.code ? 1 : -1) || (/chair|ranking/i.test(b.title) - /chair|ranking/i.test(a.title)) || a.t.party.localeCompare(b.t.party) || a.rank - b.rank);
+      function draw() {
+        const ch = $('fCh').value, pa = $('fPa').value;
+        const list = rows.filter(r => (!ch || r.code === ch) && (!pa || r.t.party === pa));
+        $('mTable').innerHTML = '<tr><th>Member</th><th>Chamber</th><th>Party</th><th>State</th><th>Role</th><th>Phone</th><th>Contact</th><th>Notes</th></tr>' + list.map(r =>
+          '<tr><td><b>' + esc(r.p.name.official_full || (r.p.name.first + ' ' + r.p.name.last)) + '</b></td><td>' + (r.code === 'SSJU' ? 'Senate' : 'House') + '</td><td>' + esc(r.t.party) + '</td><td>' + esc(r.t.state) + (r.t.district != null && r.t.type === 'rep' ? '-' + r.t.district : '') + '</td><td>' + esc(r.title) + '</td><td>' + (r.t.phone ? '<a href="tel:' + esc(r.t.phone) + '">' + esc(r.t.phone) + '</a>' : '') + '</td><td>' + (r.t.contact_form || r.t.url ? '<a href="' + esc(r.t.contact_form || r.t.url) + '" target="_blank" rel="noopener">Contact</a>' : '') + '</td><td>' + esc(r.champ) + '</td></tr>').join('');
+      }
+      ['fCh', 'fPa'].forEach(id => $(id).addEventListener('change', draw)); draw();
+    }).catch(() => { $('mTable').innerHTML = '<tr><td>Member data is unavailable right now.</td></tr>'; });
+  })();
+  </script>
+</body>
+</html>

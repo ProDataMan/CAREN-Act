@@ -550,6 +550,46 @@ app.patch('/api/admin/narrations/:id', requireAdmin, async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// ---------- Usage counts (privacy-respecting) ----------
+// The browser sends {page} on each page view and {event} for milestones (lesson read, quiz passed, quest done,
+// narration started or finished, share, class joined). Only daily totals are stored: no IPs, cookies or IDs.
+// Browsers with Do Not Track or Global Privacy Control don't send anything (see site.js).
+const EVENT_RE = /^(read|quiz|quest|listen|heard|share|class|story|path):[a-z0-9-]{1,40}$/;
+const BOT_RE = /bot|crawl|spider|slurp|headless|preview|monitor|curl|wget|python|httpclient|lighthouse/i;
+const hitBody = express.text({ type: '*/*', limit: '2kb' });
+app.post('/api/hit', rateLimit(300, 3600e3), hitBody, async (req, res) => {
+  res.status(204).end();
+  try {
+    if (BOT_RE.test(req.get('user-agent') || '') || !configured()) return;
+    let b = {}; try { b = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {}); } catch (e) { return; }
+    const lang = b.lang === 'es' ? 'es' : 'en', rows = [];
+    if (typeof b.page === 'string' && /^[a-z0-9-]{1,40}\.html$/.test(b.page)) {
+      rows.push(['page', b.page]);
+      if (typeof b.module === 'string' && /^[a-z0-9-]{1,40}$/.test(b.module) && b.page === 'module.html') rows.push(['page', 'module:' + b.module]);
+      if (typeof b.ref === 'string' && /^[a-z0-9.-]{3,100}$/.test(b.ref)) rows.push(['ref', b.ref.replace(/^www\./, '')]);
+    }
+    if (typeof b.event === 'string' && EVENT_RE.test(b.event)) rows.push(['event', b.event]);
+    if (!rows.length) return;
+    const pool = await getPool();
+    for (const [kind, name] of rows) {
+      await pool.request().input('k', sql.NVarChar(12), kind).input('n', sql.NVarChar(100), name).input('l', sql.Char(2), lang)
+        .query(`MERGE dbo.stats_daily WITH (HOLDLOCK) AS t USING (SELECT CAST(SYSUTCDATETIME() AS DATE) AS day, @k AS kind, @n AS name, @l AS lang) AS s
+                ON t.day = s.day AND t.kind = s.kind AND t.name = s.name AND t.lang = s.lang
+                WHEN MATCHED THEN UPDATE SET n = t.n + 1 WHEN NOT MATCHED THEN INSERT (day, kind, name, lang, n) VALUES (s.day, s.kind, s.name, s.lang, 1);`);
+    }
+  } catch (e) { console.warn('[hit]', e.message); }
+});
+
+app.get('/api/admin/stats', requireAdmin, async (req, res, next) => {
+  try {
+    const days = Math.min(Math.max(parseInt(req.query.days, 10) || 30, 1), 366);
+    const pool = await getPool();
+    const r = await pool.request().input('d', sql.Int, days)
+      .query('SELECT CONVERT(CHAR(10), day, 23) AS day, kind, name, lang, n FROM dbo.stats_daily WHERE day >= DATEADD(day, -@d, CAST(SYSUTCDATETIME() AS DATE)) ORDER BY day');
+    res.json({ days, rows: r.recordset });
+  } catch (e) { next(e); }
+});
+
 app.get('/api/admin/volunteers', requireAdmin, async (req, res, next) => {
   try {
     const pool = await getPool();

@@ -114,6 +114,7 @@
       if (!xp) return { already: false, xp: 0 };
       s.events[key] = { xp: xp, at: new Date().toISOString() };
       save(s); changed(); sync();
+      if (window.CarenStats) window.CarenStats.event(key);
       return { already: false, xp: xp };
     });
   }

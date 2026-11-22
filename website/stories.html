@@ -118,7 +118,7 @@
         title: $('sTitle').value, body: $('sBody').value, media_url: $('sMedia').value, consent: $('sConsent').checked, consent_teller: $('sTeller').checked,
         lang: (window.CarenI18n && CarenI18n.lang) || 'en', website: $('sWebsite').value };
       A.post('/api/stories', body).then(() => {
-        msg.className = 'msg ok'; msg.textContent = 'Thank you. Your story was sent for review.';
+        msg.className = 'msg ok'; msg.textContent = 'Thank you. Your story was sent for review.'; if (window.CarenStats) CarenStats.event('story:submit');
         e.target.reset(); $('tellerWrap').hidden = true;
         CarenLearn.ui.award(body.told_by === 'self' ? 'quest:share-story' : 'quest:oral-history', body.told_by === 'self' ? 'Shared your story' : 'Recorded an elder\'s story');
       }).catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });

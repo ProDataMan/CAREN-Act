@@ -18,13 +18,13 @@
   "voice": "female",
   "file": "podcast/es-female.xml",
   "title": "Cómo llegamos aquí: lecciones sobre el racismo sistémico (voz femenina)",
-  "episodes": 4
+  "episodes": 10
  },
  {
   "lang": "es",
   "voice": "male",
   "file": "podcast/es-male.xml",
   "title": "Cómo llegamos aquí: lecciones sobre el racismo sistémico (voz masculina)",
-  "episodes": 4
+  "episodes": 10
  }
 ]

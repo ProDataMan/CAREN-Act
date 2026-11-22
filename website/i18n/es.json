@@ -877,7 +877,7 @@
   "(Year): leave": "(Year): deja",
   "Section 6": "Sección 6",
   "(Cause of death): choose": "(Cause of death): elige",
-  "Search": "Search",
+  "Search": "Buscar",
   "to find and add these three codes, then click": "para buscar y añadir estos tres códigos, y luego haz clic en",
   "after each:": "después de cada uno:",
   ": intentional self-harm by hanging, strangulation and suffocation": ": lesión autoinfligida intencionalmente por ahorcamiento, estrangulamiento y sofocación",
@@ -1350,7 +1350,16 @@
   "License": "Licencia",
   "Send": "Enviar",
   "Listen back, then download and share the file with the form below.": "Escúchala, luego descárgala y comparte el archivo con el formulario de abajo.",
-  "Thank you! An editor will listen and publish it soon.": "¡Gracias! Un editor la escuchará y la publicará pronto."
+  "Thank you! An editor will listen and publish it soon.": "¡Gracias! Un editor la escuchará y la publicará pronto.",
+  "Search the site": "Buscar en el sitio",
+  "Try: Tulsa, redlining, Columbus, sterilization, your county…": "Prueba: Tulsa, redlining, Colón, esterilización, tu condado…",
+  "Lessons": "Lecciones",
+  "Places": "Lugares",
+  "Laws and cases": "Leyes y casos",
+  "Counties": "Condados",
+  "Pages": "Páginas",
+  "Books and quests": "Libros y misiones",
+  "No results. Try a different word.": "Sin resultados. Prueba otra palabra."
  },
  "patterns": [
   [
@@ -1456,6 +1465,14 @@
   [
    "^(\\d+) students$",
    "$1 estudiantes"
+  ],
+  [
+   "^(\\d+) results$",
+   "$1 resultados"
+  ],
+  [
+   "^(\\d+) of (\\d+) results$",
+   "$1 de $2 resultados"
   ]
  ]
 }

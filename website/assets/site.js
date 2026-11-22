@@ -27,6 +27,7 @@
     header.innerHTML =
       '<div class="bar">' +
       '<a class="site-brand" href="index.html" aria-label="Federal CAREN Act home"><span class="mark" aria-hidden="true">CA</span><span>Federal CAREN Act</span></a>' +
+      '<a class="site-search" href="search.html" aria-label="Search the site" title="Search"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>' +
       '<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Menu</button>' +
       '<nav class="site-nav" id="siteNav" aria-label="Main">' + links + '</nav></div>';
@@ -80,7 +81,7 @@
   if (footer) {
     footer.className = 'site-footer';
     footer.innerHTML =
-      '<div><a href="https://github.com/ProDataMan/CAREN-Act">GitHub</a>·<a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a>·<a href="data.html">Data &amp; methodology</a>·<a href="privacy.html">Privacy</a></div>' +
+      '<div><a href="https://github.com/ProDataMan/CAREN-Act">GitHub</a>·<a href="../docs/SF-CAREN-Act.pdf" download>Original SF ordinance (PDF)</a>·<a href="data.html">Data &amp; methodology</a>·<a href="brief.html">Brief for lawmakers</a>·<a href="press.html">Press</a>·<a href="privacy.html">Privacy</a></div>' +
       '<div style="margin-top:6px">Public data from EJI, Mapping Police Violence, FBI, CDC, U.S. Census Bureau and Mapping Inequality. Verify with primary sources.</div>';
   }
 })();
@@ -173,4 +174,30 @@
     patterns = (j.patterns || []).map(function (p) { return [new RegExp(p[0]), p[1]]; });
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   }).catch(function (e) { console.warn('[i18n]', e); }).then(reveal);
+})();
+
+// ---------------------------------------------------------------- Usage counts (privacy-respecting)
+// Sends the page name (and, for milestones, an event name like "read:rights") to the campaign server, which
+// keeps only daily totals: no cookies, IP addresses, device IDs or user IDs. Skipped entirely when the
+// browser sends Do Not Track or Global Privacy Control. See privacy.html.
+(function () {
+  'use strict';
+  var off = navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+  var local = /^localhost$|^127\./.test(location.hostname);
+  var base = /azurecontainerapps\.io$/.test(location.hostname) ? '' : 'https://caren-act-server.calmpebble-c668572f.centralus.azurecontainerapps.io';
+  function send(o) {
+    if (off || local) return;
+    o.lang = (window.CarenI18n && window.CarenI18n.lang) || 'en';
+    var body = JSON.stringify(o);
+    try {
+      if (navigator.sendBeacon) navigator.sendBeacon(base + '/api/hit', new Blob([body], { type: 'text/plain' }));
+      else fetch(base + '/api/hit', { method: 'POST', body: body, keepalive: true, mode: 'no-cors' });
+    } catch (e) { /* ignore */ }
+  }
+  window.CarenStats = { event: function (name) { if (/^[a-z]+:[a-z0-9-]{1,40}$/.test(name)) send({ event: name }); } };
+  var page = location.pathname.split('/').pop() || 'index.html';
+  var ref = '';
+  try { if (document.referrer) { var h = new URL(document.referrer).hostname; if (h && h !== location.hostname) ref = h.toLowerCase(); } } catch (e) { /* ignore */ }
+  var mod = /[?&]m=([a-z0-9-]+)/.exec(location.search);
+  send({ page: page, module: mod ? mod[1] : undefined, ref: ref || undefined });
 })();

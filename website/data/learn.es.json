@@ -485,7 +485,101 @@
   },
   "colonizers": {
    "title": "Los colonizadores: Portugal, España, Gran Bretaña y el sistema imperial",
-   "short": "Cómo Portugal abrió la trata atlántica, España debatió si los indígenas eran plenamente humanos, Gran Bretaña escribió el código de plantación que heredó EE. UU., y Estados Unidos se convirtió en imperio."
+   "short": "Cómo Portugal abrió la trata atlántica, España debatió si los indígenas eran plenamente humanos, Gran Bretaña escribió el código de plantación que heredó EE. UU., y Estados Unidos se convirtió en imperio.",
+   "intro": "Colón fue una persona dentro de un sistema que funcionó durante cuatro siglos. Cada imperio añadió una pieza a la maquinaria: el comercio, la teoría legal, el código de plantación, las categorías raciales. Juntos construyeron el mundo al que la Ley CAREN todavía responde.",
+   "sections": [
+    {
+     "h": "Portugal abre la trata atlántica",
+     "body": "<p>En 1444, en Lagos (Portugal), unos 235 africanos cautivos fueron repartidos y vendidos en una plaza pública, un hecho que el cronista real Gomes Eanes de Zurara describió en detalle. Portugal construyó el castillo de Elmina en 1482 y comerció a lo largo de la costa africana. En 1526, el rey Afonso I del Congo, él mismo cristiano y aliado de Portugal, escribió al rey de Portugal para protestar porque los traficantes secuestraban a su pueblo, “incluso a nobles e hijos de nobles”. Los barcos portugueses y brasileños llevaron a través del Atlántico a unos 5.8 millones de africanos, más que cualquier otra nación. Brasil fue el mayor destino y el último país de América en abolir la esclavitud, en 1888.</p>"
+    },
+    {
+     "h": "España se pregunta si los indígenas son plenamente humanos",
+     "body": "<p>Desde 1513, los conquistadores españoles leían en voz alta el <em>Requerimiento</em>, en español, a pueblos que no podían entenderlo, exigiendo sumisión a la Corona y a la Iglesia y declarando que cualquier muerte resultante sería culpa de ellos. Los indígenas eran asignados a españoles como trabajadores forzados bajo la <em>encomienda</em>. Bartolomé de las Casas, antiguo encomendero convertido en fraile, pasó cincuenta años denunciándola; las Leyes Nuevas de 1542 la limitaron. En la Junta de Valladolid (1550–51), Las Casas discutió con Juan Ginés de Sepúlveda, quien sostenía, citando a Aristóteles, que los indígenas eran “siervos por naturaleza”. Más tarde, las colonias españolas clasificaron a las personas en decenas de <em>castas</em> de ascendencia mixta, registradas en pinturas oficiales.</p>"
+    },
+    {
+     "h": "¿Dónde empezó la “raza”?",
+     "body": "<p>Algunos historiadores rastrean la raza moderna hasta los estatutos españoles de <em>limpieza de sangre</em>, que desde el siglo XV excluían de ciertos cargos a personas con antepasados judíos o musulmanes incluso después de convertirse, haciendo de la ascendencia, y no de la fe, la prueba. Otros ven surgir la raza sobre todo de la esclavitud atlántica y del derecho colonial inglés. La mayoría coincide en que se formó entre 1450 y 1700, que es el argumento del módulo “Antes de la raza”.</p>"
+    },
+    {
+     "h": "Gran Bretaña escribe el código de plantación",
+     "body": "<p>John Hawkins encabezó los primeros viajes esclavistas de Inglaterra en la década de 1560, más tarde con el respaldo de la reina Isabel I. La Royal African Company, fundada bajo el futuro Jacobo II, transportó más africanos esclavizados que cualquier otra compañía; a muchos los marcaban con “DY” por el duque de York. El código de esclavos de Barbados de 1661 se convirtió en el modelo de los de Jamaica y Carolina del Sur. Los barcos británicos llevaron en total a unos 3.2 millones de africanos. En 1781, la tripulación del barco negrero <em>Zong</em> arrojó por la borda a unos 130 cautivos, y los dueños demandaron a sus aseguradoras por la pérdida como si fuera “carga”. Los primeros africanos en la Virginia inglesa llegaron en 1619 a bordo del <em>White Lion</em>, un corsario inglés que los había capturado de un barco portugués que transportaba cautivos de Angola.</p>"
+    },
+    {
+     "h": "Francia y los Países Bajos",
+     "body": "<p>La Compañía Neerlandesa de las Indias Occidentales comerció africanos esclavizados hacia América y usó mano de obra esclavizada en Nueva Ámsterdam (Nueva York). El <em>Code Noir</em> de Francia (1685) regía sus colonias; Saint-Domingue, hoy Haití, se convirtió en la colonia más rentable del mundo gracias al trabajo de africanos esclavizados, hasta que derrocaron a los franceses (ver “Antes de la raza” y “Un sistema mundial”).</p>"
+    },
+    {
+     "h": "Estados Unidos se convierte en imperio",
+     "body": "<p>En 1893, empresarios estadounidenses respaldados por marines de EE. UU. derrocaron a la reina Liliʻuokalani de Hawái; el Congreso pidió perdón formalmente en 1993. Después de 1898, EE. UU. tomó Puerto Rico, Guam y Filipinas. El poema de Rudyard Kipling “La carga del hombre blanco” (1899) instaba a los estadounidenses a gobernar Filipinas, donde una guerra contra los independentistas mató a cientos de miles de filipinos según la mayoría de las estimaciones. En los Casos Insulares (1901), la Corte Suprema llamó a Puerto Rico “extranjero … en un sentido doméstico”; sus residentes son ciudadanos de EE. UU. que todavía no pueden votar por el presidente.</p>"
+    },
+    {
+     "h": "El patrón común",
+     "body": "<p>A lo largo de cinco siglos y en todos los imperios aparecen las mismas herramientas: reclamar la tierra (el “descubrimiento”), clasificar a las personas por ascendencia o color, tomar su trabajo, escribirlo en la ley, justificarlo con la religión y luego con la ciencia, y dividir a los colonizados entre sí. La resistencia también aparece en todas partes, desde el rey del Congo hasta los revolucionarios de Haití y la reina de Hawái. El resto de los módulos de Aprende sigue estas herramientas dentro de las instituciones estadounidenses.</p>"
+    }
+   ],
+   "timeline": [
+    "Africanos cautivos vendidos en Lagos, Portugal",
+    "Dum Diversas",
+    "Se construye el castillo de Elmina",
+    "El Tratado de Tordesillas divide el mundo entre Portugal y España",
+    "Requerimiento",
+    "El rey Afonso I del Congo protesta contra la trata",
+    "Leyes Nuevas de España",
+    "Junta de Valladolid",
+    "Primer viaje esclavista de John Hawkins",
+    "El White Lion lleva cautivos angoleños a Virginia",
+    "Código de esclavos de Barbados",
+    "Se renueva la carta de la Royal African Company",
+    "Code Noir",
+    "Masacre del Zong",
+    "Brasil abolió la esclavitud",
+    "Derrocamiento de la reina de Hawái",
+    "Guerra Filipino-Estadounidense; “La carga del hombre blanco”",
+    "Casos Insulares",
+    "Disculpa de EE. UU. a los nativos hawaianos"
+   ],
+   "quiz": [
+    {
+     "q": "¿Los barcos de qué nación llevaron más africanos a través del Atlántico?",
+     "options": [
+      "Gran Bretaña",
+      "Portugal (con Brasil)",
+      "España",
+      "Francia"
+     ],
+     "why": "Unos 5.8 millones."
+    },
+    {
+     "q": "¿Qué sostuvo Sepúlveda en Valladolid?",
+     "options": [
+      "Que los indígenas eran siervos por naturaleza",
+      "Que la esclavitud debía terminar",
+      "Que España debía irse",
+      "Nada"
+     ],
+     "why": "Las Casas discutió en su contra."
+    },
+    {
+     "q": "¿Qué hicieron los dueños del Zong después de que arrojaran a los cautivos por la borda?",
+     "options": [
+      "Fueron juzgados por asesinato",
+      "Demandaron a sus aseguradoras por la “carga” perdida",
+      "Pidieron perdón",
+      "Liberaron a los sobrevivientes"
+     ],
+     "why": "1781."
+    },
+    {
+     "q": "¿Qué hizo el Congreso en 1993 respecto a Hawái?",
+     "options": [
+      "Lo convirtió en estado",
+      "Pidió perdón por el derrocamiento de 1893",
+      "Nada",
+      "Lo devolvió"
+     ],
+     "why": "La Resolución de Disculpa."
+    }
+   ]
   },
   "conquest": {
    "title": "Descubrimiento y conquista",
@@ -521,7 +615,81 @@
   },
   "borders": {
    "title": "Fronteras: quién puede ser estadounidense",
-   "short": "“Personas blancas libres”, la Exclusión China, las cuotas raciales, las deportaciones masivas de mexicoamericanos, el encarcelamiento de japoneses-estadounidenses y la aplicación actual."
+   "short": "“Personas blancas libres”, la Exclusión China, las cuotas raciales, las deportaciones masivas de mexicoamericanos, el encarcelamiento de japoneses-estadounidenses y la aplicación actual.",
+   "intro": "La ley de inmigración siempre ha sido una forma de decidir quién cuenta como estadounidense. Durante la mayor parte de la historia de EE. UU., lo hizo abiertamente según la raza.",
+   "sections": [
+    {
+     "h": "“Personas blancas libres”",
+     "body": "<p>La primera Ley de Naturalización (1790) limitó la ciudadanía por naturalización a las “personas blancas libres”. Después, los tribunales tuvieron que decidir quién era blanco. En <em>Ozawa</em> (1922), la Corte Suprema dictaminó que un inmigrante japonés no lo era; en <em>Thind</em> (1923), que un inmigrante sij de la India tampoco, aunque los antropólogos lo clasificaban como “caucásico”. Las barreras raciales a la naturalización no se eliminaron del todo hasta 1952.</p>"
+    },
+    {
+     "h": "La Exclusión China",
+     "body": "<p>La Ley Page (1875) prohibió en la práctica la entrada de mujeres chinas, y la Ley de Exclusión China (1882) prohibió la de trabajadores chinos: fue la primera ley de EE. UU. en excluir a un grupo por su nacionalidad. No se derogó hasta 1943. Los inmigrantes chinos eran detenidos e interrogados en la isla Ángel, en la bahía de San Francisco (1910–1940).</p>"
+    },
+    {
+     "h": "Cuotas por raza",
+     "body": "<p>La Ley de Inmigración de 1924 fijó cuotas basadas en el origen nacional de la población de EE. UU. en 1890, para favorecer a los europeos del norte, y prohibió casi toda la inmigración desde Asia. Los eugenistas testificaron a su favor. El sistema de cuotas duró hasta la Ley de Inmigración y Nacionalidad de 1965.</p>"
+    },
+    {
+     "h": "Mexicoamericanos: la repatriación y la “Operación Wetback”",
+     "body": "<p>Durante la Gran Depresión (1929–1936), autoridades federales, estatales y locales expulsaron a cientos de miles de mexicanos y mexicoamericanos; las estimaciones van de unas 400,000 a más de un millón de personas, y muchas eran ciudadanas de EE. UU., incluidos niños. California pidió perdón en 2005. Durante la Segunda Guerra Mundial, el Programa Bracero reclutó trabajadores mexicanos; en 1954, la “Operación Wetback” llevó a cabo deportaciones masivas. El gobierno afirmó haber expulsado a más de un millón de personas ese año; los historiadores consideran que esa cifra está inflada.</p>"
+    },
+    {
+     "h": "El encarcelamiento de japoneses-estadounidenses",
+     "body": "<p>La Orden Ejecutiva 9066 (febrero de 1942) llevó a la expulsión forzada de unas 120,000 personas de ascendencia japonesa de la costa oeste, dos tercios de ellas ciudadanas de EE. UU., a campos cercados con alambre de púas. La Corte Suprema lo avaló en <em>Korematsu</em> (1944). La Ley de Libertades Civiles de 1988 pidió perdón y pagó $20,000 a cada sobreviviente que había sido encarcelado, y en 2018 la Corte dijo que <em>Korematsu</em> “fue gravemente erróneo desde el día en que se decidió”.</p>"
+    },
+    {
+     "h": "Hoy",
+     "body": "<p>En 2018, la política de “tolerancia cero” separó a miles de niños de sus padres en la frontera. La detención migratoria retiene a decenas de miles de personas en un día cualquiera. En septiembre de 2025, la Corte Suprema permitió que los agentes de inmigración en el área de Los Ángeles reanudaran las detenciones en la calle que un tribunal inferior había considerado basadas en factores como la etnia aparente, el idioma y el tipo de trabajo, mientras el caso continúa. Una ley tipo CAREN protege a cualquier persona, sea ciudadana o no, de ser denunciada a la policía para discriminarla.</p>"
+    }
+   ],
+   "timeline": [
+    "La naturalización se limita a “personas blancas libres”",
+    "Ley de Exclusión China",
+    "Ozawa v. United States",
+    "United States v. Thind",
+    "Cuotas por origen nacional",
+    "Comienza la Repatriación Mexicana",
+    "Orden Ejecutiva 9066",
+    "Korematsu v. United States",
+    "“Operación Wetback”",
+    "Fin de las cuotas",
+    "Disculpa y pagos de la Ley de Libertades Civiles",
+    "California pide perdón por la Repatriación Mexicana",
+    "Separación de familias; Korematsu repudiado"
+   ],
+   "quiz": [
+    {
+     "q": "¿Quién podía naturalizarse según la ley de 1790?",
+     "options": [
+      "Cualquiera",
+      "Las personas blancas libres",
+      "Solo europeos con propiedades",
+      "Solo hablantes de inglés"
+     ],
+     "why": "Las barreras raciales duraron hasta 1952."
+    },
+    {
+     "q": "¿Qué ley fue la primera en excluir a un grupo por su nacionalidad?",
+     "options": [
+      "La Ley de Inmigración de 1924",
+      "La Ley de Exclusión China de 1882",
+      "La Orden Ejecutiva 9066",
+      "La Ley Page"
+     ],
+     "why": "1882, derogada en 1943."
+    },
+    {
+     "q": "¿Qué proporción aproximada de los japoneses-estadounidenses encarcelados en la Segunda Guerra Mundial eran ciudadanos de EE. UU.?",
+     "options": [
+      "Ninguno",
+      "Alrededor de un tercio",
+      "Alrededor de dos tercios",
+      "Todos"
+     ],
+     "why": "Alrededor de dos tercios."
+    }
+   ]
   },
   "place": {
    "title": "El lugar: quién puede vivir dónde",
@@ -656,7 +824,93 @@
   },
   "many-targets": {
    "title": "Muchos blancos: comunidades latinas, asiáticas, indígenas e inmigrantes",
-   "short": "Linchamientos de mexicoamericanos, la expulsión china y el encarcelamiento japonés, la violencia antiasiática, las mujeres indígenas desaparecidas y asesinadas, y los momentos en que estas comunidades se unieron."
+   "short": "Linchamientos de mexicoamericanos, la expulsión china y el encarcelamiento japonés, la violencia antiasiática, las mujeres indígenas desaparecidas y asesinadas, y los momentos en que estas comunidades se unieron.",
+   "intro": "La misma maquinaria de leyes, turbas y acusaciones falsas se ha dirigido contra muchas comunidades. Ver el panorama completo construye coaliciones, y las coaliciones aprueban leyes.",
+   "sections": [
+    {
+     "h": "Mexicoamericanos",
+     "body": "<p>Los historiadores William Carrigan y Clive Webb documentaron al menos 547 linchamientos de mexicanos en Estados Unidos entre 1848 y 1928. En enero de 1918, Rangers de Texas, soldados y rancheros locales mataron a 15 hombres y niños mexicanos en Porvenir, Texas. En <em>Mendez v. Westminster</em> (1947), familias mexicoamericanas ganaron un caso contra la segregación escolar en California, siete años antes de <em>Brown v. Board</em>. En 1943, militares atacaron a jóvenes mexicoamericanos en Los Ángeles en los “disturbios de los Zoot Suit”, y la policía arrestó a las víctimas. En 2019, un hombre armado que había publicado sobre una “invasión hispana” mató a 23 personas en un Walmart de El Paso. (Ver también el módulo sobre las fronteras.)</p>"
+    },
+    {
+     "h": "Asiático-americanos",
+     "body": "<p>Inmigrantes chinos fueron masacrados en Los Ángeles (1871) y Rock Springs (1885) y expulsados de Tacoma (1885). La Ley de Exclusión China (1882) fue la primera ley de EE. UU. que prohibió la entrada de un grupo por su nacionalidad. Unos 120,000 japoneses-estadounidenses, la mayoría ciudadanos, fueron encarcelados durante la Segunda Guerra Mundial. En 1982, Vincent Chin fue golpeado hasta la muerte en Detroit por dos trabajadores automotrices blancos que culpaban a Japón de la pérdida de empleos; fueron condenados a libertad condicional y a una multa de $3,000, lo que desató un movimiento nacional por los derechos civiles asiático-americanos. Después del 11 de septiembre, sijs y estadounidenses del sur de Asia fueron atacados, empezando por el asesinato de Balbir Singh Sodhi en Arizona pocos días después. De 2020 a 2021, Stop AAPI Hate recibió más de 10,000 reportes de incidentes de odio antiasiático, y en marzo de 2021 un hombre armado mató a ocho personas, seis de ellas mujeres asiáticas, en spas del área de Atlanta.</p>"
+    },
+    {
+     "h": "Pueblos indígenas",
+     "body": "<p>No todos los indígenas recibieron la ciudadanía estadounidense hasta 1924, y Arizona y Nuevo México les prohibieron votar hasta 1948. Los internados federales se tratan en el módulo sobre la conquista. Hoy, las mujeres indígenas americanas y nativas de Alaska enfrentan tasas muy altas de violencia. Un informe de 2018 del Urban Indian Health Institute señaló que, de 5,712 casos de mujeres y niñas indígenas desaparecidas reportados a la base de datos del FBI en 2016, solo 116 figuraban en la base de datos federal de personas desaparecidas. En 2020, el Congreso aprobó la Ley Savanna y la Ley Not Invisible para mejorar el seguimiento y la investigación de estos casos.</p>"
+    },
+    {
+     "h": "La violencia policial en distintos grupos",
+     "body": "<p>Algunos análisis de las muertes a manos de la policía, ajustados por población, sitúan a los indígenas americanos en el primer lugar o cerca, seguidos por los estadounidenses negros; otros los ordenan distinto. Las cifras son inciertas porque la raza de las víctimas indígenas y latinas a menudo se registra mal. La capa de muertes a manos de la policía del mapa (Mapping Police Violence) colorea cada caso según la raza de la víctima para que veas el patrón por tu cuenta.</p>"
+    },
+    {
+     "h": "Unidos",
+     "body": "<p>Frederick Douglass habló contra la exclusión china en su discurso “Nación compuesta” de 1869. En 1965, trabajadores agrícolas filipinos encabezados por Larry Itliong iniciaron la huelga de la uva de Delano y pidieron al sindicato mexicoamericano de César Chávez que se uniera; juntos lograron los primeros grandes contratos para trabajadores agrícolas. La activista japonesa-estadounidense Yuri Kochiyama trabajó junto a Malcolm X y estaba con él cuando lo mataron. Organizadores negros, latinos, asiáticos e indígenas trabajaron juntos en las décadas de 1960 y 1970, y la Ley CAREN los protege a todos.</p>"
+    }
+   ],
+   "timeline": [
+    "Inicio del periodo de al menos 547 linchamientos documentados de mexicanos (hasta 1928)",
+    "Masacre china en Los Ángeles",
+    "Ley de Exclusión China",
+    "Masacre de Porvenir",
+    "Ley de Ciudadanía Indígena",
+    "Comienza el encarcelamiento de japoneses-estadounidenses",
+    "Disturbios de los Zoot Suit",
+    "Mendez v. Westminster",
+    "Terminan las prohibiciones de voto indígena en Arizona y Nuevo México",
+    "Huelga de la uva de Delano",
+    "Asesinato de Vincent Chin",
+    "Asesinato de Balbir Singh Sodhi",
+    "Tiroteo en el Walmart de El Paso",
+    "Ley Savanna y Ley Not Invisible",
+    "Tiroteos en spas de Atlanta"
+   ],
+   "quiz": [
+    {
+     "q": "¿Cuántos linchamientos de mexicanos documentaron aproximadamente Carrigan y Webb (1848–1928)?",
+     "options": [
+      "Unos 5",
+      "Unos 50",
+      "Al menos 547",
+      "Ninguno"
+     ],
+     "why": "Al menos 547."
+    },
+    {
+     "q": "¿Qué hizo Mendez v. Westminster (1947)?",
+     "options": [
+      "Permitió la segregación",
+      "Anuló la segregación de estudiantes mexicoamericanos en California",
+      "Terminó el Programa Bracero",
+      "Nada"
+     ],
+     "why": "Siete años antes de Brown v. Board."
+    },
+    {
+     "q": "¿Qué condena recibieron los asesinos de Vincent Chin?",
+     "options": [
+      "Cadena perpetua",
+      "Libertad condicional y una multa de $3,000",
+      "10 años",
+      "Pena de muerte"
+     ],
+     "why": "Esa condena desató un movimiento nacional."
+    },
+    {
+     "q": "¿Quiénes iniciaron la huelga de la uva de Delano en 1965?",
+     "options": [
+      "Trabajadores agrícolas filipinos encabezados por Larry Itliong",
+      "Trabajadores ferroviarios",
+      "Trabajadores automotrices",
+      "Docentes"
+     ],
+     "why": "Luego se unió el sindicato de César Chávez."
+    }
+   ],
+   "map": {
+    "0": "Muertes a manos de la policía según la raza de la víctima",
+    "1": "Linchamientos de todas las razas (Monroe Work Today)"
+   }
   },
   "women": {
    "title": "Las mujeres que organizaron el movimiento",
@@ -762,7 +1016,105 @@
   },
   "movements": {
    "title": "Cómo ganaron los movimientos, y la estrategia para este",
-   "short": "El boicot de autobuses, la estrategia legal detrás de Brown, las sentadas, Birmingham, Selma y la propia Ley CAREN: qué los hizo funcionar, convertido en un plan paso a paso."
+   "short": "El boicot de autobuses, la estrategia legal detrás de Brown, las sentadas, Birmingham, Selma y la propia Ley CAREN: qué los hizo funcionar, convertido en un plan paso a paso.",
+   "intro": "El movimiento por los derechos civiles suele recordarse como unos cuantos grandes discursos. El registro muestra algo más útil: años de preparación, entrenamiento, organización local, demandas judiciales, cabildeo y presión económica, llevados a cabo por miles de personas comunes. Cada uno de esos métodos puede usarse para aprobar una Ley CAREN federal.",
+   "discuss": [
+    "¿Cuáles de estas tácticas podrían funcionar hoy en nuestra ciudad?",
+    "¿Quién en nuestra comunidad ya tiene relación con nuestros legisladores?",
+    "¿Cómo sería un “momento Birmingham” para las llamadas al 911 usadas como arma, y cómo nos preparamos?"
+   ],
+   "sections": [
+    {
+     "h": "Montgomery: primero la preparación, luego la presión",
+     "body": "<p>Rosa Parks no estaba simplemente cansada cuando se negó a ceder su asiento el 1 de diciembre de 1955. Era la secretaria de la NAACP local y ese verano se había capacitado en organización comunitaria en la Highlander Folk School. Jo Ann Robinson y el Consejo Político de Mujeres llevaban meses planeando un boicot; imprimieron decenas de miles de volantes en una sola noche. El boicot duró 381 días, sostenido por un sistema de viajes compartidos que movía a miles de personas al día.</p><p>Lo que finalmente puso fin a la segregación en los autobuses fue una demanda, <em>Browder v. Gayle</em>, que la Corte Suprema confirmó en noviembre de 1956. El boicot mantuvo la presión y a la comunidad unida mientras el caso avanzaba en los tribunales.</p>"
+    },
+    {
+     "h": "Brown v. Board: una estrategia legal de 20 años",
+     "body": "<p>Los abogados de la NAACP no empezaron por las escuelas primarias. Charles Hamilton Houston y su alumno Thurgood Marshall atacaron primero las escuelas de posgrado y de derecho segregadas, donde la desigualdad era más fácil de probar: <em>Murray v. Pearson</em> (1936), <em>Gaines</em> (1938), <em>Sweatt v. Painter</em> (1950). Cada victoria sentó un precedente hasta que, en 1954, <em>Brown v. Board of Education</em> anuló el principio de “separados pero iguales”.</p>"
+    },
+    {
+     "h": "Las sentadas: entrenamiento y disciplina",
+     "body": "<p>El 1 de febrero de 1960, cuatro estudiantes de North Carolina A&T se sentaron en la barra de un Woolworth's de Greensboro reservada para blancos. En pocas semanas, las sentadas se extendieron a decenas de ciudades. En Nashville, los estudiantes se entrenaron durante meses en los talleres de no violencia de James Lawson, ensayando cómo aguantar insultos y golpes sin devolverlos. Junto con un boicot al centro de la ciudad, lograron que las barras se desegregaran en mayo. Ese abril, Ella Baker ayudó a los estudiantes a fundar el Comité Coordinador Estudiantil No Violento (SNCC). Su principio: “La gente fuerte no necesita líderes fuertes”.</p>"
+    },
+    {
+     "h": "De Birmingham a la Ley de Derechos Civiles: crisis, coalición, cabildeo",
+     "body": "<p>En la primavera de 1963, los organizadores de Birmingham combinaron marchas, un boicot a las tiendas del centro y la Cruzada de los Niños. Las imágenes televisadas de perros policías y mangueras de bomberos contra niños obligaron al país a enfrentar la realidad. El 11 de junio, el presidente Kennedy propuso una ley de derechos civiles. La Marcha sobre Washington de ese agosto reunió a unas 250,000 personas.</p><p>La ley todavía tenía que pasar por el Congreso. La Leadership Conference on Civil Rights coordinó a iglesias, sindicatos y grupos cívicos para presionar a cada senador, y el cabildero de la NAACP Clarence Mitchell estaba tan presente que lo llamaban “el senador 101”. El Senado rompió un obstruccionismo (filibuster) el 10 de junio de 1964, y el presidente Johnson firmó la Ley de Derechos Civiles el 2 de julio.</p>"
+    },
+    {
+     "h": "Selma: primero, años de organización local",
+     "body": "<p>El Domingo Sangriento de 1965 pareció repentino. No lo fue. Los organizadores del SNCC trabajaban en Selma desde 1963, con campañas de registro de votantes y ganándose la confianza familia por familia. El Verano de la Libertad de 1964 llevó a Misisipi a unos 1,000 voluntarios, la mayoría estudiantes universitarios blancos, y el Partido Demócrata por la Libertad de Misisipi de Fannie Lou Hamer desafió a la delegación totalmente blanca en la convención demócrata de 1964 ante la televisión nacional. (Ver el módulo sobre el voto.)</p>"
+    },
+    {
+     "h": "¿La disrupción ayuda o perjudica?",
+     "body": "<p>Historiadores y politólogos todavía discuten qué tácticas cambiaron la opinión pública. Un estudio de 2020 de Omar Wasow encontró que las protestas no violentas de los años 60 aumentaron el apoyo a los derechos civiles, mientras que las que se volvieron violentas empujaron a algunos votantes blancos hacia candidatos de “ley y orden” en 1968. Otros sostienen que la amenaza de grupos más militantes y de la autodefensa armada (como los Deacons for Defense) hizo que las autoridades estuvieran más dispuestas a negociar con los líderes no violentos. La mayoría coincide en que la disciplina, las demandas claras y una amplia simpatía pública fueron esenciales.</p>"
+    },
+    {
+     "h": "Victorias recientes que esta campaña puede copiar",
+     "body": "<p>La Ley CAREN de San Francisco pasó de su presentación a un voto unánime en unos tres meses en 2020. La ley de Oregón se aprobó en 2019 porque una legisladora estatal, Janelle Bynum, sufrió una llamada a la policía mientras hacía campaña puerta a puerta y contó su historia. La campaña “Ban the box” se extendió ciudad por ciudad antes de que los estados la adoptaran. En 2018, los votantes de Florida devolvieron el derecho al voto a más de un millón de personas mediante una iniciativa ciudadana que obtuvo el 64.6% de los votos. El patrón: empezar en lo local, contar historias reales y luego llevarlo al estado y al país.</p>"
+    },
+    {
+     "h": "La estrategia para una Ley CAREN federal",
+     "body": "<ol><li><b>Mapea el poder.</b> ¿Quién decide? Los Comités Judiciales de la Cámara y el Senado estudian el proyecto; tus propios miembros lo votan. La capa de aliados del mapa los muestra. (Misión: <em>Mapea quién decide</em>.)</li><li><b>Gana primero en lo local.</b> Las resoluciones de concejos municipales y las leyes estatales sientan precedentes y le muestran al Congreso una ola. (Misión: <em>Gana una resolución local</em>.)</li><li><b>Construye una coalición inesperada.</b> Iglesias, sindicatos, grupos de derechos civiles, grupos asiático-americanos, latinos e indígenas, y negocios que no quieren que acosen a sus clientes. (Misión: <em>Construye una coalición</em>.)</li><li><b>Cuenta historias respaldadas por datos.</b> Las historias personales mueven a los legisladores; los datos de resultados del 911 y de la BJS protegen esas historias para que no las descarten.</li><li><b>Trabaja adentro y afuera a la vez.</b> Reuniones con el personal y testimonios en audiencias, más presión pública: llamadas, columnas de opinión, eventos.</li><li><b>Capacita a la gente y sigue adelante.</b> Los talleres convierten a quienes aprenden en organizadores. La mayoría de las victorias tardan años, no semanas.</li></ol>"
+    }
+   ],
+   "timeline": [
+    "Murray v. Pearson abre la facultad de derecho de Maryland",
+    "Brown v. Board of Education",
+    "Comienza el boicot de autobuses de Montgomery",
+    "Browder v. Gayle pone fin a la segregación en los autobuses",
+    "Sentadas de Greensboro; se funda el SNCC",
+    "Campaña de Birmingham; Marcha sobre Washington",
+    "Verano de la Libertad; Ley de Derechos Civiles",
+    "Selma; Ley de Derecho al Voto",
+    "La Enmienda 4 de Florida devuelve el derecho al voto",
+    "Ley de Oregón sobre llamadas a la policía con prejuicio racial",
+    "San Francisco aprueba por unanimidad la Ley CAREN"
+   ],
+   "quiz": [
+    {
+     "q": "¿Qué puso fin legalmente a la segregación en los autobuses de Montgomery?",
+     "options": [
+      "Solo el boicot",
+      "La demanda Browder v. Gayle",
+      "Un voto de la ciudad",
+      "Una orden presidencial"
+     ],
+     "why": "El boicot mantuvo la presión mientras se decidía el caso."
+    },
+    {
+     "q": "¿Dónde empezó la estrategia legal de la NAACP antes de Brown?",
+     "options": [
+      "En las escuelas primarias",
+      "En las escuelas de posgrado y de derecho",
+      "En los autobuses",
+      "En los hospitales"
+     ],
+     "why": "Allí la desigualdad era más fácil de probar."
+    },
+    {
+     "q": "¿A quién llamaban “el senador 101”?",
+     "options": [
+      "Thurgood Marshall",
+      "Clarence Mitchell, cabildero de la NAACP",
+      "Martin Luther King Jr.",
+      "John Lewis"
+     ],
+     "why": "El cabildeo fue esencial para la Ley de Derechos Civiles."
+    },
+    {
+     "q": "¿Cuánto tardó la Ley CAREN de San Francisco desde su presentación hasta su aprobación?",
+     "options": [
+      "Unos 3 meses",
+      "Unos 3 años",
+      "Unos 10 años",
+      "No se ha aprobado"
+     ],
+     "why": "De julio a octubre de 2020."
+    }
+   ],
+   "map": {
+    "0": "Miembros del Congreso que estudiarían el proyecto"
+   }
   },
   "path-forward": {
    "title": "El camino a seguir",
@@ -800,7 +1152,79 @@
   },
   "afro-latino": {
    "title": "La diáspora africana en América Latina y el Caribe",
-   "short": "La mayoría de los africanos esclavizados fueron llevados al Caribe y América Latina, no a EE. UU. Su historia va de Haití y la masacre del Perejil de 1937 a Cuba, México, la “democracia racial” de Brasil y los 6 millones de afrolatinos que viven hoy en EE. UU."
+   "short": "La mayoría de los africanos esclavizados fueron llevados al Caribe y América Latina, no a EE. UU. Su historia va de Haití y la masacre del Perejil de 1937 a Cuba, México, la “democracia racial” de Brasil y los 6 millones de afrolatinos que viven hoy en EE. UU.",
+   "intro": "EE. UU. recibió solo una pequeña parte de los africanos llevados a través del Atlántico. La mayoría fue a Brasil y al Caribe, y sus descendientes viven en todo el continente, incluidos millones de afrolatinos en Estados Unidos. Allí el racismo tomó otras formas, pero no fue menos real.",
+   "sections": [
+    {
+     "h": "Adónde iban los barcos",
+     "body": "<p>De los cerca de 10.7 millones de africanos que sobrevivieron a la travesía del Atlántico, unos 388,000 fueron llevados directamente a Norteamérica continental. Unos 4.9 millones fueron llevados a Brasil, y la mayoría del resto al Caribe y a la América española (SlaveVoyages.org).</p>"
+    },
+    {
+     "h": "Haití y la República Dominicana",
+     "body": "<p>Haití ganó su independencia en 1804 y fue castigado por ello (ver “Antes de la raza”). En octubre de 1937, el dictador dominicano Rafael Trujillo ordenó a sus soldados matar a haitianos y a dominicanos de ascendencia haitiana en la zona fronteriza; las estimaciones de muertos van de unos 12,000 a 30,000. Se recuerda como la masacre del Perejil. En 2013, el Tribunal Constitucional dominicano dictaminó que los hijos de padres extranjeros indocumentados nacidos en el país desde 1929 no eran ciudadanos, lo que dejó sin nacionalidad a decenas de miles de dominicanos de ascendencia haitiana.</p>"
+    },
+    {
+     "h": "Cuba y Puerto Rico",
+     "body": "<p>Veteranos afrocubanos de la guerra de independencia fundaron el Partido Independiente de Color en 1908. Cuba prohibió en 1910 los partidos organizados por raza, y en 1912 el ejército aplastó la protesta del partido, matando a entre 2,000 y 6,000 afrocubanos, según las estimaciones. Puerto Rico abolió la esclavitud en 1873. El puertorriqueño Arturo Schomburg dedicó su vida a reunir libros y documentos de historia negra; su colección es el núcleo del Centro Schomburg para la Investigación de la Cultura Negra de la Biblioteca Pública de Nueva York.</p>"
+    },
+    {
+     "h": "México y Centroamérica",
+     "body": "<p>A principios del siglo XVII, Gaspar Yanga encabezó una comunidad de personas que habían escapado de la esclavitud cerca de Veracruz y resistió a las tropas españolas; España aceptó reconocer un pueblo libre, que hoy se llama Yanga. Vicente Guerrero, un presidente de ascendencia africana e indígena, abolió la esclavitud en México en 1829, y miles de personas esclavizadas en Texas y el sur de EE. UU. huyeron hacia el sur en busca de libertad. México contó por primera vez a su población afromexicana en 2015 (cerca de 1.4 millones de personas) y la reconoció en la constitución en 2019. Los garífunas, descendientes de africanos e indígenas caribeños, viven en las costas de Honduras, Belice, Guatemala y Nicaragua.</p>"
+    },
+    {
+     "h": "Brasil y el mito de la “democracia racial”",
+     "body": "<p>En la década de 1930, el sociólogo Gilberto Freyre popularizó la idea de que Brasil, a diferencia de EE. UU., era una “democracia racial” donde el mestizaje había borrado el racismo. El registro lo contradice. Brasil fue el último país de América en abolir la esclavitud (1888), y después el gobierno subsidió la inmigración europea en un esfuerzo deliberado por “blanquear” la población. Hoy la mayoría de los brasileños se identifica como negra o parda, pero siguen siendo mucho más pobres y mucho más propensos a morir a manos de la policía. Brasil adoptó cuotas raciales en sus universidades federales en 2012.</p>"
+    },
+    {
+     "h": "Afrolatinos en Estados Unidos",
+     "body": "<p>Una encuesta de 2022 del Pew Research Center encontró que cerca del 12% de los adultos latinos en EE. UU., unos 6 millones de personas, se identifican como afrolatinos. Muchos reportan discriminación tanto por ser negros como por ser latinos, incluso por parte de otros latinos. El colorismo, la preferencia por la piel más clara dentro de una comunidad, forma parte de esta historia en todo el continente. La Ley CAREN protege a cualquier persona denunciada a la policía por su raza, color, ascendencia u origen nacional.</p>"
+    }
+   ],
+   "timeline": [
+    "La comunidad cimarrona de Yanga resiste a las tropas españolas",
+    "Independencia de Haití",
+    "Vicente Guerrero abolió la esclavitud en México",
+    "Puerto Rico abolió la esclavitud",
+    "Brasil abolió la esclavitud, el último de América",
+    "Masacre del Partido Independiente de Color en Cuba",
+    "La colección de Schomburg pasa a la Biblioteca Pública de Nueva York",
+    "Masacre del Perejil",
+    "Brasil adopta cuotas raciales universitarias",
+    "Un tribunal dominicano quita la ciudadanía a dominicanos de ascendencia haitiana",
+    "México reconoce a los afromexicanos en su constitución",
+    "Pew: unos 6 millones de adultos afrolatinos en EE. UU."
+   ],
+   "quiz": [
+    {
+     "q": "¿Adónde fue llevada la mayoría de los africanos esclavizados?",
+     "options": [
+      "A Norteamérica continental",
+      "A Brasil y el Caribe",
+      "A Europa",
+      "A África"
+     ],
+     "why": "Solo unos 388,000 fueron directamente a Norteamérica continental."
+    },
+    {
+     "q": "¿Quién abolió la esclavitud en México en 1829?",
+     "options": [
+      "Benito Juárez",
+      "Vicente Guerrero",
+      "Gaspar Yanga",
+      "Porfirio Díaz"
+     ],
+     "why": "Un presidente de ascendencia africana e indígena."
+    },
+    {
+     "q": "La idea de que Brasil era una “democracia racial” está etiquetada como:",
+     "options": [
+      "Documentada",
+      "Debatida",
+      "Creencia o mito"
+     ],
+     "why": "El registro de la política de blanqueamiento y la desigualdad la contradice."
+    }
+   ]
   },
   "christian-nationalism": {
    "title": "Nacionalismo cristiano y raza",
@@ -840,7 +1264,70 @@
   },
   "enforcement": {
    "title": "La aplicación de las leyes migratorias hoy",
-   "short": "Policías locales como agentes de inmigración, la detención, el perfilamiento racial, las políticas santuario y la evidencia sobre ellas, y qué pueden hacer las familias."
+   "short": "Policías locales como agentes de inmigración, la detención, el perfilamiento racial, las políticas santuario y la evidencia sobre ellas, y qué pueden hacer las familias.",
+   "intro": "La aplicación de las leyes migratorias pasa cada vez más por la policía local y por denuncias tipo 911. Esta lección explica cómo funciona y qué muestra la evidencia. La historia está en “Fronteras”.",
+   "sections": [
+    {
+     "h": "La policía local como agentes de inmigración",
+     "body": "<p>La sección 287(g) de la ley federal de inmigración permite a ICE delegar en policías y alguaciles locales algunas funciones de control migratorio. El número de acuerdos 287(g) aumentó bruscamente en 2025. De 2008 a 2014, el programa Comunidades Seguras cotejó las huellas de todas las personas fichadas en cárceles locales con bases de datos migratorias; un estudio de 2014 encontró que no redujo el delito de forma medible.</p>"
+    },
+    {
+     "h": "Perfilamiento racial",
+     "body": "<p>En <em>Melendres v. Arpaio</em> (2013), un tribunal federal determinó que los agentes del condado de Maricopa, Arizona, bajo el alguacil Joe Arpaio, habían hecho perfilamiento racial de conductores latinos durante redadas migratorias. Arpaio fue condenado después por desacato por desobedecer las órdenes del tribunal, y fue indultado en 2017. En septiembre de 2025, la Corte Suprema permitió que se reanudaran las detenciones migratorias en el área de Los Ángeles mientras continúa una impugnación por basarse en factores como la etnia aparente (ver “Fronteras”).</p>"
+    },
+    {
+     "h": "Detención",
+     "body": "<p>La detención migratoria alcanzó cifras récord en 2025. Los centros de detención suelen estar a cargo de empresas privadas o de cárceles de condado bajo contrato. Investigaciones periodísticas de 2025 encontraron ciudadanos estadounidenses entre las personas detenidas por agentes de inmigración.</p>"
+    },
+    {
+     "h": "¿Las políticas santuario afectan al delito?",
+     "body": "<p>Las políticas “santuario” limitan cuánto ayuda la policía local a la aplicación federal de las leyes migratorias, por ejemplo al negarse a retener a personas por solicitudes de ICE sin una orden judicial. Quienes las apoyan dicen que así los inmigrantes siguen dispuestos a denunciar delitos y a servir como testigos; quienes se oponen dicen que liberan a personas que deberían ser deportadas. La mayoría de los estudios no encuentra un aumento del delito por estas políticas, pero el debate continúa y las leyes federales y estatales sobre el tema siguen cambiando.</p>"
+    },
+    {
+     "h": "Lo que pueden hacer las familias",
+     "body": "<ul><li>Conoce tus derechos en casa y en la calle (ver “Tus derechos ante la policía”).</li><li>Haz un plan familiar de preparación: quién recoge a los niños, dónde están los documentos, y el número de un abogado memorizado.</li><li>Lleva una “tarjeta roja” que explique tus derechos.</li><li>Conéctate con redes locales de respuesta rápida y servicios legales.</li><li>Denuncia las denuncias falsas a la policía o a inmigración que apunten a personas por su etnia; eso es exactamente lo que atienden las leyes tipo CAREN.</li></ul>"
+    }
+   ],
+   "timeline": [
+    "Se añade la sección 287(g) a la ley federal de inmigración",
+    "Comienza Comunidades Seguras",
+    "Melendres v. Arpaio",
+    "Fin de Comunidades Seguras (luego reanudado)",
+    "Arpaio es indultado",
+    "Expansión de 287(g); detención récord; la Corte Suprema permite las detenciones en Los Ángeles"
+   ],
+   "quiz": [
+    {
+     "q": "¿Qué hace un acuerdo 287(g)?",
+     "options": [
+      "Prohíbe la inmigración",
+      "Permite a ICE delegar en la policía local algunas funciones de control migratorio",
+      "Crea visas",
+      "Nada"
+     ],
+     "why": "Los acuerdos aumentaron bruscamente en 2025."
+    },
+    {
+     "q": "¿Qué determinó el tribunal en Melendres v. Arpaio?",
+     "options": [
+      "Que no había problema",
+      "Que los agentes hicieron perfilamiento racial de conductores latinos",
+      "Que el alguacil tenía razón",
+      "Nada"
+     ],
+     "why": "2013."
+    },
+    {
+     "q": "¿Por qué la sección sobre políticas santuario está etiquetada como debatida?",
+     "options": [
+      "Está resuelto",
+      "La mayoría de los estudios no encuentra aumento del delito, pero el debate público continúa",
+      "Esas políticas no existen",
+      "No lo está"
+     ],
+     "why": "La evidencia y la política van por caminos distintos."
+    }
+   ]
   },
   "reparations": {
    "title": "Reparar y las reparaciones",

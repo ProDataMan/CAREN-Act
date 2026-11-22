@@ -176,6 +176,13 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
     - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
+  - **2026-11-22:**
+    - **Lawmaker brief** (`brief.html`): one letter-size page, verified by printing to PDF, plus a live Judiciary member table.
+    - **Press kit** (`press.html`, `website/press/` logos). The media contact is a placeholder (the `PRESS` constant).
+    - **Usage counts:** `stats_daily` (migration 006), `/api/hit` (text/plain beacon, bot filter, no IDs), `CarenStats.event()` in `site.js`, and `admin.html#usage`. Do Not Track and Global Privacy Control are respected.
+    - **Spanish:** full translations of movements, colonizers, afro-latino, borders, enforcement and many-targets (in `.tools/es/*.py`, merged into `learn.es.json`), narrated in both Spanish voices. Podcast feeds rebuilt: es has 10 episodes.
+    - **Search** (`search.html`) plus a header icon.
+    - **Testing:** a sweep of 23 pages at 1280 and 390 px found no JS errors and no horizontal overflow.
   - **2026-11-11:**
     - **Lessons:** 7 more (rights, lawmaking, sovereignty, housing-today, enforcement, reparations, global-freedom), all narrated in both English voices. Spanish narration added for evidence, policing and path-forward.
     - **Learning paths:** `paths` in `learn.json`, the "all" badge rule, `?path=` navigation, and Spanish names in `learn.es.json`.

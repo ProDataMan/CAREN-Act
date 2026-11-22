@@ -125,6 +125,7 @@
         g.fillText(line, x, y); return y + lh;
       }
       document.getElementById('shImg').addEventListener('click', () => {
+        if (window.CarenStats) CarenStats.event('share:' + m.id);
         const c = document.createElement('canvas'); c.width = 1080; c.height = 1080;
         const g = c.getContext('2d'), F = 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
         g.fillStyle = '#0e2a47'; g.fillRect(0, 0, 1080, 1080);
@@ -233,10 +234,10 @@
           });
         }
         load(voice);
-        audio.addEventListener('play', () => { $('nPlay').textContent = '❚❚ Pause'; box.dataset.started = '1'; cancelAnimationFrame(raf); raf = requestAnimationFrame(paint); });
+        audio.addEventListener('play', () => { if (!box.dataset.started && window.CarenStats) CarenStats.event('listen:' + m.id); $('nPlay').textContent = '❚❚ Pause'; box.dataset.started = '1'; cancelAnimationFrame(raf); raf = requestAnimationFrame(paint); });
         audio.addEventListener('pause', () => { $('nPlay').textContent = '▶ Listen'; cancelAnimationFrame(raf); paint(); });
         audio.addEventListener('seeked', paint);
-        audio.addEventListener('ended', () => { $('nPlay').textContent = '↺ Replay'; if (hlWord) { hlWord.clear(); hlSent.clear(); } if (!L.has('read:' + m.id)) ui.award('read:' + m.id, 'Lesson heard'); });
+        audio.addEventListener('ended', () => { if (window.CarenStats) CarenStats.event('heard:' + m.id); $('nPlay').textContent = '↺ Replay'; if (hlWord) { hlWord.clear(); hlSent.clear(); } if (!L.has('read:' + m.id)) ui.award('read:' + m.id, 'Lesson heard'); });
         $('nPlay').addEventListener('click', () => { audio.playbackRate = +$('nRate').value; audio.paused ? audio.play() : audio.pause(); });
         $('nSeek').addEventListener('input', () => { audio.currentTime = +$('nSeek').value; });
         $('nRate').addEventListener('change', () => { audio.playbackRate = +$('nRate').value; });

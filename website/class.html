@@ -82,7 +82,7 @@
         const msg = $('jMsg'); msg.className = 'msg'; msg.textContent = 'Joining…';
         A.post('/api/classes/join', { code: $('jCode').value, nickname: $('jNick').value, device: L.deviceId() }).then(r => {
           try { localStorage.setItem(KEY, JSON.stringify({ code: r.code, name: r.name, path: r.path, nickname: $('jNick').value })); } catch (err) { /* ignore */ }
-          L.sync(); msg.className = 'msg ok'; msg.textContent = 'Joined!'; showJoined();
+          L.sync(); if (window.CarenStats) CarenStats.event('class:join'); msg.className = 'msg ok'; msg.textContent = 'Joined!'; showJoined();
         }).catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
       });
 

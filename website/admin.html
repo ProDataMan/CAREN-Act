@@ -28,6 +28,9 @@
     <h2 id="stories">Stories waiting for review</h2>
     <p class="note">Approve only first-person accounts that name no private individuals without consent and make no accusations against identifiable people that you can't verify. Contact emails are never published.</p>
     <div id="storyList"><p class="note">Sign in as an admin to see submitted stories.</p></div>
+    <h2 id="usage">Usage (anonymous daily totals)</h2>
+    <p class="note">Counted without cookies, IP addresses or IDs; browsers with Do Not Track or Global Privacy Control aren't counted, so these are minimums. <label>Period <select id="uDays"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">1 year</option></select></label></p>
+    <div id="usage"><p class="note">Sign in as an admin to see usage.</p></div>
     <h2 id="narrations">Volunteer narrations</h2>
     <p class="note">Download the recording, listen to it, then run <code>.venv/bin/python scripts/align_narration.py &lt;lesson&gt; &lt;file&gt; --name &lt;key&gt; --label "Narrated by &lt;name&gt;" [--lang es]</code>, check the match percentage, commit the files in <code>website/audio/</code>, and mark it published.</p>
     <div id="narrList"></div>
@@ -66,9 +69,32 @@
         document.getElementById('toolbar').hidden = false;
         ['fState', 'fStatus', 'fText'].forEach(id => document.getElementById(id).addEventListener('input', draw));
         draw();
+        loadUsage(); document.getElementById('uDays').addEventListener('change', loadUsage);
         return A.get('/api/admin/stories').then(drawStories).then(() => A.get('/api/admin/narrations')).then(drawNarr);
       });
     }).catch(e => { status.textContent = e.message; });
+    function loadUsage() {
+      const el = document.getElementById('usage');
+      Promise.all([A.get('/api/admin/stats?days=' + document.getElementById('uDays').value), fetch('data/learn.json').then(r => r.json())]).then(([d, cat]) => {
+        const sum = (f) => d.rows.filter(f).reduce((a, r) => a + r.n, 0);
+        const by = (f, key) => { const o = {}; d.rows.filter(f).forEach(r => { const k = key(r); o[k] = (o[k] || 0) + r.n; }); return Object.entries(o).sort((a, b) => b[1] - a[1]); };
+        const tbl = (head, rows) => '<div class="table-wrap"><table class="data"><tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr>' + (rows.length ? rows.map(r => '<tr>' + r.map(c => '<td>' + esc(c) + '</td>').join('') + '</tr>').join('') : '<tr><td colspan="' + head.length + '">No data yet.</td></tr>') + '</table></div>';
+        const views = sum(r => r.kind === 'page' && !r.name.startsWith('module:'));
+        const ev = p => sum(r => r.kind === 'event' && r.name.startsWith(p));
+        const mods = cat.modules.map(m => { const n = (k) => sum(r => r.name === k + m.id); return [m.num + '. ' + m.title.split(':')[0], n('module:'), n('listen:'), n('heard:'), n('read:'), n('quiz:'), n('share:')]; }).filter(r => r.slice(1).some(Boolean)).sort((a, b) => b[1] - a[1]);
+        const daily = by(r => r.kind === 'page' && !r.name.startsWith('module:'), r => r.day).sort((a, b) => a[0] < b[0] ? 1 : -1);
+        const langs = by(r => r.kind === 'page' && !r.name.startsWith('module:'), r => r.lang);
+        el.innerHTML = '<div class="tiles" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0">' +
+          [['Page views', views], ['Lessons read', ev('read:')], ['Quizzes passed', ev('quiz:')], ['Quests done', ev('quest:')], ['Narrations started', ev('listen:')], ['Class joins', ev('class:')], ['Stories sent', ev('story:')], ['Shares', ev('share:')]]
+            .map(t => '<div style="border:1px solid var(--line);border-radius:8px;padding:8px 10px"><b style="font-size:1.4rem;display:block">' + t[1].toLocaleString() + '</b><span class="note">' + t[0] + '</span></div>').join('') + '</div>' +
+          '<p class="note">Languages: ' + langs.map(l => (l[0] === 'es' ? 'Spanish' : 'English') + ' ' + l[1]).join(', ') + '</p>' +
+          '<h3>Lessons</h3>' + tbl(['Lesson', 'Views', 'Listens', 'Heard to end', 'Read', 'Quiz passed', 'Shares'], mods) +
+          '<h3>Top pages</h3>' + tbl(['Page', 'Views'], by(r => r.kind === 'page' && !r.name.startsWith('module:'), r => r.name).slice(0, 20)) +
+          '<h3>Quests</h3>' + tbl(['Quest', 'Done'], by(r => r.kind === 'event' && r.name.startsWith('quest:'), r => r.name.slice(6))) +
+          '<h3>Referring sites</h3>' + tbl(['Site', 'Visits'], by(r => r.kind === 'ref', r => r.name).slice(0, 20)) +
+          '<h3>Daily page views</h3>' + tbl(['Day', 'Views'], daily);
+      }).catch(e => { el.innerHTML = '<p class="note">' + esc(e.message) + '</p>'; });
+    }
     function drawNarr(list) {
       const el = document.getElementById('narrList');
       el.innerHTML = list.length ? '<div class="table-wrap"><table class="data"><tr><th>Date</th><th>Lesson</th><th>Lang</th><th>Credit</th><th>Email</th><th>Recording</th><th>License</th><th>Status</th></tr>' +

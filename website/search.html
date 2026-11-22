@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search</title>
+  <meta name="description" content="Search every lesson, map place, old law, county and page on the Federal CAREN Act site.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .sbox { display: flex; gap: 8px; margin: 12px 0; }
+    .sbox input { flex: 1; padding: 12px; font: inherit; font-size: 1.1rem; border: 2px solid var(--accent); border-radius: 8px; }
+    .types { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 14px; }
+    .types button { font: inherit; font-size: .85rem; padding: 5px 12px; border-radius: 999px; border: 1px solid #b9c2cc; background: #fff; cursor: pointer; }
+    .types button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .res { list-style: none; padding: 0; margin: 0; }
+    .res li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .res a.t { font-size: 1.05rem; font-weight: 700; text-decoration: none; }
+    .res a.t:hover { text-decoration: underline; }
+    .res .k { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-right: 6px; }
+    .res p { margin: 4px 0 0; font-size: .92rem; color: #333; }
+    .res mark { background: #fde68a; padding: 0 1px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1>Search</h1>
+    <form class="sbox" id="form" role="search"><label for="q" class="note" style="position:absolute;left:-9999px">Search the site</label><input id="q" type="search" placeholder="Try: Tulsa, redlining, Columbus, sterilization, your county…" autocomplete="off" autofocus><button class="btn" type="submit">Search</button></form>
+    <div class="types" id="types" role="group" aria-label="Filter results"></div>
+    <p class="note" id="count" aria-live="polite"></p>
+    <ul class="res" id="results"></ul>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
+  <script>
+  (function () {
+    const $ = id => document.getElementById(id), esc = CarenLearn.ui.esc;
+    const fold = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const strip = h => { const d = document.createElement('div'); d.innerHTML = h || ''; return d.textContent.replace(/\s+/g, ' ').trim(); };
+    const get = f => fetch('data/' + f).then(r => r.json()).catch(() => null);
+    const TYPES = { lesson: 'Lessons', place: 'Places', law: 'Laws and cases', county: 'Counties', page: 'Pages', more: 'Books and quests' };
+    const PAGES = [
+      ['act.html', 'Take action', 'Call and write your members of Congress, state lawmakers and city council; register to vote; know your rights.'],
+      ['index.html', 'Map', 'Priority heat map of lynchings, police killings, hate crimes, redlining, covenants, destroyed communities, boarding schools and 911 calls.'],
+      ['county.html', 'Your county', 'Your county’s numbers and history, with a share image.'],
+      ['bill.html', 'Draft bill', 'The draft federal CAREN Act; comment on any paragraph or suggest an edit.'],
+      ['learn.html', 'Learn', 'Lessons, learning paths, quests, badges, podcast and reading list.'],
+      ['stories.html', 'Stories', 'First-person stories and oral histories; record an elder’s story.'],
+      ['toolkit.html', 'Local action toolkit', 'City council resolution, model ordinance, testimony, public records request for 911 data.'],
+      ['brief.html', 'Brief for lawmakers', 'One-page case for a federal CAREN Act and the members of Congress who would hear it.'],
+      ['press.html', 'Press kit', 'Fact sheet, press release template, story ideas, logos.'],
+      ['class.html', 'Classroom', 'Teachers create a class code; students join with a nickname.'],
+      ['record.html', 'Lend your voice', 'Record a lesson in your own voice.'],
+      ['teach.html', 'Teach-in kits', 'Slides, handouts and facilitator guides for every lesson.'],
+      ['laws.html', 'Old laws tracker', 'Segregation and sundown laws still on the books, and how to repeal them.'],
+      ['deaths.html', 'Contested deaths', 'Hanging deaths ruled suicides that families dispute; CDC data.'],
+      ['history.html', 'History of the CAREN Act', 'How San Francisco’s CAREN Act came about.'],
+      ['volunteer.html', 'Volunteer', 'Join as a state ally, history reviewer or researcher.'],
+      ['data.html', 'Data and methodology', 'Every dataset, the priority score, and 911 call outcomes.'],
+      ['privacy.html', 'Privacy', 'What we collect and how to have it deleted.']
+    ];
+    let docs = null, type = '';
+    function build() {
+      return Promise.all([CarenLearn.catalog(), get('destroyed_communities.json'), get('history_sites.json'), get('residual_ordinances.json'), get('contested_deaths.json'), get('counties.json')]).then(([cat, des, his, res, cd, cty]) => {
+        const D = [];
+        const add = (t, title, text, url, extra) => D.push({ t, title, text, url, extra: extra || '', ft: fold(title), fx: fold(text + ' ' + (extra || '')) });
+        cat.modules.forEach(m => {
+          add('lesson', m.num + '. ' + m.title, [m.short, m.intro].filter(Boolean).join(' '), 'module.html?m=' + m.id, (m.timeline || []).map(x => x.y + ' ' + x.t).join(' '));
+          (m.sections || []).forEach((s, i) => add('lesson', m.title.split(':')[0] + ' › ' + s.h, strip(s.body), 'module.html?m=' + m.id + '#s' + (i + 1)));
+          if (m.topics) add('lesson', m.title, m.topics.join('. '), 'module.html?m=' + m.id);
+        });
+        (cat.quests || []).forEach(q => add('more', 'Quest: ' + q.title, q.desc, 'learn.html#quests'));
+        (cat.readingList || []).forEach(b => add('more', b.t + ' (' + b.a + ', ' + b.y + ')', b.why, 'learn.html#reading'));
+        (cat.paths || []).forEach(p => add('lesson', 'Path: ' + p.title, p.desc, 'learn.html#path-' + p.id));
+        if (des) des.entries.forEach(e => add('place', e.name + ' (' + e.year + ')', e.summary, 'index.html?layers=destroyed&at=' + e.lat + ',' + e.lon + ',11', e.place + ' ' + e.state));
+        if (his) his.entries.forEach(e => add('place', e.name, e.summary, 'index.html?layers=history&at=' + e.lat + ',' + e.lon + ',10', e.place + ' ' + e.state + ' ' + e.year));
+        if (res) res.entries.forEach(e => add('law', e.place + ': ' + e.ordinances, e.summary, 'laws.html', e.status));
+        if (cd) cd.cases.forEach(c => add('law', c.name + ', ' + c.place + ', ' + c.state, c.dispute, 'deaths.html#cases', c.date_text + ' ' + c.official_ruling));
+        if (cty) cty.rows.forEach(r => add('county', r[1] + ', ' + r[2], '', 'county.html?f=' + r[0]));
+        PAGES.forEach(p => add('page', p[1], p[2], p[0]));
+        docs = D; return D;
+      });
+    }
+    function snippet(text, terms) {
+      if (!text) return '';
+      const f = fold(text); let at = -1;
+      terms.some(t => { at = f.indexOf(t); return at >= 0; });
+      const start = Math.max(0, at - 80), s = (start ? '…' : '') + text.slice(start, start + 240) + (text.length > start + 240 ? '…' : '');
+      let h = esc(s);
+      terms.forEach(t => { if (t.length < 2) return; const re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'); h = h.replace(re, '<mark>$1</mark>'); });
+      return h;
+    }
+    function run() {
+      const q = $('q').value.trim();
+      history.replaceState(null, '', q ? '?q=' + encodeURIComponent(q) + (type ? '&t=' + type : '') : location.pathname);
+      if (!q) { $('results').innerHTML = ''; $('count').textContent = ''; drawTypes({}); return; }
+      const terms = fold(q).split(/\s+/).filter(Boolean);
+      const scored = docs.map(d => {
+        let s = 0, all = true;
+        terms.forEach(t => { const inT = d.ft.indexOf(t) >= 0, inX = d.fx.indexOf(t) >= 0; if (!inT && !inX) all = false; s += (inT ? 6 : 0) + (inX ? 1 + Math.min(3, d.fx.split(t).length - 2) * 0.5 : 0); });
+        if (d.ft === fold(q)) s += 10;
+        if (d.t === 'county' && !all) s = 0;
+        return { d, s: all ? s * 2 : s * (terms.length > 1 ? 0.5 : 1) };
+      }).filter(x => x.s > 0).sort((a, b) => b.s - a.s);
+      const counts = {}; scored.forEach(x => counts[x.d.t] = (counts[x.d.t] || 0) + 1);
+      drawTypes(counts);
+      const list = scored.filter(x => !type || x.d.t === type).slice(0, 60);
+      $('count').textContent = scored.length ? list.length + (scored.length > list.length && !type ? ' of ' + scored.length : '') + ' results' : 'No results. Try a different word.';
+      $('results').innerHTML = list.map(x => '<li><span class="k">' + TYPES[x.d.t] + '</span><a class="t" href="' + x.d.url + '">' + esc(x.d.title) + '</a>' + (x.d.text ? '<p>' + snippet(x.d.text, terms) + '</p>' : '') + '</li>').join('');
+    }
+    function drawTypes(counts) {
+      $('types').innerHTML = '<button type="button" data-t="" aria-pressed="' + !type + '">All</button>' + Object.keys(TYPES).filter(k => counts[k]).map(k => '<button type="button" data-t="' + k + '" aria-pressed="' + (type === k) + '">' + TYPES[k] + ' (' + counts[k] + ')</button>').join('');
+    }
+    $('types').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { type = b.dataset.t; run(); } });
+    let t0; $('q').addEventListener('input', () => { clearTimeout(t0); t0 = setTimeout(() => docs && run(), 180); });
+    $('form').addEventListener('submit', e => { e.preventDefault(); if (docs) run(); });
+    const p = new URLSearchParams(location.search); if (p.get('q')) $('q').value = p.get('q'); type = p.get('t') || '';
+    $('count').textContent = 'Loading…';
+    build().then(() => { $('count').textContent = ''; run(); });
+  })();
+  </script>
+</body>
+</html>

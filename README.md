@@ -17,6 +17,20 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
 - **How we got here, and the way out:** sourced history lessons with evidence labels, quizzes, quests, XP and badges: https://prodataman.github.io/CAREN-Act/website/learn.html
 - **New (Nov 10): Columbus, the colonizers, and systemic racism:** [Columbus: what his own records say](https://prodataman.github.io/CAREN-Act/website/module.html?m=columbus), [The colonizers](https://prodataman.github.io/CAREN-Act/website/module.html?m=colonizers), [Systemic racism](https://prodataman.github.io/CAREN-Act/website/module.html?m=systemic), [Is racism over? The evidence today](https://prodataman.github.io/CAREN-Act/website/module.html?m=evidence), [Banking, insurance and taxes](https://prodataman.github.io/CAREN-Act/website/module.html?m=banking), [Courts](https://prodataman.github.io/CAREN-Act/website/module.html?m=courts)
 - **New (Nov 11):** [Your rights with police](https://prodataman.github.io/CAREN-Act/website/module.html?m=rights), [How a bill becomes law](https://prodataman.github.io/CAREN-Act/website/module.html?m=lawmaking), [Native nations today](https://prodataman.github.io/CAREN-Act/website/module.html?m=sovereignty), [Housing today](https://prodataman.github.io/CAREN-Act/website/module.html?m=housing-today), [Immigration enforcement now](https://prodataman.github.io/CAREN-Act/website/module.html?m=enforcement), [Repair and reparations](https://prodataman.github.io/CAREN-Act/website/module.html?m=reparations), [The global Black freedom struggle](https://prodataman.github.io/CAREN-Act/website/module.html?m=global-freedom)
+- **Brief for lawmakers:** https://prodataman.github.io/CAREN-Act/website/brief.html
+  - A one-page, letter-size policy brief (print or save as PDF). The SF 911 and BJS figures fill in from the site's data.
+  - Below it, a live table of House and Senate Judiciary Committee members with phone and contact links. Rep. Janelle Bynum is flagged as the natural sponsor, because she wrote Oregon's 2019 law.
+- **Press kit:** https://prodataman.github.io/CAREN-Act/website/press.html. It has a boilerplate paragraph, a sourced fact sheet, a press release template, story ideas, and logos (`website/press/`).
+  - **⚠️ Owner:** fill in `PRESS = { name, email, phone }` in `press.html` to publish a media contact. Until then reporters are pointed to GitHub.
+- **Search:** https://prodataman.github.io/CAREN-Act/website/search.html, plus a magnifier icon in the header of every page.
+  - **Coverage:** every lesson section, learning paths, quests, books, destroyed communities, boarding schools and camps, old laws, contested deaths, all 3,222 counties, and the site's pages.
+  - **How it works:** entirely in the browser, accent-insensitive, and in Spanish too.
+- **Usage counts (privacy-respecting):** each page view and milestone sends only a page or event name, the language, and the referring site's name.
+  - **Milestones:** lesson read, quiz passed, quest done, narration started or finished, share, class join, story sent.
+  - **Storage:** daily totals in `stats_daily` (migration `006_stats`). No cookies, IP addresses, device or user IDs.
+  - **Opt-out:** nothing is sent when the browser has Do Not Track or Global Privacy Control on.
+  - **Where to see it:** `admin.html#usage` shows totals, a per-lesson funnel (views, listens, heard, read, quiz, shares), top pages, quests, referring sites and daily views.
+  - **API:** `POST /api/hit` and `GET /api/admin/stats?days=`.
 - **Volunteer narrators:** https://prodataman.github.io/CAREN-Act/website/record.html (linked from every lesson's Listen bar, and the "Lend your voice" quest is worth 150 XP).
   - **The volunteer** picks a lesson, reads the script while the page records it in the browser, downloads the file, shares it by link (Drive, Dropbox or iCloud), and submits the link with a credit name and a license (CC BY 4.0 or CC0).
   - **Submissions** appear in `admin.html#narrations`.
@@ -75,7 +89,7 @@ The site uses a **hub and spoke** model: English is the hub, and each other lang
 - **Status (Nov 10):**
   - all page text is translated except proper names;
   - all Learn interface text, quests, badges and the three things are translated, and every module's title and summary;
-  - four full modules are translated (before race, evidence, policing, path forward);
+  - ten full modules are translated (before race, evidence, policing, path forward, movements, colonizers, afro-latino, borders, enforcement, many-targets), which completes the "Start here" and "Latino and immigrant history" paths in Spanish;
   - the other modules still need their full text translated.
 - **Kept in English on purpose:** the bill text, letters to lawmakers and repeal drafts, because officials receive them in English.
 - Translations are drafts and need review by a fluent volunteer.
@@ -294,7 +308,7 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
 - **Quests:** 42, in six categories: Learn and share, Advocate, Research and verify, Show up for your community, Give your professional skills (pro bono), and Build wealth back home (banking, mentoring, hiring, investing and board seats, beyond donating).
 - **Teach-in kits:** `teach.html` lists them, and `teach.html?m=<id>&view=guide|slides|handout` builds each one from `learn.json`. Slides use the arrow keys, F for full screen and A to reveal quiz answers. Discussion questions come from the module's optional `discuss` list plus generic prompts.
 - **Fourth label:** `plan` ("Our recommendation") marks campaign advice, as opposed to historical claims.
-- **Narration (all 46 English lessons; Spanish for the 4 fully translated lessons):** a **Listen** bar on every lesson page.
+- **Narration (all 46 English lessons; Spanish for the 10 fully translated lessons):** a **Listen** bar on every lesson page.
   - **Highlighting:** each word is highlighted as it is read, with its sentence shaded.
   - **Controls:** play, seek, speed, and a choice of a **female or male voice**, which is remembered.
   - **Clicking a sentence** during playback jumps there. Hearing a lesson to the end counts as reading it.

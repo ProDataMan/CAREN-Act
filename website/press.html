@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Press Kit</title>
+  <meta name="description" content="Press kit for the Federal CAREN Act campaign: fact sheet with sources, press release template, story ideas, logos and contact.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin: 10px 0; }
+    .fact { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+    .fact b { display: block; font-size: 1.6rem; color: #0e2a47; line-height: 1.1; }
+    .fact span { font-size: .9rem; }
+    .fact small { display: block; color: var(--muted); margin-top: 6px; font-size: .78rem; }
+    .assets { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .assets a { display: block; border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-decoration: none; color: var(--ink); text-align: center; }
+    .assets img { max-width: 100%; height: 120px; object-fit: contain; display: block; margin: 0 auto 6px; background: #eef1f4; border-radius: 6px; }
+    textarea.release { width: 100%; min-height: 420px; font: .9rem/1.5 ui-monospace, Menlo, monospace; padding: 10px; border: 1px solid #bbb; border-radius: 6px; background: var(--surface-2); }
+    .angles li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1>Press kit</h1>
+    <p class="lede">Everything a reporter, editor or partner organization needs to cover the Federal CAREN Act campaign: the facts with sources, a press release to adapt, story ideas, and logos.</p>
+
+    <h2 id="contact">Media contact</h2>
+    <div class="callout info" id="contactBox"></div>
+
+    <h2 id="about">About the campaign</h2>
+    <p id="boiler">The Federal CAREN Act campaign is a volunteer effort to make it illegal nationwide to call the police on someone in order to discriminate against them. It builds on San Francisco's Caution Against Racial and Exploitative Non-Emergencies (CAREN) Act, passed unanimously in 2020, and similar laws in Oregon, New York and California. The campaign publishes a draft federal bill open to public comment, a map of where discriminatory police calls are likely to cause the most harm, free sourced lessons on the history of systemic racism, and tools for contacting lawmakers. Every claim on the site is sourced, and historical claims are labeled documented, debated, or belief or myth.</p>
+    <button class="btn secondary" type="button" data-copy="boiler">Copy</button>
+
+    <h2 id="facts">Fact sheet</h2>
+    <div class="facts" id="factList">
+      <div class="fact"><b id="fSf">~1%</b><span>of resident-initiated “suspicious person” 911 calls in San Francisco over the past year led to an arrest, citation or police report.</span><small>San Francisco open data, calls for service. See data.html#calls</small></div>
+      <div class="fact"><b id="fBjs">~3×</b><span>Black residents who had contact with police were about this many times as likely as white residents to experience threats or use of force.</span><small>Bureau of Justice Statistics, Contacts Between Police and the Public, 2020 (NCJ 304527)</small></div>
+      <div class="fact"><b>11–0</b><span>vote by which San Francisco's Board of Supervisors passed the CAREN Act (Police Code §637) on October 27, 2020.</span><small>San Francisco Ordinance 219-20</small></div>
+      <div class="fact"><b>$1,000</b><span>minimum statutory damages in the draft federal bill: $500 from the caller and $500 from the responding agency, plus attorneys' fees.</span><small>Draft bill, Section 4 (bill.html)</small></div>
+      <div class="fact"><b>4</b><span>jurisdictions with laws against bias-motivated police calls or false reports: San Francisco, Oregon (2019), New York (2020), California (AB 1775, 2020).</span><small>See history.html</small></div>
+      <div class="fact"><b id="fLynch">4,400+</b><span>documented victims of racial terror lynching in the U.S., 1877–1950; many lynchings began with a single accusation.</span><small>Equal Justice Initiative, Lynching in America</small></div>
+    </div>
+
+    <h2 id="release">Press release template</h2>
+    <p>Adapt this for a local event, a council resolution, a bill introduction or a report. Replace everything in [brackets], keep it under one page, and send it in the body of an email, not as an attachment.</p>
+    <textarea class="release" id="relText" readonly>FOR IMMEDIATE RELEASE
+[DATE]
+
+Contact: [NAME], [EMAIL], [PHONE]
+
+[HEADLINE: e.g. "[City] Council Backs Federal Law Against Racially Motivated 911 Calls"]
+
+[CITY, STATE] — [One-sentence news: who did what, when. e.g. "The [City] City Council voted [x–y] on [date] to support a federal CAREN Act, which would let people sue anyone who calls the police on them in order to discriminate."]
+
+[Second paragraph: why it matters locally. One fact from your county page (prodataman.github.io/CAREN-Act/website/county.html) or your city's 911 data, and one sentence about a local incident, with permission.]
+
+"[Quote from a local organizer, faith leader, or someone who had the police called on them.]" said [NAME, TITLE].
+
+San Francisco passed the first CAREN Act (Caution Against Racial and Exploitative Non-Emergencies) unanimously in 2020, after a series of widely shared videos showed people calling police on Black and brown neighbors who were doing ordinary things. Oregon, New York and California have passed related laws. A federal version would give every person in the country the same remedy: at least $1,000 in damages from the caller and the responding agency, while explicitly protecting anyone who calls 911 in good faith.
+
+In San Francisco, about [X]% of resident-initiated "suspicious person" calls in the past year led to an arrest, citation or police report, according to city data.
+
+[Optional: next steps, such as a hearing date, a public meeting, or how residents can contact their members of Congress at prodataman.github.io/CAREN-Act/website/act.html.]
+
+About the Federal CAREN Act campaign
+[Paste the "About the campaign" paragraph.]
+
+###</textarea>
+    <button class="btn secondary" type="button" data-copy="relText">Copy</button>
+
+    <h2 id="angles">Story ideas for reporters</h2>
+    <ul class="angles">
+      <li><b>Your county's history.</b> Every county page lists lynchings by name, destroyed communities, redlining, racial covenants and old segregation laws nearby: <a href="county.html">county.html</a>.</li>
+      <li><b>What “suspicious person” calls lead to.</b> Request your city's 911 call data (template in the <a href="toolkit.html#records">toolkit</a>) and compare outcomes; most such calls in San Francisco, Seattle and New Orleans led to no arrest, citation or report (<a href="data.html#calls">data</a>).</li>
+      <li><b>Laws still on the books.</b> The <a href="laws.html">old laws tracker</a> follows segregation-era text that has never been formally repealed.</li>
+      <li><b>Contested deaths.</b> Hanging deaths of Black Americans ruled suicides that families dispute, with sources: <a href="deaths.html">deaths.html</a>.</li>
+      <li><b>People who lived it.</b> First-person accounts on the <a href="stories.html">Stories page</a> (contact us before quoting; we'll ask the author).</li>
+      <li><b>The lawmaker who lived it.</b> Rep. Janelle Bynum wrote Oregon's 2019 law after police were called on her while she canvassed her own district.</li>
+    </ul>
+
+    <h2 id="assets">Logos and images</h2>
+    <p>Free to use in coverage of the campaign.</p>
+    <div class="assets">
+      <a href="press/logo-square.png" download><img src="press/logo-square.png" alt="Square CA logo">Square logo (PNG)</a>
+      <a href="press/wordmark.png" download><img src="press/wordmark.png" alt="Federal CAREN Act wordmark">Wordmark (PNG)</a>
+      <a href="podcast/cover.png" download><img src="podcast/cover.png" alt="How We Got Here podcast cover">Lessons and podcast cover (PNG)</a>
+      <a href="brief.html"><img src="press/logo-square.png" alt="">One-page policy brief (print to PDF)</a>
+    </div>
+    <p class="note">Every lesson page and county page can also make a share image for social media.</p>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    // Media contact: fill these in to publish a press contact (left empty, reporters are pointed to GitHub).
+    const PRESS = { name: '', email: '', phone: '' };
+    const $ = id => document.getElementById(id);
+    $('contactBox').innerHTML = PRESS.email
+      ? '<b>' + PRESS.name + '</b><br><a href="mailto:' + PRESS.email + '">' + PRESS.email + '</a>' + (PRESS.phone ? '<br>' + PRESS.phone : '')
+      : 'Reporters can reach the campaign by <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BPress%5D%20" target="_blank" rel="noopener">opening a request on GitHub</a> (it is public; include only how to reach you). A press email will be listed here soon.';
+    fetch('data/city_calls.json').then(r => r.json()).then(c => {
+      const sf = c.cities.find(x => /San Francisco/.test(x.city)); if (!sf) return;
+      const p = (100 * sf.enforcement / sf.calls).toFixed(1); $('fSf').textContent = p + '%';
+      $('relText').value = $('relText').value.replace('[X]%', p + '%');
+    }).catch(() => {});
+    fetch('data/bjs_contacts.json').then(r => r.json()).then(b => { const f = b.force_pct_of_contacts; if (f && f.Black && f.White) $('fBjs').textContent = (f.Black / f.White).toFixed(1) + '×'; }).catch(() => {});
+    document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+      const el = $(b.dataset.copy), t = el.value != null ? el.value : el.textContent;
+      navigator.clipboard.writeText(t).then(() => { b.textContent = '✓'; setTimeout(() => b.textContent = 'Copy', 1800); });
+    }));
+  })();
+  </script>
+</body>
+</html>
