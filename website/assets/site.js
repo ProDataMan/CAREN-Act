@@ -19,6 +19,13 @@
 
   var header = document.getElementById('siteHeader');
   if (header) {
+    var main = document.querySelector('main');
+    if (main) {
+      if (!main.id) main.id = 'main';
+      if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+      var skip = document.createElement('a'); skip.className = 'skip-link'; skip.href = '#' + main.id; skip.textContent = 'Skip to main content';
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
     header.className = 'site-header';
     var links = NAV.map(function (n) {
       var current = (n.href === page || (page === 'module.html' && n.href === 'learn.html')) ? ' aria-current="page"' : '';

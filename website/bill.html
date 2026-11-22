@@ -69,6 +69,7 @@
 </head>
 <body>
   <header id="siteHeader"></header>
+  <main id="main">
   <div class="bill-head">
     <h1>Draft Federal Caution Against Racial and Exploitative Non-Emergencies (CAREN) Act</h1>
     <p class="intro">Model legislation for public comment, based on San Francisco Police Code §637 (Ordinance No. 219-20).
@@ -76,7 +77,6 @@
       Paragraphs with comments are <span class="legend">highlighted in yellow</span>. A <span class="star">★</span> gold star means an editor accepted that suggestion into the bill.</p>
   </div>
 
-  <main>
     <div class="banner" id="statusBanner">Loading bill and public comments…</div>
     <details class="admin"><summary>How comments work / for editors</summary>
       <p>Comments are public and stored as <a href="https://github.com/ProDataMan/CAREN-Act/issues?q=label%3Abill-comment" target="_blank" rel="noopener">GitHub issues</a>. You can post directly from this page, no account needed. If the campaign server is unavailable, GitHub opens with your comment pre-filled instead, and you click <em>Create</em> there (free GitHub account).</p>
@@ -86,7 +86,7 @@
   </main>
   <footer id="siteFooter"></footer>
 
-  <aside id="panel" aria-hidden="true" aria-labelledby="panelTitle">
+  <aside id="panel" aria-hidden="true" inert aria-labelledby="panelTitle">
     <div class="phead">
       <h3 id="panelTitle">Comments</h3>
       <button class="linkish" id="closePanel" type="button" style="font-size:1.4rem" aria-label="Close">×</button>
@@ -282,12 +282,12 @@
       paraEl(pid).classList.add('active');
       document.getElementById('panelTitle').textContent = titleById[pid];
       panel.classList.add('open');
-      panel.setAttribute('aria-hidden', 'false');
+      panel.setAttribute('aria-hidden', 'false'); panel.inert = false;
       mode === 'form' ? renderForm(pid) : renderList(pid);
     }
     function closePanel() {
       panel.classList.remove('open');
-      panel.setAttribute('aria-hidden', 'true');
+      panel.setAttribute('aria-hidden', 'true'); panel.inert = true;
       document.querySelectorAll('.bill-para.active').forEach(el => el.classList.remove('active'));
       current = null;
     }

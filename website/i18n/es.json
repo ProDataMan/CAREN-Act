@@ -1359,7 +1359,9 @@
   "Counties": "Condados",
   "Pages": "Páginas",
   "Books and quests": "Libros y misiones",
-  "No results. Try a different word.": "Sin resultados. Prueba otra palabra."
+  "No results. Try a different word.": "Sin resultados. Prueba otra palabra.",
+  "Skip to main content": "Saltar al contenido principal",
+  "Map legend": "Leyenda del mapa"
  },
  "patterns": [
   [

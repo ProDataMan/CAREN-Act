@@ -31,6 +31,11 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
   - **Opt-out:** nothing is sent when the browser has Do Not Track or Global Privacy Control on.
   - **Where to see it:** `admin.html#usage` shows totals, a per-lesson funnel (views, listens, heard, read, quiz, shares), top pages, quests, referring sites and daily views.
   - **API:** `POST /api/hit` and `GET /api/admin/stats?days=`.
+- **Accessibility (reviewed 2026-11-22):** axe-core 4.10 (WCAG 2.0, 2.1 and 2.2 A/AA, plus best practices) reports **0 violations** on all 24 pages, the Spanish Learn page and a phone-width lesson.
+  - **Fixed:** missing main landmarks (map, bill title, embed), heading order (map layer groups, Take action steps, teach-in kits), low-contrast text (locked badges, chart footnotes), unlabeled template text areas, small tap targets in link lists, a scrollable legend that couldn't be reached by keyboard, and the closed comment panel (now `inert`).
+  - **Added:** a "Skip to main content" link on every page and respect for reduced-motion settings (animations off, narration scrolls without animation). Keyboard navigation was tested with real Tab and Enter key presses.
+  - **Known limits:** individual map markers can't be reached by keyboard. Their content is available as text on county pages and in search. Audio is computer-narrated, and the full text is always on the page.
+  - **Re-test:** `.tools/axe.js URL WIDTH` (headless Chrome plus axe-core).
 - **Volunteer narrators:** https://prodataman.github.io/CAREN-Act/website/record.html (linked from every lesson's Listen bar, and the "Lend your voice" quest is worth 150 XP).
   - **The volunteer** picks a lesson, reads the script while the page records it in the browser, downloads the file, shares it by link (Drive, Dropbox or iCloud), and submits the link with a credit name and a license (CC BY 4.0 or CC0).
   - **Submissions** appear in `admin.html#narrations`.

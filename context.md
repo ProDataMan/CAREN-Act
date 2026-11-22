@@ -176,6 +176,15 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
     - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
+  - **2026-11-22, accessibility pass:**
+    - axe reports 0 violations on 26 page checks.
+    - Skip link and `main#main` (`tabindex=-1`) added by `site.js`.
+    - Reduced-motion CSS.
+    - Bill panel made `inert` when closed.
+    - Headings fixed on index, act and teach.
+    - Contrast fixes on the deaths page (`--text-muted`) and locked badges.
+    - Toolkit and press textareas given `aria-label`.
+    - Map legend made focusable as a region.
   - **2026-11-22:**
     - **Lawmaker brief** (`brief.html`): one letter-size page, verified by printing to PDF, plus a live Judiciary member table.
     - **Press kit** (`press.html`, `website/press/` logos). The media contact is a placeholder (the `PRESS` constant).

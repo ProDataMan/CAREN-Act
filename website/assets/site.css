@@ -115,7 +115,8 @@ table.data th { background: var(--surface-2); }
 .badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; margin: 8px 0; }
 .badge-grid .b { border: 1px solid var(--line); border-radius: 10px; padding: 8px; text-align: center; font-size: .78rem; background: #fff; }
 .badge-grid .b .i { font-size: 1.6rem; display: block; }
-.badge-grid .b.locked { opacity: .45; filter: grayscale(1); }
+.badge-grid .b.locked { color: var(--muted); background: var(--surface-2); }
+.badge-grid .b.locked .i { opacity: .35; filter: grayscale(1); }
 .badge-grid .b b { display: block; font-size: .82rem; }
 .tl { border-left: 3px solid var(--accent); margin: 12px 0; padding-left: 16px; list-style: none; }
 .tl li { margin: 8px 0; position: relative; }
@@ -151,3 +152,12 @@ html.i18n-pending body { visibility: hidden; }
 .share-lesson { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; padding: 12px 14px; border: 1px dashed var(--line); border-radius: 10px; }
 .site-search { margin-left: auto; color: #fff; display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 6px; border: 1px solid rgba(255,255,255,.35); }
 .site-search:hover, .site-search:focus-visible { background: rgba(255,255,255,.12); }
+
+/* ---------- Accessibility ---------- */
+.skip-link { position: absolute; left: 8px; top: -60px; z-index: 5000; background: #f2c14e; color: #0e2a47; font-weight: 700; padding: 10px 14px; border-radius: 6px; text-decoration: none; }
+.skip-link:focus { top: 8px; }
+main:focus { outline: none; }
+.sources li, ol.sources li { margin: 8px 0; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

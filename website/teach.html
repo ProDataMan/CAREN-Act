@@ -9,7 +9,7 @@
   <style>
     .kits { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin: 12px 0; }
     .kit { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
-    .kit h3 { margin: 0 0 6px; font-size: 1rem; }
+    .kit h2 { margin: 0 0 6px; font-size: 1rem; }
     .kit .row { display: flex; flex-wrap: wrap; gap: 6px; }
     .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
     .tabs a { padding: 7px 12px; border: 1px solid var(--accent); border-radius: 6px; text-decoration: none; }
@@ -72,7 +72,7 @@
         document.title = 'Teach-In Kits';
         main.innerHTML = '<h1>Teach-in kits</h1><p class="lede">Teach any Learn module to a class, church, club, union, book group or chapter. Each kit has slides to present, a one-page handout to print, and a facilitator guide with a 60-minute agenda. Everything is free to use and share.</p>' +
           '<div class="callout info"><b>Hosting one counts.</b> A teach-in is a 200 XP quest. Mark it on the <a href="learn.html#quests">quest board</a> afterward, and tell us how it went.</div>' +
-          '<div class="kits">' + mods.map(m => '<div class="kit"><h3>' + m.num + '. ' + esc(m.title) + '</h3><div class="row"><a class="btn" href="?m=' + m.id + '&view=slides">Slides</a><a class="btn secondary" href="?m=' + m.id + '&view=handout">Handout</a><a class="btn secondary" href="?m=' + m.id + '">Guide</a></div></div>').join('') + '</div>';
+          '<div class="kits">' + mods.map(m => '<div class="kit"><h2>' + m.num + '. ' + esc(m.title) + '</h2><div class="row"><a class="btn" href="?m=' + m.id + '&view=slides">Slides</a><a class="btn secondary" href="?m=' + m.id + '&view=handout">Handout</a><a class="btn secondary" href="?m=' + m.id + '">Guide</a></div></div>').join('') + '</div>';
         return;
       }
       const m = cat.modules.find(x => x.id === id);

@@ -23,7 +23,7 @@
     .layers summary::after { content: "▾"; color: var(--muted); }
     .layers[open] summary::after { content: "▴"; }
     .layers .group { padding: 2px 14px 10px; }
-    .layers .group h4 { margin: 8px 0 4px; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .layers .group h2.grp { margin: 8px 0 4px; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
     .controls label { display: flex; align-items: center; gap: 8px; padding: 5px 0; cursor: pointer; line-height: 1.3; }
     .controls input { width: 18px; height: 18px; flex: none; accent-color: #0b5cad; }
     .controls .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; border: 1px solid rgba(0,0,0,.3); flex: none; }
@@ -57,6 +57,7 @@
 </head>
 <body>
   <header id="siteHeader"></header>
+  <main id="main">
   <section class="hero"><div class="in">
     <div>
       <h1>Make discriminatory 911 calls illegal nationwide</h1>
@@ -69,18 +70,18 @@
     <details class="layers controls" id="controls" open>
       <summary>Map layers <span class="count" id="layerCount"></span></summary>
       <div class="group">
-        <h4>Priority</h4>
+        <h2 class="grp">Priority</h2>
         <label><input type="checkbox" data-layer="heat" checked> <strong>Priority heat map</strong></label>
         <label><input type="checkbox" data-layer="priority" checked> <span class="sw" style="background:#7a0177"></span> High-overlap counties</label>
-        <h4>Racial violence</h4>
+        <h2 class="grp">Racial violence</h2>
         <label><input type="checkbox" data-layer="lynch" checked> <span class="sw" style="background:#67000d"></span> Lynchings 1877–1950 (EJI)</label>
         <label><input type="checkbox" data-layer="mwt"> <span class="sw" style="background:#6a3d9a"></span> Lynchings of all races (Monroe Work Today)</label>
         <label><input type="checkbox" data-layer="deaths"> <span class="sw" style="background:#000"></span> Contested hanging deaths</label>
         <label><input type="checkbox" data-layer="police"> <span class="sw" style="background:#e31a1c"></span> Police killings 2013–present (MPV)</label>
         <label><input type="checkbox" data-layer="hate"> <span class="sw" style="background:#ff7f00"></span> Race/ethnicity hate crimes (FBI)</label>
-        <h4>911 calls</h4>
+        <h2 class="grp">911 calls</h2>
         <label><input type="checkbox" data-layer="calls"> <span class="sw" style="background:#0570b0"></span> “Suspicious person” calls: SF, Seattle, New Orleans</label>
-        <h4>Population &amp; history</h4>
+        <h2 class="grp">Population &amp; history</h2>
         <label><input type="checkbox" data-layer="minority"> <span class="sw" style="background:#3182bd"></span> Minority population share (Census)</label>
         <label><input type="checkbox" data-layer="destroyed"> <span class="sw" style="background:#b35806"></span> Communities burned, flooded or taken</label>
         <label><input type="checkbox" data-layer="history"> <span class="sw" style="background:#7f3b08"></span> Indian boarding schools &amp; incarceration camps</label>
@@ -88,9 +89,9 @@
         <label><input type="checkbox" data-layer="covenants"> <span class="sw" style="background:#54278f"></span> Racial covenants on deeds (Mapping Prejudice)</label>
         <label><input type="checkbox" data-layer="segregation"> <span class="sw" style="background:#8c6d31"></span> Segregated schools by law (pre-1954)</label>
         <label><input type="checkbox" data-layer="residual" checked> <span class="sw" style="background:gold"></span> Old segregation/sundown laws</label>
-        <h4>Allies</h4>
+        <h2 class="grp">Allies</h2>
         <label><input type="checkbox" data-layer="allies"> <span class="sw" style="background:#1a1a1a"></span> Allies &amp; key members of Congress</label>
-        <h4>Time</h4>
+        <h2 class="grp">Time</h2>
         <label for="yearRange" style="display:block">History shown: <b id="yearOut">all years</b></label>
         <input type="range" id="yearRange" min="1800" max="2026" step="1" value="2026" style="width:100%" aria-describedby="yearHelp">
         <span id="yearHelp" style="display:block;font-size:.75rem;color:var(--muted)">Slide back in time. Applies to lynchings of all races, communities burned or taken, and boarding schools and camps.</span>
@@ -164,6 +165,7 @@
     </div>
   </div>
 
+  </main>
   <footer id="siteFooter"></footer>
   <script src="assets/site.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -426,6 +428,7 @@
     const legend = L.control({ position: 'bottomright' });
     legend.onAdd = () => {
       const d = L.DomUtil.create('div', 'legend');
+      d.tabIndex = 0; d.setAttribute('role', 'region'); d.setAttribute('aria-label', 'Map legend');
       d.innerHTML = '<button class="legend-toggle" type="button">Legend ▾</button><div class="body"><b>Priority score</b><div class="grad"></div><div style="display:flex;justify-content:space-between"><span>lower</span><span>higher</span></div>' +
         '<b>Police killings: victim race</b>' + ['B', 'H', 'N', 'A', 'W', 'U'].map(k => '<i style="background:' + RACE_COLOR[k] + '"></i>' + RACE[k]).join('<br>') +
         '<b>Redlining (HOLC)</b><i style="background:#76a865"></i>A <i style="background:#7cb5bd"></i>B <i style="background:#ffff00"></i>C <i style="background:#d9533c"></i>D' +
