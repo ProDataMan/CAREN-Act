@@ -1,3 +1,6 @@
 .venv/
 .voices/
 .tools/
+# Narration audio lives in Azure Blob Storage (scripts/sync_audio.py); manifest in website/audio/manifest.json
+website/audio/en/*.mp3
+website/audio/es/*.mp3

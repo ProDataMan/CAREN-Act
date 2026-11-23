@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Upload narration audio to Azure Blob Storage and record where every narration lives.
+
+Audio files are not kept in git. This script:
+  1. uploads each website/audio/<lang>/<module>.<voice>.mp3 to the public "audio" container as
+     <lang>/<module>.<voice>.<hash>.mp3 (content-addressed, so it can be cached forever);
+  2. writes that URL into the matching timing file (<module>.<voice>.json, field "audio"), which the
+     lesson player and the podcast feeds read;
+  3. writes website/audio/manifest.json and docs/NARRATIONS.md: every narration, its storage URL,
+     size, length, voice and whether it's a computer or human voice. These ARE kept in git.
+
+Credentials: AZURE_STORAGE_CONNECTION_STRING, or an `az login` that can read the account keys.
+    .venv/bin/python scripts/sync_audio.py            # upload new/changed audio, rebuild manifest
+    .venv/bin/python scripts/sync_audio.py --dry-run  # show what would change
+"""
+import argparse, hashlib, json, os, subprocess, sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+AUDIO = ROOT / 'website' / 'audio'
+ACCOUNT, GROUP, CONTAINER = 'carenactmedia', 'CARENAct', 'audio'
+BASE = 'https://%s.blob.core.windows.net/%s/' % (ACCOUNT, CONTAINER)
+
+
+def client():
+    from azure.storage.blob import BlobServiceClient
+    cs = os.environ.get('AZURE_STORAGE_CONNECTION_STRING')
+    if not cs:
+        key = subprocess.run(['az', 'storage', 'account', 'keys', 'list', '-n', ACCOUNT, '-g', GROUP, '--query', '[0].value', '-o', 'tsv'],
+                             capture_output=True, text=True, check=True).stdout.strip()
+        cs = 'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s;EndpointSuffix=core.windows.net' % (ACCOUNT, key)
+    return BlobServiceClient.from_connection_string(cs).get_container_client(CONTAINER)
+
+
+def main():
+    ap = argparse.ArgumentParser(); ap.add_argument('--dry-run', action='store_true'); a = ap.parse_args()
+    from azure.storage.blob import ContentSettings
+    cont = None if a.dry_run else client()
+    existing = {b.name for b in cont.list_blobs()} if cont else set()
+    cat = json.loads((ROOT / 'website' / 'data' / 'learn.json').read_text(encoding='utf-8'))
+    titles = {m['id']: m['title'] for m in cat['modules']}
+    rows, uploaded = [], 0
+    for lang_dir in sorted(p for p in AUDIO.iterdir() if p.is_dir() and len(p.name) == 2):
+        lang = lang_dir.name
+        idx = json.loads((lang_dir / 'index.json').read_text(encoding='utf-8'))
+        for tj in sorted(lang_dir.glob('*.json')):
+            if tj.name == 'index.json':
+                continue
+            meta = json.loads(tj.read_text(encoding='utf-8'))
+            module, voice = meta.get('module'), meta.get('voice')
+            if not module or not voice:
+                continue
+            mp3 = lang_dir / ('%s.%s.mp3' % (module, voice))
+            if mp3.exists():
+                data = mp3.read_bytes()
+                sha = hashlib.sha256(data).hexdigest()
+                name = '%s/%s.%s.%s.mp3' % (lang, module, voice, sha[:10])
+                if name not in existing:
+                    print('upload', name, len(data) // 1024, 'KB')
+                    if cont:
+                        cont.upload_blob(name, data, overwrite=True, content_settings=ContentSettings(content_type='audio/mpeg', cache_control='public, max-age=31536000, immutable'))
+                    uploaded += 1
+                meta.update({'audio': BASE + name, 'bytes': len(data), 'sha256': sha})
+                if not a.dry_run:
+                    tj.write_text(json.dumps(meta, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+            elif not meta.get('audio'):
+                print('MISSING audio for', tj.name, '(no local mp3 and no uploaded URL)', file=sys.stderr)
+                continue
+            v = idx['voices'].get(voice, {})
+            rows.append({'lang': lang, 'module': module, 'title': titles.get(module, module), 'voice': voice, 'label': v.get('label', voice),
+                         'kind': 'human' if meta.get('human') or v.get('model') == 'human recording' else 'tts', 'source': v.get('model', ''),
+                         'url': meta['audio'], 'bytes': meta.get('bytes'), 'duration': meta.get('duration'), 'sha256': meta.get('sha256')})
+    manifest = {'storage': BASE, 'account': ACCOUNT, 'container': CONTAINER, 'updated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                'count': len(rows), 'total_bytes': sum(r['bytes'] or 0 for r in rows), 'narrations': rows}
+    if a.dry_run:
+        print('dry run:', uploaded, 'to upload,', len(rows), 'narrations'); return
+    (AUDIO / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding='utf-8')
+    fmt = lambda s: '%d:%02d' % (int(s or 0) // 60, int(s or 0) % 60)
+    md = ['# Narrations', '', 'Every narrated lesson and where its audio is stored. Generated by `scripts/sync_audio.py` from `website/audio/manifest.json`; do not edit by hand.', '',
+          'Audio lives in Azure Blob Storage (`%s`, container `%s`), not in git. %d narrations, %.0f MB in total. Updated %s.' % (ACCOUNT, CONTAINER, len(rows), manifest['total_bytes'] / 1e6, manifest['updated']), '',
+          '| Lang | Lesson | Voice | Type | Length | Size | Audio |', '|---|---|---|---|---|---|---|']
+    for r in sorted(rows, key=lambda r: (r['lang'], [m['id'] for m in cat['modules']].index(r['module']) if r['module'] in titles else 999, r['voice'])):
+        md.append('| %s | %s | %s | %s | %s | %d KB | [mp3](%s) |' % (r['lang'], r['title'].replace('|', '/'), r['label'], 'human' if r['kind'] == 'human' else 'computer (%s)' % r['source'], fmt(r['duration']), (r['bytes'] or 0) // 1024, r['url']))
+    (ROOT / 'docs' / 'NARRATIONS.md').write_text('\n'.join(md) + '\n', encoding='utf-8')
+    print('uploaded', uploaded, 'files;', len(rows), 'narrations in manifest')
+
+
+if __name__ == '__main__':
+    main()

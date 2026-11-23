@@ -335,6 +335,12 @@ The [volunteer page](https://prodataman.github.io/CAREN-Act/website/volunteer.ht
   - **Setup:** `python3 -m venv .venv && .venv/bin/pip install piper-tts lameenc`, then download voices from huggingface.co/rhasspy/piper-voices.
   - **Run:** `.venv/bin/python scripts/narrate.py before-race --voice female=en_US-kristin-medium.onnx --voice male=en_US-john-medium.onnx --label "female=Female voice" --label "male=Male voice"`. A LibriTTS-R reader is chosen with `path.onnx:<speaker>`.
   - **After editing a lesson,** re-run it so the audio matches the text.
+  - **Where the audio lives:** in **Azure Blob Storage**, not git: account `carenactmedia`, public container `audio`, resource group `CARENAct`.
+    - Files are content-addressed (`<lang>/<lesson>.<voice>.<hash>.mp3`) and cached for a year.
+    - Each timing JSON in `website/audio/<lang>/` holds its file's URL in `"audio"`, and the player and podcast feeds read it.
+    - **Manifest in GitHub:** [`website/audio/manifest.json`](website/audio/manifest.json) and the readable table [`docs/NARRATIONS.md`](docs/NARRATIONS.md) list every narration with its storage URL, size, length, voice and type (computer or human).
+  - **After narrating or aligning:** run `.venv/bin/python scripts/sync_audio.py` to upload and rebuild the manifest, then `scripts/podcast.py`, then commit. Local MP3s are git-ignored.
+  - **Cost:** about 120 MB, a few cents a month; the first 100 GB of downloads each month are free.
   - **Encoding:** English lessons are 32 kbps mono MP3, about 76 MB for all 78 files (39 lessons in 2 voices). To regenerate everything: `narrate.py --all --kbps 32 --voice female=... --voice male=...`.
 - **Reading list:** `readingList` in `learn.json`, shown at `learn.html#reading`.
 - **"Three things everyone should know":** set in `threeThings` in `learn.json` and shown at the top of the hub. Quests are on the honor system for now.

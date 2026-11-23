@@ -228,7 +228,7 @@
           return fetch(dir + m.id + '.' + v + '.json').then(r => r.json()).then(j => {
             meta = j; locateAll(); cur = -1;
             $('nSeek').max = meta.duration; $('nTime').textContent = fmt(0) + ' / ' + fmt(meta.duration);
-            audio.src = dir + m.id + '.' + v + '.mp3';
+            audio.src = meta.audio || (dir + m.id + '.' + v + '.mp3');  // Azure Blob Storage (see audio/manifest.json)
             if (t) audio.addEventListener('loadedmetadata', () => { audio.currentTime = Math.min(t, meta.duration - 1); }, { once: true });
             if (playing) audio.play();
           });

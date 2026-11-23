@@ -3,3 +3,8 @@
 server/node_modules
 scripts
 **/__pycache__
+website/audio/en/*.mp3
+website/audio/es/*.mp3
+.venv
+.voices
+.tools

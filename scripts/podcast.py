@@ -42,8 +42,9 @@ def main():
             for n, m in enumerate(cat['modules']):
                 if voice not in idx['modules'].get(m['id'], []):
                     continue
-                mp3 = ROOT / 'audio' / lang / ('%s.%s.mp3' % (m['id'], voice))
                 meta = json.loads((ROOT / 'audio' / lang / ('%s.%s.json' % (m['id'], voice))).read_text(encoding='utf-8'))
+                if not meta.get('audio'):
+                    continue  # not uploaded yet: run scripts/sync_audio.py
                 tr = o['modules'].get(m['id'], {})
                 title, short = tr.get('title', m['title']), tr.get('short', m['short'])
                 link = SITE + 'module.html?m=%s&lang=%s' % (m['id'], lang)
@@ -54,7 +55,7 @@ def main():
                     '<itunes:episode>%d</itunes:episode><itunes:explicit>false</itunes:explicit></item>' % (
                         esc('%d. %s' % (m['num'], title)), esc(short + ' ' + link), esc(link), lang, voice, m['id'],
                         email.utils.format_datetime(datetime.fromtimestamp(base.timestamp() + m['num'] * 3600, timezone.utc)),
-                        esc(SITE + 'audio/%s/%s.%s.mp3' % (lang, m['id'], voice)), mp3.stat().st_size, d // 60, d % 60, m['num']))
+                        esc(meta['audio']), meta.get('bytes') or 0, d // 60, d % 60, m['num']))
             if not items:
                 continue
             name = '%s-%s.xml' % (lang, voice)
