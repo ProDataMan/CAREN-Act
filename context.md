@@ -176,6 +176,9 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
     - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
+  - **2026-11-23, CI checks:** `.github/workflows/checks.yml` runs `scripts/ci/check_data.py` and `scripts/ci/check_pages.js` (axe-core 4.10.2 from npm, node_modules git-ignored).
+    - Verified that the data check catches a lesson edited without re-narrating.
+    - All 52 page checks pass.
   - **2026-11-23, audio moved to Azure Blob Storage:**
     - Account `carenactmedia` (StorageV2, LRS, HTTPS only, TLS 1.2, centralus, RG CARENAct). Container `audio` has public blob read; CORS allows GET/HEAD from `*`.
     - 112 MP3s uploaded as `<lang>/<module>.<voice>.<sha10>.mp3` with an immutable one-year cache.

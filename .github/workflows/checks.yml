@@ -1,0 +1,48 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+    paths: ['website/**', 'scripts/**', 'server/**', '.github/workflows/checks.yml']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  data:
+    name: Data, translations and narration
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/ci/check_data.py
+      - name: Translation coverage (informational)
+        run: python scripts/i18n_extract.py es
+
+  pages:
+    name: Pages, JavaScript and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install axe-core
+        working-directory: scripts/ci
+        run: npm install --no-save --silent axe-core@4.10.2
+      - name: Serve the site
+        run: |
+          python3 -m http.server 8765 > /dev/null 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://localhost:8765/website/index.html > /dev/null && break; sleep 1; done
+      - name: Check every page (desktop and phone)
+        run: node scripts/ci/check_pages.js http://localhost:8765/website/

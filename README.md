@@ -270,6 +270,7 @@ To run it locally: `cd server && npm install && DB_SERVER=postgresdata.database.
 
 | Workflow | Trigger | What it does |
 |---|---|---|
+| `checks.yml` | Every push to `main` that touches `website/`, `scripts/` or `server/`, every pull request, or a manual run | **Data check** (`scripts/ci/check_data.py`): every JSON parses; module, quest, badge and path references are valid; Spanish translations match the English structure; every narration matches the current lesson text and has a stored audio URL in the manifest. **Page check** (`scripts/ci/check_pages.js`): 26 pages in headless Chrome at 1280 and 390 px, failing on JavaScript errors, horizontal overflow or any axe-core accessibility violation |
 | `deploy-server.yml` | Every push to `main` that touches `server/`, `website/` or `docs/`, or a manual run | Builds the image, pushes it to GHCR, and updates the Container App through OIDC |
 | `refresh-data.yml` | Mondays 09:17 UTC, or a manual run | Rebuilds `website/data/` from the publishers, commits any changes, rebuilds GitHub Pages and starts the Azure deploy |
 | `bill-comments.yml` | New, edited or labeled issues | Labels website comments `bill-comment`. When an editor adds `accepted`, merges the edit into `website/bill.json`, stars the commenter, and redeploys both copies |
