@@ -70,6 +70,7 @@
       if ((m.map || []).length) h += '<h2>See it on the map</h2><p class="maplinks">' + m.map.map(x => '<a class="btn secondary" href="' + x.href + '">🗺 ' + esc(x.t) + '</a>').join('') + '</p>';
       if (m.status !== 'outline') {
         h += '<div class="finish" id="finish"></div>';
+        h += '<div class="share-lesson" id="offBox" hidden><b>Offline</b> <button class="btn secondary" type="button" id="offBtn">⬇ Save for offline</button> <span class="note" id="offMsg" role="status"></span></div>';
         h += '<div class="share-lesson" id="shareBox"><b>Share this lesson</b> <button class="btn secondary" type="button" id="shImg">Share image</button> <button class="btn secondary" type="button" id="shCopy">Copy link</button> <a class="btn secondary" id="shFb" target="_blank" rel="noopener">Facebook</a> <a class="btn secondary" id="shX" target="_blank" rel="noopener">X / Twitter</a></div>';
         if ((m.quiz || []).length) h += '<h2 id="quiz">Check what you learned</h2><p>Get ' + Math.ceil(m.quiz.length * cat.xp.quizPass) + ' of ' + m.quiz.length + ' right for ' + cat.xp.quiz + ' XP.</p><div id="quizBox"></div>';
         const q = cat.quests.find(x => x.id === m.quest);
@@ -103,7 +104,22 @@
       L.sync();
       narrator(m);
       shareCard(m);
+      offlineBox(m);
     });
+
+    // ---- Save this lesson (text, quiz and narration) for offline use
+    function offlineBox(m) {
+      const box = document.getElementById('offBox'), btn = document.getElementById('offBtn'), msg = document.getElementById('offMsg');
+      if (!box || !L.offline || !L.offline.supported) return;
+      box.hidden = false;
+      const draw = () => { const saved = L.offline.isSaved(m.id); btn.textContent = saved ? '✓ Saved · Remove' : '⬇ Save for offline'; msg.textContent = saved ? 'This lesson, its quiz and its narration work without internet on this device.' : ''; };
+      draw();
+      btn.addEventListener('click', () => {
+        if (L.offline.isSaved(m.id)) { L.offline.removeLesson(m.id).then(draw); return; }
+        btn.disabled = true; msg.textContent = 'Saving…';
+        L.offline.saveLesson(m.id).then(() => { btn.disabled = false; draw(); }).catch(e => { btn.disabled = false; msg.textContent = e.message; });
+      });
+    }
 
     // ---- Share card: a 1080×1080 image with the lesson's title and key point, for social media.
     function shareCard(m) {

@@ -176,6 +176,12 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
     - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
+  - **2026-11-23, offline and PWA:**
+    - `sw.js` with caches `caren-shell-v1`, `caren-runtime-v1` and `caren-saved` (the last survives version bumps).
+    - Saving: `CarenLearn.offline` (`saveLesson`, `removeLesson`, `savePath`, `list` in localStorage `caren-offline`).
+    - Pages: `offline.html`, `manifest.webmanifest`, icons; `site.js` registers the worker and shows the banner.
+    - Audio served with Range support from blob URLs cached with CORS.
+    - Tested with the server down (`.tools/offtest.js`; headless resets `navigator.onLine` on reload, so the banner was tested through events).
   - **2026-11-23, fact-check queue:**
     - `factChecks` (14 items: 6 verified, 1 corrected, 7 open) and `reviewed` per module in `learn.json`.
     - `review.html`, the lesson meta line, validation in `check_data.py`, and the quarterly `review-reminder.yml` (`scripts/ci/review_reminder.py`).

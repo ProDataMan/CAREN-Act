@@ -185,3 +185,60 @@
   }
   L.ui = { esc: esc, chip: chip, toast: toast, award: award, quiz: quiz, timeline: timeline };
 })();
+
+// Offline lessons: save a lesson's page, data and narration (in the visitor's chosen voice) to the
+// "caren-saved" cache that sw.js serves when there's no connection.
+(function () {
+  'use strict';
+  var L = window.CarenLearn, KEY = 'caren-offline', CACHE = 'caren-saved';
+  var supported = 'caches' in window && 'serviceWorker' in navigator;
+  function list() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function store(l) { try { localStorage.setItem(KEY, JSON.stringify(l)); } catch (e) { /* ignore */ } }
+  function lang() { return (window.CarenI18n && window.CarenI18n.lang) || 'en'; }
+  function abs(u) { return new URL(u, location.href).href; }
+  var SHARED = ['learn.html', 'module.html', 'offline.html', 'assets/site.css', 'assets/site.js', 'assets/api.js', 'assets/learn.js', 'data/learn.json', 'data/learn.es.json', 'i18n/es.json'];
+  function saveLesson(id) {
+    if (!supported) return Promise.reject(new Error('This browser can’t save lessons for offline use.'));
+    var lg = lang(), dir = 'audio/' + lg + '/';
+    return Promise.all([L.catalog(), fetch(dir + 'index.json').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }), caches.open(CACHE)]).then(function (a) {
+      var cat = a[0], idx = a[1], c = a[2], m = cat.modules.find(function (x) { return x.id === id; });
+      if (!m) throw new Error('Unknown lesson');
+      var voices = (idx && idx.modules && idx.modules[id]) || [], pref = null;
+      try { pref = localStorage.getItem('caren-voice'); } catch (e) { /* ignore */ }
+      var voice = voices.indexOf(pref) >= 0 ? pref : voices[0];
+      var urls = SHARED.map(abs).concat(idx ? [abs(dir + 'index.json')] : []);
+      return Promise.all(urls.map(function (u) { return fetch(u, { cache: 'reload' }).then(function (r) { if (r.ok) return c.put(u, r); }); })).then(function () {
+        if (!voice) return { bytes: 0 };
+        var tj = abs(dir + id + '.' + voice + '.json');
+        return fetch(tj, { cache: 'reload' }).then(function (r) { return r.json().then(function (meta) {
+          return c.put(tj, new Response(JSON.stringify(meta), { headers: { 'Content-Type': 'application/json' } })).then(function () {
+            if (!meta.audio) return { bytes: 0 };
+            return fetch(meta.audio, { mode: 'cors' }).then(function (ar) {
+              if (!ar.ok) throw new Error('Could not download the narration');
+              return c.put(meta.audio, ar).then(function () { return { bytes: meta.bytes || 0, audio: meta.audio, timing: tj }; });
+            });
+          });
+        }); });
+      }).then(function (r) {
+        var l = list().filter(function (x) { return !(x.id === id && x.lang === lg); });
+        l.push({ id: id, lang: lg, voice: voice || null, title: m.title, bytes: r.bytes, audio: r.audio || null, timing: r.timing || null, at: new Date().toISOString() });
+        store(l); return l;
+      });
+    });
+  }
+  function removeLesson(id, lg) {
+    lg = lg || lang();
+    var l = list(), x = l.find(function (y) { return y.id === id && y.lang === lg; });
+    store(l.filter(function (y) { return y !== x; }));
+    if (!x || !supported) return Promise.resolve();
+    return caches.open(CACHE).then(function (c) { return Promise.all([x.audio && c.delete(x.audio), x.timing && c.delete(x.timing)]); });
+  }
+  L.offline = {
+    supported: supported, list: list, saveLesson: saveLesson, removeLesson: removeLesson,
+    isSaved: function (id) { var lg = lang(); return list().some(function (x) { return x.id === id && x.lang === lg; }); },
+    savePath: function (ids, progress) {
+      var i = 0;
+      return ids.reduce(function (p, id) { return p.then(function () { return saveLesson(id).then(function () { i++; if (progress) progress(i, ids.length); }); }); }, Promise.resolve());
+    }
+  };
+})();

@@ -161,3 +161,6 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+/* ---------- Offline ---------- */
+.offline-bar { background: #fff1cc; color: #5c3d00; padding: 8px 16px; text-align: center; font-size: .9rem; border-bottom: 1px solid #e6cf8a; }
+.offline-bar a { color: #5c3d00; font-weight: 700; }

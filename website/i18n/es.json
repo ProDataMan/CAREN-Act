@@ -1373,7 +1373,20 @@
   "Corrected": "Corregida",
   "Not yet": "Aún no",
   "Expert review": "Revisión experta",
-  "Fact checks": "Verificaciones"
+  "Fact checks": "Verificaciones",
+  "Offline": "Sin conexión",
+  "⬇ Save for offline": "⬇ Guardar sin conexión",
+  "✓ Saved · Remove": "✓ Guardada · Quitar",
+  "Saving…": "Guardando…",
+  "This lesson, its quiz and its narration work without internet on this device.": "Esta lección, su cuestionario y su narración funcionan sin internet en este dispositivo.",
+  "Saved for offline": "Guardado sin conexión",
+  "⬇ Save this path for offline": "⬇ Guardar esta ruta sin conexión",
+  "✓ Saved for offline": "✓ Guardada sin conexión",
+  "Save lessons to use without internet: on a bus, in a classroom with weak Wi-Fi, or anywhere. Text, quizzes and narration all work offline, and your progress syncs when you reconnect. You can also install this site as an app from your browser's menu.": "Guarda lecciones para usarlas sin internet: en el autobús, en un aula con wifi débil o donde sea. El texto, los cuestionarios y la narración funcionan sin conexión, y tu progreso se sincroniza al reconectarte. También puedes instalar este sitio como app desde el menú de tu navegador.",
+  "Nothing saved yet. Use “Save for offline” on a lesson or “Save this path” above.": "Aún no hay nada guardado. Usa “Guardar sin conexión” en una lección o “Guardar esta ruta” arriba.",
+  "You’re offline. Saved lessons still work, and your progress will sync when you reconnect.": "Estás sin conexión. Las lecciones guardadas siguen funcionando y tu progreso se sincronizará al reconectarte.",
+  "Saved lessons": "Lecciones guardadas",
+  "You're offline": "Estás sin conexión"
  },
  "patterns": [
   [
@@ -1495,6 +1508,14 @@
   [
    "^(\\d+) places in view, nearest the center first\\. Choose one to open its details on the map\\.$",
    "$1 lugares visibles, primero los más cercanos al centro. Elige uno para abrir sus detalles en el mapa."
+  ],
+  [
+   "^Saving (\\d+) of (\\d+)…$",
+   "Guardando $1 de $2…"
+  ],
+  [
+   "^Total: ([\\d.]+) MB of narration\\.$",
+   "Total: $1 MB de narración."
   ]
  ]
 }

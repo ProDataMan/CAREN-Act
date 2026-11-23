@@ -46,6 +46,13 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
   - **`factChecks` in `learn.json`:** time-sensitive claims with a status (open, verified or corrected), date checked, note, sources and recheck date.
   - **CI** requires checked items to have a date and a source.
   - **First pass (2026-11-23):** verified the Massey verdict, the Greenwood Trust, the Los Angeles stops ruling (Noem v. Vasquez Perdomo), the revocation of EO 14074 and the ProPublica citizen detentions. Corrected the tribe count to 575 (Lumbee, December 2025). 7 items are open.
+- **Offline lessons (installable app):**
+  - **Saving:** "⬇ Save for offline" on any lesson, and "Save this path for offline" on each learning path card. Each saves the lesson page, data and narration in the visitor's chosen voice.
+  - **The saved list** is at learn.html#offline, with sizes and remove buttons.
+  - **How it works:** `website/sw.js` (service worker) serves pages, scripts and data network-first with a cache fallback, and saved audio cache-first with byte-range support so seeking works offline. Unsaved pages fall back to `offline.html`, which lists what's saved.
+  - **App:** `manifest.webmanifest` and `website/icons/` make the site installable. A banner shows when the connection drops, and progress syncs when it returns.
+  - **Tested end to end** with the server stopped: lesson, quiz and narration with seeking all worked, and an unsaved page fell back to the offline page.
+  - **Updating it:** change `VERSION` in `sw.js` when the core file list changes.
 - **Volunteer narrators:** https://prodataman.github.io/CAREN-Act/website/record.html (linked from every lesson's Listen bar, and the "Lend your voice" quest is worth 150 XP).
   - **The volunteer** picks a lesson, reads the script while the page records it in the browser, downloads the file, shares it by link (Drive, Dropbox or iCloud), and submits the link with a credit name and a license (CC BY 4.0 or CC0).
   - **Submissions** appear in `admin.html#narrations`.

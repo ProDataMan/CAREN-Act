@@ -120,6 +120,10 @@
     <div class="filters" id="tlFilters" role="group" aria-label="Filter the timeline by module"></div>
     <div id="tl"></div>
 
+    <h2 id="offline">Saved for offline</h2>
+    <p>Save lessons to use without internet: on a bus, in a classroom with weak Wi-Fi, or anywhere. Text, quizzes and narration all work offline, and your progress syncs when you reconnect. You can also install this site as an app from your browser's menu.</p>
+    <div id="offList"></div>
+
     <h2 id="podcast">Listen as a podcast</h2>
     <p>Every lesson is narrated. Subscribe in your podcast app to listen on a commute or a walk; the full text, sources and quizzes are linked from each episode.</p>
     <div class="podcasts" id="podList"></div>
@@ -183,7 +187,8 @@
           return '<div class="path" id="path-' + p.id + '"><h3>' + p.icon + ' ' + ui.esc(p.title) + '</h3><p>' + ui.esc(p.desc) + '</p>' +
             '<div class="xpbar" aria-hidden="true"><i style="width:' + Math.round(100 * done / mods.length) + '%"></i></div><span class="note">' + done + ' / ' + mods.length + '</span>' +
             '<ol>' + mods.map(m => '<li' + (s.events['read:' + m.id] ? ' class="done"' : '') + '><a href="module.html?m=' + m.id + '&path=' + p.id + '">' + ui.esc(m.title.split(':')[0]) + '</a></li>').join('') + '</ol>' +
-            (next ? '<p class="go"><a class="btn secondary" href="module.html?m=' + next.id + '&path=' + p.id + '">' + (done ? 'Continue' : 'Start') + ' →</a></p>' : '<p class="go note">✓ Path complete</p>') + '</div>';
+            (next ? '<p class="go"><a class="btn secondary" href="module.html?m=' + next.id + '&path=' + p.id + '">' + (done ? 'Continue' : 'Start') + ' →</a></p>' : '<p class="go note">✓ Path complete</p>') +
+            (L.offline && L.offline.supported ? '<p class="go"><button class="btn secondary" type="button" data-savepath="' + p.id + '">' + (mods.every(m => L.offline.isSaved(m.id)) ? '✓ Saved for offline' : '⬇ Save this path for offline') + '</button></p>' : '') + '</div>';
         }).join('');
         $('questList').innerHTML = (cat.questCategories || [{ id: null, name: '' }]).map(c => {
           const qs = cat.quests.filter(q => !c.id || q.cat === c.id).sort((a, b) => a.xp - b.xp);
@@ -232,6 +237,25 @@
       }
       $('tlFilters').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { filter = b.dataset.f || null; drawTl(); } });
       drawTl();
+    });
+
+    function drawOffline() {
+      const el = document.getElementById('offList'), O = CarenLearn.offline;
+      if (!O || !O.supported) { el.innerHTML = '<p class="note">This browser can’t save lessons for offline use.</p>'; return; }
+      const l = O.list();
+      el.innerHTML = l.length ? '<ul>' + l.map(x => '<li><a href="module.html?m=' + x.id + (x.lang !== 'en' ? '&lang=' + x.lang : '') + '">' + CarenLearn.ui.esc(x.title) + '</a> <span class="note">(' + (x.lang === 'es' ? 'Español' : 'English') + (x.bytes ? ', ' + Math.round(x.bytes / 1e5) / 10 + ' MB' : '') + ')</span> <button class="btn secondary" type="button" data-unsave="' + x.id + '" data-lang="' + x.lang + '">Remove</button></li>').join('') + '</ul><p class="note">Total: ' + (Math.round(l.reduce((a, x) => a + (x.bytes || 0), 0) / 1e5) / 10) + ' MB of narration.</p>'
+        : '<p class="note">Nothing saved yet. Use “Save for offline” on a lesson or “Save this path” above.</p>';
+    }
+    drawOffline();
+    document.getElementById('offList').addEventListener('click', e => { const b = e.target.closest('[data-unsave]'); if (b) CarenLearn.offline.removeLesson(b.dataset.unsave, b.dataset.lang).then(drawOffline); });
+    document.getElementById('pathList').addEventListener('click', e => {
+      const b = e.target.closest('[data-savepath]'); if (!b) return;
+      CarenLearn.catalog().then(cat => {
+        const p = cat.paths.find(x => x.id === b.dataset.savepath); b.disabled = true;
+        CarenLearn.offline.savePath(p.modules, (i, n) => { b.textContent = 'Saving ' + i + ' of ' + n + '…'; })
+          .then(() => { b.textContent = '✓ Saved for offline'; drawOffline(); })
+          .catch(err => { b.disabled = false; b.textContent = err.message; });
+      });
     });
 
     fetch('podcast/feeds.json').then(r => r.json()).then(feeds => {

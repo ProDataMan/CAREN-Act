@@ -208,3 +208,24 @@
   var mod = /[?&]m=([a-z0-9-]+)/.exec(location.search);
   send({ page: page, module: mod ? mod[1] : undefined, ref: ref || undefined });
 })();
+
+// ---------------------------------------------------------------- Offline support (see sw.js)
+(function () {
+  'use strict';
+  var head = document.head;
+  if (!document.querySelector('link[rel="manifest"]')) { var l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; head.appendChild(l); }
+  if (!document.querySelector('meta[name="theme-color"]')) { var t = document.createElement('meta'); t.name = 'theme-color'; t.content = '#0e2a47'; head.appendChild(t); }
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () { /* ignore */ }); });
+  }
+  var bar = null;
+  function status() {
+    if (navigator.onLine) { if (bar) { bar.remove(); bar = null; } if (window.CarenLearn) window.CarenLearn.sync(); return; }
+    if (bar) return;
+    bar = document.createElement('div'); bar.className = 'offline-bar'; bar.setAttribute('role', 'status');
+    bar.innerHTML = 'You’re offline. Saved lessons still work, and your progress will sync when you reconnect. <a href="offline.html">Saved lessons</a>';
+    document.body.insertBefore(bar, document.body.firstChild.nextSibling);
+  }
+  window.addEventListener('online', status); window.addEventListener('offline', status);
+  if (!navigator.onLine) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', status); else status(); }
+})();

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're Offline</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page">
+    <h1>You're offline</h1>
+    <p class="lede">This page isn't saved on this device. Lessons you saved for offline still work, including their narration and quizzes; your progress syncs when you're back online.</p>
+    <h2>Saved lessons</h2>
+    <ul id="saved"><li class="note">No lessons saved yet. When you're online, use “Save for offline” on any lesson, or “Save this path” on the Learn page.</li></ul>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script>
+    try {
+      const list = JSON.parse(localStorage.getItem('caren-offline') || '[]');
+      if (list.length) document.getElementById('saved').innerHTML = list.map(x => '<li><a href="module.html?m=' + x.id + (x.lang !== 'en' ? '&lang=' + x.lang : '') + '">' + String(x.title).replace(/[<>&]/g, '') + '</a></li>').join('');
+    } catch (e) { /* ignore */ }
+  </script>
+</body>
+</html>
