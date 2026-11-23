@@ -810,7 +810,7 @@
   "open report": "reporte abierto",
   "Volunteer Admin": "Administración de voluntarios",
   "Checking sign-in…": "Verificando la sesión…",
-  "All": "Todos",
+  "All": "Todas",
   "Status": "Estado",
   "Search name, email, area": "Buscar nombre, correo, zona",
   "Download CSV": "Descargar CSV",
@@ -1365,7 +1365,15 @@
   "☰ List places in view": "☰ Lista de lugares visibles",
   "☰ Hide the list": "☰ Ocultar la lista",
   "Places in view": "Lugares visibles",
-  "No places from the active layers are in view. Turn on a layer, or zoom out. (The heat map and shaded areas are summarized in each county’s pop-up and on county pages.)": "No hay lugares de las capas activas en esta vista. Activa una capa o aleja el mapa. (El mapa de calor y las zonas sombreadas se resumen en la ventana de cada condado y en las páginas de condado.)"
+  "No places from the active layers are in view. Turn on a layer, or zoom out. (The heat map and shaded areas are summarized in each county’s pop-up and on county pages.)": "No hay lugares de las capas activas en esta vista. Activa una capa o aleja el mapa. (El mapa de calor y las zonas sombreadas se resumen en la ventana de cada condado y en las páginas de condado.)",
+  "Review and fact-check queue": "Revisión y verificación de datos",
+  "Fact-check queue": "Cola de verificación",
+  "Lesson review status": "Estado de revisión de las lecciones",
+  "Open or due for recheck": "Abiertas o por volver a verificar",
+  "Corrected": "Corregida",
+  "Not yet": "Aún no",
+  "Expert review": "Revisión experta",
+  "Fact checks": "Verificaciones"
  },
  "patterns": [
   [

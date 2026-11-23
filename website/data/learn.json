@@ -1067,7 +1067,8 @@
           "t": "Yakub (Nation of Islam)",
           "url": "https://en.wikipedia.org/wiki/Yakub_(Nation_of_Islam)"
         }
-      }
+      },
+      "reviewed": null
     },
     {
       "id": "columbus",
@@ -1331,7 +1332,8 @@
           "url": "https://en.wikipedia.org/wiki/Indigenous_Peoples%27_Day"
         }
       },
-      "num": 2
+      "num": 2,
+      "reviewed": null
     },
     {
       "id": "colonizers",
@@ -1616,7 +1618,8 @@
           "url": "https://en.wikipedia.org/wiki/Insular_Cases"
         }
       },
-      "num": 3
+      "num": 3,
+      "reviewed": null
     },
     {
       "id": "afro-latino",
@@ -1828,7 +1831,8 @@
           "url": "https://www.pewresearch.org/"
         }
       },
-      "num": 4
+      "num": 4,
+      "reviewed": null
     },
     {
       "id": "conquest",
@@ -2060,12 +2064,13 @@
           "url": "https://en.wikipedia.org/wiki/Dakota_Access_Pipeline_protests"
         }
       },
-      "num": 5
+      "num": 5,
+      "reviewed": null
     },
     {
       "id": "sovereignty",
       "title": "Native nations today: sovereignty, land and justice",
-      "short": "More than 570 federally recognized tribal nations, treaties as “supreme law,” who can prosecute crimes on tribal land, child welfare, water, voting, and the return of land.",
+      "short": "575 federally recognized tribal nations, treaties as “supreme law,” who can prosecute crimes on tribal land, child welfare, water, voting, and the return of land.",
       "status": "draft",
       "minutes": 8,
       "intro": "Native nations are not only history. They are governments today, with their own laws, courts and police, and their rights rest on treaties the Constitution calls “the supreme law of the land.”",
@@ -2073,9 +2078,10 @@
         {
           "h": "Nations, not minorities",
           "label": "documented",
-          "body": "<p>The U.S. recognizes more than 570 tribal nations, each with its own government. Their relationship with the federal government is government-to-government, grounded in treaties and in a federal “trust responsibility.” Article VI of the Constitution makes treaties part of the supreme law of the land.</p>",
+          "body": "<p>The U.S. recognizes 575 tribal nations, each with its own government; the Lumbee Tribe of North Carolina became the 575th in December 2025, after a 137-year effort. Their relationship with the federal government is government-to-government, grounded in treaties and in a federal “trust responsibility.” Article VI of the Constitution makes treaties part of the supreme law of the land.</p>",
           "sources": [
-            "bia"
+            "bia",
+            "lumbee"
           ]
         },
         {
@@ -2151,6 +2157,11 @@
           "y": 2023,
           "t": "Haaland v. Brackeen; Arizona v. Navajo Nation",
           "label": "documented"
+        },
+        {
+          "y": 2025,
+          "t": "Lumbee Tribe becomes the 575th federally recognized tribe",
+          "label": "documented"
         }
       ],
       "quiz": [
@@ -2159,7 +2170,7 @@
           "options": [
             "About 50",
             "About 200",
-            "More than 570",
+            "575",
             "Over 2,000"
           ],
           "a": 2,
@@ -2229,9 +2240,14 @@
         },
         "ndvote": {
           "t": "Spirit Lake Tribe v. Jaeger; North Dakota voter ID settlement (2020)"
+        },
+        "lumbee": {
+          "t": "U.S. Department of the Interior, “Lumbee Tribe Added to Official List of Federally Recognized Tribes” (2026); NPR (Dec. 20, 2025)",
+          "url": "https://www.doi.gov/pressreleases/lumbee-tribe-added-official-list-federally-recognized-tribes"
         }
       },
-      "num": 6
+      "num": 6,
+      "reviewed": null
     },
     {
       "id": "slavery-law",
@@ -2423,7 +2439,8 @@
           "url": "https://en.wikipedia.org/wiki/Juneteenth"
         }
       },
-      "num": 7
+      "num": 7,
+      "reviewed": null
     },
     {
       "id": "reconstruction",
@@ -2662,7 +2679,8 @@
           "t": "Southern Poverty Law Center, Whose Heritage? Public Symbols of the Confederacy"
         }
       },
-      "num": 8
+      "num": 8,
+      "reviewed": null
     },
     {
       "id": "black-towns",
@@ -2889,7 +2907,8 @@
           "url": "https://www.fdic.gov/regulations/resources/minority/mdi.html"
         }
       },
-      "num": 9
+      "num": 9,
+      "reviewed": null
     },
     {
       "id": "faith",
@@ -3059,7 +3078,8 @@
           "url": "https://www.poorpeoplescampaign.org/"
         }
       },
-      "num": 10
+      "num": 10,
+      "reviewed": null
     },
     {
       "id": "christian-nationalism",
@@ -3243,7 +3263,8 @@
           "url": "https://www.poorpeoplescampaign.org/"
         }
       },
-      "num": 11
+      "num": 11,
+      "reviewed": null
     },
     {
       "id": "veterans",
@@ -3430,7 +3451,8 @@
           "url": "https://en.wikipedia.org/wiki/Vernon_Baker"
         }
       },
-      "num": 12
+      "num": 12,
+      "reviewed": null
     },
     {
       "id": "science",
@@ -3702,7 +3724,8 @@
         "cdcmaternal": {
           "t": "CDC National Center for Health Statistics, Maternal Mortality Rates in the United States (annual)"
         }
-      }
+      },
+      "reviewed": null
     },
     {
       "id": "health",
@@ -3858,7 +3881,8 @@
           "t": "Greenwood et al., PNAS (2020); Borjas & VerBruggen reanalysis, PNAS (2024)"
         }
       },
-      "num": 14
+      "num": 14,
+      "reviewed": null
     },
     {
       "id": "borders",
@@ -4066,7 +4090,8 @@
           "t": "Noem v. Vasquez Perdomo (U.S. Supreme Court order, September 2025)"
         }
       },
-      "num": 15
+      "num": 15,
+      "reviewed": null
     },
     {
       "id": "enforcement",
@@ -4212,7 +4237,8 @@
           "url": "https://www.ilrc.org/"
         }
       },
-      "num": 16
+      "num": 16,
+      "reviewed": null
     },
     {
       "id": "place",
@@ -4392,7 +4418,8 @@
           "url": "https://en.wikipedia.org/wiki/Exclusionary_zoning"
         }
       },
-      "num": 17
+      "num": 17,
+      "reviewed": null
     },
     {
       "id": "housing-today",
@@ -4538,7 +4565,8 @@
           "t": "Interagency Task Force on Property Appraisal and Valuation Equity (PAVE), Action Plan (2022)"
         }
       },
-      "num": 18
+      "num": 18,
+      "reviewed": null
     },
     {
       "id": "destroyed",
@@ -4919,7 +4947,8 @@
           "t": "This site: how the San Francisco CAREN Act came about",
           "url": "history.html"
         }
-      }
+      },
+      "reviewed": null
     },
     {
       "id": "schools",
@@ -5093,7 +5122,8 @@
           "t": "EdBuild, $23 Billion (2019)"
         }
       },
-      "num": 20
+      "num": 20,
+      "reviewed": null
     },
     {
       "id": "wealth",
@@ -5303,7 +5333,8 @@
           "t": "City of Evanston, Local Reparations program"
         }
       },
-      "num": 21
+      "num": 21,
+      "reviewed": null
     },
     {
       "id": "labor",
@@ -5496,7 +5527,8 @@
           "url": "https://ciw-online.org/"
         }
       },
-      "num": 22
+      "num": 22,
+      "reviewed": null
     },
     {
       "id": "banking",
@@ -5639,7 +5671,8 @@
           "t": "Avenancio-León & Howard, “The Assessment Gap: Racial Inequalities in Property Taxation,” Quarterly Journal of Economics (2022)"
         }
       },
-      "num": 23
+      "num": 23,
+      "reviewed": null
     },
     {
       "id": "environment",
@@ -5801,7 +5834,8 @@
           "t": "Vicki Been, “Locally Undesirable Land Uses in Minority Neighborhoods: Disproportionate Siting or Market Dynamics?” Yale Law Journal (1994)"
         }
       },
-      "num": 24
+      "num": 24,
+      "reviewed": null
     },
     {
       "id": "voting",
@@ -6039,7 +6073,8 @@
           "url": "https://en.wikipedia.org/wiki/Rucho_v._Common_Cause"
         }
       },
-      "num": 25
+      "num": 25,
+      "reviewed": null
     },
     {
       "id": "incarceration",
@@ -6231,7 +6266,8 @@
           "url": "https://www.cleanslateinitiative.org/"
         }
       },
-      "num": 26
+      "num": 26,
+      "reviewed": null
     },
     {
       "id": "policing",
@@ -6433,7 +6469,8 @@
         "star": {
           "t": "Dee & Pyne, “A community response approach to mental health and substance abuse crises reduced crime,” Science Advances (2022)"
         }
-      }
+      },
+      "reviewed": null
     },
     {
       "id": "rights",
@@ -6586,7 +6623,8 @@
           "url": "history.html"
         }
       },
-      "num": 28
+      "num": 28,
+      "reviewed": null
     },
     {
       "id": "courts",
@@ -6768,7 +6806,8 @@
           "t": "Washington Supreme Court General Rule 37 (2018)"
         }
       },
-      "num": 29
+      "num": 29,
+      "reviewed": null
     },
     {
       "id": "surveillance",
@@ -6935,7 +6974,8 @@
           "t": "Nextdoor's 2016 changes to reduce racial profiling (news coverage, e.g. NPR)"
         }
       },
-      "num": 30
+      "num": 30,
+      "reviewed": null
     },
     {
       "id": "technology",
@@ -7103,7 +7143,8 @@
           "t": "Bloomberg, “Humans Are Biased. Generative AI Is Even Worse” (2023)"
         }
       },
-      "num": 31
+      "num": 31,
+      "reviewed": null
     },
     {
       "id": "media",
@@ -7279,7 +7320,8 @@
           "url": "https://en.wikipedia.org/wiki/Darnella_Frazier"
         }
       },
-      "num": 32
+      "num": 32,
+      "reviewed": null
     },
     {
       "id": "many-targets",
@@ -7539,7 +7581,8 @@
           "url": "https://en.wikipedia.org/wiki/Yuri_Kochiyama"
         }
       },
-      "num": 33
+      "num": 33,
+      "reviewed": null
     },
     {
       "id": "women",
@@ -7720,7 +7763,8 @@
           "url": "https://www.aapf.org/sayhername"
         }
       },
-      "num": 34
+      "num": 34,
+      "reviewed": null
     },
     {
       "id": "culture",
@@ -7907,7 +7951,8 @@
           "url": "https://en.wikipedia.org/wiki/Hound_Dog_(song)"
         }
       },
-      "num": 35
+      "num": 35,
+      "reviewed": null
     },
     {
       "id": "lgbtq",
@@ -8059,7 +8104,8 @@
           "url": "https://www.hrc.org/"
         }
       },
-      "num": 36
+      "num": 36,
+      "reviewed": null
     },
     {
       "id": "systemic",
@@ -8235,7 +8281,8 @@
           "t": "Glenn C. Loury, The Anatomy of Racial Inequality (2002)"
         }
       },
-      "num": 37
+      "num": 37,
+      "reviewed": null
     },
     {
       "id": "evidence",
@@ -8430,7 +8477,8 @@
           "url": "data.html#calls"
         }
       },
-      "num": 38
+      "num": 38,
+      "reviewed": null
     },
     {
       "id": "twenty-twenties",
@@ -8634,7 +8682,8 @@
           "url": "https://en.wikipedia.org/wiki/CROWN_Act"
         }
       },
-      "num": 39
+      "num": 39,
+      "reviewed": null
     },
     {
       "id": "performance",
@@ -8834,7 +8883,8 @@
           "t": "National Assessment of Educational Progress, Long-Term Trend results"
         }
       },
-      "num": 40
+      "num": 40,
+      "reviewed": null
     },
     {
       "id": "world",
@@ -9046,7 +9096,8 @@
           "t": "CARICOM Reparations Commission, Ten Point Plan (2013)"
         }
       },
-      "num": 41
+      "num": 41,
+      "reviewed": null
     },
     {
       "id": "global-freedom",
@@ -9232,7 +9283,8 @@
           "url": "https://www.un.org/en/observances/decade-people-african-descent"
         }
       },
-      "num": 42
+      "num": 42,
+      "reviewed": null
     },
     {
       "id": "movements",
@@ -9486,7 +9538,8 @@
           "url": "https://en.wikipedia.org/wiki/2018_Florida_Amendment_4"
         }
       },
-      "num": 43
+      "num": 43,
+      "reviewed": null
     },
     {
       "id": "lawmaking",
@@ -9610,7 +9663,8 @@
           "url": "history.html"
         }
       },
-      "num": 44
+      "num": 44,
+      "reviewed": null
     },
     {
       "id": "reparations",
@@ -9793,7 +9847,8 @@
           "t": "Ta-Nehisi Coates, “The Case for Reparations,” The Atlantic (2014)"
         }
       },
-      "num": 45
+      "num": 45,
+      "reviewed": null
     },
     {
       "id": "path-forward",
@@ -9844,7 +9899,8 @@
           "href": "index.html?layers=heat,allies,residual"
         }
       ],
-      "sourcesList": {}
+      "sourcesList": {},
+      "reviewed": null
     }
   ],
   "questCategories": [
@@ -10149,6 +10205,207 @@
         "environment"
       ],
       "icon": "🪶"
+    }
+  ],
+  "factChecks": [
+    {
+      "id": "massey-verdict",
+      "module": "twenty-twenties",
+      "claim": "Sonya Massey's killer, former deputy Sean Grayson, was convicted of second-degree murder in 2025.",
+      "status": "verified",
+      "checked": "2026-11-23",
+      "recheck": "2027-02-01",
+      "note": "Verdict October 29, 2025 (acquitted of first-degree murder). Sentencing was set for January 29, 2026; add the sentence to the lesson once confirmed.",
+      "sources": [
+        {
+          "t": "NBC News, Sean Grayson found guilty of murder in the death of Sonya Massey (Oct. 29, 2025)",
+          "url": "https://www.nbcnews.com/news/us-news/sean-grayson-found-guilty-murder-death-sonya-massey-rcna240223"
+        },
+        {
+          "t": "WBEZ (Oct. 29, 2025)",
+          "url": "https://www.wbez.org/criminal-justice/2025/10/29/sonya-massey-murder-sean-grayson-springfield-race-police-brutality"
+        }
+      ]
+    },
+    {
+      "id": "massey-sentence",
+      "module": "twenty-twenties",
+      "claim": "Grayson's sentence (hearing set for January 29, 2026).",
+      "status": "open",
+      "checked": null,
+      "recheck": "2026-12-15",
+      "note": "Not yet confirmed. Second-degree murder carries 4 to 20 years in Illinois, with probation possible.",
+      "sources": []
+    },
+    {
+      "id": "greenwood-trust",
+      "module": "reparations",
+      "claim": "In 2025, Tulsa's first Black mayor proposed a privately funded Greenwood Trust to invest in the district destroyed in 1921.",
+      "status": "verified",
+      "checked": "2026-11-23",
+      "recheck": "2026-12-15",
+      "note": "Announced June 1, 2025: a $105 million charitable trust (housing, cultural preservation, legacy funds), no direct cash payments, with a goal of most funds committed by June 1, 2026. Whether that goal was met is not yet confirmed.",
+      "sources": [
+        {
+          "t": "City of Tulsa, The Greenwood Trust",
+          "url": "https://www.cityoftulsa.org/mayor/road-to-repair/the-greenwood-trust"
+        },
+        {
+          "t": "NBC News (June 2025)",
+          "url": "https://www.nbcnews.com/news/us-news/tulsas-new-black-mayor-proposes-100m-trust-repair-impact-1921-race-mas-rcna210304"
+        }
+      ]
+    },
+    {
+      "id": "perdomo",
+      "module": "borders",
+      "claim": "In September 2025 the Supreme Court allowed immigration stops in the Los Angeles area to resume while the case continues.",
+      "status": "verified",
+      "checked": "2026-11-23",
+      "recheck": "2027-03-01",
+      "note": "Noem v. Vasquez Perdomo, No. 25A169, stay granted September 8, 2025 (Kavanaugh concurring; Sotomayor, Kagan and Jackson dissenting). Not a ruling on the merits; recheck the Ninth Circuit and any certiorari.",
+      "sources": [
+        {
+          "t": "Supreme Court docket 25A169",
+          "url": "https://www.supremecourt.gov/docket/docketfiles/html/public/25a169.html"
+        },
+        {
+          "t": "SCOTUSblog, Noem v. Perdomo",
+          "url": "https://www.scotusblog.com/cases/case-files/noem-v-perdomo/"
+        }
+      ]
+    },
+    {
+      "id": "perdomo-enforcement",
+      "module": "enforcement",
+      "claim": "Same Los Angeles stops ruling, as cited in “Immigration enforcement now.”",
+      "status": "verified",
+      "checked": "2026-11-23",
+      "recheck": "2027-03-01",
+      "note": "See the Borders entry.",
+      "sources": [
+        {
+          "t": "Supreme Court docket 25A169",
+          "url": "https://www.supremecourt.gov/docket/docketfiles/html/public/25a169.html"
+        }
+      ]
+    },
+    {
+      "id": "eo14074",
+      "module": "twenty-twenties",
+      "claim": "A 2022 executive order set policing standards for federal agencies; it was revoked in 2025.",
+      "status": "verified",
+      "checked": "2026-11-23",
+      "recheck": null,
+      "note": "EO 14074 (May 25, 2022) was rescinded by EO 14148 on January 20, 2025; the national misconduct database it created was shut down.",
+      "sources": [
+        {
+          "t": "White House, Initial Rescissions of Harmful Executive Orders and Actions (Jan. 20, 2025)",
+          "url": "https://www.whitehouse.gov/presidential-actions/2025/01/initial-rescissions-of-harmful-executive-orders-and-actions/"
+        },
+        {
+          "t": "Executive Order 14074",
+          "url": "https://en.wikipedia.org/wiki/Executive_Order_14074"
+        }
+      ]
+    },
+    {
+      "id": "lumbee",
+      "module": "sovereignty",
+      "claim": "The U.S. recognizes 575 tribal nations.",
+      "status": "corrected",
+      "checked": "2026-11-23",
+      "recheck": "2027-01-31",
+      "note": "Corrected from “more than 570”: the Lumbee Tribe of North Carolina became the 575th in December 2025. The list is republished in the Federal Register every year.",
+      "sources": [
+        {
+          "t": "U.S. Department of the Interior",
+          "url": "https://www.doi.gov/pressreleases/lumbee-tribe-added-official-list-federally-recognized-tribes"
+        },
+        {
+          "t": "NPR (Dec. 20, 2025)",
+          "url": "https://npr.org/2025/12/20/g-s1-103223/lumbee-tribe-federal-recognition-137-years"
+        }
+      ]
+    },
+    {
+      "id": "citizens-detained",
+      "module": "enforcement",
+      "claim": "News investigations in 2025 found U.S. citizens among the people stopped and detained by immigration agents.",
+      "status": "verified",
+      "checked": "2026-11-23",
+      "recheck": "2027-01-31",
+      "note": "ProPublica documented more than 170 cases by October 2025 and later more than 500; a Senate subcommittee report (December 2025) cited the reporting.",
+      "sources": [
+        {
+          "t": "ProPublica (Oct. 2025)",
+          "url": "https://www.propublica.org/article/immigration-dhs-american-citizens-arrested-detained-against-will"
+        },
+        {
+          "t": "NPR (Nov. 18, 2025)",
+          "url": "https://www.npr.org/2025/11/18/nx-s1-5606356/u-s-citizens-caught-in-trumps-immigration-dragnet"
+        }
+      ]
+    },
+    {
+      "id": "dei-orders",
+      "module": "twenty-twenties",
+      "claim": "In January 2025, executive orders ended federal diversity, equity and inclusion programs.",
+      "status": "open",
+      "checked": null,
+      "recheck": "2026-12-15",
+      "note": "Confirm order numbers (e.g. EO 14151, EO 14173) and current court status.",
+      "sources": []
+    },
+    {
+      "id": "disparate-impact-eo",
+      "module": "systemic",
+      "claim": "An April 2025 executive order directed federal agencies to stop using disparate-impact liability.",
+      "status": "open",
+      "checked": null,
+      "recheck": "2026-12-15",
+      "note": "Confirm the order (“Restoring Equality of Opportunity and Meritocracy”) and agency follow-through.",
+      "sources": []
+    },
+    {
+      "id": "detention-287g",
+      "module": "enforcement",
+      "claim": "287(g) agreements expanded sharply, and immigration detention reached record numbers, in 2025.",
+      "status": "open",
+      "checked": null,
+      "recheck": "2026-12-15",
+      "note": "Add current counts with sources (ICE 287(g) list; TRAC detention statistics).",
+      "sources": []
+    },
+    {
+      "id": "ny-79n",
+      "module": "rights",
+      "claim": "New York law lets people bring a civil claim against a caller who falsely reports them to police because of race or another protected trait.",
+      "status": "open",
+      "checked": null,
+      "recheck": "2026-12-15",
+      "note": "Confirm the citation (N.Y. Civil Rights Law §79-n, as amended June 2020) and remedy.",
+      "sources": []
+    },
+    {
+      "id": "bynum",
+      "module": "lawmaking",
+      "claim": "Janelle Bynum, author of Oregon's 2019 law, is now a U.S. Representative.",
+      "status": "open",
+      "checked": null,
+      "recheck": "2027-01-05",
+      "note": "Confirm she serves in the 120th Congress after January 3, 2027 (the brief and map read membership live).",
+      "sources": []
+    },
+    {
+      "id": "congress-120",
+      "module": "lawmaking",
+      "claim": "The 120th Congress begins on January 3, 2027.",
+      "status": "open",
+      "checked": null,
+      "recheck": "2027-01-05",
+      "note": "After the switch, spot-check the lawmaker lookup in states that redrew districts (README Step E).",
+      "sources": []
     }
   ]
 }

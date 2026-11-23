@@ -1,0 +1,23 @@
+name: Quarterly fact-check reminder
+
+on:
+  schedule:
+    - cron: '0 15 1 1,4,7,10 *'   # 1st of Jan, Apr, Jul, Oct
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Open a review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/ci/review_reminder.py > body.md
+          gh label create fact-check --color FBCA04 --description "Fact-check and lesson review" 2>/dev/null || true
+          gh issue create --title "Quarterly fact-check and review: $(date -u +%Y-%m)" --label fact-check --body-file body.md

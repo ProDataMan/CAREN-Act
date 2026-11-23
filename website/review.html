@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review and Fact-Check Queue</title>
+  <meta name="description" content="Where each Learn lesson stands on expert review, and the time-sensitive facts waiting to be checked.">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .st { display: inline-block; font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+    .st.verified { background: #e3f2e7; color: #155f2b; }
+    .st.corrected { background: #e3eefb; color: #0b4a8c; }
+    .st.open { background: #fff1cc; color: #7a5200; }
+    .st.due { background: #fde8e8; color: #9b1c1c; }
+    .fc { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+    .fc p { margin: 4px 0; }
+    .fc .src { font-size: .85rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+    .filters select { padding: 6px; font: inherit; border: 1px solid #bbb; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="page-wide">
+    <h1>Review and fact-check queue</h1>
+    <p class="lede">These lessons are only as trustworthy as their sources. This page shows which lessons an expert has reviewed and which time-sensitive facts are waiting to be checked or rechecked. A reminder opens on GitHub every quarter.</p>
+    <div class="callout info">Can you help? Historians, librarians, journalists and lawyers can <a href="volunteer.html#reviewer">sign up as reviewers</a>, or <a href="https://github.com/ProDataMan/CAREN-Act/issues/new?title=%5BFact%20check%5D%20" target="_blank" rel="noopener">report a fact that needs checking</a>.</div>
+
+    <h2 id="queue">Fact-check queue</h2>
+    <div class="filters"><label for="fStatus">Show</label><select id="fStatus"><option value="todo">Open or due for recheck</option><option value="">All</option><option value="verified">Verified</option><option value="corrected">Corrected</option></select></div>
+    <div id="queueList"><p class="note">Loading…</p></div>
+
+    <h2 id="lessons">Lesson review status</h2>
+    <div class="table-wrap"><table class="data" id="lessonTable"></table></div>
+  </main>
+  <footer id="siteFooter"></footer>
+  <script src="assets/site.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/learn.js"></script>
+  <script>
+  (function () {
+    const $ = id => document.getElementById(id), esc = CarenLearn.ui.esc, today = new Date().toISOString().slice(0, 10);
+    fetch('data/learn.json').then(r => r.json()).then(cat => {
+      const byId = {}; cat.modules.forEach(m => byId[m.id] = m);
+      const fcs = cat.factChecks || [];
+      const isDue = f => f.recheck && f.recheck <= today;
+      function draw() {
+        const want = $('fStatus').value;
+        const list = fcs.filter(f => want === 'todo' ? (f.status === 'open' || isDue(f)) : (!want || f.status === want))
+          .sort((a, b) => (a.status === 'open' ? 0 : 1) - (b.status === 'open' ? 0 : 1) || String(a.recheck || '9').localeCompare(String(b.recheck || '9')));
+        $('queueList').innerHTML = list.length ? list.map(f => {
+          const m = byId[f.module];
+          return '<div class="fc"><span class="st ' + f.status + '">' + f.status + '</span>' + (isDue(f) ? ' <span class="st due">recheck due</span>' : '') +
+            ' <a href="module.html?m=' + f.module + '">' + esc(m ? m.num + '. ' + m.title.split(':')[0] : f.module) + '</a>' +
+            '<p><b>' + esc(f.claim) + '</b></p><p>' + esc(f.note || '') + '</p>' +
+            '<p class="note">' + (f.checked ? 'Checked ' + f.checked : 'Not yet checked') + (f.recheck ? ' · recheck by ' + f.recheck : '') + '</p>' +
+            (f.sources && f.sources.length ? '<p class="src">Sources: ' + f.sources.map(s => '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.t) + '</a>').join(' · ') + '</p>' : '') + '</div>';
+        }).join('') : '<p class="note">Nothing here.</p>';
+      }
+      $('fStatus').addEventListener('change', draw); draw();
+      $('lessonTable').innerHTML = '<tr><th>#</th><th>Lesson</th><th>Status</th><th>Expert review</th><th>Fact checks</th></tr>' + cat.modules.map(m => {
+        const f = fcs.filter(x => x.module === m.id), open = f.filter(x => x.status === 'open' || isDue(x)).length;
+        return '<tr><td>' + m.num + '</td><td><a href="module.html?m=' + m.id + '">' + esc(m.title) + '</a></td><td>' + esc(m.status) + '</td><td>' + (m.reviewed && m.reviewed.date ? esc(m.reviewed.date) + (m.reviewed.by ? ', ' + esc(m.reviewed.by) : '') : 'Not yet') + '</td><td>' + (f.length ? f.length + (open ? ' (' + open + ' open)' : ', all checked') : '') + '</td></tr>';
+      }).join('');
+    });
+  })();
+  </script>
+</body>
+</html>

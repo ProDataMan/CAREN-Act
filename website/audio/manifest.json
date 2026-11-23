@@ -2,9 +2,9 @@
  "storage": "https://carenactmedia.blob.core.windows.net/audio/",
  "account": "carenactmedia",
  "container": "audio",
- "updated": "2026-11-23T00:05:48Z",
+ "updated": "2026-11-23T06:24:56Z",
  "count": 112,
- "total_bytes": 115780339,
+ "total_bytes": 115836660,
  "narrations": [
   {
    "lang": "en",
@@ -950,10 +950,10 @@
    "label": "Female voice",
    "kind": "tts",
    "source": "en_US-kristin-medium",
-   "url": "https://carenactmedia.blob.core.windows.net/audio/en/sovereignty.female.df843ae6a6.mp3",
-   "bytes": 718367,
-   "duration": 179.5,
-   "sha256": "df843ae6a690fdafe36e7140e7d60cf04c2bdcca63665f45c5805f04cf5cdcc1"
+   "url": "https://carenactmedia.blob.core.windows.net/audio/en/sovereignty.female.6cd7f2897b.mp3",
+   "bytes": 750237,
+   "duration": 187.5,
+   "sha256": "6cd7f2897bbdcf560d194d03c3c11ea530e51f36d1c2a368e4ddee3d5c074bfe"
   },
   {
    "lang": "en",
@@ -963,10 +963,10 @@
    "label": "Male voice",
    "kind": "tts",
    "source": "en_US-john-medium",
-   "url": "https://carenactmedia.blob.core.windows.net/audio/en/sovereignty.male.f6ff8788c4.mp3",
-   "bytes": 753998,
-   "duration": 188.4,
-   "sha256": "f6ff8788c480deb317f7426ace0a549c2198d598d9c8eb243f8337abd2554402"
+   "url": "https://carenactmedia.blob.core.windows.net/audio/en/sovereignty.male.f9f92d0320.mp3",
+   "bytes": 778449,
+   "duration": 194.5,
+   "sha256": "f9f92d03201489b96507101de93e23a5c1f38f720b5f72d4731bd6de32af477a"
   },
   {
    "lang": "en",

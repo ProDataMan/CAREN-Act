@@ -52,7 +52,8 @@
       let h = '<p class="crumbs"><a href="learn.html">Learn</a> › ' + (path ? '<a href="learn.html#path-' + path.id + '">' + path.icon + ' ' + esc(path.title) + '</a> › ' + (pi + 1) + ' / ' + path.modules.length : 'Module ' + m.num) + '</p>' +
         '<h1 data-narr="title">' + esc(m.title) + '</h1>' +
         '<div class="meta">' + (m.minutes ? '<span>' + m.minutes + ' min read</span>·' : '') +
-        '<span>' + (m.status === 'outline' ? 'Outline: being written' : 'Draft, awaiting historian review') + '</span>·' +
+        '<span>' + (m.reviewed && m.reviewed.date ? 'Reviewed ' + esc(m.reviewed.date) + (m.reviewed.by ? ' by ' + esc(m.reviewed.by) : '') : (m.status === 'outline' ? 'Outline: being written' : 'Draft, awaiting historian review')) + '</span>·' +
+        (() => { const f = (cat.factChecks || []).filter(x => x.module === m.id); if (!f.length) return ''; const last = f.map(x => x.checked).filter(Boolean).sort().pop(), open = f.filter(x => x.status === 'open').length; return '<a href="review.html#queue">' + (last ? 'Fact-checked ' + last : 'Fact checks pending') + (open ? ' (' + open + ' open)' : '') + '</a>·'; })() +
         (m.status !== 'outline' ? '<a href="teach.html?m=' + m.id + '">🎓 Teach this</a>·' : '') +
         Object.keys(cat.labels).map(k => ui.chip(cat, k)).join(' ') + '</div>';
       if (m.status === 'outline') {

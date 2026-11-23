@@ -8,7 +8,7 @@ const BASE = (process.argv[2] || 'http://localhost:8765/website/').replace(/\/?$
 const AXE = fs.readFileSync(require.resolve('axe-core/axe.min.js', { paths: [__dirname, process.cwd()] }), 'utf8');
 const PAGES = ['index.html', 'act.html', 'county.html?f=40143', 'bill.html', 'deaths.html', 'laws.html', 'history.html', 'learn.html', 'learn.html?lang=es',
   'module.html?m=before-race', 'module.html?m=movements&lang=es', 'teach.html', 'teach.html?m=rights', 'data.html', 'volunteer.html', 'stories.html', 'toolkit.html',
-  'brief.html', 'press.html', 'class.html', 'record.html', 'search.html?q=tulsa', 'voices.html', 'privacy.html', 'admin.html', 'embed.html'];
+  'brief.html', 'press.html', 'review.html', 'class.html', 'record.html', 'search.html?q=tulsa', 'voices.html', 'privacy.html', 'admin.html', 'embed.html'];
 const WIDTHS = [1280, 390];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 (async () => {

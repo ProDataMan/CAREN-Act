@@ -53,6 +53,20 @@ for p in cat.get('paths', []):
 for d in cat.get('detective', []):
     if d['a'] not in labels: err('detective: unknown answer label %r' % d['a'])
 
+# 2b. Fact-check queue
+DATE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
+fids = set()
+for f in cat.get('factChecks', []):
+    if f.get('id') in fids: err('factChecks: duplicate id %s' % f.get('id'))
+    fids.add(f.get('id'))
+    if f.get('module') not in ids: err('factChecks %s: unknown module %s' % (f.get('id'), f.get('module')))
+    if f.get('status') not in ('open', 'verified', 'corrected'): err('factChecks %s: status must be open, verified or corrected' % f.get('id'))
+    if f.get('status') != 'open' and not (f.get('checked') and DATE.match(f['checked']) and f.get('sources')): err('factChecks %s: checked items need a date and at least one source' % f.get('id'))
+    if f.get('recheck') and not DATE.match(f['recheck']): err('factChecks %s: bad recheck date' % f.get('id'))
+for m in mods:
+    r = m.get('reviewed')
+    if r and not (r.get('date') and DATE.match(r['date'])): err('%s: "reviewed" needs a YYYY-MM-DD date' % m['id'])
+
 # 3. Spanish overlay matches the English structure
 es = json.loads((W / 'data' / 'learn.es.json').read_text(encoding='utf-8'))
 for mid, t in es.get('modules', {}).items():

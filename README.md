@@ -41,6 +41,11 @@ The site runs at **https://prodataman.github.io/CAREN-Act/website/** (GitHub Pag
     - Tested with real Tab, Enter and Escape key presses.
   - **Known limits:** audio is computer-narrated, and the full text is always on the page.
   - **Re-test:** `.tools/axe.js URL WIDTH` (headless Chrome plus axe-core).
+- **Review and fact-check queue:** https://prodataman.github.io/CAREN-Act/website/review.html
+  - **Lessons:** each has a `reviewed` field (`{"date", "by"}`, null until a historian reviews it). Lesson pages show the review status and a "Fact-checked <date>" link.
+  - **`factChecks` in `learn.json`:** time-sensitive claims with a status (open, verified or corrected), date checked, note, sources and recheck date.
+  - **CI** requires checked items to have a date and a source.
+  - **First pass (2026-11-23):** verified the Massey verdict, the Greenwood Trust, the Los Angeles stops ruling (Noem v. Vasquez Perdomo), the revocation of EO 14074 and the ProPublica citizen detentions. Corrected the tribe count to 575 (Lumbee, December 2025). 7 items are open.
 - **Volunteer narrators:** https://prodataman.github.io/CAREN-Act/website/record.html (linked from every lesson's Listen bar, and the "Lend your voice" quest is worth 150 XP).
   - **The volunteer** picks a lesson, reads the script while the page records it in the browser, downloads the file, shares it by link (Drive, Dropbox or iCloud), and submits the link with a credit name and a license (CC BY 4.0 or CC0).
   - **Submissions** appear in `admin.html#narrations`.
@@ -271,6 +276,7 @@ To run it locally: `cd server && npm install && DB_SERVER=postgresdata.database.
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `checks.yml` | Every push to `main` that touches `website/`, `scripts/` or `server/`, every pull request, or a manual run | **Data check** (`scripts/ci/check_data.py`): every JSON parses; module, quest, badge and path references are valid; Spanish translations match the English structure; every narration matches the current lesson text and has a stored audio URL in the manifest. **Page check** (`scripts/ci/check_pages.js`): 26 pages in headless Chrome at 1280 and 390 px, failing on JavaScript errors, horizontal overflow or any axe-core accessibility violation |
+| `review-reminder.yml` | The 1st of January, April, July and October, or a manual run | Opens a `fact-check` issue listing open fact checks, rechecks due within 30 days, and lessons not yet reviewed by an expert (`scripts/ci/review_reminder.py`) |
 | `deploy-server.yml` | Every push to `main` that touches `server/`, `website/` or `docs/`, or a manual run | Builds the image, pushes it to GHCR, and updates the Container App through OIDC |
 | `refresh-data.yml` | Mondays 09:17 UTC, or a manual run | Rebuilds `website/data/` from the publishers, commits any changes, rebuilds GitHub Pages and starts the Azure deploy |
 | `bill-comments.yml` | New, edited or labeled issues | Labels website comments `bill-comment`. When an editor adds `accepted`, merges the edit into `website/bill.json`, stars the commenter, and redeploys both copies |

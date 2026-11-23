@@ -176,6 +176,11 @@ A public repository and advocacy site supporting a federal version of San Franci
     - Monroe Work Today matched by "County, ST"; covenants by jurisdiction; contested deaths by county.
     - Destroyed communities, sites, old laws and redlining cities by distance from the county center.
     - New `redlining_cities.json` (city grade counts plus centers), written by `write_redlining_cities` in `build_redlining`.
+  - **2026-11-23, fact-check queue:**
+    - `factChecks` (14 items: 6 verified, 1 corrected, 7 open) and `reviewed` per module in `learn.json`.
+    - `review.html`, the lesson meta line, validation in `check_data.py`, and the quarterly `review-reminder.yml` (`scripts/ci/review_reminder.py`).
+    - Sovereignty now says 575 tribes. It was re-narrated and synced, a real test of the edit, narrate and sync loop.
+    - Web search hit its usage limit before the Massey sentence and the Greenwood Trust funding outcome could be checked; both are open.
   - **2026-11-23, CI checks:** `.github/workflows/checks.yml` runs `scripts/ci/check_data.py` and `scripts/ci/check_pages.js` (axe-core 4.10.2 from npm, node_modules git-ignored).
     - Verified that the data check catches a lesson edited without re-narrating.
     - All 52 page checks pass.
